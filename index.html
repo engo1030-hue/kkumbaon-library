@@ -1290,10 +1290,10 @@
 
       <div class="header-actions">
         <div class="storage-pill" id="storageBadge">
-          <span>📦 도서관 총 용량 계산 중...</span>
+          <span>📜 장서 현황 불러오는 중...</span>
         </div>
         <button class="hdr-btn" onclick="toggleAtlasDrawer()">🗺️ 성경 지도 아틀라스</button>
-        <button class="hdr-btn gold" onclick="openBlueprintModal()">🏛️ 도서관 설계도 &amp; GitHub 안내</button>
+        <button class="hdr-btn gold" onclick="openBlueprintModal()">🏛️ 도서관 안내</button>
         <button class="hdr-btn" onclick="toggleDarkTheme()" id="themeBtn">🌙 밤의 서재</button>
       </div>
     </div>
@@ -1316,25 +1316,25 @@
 
       <div class="hero-stats-box">
         <div class="hero-stats-title">
-          <span>📊 실시간 디지털 도서관 장서 현황</span>
-          <span style="color:#8CE99A; font-size:11.5px;">● 초경량 WebP 최적화 가동 중</span>
+          <span>🏛️ 꿈바온 디지털 도서관 장서 현황</span>
+          <span style="color:#E5C878; font-size:11.5px;">● 상설 전시관 개방</span>
         </div>
         <div class="stats-grid">
           <div class="stat-card">
-            <div class="num" id="statTotalDocs">65편</div>
+            <div class="num" id="statTotalDocs">85편</div>
             <div class="lbl">수록 성경 문헌·역사서 전문</div>
           </div>
           <div class="stat-card">
-            <div class="num" id="statTotalImgs">40점</div>
+            <div class="num" id="statTotalImgs">195점</div>
             <div class="lbl">4화풍 성화·고고학 복원 도판</div>
           </div>
           <div class="stat-card">
-            <div class="num" id="statTotalMB">3.2 MB</div>
-            <div class="lbl">전체 사이트 실사용 용량</div>
+            <div class="num" id="statTotalMB">17개 도시</div>
+            <div class="lbl">성경 세계 고고학 실측 거점</div>
           </div>
           <div class="stat-card">
-            <div class="num" style="color:var(--gold-light);">0원 / 평생</div>
-            <div class="lbl">GitHub Pages 무료 서버 유지비</div>
+            <div class="num" style="color:var(--gold-light);">4대 전시관</div>
+            <div class="lbl">지리 · 인물 · 사물 · 새벽 우물</div>
           </div>
         </div>
       </div>
@@ -1549,95 +1549,33 @@
     </div>
   </div>
 
-  <!-- 7. 도서관 아키텍처 설계도 & GitHub 연동 안내 모달 -->
+  <!-- 7. 도서관 열람 및 상설 전시관 안내 모달 -->
   <div class="modal-backdrop" id="blueprintModal" onclick="if(event.target===this) closeBlueprintModal()">
     <div class="reader-modal">
       <div class="reader-toolbar">
-        <div class="reader-toolbar-left">🏛️ 꿈바온 디지털 도서관 마스터 아키텍처 설계도 (v1.0)</div>
+        <div class="reader-toolbar-left">🏛️ 꿈바온 디지털 도서관 (꿈디도) 열람 및 상설 전시관 안내</div>
         <div class="reader-toolbar-right">
           <button class="hdr-btn" onclick="closeBlueprintModal()">✕ 닫기</button>
         </div>
       </div>
       <div class="reader-scroll">
-        <h2 class="serif" style="font-size:26px; margin-bottom:12px;">꿈바온 디지털 도서관 (Kkumbaon Digital Library) 설계 보고서</h2>
-        <p style="color:var(--espresso-mid); margin-bottom:20px;">
-          꿈바온 목사와 클간사, 지간사, 안간사가 매일 정성으로 빚어내는 성경 지도·인물 역사서·고고학 스케치·사물 백과·새벽 우물 원고를 영구 보존하고 성도·목회자들과 나누는 디지털 아카이브 설계도입니다.
+        <h2 class="serif" style="font-size:26px; margin-bottom:12px;">꿈바온 디지털 도서관 (Kkumbaon Digital Library) 안내</h2>
+        <p style="color:var(--espresso-mid); margin-bottom:20px; line-height:1.75;">
+          꿈바온 디지털 도서관은 흘러가는 영상 너머에 있는 성경의 땅과 사람, 사물의 역사와 매일의 말씀 풀어읽기를 한 권의 책처럼 차곡차곡 기록하고 나누는 성경 아카이브입니다.
         </p>
 
-        <h3 class="serif" style="margin:24px 0 10px;">1. 어제 만든 GitHub 계정 하나로 충분한가요? ➡️ 네! 추가 계정 전혀 필요 없습니다!</h3>
-        <table class="blueprint-table">
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>저장소(Repository) 이름</th>
-              <th>웹 접속 주소 (URL)</th>
-              <th>용도 및 비용</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>1호 사이트 (어제 개통)</strong></td>
-              <td><code>kkumbaon-school</code></td>
-              <td><code>https://engo1030-hue.github.io/kkumbaon-school/</code></td>
-              <td>꿈바온 교회학교 52주 교사 스튜디오 (월 0원)</td>
-            </tr>
-            <tr>
-              <td><strong>2호 사이트 (오늘 설계)</strong></td>
-              <td><code>kkumbaon-library</code></td>
-              <td><code>https://engo1030-hue.github.io/kkumbaon-library/</code></td>
-              <td><strong>꿈바온 디지털 도서관 · 성경 대백과 박물관 (월 0원)</strong></td>
-            </tr>
-            <tr>
-              <td><strong>3호 대표 대문 (통합 허브)</strong></td>
-              <td><code>engo1030-hue.github.io</code></td>
-              <td><code>https://engo1030-hue.github.io/</code></td>
-              <td>모세의 지팡이 · 아론의 지팡이 · 도서관 통합 대문 (월 0원)</td>
-            </tr>
-          </tbody>
-        </table>
-        <p style="font-size:14px; color:var(--espresso-mid);">
-          💡 <strong>핵심 원리:</strong> GitHub 계정(<code>engo1030-hue</code>)은 ‘건물주 아이디’이고, 그 안에 방(Repository)을 수십 개든 무료로 만들 수 있습니다. 따라서 새 계정을 또 만드실 필요 없이 어제 그 계정 그대로 독립된 도서관 주소를 즉시 개통할 수 있습니다.
-        </p>
+        <h3 class="serif" style="margin:24px 0 10px;">1. 4대 상설 전시관 구성</h3>
+        <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
+          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(17개 주요 성경 거점 핀 연동) 및 에베소·알렉산드리아·고린도·빌립보·아골 골짜기 등의 지리·고고학 복원 도감.</li>
+          <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 성경 인물 중심의 깊은 역사 이야기.</li>
+          <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 고대 근동과 성경 시대의 생활 사물·풍습(열쇠, 인장반지, 눈물병, 방주의 창, 신발, 벽돌, 청색 끈 등 30편)을 발굴하고 복음의 빛으로 읽어 내는 백과사전.</li>
+          <li><strong>🌅 제4관 · 새벽 우물 &amp; 성경 한 바퀴 서재:</strong> 『꿈바온 매일묵상 — 꿈바온의 성경 풀어읽기』를 통해 성경 66권의 큰 장면을 한 걸음씩 산책하는 말씀 서재.</li>
+        </ul>
 
-        <h3 class="serif" style="margin:28px 0 10px;">2. 실제 용량 검증 결과 (왜 수천 편을 쌓아도 거뜬한가?)</h3>
-        <table class="blueprint-table">
-          <thead>
-            <tr>
-              <th>콘텐츠 종류</th>
-              <th>현재 수록량 (V1.0 실측)</th>
-              <th>1,000편 누적 시 예상 용량</th>
-              <th>안간사 초경량 압축 기술</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>📜 성경 역사서·백과·묵상 원고</strong></td>
-              <td><strong>실제 원고 65편 전문</strong> (약 1.1 MB)</td>
-              <td>약 <strong>18 MB</strong></td>
-              <td>순수 텍스트 JSON 구조화로 책 수십 권 분량도 사진 3장 크기</td>
-            </tr>
-            <tr>
-              <td><strong>🖼️ 4화풍 성화·고고학 도판</strong></td>
-              <td><strong>고화질 도판 44점</strong> (약 2.5 MB)</td>
-              <td>약 <strong>65 MB</strong> (1,000장 기준)</td>
-              <td>원본 PNG(3~5MB)를 육안 무손실 <strong>WebP(장당 50~70KB)</strong>로 1/50 압축</td>
-            </tr>
-            <tr>
-              <td><strong>🎬 유튜브 영상 연동</strong></td>
-              <td>무제한 임베드 연결 (<strong>0 MB</strong>)</td>
-              <td><strong>0 MB</strong></td>
-              <td>영상 파일은 유튜브 서버에 두고 도서관에서는 스트리밍 연결만 수행</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h3 class="serif" style="margin:28px 0 10px;">3. 5대 상설 전시관 아키텍처</h3>
-        <ul style="margin-left:20px; line-height:1.9; font-size:14.5px;">
-          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 지도 핀 연동 + 에베소·알렉산드리아·고린도·빌립보·아골 골짜기 지리·고고학 복원 도감.</li>
-          <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 인물 중심 연대기.</li>
-          <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 『소소한 성경이야기』 30대 마스터 인덱스 및 10월 신작(열쇠, 인장반지, 눈물병, 방주의 창, 신발, 벽돌, 청색 끈 등) 백과사전.</li>
-          <li><strong>🌅 제4관 · 새벽 우물 &amp; 성경 한 바퀴 서재:</strong> 2027~2033 7년 성경 66권 대장정 마스터플랜 및 권별 새벽말씀 강해 전집.</li>
-          <li><strong>🖨️ 목회자·교사용 A4 유인물 즉석 조판기:</strong> 모든 문헌을 구역예배·성경공부·주일학교 유인물(PDF)로 깔끔하게 인쇄.</li>
+        <h3 class="serif" style="margin:28px 0 10px;">2. 열람 및 인쇄 활용 안내</h3>
+        <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
+          <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
+          <li><strong>🖨️ A4 유인물 인쇄 및 원고 복사:</strong> 각 문헌을 열람하신 뒤 상단 <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 개인 묵상 노트나 성경공부 자료로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
       </div>
     </div>
@@ -1666,9 +1604,9 @@
 
       document.getElementById("statTotalDocs").textContent = `${totalDocs}편`;
       document.getElementById("statTotalImgs").textContent = `${totalImgs}점`;
-      document.getElementById("statTotalMB").textContent = `${mb} MB`;
+      document.getElementById("statTotalMB").textContent = `${(LIB.atlasPins || []).length || 17}개 도시`;
       document.getElementById("storageBadge").innerHTML =
-        `<span>📦 수록 문헌 <strong>${totalDocs}편</strong> · 도판 <strong>${totalImgs}점</strong> · 총 용량 단 <strong>${mb} MB</strong></span>`;
+        `<span>📜 수록 문헌 <strong>${totalDocs}편</strong> · 성화 및 고고학 도판 <strong>${totalImgs}점</strong></span>`;
 
       // 전시관별 카운트 계산
       const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0 };
