@@ -683,15 +683,107 @@
 
     .hall-tabs {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(6, 1fr);
       gap: 10px;
       margin-bottom: 18px;
     }
 
-    @media (max-width: 980px) {
+    @media (max-width: 1120px) {
+      .hall-tabs {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
       .hall-tabs {
         grid-template-columns: repeat(2, 1fr);
       }
+    }
+
+    /* 꿈디도 영상실 전용 스타일 */
+    .cinema-subbar {
+      display: none;
+      background: linear-gradient(135deg, #1A1410 0%, #271E17 100%);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+      color: #FAF6EE;
+      box-shadow: var(--shadow-card);
+    }
+
+    .cinema-subbar.open {
+      display: block;
+    }
+
+    .cinema-subbar-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cinema-filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .c-pill {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(229, 200, 120, 0.32);
+      color: #E8DFD1;
+      padding: 6px 13px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .c-pill:hover,
+    .c-pill.active {
+      background: var(--gold-primary);
+      color: #14110E;
+      border-color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    .yt-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      background: rgba(15, 12, 10, 0.24);
+      transition: background 0.22s ease;
+    }
+
+    .doc-card:hover .yt-play-overlay {
+      background: rgba(15, 12, 10, 0.08);
+    }
+
+    .yt-play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(20, 16, 13, 0.84);
+      border: 2px solid var(--gold-light);
+      color: var(--gold-light);
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+      padding-left: 3px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+      transition: transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+    }
+
+    .doc-card:hover .yt-play-circle {
+      transform: scale(1.12);
+      background: #C82828;
+      border-color: #FFFFFF;
+      color: #FFFFFF;
     }
 
     .hall-tab {
@@ -1292,6 +1384,7 @@
         <div class="storage-pill" id="storageBadge">
           <span>📜 장서 현황 불러오는 중...</span>
         </div>
+        <button class="hdr-btn" onclick="openCinemaHall()">🎬 꿈디도 영상실</button>
         <button class="hdr-btn" onclick="toggleAtlasDrawer()">🗺️ 성경 지도 아틀라스</button>
         <button class="hdr-btn gold" onclick="openBlueprintModal()">🏛️ 도서관 안내</button>
         <button class="hdr-btn" onclick="toggleDarkTheme()" id="themeBtn">🌙 밤의 서재</button>
@@ -1333,8 +1426,8 @@
             <div class="lbl">성경 세계 고고학 실측 거점</div>
           </div>
           <div class="stat-card">
-            <div class="num" style="color:var(--gold-light);">4대 전시관</div>
-            <div class="lbl">지리 · 인물 · 사물 · 새벽 우물</div>
+            <div class="num" style="color:var(--gold-light);">5대 전시관</div>
+            <div class="lbl">지리 · 인물 · 사물 · 우물 · 영상실</div>
           </div>
         </div>
       </div>
@@ -1430,15 +1523,23 @@
     <div style="background:linear-gradient(135deg, #1E1915 0%, #2A221B 100%); border:1.5px solid var(--border-gold); border-radius:var(--radius-lg); padding:20px 24px; color:#FAF6EE; box-shadow:var(--shadow-card);">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
         <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.06em;">📚 KKUMBAON E-BOOK ARCHIVE · 2027 성경 한 바퀴 제1권 완결본</span>
-          <h3 class="serif" style="font-size:19px; color:#FFF; margin-top:2px;">클간사 &amp; 안간사 합작 · 2027년 완결본 전자책(PDF) 서가</h3>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.06em;">📚 KKUMBAON E-BOOK ARCHIVE · 성경 한 바퀴 &amp; 조금 긴 성경이야기 전자책 서가</span>
+          <h3 class="serif" style="font-size:19px; color:#FFF; margin-top:2px;">꿈바온 매일묵상 · 성경 한 바퀴 &amp; 조금 긴 성경이야기 전자책(PDF) 열람실</h3>
         </div>
-        <span style="font-size:12px; color:#C8BDAE;">클릭하시면 A4 크림페이퍼 전자책(PDF) 원본을 새 창에서 열람·인쇄·다운로드하실 수 있습니다.</span>
+        <span style="font-size:12px; color:#C8BDAE;">클릭하시면 전자책(PDF) 원본을 새 창에서 열람·인쇄·다운로드하실 수 있습니다.</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;" id="ebookShelfGrid">
+        <a href="ebooks/202611_꿈바온_매일묵상_성경한바퀴_11월호_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
+          <div>
+            <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📗 2026년 11월호 완결 합본 · 총 28회 (29p 크림페이퍼)</div>
+            <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">꿈바온 매일묵상 · 성경 한 바퀴 (10.29~11.30)</div>
+            <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">룻기 1~4장 완독 · 에스더 1~10장 완독 · 사무엘상 1~17장</div>
+          </div>
+          <span class="hdr-btn gold" style="flex-shrink:0;">PDF 열람 →</span>
+        </a>
         <a href="ebooks/20261029_꿈바온_매일묵상_성경한바퀴_룻기1장.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
           <div>
-            <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📘 10월 29일 전면 개편 · 꿈바온의 성경 풀어읽기 제1호 (6p 와이드)</div>
+            <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📘 10월 29일 개편 제1호 · 와이드 화면판 (6p 4K)</div>
             <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">꿈바온 매일묵상 · 성경 한 바퀴 — 룻기 1장 전체 (1:1–22)</div>
             <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">흉년으로 떠난 길, 보리 추수로 돌아오다 · 큰 한 장면 완결</div>
           </div>
@@ -1479,6 +1580,30 @@
         <div class="hall-tab-top"><span>🌅 HALL 4 · DEVOTIONS</span><span class="hall-count" id="cnt-devotions">0</span></div>
         <div class="hall-tab-title">새벽 우물 · 성경 한 바퀴</div>
       </button>
+      <button class="hall-tab" data-cat="cinema" onclick="selectCategory('cinema')">
+        <div class="hall-tab-top"><span>🎬 HALL 5 · CINEMA</span><span class="hall-count" id="cnt-cinema">118</span></div>
+        <div class="hall-tab-title">꿈디도 영상실 · 유튜브관</div>
+      </button>
+    </div>
+
+    <!-- 제5관 꿈디도 영상실 세부 필터 & 유튜브 채널 배너 -->
+    <div class="cinema-subbar" id="cinemaSubbar">
+      <div class="cinema-subbar-top">
+        <div>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🎬 KKUMDIDO CINEMA HALL · 꿈바온 공식 유튜브 영상 아카이브</span>
+          <h3 class="serif" style="font-size:18px; color:#FFF; margin-top:2px;">꿈디도 영상실 — 카드를 클릭하시면 유튜브 원본 영상으로 바로 이동합니다</h3>
+        </div>
+        <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none;">
+          📺 꿈바온 유튜브 채널 (@dreaming_ondal) 바로가기 ↗
+        </a>
+      </div>
+      <div class="cinema-filter-pills" id="cinemaFilterPills">
+        <button class="c-pill active" data-vcat="all" onclick="selectVideoCat('all')">전체 영상 (<span id="vcnt-all">0</span>)</button>
+        <button class="c-pill" data-vcat="sermon" onclick="selectVideoCat('sermon')">🏛️ 조금 긴 성경이야기 · 설교 (<span id="vcnt-sermon">0</span>)</button>
+        <button class="c-pill" data-vcat="devotion" onclick="selectVideoCat('devotion')">🌅 꿈바온 매일묵상 (<span id="vcnt-devotion">0</span>)</button>
+        <button class="c-pill" data-vcat="story" onclick="selectVideoCat('story')">🏺 소소한 성경이야기 (<span id="vcnt-story">0</span>)</button>
+        <button class="c-pill" data-vcat="praise" onclick="selectVideoCat('praise')">🎵 말씀 클립 · 찬양 (<span id="vcnt-praise">0</span>)</button>
+      </div>
     </div>
 
     <div class="search-bar-row">
@@ -1564,17 +1689,19 @@
           꿈바온 디지털 도서관은 흘러가는 영상 너머에 있는 성경의 땅과 사람, 사물의 역사와 매일의 말씀 풀어읽기를 한 권의 책처럼 차곡차곡 기록하고 나누는 성경 아카이브입니다.
         </p>
 
-        <h3 class="serif" style="margin:24px 0 10px;">1. 4대 상설 전시관 구성</h3>
+        <h3 class="serif" style="margin:24px 0 10px;">1. 5대 상설 전시관 구성</h3>
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
           <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(17개 주요 성경 거점 핀 연동) 및 에베소·알렉산드리아·고린도·빌립보·아골 골짜기 등의 지리·고고학 복원 도감.</li>
           <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 성경 인물 중심의 깊은 역사 이야기.</li>
           <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 고대 근동과 성경 시대의 생활 사물·풍습(열쇠, 인장반지, 눈물병, 방주의 창, 신발, 벽돌, 청색 끈 등 30편)을 발굴하고 복음의 빛으로 읽어 내는 백과사전.</li>
           <li><strong>🌅 제4관 · 새벽 우물 &amp; 성경 한 바퀴 서재:</strong> 『꿈바온 매일묵상 — 꿈바온의 성경 풀어읽기』를 통해 성경 66권의 큰 장면을 한 걸음씩 산책하는 말씀 서재.</li>
+          <li><strong>🎬 제5관 · 꿈디도 영상실 (유튜브 상영관):</strong> 꿈바온 공식 유튜브 채널(<code>@dreaming_ondal</code>)에 수록된 조금 긴 성경이야기·매일묵상·소소한 성경이야기·찬양 영상 118편을 한눈에 둘러보고 클릭 한 번으로 바로 감상하는 영상 상영관.</li>
         </ul>
 
         <h3 class="serif" style="margin:28px 0 10px;">2. 열람 및 인쇄 활용 안내</h3>
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
           <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
+          <li><strong>🎬 꿈디도 영상실 감상:</strong> 상단 <code>🎬 꿈디도 영상실</code> 또는 제5관 탭을 누른 뒤 영상 카드를 클릭하시면 유튜브 원본 화면으로 즉시 연결됩니다.</li>
           <li><strong>🖨️ A4 유인물 인쇄 및 원고 복사:</strong> 각 문헌을 열람하신 뒤 상단 <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 개인 묵상 노트나 성경공부 자료로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
       </div>
@@ -1590,8 +1717,9 @@
 
   <script src="library_data.js"></script>
   <script>
-    const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [] };
+    const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [], videos: [] };
     let currentCategory = "all";
+    let currentVideoCat = "all";
     let currentDoc = null;
     let currentFontSize = 18.5;
 
@@ -1600,22 +1728,32 @@
       const m = LIB.meta || {};
       const totalDocs = (LIB.items || []).length;
       const totalImgs = m.totalImages || 0;
-      const mb = m.imageSizeMB ? (m.imageSizeMB + 1.1).toFixed(2) : "3.50";
+      const totalVids = (LIB.videos || []).length;
 
       document.getElementById("statTotalDocs").textContent = `${totalDocs}편`;
       document.getElementById("statTotalImgs").textContent = `${totalImgs}점`;
       document.getElementById("statTotalMB").textContent = `${(LIB.atlasPins || []).length || 17}개 도시`;
       document.getElementById("storageBadge").innerHTML =
-        `<span>📜 수록 문헌 <strong>${totalDocs}편</strong> · 성화 및 고고학 도판 <strong>${totalImgs}점</strong></span>`;
+        `<span>📜 문헌 <strong>${totalDocs}편</strong> · 성화·도판 <strong>${totalImgs}점</strong> · 영상실 <strong>${totalVids}편</strong></span>`;
 
       // 전시관별 카운트 계산
-      const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0 };
+      const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0, cinema: totalVids };
       (LIB.items || []).forEach(it => {
         if (counts[it.category] !== undefined) counts[it.category]++;
       });
       Object.keys(counts).forEach(k => {
         const el = document.getElementById(`cnt-${k}`);
         if (el) el.textContent = counts[k];
+      });
+
+      // 영상실 세부 카테고리 카운트 계산
+      const vcounts = { all: totalVids, sermon: 0, devotion: 0, story: 0, praise: 0 };
+      (LIB.videos || []).forEach(v => {
+        if (vcounts[v.vCat] !== undefined) vcounts[v.vCat]++;
+      });
+      Object.keys(vcounts).forEach(k => {
+        const el = document.getElementById(`vcnt-${k}`);
+        if (el) el.textContent = vcounts[k];
       });
 
       initAtlasMap();
@@ -1868,10 +2006,28 @@
       dr.style.display = dr.style.display === "none" ? "block" : "none";
     }
 
+    function openCinemaHall() {
+      selectCategory("cinema");
+      const wrap = document.querySelector(".controls-wrap");
+      if (wrap) wrap.scrollIntoView({ behavior: "smooth" });
+    }
+
     function selectCategory(cat) {
       currentCategory = cat;
       document.querySelectorAll(".hall-tab").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
+      });
+      const subbar = document.getElementById("cinemaSubbar");
+      if (subbar) {
+        subbar.classList.toggle("open", cat === "cinema");
+      }
+      renderGrid();
+    }
+
+    function selectVideoCat(vcat) {
+      currentVideoCat = vcat;
+      document.querySelectorAll(".c-pill").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-vcat") === vcat);
       });
       renderGrid();
     }
@@ -1891,6 +2047,7 @@
 
     function resetFilters() {
       currentCategory = "all";
+      currentVideoCat = "all";
       document.getElementById("searchInput").value = "";
       document.querySelectorAll(".q-tag").forEach(t => t.classList.remove("active"));
       selectCategory("all");
@@ -1899,6 +2056,48 @@
     function renderGrid() {
       const q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
       const grid = document.getElementById("archiveGrid");
+
+      if (currentCategory === "cinema") {
+        const vids = (LIB.videos || []).filter(v => {
+          if (currentVideoCat !== "all" && v.vCat !== currentVideoCat) return false;
+          if (!q) return true;
+          const hay = [v.title, v.subtitle || "", v.vCatLabel, v.summary, v.publishedAt].join(" ").toLowerCase();
+          return hay.includes(q);
+        });
+
+        document.getElementById("gridStatusText").innerHTML =
+          `<strong>🎬 제5관 · 꿈디도 영상실 (유튜브 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 유튜브 영상이 준비되었습니다.`;
+
+        grid.innerHTML = vids.map(v => {
+          return `
+            <a class="doc-card" href="${v.url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+              <div class="card-thumb">
+                <img src="${v.thumb}" alt="${v.title}" loading="lazy" />
+                <div class="yt-play-overlay">
+                  <div class="yt-play-circle">▶</div>
+                </div>
+                <span class="card-cat-badge">${v.vCatLabel}</span>
+                <span class="card-gallery-badge">⏱️ ${v.duration}</span>
+              </div>
+              <div class="card-body">
+                <div class="card-scripture">
+                  <span>📅 ${v.publishedAt} 게시</span>
+                  <span style="color:var(--espresso-muted);font-weight:600;">📺 @dreaming_ondal</span>
+                </div>
+                <h3 class="card-title">${v.title}</h3>
+                ${v.subtitle ? `<div style="font-size:12px; color:var(--gold-primary); font-weight:700; margin-bottom:6px;">${v.subtitle}</div>` : ""}
+                <p class="card-summary">${v.summary}</p>
+              </div>
+              <div class="card-footer">
+                <span>클릭 시 유튜브에서 바로 재생</span>
+                <span class="read-link">▶️ 유튜브로 보기 ↗</span>
+              </div>
+            </a>
+          `;
+        }).join("");
+        return;
+      }
+
       const items = (LIB.items || []).filter(it => {
         if (currentCategory !== "all" && it.category !== currentCategory) return false;
         if (!q) return true;
