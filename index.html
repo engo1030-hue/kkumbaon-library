@@ -1,0 +1,2174 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>꿈바온 디지털 도서관 · 성경 지도·인물 역사서·고고학·사물 백과 아카이브</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-parchment: #F6F2E9;
+      --bg-parchment-deep: #ECE5D5;
+      --bg-card: #FCFBF8;
+      --bg-header: #161311;
+      --bg-header-sub: #211C18;
+      --espresso-dark: #1E1915;
+      --espresso-mid: #4A3F35;
+      --espresso-muted: #7A6C5D;
+      --gold-primary: #C59B38;
+      --gold-light: #E5C878;
+      --gold-pale: #F7F0DC;
+      --terracotta: #9E4733;
+      --olive-deep: #2E4A3B;
+      --border-warm: #DFD5C3;
+      --border-gold: rgba(197, 155, 56, 0.35);
+      --shadow-card: 0 8px 28px rgba(30, 25, 21, 0.06);
+      --shadow-hover: 0 16px 40px rgba(30, 25, 21, 0.13);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --reader-font-size: 18.5px;
+    }
+
+    body.dark-theme {
+      --bg-parchment: #12100E;
+      --bg-parchment-deep: #1B1815;
+      --bg-card: #1E1A17;
+      --espresso-dark: #F2ECE1;
+      --espresso-mid: #C8BDAE;
+      --espresso-muted: #8C7F70;
+      --gold-pale: #2A2318;
+      --border-warm: #332C25;
+      --shadow-card: 0 8px 28px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-parchment);
+      color: var(--espresso-dark);
+      line-height: 1.65;
+      min-height: 100vh;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    .serif {
+      font-family: "Noto Serif KR", Georgia, serif;
+    }
+
+    /* 상단 로열 뮤지엄 헤더 */
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: linear-gradient(90deg, #13100E 0%, #1E1915 50%, #15120F 100%);
+      border-bottom: 1.5px solid var(--border-gold);
+      color: #F6F2E9;
+      padding: 12px 24px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .top-header-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      cursor: pointer;
+    }
+
+    .brand-crest {
+      width: 42px;
+      height: 42px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #D4AF37 0%, #9A7420 100%);
+      color: #13100E;
+      display: grid;
+      place-items: center;
+      font-family: "Noto Serif KR", serif;
+      font-weight: 900;
+      font-size: 20px;
+      box-shadow: 0 2px 10px rgba(212, 175, 55, 0.35);
+    }
+
+    .brand-titles h1 {
+      font-family: "Noto Serif KR", serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #FAF6EE;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .brand-titles p {
+      font-size: 12px;
+      color: #B8ACA0;
+      margin-top: 1px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .storage-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(197, 155, 56, 0.14);
+      border: 1px solid rgba(197, 155, 56, 0.4);
+      color: var(--gold-light);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .hdr-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: #EFEAE1;
+      padding: 7px 13px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hdr-btn:hover {
+      background: rgba(197, 155, 56, 0.22);
+      border-color: var(--gold-light);
+      color: #FFFFFF;
+    }
+
+    .hdr-btn.gold {
+      background: linear-gradient(135deg, #C8A248 0%, #A37C24 100%);
+      border-color: #E5C878;
+      color: #13100E;
+      font-weight: 700;
+    }
+
+    /* 히어로 배너 (오래된 우물의 서재 & 작은 미술전시회) */
+    .hero-section {
+      background: radial-gradient(circle at 80% 20%, rgba(197, 155, 56, 0.16), transparent 55%),
+                  linear-gradient(165deg, #1E1814 0%, #2B221B 55%, #171310 100%);
+      color: #F9F5EC;
+      padding: 44px 24px 38px;
+      border-bottom: 1px solid var(--border-warm);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-inner {
+      max-width: 1360px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.35fr 0.65fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 960px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 13px;
+      border-radius: 999px;
+      background: rgba(197, 155, 56, 0.16);
+      border: 1px solid rgba(229, 200, 120, 0.35);
+      color: var(--gold-light);
+      font-size: 12.5px;
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+
+    .hero-title {
+      font-family: "Noto Serif KR", serif;
+      font-size: clamp(26px, 3.4vw, 40px);
+      font-weight: 700;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+      color: #FFFDF9;
+    }
+
+    .hero-title span {
+      color: var(--gold-light);
+    }
+
+    .hero-quote {
+      margin-top: 16px;
+      padding: 14px 18px;
+      border-left: 3px solid var(--gold-primary);
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 0 10px 10px 0;
+      font-family: "Noto Serif KR", serif;
+      font-size: 14.5px;
+      color: #E2D9C8;
+      line-height: 1.7;
+    }
+
+    .hero-stats-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(229, 200, 120, 0.28);
+      border-radius: 16px;
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .hero-stats-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .stat-card {
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 14px;
+      border-radius: 11px;
+    }
+
+    .stat-card .num {
+      font-family: "Noto Serif KR", serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #FFF;
+    }
+
+    .stat-card .lbl {
+      font-size: 11.5px;
+      color: #B9ADA0;
+      margin-top: 2px;
+    }
+
+    /* 인터랙티브 성경 아틀라스 (지도 뷰어) */
+    .atlas-drawer {
+      max-width: 1360px;
+      margin: 26px auto 0;
+      padding: 0 24px;
+    }
+
+    .atlas-container {
+      background: linear-gradient(145deg, #231D18 0%, #191512 100%);
+      border: 1.5px solid var(--border-gold);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      color: #F5EFE4;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .atlas-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .atlas-header h2 {
+      font-family: "Noto Serif KR", serif;
+      font-size: 20px;
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .atlas-body {
+      display: grid;
+      grid-template-columns: 1.48fr 1.02fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1024px) {
+      .atlas-body {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .atlas-region-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .region-zoom-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .rz-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      color: #EFE6D5;
+      padding: 6px 12px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .rz-btn:hover,
+    .rz-btn.active {
+      background: linear-gradient(135deg, #D4AF37 0%, #A57D22 100%);
+      color: #14110E;
+      border-color: #F3DC8A;
+      font-weight: 700;
+    }
+
+    .map-stage {
+      position: relative;
+      background: #D8CCB4;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid #8C734B;
+      height: 520px;
+      box-shadow: inset 0 0 40px rgba(45, 31, 14, 0.38);
+      cursor: grab;
+      user-select: none;
+    }
+
+    .map-stage:active {
+      cursor: grabbing;
+    }
+
+    .map-canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      transform-origin: 0 0;
+      transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .map-canvas.dragging {
+      transition: none;
+    }
+
+    .map-bg-img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      display: block;
+      pointer-events: none;
+    }
+
+    .map-region-labels {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .map-reg-txt {
+      position: absolute;
+      transform: translate(-50%, -50%);
+      font-family: "Noto Serif KR", serif;
+      font-weight: 700;
+      color: rgba(74, 54, 32, 0.58);
+      letter-spacing: 0.25em;
+      white-space: nowrap;
+      text-shadow: 0 1px 2px rgba(255, 250, 240, 0.65);
+    }
+
+    .map-reg-txt.sea {
+      color: rgba(58, 78, 86, 0.62);
+      font-style: italic;
+    }
+
+    .map-controls-float {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      z-index: 35;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(22, 18, 14, 0.88);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 6px 10px;
+      border-radius: 10px;
+      backdrop-filter: blur(6px);
+    }
+
+    .zoom-ctrl-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+      color: #FFF;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .zoom-ctrl-btn:hover {
+      background: var(--gold-primary);
+      color: #14110E;
+    }
+
+    .map-legend-float {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 35;
+      background: rgba(22, 18, 14, 0.84);
+      border: 1px solid rgba(212, 175, 55, 0.38);
+      color: #EAE0CE;
+      padding: 7px 12px;
+      border-radius: 10px;
+      font-size: 11.5px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    .map-leader-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 9;
+    }
+
+    .map-pin {
+      position: absolute;
+      transform: translate(-50%, -50%) scale(var(--pin-inv-scale, 1));
+      cursor: pointer;
+      z-index: 14;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease;
+    }
+
+    .map-pin:hover,
+    .map-pin.active {
+      transform: translate(-50%, -50%) scale(calc(var(--pin-inv-scale, 1) * 1.18));
+      z-index: 30;
+    }
+
+    .pin-dot {
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #BA3D2B 0%, #7A1F14 100%);
+      border: 2px solid #FFF9EE;
+      box-shadow: 0 2px 9px rgba(20, 12, 8, 0.58);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFFDF7;
+      font-size: 10px;
+      font-weight: 800;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+
+    .map-pin.major .pin-dot::after {
+      content: "";
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      border: 1.4px solid rgba(186, 61, 43, 0.58);
+      pointer-events: none;
+    }
+
+    .map-pin.active .pin-dot {
+      background: radial-gradient(circle at 35% 35%, #F4D36E 0%, #B88720 100%);
+      color: #16120E;
+      border-color: #FFFFFF;
+      box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.42), 0 4px 14px rgba(0, 0, 0, 0.6);
+    }
+
+    .pin-label {
+      position: absolute;
+      background: rgba(24, 19, 15, 0.92);
+      color: #FAF3E3;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6.5px;
+      border-radius: 5px;
+      white-space: nowrap;
+      border: 1px solid rgba(212, 175, 55, 0.44);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.38);
+      pointer-events: auto;
+    }
+
+    .map-pin.lbl-bottom .pin-label {
+      top: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .map-pin.lbl-top .pin-label {
+      bottom: calc(100% + 4px);
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .map-pin.lbl-left .pin-label {
+      right: calc(100% + 6px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .map-pin.lbl-right .pin-label {
+      left: calc(100% + 6px);
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    .map-pin.active .pin-label {
+      background: #14100C;
+      color: var(--gold-light);
+      border-color: var(--gold-light);
+    }
+
+    .atlas-info-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 14px;
+      padding: 18px 20px;
+      display: flex;
+      flex-direction: column;
+      height: 520px;
+      overflow: hidden;
+    }
+
+    .city-docs-list {
+      margin-top: 12px;
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      padding-right: 4px;
+    }
+
+    .city-doc-item {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      background: rgba(0, 0, 0, 0.32);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 9px 11px;
+      cursor: pointer;
+      transition: all 0.18s;
+    }
+
+    .city-doc-item:hover {
+      background: rgba(197, 155, 56, 0.18);
+      border-color: var(--gold-light);
+      transform: translateX(3px);
+    }
+
+    .city-doc-thumb {
+      width: 58px;
+      height: 44px;
+      border-radius: 6px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #1A1512;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+    }
+
+    .city-doc-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .city-doc-info .c-meta {
+      font-size: 11px;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .city-doc-info .c-title {
+      font-family: "Noto Serif KR", serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #FFF;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 1px;
+    }
+
+    .atlas-pin-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .pin-chip {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #DDD3C2;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .pin-chip.active,
+    .pin-chip:hover {
+      background: var(--gold-primary);
+      color: #14110E;
+      border-color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* 전시관 탭 및 검색 바 */
+    .controls-wrap {
+      max-width: 1360px;
+      margin: 28px auto 20px;
+      padding: 0 24px;
+    }
+
+    .hall-tabs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    @media (max-width: 980px) {
+      .hall-tabs {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    .hall-tab {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 14px 16px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hall-tab:hover {
+      border-color: var(--gold-primary);
+      transform: translateY(-2px);
+    }
+
+    .hall-tab.active {
+      background: linear-gradient(145deg, #231C16 0%, #17130F 100%);
+      border-color: var(--gold-primary);
+      color: #FAF6EE;
+    }
+
+    .hall-tab-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--espresso-muted);
+      margin-bottom: 6px;
+    }
+
+    .hall-tab.active .hall-tab-top {
+      color: var(--gold-light);
+    }
+
+    .hall-tab-title {
+      font-family: "Noto Serif KR", serif;
+      font-size: 15.5px;
+      font-weight: 700;
+    }
+
+    .hall-count {
+      background: rgba(197, 155, 56, 0.16);
+      color: var(--gold-primary);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .hall-tab.active .hall-count {
+      background: var(--gold-primary);
+      color: #161311;
+    }
+
+    .search-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-warm);
+      border-radius: 14px;
+      padding: 12px 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .search-input-wrap {
+      flex: 1;
+      min-width: 240px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      color: var(--espresso-dark);
+      outline: none;
+    }
+
+    .quick-tags {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .q-tag {
+      background: var(--gold-pale);
+      border: 1px solid var(--border-warm);
+      color: var(--espresso-mid);
+      padding: 5px 11px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .q-tag:hover,
+    .q-tag.active {
+      background: var(--gold-primary);
+      color: #13100E;
+      border-color: var(--gold-primary);
+    }
+
+    /* 도서관 서가 그리드 */
+    .archive-main {
+      max-width: 1360px;
+      margin: 0 auto 60px;
+      padding: 0 24px;
+    }
+
+    .section-status-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+      font-size: 13.5px;
+      color: var(--espresso-muted);
+    }
+
+    .archive-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+      gap: 22px;
+    }
+
+    .doc-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-warm);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .doc-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--gold-primary);
+    }
+
+    .card-thumb {
+      height: 195px;
+      background: #231D18;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.45s ease;
+    }
+
+    .doc-card:hover .card-thumb img {
+      transform: scale(1.05);
+    }
+
+    .card-cat-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(20, 16, 13, 0.86);
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11.5px;
+      font-weight: 700;
+      backdrop-filter: blur(4px);
+    }
+
+    .card-gallery-badge {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(20, 16, 13, 0.85);
+      color: #FFF;
+      padding: 3px 9px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .card-body {
+      padding: 20px 20px 16px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-scripture {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--terracotta);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-title {
+      font-family: "Noto Serif KR", serif;
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--espresso-dark);
+      margin-bottom: 8px;
+    }
+
+    .card-summary {
+      font-size: 13.5px;
+      color: var(--espresso-mid);
+      line-height: 1.6;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-tags {
+      margin-top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      color: var(--espresso-muted);
+      background: var(--bg-parchment);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .card-footer {
+      padding: 12px 20px;
+      border-top: 1px solid var(--border-warm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--espresso-muted);
+      background: rgba(197, 155, 56, 0.04);
+    }
+
+    .read-link {
+      font-weight: 700;
+      color: var(--espresso-dark);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* 모달 공통 & 전자책 리더 모달 */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 10, 8, 0.78);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .reader-modal {
+      background: var(--bg-card);
+      color: var(--espresso-dark);
+      width: 100%;
+      max-width: 980px;
+      max-height: 92vh;
+      border-radius: 20px;
+      border: 1.5px solid var(--border-gold);
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .reader-toolbar {
+      background: #181411;
+      color: #F4EFE6;
+      padding: 12px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      border-bottom: 1px solid var(--border-gold);
+    }
+
+    .reader-toolbar-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    .reader-toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .reader-scroll {
+      padding: 38px 48px 56px;
+      overflow-y: auto;
+      flex: 1;
+    }
+
+    @media (max-width: 720px) {
+      .reader-scroll {
+        padding: 24px 20px 40px;
+      }
+    }
+
+    .reader-doc-header {
+      border-bottom: 2px solid var(--border-warm);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+
+    .reader-meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .meta-badge {
+      background: var(--gold-pale);
+      border: 1px solid var(--border-warm);
+      color: var(--espresso-mid);
+      padding: 4px 11px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .reader-title {
+      font-family: "Noto Serif KR", serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .reader-subtitle {
+      font-size: 15.5px;
+      color: var(--espresso-mid);
+      line-height: 1.6;
+    }
+
+    .reader-insight-box {
+      margin-top: 18px;
+      background: linear-gradient(90deg, rgba(197, 155, 56, 0.14) 0%, rgba(197, 155, 56, 0.04) 100%);
+      border-left: 4px solid var(--gold-primary);
+      padding: 15px 20px;
+      border-radius: 0 12px 12px 0;
+      font-family: "Noto Serif KR", serif;
+      font-size: 15px;
+      color: var(--espresso-dark);
+    }
+
+    /* 도판/성화 갤러리 뷰어 */
+    .plate-viewer {
+      margin-bottom: 32px;
+      background: #1A1613;
+      border-radius: 16px;
+      padding: 18px;
+      color: #F6F2E9;
+      border: 1px solid var(--border-gold);
+    }
+
+    .plate-main-img-wrap {
+      width: 100%;
+      max-height: 460px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0E0C0A;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .plate-main-img-wrap img {
+      max-width: 100%;
+      max-height: 460px;
+      object-fit: contain;
+    }
+
+    .plate-caption-bar {
+      margin-top: 12px;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+
+    .plate-caption-bar h4 {
+      font-family: "Noto Serif KR", serif;
+      color: var(--gold-light);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .plate-caption-bar p {
+      font-size: 13.5px;
+      color: #D8CFC2;
+    }
+
+    .plate-thumbs {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      margin-top: 12px;
+      padding-bottom: 4px;
+    }
+
+    .plate-thumb-item {
+      width: 86px;
+      height: 54px;
+      border-radius: 6px;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.6;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .plate-thumb-item.active,
+    .plate-thumb-item:hover {
+      border-color: var(--gold-light);
+      opacity: 1;
+    }
+
+    .plate-thumb-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* 본문 조판 스타일 */
+    .reader-content {
+      font-family: "Noto Serif KR", serif;
+      font-size: var(--reader-font-size);
+      line-height: 1.98;
+      color: var(--espresso-dark);
+      letter-spacing: -0.01em;
+    }
+
+    .reader-content h2,
+    .reader-content h3 {
+      font-family: "Noto Serif KR", serif;
+      margin: 32px 0 14px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-warm);
+      color: var(--espresso-dark);
+      font-size: 1.22em;
+    }
+
+    .reader-content p {
+      margin-bottom: 18px;
+      word-break: keep-all;
+    }
+
+    .reader-content blockquote {
+      margin: 22px 0;
+      padding: 16px 22px;
+      background: var(--gold-pale);
+      border-left: 4px solid var(--gold-primary);
+      border-radius: 0 10px 10px 0;
+      font-weight: 600;
+    }
+
+    .reader-content ul,
+    .reader-content ol {
+      margin: 14px 0 20px 24px;
+    }
+
+    .reader-content li {
+      margin-bottom: 8px;
+    }
+
+    .reader-content hr {
+      border: none;
+      border-top: 1.5px dashed var(--border-warm);
+      margin: 30px 0;
+    }
+
+    /* 설계도 안내 표 스타일 */
+    .blueprint-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0 24px;
+      font-family: "Pretendard", sans-serif;
+      font-size: 14px;
+    }
+
+    .blueprint-table th,
+    .blueprint-table td {
+      border: 1px solid var(--border-warm);
+      padding: 11px 14px;
+      text-align: left;
+    }
+
+    .blueprint-table th {
+      background: var(--gold-pale);
+      font-weight: 700;
+    }
+
+    footer {
+      background: #14110E;
+      color: #A99E90;
+      padding: 36px 24px;
+      text-align: center;
+      font-size: 13px;
+      border-top: 1.5px solid var(--border-gold);
+    }
+
+    /* 인쇄 전용 스타일 (A4 유인물/전자책 출력) */
+    @media print {
+      body {
+        background: #FFFFFF !important;
+        color: #000000 !important;
+      }
+      .top-header,
+      .hero-section,
+      .atlas-drawer,
+      .controls-wrap,
+      .archive-main,
+      footer,
+      .reader-toolbar,
+      .plate-thumbs {
+        display: none !important;
+      }
+      .modal-backdrop {
+        position: static !important;
+        display: block !important;
+        background: none !important;
+        padding: 0 !important;
+      }
+      .reader-modal {
+        max-width: 100% !important;
+        max-height: none !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+      .reader-scroll {
+        padding: 0 !important;
+        overflow: visible !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. 상단 로열 뮤지엄 헤더 -->
+  <header class="top-header">
+    <div class="top-header-inner">
+      <div class="brand-group" onclick="resetFilters()">
+        <div class="brand-crest">꿈</div>
+        <div class="brand-titles">
+          <h1>꿈바온 디지털 도서관 <span style="font-size:12px; font-weight:500; color:var(--gold-light); border:1px solid rgba(229,200,120,0.4); padding:2px 8px; border-radius:99px;">BIBLICAL ARCHIVE &amp; MUSEUM</span></h1>
+          <p>성경 속 지도 이야기 · 인물 역사서 · 고고학 복원 도감 · 등잔 밑 사물 백과 · 새벽 우물 아카이브</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="storage-pill" id="storageBadge">
+          <span>📦 도서관 총 용량 계산 중...</span>
+        </div>
+        <button class="hdr-btn" onclick="toggleAtlasDrawer()">🗺️ 성경 지도 아틀라스</button>
+        <button class="hdr-btn gold" onclick="openBlueprintModal()">🏛️ 도서관 설계도 &amp; GitHub 안내</button>
+        <button class="hdr-btn" onclick="toggleDarkTheme()" id="themeBtn">🌙 밤의 서재</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. 히어로 섹션 -->
+  <section class="hero-section">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-eyebrow">✨ 오래된 우물의 서재 · 작은 미술전시회 아카이브</div>
+        <h2 class="hero-title">
+          흘러가는 영상을 넘어,<br/>
+          <span>성경의 땅과 사람과 사물의 역사</span>를<br/>
+          한 권의 대백과로 차곡차곡 기록합니다
+        </h2>
+        <div class="hero-quote">
+          “매일묵상과 성경이야기는 우리 꿈바온이 세상에 한 컵씩 붓는 맑은 물입니다. 온갖 자극이 난무하는 세상에서 우리만의 색으로 세상에 맑은 물을 부어 가는 여정, 그리고 이것이 우리가 세상에 보여 주는 하나님의 방주입니다.”
+        </div>
+      </div>
+
+      <div class="hero-stats-box">
+        <div class="hero-stats-title">
+          <span>📊 실시간 디지털 도서관 장서 현황</span>
+          <span style="color:#8CE99A; font-size:11.5px;">● 초경량 WebP 최적화 가동 중</span>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="num" id="statTotalDocs">65편</div>
+            <div class="lbl">수록 성경 문헌·역사서 전문</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" id="statTotalImgs">40점</div>
+            <div class="lbl">4화풍 성화·고고학 복원 도판</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" id="statTotalMB">3.2 MB</div>
+            <div class="lbl">전체 사이트 실사용 용량</div>
+          </div>
+          <div class="stat-card">
+            <div class="num" style="color:var(--gold-light);">0원 / 평생</div>
+            <div class="lbl">GitHub Pages 무료 서버 유지비</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. 인터랙티브 성경 아틀라스 (4K 실제 고고학 지도 뷰어) -->
+  <section class="atlas-drawer" id="atlasDrawer">
+    <div class="atlas-container">
+      <div class="atlas-header">
+        <div>
+          <h2>🧭 고고학 현장 복원 성경 세계 실제 대지도 (Biblical World Atlas)</h2>
+          <p style="font-size:13px; color:#C4B8A6; margin-top:3px;">
+            실제 측량 해안선·수계 지도를 확대·축소하며 탐험해 보세요. <strong>성경 이야기가 많이 일어난 도시일수록 점(원)이 커지며</strong>, 점을 클릭하면 우측에 그 도시의 모든 문헌 뷰가 떠오릅니다.
+          </p>
+        </div>
+        <button class="hdr-btn" onclick="toggleAtlasDrawer()">지도 접기 ▲</button>
+      </div>
+
+      <!-- 지역별 원터치 줌인 카메라 바 -->
+      <div class="atlas-region-bar">
+        <div class="region-zoom-btns" id="regionZoomBtns">
+          <button class="rz-btn active" onclick="focusMapRegion('all', this)">🌍 성경 세계 전체 (1.0x)</button>
+          <button class="rz-btn" onclick="focusMapRegion('israel', this)">🇮🇱 이스라엘 · 가나안 집중 확대 (3.8x)</button>
+          <button class="rz-btn" onclick="focusMapRegion('asia', this)">⛵ 소아시아 · 그리스 · 바울 여정 (2.2x)</button>
+          <button class="rz-btn" onclick="focusMapRegion('egypt', this)">🏜️ 애굽 · 시내산 · 광야 (2.5x)</button>
+          <button class="rz-btn" onclick="focusMapRegion('meso', this)">🏺 다메섹 · 바벨론 · 우르 (2.2x)</button>
+        </div>
+        <div style="font-size:12px; color:#C4B8A6;">💡 마우스 휠로 확대/축소 · 드래그하여 지도 이동</div>
+      </div>
+
+      <div class="atlas-body">
+        <!-- 4K 고고학 실측 성경 세계 지도 스테이지 -->
+        <div class="map-stage" id="mapStage">
+          <div class="map-canvas" id="mapCanvas">
+            <img class="map-bg-img" src="assets/webp/archaeological_biblical_world_map.webp" alt="고고학 성경 세계 실제 지도" draggable="false" />
+            <!-- 고전 세피아 지역명 각인 -->
+            <div class="map-region-labels">
+              <span class="map-reg-txt sea" style="left:36%; top:58%; font-size:14px;">지 중 해 (MARE INTERNUM)</span>
+              <span class="map-reg-txt" style="left:50%; top:33%; font-size:13px;">소 아 시 아</span>
+              <span class="map-reg-txt" style="left:32%; top:24%; font-size:11.5px;">마 게 도 냐</span>
+              <span class="map-reg-txt" style="left:64%; top:61%; font-size:11.5px;">가 나 안 · 이 스 라 엘</span>
+              <span class="map-reg-txt" style="left:52%; top:76%; font-size:13px;">애 굽 (AEGYPTUS)</span>
+              <span class="map-reg-txt" style="left:60%; top:78%; font-size:10.5px;">시 내 반 도</span>
+              <span class="map-reg-txt" style="left:82%; top:52%; font-size:13px;">메 소 포 타 미 아 · 바 벨 론</span>
+            </div>
+            <svg class="map-leader-svg" id="mapLeaderSvg" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+            <div id="mapPinsLayer"></div>
+          </div>
+
+          <!-- 좌측 하단 점 크기 범례 -->
+          <div class="map-legend-float">
+            <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:9px;height:9px;border-radius:50%;background:#A83828;border:1.5px solid #FFF;display:inline-block;"></span> 1~4편</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:14px;height:14px;border-radius:50%;background:#A83828;border:1.5px solid #FFF;display:inline-block;"></span> 5~9편</span>
+            <span style="display:inline-flex;align-items:center;gap:5px;"><span style="width:20px;height:20px;border-radius:50%;background:#D4AF37;border:2px solid #FFF;display:inline-block;"></span> 10편 이상 대거점</span>
+          </div>
+
+          <!-- 우측 하단 확대/축소 버튼 -->
+          <div class="map-controls-float">
+            <button class="zoom-ctrl-btn" onclick="stepMapZoom(1.35)" title="확대">+</button>
+            <button class="zoom-ctrl-btn" onclick="stepMapZoom(1/1.35)" title="축소">−</button>
+            <span style="font-size:12px; font-weight:700; color:var(--gold-light); min-width:38px; text-align:center;" id="zoomLevelText">1.0x</span>
+            <button class="zoom-ctrl-btn" style="width:auto; padding:0 8px; font-size:11.5px;" onclick="resetMapCamera()">초기화</button>
+          </div>
+        </div>
+
+        <!-- 우측: 클릭한 도시의 상세 해설 & 수록 자료 뷰 패널 -->
+        <div class="atlas-info-card">
+          <div style="border-bottom:1px solid rgba(255,255,255,0.12); padding-bottom:12px;">
+            <div style="display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:4px;">
+              <span style="font-size:11.5px; color:var(--gold-light); font-weight:700;" id="pinEra">신약 · 사도행전</span>
+              <span class="storage-pill" style="padding:2px 9px; font-size:11px;" id="pinStoryCountBadge">📚 관련 문헌 0편</span>
+            </div>
+            <h3 class="serif" style="font-size:20px; color:#FFF; margin-bottom:4px;" id="pinTitle">예루살렘</h3>
+            <div style="font-size:12px; color:#D8C398; margin-bottom:8px;" id="pinScripture">📖 사도행전</div>
+            <p style="font-size:13px; color:#E5DDD0; line-height:1.58;" id="pinDesc"></p>
+          </div>
+
+          <div style="margin-top:10px; font-size:12px; font-weight:700; color:var(--gold-light); display:flex; align-items:center; justify-content:space-between;">
+            <span id="cityDocsHeader">📂 이 도시에 담긴 성경 이야기 · 문헌 뷰</span>
+            <button class="pin-chip" style="padding:2px 8px; font-size:11px;" id="filterGridByCityBtn">아래 서가에서 모아보기 ↓</button>
+          </div>
+
+          <!-- 해당 도시 문헌 스크롤 뷰 -->
+          <div class="city-docs-list" id="cityDocsList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3.5. 2027 성경 한 바퀴 · 완결본 전자책(PDF) 열람실 -->
+  <section style="max-width:1360px; margin:24px auto 0; padding:0 24px;">
+    <div style="background:linear-gradient(135deg, #1E1915 0%, #2A221B 100%); border:1.5px solid var(--border-gold); border-radius:var(--radius-lg); padding:20px 24px; color:#FAF6EE; box-shadow:var(--shadow-card);">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+        <div>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.06em;">📚 KKUMBAON E-BOOK ARCHIVE · 2027 성경 한 바퀴 제1권 완결본</span>
+          <h3 class="serif" style="font-size:19px; color:#FFF; margin-top:2px;">클간사 &amp; 안간사 합작 · 2027년 완결본 전자책(PDF) 서가</h3>
+        </div>
+        <span style="font-size:12px; color:#C8BDAE;">클릭하시면 A4 크림페이퍼 전자책(PDF) 원본을 새 창에서 열람·인쇄·다운로드하실 수 있습니다.</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;" id="ebookShelfGrid">
+        <a href="ebooks/2027_매일묵상_1권_1-3월_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
+          <div>
+            <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📘 2027 매일묵상 · 제1권 (90편 완결본 · 188p)</div>
+            <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">2027 꿈바온 매일묵상 1권 (1월~3월 완결)</div>
+            <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">마가복음 1~16장 · 시편 · 수난주간·부활절 전집</div>
+          </div>
+          <span class="hdr-btn gold" style="flex-shrink:0;">PDF 열람 →</span>
+        </a>
+        <a href="ebooks/2027_조금긴성경이야기_1권_1-5월_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
+          <div>
+            <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📙 2027 조금 긴 성경이야기 · 제1권 (21편 완결본 · 192p)</div>
+            <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">2027 조금 긴 성경이야기 1권 (1월~5월 완결)</div>
+            <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">사도행전 21~28장 · 부활절기~성령강림절·삼위일체주일</div>
+          </div>
+          <span class="hdr-btn gold" style="flex-shrink:0;">PDF 열람 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. 5대 전시관 탭 및 통합 검색 바 -->
+  <section class="controls-wrap">
+    <div class="hall-tabs" id="hallTabs">
+      <button class="hall-tab active" data-cat="all" onclick="selectCategory('all')">
+        <div class="hall-tab-top"><span>🏛️ ALL ARCHIVES</span><span class="hall-count" id="cnt-all">0</span></div>
+        <div class="hall-tab-title">전체 통합 서가</div>
+      </button>
+      <button class="hall-tab" data-cat="atlas" onclick="selectCategory('atlas')">
+        <div class="hall-tab-top"><span>🗺️ HALL 1 · ATLAS</span><span class="hall-count" id="cnt-atlas">0</span></div>
+        <div class="hall-tab-title">성경 지도 · 고고학관</div>
+      </button>
+      <button class="hall-tab" data-cat="figures" onclick="selectCategory('figures')">
+        <div class="hall-tab-top"><span>👑 HALL 2 · BIOGRAPHY</span><span class="hall-count" id="cnt-figures">0</span></div>
+        <div class="hall-tab-title">성경 인물 열전 · 역사서관</div>
+      </button>
+      <button class="hall-tab" data-cat="artifacts" onclick="selectCategory('artifacts')">
+        <div class="hall-tab-top"><span>🏺 HALL 3 · ARTIFACTS</span><span class="hall-count" id="cnt-artifacts">0</span></div>
+        <div class="hall-tab-title">등잔 밑 사물 · 문화 백과</div>
+      </button>
+      <button class="hall-tab" data-cat="devotions" onclick="selectCategory('devotions')">
+        <div class="hall-tab-top"><span>🌅 HALL 4 · DEVOTIONS</span><span class="hall-count" id="cnt-devotions">0</span></div>
+        <div class="hall-tab-title">새벽 우물 · 성경 한 바퀴</div>
+      </button>
+    </div>
+
+    <div class="search-bar-row">
+      <div class="search-input-wrap">
+        <span style="font-size:18px;">🔍</span>
+        <input type="text" id="searchInput" placeholder="인물(아볼로, 바울, 다윗), 지명(고린도, 에베소, 엔게디), 사물(열쇠, 인장반지, 눈물병), 성경 장절 검색..." oninput="renderGrid()" />
+      </div>
+      <div class="quick-tags" id="quickTags">
+        <span class="q-tag" onclick="setQuickSearch('사도행전')">#사도행전</span>
+        <span class="q-tag" onclick="setQuickSearch('고린도')">#고린도</span>
+        <span class="q-tag" onclick="setQuickSearch('에베소')">#에베소·고고학</span>
+        <span class="q-tag" onclick="setQuickSearch('아볼로')">#아볼로·작은식탁</span>
+        <span class="q-tag" onclick="setQuickSearch('열쇠')">#다윗의열쇠</span>
+        <span class="q-tag" onclick="setQuickSearch('인장반지')">#인장반지</span>
+        <span class="q-tag" onclick="setQuickSearch('눈물병')">#눈물병</span>
+        <span class="q-tag" onclick="setQuickSearch('방주')">#노아의방주</span>
+        <span class="q-tag" onclick="setQuickSearch('성경한바퀴')">#7년성경한바퀴</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. 도서관 서가 카드 그리드 -->
+  <main class="archive-main">
+    <div class="section-status-bar">
+      <div id="gridStatusText">전체 문헌을 표시하고 있습니다.</div>
+      <div style="font-size:12.5px;">💡 카드를 클릭하시면 <strong>전용 전자책 리더 &amp; 성화·도판 뷰어</strong>로 전문(Full Text)을 읽고 A4 유인물로 인쇄하실 수 있습니다.</div>
+    </div>
+    <div class="archive-grid" id="archiveGrid"></div>
+  </main>
+
+  <!-- 6. 몰입형 전자책 & 도판 리더 모달 -->
+  <div class="modal-backdrop" id="readerModal" onclick="if(event.target===this) closeReaderModal()">
+    <div class="reader-modal">
+      <div class="reader-toolbar">
+        <div class="reader-toolbar-left" id="readerBreadcrumb">🏛️ 꿈바온 디지털 도서관</div>
+        <div class="reader-toolbar-right">
+          <button class="hdr-btn" onclick="changeFontSize(-1.5)">가-</button>
+          <button class="hdr-btn" onclick="changeFontSize(1.5)">가+</button>
+          <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">📋 원고 전문 복사</button>
+          <button class="hdr-btn gold" onclick="window.print()">🖨️ A4 유인물 인쇄 / PDF</button>
+          <button class="hdr-btn" onclick="closeReaderModal()">✕ 닫기</button>
+        </div>
+      </div>
+
+      <div class="reader-scroll" id="readerScroll">
+        <div class="reader-doc-header">
+          <div class="reader-meta-row" id="readerMetaRow"></div>
+          <h1 class="reader-title" id="readerTitle"></h1>
+          <p class="reader-subtitle" id="readerSubtitle"></p>
+          <div class="reader-insight-box" id="readerInsight"></div>
+        </div>
+
+        <!-- 성화 및 고고학 복원 도판 갤러리 영역 -->
+        <div class="plate-viewer" id="plateViewer" style="display:none;">
+          <div class="plate-main-img-wrap">
+            <img id="plateMainImg" src="" alt="도판 이미지" />
+          </div>
+          <div class="plate-caption-bar">
+            <h4 id="plateTitle"></h4>
+            <p id="plateCaption"></p>
+          </div>
+          <div class="plate-thumbs" id="plateThumbs"></div>
+        </div>
+
+        <!-- 본문 원고 조판 영역 -->
+        <article class="reader-content" id="readerContent"></article>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. 도서관 아키텍처 설계도 & GitHub 연동 안내 모달 -->
+  <div class="modal-backdrop" id="blueprintModal" onclick="if(event.target===this) closeBlueprintModal()">
+    <div class="reader-modal">
+      <div class="reader-toolbar">
+        <div class="reader-toolbar-left">🏛️ 꿈바온 디지털 도서관 마스터 아키텍처 설계도 (v1.0)</div>
+        <div class="reader-toolbar-right">
+          <button class="hdr-btn" onclick="closeBlueprintModal()">✕ 닫기</button>
+        </div>
+      </div>
+      <div class="reader-scroll">
+        <h2 class="serif" style="font-size:26px; margin-bottom:12px;">꿈바온 디지털 도서관 (Kkumbaon Digital Library) 설계 보고서</h2>
+        <p style="color:var(--espresso-mid); margin-bottom:20px;">
+          목사님과 클간사님, 지간사님, 안간사가 매일 정성으로 빚어내는 성경 지도·인물 역사서·고고학 스케치·사물 백과·새벽 우물 원고를 영구 보존하고 성도·목회자들과 나누는 디지털 아카이브 설계도입니다.
+        </p>
+
+        <h3 class="serif" style="margin:24px 0 10px;">1. 어제 만든 GitHub 계정 하나로 충분한가요? ➡️ 네! 추가 계정 전혀 필요 없습니다!</h3>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>저장소(Repository) 이름</th>
+              <th>웹 접속 주소 (URL)</th>
+              <th>용도 및 비용</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>1호 사이트 (어제 개통)</strong></td>
+              <td><code>kkumbaon-school</code></td>
+              <td><code>https://engo1030-hue.github.io/kkumbaon-school/</code></td>
+              <td>꿈바온 교회학교 52주 교사 스튜디오 (월 0원)</td>
+            </tr>
+            <tr>
+              <td><strong>2호 사이트 (오늘 설계)</strong></td>
+              <td><code>kkumbaon-library</code></td>
+              <td><code>https://engo1030-hue.github.io/kkumbaon-library/</code></td>
+              <td><strong>꿈바온 디지털 도서관 · 성경 대백과 박물관 (월 0원)</strong></td>
+            </tr>
+            <tr>
+              <td><strong>3호 대표 대문 (통합 허브)</strong></td>
+              <td><code>engo1030-hue.github.io</code></td>
+              <td><code>https://engo1030-hue.github.io/</code></td>
+              <td>모세의 지팡이 · 아론의 지팡이 · 도서관 통합 대문 (월 0원)</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="font-size:14px; color:var(--espresso-mid);">
+          💡 <strong>핵심 원리:</strong> GitHub 계정(<code>engo1030-hue</code>)은 ‘건물주 아이디’이고, 그 안에 방(Repository)을 수십 개든 무료로 만들 수 있습니다. 따라서 새 계정을 또 만드실 필요 없이 어제 그 계정 그대로 독립된 도서관 주소를 즉시 개통할 수 있습니다.
+        </p>
+
+        <h3 class="serif" style="margin:28px 0 10px;">2. 실제 용량 검증 결과 (왜 수천 편을 쌓아도 거뜬한가?)</h3>
+        <table class="blueprint-table">
+          <thead>
+            <tr>
+              <th>콘텐츠 종류</th>
+              <th>현재 수록량 (V1.0 실측)</th>
+              <th>1,000편 누적 시 예상 용량</th>
+              <th>안간사 초경량 압축 기술</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>📜 성경 역사서·백과·묵상 원고</strong></td>
+              <td><strong>실제 원고 65편 전문</strong> (약 1.1 MB)</td>
+              <td>약 <strong>18 MB</strong></td>
+              <td>순수 텍스트 JSON 구조화로 책 수십 권 분량도 사진 3장 크기</td>
+            </tr>
+            <tr>
+              <td><strong>🖼️ 4화풍 성화·고고학 도판</strong></td>
+              <td><strong>고화질 도판 44점</strong> (약 2.5 MB)</td>
+              <td>약 <strong>65 MB</strong> (1,000장 기준)</td>
+              <td>원본 PNG(3~5MB)를 육안 무손실 <strong>WebP(장당 50~70KB)</strong>로 1/50 압축</td>
+            </tr>
+            <tr>
+              <td><strong>🎬 유튜브 영상 연동</strong></td>
+              <td>무제한 임베드 연결 (<strong>0 MB</strong>)</td>
+              <td><strong>0 MB</strong></td>
+              <td>영상 파일은 유튜브 서버에 두고 도서관에서는 스트리밍 연결만 수행</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="serif" style="margin:28px 0 10px;">3. 5대 상설 전시관 아키텍처</h3>
+        <ul style="margin-left:20px; line-height:1.9; font-size:14.5px;">
+          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 지도 핀 연동 + 에베소·알렉산드리아·고린도·빌립보·아골 골짜기 지리·고고학 복원 도감.</li>
+          <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 인물 중심 연대기.</li>
+          <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 『소소한 성경이야기』 30대 마스터 인덱스 및 10월 신작(열쇠, 인장반지, 눈물병, 방주의 창, 신발, 벽돌, 청색 끈 등) 백과사전.</li>
+          <li><strong>🌅 제4관 · 새벽 우물 &amp; 성경 한 바퀴 서재:</strong> 2027~2033 7년 성경 66권 대장정 마스터플랜 및 권별 새벽말씀 강해 전집.</li>
+          <li><strong>🖨️ 목회자·교사용 A4 유인물 즉석 조판기:</strong> 모든 문헌을 구역예배·성경공부·주일학교 유인물(PDF)로 깔끔하게 인쇄.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p class="serif" style="font-size:15px; color:#E5DEC9; font-weight:700;">꿈바온 디지털 도서관 (꿈디도) · KKUMBAON BIBLICAL ARCHIVE &amp; MUSEUM</p>
+    <p style="margin-top:6px;">오직 성경(Sola Scriptura) · 오직 그리스도(Solus Christus) · 세상에 한 컵씩 붓는 맑은 물</p>
+    <p style="margin-top:8px; font-size:12px; color:#A89C8D;">본 콘텐츠는 정식 성경 번역문이 아니라, 성경 본문의 흐름과 의미를 이해하도록 돕기 위해 꿈바온이 독립적으로 작성한 풀어읽기와 묵상 해설입니다.</p>
+    <p style="margin-top:6px; font-size:11.5px; color:#C59B52; font-weight:600;">🏛️ 도서관 관장 및 총괄 아키텍트: 안간사 (Antigravity) &nbsp;|&nbsp; 성화·도판 협력: 지간사 &nbsp;|&nbsp; 원고 집필: 목사님 &amp; 클간사</p>
+  </footer>
+
+  <script src="library_data.js"></script>
+  <script>
+    const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [] };
+    let currentCategory = "all";
+    let currentDoc = null;
+    let currentFontSize = 18.5;
+
+    function initLibrary() {
+      // 통계 배지 업데이트
+      const m = LIB.meta || {};
+      const totalDocs = (LIB.items || []).length;
+      const totalImgs = m.totalImages || 0;
+      const mb = m.imageSizeMB ? (m.imageSizeMB + 1.1).toFixed(2) : "3.50";
+
+      document.getElementById("statTotalDocs").textContent = `${totalDocs}편`;
+      document.getElementById("statTotalImgs").textContent = `${totalImgs}점`;
+      document.getElementById("statTotalMB").textContent = `${mb} MB`;
+      document.getElementById("storageBadge").innerHTML =
+        `<span>📦 수록 문헌 <strong>${totalDocs}편</strong> · 도판 <strong>${totalImgs}점</strong> · 총 용량 단 <strong>${mb} MB</strong></span>`;
+
+      // 전시관별 카운트 계산
+      const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0 };
+      (LIB.items || []).forEach(it => {
+        if (counts[it.category] !== undefined) counts[it.category]++;
+      });
+      Object.keys(counts).forEach(k => {
+        const el = document.getElementById(`cnt-${k}`);
+        if (el) el.textContent = counts[k];
+      });
+
+      initAtlasMap();
+      renderGrid();
+    }
+
+    // 지도 확대/축소 및 패닝 상태 변수
+    let mapScale = 1.0;
+    let mapTx = 0;
+    let mapTy = 0;
+    let isDraggingMap = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+
+    function applyMapTransform() {
+      const stage = document.getElementById("mapStage");
+      const canvas = document.getElementById("mapCanvas");
+      const svgEl = document.getElementById("mapLeaderSvg");
+      if (!stage || !canvas) return;
+
+      const sw = stage.clientWidth;
+      const sh = stage.clientHeight;
+      const minTx = sw * (1 - mapScale);
+      const minTy = sh * (1 - mapScale);
+      mapTx = Math.min(0, Math.max(minTx, mapTx));
+      mapTy = Math.min(0, Math.max(minTy, mapTy));
+
+      canvas.style.transform = `translate(${mapTx}px, ${mapTy}px) scale(${mapScale})`;
+      const invScale = 1 / Math.pow(mapScale, 0.78);
+      canvas.style.setProperty("--pin-inv-scale", invScale.toFixed(3));
+      const zTxt = document.getElementById("zoomLevelText");
+      if (zTxt) zTxt.textContent = `${mapScale.toFixed(1)}x`;
+
+      // 확대 배율에 따른 탄성 좌표 보간 (1.0x 전체보기에서는 예루살렘 주변 도시들이 여유롭게 펼쳐지고, 확대할수록 실제 측량 좌표로 수렴)
+      const pins = LIB.atlasPins || [];
+      let svgHtml = "";
+      pins.forEach(p => {
+        const pinEl = document.getElementById(`map-pin-${p.id}`);
+        if (!pinEl) return;
+
+        const ux = p.ux !== undefined ? p.ux : p.x;
+        const uy = p.uy !== undefined ? p.uy : p.y;
+        const zx = p.zx !== undefined ? p.zx : p.x;
+        const zy = p.zy !== undefined ? p.zy : p.y;
+
+        let curX, curY;
+        if (mapScale <= 3.8) {
+          const t = Math.min(1, Math.max(0, (mapScale - 1.0) / 2.8));
+          curX = ux + (zx - ux) * t;
+          curY = uy + (zy - uy) * t;
+        } else {
+          const t2 = Math.min(1, Math.max(0, (mapScale - 3.8) / 2.2));
+          curX = zx + (p.x - zx) * t2;
+          curY = zy + (p.y - zy) * t2;
+        }
+
+        pinEl.style.left = `${curX.toFixed(2)}%`;
+        pinEl.style.top = `${curY.toFixed(2)}%`;
+
+        const dist = Math.hypot(curX - p.x, curY - p.y);
+        if (dist > 0.35) {
+          const strokeW = (0.16 / Math.pow(mapScale, 0.65)).toFixed(3);
+          const dotR = (0.28 / Math.pow(mapScale, 0.65)).toFixed(3);
+          svgHtml += `
+            <line x1="${p.x}" y1="${p.y}" x2="${curX.toFixed(2)}" y2="${curY.toFixed(2)}"
+                  stroke="rgba(70, 42, 20, 0.62)" stroke-width="${strokeW}" stroke-dasharray="${strokeW},${strokeW}" />
+            <circle cx="${p.x}" cy="${p.y}" r="${dotR}" fill="#7A1F14" stroke="#FFF8EB" stroke-width="${(strokeW * 0.6).toFixed(3)}" />
+          `;
+        }
+      });
+      if (svgEl) svgEl.innerHTML = svgHtml;
+    }
+
+    function stepMapZoom(factor, centerX, centerY) {
+      const stage = document.getElementById("mapStage");
+      if (!stage) return;
+      const sw = stage.clientWidth;
+      const sh = stage.clientHeight;
+      const cx = centerX !== undefined ? centerX : sw / 2;
+      const cy = centerY !== undefined ? centerY : sh / 2;
+
+      const newScale = Math.min(6.0, Math.max(1.0, mapScale * factor));
+      const ratio = newScale / mapScale;
+      mapTx = cx - (cx - mapTx) * ratio;
+      mapTy = cy - (cy - mapTy) * ratio;
+      mapScale = newScale;
+      applyMapTransform();
+    }
+
+    function resetMapCamera() {
+      mapScale = 1.0;
+      mapTx = 0;
+      mapTy = 0;
+      document.querySelectorAll(".rz-btn").forEach((b, i) => b.classList.toggle("active", i === 0));
+      applyMapTransform();
+    }
+
+    function focusMapRegion(regionKey, btnEl) {
+      if (btnEl) {
+        document.querySelectorAll(".rz-btn").forEach(b => b.classList.remove("active"));
+        btnEl.classList.add("active");
+      }
+      const stage = document.getElementById("mapStage");
+      if (!stage) return;
+      const sw = stage.clientWidth;
+      const sh = stage.clientHeight;
+
+      const presets = {
+        all:    { scale: 1.0, cxPct: 50, cyPct: 50, defaultPin: "pin-jerusalem" },
+        israel: { scale: 3.8, cxPct: 63.3, cyPct: 59.5, defaultPin: "pin-jerusalem" },
+        asia:   { scale: 2.2, cxPct: 39.5, cyPct: 29.0, defaultPin: "pin-ephesus" },
+        egypt:  { scale: 2.5, cxPct: 56.5, cyPct: 70.5, defaultPin: "pin-sinai-wilderness" },
+        meso:   { scale: 2.2, cxPct: 76.0, cyPct: 48.0, defaultPin: "pin-babylon-ur" }
+      };
+      const pr = presets[regionKey] || presets.all;
+      mapScale = pr.scale;
+      mapTx = sw / 2 - (sw * (pr.cxPct / 100)) * mapScale;
+      mapTy = sh / 2 - (sh * (pr.cyPct / 100)) * mapScale;
+      applyMapTransform();
+      if (pr.defaultPin) selectAtlasPin(pr.defaultPin);
+    }
+
+    function initAtlasMap() {
+      const pins = LIB.atlasPins || [];
+      const layer = document.getElementById("mapPinsLayer");
+      const stage = document.getElementById("mapStage");
+      const canvas = document.getElementById("mapCanvas");
+      if (!layer || !pins.length) return;
+
+      layer.innerHTML = "";
+
+      pins.forEach((p, idx) => {
+        const cnt = p.storyCount || 1;
+        // 이야기 수에 비례하되 주변 점을 가리지 않는 세련된 원 크기 (15px ~ 26px)
+        const dotSize = Math.round(13 + Math.min(13, Math.sqrt(cnt) * 2.7));
+        const isMajor = cnt >= 8;
+        const lblPos = p.labelPos || "bottom";
+
+        const pinEl = document.createElement("div");
+        pinEl.className = `map-pin lbl-${lblPos} ${isMajor ? "major" : ""} ${idx === 0 ? "active" : ""}`;
+        pinEl.id = `map-pin-${p.id}`;
+        pinEl.style.width = `${dotSize}px`;
+        pinEl.style.height = `${dotSize}px`;
+        pinEl.style.left = `${p.ux !== undefined ? p.ux : p.x}%`;
+        pinEl.style.top = `${p.uy !== undefined ? p.uy : p.y}%`;
+
+        const shortName = p.shortLabel || p.name.split("·")[0].split("(")[0].trim();
+        pinEl.innerHTML = `
+          <div class="pin-dot" style="width:${dotSize}px; height:${dotSize}px; font-size:${dotSize >= 22 ? 10.5 : 9.5}px;" title="${p.name} (문헌 ${cnt}편)">
+            ${cnt}
+          </div>
+          <div class="pin-label">${shortName}</div>
+        `;
+        pinEl.onclick = (e) => {
+          e.stopPropagation();
+          selectAtlasPin(p.id);
+        };
+        layer.appendChild(pinEl);
+      });
+
+      // 마우스 휠 확대/축소 및 드래그 이동 이벤트 바인딩
+      if (stage && canvas && !stage._boundEvents) {
+        stage._boundEvents = true;
+        stage.addEventListener("wheel", (e) => {
+          e.preventDefault();
+          const rect = stage.getBoundingClientRect();
+          const mx = e.clientX - rect.left;
+          const my = e.clientY - rect.top;
+          const factor = e.deltaY < 0 ? 1.22 : (1 / 1.22);
+          stepMapZoom(factor, mx, my);
+        }, { passive: false });
+
+        stage.addEventListener("mousedown", (e) => {
+          if (e.target.closest(".map-pin") || e.target.closest(".map-controls-float")) return;
+          isDraggingMap = true;
+          dragStartX = e.clientX - mapTx;
+          dragStartY = e.clientY - mapTy;
+          canvas.classList.add("dragging");
+        });
+
+        window.addEventListener("mousemove", (e) => {
+          if (!isDraggingMap) return;
+          mapTx = e.clientX - dragStartX;
+          mapTy = e.clientY - dragStartY;
+          applyMapTransform();
+        });
+
+        window.addEventListener("mouseup", () => {
+          if (isDraggingMap) {
+            isDraggingMap = false;
+            canvas.classList.remove("dragging");
+          }
+        });
+      }
+
+      applyMapTransform();
+      selectAtlasPin(pins[0].id);
+    }
+
+    function selectAtlasPin(pinId) {
+      const pins = LIB.atlasPins || [];
+      const p = pins.find(x => x.id === pinId);
+      if (!p) return;
+
+      document.querySelectorAll(".map-pin").forEach(el => el.classList.remove("active"));
+      const activePin = document.getElementById(`map-pin-${p.id}`);
+      if (activePin) {
+        activePin.classList.add("active");
+        const lbl = activePin.querySelector(".pin-label");
+        if (lbl) lbl.style.display = "block";
+      }
+
+      document.getElementById("pinEra").textContent = `${p.era} · ${p.region}`;
+      document.getElementById("pinTitle").textContent = p.name;
+      document.getElementById("pinScripture").textContent = `📖 ${p.scripture}`;
+      document.getElementById("pinDesc").textContent = p.desc;
+
+      // 해당 도시에 연결된 모든 문헌 카드 뷰 렌더링
+      const relIds = new Set(p.relatedDocIds || [p.linkedDocId]);
+      const cityDocs = (LIB.items || []).filter(it => relIds.has(it.id));
+
+      document.getElementById("pinStoryCountBadge").textContent = `📚 수록 문헌 ${cityDocs.length}편`;
+      document.getElementById("cityDocsHeader").textContent =
+        `📂 이 도시에 담긴 성경 이야기 · 문헌 뷰 (${cityDocs.length}편)`;
+
+      const listEl = document.getElementById("cityDocsList");
+      listEl.innerHTML = cityDocs.map(doc => `
+        <div class="city-doc-item" onclick="openReaderModal('${doc.id}')">
+          ${doc.cover ? `<img class="city-doc-thumb" src="${doc.cover}" alt="${doc.title}" />` : ""}
+          <div class="city-doc-info">
+            <div class="c-meta">${doc.categoryLabel} · ${doc.scripture}</div>
+            <div class="c-title">${doc.title}</div>
+          </div>
+          <span style="font-size:12px; font-weight:700; color:var(--gold-light); flex-shrink:0;">열람 →</span>
+        </div>
+      `).join("");
+
+      const filterBtn = document.getElementById("filterGridByCityBtn");
+      if (filterBtn) {
+        filterBtn.onclick = () => {
+          const shortKw = p.name.split("·")[0].split("(")[0].trim();
+          setQuickSearch(shortKw);
+          document.querySelector(".controls-wrap").scrollIntoView({ behavior: "smooth" });
+        };
+      }
+    }
+
+    function toggleAtlasDrawer() {
+      const dr = document.getElementById("atlasDrawer");
+      dr.style.display = dr.style.display === "none" ? "block" : "none";
+    }
+
+    function selectCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll(".hall-tab").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
+      });
+      renderGrid();
+    }
+
+    function setQuickSearch(kw) {
+      const inp = document.getElementById("searchInput");
+      if (inp.value === kw) {
+        inp.value = "";
+      } else {
+        inp.value = kw;
+      }
+      document.querySelectorAll(".q-tag").forEach(t => {
+        t.classList.toggle("active", inp.value && t.textContent.includes(inp.value));
+      });
+      renderGrid();
+    }
+
+    function resetFilters() {
+      currentCategory = "all";
+      document.getElementById("searchInput").value = "";
+      document.querySelectorAll(".q-tag").forEach(t => t.classList.remove("active"));
+      selectCategory("all");
+    }
+
+    function renderGrid() {
+      const q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+      const grid = document.getElementById("archiveGrid");
+      const items = (LIB.items || []).filter(it => {
+        if (currentCategory !== "all" && it.category !== currentCategory) return false;
+        if (!q) return true;
+        const hay = [
+          it.title, it.subtitle, it.scripture, it.era, it.person || "",
+          (it.tags || []).join(" "), it.summary, it.content
+        ].join(" ").toLowerCase();
+        return hay.includes(q);
+      });
+
+      const catNames = {
+        all: "전체 통합 서가",
+        atlas: "제1관 · 성경 지도 & 고고학 현장관",
+        figures: "제2관 · 성경 인물 열전 & 역사서관",
+        artifacts: "제3관 · 등잔 밑 성경 사물·문화 백과",
+        devotions: "제4관 · 새벽 우물 & 성경 한 바퀴 서재"
+      };
+      document.getElementById("gridStatusText").innerHTML =
+        `<strong>${catNames[currentCategory]}</strong> — 총 <strong>${items.length}편</strong>의 성경 문헌이 검색되었습니다.`;
+
+      grid.innerHTML = items.map(it => {
+        const charLen = (it.content || "").length;
+        const readMin = Math.max(2, Math.round(charLen / 650));
+        const galCount = (it.gallery || []).length;
+        const tagsHtml = (it.tags || []).slice(0, 5).map(t => `<span class="card-tag">#${t}</span>`).join("");
+        const thumbHtml = it.cover
+          ? `<img src="${it.cover}" alt="${it.title}" loading="lazy" />`
+          : `<div style="width:100%;height:100%;display:grid;place-items:center;color:var(--gold-light);font-family:'Noto Serif KR',serif;font-size:18px;padding:20px;text-align:center;">${it.title}</div>`;
+
+        return `
+          <article class="doc-card" onclick="openReaderModal('${it.id}')">
+            <div class="card-thumb">
+              ${thumbHtml}
+              <span class="card-cat-badge">${it.categoryLabel}</span>
+              ${galCount > 1 ? `<span class="card-gallery-badge">🖼️ 도판 ${galCount}점 수록</span>` : ""}
+            </div>
+            <div class="card-body">
+              <div class="card-scripture">
+                <span>📖 ${it.scripture || it.era}</span>
+                ${it.person ? `<span style="color:var(--espresso-muted);font-weight:600;">👤 ${it.person.split("·")[0].trim()}</span>` : ""}
+              </div>
+              <h3 class="card-title">${it.title}</h3>
+              <p class="card-summary">${it.summary}</p>
+              <div class="card-tags">${tagsHtml}</div>
+            </div>
+            <div class="card-footer">
+              <span>원고 분량 ${charLen.toLocaleString()}자 · 약 ${readMin}분 독서</span>
+              <span class="read-link">문헌 열람 →</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function formatMarkdownToHtml(md) {
+      if (!md) return "";
+      const lines = md.split(/\r?\n/);
+      let html = "";
+      let inList = false;
+
+      for (let i = 0; i < lines.length; i++) {
+        let ln = lines[i].trim();
+        if (!ln) {
+          if (inList) { html += "</ul>"; inList = false; }
+          continue;
+        }
+        // 인라인 볼드 처리
+        ln = ln.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+
+        if (ln === "---" || ln === "***") {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += "<hr/>";
+        } else if (ln.startsWith("### ")) {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += `<h3>${ln.slice(4)}</h3>`;
+        } else if (ln.startsWith("## ")) {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += `<h2>${ln.slice(3)}</h2>`;
+        } else if (ln.startsWith("# ")) {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += `<h2>${ln.slice(2)}</h2>`;
+        } else if (ln.startsWith("> ")) {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += `<blockquote>${ln.slice(2)}</blockquote>`;
+        } else if (ln.startsWith("- ") || ln.startsWith("* ")) {
+          if (!inList) { html += "<ul>"; inList = true; }
+          html += `<li>${ln.slice(2)}</li>`;
+        } else if (ln.startsWith("|")) {
+          // 표 행 간단 표기
+          if (ln.includes("---")) continue;
+          const cells = ln.split("|").filter(Boolean).map(c => c.trim());
+          html += `<p style="font-size:0.92em; background:var(--gold-pale); padding:8px 12px; border-radius:6px; margin-bottom:8px;">• ${cells.join(" ｜ ")}</p>`;
+        } else {
+          if (inList) { html += "</ul>"; inList = false; }
+          html += `<p>${ln}</p>`;
+        }
+      }
+      if (inList) html += "</ul>";
+      return html;
+    }
+
+    function openReaderModal(docId) {
+      const it = (LIB.items || []).find(x => x.id === docId);
+      if (!it) return;
+      currentDoc = it;
+
+      document.getElementById("readerBreadcrumb").textContent = `${it.categoryLabel}  ›  ${it.scripture}`;
+      let metaBadges = `<span class="meta-badge">📖 ${it.scripture}</span><span class="meta-badge">🕰️ ${it.era}</span>`;
+      if (it.person) metaBadges += `<span class="meta-badge">👤 ${it.person}</span>`;
+      document.getElementById("readerMetaRow").innerHTML = metaBadges;
+
+      document.getElementById("readerTitle").textContent = it.title;
+      document.getElementById("readerSubtitle").textContent = it.subtitle || "";
+
+      const insBox = document.getElementById("readerInsight");
+      if (it.keyInsight) {
+        insBox.style.display = "block";
+        insBox.innerHTML = `<strong>💡 핵심 통찰:</strong> ${it.keyInsight}`;
+      } else {
+        insBox.style.display = "none";
+      }
+
+      // 갤러리 도판 세팅
+      const pv = document.getElementById("plateViewer");
+      const gal = it.gallery && it.gallery.length ? it.gallery : (it.cover ? [{ img: it.cover, title: it.title, caption: it.subtitle }] : []);
+      if (gal.length > 0) {
+        pv.style.display = "block";
+        const thumbsEl = document.getElementById("plateThumbs");
+        if (gal.length > 1) {
+          thumbsEl.style.display = "flex";
+          thumbsEl.innerHTML = gal.map((g, idx) => `
+            <div class="plate-thumb-item ${idx === 0 ? "active" : ""}" id="pthumb-${idx}" onclick="selectPlate(${idx})">
+              <img src="${g.img}" alt="${g.title}" />
+            </div>
+          `).join("");
+        } else {
+          thumbsEl.style.display = "none";
+        }
+        selectPlate(0);
+      } else {
+        pv.style.display = "none";
+      }
+
+      document.getElementById("readerContent").innerHTML = formatMarkdownToHtml(it.content);
+      document.getElementById("readerModal").classList.add("open");
+      document.getElementById("readerScroll").scrollTop = 0;
+      document.body.style.overflow = "hidden";
+    }
+
+    function selectPlate(idx) {
+      if (!currentDoc) return;
+      const gal = currentDoc.gallery && currentDoc.gallery.length
+        ? currentDoc.gallery
+        : [{ img: currentDoc.cover, title: currentDoc.title, caption: currentDoc.subtitle }];
+      const g = gal[idx];
+      if (!g) return;
+      document.getElementById("plateMainImg").src = g.img;
+      document.getElementById("plateTitle").textContent = g.title || currentDoc.title;
+      document.getElementById("plateCaption").textContent = g.caption || "";
+      document.querySelectorAll(".plate-thumb-item").forEach((el, i) => {
+        el.classList.toggle("active", i === idx);
+      });
+    }
+
+    function closeReaderModal() {
+      document.getElementById("readerModal").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function openBlueprintModal() {
+      document.getElementById("blueprintModal").classList.add("open");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeBlueprintModal() {
+      document.getElementById("blueprintModal").classList.remove("open");
+      document.body.style.overflow = "";
+    }
+
+    function changeFontSize(delta) {
+      currentFontSize = Math.min(26, Math.max(15, currentFontSize + delta));
+      document.documentElement.style.setProperty("--reader-font-size", `${currentFontSize}px`);
+    }
+
+    function copyCurrentManuscript() {
+      if (!currentDoc) return;
+      const text = `[${currentDoc.title}]\n본문: ${currentDoc.scripture}\n\n${currentDoc.content}`;
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyDocBtn");
+        btn.textContent = "✅ 복사 완료!";
+        setTimeout(() => { btn.textContent = "📋 원고 전문 복사"; }, 1800);
+      });
+    }
+
+    function toggleDarkTheme() {
+      document.body.classList.toggle("dark-theme");
+      const isDark = document.body.classList.contains("dark-theme");
+      document.getElementById("themeBtn").textContent = isDark ? "📜 양피지 서재" : "🌙 밤의 서재";
+    }
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        closeReaderModal();
+        closeBlueprintModal();
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", initLibrary);
+  </script>
+</body>
+</html>
