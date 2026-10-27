@@ -1797,6 +1797,14 @@
       font-size: 1.22em;
     }
 
+    .reader-content h4 {
+      font-family: "Noto Serif KR", serif;
+      margin: 22px 0 10px;
+      color: var(--espresso-dark);
+      font-size: 1.08em;
+      font-weight: 700;
+    }
+
     .reader-content p {
       margin-bottom: 18px;
       word-break: keep-all;
@@ -3295,7 +3303,7 @@
         let bodyLn = isBullet ? ln.slice(2) : ln;
         // 인라인 링크, 볼드, 이탤릭, 코드 처리
         bodyLn = bodyLn
-          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, "<a href=\"$2\" target=\"_blank\" rel=\"noopener\" style=\"color:#d4af37; text-decoration:underline;\">$1</a>")
+          .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, "<a href=\"$2\" target=\"_blank\" rel=\"noopener\" style=\"color:#8c6218; text-decoration:underline; font-weight:600;\">$1</a>")
           .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
           .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>")
           .replace(/`([^`]+)`/g, "<code style=\"background:rgba(197,155,56,0.15); padding:1px 5px; border-radius:4px; font-size:0.9em;\">$1</code>");
@@ -3316,7 +3324,7 @@
           html += "<hr/>";
         } else if (/^#{4,6}\s+/.test(ln)) {
           if (inList) { html += "</ul>"; inList = false; }
-          html += `<h4 style="color:#ebcf8b; font-size:1.06rem; margin:18px 0 8px; font-weight:700;">${ln.replace(/^#{4,6}\s+/, "")}</h4>`;
+          html += `<h4>${ln.replace(/^#{4,6}\s+/, "")}</h4>`;
         } else if (ln.startsWith("### ")) {
           if (inList) { html += "</ul>"; inList = false; }
           html += `<h3>${ln.slice(4)}</h3>`;
