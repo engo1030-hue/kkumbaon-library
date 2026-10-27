@@ -922,6 +922,128 @@
       border-color: var(--gold-primary);
     }
 
+    /* 실시간 히브리어·헬라어 원어 성경 & 개역한글 분석 패널 */
+    .orig-verse-panel {
+      display: none;
+      margin-top: 18px;
+      background: linear-gradient(145deg, #1E1814 0%, #282019 100%);
+      border: 1.5px solid var(--gold-primary);
+      border-radius: 16px;
+      padding: 22px 24px;
+      color: #FAF6EE;
+      box-shadow: var(--shadow-hover);
+    }
+
+    .orig-verse-panel.open {
+      display: block;
+    }
+
+    .orig-panel-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+      border-bottom: 1px solid rgba(229, 200, 120, 0.25);
+    }
+
+    .orig-verse-block {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(229, 200, 120, 0.28);
+      border-radius: 14px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+    }
+
+    .orig-verse-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .orig-krv-box {
+      font-family: "Noto Serif KR", serif;
+      font-size: 17.5px;
+      line-height: 1.75;
+      color: #FFFDF8;
+      padding: 12px 16px;
+      background: rgba(197, 155, 56, 0.12);
+      border-left: 4px solid var(--gold-primary);
+      border-radius: 0 10px 10px 0;
+      margin-bottom: 16px;
+    }
+
+    .orig-words-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(235px, 1fr));
+      gap: 10px;
+    }
+
+    .orig-word-card {
+      background: rgba(15, 12, 10, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 11px;
+      padding: 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .orig-word-card:hover {
+      border-color: var(--gold-light);
+      transform: translateY(-2px);
+    }
+
+    .orig-w-top {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .orig-w-surf {
+      font-family: "Noto Serif KR", Georgia, serif;
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--gold-light);
+    }
+
+    .orig-w-sid {
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #16120E;
+      background: var(--gold-light);
+      padding: 1px 7px;
+      border-radius: 99px;
+    }
+
+    .orig-w-lemma {
+      font-size: 12.5px;
+      color: #D8C8B0;
+      font-weight: 600;
+    }
+
+    .orig-w-morph {
+      font-size: 11.5px;
+      color: #A9D1B8;
+      font-weight: 600;
+    }
+
+    .orig-w-gloss {
+      font-size: 13px;
+      color: #FFF;
+      font-weight: 700;
+      margin-top: 3px;
+    }
+
+    .orig-w-def {
+      font-size: 11.5px;
+      color: #B8ACA0;
+      line-height: 1.45;
+      margin-top: 2px;
+    }
+
     /* 도서관 서가 그리드 */
     .archive-main {
       max-width: 1360px;
@@ -1634,6 +1756,9 @@
         <input type="text" id="searchInput" placeholder="인물(아볼로, 바울, 다윗), 지명(고린도, 에베소, 엔게디), 사물(열쇠, 인장반지, 눈물병), 성경 장절 검색..." oninput="renderGrid()" />
       </div>
       <div class="quick-tags" id="quickTags">
+        <span class="q-tag" onclick="setQuickSearch('시편 23:1')">📖 시편 23:1 (원어)</span>
+        <span class="q-tag" onclick="setQuickSearch('룻기 1:16')">📖 룻기 1:16 (원어)</span>
+        <span class="q-tag" onclick="setQuickSearch('마가복음 1:1')">📖 마가복음 1:1 (원어)</span>
         <span class="q-tag" onclick="setQuickSearch('사도행전')">#사도행전</span>
         <span class="q-tag" onclick="setQuickSearch('고린도')">#고린도</span>
         <span class="q-tag" onclick="setQuickSearch('에베소')">#에베소·고고학</span>
@@ -1641,10 +1766,11 @@
         <span class="q-tag" onclick="setQuickSearch('열쇠')">#다윗의열쇠</span>
         <span class="q-tag" onclick="setQuickSearch('인장반지')">#인장반지</span>
         <span class="q-tag" onclick="setQuickSearch('눈물병')">#눈물병</span>
-        <span class="q-tag" onclick="setQuickSearch('방주')">#노아의방주</span>
-        <span class="q-tag" onclick="setQuickSearch('성경한바퀴')">#7년성경한바퀴</span>
       </div>
     </div>
+
+    <!-- 성경 66권 실시간 히브리어·헬라어 원어 & 개역한글 해부 패널 -->
+    <div class="orig-verse-panel" id="origVersePanel"></div>
   </section>
 
   <!-- 5. 도서관 서가 카드 그리드 -->
@@ -2072,12 +2198,158 @@
       currentVideoCat = "all";
       document.getElementById("searchInput").value = "";
       document.querySelectorAll(".q-tag").forEach(t => t.classList.remove("active"));
+      const op = document.getElementById("origVersePanel");
+      if (op) { op.classList.remove("open"); op.innerHTML = ""; }
       selectCategory("all");
     }
 
+    // 성경 66권 이름·약어 매핑 테이블 (1~66권)
+    const BIBLE_BOOKS_META = [
+      [1,"창세기","창","gen"],[2,"출애굽기","출","exo"],[3,"레위기","레","lev"],[4,"민수기","민","num"],[5,"신명기","신","deu"],
+      [6,"여호수아","수","jos"],[7,"사사기","삿","jdg"],[8,"룻기","룻","rut"],[9,"사무엘상","삼상","1sa"],[10,"사무엘하","삼하","2sa"],
+      [11,"열왕기상","왕상","1ki"],[12,"열왕기하","왕하","2ki"],[13,"역대상","대상","1ch"],[14,"역대하","대하","2ch"],[15,"에스라","스","ezr"],
+      [16,"느헤미야","느","neh"],[17,"에스더","에","est"],[18,"욥기","욥","job"],[19,"시편","시","psa"],[20,"잠언","잠","pro"],
+      [21,"전도서","전","ecc"],[22,"아가","아","sng"],[23,"이사야","사","isa"],[24,"예레미야","렘","jer"],[25,"예레미야애가","애","lam"],
+      [26,"에스겔","겔","ezk"],[27,"다니엘","단","dan"],[28,"호세아","호","hos"],[29,"요엘","욜","jol"],[30,"아모스","암","amo"],
+      [31,"오바댜","옵","oba"],[32,"요나","욘","jon"],[33,"미가","미","mic"],[34,"나훔","나","nam"],[35,"하박국","합","hab"],
+      [36,"스바냐","습","zep"],[37,"학개","학","hag"],[38,"스가랴","슥","zec"],[39,"말라기","말","mal"],
+      [40,"마태복음","마","mat"],[41,"마가복음","막","mrk"],[42,"누가복음","눅","luk"],[43,"요한복음","요","jhn"],[44,"사도행전","행","act"],
+      [45,"로마서","롬","rom"],[46,"고린도전서","고전","1co"],[47,"고린도후서","고후","2co"],[48,"갈라디아서","갈","gal"],[49,"에베소서","엡","eph"],
+      [50,"빌립보서","빌","php"],[51,"골로새서","골","col"],[52,"데살로니가전서","살전","1th"],[53,"데살로니가후서","살후","2th"],[54,"디모데전서","딤전","1ti"],
+      [55,"디모데후서","딤후","2ti"],[56,"디도서","딛","tit"],[57,"빌레몬서","몬","phm"],[58,"히브리서","히","heb"],[59,"야고보서","약","jas"],
+      [60,"베드로전서","벧전","1pe"],[61,"베드로후서","벧후","2pe"],[62,"요한일서","요일","1jn"],[63,"요한이서","요이","2jn"],[64,"요한삼서","요삼","3jn"],
+      [65,"유다서","유","jud"],[66,"요한계시록","계","rev"]
+    ];
+    const bibleChunkCache = {};
+
+    function parseBibleRef(query) {
+      if (!query) return null;
+      const cleaned = query.trim().replace(/\s+/g, " ");
+      // 예: "시편 23:1", "시 23:1-3", "시편 23편 1절", "룻기 1장 16절", "마가복음 1:1"
+      const m = cleaned.match(/^([가-힣a-zA-Z0-9]+)\s*(\d+)\s*(?:장|편|:)\s*(\d+)?(?:\s*[-~]\s*(\d+))?\s*절?$/);
+      let bName = "", ch = 0, vStart = 1, vEnd = 1;
+      if (m) {
+        bName = m[1].toLowerCase();
+        ch = parseInt(m[2], 10);
+        vStart = m[3] ? parseInt(m[3], 10) : 1;
+        vEnd = m[4] ? parseInt(m[4], 10) : (m[3] ? vStart : 3);
+      } else {
+        // 예: "시편 23", "룻기 1" (장만 입력 시 1~3절 표시)
+        const m2 = cleaned.match(/^([가-힣a-zA-Z]+)\s*(\d+)\s*(?:장|편)?$/);
+        if (!m2) return null;
+        bName = m2[1].toLowerCase();
+        ch = parseInt(m2[2], 10);
+        vStart = 1;
+        vEnd = 3;
+      }
+      const found = BIBLE_BOOKS_META.find(([no, full, abbr, eng]) =>
+        bName === full || bName === abbr || bName === eng || full.startsWith(bName)
+      );
+      if (!found) return null;
+      if (vEnd < vStart) vEnd = vStart;
+      if (vEnd - vStart > 5) vEnd = vStart + 5; // 한 번에 최대 6절까지 쾌적하게 표시
+      return { bookNo: found[0], bookName: found[1], bookAbbr: found[2], ch, vStart, vEnd };
+    }
+
+    async function updateOrigVersePanel(query) {
+      const panel = document.getElementById("origVersePanel");
+      if (!panel) return;
+      const ref = parseBibleRef(query);
+      if (!ref) {
+        panel.classList.remove("open");
+        panel.innerHTML = "";
+        return;
+      }
+
+      panel.classList.add("open");
+      const bKey = String(ref.bookNo).padStart(2, "0");
+      if (!bibleChunkCache[bKey]) {
+        panel.innerHTML = `<div style="font-size:14px; color:var(--gold-light);">📜 <strong>${ref.bookName} ${ref.ch}장</strong> 히브리어·헬라어 원어 성경 및 개역한글 데이터를 불러오는 중입니다...</div>`;
+        try {
+          const resp = await fetch(`assets/bible_orig/b${bKey}.json`);
+          bibleChunkCache[bKey] = await resp.json();
+        } catch (err) {
+          panel.innerHTML = `<div style="font-size:14px; color:#F29B8E;">원어 데이터를 불러오지 못했습니다.</div>`;
+          return;
+        }
+      }
+
+      const bData = bibleChunkCache[bKey];
+      const isOT = bData.testament === "OT";
+      const langBadge = isOT
+        ? "🏺 구약 히브리어 원문 (WLC) &amp; BDB·Strong's 원어사전"
+        : "🏛️ 신약 헬라어 원문 (SBLGNT) &amp; Abbott-Smith·Strong's 원어사전";
+
+      let versesHtml = "";
+      let foundAny = false;
+      for (let v = ref.vStart; v <= ref.vEnd; v++) {
+        const vObj = bData.verses[`${ref.ch}:${v}`];
+        if (!vObj) continue;
+        foundAny = true;
+
+        const wordsHtml = (vObj.w || []).map(([surf, sid, mko], idx) => {
+          const lex = (sid && bData.lex && bData.lex[sid]) ? bData.lex[sid] : ["", "", "", ""];
+          const [origLemma, translit, gloss, fullDef] = lex;
+          return `
+            <div class="orig-word-card">
+              <div class="orig-w-top">
+                <span class="orig-w-surf" dir="${isOT ? 'rtl' : 'ltr'}">${surf}</span>
+                ${sid ? `<span class="orig-w-sid">${sid}</span>` : ""}
+              </div>
+              ${origLemma || translit ? `<div class="orig-w-lemma">원형: ${origLemma} ${translit ? `(${translit})` : ""}</div>` : ""}
+              ${mko ? `<div class="orig-w-morph">문법: ${mko}</div>` : ""}
+              ${gloss ? `<div class="orig-w-gloss">핵심 원뜻: ${gloss}</div>` : ""}
+              ${fullDef ? `<div class="orig-w-def">${fullDef}</div>` : ""}
+            </div>
+          `;
+        }).join("");
+
+        versesHtml += `
+          <div class="orig-verse-block">
+            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+              <span style="font-size:13px; font-weight:700; color:var(--gold-light);">📖 ${ref.bookName} ${ref.ch}장 ${v}절 · 개역한글 (PUBLIC DOMAIN)</span>
+              <span style="font-size:11.5px; color:#B8ACA0;">어절 순서대로 원어 해부 (${(vObj.w || []).length}어절)</span>
+            </div>
+            <div class="orig-krv-box">${vObj.ko || "(본문 없음)"}</div>
+            <div class="orig-words-grid">${wordsHtml}</div>
+          </div>
+        `;
+      }
+
+      if (!foundAny) {
+        panel.innerHTML = `<div style="font-size:14px; color:#E5C878;">⚠️ <strong>${ref.bookName} ${ref.ch}장 ${ref.vStart}절</strong> 해당 구절을 찾을 수 없습니다. 장·절 번호를 확인해 주세요.</div>`;
+        return;
+      }
+
+      const prevV = Math.max(1, ref.vStart - 1);
+      const nextV = ref.vEnd + 1;
+      const rangeTitle = ref.vStart === ref.vEnd ? `${ref.ch}:${ref.vStart}` : `${ref.ch}:${ref.vStart}-${ref.vEnd}`;
+
+      panel.innerHTML = `
+        <div class="orig-panel-header">
+          <div>
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">${langBadge}</div>
+            <h3 class="serif" style="font-size:21px; color:#FFF; margin-top:2px;">
+              ${ref.bookName} ${rangeTitle} — 개역한글 &amp; 원어 어절별 해부
+            </h3>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <button class="hdr-btn" onclick="setQuickSearch('${ref.bookName} ${ref.ch}:${prevV}')">◀ ${ref.ch}:${prevV}</button>
+            <button class="hdr-btn" onclick="setQuickSearch('${ref.bookName} ${ref.ch}:${nextV}')">${ref.ch}:${nextV} ▶</button>
+            <button class="hdr-btn" onclick="document.getElementById('origVersePanel').classList.remove('open')">✕ 닫기</button>
+          </div>
+        </div>
+        ${versesHtml}
+      `;
+    }
+
     function renderGrid() {
-      const q = (document.getElementById("searchInput").value || "").trim().toLowerCase();
+      const rawQ = (document.getElementById("searchInput").value || "").trim();
+      const q = rawQ.toLowerCase();
       const grid = document.getElementById("archiveGrid");
+
+      // 성경 장절 검색 시 실시간 히브리어·헬라어 원어 패널 업데이트
+      updateOrigVersePanel(rawQ);
 
       if (currentCategory === "cinema") {
         const vids = (LIB.videos || []).filter(v => {
@@ -2086,6 +2358,21 @@
           const hay = [v.title, v.subtitle || "", v.vCatLabel, v.summary, v.publishedAt].join(" ").toLowerCase();
           return hay.includes(q);
         });
+
+        // 검색어를 입력했는데 영상실에 일치하는 영상이 0건이면, 문헌 서가에서도 함께 검색해 보여줌
+        if (q && vids.length === 0) {
+          const matchedDocs = (LIB.items || []).filter(it => {
+            const hay = [
+              it.title, it.subtitle, it.scripture, it.era, it.person || "",
+              (it.tags || []).join(" "), it.summary, it.content
+            ].join(" ").toLowerCase();
+            return hay.includes(q);
+          });
+          if (matchedDocs.length > 0) {
+            selectCategory("all");
+            return;
+          }
+        }
 
         document.getElementById("gridStatusText").innerHTML =
           `<strong>🎬 제5관 · 꿈디도 영상실 (유튜브 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 유튜브 영상이 준비되었습니다.`;
