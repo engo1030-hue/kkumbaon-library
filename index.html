@@ -58,6 +58,24 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
+    /* PC(마우스·트랙패드 데스크톱 환경)에서는 브라우저 창을 줄여도 레이아웃이 확 줄어들거나 꺾이지 않도록 가로 최소폭(1340px) 고정 */
+    @media (hover: hover) and (pointer: fine) {
+      html, body {
+        min-width: 1340px;
+        overflow-x: auto;
+      }
+      .top-header-inner,
+      .hero-inner,
+      .atlas-drawer,
+      .controls-wrap,
+      .archive-main {
+        min-width: 1292px;
+      }
+      .top-header-inner {
+        flex-wrap: nowrap;
+      }
+    }
+
     .serif {
       font-family: "Noto Serif KR", Georgia, serif;
     }
@@ -190,7 +208,7 @@
       align-items: center;
     }
 
-    @media (max-width: 960px) {
+    @media (hover: none) and (pointer: coarse) and (max-width: 960px) {
       .hero-inner {
         grid-template-columns: 1fr;
       }
@@ -324,7 +342,7 @@
       align-items: stretch;
     }
 
-    @media (max-width: 1024px) {
+    @media (hover: none) and (pointer: coarse) and (max-width: 1024px) {
       .atlas-body {
         grid-template-columns: 1fr;
       }
@@ -679,22 +697,23 @@
       max-width: 1360px;
       margin: 28px auto 20px;
       padding: 0 24px;
+      scroll-margin-top: 86px;
     }
 
     .hall-tabs {
       display: grid;
-      grid-template-columns: repeat(6, 1fr);
+      grid-template-columns: repeat(6, minmax(195px, 1fr));
       gap: 10px;
       margin-bottom: 18px;
     }
 
-    @media (max-width: 1120px) {
+    @media (hover: none) and (pointer: coarse) and (max-width: 1120px) {
       .hall-tabs {
         grid-template-columns: repeat(3, 1fr);
       }
     }
 
-    @media (max-width: 680px) {
+    @media (hover: none) and (pointer: coarse) and (max-width: 680px) {
       .hall-tabs {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -815,7 +834,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-size: 13px;
+      gap: 6px;
+      white-space: nowrap;
+      font-size: 12.5px;
       font-weight: 700;
       color: var(--espresso-muted);
       margin-bottom: 6px;
@@ -829,6 +850,7 @@
       font-family: "Noto Serif KR", serif;
       font-size: 15.5px;
       font-weight: 700;
+      white-space: nowrap;
     }
 
     .hall-count {
@@ -1528,9 +1550,9 @@
         </div>
         <span style="font-size:12px; color:#C8BDAE;">클릭하시면 전자책(PDF) 원본을 새 창에서 열람·인쇄·다운로드하실 수 있습니다.</span>
       </div>
-      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(290px, 1fr)); gap:12px;" id="ebookShelfGrid">
+      <div style="display:grid; grid-template-columns:repeat(3, minmax(360px, 1fr)); gap:12px;" id="ebookShelfGrid">
         <a href="ebooks/202611_꿈바온_매일묵상_성경한바퀴_11월호_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
-          <div>
+          <div style="word-break:keep-all;">
             <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📗 2026년 11월호 완결 합본 · 총 28회 (29p 크림페이퍼)</div>
             <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">꿈바온 매일묵상 · 성경 한 바퀴 (10.29~11.30)</div>
             <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">룻기 1~4장 완독 · 에스더 1~10장 완독 · 사무엘상 1~17장</div>
@@ -1538,15 +1560,15 @@
           <span class="hdr-btn gold" style="flex-shrink:0;">PDF 열람 →</span>
         </a>
         <a href="ebooks/20261029_꿈바온_매일묵상_성경한바퀴_룻기1장.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
-          <div>
+          <div style="word-break:keep-all;">
             <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📘 10월 29일 개편 제1호 · 와이드 화면판 (6p 4K)</div>
-            <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">꿈바온 매일묵상 · 성경 한 바퀴 — 룻기 1장 전체 (1:1–22)</div>
+            <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px; white-space:nowrap;">꿈바온 매일묵상 · 성경 한 바퀴 — 룻기 1장 전체 (1:1–22)</div>
             <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">흉년으로 떠난 길, 보리 추수로 돌아오다 · 큰 한 장면 완결</div>
           </div>
           <span class="hdr-btn gold" style="flex-shrink:0;">PDF 열람 →</span>
         </a>
         <a href="ebooks/2027_조금긴성경이야기_1권_1-5월_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; transition:all 0.2s;">
-          <div>
+          <div style="word-break:keep-all;">
             <div style="font-size:11px; color:var(--gold-light); font-weight:700;">📙 2027 조금 긴 성경이야기 · 제1권 (21편 완결본 · 192p)</div>
             <div class="serif" style="font-size:15px; font-weight:700; margin-top:3px;">2027 조금 긴 성경이야기 1권 (1월~5월 완결)</div>
             <div style="font-size:11.5px; color:#CFC4B4; margin-top:2px;">사도행전 21~28장 · 부활절기~성령강림절·삼위일체주일</div>
