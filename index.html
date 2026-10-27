@@ -3396,6 +3396,197 @@
       });
     }
 
+    window.openScriptureEventModal = async function(placeId, eventIdx) {
+      const atlas = window.DREAMBAON_ATLAS || { places: [], images: {} };
+      const p = (atlas.places || []).find(x => x.id === placeId);
+      if (!p || !p.events || !p.events[eventIdx]) return;
+      const ev = p.events[eventIdx];
+
+      const slugAlias = { mar: "mrk", joh: "jhn" };
+      const normSlug = slugAlias[ev.bookSlug] || ev.bookSlug;
+      let foundBook = BIBLE_BOOKS_META.find(b => b[3] === normSlug);
+      if (!foundBook) {
+        const bName = (ev.ref || "").trim().split(/\s+/)[0];
+        foundBook = BIBLE_BOOKS_META.find(b => b[1] === bName || b[2] === bName);
+      }
+      if (!foundBook) return;
+
+      const bKey = String(foundBook[0]).padStart(2, "0");
+      if (!bibleChunkCache[bKey]) {
+        try {
+          const resp = await fetch(`assets/bible_orig/b${bKey}.json`);
+          bibleChunkCache[bKey] = await resp.json();
+        } catch (err) {
+          return;
+        }
+      }
+      const bData = bibleChunkCache[bKey];
+      const isOT = bData.testament === "OT";
+
+      // 장·절 범위 정밀 파싱 (예: "열왕기하 5장", "사도행전 9:1–22", "열왕기하 6:24–7:20", "마가복음 15–16장")
+      const refStr = (ev.ref || "").replace(/[–—~]/g, "-");
+      let targetVerses = [];
+
+      const crossChMatch = refStr.match(/(\d+):(\d+)-(\d+):(\d+)/);
+      const multiChMatch = refStr.match(/(\d+)-(\d+)장/);
+      const singleRangeMatch = refStr.match(/(\d+):(\d+)(?:-(\d+))?/);
+
+      const allKeys = Object.keys(bData.verses || {});
+      if (crossChMatch) {
+        const c1 = Number(crossChMatch[1]), v1 = Number(crossChMatch[2]);
+        const c2 = Number(crossChMatch[3]), v2 = Number(crossChMatch[4]);
+        allKeys.forEach(k => {
+          const [ch, v] = k.split(":").map(Number);
+          if ((ch === c1 && v >= v1) || (ch > c1 && ch < c2) || (ch === c2 && v <= v2)) {
+            targetVerses.push([ch, v, bData.verses[k]]);
+          }
+        });
+      } else if (multiChMatch) {
+        const c1 = Number(multiChMatch[1]), c2 = Number(multiChMatch[2]);
+        allKeys.forEach(k => {
+          const [ch, v] = k.split(":").map(Number);
+          if (ch >= c1 && ch <= c2) targetVerses.push([ch, v, bData.verses[k]]);
+        });
+      } else if (singleRangeMatch) {
+        const c1 = Number(singleRangeMatch[1]);
+        const v1 = Number(singleRangeMatch[2]);
+        const v2 = singleRangeMatch[3] ? Number(singleRangeMatch[3]) : v1;
+        for (let v = v1; v <= v2; v++) {
+          const vObj = bData.verses[`${c1}:${v}`];
+          if (vObj) targetVerses.push([c1, v, vObj]);
+        }
+      } else {
+        const c1 = Number(ev.chapter || 1);
+        allKeys.forEach(k => {
+          const [ch, v] = k.split(":").map(Number);
+          if (ch === c1) targetVerses.push([ch, v, bData.verses[k]]);
+        });
+      }
+      targetVerses.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+
+      // 본문 마크다운 및 원어 핵심 어휘 테이블 조립
+      let mdLines = [];
+      mdLines.push(`## 1. 성경 사건과 장소 개관 · ${p.name} (${p.en})`);
+      mdLines.push(`- **사건 제목:** ${ev.title}`);
+      mdLines.push(`- **성경 본문:** ${ev.ref} (개역한글판 Public Domain & ${isOT ? "구약 히브리어 WLC" : "신약 헬라어 SBLGNT"} 원어 대조)`);
+      mdLines.push(`- **시대 및 지역:** ${p.era} · ${p.period}`);
+      mdLines.push(`> ${p.summary}`);
+      mdLines.push("");
+      mdLines.push("---");
+      mdLines.push("");
+      mdLines.push(`## 2. 성경 본문 전문 (${ev.ref} · 개역한글)`);
+
+      let prevCh = null;
+      const seenSids = new Set();
+      const wordRows = [];
+
+      targetVerses.forEach(([ch, v, vObj]) => {
+        if (prevCh !== null && prevCh !== ch) {
+          mdLines.push(`### ${foundBook[1]} ${ch}장`);
+        }
+        prevCh = ch;
+        mdLines.push(`**${ch}:${v}** ${vObj.ko || ""}`);
+
+        (vObj.w || []).forEach(([surf, sid, mko]) => {
+          if (!sid || seenSids.has(sid) || wordRows.length >= 15) return;
+          const lex = bData.lex && bData.lex[sid];
+          if (!lex) return;
+          const [origLemma, translit, gloss, fullDef] = lex;
+          if (!origLemma && !gloss) return;
+          seenSids.add(sid);
+          const cleanDef = (fullDef || gloss || "").replace(/\|/g, "·").slice(0, 85);
+          wordRows.push(`| **${surf}** | ${origLemma || "-"} (${translit || "-"}) | \`${sid}\` (${mko || "-"}) | **${gloss || "-"}** — ${cleanDef} |`);
+        });
+      });
+
+      if (wordRows.length > 0) {
+        mdLines.push("");
+        mdLines.push("---");
+        mdLines.push("");
+        mdLines.push(`## 3. 본문을 여는 ${isOT ? "히브리어(WLC)" : "헬라어(SBLGNT)"} 원어 단어장`);
+        mdLines.push(`| 원문 어절 | 원형 (음역) | 스트롱 번호 (문법) | 핵심 원뜻 및 원어 사전 해설 |`);
+        mdLines.push(`| --- | --- | --- | --- |`);
+        wordRows.forEach(r => mdLines.push(r));
+      }
+
+      // 장소 이미지 갤러리 변환
+      const placeImgs = (atlas.images && atlas.images[p.id]) ? atlas.images[p.id] : [];
+      const gal = placeImgs.filter(x => x.src).map((x, i) => ({
+        img: x.src,
+        title: `${p.name} · ${x.kind || "도시 풍경"}`,
+        caption: x.caption || p.subtitle
+      }));
+
+      currentDoc = {
+        id: `scripture-${p.id}-${eventIdx}`,
+        category: "atlas",
+        categoryLabel: `🗺️ 성경 세계 탐험 홀 · ${p.name}`,
+        scripture: ev.ref,
+        era: `${p.era} · ${p.period}`,
+        person: (p.people || []).join(" · "),
+        title: `[${p.name} 성경 사건] ${ev.title} (${ev.ref})`,
+        subtitle: `${p.subtitle} — 개역한글 본문 전문 & ${isOT ? "히브리어" : "헬라어"} 원어 깊이 읽기`,
+        keyInsight: p.summary,
+        cover: gal[0] ? gal[0].img : "",
+        gallery: gal,
+        content: mdLines.join("\n")
+      };
+
+      document.getElementById("readerBreadcrumb").textContent = `${currentDoc.categoryLabel}  ›  ${currentDoc.scripture}`;
+      let metaBadges = `<span class="meta-badge">📖 ${currentDoc.scripture}</span><span class="meta-badge">🕰️ ${currentDoc.era}</span>`;
+      if (currentDoc.person) metaBadges += `<span class="meta-badge">👤 ${currentDoc.person}</span>`;
+      document.getElementById("readerMetaRow").innerHTML = metaBadges;
+      document.getElementById("readerTitle").textContent = currentDoc.title;
+      document.getElementById("readerSubtitle").textContent = currentDoc.subtitle;
+
+      const insBox = document.getElementById("readerInsight");
+      insBox.style.display = "block";
+      insBox.innerHTML = `<strong>💡 장소 해설 (${p.name}):</strong> ${p.summary}`;
+
+      const pv = document.getElementById("plateViewer");
+      if (gal.length > 0) {
+        pv.style.display = "block";
+        const thumbsEl = document.getElementById("plateThumbs");
+        if (gal.length > 1) {
+          thumbsEl.style.display = "flex";
+          thumbsEl.innerHTML = gal.map((g, idx) => `
+            <div class="plate-thumb-item ${idx === 0 ? "active" : ""}" id="pthumb-${idx}" onclick="selectPlate(${idx})">
+              <img src="${g.img}" alt="${g.title}" />
+            </div>
+          `).join("");
+        } else {
+          thumbsEl.style.display = "none";
+        }
+        selectPlate(0);
+      } else {
+        pv.style.display = "none";
+      }
+
+      // 연결된 꿈디도 아카이브 문헌 바로가기 섹션 추가
+      const relDocs = (p.relatedDocIds || []).map(rid => (LIB.items || []).find(x => x.id === rid)).filter(Boolean);
+      let relHtml = "";
+      if (relDocs.length > 0) {
+        relHtml = `
+          <hr/>
+          <h2>4. 이 장소(${p.name})와 연결된 꿈디도 문헌 이어 읽기 (${relDocs.length}편)</h2>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:10px; margin-top:12px;">
+            ${relDocs.map(d => `
+              <div onclick="openReaderModal('${d.id}')" style="cursor:pointer; background:var(--gold-pale); border:1.5px solid var(--border-warm); border-radius:10px; padding:12px 14px; transition:all 0.18s;">
+                <div style="font-size:11.5px; font-weight:700; color:var(--gold-primary);">📖 ${d.scripture || d.categoryLabel}</div>
+                <div style="font-size:14.5px; font-weight:700; color:var(--espresso-dark); margin-top:3px; line-height:1.35;">${d.title}</div>
+                <div style="font-size:12px; color:var(--espresso-muted); margin-top:6px;">문헌 전문 열람 →</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+      }
+
+      document.getElementById("readerContent").innerHTML = formatMarkdownToHtml(currentDoc.content) + relHtml;
+      document.getElementById("readerModal").classList.add("open");
+      document.getElementById("readerScroll").scrollTop = 0;
+      document.body.style.overflow = "hidden";
+    };
+
     function closeReaderModal() {
       document.getElementById("readerModal").classList.remove("open");
       document.body.style.overflow = "";
@@ -3447,7 +3638,7 @@
 
     window.addEventListener("DOMContentLoaded", initLibrary);
   </script>
-  <script src="cities-data.js?v=20261027c"></script>
-  <script src="atrium.js?v=20261027c"></script>
+  <script src="cities-data.js?v=20261027f"></script>
+  <script src="atrium.js?v=20261027f"></script>
 </body>
 </html>
