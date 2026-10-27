@@ -770,6 +770,331 @@
       font-weight: 700;
     }
 
+    /* 🎬 꿈바온 전용 시네마 상영관 (유튜브 스타일 분할·와이드·전체화면·미니플레이어 + 자동 추천 사이드바) */
+    .cinema-studio-wrap {
+      display: none;
+      background: linear-gradient(145deg, #130F0C 0%, #1F1813 100%);
+      border: 2px solid rgba(212, 175, 55, 0.55);
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 22px;
+      color: #FAF6EE;
+      box-shadow: 0 22px 55px rgba(10, 7, 5, 0.45);
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .cinema-studio-wrap.open {
+      display: block;
+    }
+
+    /* 유튜브 기본 분할 레이아웃 (좌측 상영관 68% + 우측 자동 추천 사이드바 32%) */
+    .cinema-studio-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2.15fr) minmax(320px, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* 와이드 극장 모드일 때: 상영관 100% 전체폭 + 추천 목록은 하단 3열 배치 */
+    .cinema-studio-wrap.mode-wide .cinema-studio-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cinema-studio-wrap.mode-wide .cinema-rec-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 10px;
+      max-height: none;
+    }
+
+    /* 우리 사이트 안에서의 전체화면(Fullscreen Overlay) 모드 */
+    .cinema-studio-wrap.mode-fullscreen {
+      position: fixed;
+      inset: 0;
+      z-index: 9990;
+      margin: 0;
+      border-radius: 0;
+      border: none;
+      background: #0B0907;
+      padding: 18px 28px;
+      overflow-y: auto;
+    }
+
+    .cinema-studio-wrap.mode-fullscreen .cinema-studio-grid {
+      grid-template-columns: minmax(0, 2.6fr) minmax(320px, 0.95fr);
+      max-width: 1760px;
+      margin: 0 auto;
+    }
+
+    /* 우측 하단 미니 플레이어(부분 작은 화면 고정) 모드 */
+    .cinema-studio-wrap.mode-mini {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      width: 400px;
+      z-index: 9500;
+      padding: 12px;
+      margin: 0;
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.78);
+      border: 2px solid var(--gold-light);
+    }
+
+    .cinema-studio-wrap.mode-mini .cinema-side-col,
+    .cinema-studio-wrap.mode-mini .cinema-video-desc-box,
+    .cinema-studio-wrap.mode-mini .cinema-stage-top-bar {
+      display: none !important;
+    }
+
+    .cinema-studio-wrap.mode-mini .cinema-studio-grid {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    .cinema-studio-wrap.mode-mini .cinema-screen-backdrop.hall-bg {
+      padding: 0;
+      background-image: none;
+    }
+
+    /* 상영관 상단 컨트롤 바 */
+    .cinema-stage-top-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.25);
+    }
+
+    .cinema-mode-btns {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .cm-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(229, 200, 120, 0.35);
+      color: #EFE6D5;
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+
+    .cm-btn:hover,
+    .cm-btn.active {
+      background: var(--gold-primary);
+      color: #14110E;
+      border-color: var(--gold-light);
+      font-weight: 700;
+    }
+
+    /* 꿈바온 영상실 배경 이미지(클래식 도서관 극장 홀)가 감싸는 무대 액자 */
+    .cinema-screen-backdrop {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #0D0A08;
+      border: 1.5px solid rgba(212, 175, 55, 0.48);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.65);
+      transition: padding 0.28s ease;
+    }
+
+    .cinema-screen-backdrop.hall-bg {
+      background-image: url('assets/webp/kkumbaon_cinema_hall.webp');
+      background-size: cover;
+      background-position: center;
+      padding: 5.5% 9.5% 7.5%;
+    }
+
+    .cinema-screen-backdrop.hall-bg::before {
+      content: "🏛️ KKUMBAON GRAND LIBRARY CINEMA · 꿈바온 말씀 상영관";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 11, 8, 0.82);
+      border: 1px solid rgba(229, 200, 120, 0.55);
+      color: var(--gold-light);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 14px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .cinema-iframe-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid rgba(229, 200, 120, 0.72);
+      box-shadow: 0 0 38px rgba(0, 0, 0, 0.92), 0 0 22px rgba(212, 175, 55, 0.22);
+      z-index: 3;
+    }
+
+    .cinema-iframe-box iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* 상영 중인 영상 정보 및 컨트롤 박스 */
+    .cinema-video-info-bar {
+      margin-top: 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+
+    .cinema-now-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: #FFF;
+      line-height: 1.38;
+      margin: 4px 0 8px;
+    }
+
+    .cinema-studio-wrap.mode-mini .cinema-now-title {
+      font-size: 13.5px;
+      margin: 2px 0 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* 우측 자동 추천 사이드바 (유튜브 스타일 작은 화면 추천 목록) */
+    .cinema-side-col {
+      background: rgba(255, 255, 255, 0.035);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 14px;
+      padding: 14px;
+    }
+
+    .cinema-side-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+    }
+
+    .cinema-rec-list {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      max-height: 610px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .cinema-rec-item {
+      display: grid;
+      grid-template-columns: 126px minmax(0, 1fr);
+      gap: 10px;
+      padding: 7px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      cursor: pointer;
+      transition: all 0.18s;
+      align-items: center;
+    }
+
+    .cinema-rec-item:hover {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: var(--gold-light);
+      transform: translateX(2px);
+    }
+
+    .cinema-rec-thumb {
+      position: relative;
+      width: 126px;
+      aspect-ratio: 16 / 9;
+      border-radius: 7px;
+      overflow: hidden;
+      background: #000;
+      flex-shrink: 0;
+    }
+
+    .cinema-rec-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cinema-rec-dur {
+      position: absolute;
+      right: 5px;
+      bottom: 4px;
+      background: rgba(0, 0, 0, 0.82);
+      color: #FFF;
+      font-size: 10px;
+      font-weight: 700;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+
+    .cinema-rec-meta {
+      font-size: 10.5px;
+      color: var(--gold-light);
+      font-weight: 700;
+      margin-bottom: 2px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cinema-rec-title {
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #FAF6EE;
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .cinema-rec-sub {
+      font-size: 11px;
+      color: #B8ACA0;
+      margin-top: 2px;
+    }
+
+    /* 객석 암전(조명 끄기) 효과 */
+    body.cinema-lights-off::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: rgba(5, 4, 3, 0.84);
+      z-index: 900;
+      pointer-events: none;
+    }
+    body.cinema-lights-off .cinema-studio-wrap {
+      z-index: 950;
+      box-shadow: 0 0 80px rgba(212, 175, 55, 0.35);
+    }
+
     .yt-play-overlay {
       position: absolute;
       inset: 0;
@@ -1734,12 +2059,15 @@
     <div class="cinema-subbar" id="cinemaSubbar">
       <div class="cinema-subbar-top">
         <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🎬 KKUMDIDO CINEMA HALL · 꿈바온 공식 유튜브 영상 아카이브</span>
-          <h3 class="serif" style="font-size:18px; color:#FFF; margin-top:2px;">꿈디도 영상실 — 카드를 클릭하시면 유튜브 원본 영상으로 바로 이동합니다</h3>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🎬 KKUMDIDO GRAND CINEMA HALL · 꿈바온 도서관 전용 시네마 상영관</span>
+          <h3 class="serif" style="font-size:18px; color:#FFF; margin-top:2px;">꿈디도 영상실 — 유튜브로 이탈하지 않고 도서관 상영관 안에서 바로 감상하세요</h3>
         </div>
-        <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none;">
-          📺 꿈바온 유튜브 채널 (@dreaming_ondal) 바로가기 ↗
-        </a>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button class="hdr-btn" onclick="toggleCinemaLights()" id="cinemaLightBtn">💡 객석 암전(조명 끄기)</button>
+          <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none;">
+            📺 꿈바온 유튜브 채널 (@dreaming_ondal) ↗
+          </a>
+        </div>
       </div>
       <div class="cinema-filter-pills" id="cinemaFilterPills">
         <button class="c-pill active" data-vcat="all" onclick="selectVideoCat('all')">전체 영상 (<span id="vcnt-all">0</span>)</button>
@@ -1747,6 +2075,63 @@
         <button class="c-pill" data-vcat="devotion" onclick="selectVideoCat('devotion')">🌅 꿈바온 매일묵상 (<span id="vcnt-devotion">0</span>)</button>
         <button class="c-pill" data-vcat="story" onclick="selectVideoCat('story')">🏺 소소한 성경이야기 (<span id="vcnt-story">0</span>)</button>
         <button class="c-pill" data-vcat="praise" onclick="selectVideoCat('praise')">🎵 말씀 클립 · 찬양 (<span id="vcnt-praise">0</span>)</button>
+      </div>
+    </div>
+
+    <!-- 🏛️ 꿈바온 전용 인페이지 시네마 상영관 (분할/와이드/전체화면/미니플레이어 + 자동 연관 추천 사이드바) -->
+    <div class="cinema-studio-wrap" id="cinemaStudioWrap">
+      <div class="cinema-stage-top-bar">
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <span style="background:rgba(212,175,55,0.2); border:1px solid var(--gold-light); color:var(--gold-light); font-size:11.5px; font-weight:700; padding:3px 10px; border-radius:999px;">▶ NOW SHOWING · 상영 중</span>
+          <span id="cinemaTopCatLabel" style="font-size:13px; color:#E5DAC7; font-weight:600;">🏛️ 조금 긴 성경이야기</span>
+        </div>
+        <div class="cinema-mode-btns">
+          <button class="cm-btn active" id="btnHallFrame" onclick="toggleHallBackdropFrame()" title="꿈바온 고전 도서관 극장 홀 배경 액자 켜기/끄기">🏛️ 극장 홀 액자 ON</button>
+          <button class="cm-btn active" id="btnModeSplit" onclick="setCinemaLayoutMode('split')">🗗 기본 화면 (분할)</button>
+          <button class="cm-btn" id="btnModeWide" onclick="setCinemaLayoutMode('wide')">↔️ 와이드 극장 화면</button>
+          <button class="cm-btn" id="btnModeFull" onclick="setCinemaLayoutMode('fullscreen')">⛶ 전체화면</button>
+          <button class="cm-btn" id="btnModeMini" onclick="setCinemaLayoutMode('mini')" title="우측 하단 작은 화면으로 띄워 두고 다른 서가 구경하기">📌 미니 플레이어</button>
+        </div>
+      </div>
+
+      <div class="cinema-studio-grid">
+        <!-- 좌측: 꿈바온 시네마 스크린 & 현재 영상 해설 -->
+        <div class="cinema-stage-col">
+          <div class="cinema-screen-backdrop hall-bg" id="cinemaScreenBackdrop">
+            <div class="cinema-iframe-box" id="cinemaIframeBox">
+              <!-- 유튜브 임베드 플레이어가 이곳에 렌더링됩니다 -->
+            </div>
+          </div>
+
+          <div class="cinema-video-info-bar">
+            <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+              <div style="font-size:12px; color:var(--gold-light); font-weight:700;" id="cinemaNowMeta">📅 게시일 · ⏱️ 재생시간</div>
+              <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                <button class="cm-btn" onclick="stepCinemaVideo(-1)">⏮ 이전 영상</button>
+                <button class="cm-btn" onclick="stepCinemaVideo(1)">다음 영상 ⏭</button>
+                <button class="cm-btn" id="miniRestoreBtn" style="display:none; background:var(--gold-primary); color:#14110E; font-weight:700;" onclick="setCinemaLayoutMode('split')">🗖 큰 상영관으로 복귀</button>
+                <a id="cinemaYtDirectLink" href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="cm-btn" style="text-decoration:none;">💬 유튜브에 댓글·좋아요 남기기 ↗</a>
+              </div>
+            </div>
+            <h2 class="cinema-now-title" id="cinemaNowTitle">영상을 선택해 주세요</h2>
+            <div class="cinema-video-desc-box">
+              <div id="cinemaNowSubtitle" style="font-size:13px; color:var(--gold-light); font-weight:700; margin-bottom:6px;"></div>
+              <p id="cinemaNowSummary" style="font-size:13.8px; color:#DDD3C2; line-height:1.68; margin:0;"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 우측: 자동 생성 연관 추천 영상 & 도서관 문헌 미니 화면 사이드바 -->
+        <aside class="cinema-side-col">
+          <div class="cinema-side-header">
+            <div>
+              <div style="font-size:11px; color:var(--gold-light); font-weight:700;">🎯 AUTO CURATION · 자동 연관 추천</div>
+              <h4 class="serif" style="font-size:15.5px; color:#FFF; margin-top:1px;">함께 보면 좋은 추천 영상 &amp; 문헌</h4>
+            </div>
+            <span style="font-size:11px; color:#B8ACA0;" id="cinemaRecBadge">연관도순 자동정렬</span>
+          </div>
+          <div class="cinema-rec-list" id="cinemaRecList"></div>
+        </aside>
       </div>
     </div>
 
@@ -2154,6 +2539,10 @@
       dr.style.display = dr.style.display === "none" ? "block" : "none";
     }
 
+    let currentPlayingVideoId = null;
+    let currentCinemaLayout = "split"; // 'split' | 'wide' | 'fullscreen' | 'mini'
+    let hallBackdropEnabled = true;
+
     function openCinemaHall() {
       selectCategory("cinema");
       const wrap = document.querySelector(".controls-wrap");
@@ -2169,6 +2558,24 @@
       if (subbar) {
         subbar.classList.toggle("open", cat === "cinema");
       }
+      const studio = document.getElementById("cinemaStudioWrap");
+      if (studio) {
+        if (cat === "cinema") {
+          studio.classList.add("open");
+          if (currentCinemaLayout === "mini") {
+            setCinemaLayoutMode("split");
+          }
+          if (!currentPlayingVideoId && (LIB.videos || []).length > 0) {
+            const featured = (LIB.videos || []).find(v => v.vCat === "sermon") || LIB.videos[0];
+            playInKkumbaonCinema(featured.videoId, false, false);
+          }
+        } else {
+          // 미니 플레이어 모드가 아닐 때는 다른 전시관 이동 시 상영관 숨김
+          if (currentCinemaLayout !== "mini") {
+            studio.classList.remove("open");
+          }
+        }
+      }
       renderGrid();
     }
 
@@ -2178,6 +2585,185 @@
         btn.classList.toggle("active", btn.getAttribute("data-vcat") === vcat);
       });
       renderGrid();
+    }
+
+    function extractTokensForMatch(text) {
+      if (!text) return [];
+      const cleaned = text.replace(/[^가-힣a-zA-Z0-9\s]/g, " ");
+      const stop = new Set(["조금", "성경이야기", "소소한", "매일묵상", "꿈바온", "말씀", "이야기", "사람들", "하나님", "예수님", "우리를", "그리고", "속에서", "통해"]);
+      return cleaned.split(/\s+/).filter(w => w.length >= 2 && !stop.has(w));
+    }
+
+    function computeRelatedForVideo(targetVid) {
+      const tokens = new Set(extractTokensForMatch(targetVid.title + " " + (targetVid.subtitle || "") + " " + targetVid.summary));
+      const scoredVids = (LIB.videos || [])
+        .filter(v => v.videoId !== targetVid.videoId)
+        .map(v => {
+          let score = 0;
+          if (v.vCat === targetVid.vCat) score += 4;
+          const hay = (v.title + " " + (v.subtitle || "") + " " + v.summary);
+          tokens.forEach(tk => {
+            if (v.title.includes(tk)) score += 6;
+            else if (hay.includes(tk)) score += 2;
+          });
+          return { v, score };
+        })
+        .sort((a, b) => b.score - a.score);
+
+      const scoredDocs = (LIB.items || [])
+        .map(it => {
+          let score = 0;
+          const hay = [it.title, it.subtitle || "", it.scripture || "", it.person || "", (it.tags || []).join(" "), it.summary || ""].join(" ");
+          tokens.forEach(tk => {
+            if ((it.title || "").includes(tk) || (it.scripture || "").includes(tk)) score += 7;
+            else if (hay.includes(tk)) score += 2;
+          });
+          return { it, score };
+        })
+        .filter(x => x.score >= 4)
+        .sort((a, b) => b.score - a.score)
+        .slice(0, 3);
+
+      return {
+        relatedVideos: scoredVids.slice(0, 6).map(x => x.v),
+        relatedDocs: scoredDocs.map(x => x.it)
+      };
+    }
+
+    function playInKkumbaonCinema(videoId, shouldScroll = true, autoPlay = true) {
+      const vids = LIB.videos || [];
+      const v = vids.find(x => x.videoId === videoId) || vids[0];
+      if (!v) return;
+      currentPlayingVideoId = v.videoId;
+
+      const studio = document.getElementById("cinemaStudioWrap");
+      if (studio) studio.classList.add("open");
+
+      const box = document.getElementById("cinemaIframeBox");
+      if (box) {
+        const ap = autoPlay ? 1 : 0;
+        box.innerHTML = `<iframe src="https://www.youtube.com/embed/${v.videoId}?autoplay=${ap}&rel=0&modestbranding=1&playsinline=1" title="${v.title.replace(/"/g, '&quot;')}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>`;
+      }
+
+      const catEl = document.getElementById("cinemaTopCatLabel");
+      if (catEl) catEl.textContent = v.vCatLabel;
+      const metaEl = document.getElementById("cinemaNowMeta");
+      if (metaEl) metaEl.textContent = `${v.vCatLabel}  ·  📅 ${v.publishedAt} 게시  ·  ⏱️ ${v.duration}`;
+      const titleEl = document.getElementById("cinemaNowTitle");
+      if (titleEl) titleEl.textContent = v.title;
+      const subEl = document.getElementById("cinemaNowSubtitle");
+      if (subEl) subEl.textContent = (v.subtitle && v.subtitle !== v.title) ? v.subtitle : "";
+      const sumEl = document.getElementById("cinemaNowSummary");
+      if (sumEl) sumEl.textContent = v.summary || "";
+      const ytLink = document.getElementById("cinemaYtDirectLink");
+      if (ytLink) ytLink.href = v.url;
+
+      // 우측 자동 추천 사이드바 (연관 영상 6편 + 연관 도서관 문헌 최대 3편) 렌더링
+      const { relatedVideos, relatedDocs } = computeRelatedForVideo(v);
+      const recEl = document.getElementById("cinemaRecList");
+      if (recEl) {
+        let html = "";
+        if (relatedDocs.length > 0) {
+          html += `<div style="font-size:11px; color:var(--gold-light); font-weight:700; margin:2px 0 4px;">📜 이 영상과 연결된 도서관 문헌·도판 (${relatedDocs.length}편)</div>`;
+          html += relatedDocs.map(doc => `
+            <div class="cinema-rec-item" onclick="openReaderModal('${doc.id}')" style="background:rgba(212,175,55,0.09); border-color:rgba(212,175,55,0.35);">
+              <div class="cinema-rec-thumb">
+                <img src="${doc.cover}" alt="${doc.title}" loading="lazy" />
+                <span class="cinema-rec-dur" style="background:rgba(122,31,20,0.9);">📜 문헌도판</span>
+              </div>
+              <div>
+                <div class="cinema-rec-meta">${doc.categoryLabel} · ${doc.scripture}</div>
+                <div class="cinema-rec-title">${doc.title}</div>
+                <div class="cinema-rec-sub">클릭 시 원고·도판 리더 열람 →</div>
+              </div>
+            </div>
+          `).join("");
+          html += `<div style="font-size:11px; color:var(--gold-light); font-weight:700; margin:8px 0 4px;">🎬 이어서 볼 만한 추천 영상 (${relatedVideos.length}편)</div>`;
+        }
+        html += relatedVideos.map(rv => `
+          <div class="cinema-rec-item" onclick="playInKkumbaonCinema('${rv.videoId}', false, true)">
+            <div class="cinema-rec-thumb">
+              <img src="${rv.thumb}" alt="${rv.title}" loading="lazy" />
+              <span class="cinema-rec-dur">⏱️ ${rv.duration}</span>
+            </div>
+            <div>
+              <div class="cinema-rec-meta">${rv.vCatLabel}</div>
+              <div class="cinema-rec-title">${rv.title}</div>
+              <div class="cinema-rec-sub">📅 ${rv.publishedAt} · 상영관에서 바로 재생</div>
+            </div>
+          </div>
+        `).join("");
+        recEl.innerHTML = html;
+      }
+
+      // 카드 그리드에서 현재 재생 중인 영상 강조 업데이트
+      document.querySelectorAll(".cinema-grid-card").forEach(el => {
+        const isCur = el.getAttribute("data-vid") === v.videoId;
+        el.style.borderColor = isCur ? "#E5C878" : "";
+        el.style.boxShadow = isCur ? "0 0 0 2px #C59B52, 0 14px 32px rgba(0,0,0,0.22)" : "";
+      });
+
+      if (shouldScroll && studio && currentCinemaLayout !== "mini") {
+        studio.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    function stepCinemaVideo(delta) {
+      const vids = LIB.videos || [];
+      if (!vids.length) return;
+      const idx = vids.findIndex(v => v.videoId === currentPlayingVideoId);
+      const nextIdx = (idx + delta + vids.length) % vids.length;
+      playInKkumbaonCinema(vids[nextIdx].videoId, false, true);
+    }
+
+    function toggleHallBackdropFrame() {
+      hallBackdropEnabled = !hallBackdropEnabled;
+      const bd = document.getElementById("cinemaScreenBackdrop");
+      const btn = document.getElementById("btnHallFrame");
+      if (bd) bd.classList.toggle("hall-bg", hallBackdropEnabled);
+      if (btn) {
+        btn.classList.toggle("active", hallBackdropEnabled);
+        btn.textContent = hallBackdropEnabled ? "🏛️ 극장 홀 액자 ON" : "📺 화면 꽉 차게(액자 OFF)";
+      }
+    }
+
+    function setCinemaLayoutMode(mode) {
+      const studio = document.getElementById("cinemaStudioWrap");
+      if (!studio) return;
+
+      // 이미 전체화면 상태에서 또 전체화면 버튼을 누르면 기본 분할 화면으로 토글 복귀
+      if (mode === "fullscreen" && currentCinemaLayout === "fullscreen") {
+        mode = "split";
+      }
+      currentCinemaLayout = mode;
+
+      studio.classList.remove("mode-wide", "mode-fullscreen", "mode-mini");
+      if (mode === "wide") studio.classList.add("mode-wide");
+      else if (mode === "fullscreen") studio.classList.add("mode-fullscreen");
+      else if (mode === "mini") studio.classList.add("mode-mini");
+
+      document.getElementById("btnModeSplit")?.classList.toggle("active", mode === "split");
+      document.getElementById("btnModeWide")?.classList.toggle("active", mode === "wide");
+      const fullBtn = document.getElementById("btnModeFull");
+      if (fullBtn) {
+        fullBtn.classList.toggle("active", mode === "fullscreen");
+        fullBtn.textContent = mode === "fullscreen" ? "🗗 부분화면으로 돌아가기" : "⛶ 전체화면";
+      }
+      document.getElementById("btnModeMini")?.classList.toggle("active", mode === "mini");
+
+      const restoreBtn = document.getElementById("miniRestoreBtn");
+      if (restoreBtn) {
+        restoreBtn.style.display = mode === "mini" ? "inline-block" : "none";
+      }
+    }
+
+    function toggleCinemaLights() {
+      document.body.classList.toggle("cinema-lights-off");
+      const isOff = document.body.classList.contains("cinema-lights-off");
+      const btn = document.getElementById("cinemaLightBtn");
+      if (btn) {
+        btn.textContent = isOff ? "💡 객석 조명 켜기" : "💡 객석 암전(조명 끄기)";
+      }
     }
 
     function setQuickSearch(kw) {
@@ -2375,33 +2961,34 @@
         }
 
         document.getElementById("gridStatusText").innerHTML =
-          `<strong>🎬 제5관 · 꿈디도 영상실 (유튜브 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 유튜브 영상이 준비되었습니다.`;
+          `<strong>🎬 제5관 · 꿈디도 영상실 (도서관 전용 시네마 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 영상이 준비되었습니다. 카드를 누르면 위 상영관에서 즉시 재생됩니다.`;
 
         grid.innerHTML = vids.map(v => {
+          const isPlaying = v.videoId === currentPlayingVideoId;
           return `
-            <a class="doc-card" href="${v.url}" target="_blank" rel="noopener" style="text-decoration:none; color:inherit;">
+            <article class="doc-card cinema-grid-card" data-vid="${v.videoId}" onclick="playInKkumbaonCinema('${v.videoId}', true, true)" style="${isPlaying ? 'border-color:#E5C878; box-shadow:0 0 0 2px #C59B52, 0 14px 32px rgba(0,0,0,0.22);' : ''}">
               <div class="card-thumb">
                 <img src="${v.thumb}" alt="${v.title}" loading="lazy" />
                 <div class="yt-play-overlay">
-                  <div class="yt-play-circle">▶</div>
+                  <div class="yt-play-circle">${isPlaying ? "⏸" : "▶"}</div>
                 </div>
                 <span class="card-cat-badge">${v.vCatLabel}</span>
-                <span class="card-gallery-badge">⏱️ ${v.duration}</span>
+                <span class="card-gallery-badge">${isPlaying ? "🌟 상영 중 · " : ""}⏱️ ${v.duration}</span>
               </div>
               <div class="card-body">
                 <div class="card-scripture">
                   <span>📅 ${v.publishedAt} 게시</span>
-                  <span style="color:var(--espresso-muted);font-weight:600;">📺 @dreaming_ondal</span>
+                  <span style="color:var(--espresso-muted);font-weight:600;">🏛️ 꿈디도 영상실</span>
                 </div>
                 <h3 class="card-title">${v.title}</h3>
                 ${v.subtitle ? `<div style="font-size:12px; color:var(--gold-primary); font-weight:700; margin-bottom:6px;">${v.subtitle}</div>` : ""}
                 <p class="card-summary">${v.summary}</p>
               </div>
               <div class="card-footer">
-                <span>클릭 시 유튜브에서 바로 재생</span>
-                <span class="read-link">▶️ 유튜브로 보기 ↗</span>
+                <span>유튜브 이탈 없이 도서관 안에서 감상</span>
+                <span class="read-link">🎬 상영관에서 재생 →</span>
               </div>
-            </a>
+            </article>
           `;
         }).join("");
         return;
@@ -2611,6 +3198,12 @@
       if (e.key === "Escape") {
         closeReaderModal();
         closeBlueprintModal();
+        if (currentCinemaLayout === "fullscreen") {
+          setCinemaLayoutMode("split");
+        }
+        if (document.body.classList.contains("cinema-lights-off")) {
+          toggleCinemaLights();
+        }
       }
     });
 
