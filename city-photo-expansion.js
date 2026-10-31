@@ -252,6 +252,31 @@
       media("assets/atrium/photos/malta-st-paul-islands.webp", "세인트폴스베이에서 바라본 바울 섬 전승지 · 오늘의 해안 풍경", "Frank Vincentz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Malta_-_Mellieha_-_St._Paul_Islands_(Dawret_il-Gzejjer)_01_ies.jpg", "전승지 풍경"),
       media("assets/atrium/photos/malta-islands-tower.webp", "세인트폴스베이 탑에서 바라본 바울 섬과 지중해 · 오늘의 풍경", "Frank Vincentz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Malta_-_Mellieha_-_St._Paul%27s_Islands_(St._Paul%27s_Bay_Tower)_02_ies.jpg", "전승지 풍경"),
       media("assets/atrium/photos/malta-bay-panorama.webp", "멜리데 섬 북부 세인트폴스베이의 넓은 해안 전경 · 오늘의 풍경", "Txllxt", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Malta_-_St._Paul%27s_Bay_-_Dawret_Il-Gzejjer_-_360%C2%B0_Panorama_01.jpg")
+    ],
+    alexandria: [
+      media("assets/atrium/photos/alexandria-harbor-view.webp", "카이트베이 성채에서 바라본 알렉산드리아 항구와 도심 · 오늘의 풍경", "Slyronit", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:A_view_of_Alexandria_from_the_Citadel_of_Qaitbay.jpg"),
+      media("assets/atrium/photos/alexandria-serapeum-ruins.webp", "폼페이우스 기둥에서 본 세라페움 유적 · 오늘의 풍경", "Daniel Mayer", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Alexandria_-_Pompey%27s_Pillar_-_view_of_ruins.JPG"),
+      media("assets/atrium/photos/alexandria-mediterranean-coast.webp", "지중해에서 바라본 알렉산드리아 해안 도시 · 오늘의 전경", "Vyacheslav Argenberg", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Egypt,_Alexandria_on_the_Mediterranean_Sea.jpg")
+    ],
+    babylon: [
+      media("assets/atrium/photos/babylon-processional-way.webp", "바벨론 행렬의 길 복원 구간 · 2016년 유적 풍경", "MohammadHuzam", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Processional_Way_in_2016,_Babylon_3.jpg", "복원 유적"),
+      media("assets/atrium/photos/babylon-lion.webp", "바벨론의 사자 석상 · 2022년 유적 풍경", "Safa Daneshvar", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:001125-Babylon-IMG_8090-2.jpg"),
+      media("assets/atrium/photos/babylon-old-city.webp", "고대 바벨론 터에 복원된 도시 구역 · 2022년 풍경", "Safa Daneshvar", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:001125-Babylon-IMG_8063-2.jpg", "복원 유적")
+    ],
+    ur: [
+      media("assets/atrium/photos/ur-ziggurat-site.webp", "우르 지구라트와 주변 유적지 · 오늘의 전경", "Alli Khalil", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ziggurat_of_Ur_Site_in_Nasiriyah_17.jpg"),
+      media("assets/atrium/photos/ur-ziggurat-stairs.webp", "우르 지구라트의 복원된 계단 · 오늘의 유적 풍경", "Aziz1005", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Ur-Ziggurat_Stairs.JPG", "복원 유적"),
+      media("assets/atrium/photos/ur-city-ruins.webp", "우르 성읍 터의 건물 기초와 지구라트 · 오늘의 풍경", "David Stanley", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Ur_City_in_Nasiriyah.jpg")
+    ],
+    nineveh: [
+      media("assets/atrium/photos/nineveh-nergal-gate.webp", "니느웨 네르갈 성문의 복원 유적 · 2008년 기록", "JoAnn S. Makinano, U.S. Air Force", "Public domain", "https://commons.wikimedia.org/wiki/File:Nergal_gate_in_Nineveh.JPG", "기록 사진"),
+      media("assets/atrium/photos/nineveh-adad-gate.webp", "니느웨 아다드 성문과 성벽 기초 · 1990년 기록", "Fredarch", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Adad_gate_exterior_entrance_north3.JPG", "기록 사진"),
+      media("assets/atrium/photos/nineveh-mashki-gate.webp", "파괴 뒤 다시 복원된 니느웨 마스키 성문 · 오늘의 유적 풍경", "Omar Siddeeq Yousif", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nineveh_-_Mashki_Gate.jpg", "복원 유적")
+    ],
+    haran: [
+      media("assets/atrium/photos/haran-ancient-ruins.webp", "하란 고대 성읍 터의 석조 유적 · 오늘의 풍경", "Theugursevinc", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ancient_city_of_Harran_Ruins_-_Sanliurfa.jpg"),
+      media("assets/atrium/photos/haran-beehive-houses.webp", "하란 마을의 벌집형 흙집과 메소포타미아 평야 · 오늘의 생활 풍경", "Zorka Sojka", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Turecko_Harran_(06).jpg"),
+      media("assets/atrium/photos/haran-grand-mosque.webp", "하란 대모스크 유적과 낙타 · 오늘의 역사 풍경", "Zorka Sojka", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Turecko_Harran_(13)_me%C5%A1ita.jpg", "후대 도시 유산")
     ]
   };
 
