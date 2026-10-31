@@ -11,7 +11,8 @@
     "CC BY 3.0": "https://creativecommons.org/licenses/by/3.0/",
     "CC BY 2.5": "https://creativecommons.org/licenses/by/2.5/",
     "CC BY 2.0": "https://creativecommons.org/licenses/by/2.0/",
-    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/"
+    "CC0": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "Public domain": "https://creativecommons.org/publicdomain/mark/1.0/"
   };
 
   const media = (src, caption, credit, license, sourceUrl, kind = "오늘의 풍경") => ({
@@ -71,6 +72,41 @@
       media("assets/atrium/photos/susa-darius-foundations.webp", "수산 다리오 왕궁의 기초 유적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:The_foundations_of_the_Palace_of_Darius_the_Great,_Susa,_capital_of_Elam_and_of_the_Achaemenid_Empire,_Iran_(33862549598).jpg"),
       media("assets/atrium/photos/susa-hypostyle.webp", "수산 왕궁의 기둥홀 아파다나 유적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:The_Apadana,_a_large_hypostyle_room_of_36_columns_in_the_Palace_of_Darius,_Susa,_capital_of_Elam_and_of_the_Achaemenid_Empire,_Iran_(33862548298).jpg"),
       media("assets/atrium/photos/susa-shush-castle.webp", "수산 유적 언덕 위의 슈슈 성 · 오늘의 풍경", "فلورانس", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Shush_Castle.JPG")
+    ],
+    jerusalem: [
+      media("assets/atrium/photos/jerusalem-panorama.webp", "예루살렘 구시가지와 주변 언덕 · 오늘의 도시 전경", "Ian Scott", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Old_Jerusalem_panorama_c_(6403881477).jpg"),
+      media("assets/atrium/photos/jerusalem-mount-olives.webp", "감람산에서 바라본 예루살렘 · 오늘의 풍경", "Beko", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Jerusalem_panorama_from_Mount_of_Olives_07112018.jpg"),
+      media("assets/atrium/photos/jerusalem-western-wall.webp", "서쪽 성벽과 성전산 일대 · 오늘의 풍경", "Gary Bembridge", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Western_Wall_and_Dome_of_the_Rock_Jerusalem_-10_(33400391921).jpg")
+    ],
+    jericho: [
+      media("assets/atrium/photos/jericho-tell-sultan.webp", "텔 에스술탄의 고대 여리고 유적 · 오늘의 풍경", "Diego Delso", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Tell_es-Sultan,_Jericho,_Palestine2.jpg"),
+      media("assets/atrium/photos/jericho-tell-excavation.webp", "텔 에스술탄 발굴지와 요단 계곡 지형 · 오늘의 유적 풍경", "Deror avi", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Jericho_Tell_es_Sultan_P1190731.JPG"),
+      media("assets/atrium/photos/jericho-hisham-palace.webp", "여리고 히샴 궁전 유적 · 성경 시대 이후의 지역 역사", "Bukvoed", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Jericho-Hishams-Palace-Museum-208.jpg", "후대 역사 유적")
+    ],
+    nazareth: [
+      media("assets/atrium/photos/nazareth-panorama.webp", "나사렛 도심과 갈릴리 언덕 · 오늘의 도시 전경", "Ronen Marcus", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_51454_panorama_of_the_city_of_nazareth.jpg"),
+      media("assets/atrium/photos/nazareth-old-city-street.webp", "나사렛 구시가지의 돌길과 골목 · 오늘의 생활 풍경", "Juandev", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Nazareth,_Old_City,_street.JPG"),
+      media("assets/atrium/photos/nazareth-annunciation-basilica.webp", "나사렛 수태고지 대성당 외관 · 오늘의 풍경", "Larry Koester", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Basilica_of_Annunciation_-_exterior_(5)_(37125827056).jpg")
+    ],
+    galilee: [
+      media("assets/atrium/photos/galilee-panorama.webp", "갈릴리 호수와 주변 산지 · 오늘의 전경", "Zachi Evenor and MathKnight", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Kinnereth-Panorama-01s.jpg"),
+      media("assets/atrium/photos/galilee-shoreline.webp", "갈릴리 호숫가의 물가 지형 · 오늘의 풍경", "Adam Jones", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Shore_of_Lake_Kinnaret_(Sea_of_Galilee)_-_Israel_-_01_(5710144441).jpg"),
+      media("assets/atrium/photos/galilee-net-fishing.webp", "갈릴리 호수의 현대 그물잡이 · 오늘의 생활 풍경", "James Emery", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Net_fishing_on_Sea_of_Galilee_0865_(507838951).jpg")
+    ],
+    capernaum: [
+      media("assets/atrium/photos/capernaum-synagogue.webp", "가버나움 후대 회당 유적 · 오늘의 풍경", "David Shankbone", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Capernaum_synagogue_by_David_Shankbone.jpg"),
+      media("assets/atrium/photos/capernaum-peters-house.webp", "가버나움 베드로의 집 전승지 발굴 유적 · 오늘의 풍경", "Fallaner", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Holy_Land_2016_P0456_Capernaum_ruins_of_Saint_Peters_House_under_Saint_Peter_Church.jpg"),
+      media("assets/atrium/photos/capernaum-north-shore.webp", "갈릴리 호수 북안, 가버나움 일대의 지형 · 오늘의 풍경", "Ian Scott", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Panorama_on_the_north_Shore_of_the_Sea_of_Galilee_(5796531006).jpg")
+    ],
+    caesarea: [
+      media("assets/atrium/photos/caesarea-aqueduct.webp", "가이사랴 마리티마의 로마 수도교 · 오늘의 유적 풍경", "Lior Golgher", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Ancient_Roman_aqueduct_in_Caesarea_Maritima_DSC05186.JPG"),
+      media("assets/atrium/photos/caesarea-theatre.webp", "가이사랴의 로마 극장 · 오늘의 유적 풍경", "Zairon", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Caesarea_maritima_R%C3%B6misches_Theater_1.JPG"),
+      media("assets/atrium/photos/caesarea-harbor-aerial.webp", "가이사랴 항구와 수중에 남은 고대 방파제 · 오늘의 항공 풍경", "Ron Gafni - SkyPics", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Cesarea_harbor_from_above_%D7%A0%D7%9E%D7%9C_%D7%A7%D7%99%D7%A1%D7%A8%D7%99%D7%94_%D7%91%D7%9E%D7%91%D7%98_%D7%A2%D7%9C.jpg")
+    ],
+    ephesus: [
+      media("assets/atrium/photos/ephesus-great-theatre.webp", "에베소 대극장 유적 · 오늘의 풍경", "Blcksprt", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ephesus_theatre_1.jpg"),
+      media("assets/atrium/photos/ephesus-curetes-street.webp", "에베소 쿠레테스 거리와 고대 도시 유적 · 오늘의 풍경", "José Luiz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:9.7_Curetes_Street_in_Ephesus.JPG"),
+      media("assets/atrium/photos/ephesus-hadrian-temple.webp", "에베소 하드리아누스 신전 정면 · 오늘의 유적 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ephesus_Temple_of_Hadrian_Front_1.jpg")
     ]
   };
 
