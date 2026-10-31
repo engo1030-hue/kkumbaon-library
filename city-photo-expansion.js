@@ -177,6 +177,31 @@
       media("assets/atrium/photos/patmos-panorama.webp", "에게해의 밧모섬과 해안선 · 오늘의 섬 전경", "Tomisti", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Patmos_panorama_3.jpg"),
       media("assets/atrium/photos/patmos-skala.webp", "밧모섬 스칼라 항구와 흰 마을 · 오늘의 생활 풍경", "Chris Vlachos", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Skala-of-patmos.JPG"),
       media("assets/atrium/photos/patmos-monastery.webp", "밧모섬 성 요한 수도원 전경 · 성경 시대 이후의 신앙 유산", "Glorious 93", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Vue_du_Monast%C3%A8re_Saint-Jean-le-Th%C3%A9ologien_de_Patmos.JPG", "후대 신앙 유산")
+    ],
+    hebron: [
+      media("assets/atrium/photos/hebron-patriarchs.webp", "헤브론 막벨라 굴 전승지와 족장들의 무덤 건축 · 오늘의 풍경", "Djampa", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Hebron_Cave_of_the_Patriarchs.jpg", "전승지"),
+      media("assets/atrium/photos/hebron-downtown.webp", "헤브론 도심의 밀집한 건물과 언덕 · 오늘의 도시 전경", "CarlSerafino", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Downtown_H1_Hebron_with_Arab_Palestine_Shopping_Center.jpg"),
+      media("assets/atrium/photos/hebron-old-city.webp", "헤브론 구시가지의 석조 골목과 전통 건축 · 오늘의 생활 풍경", "بلال الدويك", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Old_Hebron_3.jpg")
+    ],
+    emmaus: [
+      media("assets/atrium/photos/emmaus-baptistry.webp", "엠마오 니코폴리스의 세례 시설 유적 · 엠마오 후보지 참고", "Avishai Teicher", "Public domain", "https://commons.wikimedia.org/wiki/File:Baptistry_in_Emmaus_Nicopolis,_Israel.jpg", "후보지 유적"),
+      media("assets/atrium/photos/emmaus-nicopolis.webp", "엠마오 니코폴리스의 교회 유적과 석조 구조 · 후보지의 오늘", "Avishai Teicher", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Emmaus_Nicopolis_(1).jpg", "후보지 유적"),
+      media("assets/atrium/photos/emmaus-old-church.webp", "엠마오 니코폴리스의 옛 교회 유적 · 여러 엠마오 후보지 가운데 한 곳", "Avishai Teicher", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Emmaus_Nicopolis.jpg", "후보지 유적")
+    ],
+    shechem: [
+      media("assets/atrium/photos/shechem-gate.webp", "텔 발라타의 성벽과 성문 유적 · 고대 세겜 터의 오늘", "TrickyH", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tell_Balata.jpg"),
+      media("assets/atrium/photos/shechem-gerizim-view.webp", "그리심산에서 내려다본 텔 발라타와 세겜 권역 · 오늘의 지형", "עדירל", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:TelShchem5595.JPG"),
+      media("assets/atrium/photos/shechem-ruins.webp", "텔 발라타에 남은 고대 세겜의 석조 유적 · 오늘의 풍경", "Daniel Ventura", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Shchem_-_the_remains_of_the_old_city_04.jpg")
+    ],
+    bethel: [
+      media("assets/atrium/photos/bethel-beitin.webp", "베이틴의 언덕과 마을 전경 · 전통적 벧엘 후보지의 오늘", "Bukvoed", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Beitin-2246.jpg", "후보지 풍경"),
+      media("assets/atrium/photos/bethel-landscape.webp", "베이틴 인근의 돌밭과 구릉 지형 · 벧엘 후보 권역 참고", "Bukvoed", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Beitin-3824.jpg", "후보지 풍경"),
+      media("assets/atrium/photos/bethel-walls.webp", "베이틴에 남은 고대 석벽 유적 · 전통적 벧엘 후보지", "Pessimist2006", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Bethel1.jpg", "후보지 유적")
+    ],
+    joppa: [
+      media("assets/atrium/photos/joppa-port-aerial.webp", "지중해에서 바라본 오늘날 욥바 항구 · 항공 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ISR-2013-Aerial-Jaffa-Port_of_Jaffa.jpg"),
+      media("assets/atrium/photos/joppa-coast.webp", "텔아비브 해변에서 바라본 욥바 구시가지와 해안선 · 오늘의 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_01.jpg"),
+      media("assets/atrium/photos/joppa-st-peter.webp", "욥바 성 베드로 교회 외관 · 성경 시대 이후의 도시 신앙 유산", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_25-St._Peter%27s_Church.JPG", "후대 신앙 유산")
     ]
   };
 
