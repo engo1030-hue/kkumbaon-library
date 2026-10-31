@@ -1961,6 +1961,7 @@
     }
   </style>
   <link rel="stylesheet" href="atrium.css?v=20261027d"/>
+  <link rel="stylesheet" href="paul-route-intro.css?v=20261101a"/>
 </head>
 <body>
 
@@ -2028,12 +2029,29 @@
     </div>
     <div class="atlas-viewport" id="atlasViewport" tabindex="0" role="region" aria-label="확대 가능한 성경 지도. 방향키로 이동, 더하기와 빼기로 확대 축소할 수 있습니다.">
       <div class="map-perspective" id="mapPerspective">
-        <div class="atlas-map-plane" id="atlasPlane"><img id="worldMap" src="assets/atrium/world-map.svg" alt="지중해와 성경 주요 지역의 지형 지도" draggable="false"/><div id="regionLabels" aria-hidden="true"></div><div id="placeMarkers"></div></div>
+        <div class="atlas-map-plane" id="atlasPlane"><img id="worldMap" src="assets/atrium/world-map.svg" alt="지중해와 성경 주요 지역의 지형 지도" draggable="false"/><div id="regionLabels" aria-hidden="true"></div><svg id="paulRouteMap" class="paul-route-map" viewBox="0 0 1800 1100" aria-hidden="true"></svg><div id="placeMarkers"></div></div>
       </div>
       <div class="map-vignette" aria-hidden="true"></div>
       <div class="map-heading"><span class="map-overline">THE BIBLICAL WORLD</span><span class="map-region-name" id="regionName">성경의 세계</span><span class="map-region-sub" id="regionSubtitle">지중해에서 메소포타미아까지</span></div>
       <div class="compass" aria-hidden="true"><span>N</span><svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="22"/><path class="north" d="m30 7 7 23-7-4-7 4Z"/><path d="m30 53 7-23-7 4-7-4Z"/><path d="M4 30h9m34 0h9"/></svg></div>
       <div class="era-filter" aria-label="성경 시대 필터"><button data-era="all" class="is-active">모든 시대</button><button data-era="구약">구약</button><button data-era="신약">신약</button></div>
+      <aside class="paul-route-panel" aria-label="사도 바울의 이동 경로">
+        <div class="paul-route-panel-head"><span class="paul-route-kicker">PAUL'S JOURNEYS</span><strong>사도 바울의 길</strong></div>
+        <div class="paul-route-buttons" role="group" aria-label="바울의 여정 선택">
+          <button type="button" data-paul-route="all" class="is-active" aria-pressed="true"><i aria-hidden="true"></i>전체</button>
+          <button type="button" data-paul-route="journey1" aria-pressed="false"><i aria-hidden="true"></i>1차</button>
+          <button type="button" data-paul-route="journey2" aria-pressed="false"><i aria-hidden="true"></i>2차</button>
+          <button type="button" data-paul-route="journey3" aria-pressed="false"><i aria-hidden="true"></i>3차</button>
+          <button type="button" data-paul-route="rome" aria-pressed="false"><i aria-hidden="true"></i>로마로</button>
+        </div>
+        <p>사도행전의 기록을 따라 이어 본 대표 경로 · 세부 항로는 추정</p>
+      </aside>
+      <div class="paul-route-story" id="paulRouteStory" role="status" aria-live="polite" hidden>
+        <button type="button" class="paul-route-story-close" aria-label="여정 안내 닫기">×</button>
+        <span id="paulRouteStoryEyebrow">사도 바울의 길</span>
+        <strong id="paulRouteStoryTitle">복음이 길이 되다</strong>
+        <p id="paulRouteStoryText">안디옥에서 로마까지, 사도행전의 기록을 따라 빛이 이어집니다.</p>
+      </div>
       <aside id="cityPopover" class="city-popover" aria-label="선택한 장소 미리보기" hidden></aside>
       <div class="map-help" id="mapHelp"><span class="help-orbit"></span><span>점을 눌러 도시를 열어 보세요</span></div>
       <div class="map-bottom-left"><button id="placesListToggle" class="map-glass-button" aria-expanded="false" aria-controls="allPlaces"><span aria-hidden="true">☷</span> 장소 목록 <span id="visibleCount">48</span></button><span class="map-scale-note" id="mapScaleNote">점의 숫자는 연결된 문헌 수입니다</span></div>
@@ -3657,6 +3675,7 @@
   </script>
   <script src="cities-data.js?v=20261027f"></script>
   <script src="city-photo-expansion.js?v=20261101f"></script>
-  <script src="atrium.js?v=20261027f"></script>
+  <script src="paul-route-intro.js?v=20261101b"></script>
+  <script src="atrium.js?v=20261101a"></script>
 </body>
 </html>
