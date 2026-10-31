@@ -189,7 +189,7 @@
       media("assets/atrium/photos/emmaus-old-church.webp", "엠마오 니코폴리스의 옛 교회 유적 · 여러 엠마오 후보지 가운데 한 곳", "Avishai Teicher", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Emmaus_Nicopolis.jpg", "후보지 유적")
     ],
     shechem: [
-      media("assets/atrium/photos/shechem-gate.webp", "텔 발라타의 성벽과 성문 유적 · 고대 세겜 터의 오늘", "TrickyH", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tell_Balata.jpg"),
+      media("assets/atrium/photos/shechem-tel-balata-2022.webp", "2022년에 본 텔 발라타 유적과 오늘날 나블루스 · 고대 세겜 터", "NaturalSoundsYEAH!", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Balata_in_2022.jpg"),
       media("assets/atrium/photos/shechem-gerizim-view.webp", "그리심산에서 내려다본 텔 발라타와 세겜 권역 · 오늘의 지형", "עדירל", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:TelShchem5595.JPG"),
       media("assets/atrium/photos/shechem-ruins.webp", "텔 발라타에 남은 고대 세겜의 석조 유적 · 오늘의 풍경", "Daniel Ventura", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Shchem_-_the_remains_of_the_old_city_04.jpg")
     ],
@@ -199,7 +199,7 @@
       media("assets/atrium/photos/bethel-walls.webp", "베이틴에 남은 고대 석벽 유적 · 전통적 벧엘 후보지", "Pessimist2006", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Bethel1.jpg", "후보지 유적")
     ],
     joppa: [
-      media("assets/atrium/photos/joppa-port-aerial.webp", "지중해에서 바라본 오늘날 욥바 항구 · 항공 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ISR-2013-Aerial-Jaffa-Port_of_Jaffa.jpg"),
+      media("assets/atrium/photos/joppa-port-ground.webp", "욥바 항구 방파제와 텔아비브 해안 · 오늘의 생활 풍경", "Ariel Manor", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_54558_jaffa_port.jpg"),
       media("assets/atrium/photos/joppa-coast.webp", "텔아비브 해변에서 바라본 욥바 구시가지와 해안선 · 오늘의 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_01.jpg"),
       media("assets/atrium/photos/joppa-st-peter.webp", "욥바 성 베드로 교회 외관 · 성경 시대 이후의 도시 신앙 유산", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_25-St._Peter%27s_Church.JPG", "후대 신앙 유산")
     ],
@@ -219,12 +219,12 @@
       media("assets/atrium/photos/shiloh-stonework.webp", "실로 유적지에 남은 석벽과 건물 기초 · 오늘의 풍경", "Zeev Stein", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:116929_ancient_shiloh_site_shiloh_PikiWiki_Israel.jpg")
     ],
     beersheba: [
-      media("assets/atrium/photos/beersheba-overview.webp", "텔 브엘세바 발굴지와 네게브 지형 · 오늘의 전경", "gugganij", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_Overview_2007041.JPG"),
+      media("assets/atrium/photos/beersheba-national-park.webp", "텔 브엘세바 발굴지와 네게브 지형 · 오늘의 항공 전경", "Zeev Stein", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:PikiWiki_Israel_71724_tel_sheva_national_park.jpg"),
       media("assets/atrium/photos/beersheba-gate.webp", "텔 브엘세바의 삼중 성문 유적 · 오늘의 풍경", "Oren Rozen", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_181225_03_Triple_Gate.jpg"),
       media("assets/atrium/photos/beersheba-water-system.webp", "텔 브엘세바 지하 수로 시설 입구 · 오늘의 유적 풍경", "Oren Rozen", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_181225_10_Water_System.jpg")
     ],
     "pisidian-antioch": [
-      media("assets/atrium/photos/pisidian-antioch-overview.webp", "얄바츠 인근 비시디아 안디옥 고대 도시 터 · 오늘의 전경", "Maderibeyza", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Antiocheia_in_Psidia.jpg"),
+      media("assets/atrium/photos/pisidian-antioch-theatre.webp", "비시디아 안디옥 고대 극장의 반원형 객석 · 오늘의 유적 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_in_Pisidia_Theatre_2964.jpg"),
       media("assets/atrium/photos/pisidian-antioch-decumanus.webp", "비시디아 안디옥의 동서 대로 데쿠마누스 막시무스 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_in_Pisida_Decumanus_Maximus_047.jpg"),
       media("assets/atrium/photos/pisidian-antioch-basilica.webp", "비시디아 안디옥 성 바울 대성당의 후대 유적 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_of_Pisidia_2870.jpg", "후대 교회 유적")
     ],
@@ -234,13 +234,13 @@
       media("assets/atrium/photos/lystra-augustus-coin.webp", "루스드라 조폐소의 아우구스투스 시대 청동 주화 뒷면 · 실물 자료", "Bibliothèque nationale de France", "Public domain", "https://commons.wikimedia.org/wiki/File:Monnaie_-_Bronze,_Lystra,_Lycaonie,_Auguste_-_btv1b8516625b_(2_of_2).jpg", "유물")
     ],
     thyatira: [
-      media("assets/atrium/photos/thyatira-columns.webp", "오늘날 아키사르 도심에 남은 두아디라 기둥 유적 · 오늘의 풍경", "Pragdon", "CC0", "https://commons.wikimedia.org/wiki/File:Columns_of_Thiatira.jpg"),
+      media("assets/atrium/photos/thyatira-ruins.webp", "아키사르 도심에 남은 두아디라 석조 유적 · 오늘의 풍경", "Akkinvet", "Public domain", "https://commons.wikimedia.org/wiki/File:Ruins_of_Thyateira.jpg"),
       media("assets/atrium/photos/thyatira-portico.webp", "두아디라 아고라의 후대 주랑과 기둥 기초 · 오늘의 유적 풍경", "Ian Scott", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Thyatira_portico.jpg", "후대 도시 유적"),
       media("assets/atrium/photos/thyatira-basilica.webp", "아키사르의 두아디라 바실리카 유적 · 오늘의 풍경", "Klaus-Peter Simon", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:ThyatiraBasilika.jpg", "후대 교회 유적")
     ],
     philadelphia: [
       media("assets/atrium/photos/philadelphia-st-jean.webp", "알라셰히르 성 요한 교회의 거대한 기둥 유적 · 오늘의 풍경", "Sharon Hahn Darlin", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Biblical_Philadelphia,_Ala%C5%9Fehir,_Turkey_(%E2%80%9CSeven_Churches_of_Revelation%E2%80%9D)_(51967355823).jpg", "후대 교회 유적"),
-      media("assets/atrium/photos/philadelphia-church-angle.webp", "빌라델비아의 오늘, 알라셰히르 성 요한 교회 유적의 다른 시선", "Sharon Hahn Darlin", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Biblical_Philadelphia,_Ala%C5%9Fehir,_Turkey_(%E2%80%9CSeven_Churches_of_Revelation%E2%80%9D)_(51966166907).jpg", "후대 교회 유적"),
+      media("assets/atrium/photos/philadelphia-st-john-2.webp", "알라셰히르 성 요한 교회 유적의 정원과 기둥 · 오늘의 풍경", "simonjenkins' photos", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Ala%C5%9Fehir_Church_of_St._John_2.jpg", "후대 교회 유적"),
       media("assets/atrium/photos/philadelphia-fruit-market.webp", "오늘날 알라셰히르의 과일 시장 · 농업 도시의 생활 풍경", "Quintucket", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Alasehir_fruit_market.jpg")
     ],
     berea: [
