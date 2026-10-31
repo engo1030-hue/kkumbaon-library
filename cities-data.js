@@ -65,7 +65,15 @@ window.DREAMBAON_ATLAS = {
         "fig-chronicle-07",
         "fig-chronicle-10",
         "master30-25",
-        "fig-chronicle-05"
+        "fig-chronicle-05",
+        "feast-00-overview",
+        "feast-02-passover",
+        "feast-04-firstfruits",
+        "feast-05-pentecost",
+        "feast-06-trumpets",
+        "feast-07-atonement",
+        "feast-08-tabernacles",
+        "feast-10-hanukkah"
       ],
       "priority": 1,
       "wiki": "Jerusalem"
@@ -119,7 +127,6 @@ window.DREAMBAON_ATLAS = {
         "dev-dailyword-ep003",
         "dev-dailyword-ep004",
         "dev-202611-part1-ruth",
-        "artifact-soso-05",
         "artifact-soso-06",
         "fig-chronicle-09"
       ],
@@ -170,8 +177,6 @@ window.DREAMBAON_ATLAS = {
         "다윗"
       ],
       "relatedDocIds": [
-        "dev-dailyword-ep023",
-        "dev-dailyword-ep024",
         "atlas-biblical-inscriptions-05"
       ],
       "priority": 2,
@@ -321,9 +326,6 @@ window.DREAMBAON_ATLAS = {
       ],
       "relatedDocIds": [
         "atlas-qumran-dead-sea-scrolls",
-        "master30-16",
-        "dev-dailyword-ep027",
-        "dev-dailyword-ep028",
         "master30-14"
       ],
       "priority": 2,
@@ -508,10 +510,7 @@ window.DREAMBAON_ATLAS = {
         "다비다",
         "시몬"
       ],
-      "relatedDocIds": [
-        "fig-chronicle-15",
-        "fig-chronicle-02"
-      ],
+      "relatedDocIds": [],
       "priority": 2,
       "wiki": "Jaffa",
       "geoSource": {
@@ -559,8 +558,7 @@ window.DREAMBAON_ATLAS = {
         "예수님"
       ],
       "relatedDocIds": [
-        "atlas-capernaum-galilee-arch",
-        "fig-chronicle-16"
+        "feast-11-jubilee"
       ],
       "priority": 1,
       "wiki": "Nazareth",
@@ -706,9 +704,7 @@ window.DREAMBAON_ATLAS = {
         "왕의 신하"
       ],
       "relatedDocIds": [
-        "atlas-capernaum-galilee-arch",
-        "artifact-passover-cup-new-covenant",
-        "master30-17"
+        "artifact-passover-cup-new-covenant"
       ],
       "priority": 2,
       "uncertainty": "가나의 정확한 위치는 논의 중입니다. 지도는 전통적으로 알려진 카프르 칸나를 표시하며, 키르베트 카나 등 다른 후보지도 있습니다.",
@@ -810,11 +806,7 @@ window.DREAMBAON_ATLAS = {
         "dev-dailyword-ep016",
         "dev-dailyword-ep017",
         "dev-dailyword-ep018",
-        "dev-dailyword-ep019",
-        "dev-dailyword-ep020",
-        "dev-dailyword-ep021",
         "dev-202611-part3-1samuel",
-        "master30-22",
         "atlas-biblical-inscriptions-05",
         "master30-07"
       ],
@@ -1252,8 +1244,7 @@ window.DREAMBAON_ATLAS = {
         "서머나 교회"
       ],
       "relatedDocIds": [
-        "atlas-ephesus-archaeology",
-        "artifact-soso-01"
+        "artifact-soso-10"
       ],
       "priority": 2,
       "wiki": "Smyrna",
@@ -1388,10 +1379,7 @@ window.DREAMBAON_ATLAS = {
       "people": [
         "사데 교회"
       ],
-      "relatedDocIds": [
-        "atlas-ephesus-archaeology",
-        "artifact-soso-02"
-      ],
+      "relatedDocIds": [],
       "priority": 2,
       "wiki": "Sardis",
       "geoSource": {
@@ -1476,10 +1464,7 @@ window.DREAMBAON_ATLAS = {
         "라오디게아 교회",
         "눔바"
       ],
-      "relatedDocIds": [
-        "atlas-ephesus-archaeology",
-        "artifact-soso-03"
-      ],
+      "relatedDocIds": [],
       "priority": 2,
       "wiki": "Laodicea on the Lycus",
       "geoSource": {
@@ -1617,7 +1602,6 @@ window.DREAMBAON_ATLAS = {
       ],
       "relatedDocIds": [
         "fig-paul-silas-midnight",
-        "fig-chronicle-04",
         "atlas-philippi-deep-research",
         "master30-04",
         "master30-29",
@@ -1754,8 +1738,7 @@ window.DREAMBAON_ATLAS = {
         "다마리"
       ],
       "relatedDocIds": [
-        "master30-29",
-        "atlas-corinth-deep-research"
+        "master30-29"
       ],
       "priority": 2,
       "wiki": "Athens",
@@ -1813,7 +1796,6 @@ window.DREAMBAON_ATLAS = {
       "relatedDocIds": [
         "atlas-corinth-deep-research",
         "fig-apollos-priscilla-aquila",
-        "fig-chronicle-03",
         "artifact-soso-10",
         "artifact-soso-11",
         "artifact-soso-12",
@@ -1871,13 +1853,7 @@ window.DREAMBAON_ATLAS = {
         "fig-chronicle-19",
         "fig-chronicle-20",
         "atlas-biblical-inscriptions-05",
-        "atlas-ephesus-archaeology",
-        "atlas-corinth-deep-research",
-        "atlas-philippi-deep-research",
-        "fig-chronicle-14",
-        "fig-chronicle-15",
-        "fig-chronicle-17",
-        "artifact-soso-03"
+        "fig-chronicle-17"
       ],
       "priority": 1,
       "wiki": "Rome",
@@ -2021,7 +1997,9 @@ window.DREAMBAON_ATLAS = {
       "relatedDocIds": [
         "master30-23",
         "artifact-soso-07",
-        "artifact-passover-cup-new-covenant"
+        "artifact-passover-cup-new-covenant",
+        "feast-02-passover",
+        "feast-03-unleavened"
       ],
       "priority": 2,
       "uncertainty": "고센의 범위는 확정되지 않았습니다. 지도는 나일강 삼각주 동부의 대략적인 지역을 표시합니다.",
@@ -2063,7 +2041,9 @@ window.DREAMBAON_ATLAS = {
       ],
       "relatedDocIds": [
         "artifact-soso-07",
-        "master30-23"
+        "master30-23",
+        "feast-02-passover",
+        "feast-03-unleavened"
       ],
       "priority": 2,
       "uncertainty": "표시는 피라메세스로 알려진 칸티르 일대입니다. 출애굽의 연대와 성경 지명 해석에는 여러 견해가 있습니다.",
@@ -2114,11 +2094,13 @@ window.DREAMBAON_ATLAS = {
       ],
       "relatedDocIds": [
         "artifact-soso-14",
-        "artifact-soso-10",
-        "master30-14",
         "master30-07",
         "master30-08",
-        "artifact-soso-16"
+        "artifact-soso-16",
+        "feast-00-overview",
+        "feast-01-sabbath",
+        "feast-05-pentecost",
+        "feast-11-jubilee"
       ],
       "priority": 1,
       "uncertainty": "성경 속 시내산의 정확한 위치는 확정되지 않았습니다. 지도는 시내반도의 전통적 후보지인 제벨 무사를 표시합니다.",
@@ -2160,9 +2142,8 @@ window.DREAMBAON_ATLAS = {
         "유다의 포로들"
       ],
       "relatedDocIds": [
-        "master30-28",
         "artifact-soso-02",
-        "artifact-soso-04"
+        "artifact-soso-07"
       ],
       "priority": 1,
       "wiki": "Babylon",
@@ -2211,10 +2192,7 @@ window.DREAMBAON_ATLAS = {
         "사라",
         "롯"
       ],
-      "relatedDocIds": [
-        "artifact-soso-04",
-        "master30-09"
-      ],
+      "relatedDocIds": [],
       "priority": 2,
       "uncertainty": "성경의 갈대아 우르는 일반적으로 남부 메소포타미아의 텔 엘무카이야르와 연결되며, 다른 위치를 제안하는 견해도 있습니다.",
       "wiki": "Ur",
@@ -2262,7 +2240,6 @@ window.DREAMBAON_ATLAS = {
         "니느웨 주민들"
       ],
       "relatedDocIds": [
-        "master30-30",
         "atlas-biblical-inscriptions-05"
       ],
       "priority": 1,
@@ -2310,10 +2287,7 @@ window.DREAMBAON_ATLAS = {
         "야곱",
         "라반"
       ],
-      "relatedDocIds": [
-        "master30-09",
-        "artifact-soso-04"
-      ],
+      "relatedDocIds": [],
       "priority": 2,
       "wiki": "Harran",
       "geoSource": {
@@ -2372,7 +2346,7 @@ window.DREAMBAON_ATLAS = {
         "dev-dailyword-ep013",
         "dev-dailyword-ep014",
         "dev-202611-part2-esther",
-        "artifact-soso-02"
+        "feast-09-purim"
       ],
       "priority": 1,
       "wiki": "Susa",
@@ -2420,7 +2394,8 @@ window.DREAMBAON_ATLAS = {
       ],
       "relatedDocIds": [
         "artifact-soso-01",
-        "atlas-ephesus-archaeology"
+        "master30-09",
+        "master30-26"
       ],
       "priority": 2,
       "wiki": "Patmos",
