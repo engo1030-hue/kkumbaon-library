@@ -271,7 +271,7 @@
     nineveh: [
       media("assets/atrium/photos/nineveh-nergal-gate.webp", "니느웨 네르갈 성문의 복원 유적 · 2008년 기록", "JoAnn S. Makinano, U.S. Air Force", "Public domain", "https://commons.wikimedia.org/wiki/File:Nergal_gate_in_Nineveh.JPG", "기록 사진"),
       media("assets/atrium/photos/nineveh-adad-gate.webp", "니느웨 아다드 성문과 성벽 기초 · 1990년 기록", "Fredarch", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Adad_gate_exterior_entrance_north3.JPG", "기록 사진"),
-      media("assets/atrium/photos/nineveh-mashki-gate.webp", "파괴 뒤 다시 복원된 니느웨 마스키 성문 · 오늘의 유적 풍경", "Omar Siddeeq Yousif", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Nineveh_-_Mashki_Gate.jpg", "복원 유적")
+      media("assets/atrium/photos/nineveh-lachish-relief.webp", "니느웨 남서궁에서 나온 라기스 전투 부조 · 대영박물관 실물", "Osama Shukir Muhammed Amin", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:The_fall_of_Lachish,_King_Sennacherib_reviews_Judaean_prisoners..JPG", "유물")
     ],
     haran: [
       media("assets/atrium/photos/haran-ancient-ruins.webp", "하란 고대 성읍 터의 석조 유적 · 오늘의 풍경", "Theugursevinc", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ancient_city_of_Harran_Ruins_-_Sanliurfa.jpg"),
