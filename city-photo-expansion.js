@@ -142,6 +142,41 @@
       media("assets/atrium/photos/tarsus-roman-road.webp", "다소의 로마 시대 도로 유적 · 오늘의 풍경", "Nedim Ardoğa", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Roman_road_in_Tarsus,_Mersin_Province.jpg"),
       media("assets/atrium/photos/tarsus-pauls-well.webp", "다소의 성 바울 우물 전승지 · 오늘의 풍경", "Yaman1990", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Aziz_Pavlus_Su_Kuyusu_Mersin_02.jpg", "전승지"),
       media("assets/atrium/photos/tarsus-cleopatra-gate.webp", "다소 클레오파트라 문 · 성경 시대 이후에 다시 세워진 도시 유산", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Cleopatra%27s_Gate,_a_city_gate_named_after_the_Egyptian_queen_Cleopatra_VII,_it_was_built_either_in_the_Byzantine_or_Abassid_period_on_the_site_of_an_earlier_one,_Tarsus_(23679870588).jpg", "후대 도시 유산")
+    ],
+    troas: [
+      media("assets/atrium/photos/troas-panorama.webp", "알렉산드리아 드로아 유적과 에게해 방향의 넓은 전경 · 오늘의 풍경", "Horacio36", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Panorama_alexandriatroas.jpg"),
+      media("assets/atrium/photos/troas-roman-harbour.webp", "아우구스투스 시대에 조성된 드로아 로마 항구의 흔적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:The_Roman_Harbour_of_Alexandria_Troas,_built_in_the_reign_of_Augustus_and_consisting_of_an_outer_basin_protected_by_two_breakwaters_and_an_inner_basin,_Troad,_Turkey_-_52985552010.jpg"),
+      media("assets/atrium/photos/troas-ancient-road.webp", "알렉산드리아 드로아 유적지의 고대 도로 · 오늘의 풍경", "Raicem", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:A_Road_in_Alexandria_Troas.jpg")
+    ],
+    miletus: [
+      media("assets/atrium/photos/miletus-downtown.webp", "밀레도 고대 도심 유적의 넓은 전경 · 오늘의 풍경", "Ken and Nyetta", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Remains_of_downtown_ancient_Miletus.jpg"),
+      media("assets/atrium/photos/miletus-faustina-baths.webp", "밀레도 파우스티나 목욕장 입구 유적 · 오늘의 풍경", "Ken and Nyetta", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Entrance_to_Baths_of_Faustina.jpg"),
+      media("assets/atrium/photos/miletus-church.webp", "밀레도 고대 교회 유적 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Miletus_Church_in_2007_4587.jpg", "후대 교회 유적")
+    ],
+    pergamum: [
+      media("assets/atrium/photos/pergamum-theatre.webp", "가파른 산비탈을 따라 세워진 버가모 극장 · 오늘의 풍경", "Carlos Delgado", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Teatro_de_P%C3%A9rgamo_-_Pergamon_Theatre_-_02.jpg"),
+      media("assets/atrium/photos/pergamum-trajan-temple.webp", "버가모 상부 아크로폴리스의 트라야누스 신전 유적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:The_Temple_of_Trajan_(Trajaneum),_Upper_Acropolis,_Pergamon,_Turkey_(12190441356).jpg"),
+      media("assets/atrium/photos/pergamum-asklepion.webp", "버가모 아스클레피온 치유 성소 유적 · 오늘의 풍경", "Özge Kesgin", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Bergama_Asklepion.jpg")
+    ],
+    smyrna: [
+      media("assets/atrium/photos/smyrna-agora.webp", "오늘날 이즈미르 도심에 남은 서머나 아고라 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Agora_of_Smyrna,_built_during_the_Hellenistic_era_at_the_base_of_Pagos_Hill_and_totally_rebuilt_under_Marcus_Aurelius_after_the_destructive_178_AD_earthquake,_Izmir,_Turkey_(18511982670).jpg"),
+      media("assets/atrium/photos/smyrna-agora-basement.webp", "서머나 아고라 지하 회랑의 석조 아치 · 오늘의 유적 풍경", "Georges Jansoone JoJan", "Public domain", "https://commons.wikimedia.org/wiki/File:Izmir024.jpg"),
+      media("assets/atrium/photos/smyrna-kadifekale-view.webp", "카디페칼레 언덕에서 바라본 오늘날 이즈미르 · 서머나의 현대 지형", "Haluxjason", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Izmir_2012.jpg")
+    ],
+    sardis: [
+      media("assets/atrium/photos/sardis-synagogue.webp", "3세기 후반에 조성된 사데 회당 유적 · 성경 시대 이후의 신앙 유산", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Sardis_Synagogue,_late_3rd_century_AD,_Sardis,_Lydia,_Turkey_(18897218314).jpg", "후대 회당 유적"),
+      media("assets/atrium/photos/sardis-artemis-temple.webp", "사데 아르테미스 신전의 거대한 기둥 유적 · 오늘의 풍경", "Ferit BAYCUMAN", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Artemis_Tap%C4%B1na%C4%9F%C4%B1_-_Sardes_Antik_Kenti.jpg"),
+      media("assets/atrium/photos/sardis-citadel.webp", "사데 성채가 자리한 높은 산지와 유적 · 오늘의 지형", "Ken Mayer", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Sardis_citadel.jpg")
+    ],
+    laodicea: [
+      media("assets/atrium/photos/laodicea-temple-a.webp", "라오디게아 A 신전과 고대 도시 유적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Temple_A,_built_in_the_Antonine_period_(2nd_century_AD),_Laodicea_on_the_Lycus,_Phrygia,_Turkey_(21625586525).jpg"),
+      media("assets/atrium/photos/laodicea-stadium-street.webp", "라오디게아 경기장 거리와 복원된 열주 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Stadium_Street,_The_North-South_Street_extending_south_from_the_western_end_of_the_Syria_Street,_Laodicea_on_the_Lycus,_Phrygia,_Turkey_(31957861892).jpg"),
+      media("assets/atrium/photos/laodicea-stadium.webp", "라오디게아 경기장 유적과 주변 평야 · 오늘의 풍경", "Blcksprt", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Laodicea_Stadium.jpg")
+    ],
+    patmos: [
+      media("assets/atrium/photos/patmos-panorama.webp", "에게해의 밧모섬과 해안선 · 오늘의 섬 전경", "Tomisti", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Patmos_panorama_3.jpg"),
+      media("assets/atrium/photos/patmos-skala.webp", "밧모섬 스칼라 항구와 흰 마을 · 오늘의 생활 풍경", "Chris Vlachos", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Skala-of-patmos.JPG"),
+      media("assets/atrium/photos/patmos-monastery.webp", "밧모섬 성 요한 수도원 전경 · 성경 시대 이후의 신앙 유산", "Glorious 93", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Vue_du_Monast%C3%A8re_Saint-Jean-le-Th%C3%A9ologien_de_Patmos.JPG", "후대 신앙 유산")
     ]
   };
 
