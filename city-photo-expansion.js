@@ -227,6 +227,31 @@
       media("assets/atrium/photos/pisidian-antioch-overview.webp", "얄바츠 인근 비시디아 안디옥 고대 도시 터 · 오늘의 전경", "Maderibeyza", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Antiocheia_in_Psidia.jpg"),
       media("assets/atrium/photos/pisidian-antioch-decumanus.webp", "비시디아 안디옥의 동서 대로 데쿠마누스 막시무스 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_in_Pisida_Decumanus_Maximus_047.jpg"),
       media("assets/atrium/photos/pisidian-antioch-basilica.webp", "비시디아 안디옥 성 바울 대성당의 후대 유적 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_of_Pisidia_2870.jpg", "후대 교회 유적")
+    ],
+    lystra: [
+      media("assets/atrium/photos/lystra-galatia-map.webp", "루스드라와 갈라디아·루가오니아 권역을 보여 주는 1903년 지도", "Encyclopaedia Biblica", "Public domain", "https://commons.wikimedia.org/wiki/File:C%2BB-Galatia-Map.JPG", "역사 지리 자료"),
+      media("assets/atrium/photos/lystra-titus-coin.webp", "루스드라 조폐소에서 발행된 티투스 시대 청동 주화 앞면 · 실물 자료", "Bibliothèque nationale de France", "Public domain", "https://commons.wikimedia.org/wiki/File:Monnaie_-_Bronze,_Lystra,_Lycaonie,_Titus_-_btv1b85166275_(1_of_2).jpg", "유물"),
+      media("assets/atrium/photos/lystra-augustus-coin.webp", "루스드라 조폐소의 아우구스투스 시대 청동 주화 뒷면 · 실물 자료", "Bibliothèque nationale de France", "Public domain", "https://commons.wikimedia.org/wiki/File:Monnaie_-_Bronze,_Lystra,_Lycaonie,_Auguste_-_btv1b8516625b_(2_of_2).jpg", "유물")
+    ],
+    thyatira: [
+      media("assets/atrium/photos/thyatira-columns.webp", "오늘날 아키사르 도심에 남은 두아디라 기둥 유적 · 오늘의 풍경", "Pragdon", "CC0", "https://commons.wikimedia.org/wiki/File:Columns_of_Thiatira.jpg"),
+      media("assets/atrium/photos/thyatira-portico.webp", "두아디라 아고라의 후대 주랑과 기둥 기초 · 오늘의 유적 풍경", "Ian Scott", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Thyatira_portico.jpg", "후대 도시 유적"),
+      media("assets/atrium/photos/thyatira-basilica.webp", "아키사르의 두아디라 바실리카 유적 · 오늘의 풍경", "Klaus-Peter Simon", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:ThyatiraBasilika.jpg", "후대 교회 유적")
+    ],
+    philadelphia: [
+      media("assets/atrium/photos/philadelphia-st-jean.webp", "알라셰히르 성 요한 교회의 거대한 기둥 유적 · 오늘의 풍경", "Sharon Hahn Darlin", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Biblical_Philadelphia,_Ala%C5%9Fehir,_Turkey_(%E2%80%9CSeven_Churches_of_Revelation%E2%80%9D)_(51967355823).jpg", "후대 교회 유적"),
+      media("assets/atrium/photos/philadelphia-church-angle.webp", "빌라델비아의 오늘, 알라셰히르 성 요한 교회 유적의 다른 시선", "Sharon Hahn Darlin", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Biblical_Philadelphia,_Ala%C5%9Fehir,_Turkey_(%E2%80%9CSeven_Churches_of_Revelation%E2%80%9D)_(51966166907).jpg", "후대 교회 유적"),
+      media("assets/atrium/photos/philadelphia-fruit-market.webp", "오늘날 알라셰히르의 과일 시장 · 농업 도시의 생활 풍경", "Quintucket", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Alasehir_fruit_market.jpg")
+    ],
+    berea: [
+      media("assets/atrium/photos/berea-city.webp", "베뢰아의 오늘, 겨울의 베리아 도심 전경", "Sergiogr", "Public domain", "https://commons.wikimedia.org/wiki/File:Veria2006.JPG"),
+      media("assets/atrium/photos/berea-old-streets.webp", "베리아 구시가지의 좁은 돌길과 전통 건축 · 오늘의 생활 풍경", "Rufus210", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Veria-Old_Streats.jpg"),
+      media("assets/atrium/photos/berea-pauls-altar.webp", "바울이 말씀을 전한 곳으로 기념되는 베리아의 강단 · 전승지", "Pjposullivan", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Beroia_St_Paul%27s_Altar.jpg", "전승지")
+    ],
+    malta: [
+      media("assets/atrium/photos/malta-st-paul-islands.webp", "세인트폴스베이에서 바라본 바울 섬 전승지 · 오늘의 해안 풍경", "Frank Vincentz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Malta_-_Mellieha_-_St._Paul_Islands_(Dawret_il-Gzejjer)_01_ies.jpg", "전승지 풍경"),
+      media("assets/atrium/photos/malta-islands-tower.webp", "세인트폴스베이 탑에서 바라본 바울 섬과 지중해 · 오늘의 풍경", "Frank Vincentz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Malta_-_Mellieha_-_St._Paul%27s_Islands_(St._Paul%27s_Bay_Tower)_02_ies.jpg", "전승지 풍경"),
+      media("assets/atrium/photos/malta-bay-panorama.webp", "멜리데 섬 북부 세인트폴스베이의 넓은 해안 전경 · 오늘의 풍경", "Txllxt", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Malta_-_St._Paul%27s_Bay_-_Dawret_Il-Gzejjer_-_360%C2%B0_Panorama_01.jpg")
     ]
   };
 
