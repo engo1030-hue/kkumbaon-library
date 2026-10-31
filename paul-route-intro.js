@@ -46,6 +46,10 @@ function focusMap(routeKey,attempt=0){if(!window.AtlasHall){if(attempt<20)setTim
 function select(routeKey,{announce=true,reset=true}={}){
  if(routeKey!=='all'&&!routes[routeKey])return;active=routeKey;
  if(announce){introPending=false;introObserver?.disconnect();}
+ const journeySelected=routeKey!=='all';
+ document.getElementById('atlasViewport')?.classList.toggle('is-paul-journey',journeySelected);
+ const scaleNote=document.getElementById('mapScaleNote');
+ if(scaleNote)scaleNote.textContent=journeySelected?'빛나는 선은 선택한 여정의 대표 경로입니다':'점의 숫자는 연결된 문헌 수입니다';
  document.querySelectorAll('[data-paul-route]').forEach(button=>{const on=button.dataset.paulRoute===routeKey;button.classList.toggle('is-active',on);button.setAttribute('aria-pressed',String(on));});
  document.querySelectorAll('.paul-route-group').forEach(group=>{const on=routeKey==='all'||group.dataset.route===routeKey;group.classList.toggle('is-muted',!on);group.classList.toggle('is-selected',on);group.classList.remove('is-drawing');if(routeKey!=='all'&&on&&!reduced){void group.getBoundingClientRect();group.classList.add('is-drawing');setTimeout(()=>group.classList.remove('is-drawing'),2100);}});
  markStops(routeKey);if(reset)focusMap(routeKey);if(announce)story(routeKey);
