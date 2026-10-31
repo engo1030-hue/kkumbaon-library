@@ -107,6 +107,41 @@
       media("assets/atrium/photos/ephesus-great-theatre.webp", "에베소 대극장 유적 · 오늘의 풍경", "Blcksprt", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ephesus_theatre_1.jpg"),
       media("assets/atrium/photos/ephesus-curetes-street.webp", "에베소 쿠레테스 거리와 고대 도시 유적 · 오늘의 풍경", "José Luiz", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:9.7_Curetes_Street_in_Ephesus.JPG"),
       media("assets/atrium/photos/ephesus-hadrian-temple.webp", "에베소 하드리아누스 신전 정면 · 오늘의 유적 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ephesus_Temple_of_Hadrian_Front_1.jpg")
+    ],
+    corinth: [
+      media("assets/atrium/photos/corinth-panorama.webp", "고대 고린도 도심 유적 전경 · 오늘의 풍경", "Joyofmuseums", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Archaeological_Site_of_Ancient_Corinth_by_Joy_of_Museums.jpg"),
+      media("assets/atrium/photos/corinth-apollo-acrocorinth.webp", "아폴론 신전과 아크로고린도 · 오늘의 유적 풍경", "burdykin", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:%D0%94%D1%80%D0%B5%D0%B2%D0%BD%D0%B8%D0%B9_%D0%9A%D0%BE%D1%80%D0%B8%D0%BD%D1%84,_%D1%85%D1%80%D0%B0%D0%BC_%D0%90%D0%BF%D0%BE%D0%BB%D0%BB%D0%BE%D0%BD%D0%B0,_%D0%B2%D0%B8%D0%B4_%D0%BD%D0%B0_%D0%90%D0%BA%D1%80%D0%BE%D0%BF%D0%BE%D0%BB%D1%8C._Ancient_Corinth,_temple_of_Apollon_-_panoramio.jpg"),
+      media("assets/atrium/photos/corinth-acrocorinth-view.webp", "아크로고린도에서 내려다본 고린도 지협과 평야 · 오늘의 지형", "HerrAdams", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Akrokorinth,_Blick_nach_N_2015-09_(1).jpg")
+    ],
+    philippi: [
+      media("assets/atrium/photos/philippi-forum-basilica.webp", "빌립보 포룸과 바실리카 B, 팡가이온 산지 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:View_on_the_forum_and_the_basilica_B_with_Pangaion_Hills_in_the_background,_Philippi_(7272348092).jpg"),
+      media("assets/atrium/photos/philippi-theatre-panorama.webp", "빌립보 고대 극장 전경 · 오늘의 유적 풍경", "Tomisti", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Philippi_theatre_panorama.jpg"),
+      media("assets/atrium/photos/philippi-via-egnatia.webp", "빌립보를 지나는 에그나티아 도로의 포장 흔적 · 오늘의 풍경", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Via_Egnatia,_Philippi_(7272446610).jpg")
+    ],
+    athens: [
+      media("assets/atrium/photos/athens-ancient-agora.webp", "아덴 고대 아고라와 아크로폴리스 · 오늘의 풍경", "Mirjanamimi", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Ancient_Agora_in_Athens.jpg"),
+      media("assets/atrium/photos/athens-areopagus-site.webp", "아레오바고 언덕 유적지 · 오늘의 풍경", "George E. Koronaios", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:The_archaeological_site_of_Areopagus_on_May_6,_2020.jpg"),
+      media("assets/atrium/photos/athens-agora-areopagus-view.webp", "아크로폴리스에서 본 아레오바고와 고대 아고라 · 오늘의 지형", "George E. Koronaios", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:The_Hill_of_the_Nymphs,_the_Areopagus_and_the_Ancient_Agora_from_the_Acropolis_on_July_16,_2019.jpg")
+    ],
+    rome: [
+      media("assets/atrium/photos/rome-roman-forum.webp", "팔라티노 언덕에서 본 로마 포룸 · 오늘의 유적 풍경", "Matt Brisher", "CC BY 2.0", "https://commons.wikimedia.org/wiki/File:Panorama_of_the_Roman_Forum_(Forum_Romanum)_from_Palantine_Hill_-_Rome,_Italy.jpg"),
+      media("assets/atrium/photos/rome-colosseum-panorama.webp", "콜로세움 외관 · 바울 시대 이후에 세워진 로마 유산", "Nicholas Hartmann", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Rome_Colosseum_exterior_panorama.jpg", "후대 로마 유적"),
+      media("assets/atrium/photos/rome-appian-way.webp", "로마로 이어지는 압비아 가도의 고대 포장길 · 오늘의 풍경", "Livioandronico2013", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Appian_Way.jpg")
+    ],
+    damascus: [
+      media("assets/atrium/photos/damascus-straight-street.webp", "다메섹 직가와 동문 일대 · 오늘의 도시 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Damascus_Straight_Street_and_East_Gate_8193.jpg"),
+      media("assets/atrium/photos/damascus-bab-sharqi-street.webp", "바브 샤르키 인근 옛 다메섹 거리 · 오늘의 생활 풍경", "Bernard Gagnon", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Bab_Sharqi_Street,_Damascus.jpg"),
+      media("assets/atrium/photos/damascus-umayyad-mosque.webp", "다메섹 우마이야 모스크 · 성경 시대 이후의 도시 역사", "Vyacheslav Argenberg", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Damascus,_Syria,_The_Umayyad_Mosque,_The_Great_Mosque_of_Damascus.jpg", "후대 도시 유산")
+    ],
+    samaria: [
+      media("assets/atrium/photos/samaria-sebastia-site.webp", "사마리아 세바스티아 고대 성읍 유적 · 오늘의 풍경", "Bukvoed", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Sebastia-385.jpg"),
+      media("assets/atrium/photos/samaria-sebastia-ruins.webp", "세바스티아 유적 언덕과 남아 있는 석조 구조 · 오늘의 풍경", "Bukvoed", "CC BY 3.0", "https://commons.wikimedia.org/wiki/File:Sebastia-384.jpg"),
+      media("assets/atrium/photos/samaria-omri-palace-aerial.webp", "오므리 왕궁 터로 알려진 사마리아 성채 유적 · 오늘의 항공 풍경", "Yong Woo Park", "CC BY 4.0", "https://commons.wikimedia.org/wiki/File:Drone_Aerial_View_of_the_Acropolis_and_Palace_Site_of_King_Omri_in_Samaria_Sebastia.jpg")
+    ],
+    tarsus: [
+      media("assets/atrium/photos/tarsus-roman-road.webp", "다소의 로마 시대 도로 유적 · 오늘의 풍경", "Nedim Ardoğa", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Roman_road_in_Tarsus,_Mersin_Province.jpg"),
+      media("assets/atrium/photos/tarsus-pauls-well.webp", "다소의 성 바울 우물 전승지 · 오늘의 풍경", "Yaman1990", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Aziz_Pavlus_Su_Kuyusu_Mersin_02.jpg", "전승지"),
+      media("assets/atrium/photos/tarsus-cleopatra-gate.webp", "다소 클레오파트라 문 · 성경 시대 이후에 다시 세워진 도시 유산", "Carole Raddato", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Cleopatra%27s_Gate,_a_city_gate_named_after_the_Egyptian_queen_Cleopatra_VII,_it_was_built_either_in_the_Byzantine_or_Abassid_period_on_the_site_of_an_earlier_one,_Tarsus_(23679870588).jpg", "후대 도시 유산")
     ]
   };
 
