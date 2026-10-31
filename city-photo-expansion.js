@@ -202,6 +202,31 @@
       media("assets/atrium/photos/joppa-port-aerial.webp", "지중해에서 바라본 오늘날 욥바 항구 · 항공 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ISR-2013-Aerial-Jaffa-Port_of_Jaffa.jpg"),
       media("assets/atrium/photos/joppa-coast.webp", "텔아비브 해변에서 바라본 욥바 구시가지와 해안선 · 오늘의 풍경", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_01.jpg"),
       media("assets/atrium/photos/joppa-st-peter.webp", "욥바 성 베드로 교회 외관 · 성경 시대 이후의 도시 신앙 유산", "Godot13", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Israel-2013-Jaffa_25-St._Peter%27s_Church.JPG", "후대 신앙 유산")
+    ],
+    cana: [
+      media("assets/atrium/photos/cana-kafr-kanna.webp", "카프르 칸나의 올리브 정원 · 전통적 가나 후보지의 생활 풍경", "Britchi Mirela", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:ISRAEL,_Cana_Galilei_(Kafr_Kanna)_(Olive_garden).JPG", "후보지 풍경"),
+      media("assets/atrium/photos/cana-wedding-church.webp", "카프르 칸나 정교회 혼인 교회 · 가나 전승지의 오늘", "Chris06", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Wedding_Church_(Orthodox)_Kafr_Kanna_(1).jpg", "전승지"),
+      media("assets/atrium/photos/cana-stone-jar.webp", "카프르 칸나 혼인 교회에 전시된 고대 석항아리 · 전승 자료", "Avishai Teicher", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:The_Orthodox_church_(Kafr_Kanna)_(8).JPG", "전승 자료")
+    ],
+    bethany: [
+      media("assets/atrium/photos/bethany-lazarus-tomb.webp", "알에이자리야의 나사로 무덤 전승지 입구 · 오늘의 풍경", "Thomasccnawiki", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Lazarus_Tomb.jpg", "전승지"),
+      media("assets/atrium/photos/bethany-orthodox-church.webp", "나사로 무덤 인근 그리스 정교회 · 오늘날 베다니 권역", "See The Holy Land", "CC BY-SA 2.0", "https://commons.wikimedia.org/wiki/File:Greek_Orthodox_Church_al-Eizariya.jpg", "후대 신앙 유산"),
+      media("assets/atrium/photos/bethany-procession.webp", "알에이자리야 골목의 나사로 토요일 행렬 · 오늘의 생활 풍경", "Bahnfrend", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Lazarus_Saturday_procession,_Bethany,_2019_(08).jpg")
+    ],
+    shiloh: [
+      media("assets/atrium/photos/shiloh-overview.webp", "고대 실로 유적 언덕의 넓은 전경 · 오늘의 풍경", "Zeev Stein", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:116921_ancient_shiloh_site_shiloh_PikiWiki_Israel.jpg"),
+      media("assets/atrium/photos/shiloh-ruins.webp", "실로 유적지의 석조 건물 터와 발굴 구역 · 오늘의 풍경", "Zeev Stein", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:116934_ancient_shiloh_site_shiloh_PikiWiki_Israel.jpg"),
+      media("assets/atrium/photos/shiloh-stonework.webp", "실로 유적지에 남은 석벽과 건물 기초 · 오늘의 풍경", "Zeev Stein", "CC BY 2.5", "https://commons.wikimedia.org/wiki/File:116929_ancient_shiloh_site_shiloh_PikiWiki_Israel.jpg")
+    ],
+    beersheba: [
+      media("assets/atrium/photos/beersheba-overview.webp", "텔 브엘세바 발굴지와 네게브 지형 · 오늘의 전경", "gugganij", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_Overview_2007041.JPG"),
+      media("assets/atrium/photos/beersheba-gate.webp", "텔 브엘세바의 삼중 성문 유적 · 오늘의 풍경", "Oren Rozen", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_181225_03_Triple_Gate.jpg"),
+      media("assets/atrium/photos/beersheba-water-system.webp", "텔 브엘세바 지하 수로 시설 입구 · 오늘의 유적 풍경", "Oren Rozen", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Tel_Be%27er_Sheva_181225_10_Water_System.jpg")
+    ],
+    "pisidian-antioch": [
+      media("assets/atrium/photos/pisidian-antioch-overview.webp", "얄바츠 인근 비시디아 안디옥 고대 도시 터 · 오늘의 전경", "Maderibeyza", "CC BY-SA 3.0", "https://commons.wikimedia.org/wiki/File:Antiocheia_in_Psidia.jpg"),
+      media("assets/atrium/photos/pisidian-antioch-decumanus.webp", "비시디아 안디옥의 동서 대로 데쿠마누스 막시무스 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_in_Pisida_Decumanus_Maximus_047.jpg"),
+      media("assets/atrium/photos/pisidian-antioch-basilica.webp", "비시디아 안디옥 성 바울 대성당의 후대 유적 · 오늘의 풍경", "Dosseman", "CC BY-SA 4.0", "https://commons.wikimedia.org/wiki/File:Antioch_of_Pisidia_2870.jpg", "후대 교회 유적")
     ]
   };
 
