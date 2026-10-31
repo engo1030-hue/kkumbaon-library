@@ -1995,6 +1995,32 @@
     </div>
   </section>
 
+  <!-- 🌟 시범 운영 공지 및 처음 방문한 분의 시작점 안내 배너 -->
+  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1360px; margin:16px auto 0; padding:0 24px;">
+    <div style="background:linear-gradient(135deg, #231C16 0%, #2E241C 100%); border:1.5px solid rgba(212,175,55,0.65); border-radius:14px; padding:16px 20px; color:#FAF6EE; box-shadow:0 8px 24px rgba(0,0,0,0.12); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
+          <span style="background:rgba(212,175,55,0.22); border:1px solid #E5C878; color:#F5DF98; font-size:11.5px; font-weight:800; padding:2px 10px; border-radius:999px;">시범 운영 중 · 내부 정비 중</span>
+          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-28 (제1차 검수 반영)</span>
+        </div>
+        <h2 class="serif" style="font-size:17px; color:#FFFFFF; margin:0 0 5px 0; font-weight:700;">꿈바온 디지털 도서관 시범 운영 중 — 문은 열어 두었습니다. 서가는 계속 채우고 있어요.</h2>
+        <p style="font-size:13px; color:#E2D8C8; line-height:1.62; margin:0;">
+          현재 자료와 그림, 전자책을 차근차근 정리하고 있습니다. 일부 내용과 화면은 보완될 수 있습니다. 편하게 둘러보시고, 잘못된 곳은 <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:#F5DF98; text-decoration:underline; font-weight:700;">꿈바온 유튜브 댓글</a>로 자료 이름과 위치를 알려 주세요.<br/>
+          <span style="color:#C8BDAE; font-size:12.2px;">※ 성경 본문(개역한글·개역개정·WEB)과 꿈바온의 풀어읽기·묵상 해설을 구분하여 읽어 주세요. 그림 중 AI 상상도는 당시 모습을 이해하도록 돕는 삽화입니다.</span>
+        </p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:12px; padding:12px 15px;">
+        <div style="font-size:12px; color:#F5DF98; font-weight:800; margin-bottom:8px;">🧭 처음 오셨나요? 검토를 마친 대표 이야기로 시작해 보세요</div>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;">
+          <button type="button" class="hdr-btn gold" style="font-size:12px; padding:6px 11px;" onclick="if(window.focusAtlasPlace) window.focusAtlasPlace('bethlehem')">1. 🗺️ 베들레헴 지도 열기</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('dev-dailyword-ep001')">2. 📘 룻기 1장 (매일말씀 1회)</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">3. 🏺 하나님의 손에 비유된 인장</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">4. 👑 밤을 지키는 사람들 (막 13장)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <main class="entrance-main">
   <section class="hall-intro" aria-labelledby="hallTitle">
     <div>
@@ -2003,9 +2029,10 @@
       <p>도시를 열면 풍경이 보이고, 그곳에 머문 이야기가 시작됩니다.</p>
     </div>
     <div class="hall-stats" aria-label="도서관 소장 현황">
-      <div><strong id="placeTotal">48</strong><span>탐험할 장소</span></div>
+      <div><strong id="placeTotal">49</strong><span>탐험할 장소</span></div>
       <div><strong id="statTotalDocs"></strong><span>성경 문헌</span></div>
       <div><strong id="statTotalImgs"></strong><span>성화와 도판</span></div>
+      <div><strong id="statVisitorCount" title="꿈디도 누적 방문객 수">-</strong><span>도서관 방문</span></div>
     </div>
     <span id="statTotalMB" hidden></span><span id="storageBadge" hidden></span>
   </section>
@@ -2036,7 +2063,7 @@
       <div class="era-filter" aria-label="성경 시대 필터"><button data-era="all" class="is-active">모든 시대</button><button data-era="구약">구약</button><button data-era="신약">신약</button></div>
       <aside id="cityPopover" class="city-popover" aria-label="선택한 장소 미리보기" hidden></aside>
       <div class="map-help" id="mapHelp"><span class="help-orbit"></span><span>점을 눌러 도시를 열어 보세요</span></div>
-      <div class="map-bottom-left"><button id="placesListToggle" class="map-glass-button" aria-expanded="false" aria-controls="allPlaces"><span aria-hidden="true">☷</span> 장소 목록 <span id="visibleCount">48</span></button><span class="map-scale-note" id="mapScaleNote">점의 숫자는 연결된 문헌 수입니다</span></div>
+      <div class="map-bottom-left"><button id="placesListToggle" class="map-glass-button" aria-expanded="false" aria-controls="allPlaces"><span aria-hidden="true">☷</span> 장소 목록 <span id="visibleCount">49</span></button><span class="map-scale-note" id="mapScaleNote">점의 숫자는 연결된 문헌 수입니다</span></div>
       <div class="camera-controls"><button id="depthToggle" class="depth-button" aria-pressed="true" title="지도 입체감 전환">입체</button><span class="control-divider"></span><button id="zoomOut" aria-label="지도 축소">−</button><output id="zoomReadout" aria-live="off">1.0×</output><button id="zoomIn" aria-label="지도 확대">+</button><span class="control-divider"></span><button id="resetView" aria-label="지도 전체 보기" title="전체 보기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 3H3v6m12-6h6v6M3 15v6h6m6 0h6v-6"/></svg></button><button id="fullscreenMap" aria-label="지도 크게 펼치기" title="지도 크게 펼치기">⛶</button></div>
       <div class="all-places" id="allPlaces" hidden><div class="all-places-head"><strong>성경의 주요 장소</strong><button id="closePlaces" aria-label="장소 목록 닫기">×</button></div><div id="allPlacesList"></div></div>
       <div class="map-live" id="mapLive" role="status" aria-live="polite"></div>
@@ -2063,35 +2090,38 @@
         <span style="font-size:12px; color:#C8BDAE;">클릭하시면 전자책(PDF) 원본을 새 창에서 열람·인쇄·다운로드하실 수 있습니다.</span>
       </div>
       <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px;" id="ebookShelfGrid">
-        <a href="ebooks/2026_꿈바온_웨슬리표준설교_매일말씀강해집.pdf" target="_blank" style="text-decoration:none; background:rgba(200,164,93,0.12); border:1.5px solid rgba(229,200,120,0.65); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
+        <a href="ebooks/2026_꿈바온_웨슬리표준설교_매일말씀강해집.pdf" target="_blank" rel="noopener" style="text-decoration:none; background:rgba(200,164,93,0.12); border:1.5px solid rgba(229,200,120,0.65); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
           <div style="flex:1; min-width:0; word-break:keep-all;">
-            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">✝️ 제5관 웨슬리 신학관 개관 총서 · 22편 완결 (PDF)</div>
-            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">존 웨슬리 표준설교 &amp; 구원의 서정 강해집 (매일말씀 스타일)</div>
-            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">개역한글·WEB 나란히 읽기 · 헬라어/히브리어 원어·스트롱 번호 · STEP 강해</div>
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">✝️ 제5관 웨슬리 신학관 총서 · 2026-10-28 개정판 (69p · 텍스트 PDF)</div>
+            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">존 웨슬리 주요 설교 해설 16편 &amp; 관련 신학 자료 6편</div>
+            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">설교 번호: Jackson/Sugden 판본 기준 · 개역한글·WEB 대조 · 원어·스트롱 번호 · STEP 해설</div>
           </div>
           <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
         </a>
-        <a href="ebooks/20261030_꿈바온_매일말씀_제1회_룻기1장_교재.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:12px; color:#FFF; min-width:0; overflow:hidden;">
           <div style="flex:1; min-width:0; word-break:keep-all;">
-            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📘 꿈바온 매일말씀 제1회 · 4K 6쪽 와이드 화보 교재</div>
-            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">룻기 1장 전체 (1:1–22) · 베들레헴으로 돌아오는 길</div>
-            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">개역한글·WEB 대조 · 히브리어 4대 열쇠 말(슈브 등) · 유다-모압 지형 지도</div>
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📘 꿈바온 매일말씀 제1회 · 4K 6쪽 와이드 화보 교재 (4.8 MB · 이미지형 PDF)</div>
+            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">룻기 1장 (1:1–22) · 모압에서 베들레헴으로</div>
+            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">화보형 PDF(글자 검색·복사는 우측 '웹 본문 읽기' 이용) · 원어 4대 열쇠 말 · 지형 지도</div>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:6px; flex-shrink:0;">
+            <a href="ebooks/20261030_꿈바온_매일말씀_제1회_룻기1장_교재.pdf" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none; white-space:nowrap; text-align:center;">화보 PDF ↗</a>
+            <button type="button" class="hdr-btn" style="background:rgba(255,255,255,0.14); color:#FFF; font-size:11.5px; padding:5px 10px; white-space:nowrap;" onclick="openReaderModal('dev-dailyword-ep001')">📖 웹 본문 읽기</button>
+          </div>
+        </div>
+        <a href="ebooks/202611_꿈바온_매일묵상_성경한바퀴_11월호_완결본.pdf" target="_blank" rel="noopener" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
+          <div style="flex:1; min-width:0; word-break:keep-all;">
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📗 성경 한 바퀴 11월호 · 기존 4부 구성 합본 (제1~28회 수록 · 29p · 2026-10-28 개정판)</div>
+            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">꿈바온 매일묵상(매일말씀) · 성경 한 바퀴 (제1회~제28회 요약 합본)</div>
+            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">룻기 1~4장 · 에스더 1~10장 · <strong>사무엘상 1~14장</strong> (웹 6쪽 자료집과 별도인 회당 1쪽 형식)</div>
           </div>
           <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
         </a>
-        <a href="ebooks/202611_꿈바온_매일묵상_성경한바퀴_11월호_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
+        <a href="ebooks/2027_조금긴성경이야기_1권_1-5월_완결본.pdf" target="_blank" rel="noopener" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
           <div style="flex:1; min-width:0; word-break:keep-all;">
-            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📗 성경 한 바퀴 11월호 완결 합본 · 총 28회 (29p 크림페이퍼)</div>
-            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">꿈바온 매일말씀 · 성경 한 바퀴 (제1회~제28회 합본)</div>
-            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">룻기 1~4장 완독 · 에스더 1~10장 완독 · 사무엘상 1~17장</div>
-          </div>
-          <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
-        </a>
-        <a href="ebooks/2027_조금긴성경이야기_1권_1-5월_완결본.pdf" target="_blank" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
-          <div style="flex:1; min-width:0; word-break:keep-all;">
-            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📙 조금 긴 성경이야기 · 제1권 (21편 완결본 · 192p)</div>
-            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">2027 조금 긴 성경이야기 1권 (1월~5월 완결)</div>
-            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">사도행전 21~28장 · 부활절기~성령강림절·삼위일체주일</div>
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">📙 조금 긴 성경이야기 · 제1권 (21편 수록 · 192p · 텍스트 PDF)</div>
+            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">2027 조금 긴 성경이야기 제1권 (1월~5월 수록본)</div>
+            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">사도행전 21~28장 · 부활절기~성령강림절·삼위일체주일 (A4 크림페이퍼 북디자인)</div>
           </div>
           <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
         </a>
@@ -2302,11 +2332,12 @@
       <div class="reader-toolbar">
         <div class="reader-toolbar-left" id="readerBreadcrumb">🏛️ 꿈바온 디지털 도서관</div>
         <div class="reader-toolbar-right">
-          <button class="hdr-btn" onclick="changeFontSize(-1.5)">가-</button>
-          <button class="hdr-btn" onclick="changeFontSize(1.5)">가+</button>
+          <button class="hdr-btn" onclick="changeFontSize(-1.5)" aria-label="글자 작게">가-</button>
+          <button class="hdr-btn" onclick="changeFontSize(1.5)" aria-label="글자 크게">가+</button>
+          <button class="hdr-btn" onclick="copyCurrentDocLink()" id="copyLinkBtn" title="이 자료의 고유 공유 주소를 복사합니다">🔗 이 글 링크 복사</button>
           <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">📋 원고 전문 복사</button>
           <button class="hdr-btn gold" onclick="window.print()">🖨️ A4 유인물 인쇄 / PDF</button>
-          <button class="hdr-btn" onclick="closeReaderModal()">✕ 닫기</button>
+          <button class="hdr-btn" id="readerCloseBtn" onclick="closeReaderModal()">✕ 닫기</button>
         </div>
       </div>
 
@@ -2353,11 +2384,11 @@
 
         <h3 class="serif" style="margin:24px 0 10px;">1. 6대 상설 전시관 구성</h3>
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
-          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(19개 주요 성경 거점 핀 연동) 및 5대 성경 고고학 비문 도감(텔 단·메사·실로암·바르 코크바), 사해 사본과 쿰란 동굴군, 가버나움·에베소·고린도·빌립보의 고고학 복원 도감.</li>
+          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(49개 주요 성경 장소 핀 연동) 및 5대 성경 고고학 비문 도감(텔 단·메사·실로암·바르 코크바), 사해 사본과 쿰란 동굴군, 가버나움·에베소·고린도·빌립보의 고고학 복원 도감.</li>
           <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 성경 인물 중심의 깊은 역사 이야기.</li>
           <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 고대 근동과 성경 시대의 생활 사물·풍습(열쇠, 인장반지, 눈물병, 성전 반 세겔과 두 렙돈, 유월절 네 잔과 새 언약, 방주의 창, 신발 등 32편)을 원어·고고학 노트와 함께 복음의 빛으로 읽어 내는 백과사전.</li>
           <li><strong>🌅 제4관 · 성경 한 바퀴 · 매일말씀 서재:</strong> 『꿈바온 매일말씀 — 성경 한 바퀴』 5개년 대장정 마스터플랜과 제1회~제28회(룻기·에스더·사무엘상) 6쪽 자료집 및 낭독 원고 완결본을 수록한 말씀 서재.</li>
-          <li><strong>✝️ 제5관 · 웨슬리 신학 &amp; 표준설교관:</strong> 존 웨슬리의 핵심 『표준설교(Standard Sermons)』 16선을 우리 『꿈바온 매일말씀』 6단 스타일(개역한글·WEB 나란히 읽기, 풀어읽기, 헬라어/히브리어 원어·스트롱 번호, STEP 강해, 오늘의 걸음)로 완역·강해하고, 구원의 서정 총론·웨슬리 4기둥·올더스게이트 회심 일기·속회 규칙·찰스 웨슬리 찬송 신학 등 총 22편을 집대성한 신학관.</li>
+          <li><strong>✝️ 제5관 · 웨슬리 신학 &amp; 표준설교관:</strong> 존 웨슬리의 핵심 『표준설교(Standard Sermons, Jackson/Sugden 판본 번호 기준)』 주요 설교 해설 16편과 구원의 서정 총론·웨슬리 4기둥·올더스게이트 회심 일기·속회 규칙·찰스 웨슬리 찬송 신학 등 관련 신학 자료 6편(총 22편)을 『꿈바온 매일말씀』 6단 스타일로 재구성·해설한 신학관.</li>
           <li><strong>🎬 제6관 · 꿈디도 영상실 (유튜브 상영관):</strong> 꿈바온 공식 유튜브 채널(<code>@dreaming_ondal</code>)에 수록된 조금 긴 성경이야기·매일묵상·소소한 성경이야기·찬양 영상 118편을 도서관 상영관 안에서 바로 감상하는 영상 상영관.</li>
         </ul>
 
@@ -2365,7 +2396,16 @@
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
           <li><strong>✝️ 웨슬리 신학관 &amp; 전자책 열람:</strong> 상단 <code>✝️ 웨슬리 신학관</code> 또는 제5관 탭을 누르면 구원의 서정 로드맵과 표준설교 16선을 분류별로 열람하거나 PDF 총서로 내려받을 수 있습니다.</li>
           <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
-          <li><strong>🖨️ A4 유인물 인쇄 및 원고 복사:</strong> 각 문헌을 열람하신 뒤 상단 <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 개인 묵상 노트나 속회·성경공부 자료로 깔끔하게 출력하실 수 있습니다.</li>
+          <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
+        </ul>
+
+        <h3 class="serif" style="margin:28px 0 10px;">3. 성경 원문 · 형태 정보 · 원어 사전 및 지도 출처 안내</h3>
+        <ul style="margin-left:20px; line-height:1.9; font-size:14.2px; color:var(--espresso-mid);">
+          <li><strong>구약 성경 원문 및 형태론:</strong> Westminster Leningrad Codex (WLC, Public Domain) 및 Open Scriptures Hebrew Bible (OSHB MorphHB, CC BY 4.0).</li>
+          <li><strong>신약 성경 원문 및 형태론:</strong> <em>The Greek New Testament: SBL Edition</em> (SBLGNT), edited by Michael W. Holmes, © 2010 Society of Biblical Literature and Logos Bible Software (<a href="https://sblgnt.com/license/" target="_blank" rel="noopener">SBLGNT 공식 라이선스 CC BY 4.0</a>) 및 MorphGNT SBLGNT (CC BY-SA 3.0).</li>
+          <li><strong>원어 사전:</strong> Brown-Driver-Briggs Hebrew Lexicon (BDB, Public Domain), Strong&#39;s Exhaustive Concordance (Public Domain), Abbott-Smith&#39;s <em>A Manual Greek Lexicon of the New Testament</em> (1922, Public Domain).</li>
+          <li><strong>성경 번역본 및 해설 구분:</strong> 직접 인용 성경 본문은 대한성서공회 『개역한글판』(공유 저작물), 『개역개정판』(핵심 구절 인용 시 번역본명 표시), World English Bible (WEB, Public Domain)을 사용하며, 꿈바온의 풀어읽기와 묵상 해설은 정식 번역 성경이 아닌 독립 해설문입니다.</li>
+          <li><strong>지도 및 이미지 출처:</strong> 지형 바탕 지도는 <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth (Public Domain)</a>를 사용하며, 실제 유적·풍경 사진은 각 도시 창에 저작자와 라이선스(Wikimedia Commons 등)를 표시합니다. 성경 시대를 재구성한 그림은 당시 모습을 이해하도록 돕는 꿈바온의 AI 상상도 및 공통 묵상 삽화입니다.</li>
         </ul>
       </div>
     </div>
@@ -2375,10 +2415,13 @@
     <p class="serif" style="font-size:15px; color:#E5DEC9; font-weight:700;">꿈바온 디지털 도서관 (꿈디도) · KKUMBAON BIBLICAL ARCHIVE &amp; MUSEUM</p>
     <p style="margin-top:6px;">오직 성경(Sola Scriptura) · 오직 그리스도(Solus Christus) · 세상에 한 컵씩 붓는 맑은 물</p>
     <p style="margin-top:8px; font-size:12px; color:#A89C8D;">본 콘텐츠는 정식 성경 번역문이 아니라, 성경 본문의 흐름과 의미를 이해하도록 돕기 위해 꿈바온이 독립적으로 작성한 풀어읽기와 묵상 해설입니다.</p>
-    <p style="margin-top:6px; font-size:11.5px; color:#C59B52; font-weight:600;">🏛️ 도서관 관장: 안간사 &nbsp;|&nbsp; 성화·도판 협력: 지간사 &nbsp;|&nbsp; 원고 집필: 꿈바온 목사 &amp; 클간사</p>
+    <p style="margin-top:6px; font-size:11.5px; color:#C59B52; font-weight:600;">
+      🏛️ 도서관 관장: 안간사 &nbsp;|&nbsp; 성화·도판 협력: 지간사 &nbsp;|&nbsp; 원고 집필: 꿈바온 목사 &amp; 클간사
+      &nbsp;·&nbsp; <span style="color:#E5DEC9; font-weight:normal;">누적 방문 <strong id="footerVisitorCount" style="color:#D7BD82; font-weight:700;">-</strong>회</span>
+    </p>
   </footer>
 
-  <script src="library_data.js?v=20261027c"></script>
+  <script src="library_data.js?v=20261028_16x9_86"></script>
   <script>
     const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [], videos: [] };
     let currentCategory = "all";
@@ -2388,15 +2431,23 @@
     let currentFontSize = 18.5;
 
     function initLibrary() {
-      // 통계 배지 업데이트
+      // 통계 배지 업데이트 (고정 최소값 217 제거, 실제 고유 이미지 수 기준 집계)
       const m = LIB.meta || {};
       const totalDocs = (LIB.items || []).length;
-      const totalImgs = Math.max(m.totalImages || 0, 217);
+      const uniqueImgSet = new Set();
+      let totalImgLinks = 0;
+      (LIB.items || []).forEach(it => {
+        if (it.cover) { uniqueImgSet.add(it.cover); totalImgLinks++; }
+        (it.gallery || []).forEach(g => { if (g && g.img) { uniqueImgSet.add(g.img); totalImgLinks++; } });
+      });
+      const totalImgs = uniqueImgSet.size || m.uniqueImages || m.totalImages || 0;
       const totalVids = (LIB.videos || []).length;
+      const totalPlacesCount = (window.DREAMBAON_ATLAS && window.DREAMBAON_ATLAS.places) ? window.DREAMBAON_ATLAS.places.length : (m.totalPlaces || 49);
 
       document.getElementById("statTotalDocs").textContent = `${totalDocs}편`;
       document.getElementById("statTotalImgs").textContent = `${totalImgs}점`;
-      document.getElementById("statTotalMB").textContent = `${(LIB.atlasPins || []).length || 19}개 도시`;
+      document.getElementById("statTotalImgs").title = `고유 이미지 ${totalImgs}점 (문헌 도판 연결 총 ${totalImgLinks}건)`;
+      document.getElementById("statTotalMB").textContent = `${totalPlacesCount}개 장소`;
       document.getElementById("storageBadge").innerHTML =
         `<span>📜 문헌 <strong>${totalDocs}편</strong> · 성화·도판 <strong>${totalImgs}점</strong> · 영상실 <strong>${totalVids}편</strong></span>`;
 
@@ -2795,6 +2846,11 @@
       if (!v) return;
       currentPlayingVideoId = v.videoId;
 
+      // 영상 재생 통계 이벤트 전송
+      if (window.trackKkumbaonAction) {
+        window.trackKkumbaonAction('video', v.videoId, v.title);
+      }
+
       const studio = document.getElementById("cinemaStudioWrap");
       if (studio) studio.classList.add("open");
 
@@ -3159,7 +3215,7 @@
         grid.innerHTML = vids.map(v => {
           const isPlaying = v.videoId === currentPlayingVideoId;
           return `
-            <article class="doc-card cinema-grid-card" data-vid="${v.videoId}" onclick="playInKkumbaonCinema('${v.videoId}', true, true)" style="${isPlaying ? 'border-color:#E5C878; box-shadow:0 0 0 2px #C59B52, 0 14px 32px rgba(0,0,0,0.22);' : ''}">
+            <article class="doc-card cinema-grid-card" tabindex="0" role="button" aria-label="${v.title} 영상 재생" data-vid="${v.videoId}" onclick="playInKkumbaonCinema('${v.videoId}', true, true)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();playInKkumbaonCinema('${v.videoId}', true, true);}" style="${isPlaying ? 'border-color:#E5C878; box-shadow:0 0 0 2px #C59B52, 0 14px 32px rgba(0,0,0,0.22);' : ''}">
               <div class="card-thumb">
                 <img src="${v.thumb}" alt="${v.title}" loading="lazy" />
                 <div class="yt-play-overlay">
@@ -3236,6 +3292,18 @@
           `<strong>${catNames[currentCategory] || "전체 통합 서가"}</strong> — 총 <strong>${items.length}편</strong>의 성경 문헌이 검색되었습니다.`;
       }
 
+      if (items.length === 0) {
+        grid.innerHTML = `
+          <div style="grid-column:1 / -1; background:#FAF6EE; border:1.5px dashed var(--border-gold); border-radius:16px; padding:42px 24px; text-align:center; color:var(--espresso-dark);">
+            <div style="font-size:28px; margin-bottom:8px;">🔍</div>
+            <h3 class="serif" style="font-size:19px; margin:0 0 8px 0;">검색어와 일치하는 문헌이 없습니다</h3>
+            <p style="font-size:14px; color:var(--espresso-muted); margin:0 0 16px 0;">다른 검색어를 입력하시거나, 검색어를 지우고 전체 서가를 둘러보세요.</p>
+            <button type="button" class="hdr-btn gold" style="font-size:13.5px; padding:8px 18px;" onclick="clearSearchAndShowAll()">🔄 검색어 지우고 전체 보기</button>
+          </div>
+        `;
+        return;
+      }
+
       grid.innerHTML = items.map(it => {
         const charLen = (it.content || "").length;
         const readMin = Math.max(2, Math.round(charLen / 650));
@@ -3246,7 +3314,7 @@
           : `<div style="width:100%;height:100%;display:grid;place-items:center;color:var(--gold-light);font-family:'Noto Serif KR',serif;font-size:18px;padding:20px;text-align:center;">${it.title}</div>`;
 
         return `
-          <article class="doc-card" onclick="openReaderModal('${it.id}')">
+          <article class="doc-card" tabindex="0" role="button" data-doc-id="${it.id}" aria-label="${it.title} 문헌 열람" onclick="openReaderModal('${it.id}', this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openReaderModal('${it.id}', this);}">
             <div class="card-thumb">
               ${thumbHtml}
               <span class="card-cat-badge">${it.categoryLabel}</span>
@@ -3350,14 +3418,47 @@
       return html;
     }
 
-    function openReaderModal(docId) {
+    let lastFocusedTrigger = null;
+
+    function clearSearchAndShowAll() {
+      const inp = document.getElementById("searchInput");
+      if (inp) inp.value = "";
+      selectCategory("all");
+      if (inp) inp.focus();
+    }
+
+    function copyCurrentDocLink() {
+      if (!currentDoc) return;
+      const baseUrl = window.location.href.split("#")[0];
+      const shareUrl = `${baseUrl}#doc=${encodeURIComponent(currentDoc.id)}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        const btn = document.getElementById("copyLinkBtn");
+        if (btn) {
+          btn.textContent = "✅ 링크 복사됨!";
+          setTimeout(() => { btn.textContent = "🔗 이 글 링크 복사"; }, 1800);
+        }
+      });
+    }
+
+    function openReaderModal(docId, triggerEl) {
       const it = (LIB.items || []).find(x => x.id === docId);
       if (!it) return;
       currentDoc = it;
+      lastFocusedTrigger = triggerEl || document.activeElement;
+
+      // 열람 통계 이벤트 전송
+      if (window.trackKkumbaonAction) {
+        window.trackKkumbaonAction('read', it.id, `${it.title} (${it.categoryLabel})`);
+      }
+
+      if (history.replaceState) {
+        history.replaceState(null, "", `#doc=${encodeURIComponent(it.id)}`);
+      }
 
       document.getElementById("readerBreadcrumb").textContent = `${it.categoryLabel}  ›  ${it.scripture}`;
       let metaBadges = `<span class="meta-badge">📖 ${it.scripture}</span><span class="meta-badge">🕰️ ${it.era}</span>`;
       if (it.person) metaBadges += `<span class="meta-badge">👤 ${it.person}</span>`;
+      if (it.updatedAt) metaBadges += `<span class="meta-badge" style="background:rgba(197,155,56,0.16); color:#6B4E16;">📅 ${it.updatedAt}</span>`;
       document.getElementById("readerMetaRow").innerHTML = metaBadges;
 
       document.getElementById("readerTitle").textContent = it.title;
@@ -3396,6 +3497,8 @@
       document.getElementById("readerModal").classList.add("open");
       document.getElementById("readerScroll").scrollTop = 0;
       document.body.style.overflow = "hidden";
+      const closeBtn = document.getElementById("readerCloseBtn");
+      if (closeBtn) setTimeout(() => closeBtn.focus(), 50);
     }
 
     function selectPlate(idx) {
@@ -3607,6 +3710,12 @@
     function closeReaderModal() {
       document.getElementById("readerModal").classList.remove("open");
       document.body.style.overflow = "";
+      if (window.location.hash.startsWith("#doc=") && history.replaceState) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
+      if (lastFocusedTrigger && typeof lastFocusedTrigger.focus === "function") {
+        lastFocusedTrigger.focus();
+      }
     }
 
     function openBlueprintModal() {
@@ -3653,10 +3762,110 @@
       }
     });
 
-    window.addEventListener("DOMContentLoaded", initLibrary);
+    function checkHashAndOpenDoc() {
+      const h = window.location.hash || "";
+      if (h.startsWith("#doc=")) {
+        const docId = decodeURIComponent(h.slice(5).trim());
+        if (docId) openReaderModal(docId);
+      }
+    }
+    window.addEventListener("hashchange", checkHashAndOpenDoc);
+    window.addEventListener("DOMContentLoaded", () => {
+      initLibrary();
+      setTimeout(checkHashAndOpenDoc, 150);
+    });
   </script>
   <script src="cities-data.js?v=20261027f"></script>
-  <script src="atrium.js?v=20261028-relief"></script>
+  <script src="atrium.js?v=20261031_counter"></script>
+
+  <!-- ======================================================== -->
+  <!-- 🏛️ 꿈디도 방문객 통계 및 열람 분석 (GoatCounter 엔진)    -->
+  <!-- ======================================================== -->
+  <script data-goatcounter="https://kkumbaon.goatcounter.com/count"
+          data-goatcounter-settings='{"allow_local":false}'
+          async src="//gc.zgo.at/count.js"></script>
+  <script>
+    (function initKkumbaonAnalytics() {
+      const GC_CODE = "kkumbaon"; // GoatCounter 서브도메인
+      const statEl = document.getElementById("statVisitorCount");
+      const footerEl = document.getElementById("footerVisitorCount");
+
+      function updateVisitorUI(countStr) {
+        if (!countStr) return;
+        if (statEl) statEl.textContent = countStr;
+        if (footerEl) footerEl.textContent = countStr;
+      }
+
+      // 1. GoatCounter 공개 카운터 API 호출 (누적 방문자)
+      const endpoint = `https://${GC_CODE}.goatcounter.com/counter//.json`;
+      fetch(endpoint)
+        .then(res => {
+          if (!res.ok) throw new Error("GoatCounter API not ready");
+          return res.json();
+        })
+        .then(data => {
+          if (data && (data.count !== undefined || data.count_unique !== undefined)) {
+            const rawVal = parseInt((data.count || data.count_unique || "0").toString().replace(/,/g, ''), 10) || 0;
+            const BASE_OFFSET = 1320; // 개관 누적 베이스 오프셋
+            const totalCount = BASE_OFFSET + rawVal;
+            updateVisitorUI(totalCount.toLocaleString());
+          } else {
+            fallbackLocalCounter();
+          }
+        })
+        .catch(() => {
+          fallbackLocalCounter();
+        });
+
+      // 2. 계정 개설 전 또는 오프라인 환경 안전 폴백 카운터
+      function fallbackLocalCounter() {
+        try {
+          const BASE_COUNT = 1320; // 꿈디도 개관 기준 베이스
+          const storageKey = "kkumbaon_lib_vcount_v1";
+          let stored = parseInt(localStorage.getItem(storageKey), 10);
+          if (isNaN(stored) || stored < BASE_COUNT) {
+            stored = BASE_COUNT;
+          }
+          if (!sessionStorage.getItem("kkumbaon_visited")) {
+            sessionStorage.setItem("kkumbaon_visited", "1");
+            stored += 1;
+            localStorage.setItem(storageKey, stored.toString());
+          }
+          updateVisitorUI(stored.toLocaleString());
+        } catch (e) {
+          updateVisitorUI("1,320+");
+        }
+      }
+
+      // 3. 글로벌 세부 열람 추적 함수
+      window.trackKkumbaonAction = function(actionType, id, title) {
+        if (!window.goatcounter || typeof window.goatcounter.count !== "function") return;
+        try {
+          const cleanPath = `/${actionType}/${encodeURIComponent(id)}`;
+          const cleanTitle = `[${actionType.toUpperCase()}] ${title || id}`;
+          window.goatcounter.count({
+            path: cleanPath,
+            title: cleanTitle,
+            event: false
+          });
+        } catch (err) {
+          // ignore
+        }
+      };
+
+      // 4. PDF 다운로드 및 열람 클릭 자동 추적
+      document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll('a[href$=".pdf"]').forEach(link => {
+          link.addEventListener("click", () => {
+            const fileName = link.getAttribute("href").split("/").pop();
+            if (window.trackKkumbaonAction) {
+              window.trackKkumbaonAction("ebook", fileName, `화보 PDF: ${fileName}`);
+            }
+          });
+        });
+      });
+    })();
+  </script>
 </body>
 </html>
 

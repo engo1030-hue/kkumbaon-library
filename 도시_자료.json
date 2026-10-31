@@ -64,7 +64,8 @@
         "master30-21",
         "fig-chronicle-07",
         "fig-chronicle-10",
-        "master30-25"
+        "master30-25",
+        "fig-chronicle-05"
       ],
       "priority": 1,
       "wiki": "Jerusalem"
@@ -1525,7 +1526,6 @@
         "유두고"
       ],
       "relatedDocIds": [
-        "fig-chronicle-05",
         "master30-29"
       ],
       "priority": 2,
@@ -3000,10 +3000,10 @@
       },
       {
         "src": "assets/webp/st_master_07.webp",
-        "caption": "관련 성경 이야기 도판: 밤을 지키는 사람들 — 유두고 · 사도 바울 · 드로아 성도들의 이야기",
+        "caption": "관련 성경 이야기 도판: 드로아의 마게도냐 환상과 유럽 선교의 출발 (사도행전 16:8–10)",
         "kind": "이야기 도판",
         "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
-        "docId": "fig-chronicle-05"
+        "docId": "master30-29"
       }
     ],
     "miletus": [
@@ -3287,7 +3287,7 @@
     ],
     "susa": [
       {
-        "src": "assets/webp/2026-10-25-하나님이-빼어-내신-반지-예레미야-2224.webp",
+        "src": "assets/webp/pure_dev_book_03.webp",
         "caption": "관련 성경 이야기 도판: [2026년 11월호 · 제2부] 에스더 1~10장 완독 (제5~14회 합본)",
         "kind": "이야기 도판",
         "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
