@@ -702,9 +702,15 @@
 
     .hall-tabs {
       display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 9px;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 8px;
       margin-bottom: 18px;
+    }
+
+    @media (max-width: 1260px) {
+      .hall-tabs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
     }
 
     @media (hover: none) and (pointer: coarse) and (max-width: 1120px) {
@@ -719,9 +725,10 @@
       }
     }
 
-    /* 꿈디도 영상실 및 웨슬리 신학관 전용 큐레이션 바 스타일 */
+    /* 꿈디도 영상실, 웨슬리 신학관, 성경 절기관 전용 큐레이션 바 스타일 */
     .cinema-subbar,
-    .wesley-subbar {
+    .wesley-subbar,
+    .feasts-subbar {
       display: none;
       background: linear-gradient(135deg, #1A1410 0%, #271E17 100%);
       border: 1.5px solid var(--border-gold);
@@ -733,11 +740,13 @@
     }
 
     .cinema-subbar.open,
-    .wesley-subbar.open {
+    .wesley-subbar.open,
+    .feasts-subbar.open {
       display: block;
     }
 
-    .wesley-subbar {
+    .wesley-subbar,
+    .feasts-subbar {
       background: linear-gradient(135deg, #19130E 0%, #2B2015 55%, #1E1710 100%);
       border-color: #C8A45D;
     }
@@ -1973,6 +1982,7 @@
     <nav class="entrance-nav" aria-label="도서관 메뉴">
       <a href="#atlasDrawer" class="nav-current">탐험 홀</a>
       <a href="#libraryShelves">자료 서가</a>
+      <button onclick="openFeastsHall()">성경 절기관</button>
       <button onclick="openWesleyHall()">웨슬리 신학관</button>
       <button onclick="openCinemaHall()">영상실</button>
       <button onclick="openBlueprintModal()">도서관 안내 <span aria-hidden="true">↗</span></button>
@@ -1984,8 +1994,8 @@
   <section class="kkumbaon-welcome-bar" aria-label="꿈바온 디지털 도서관 환영 인사">
     <div class="kkumbaon-welcome-inner">
       <div class="kw-left">
-        <div class="kw-eyebrow">✨ 오래된 우물의 서재 · 작은 미술전시회 · 웨슬리 표준설교 아카이브</div>
-        <div class="kw-headline">흘러가는 영상을 넘어, <span>성경의 땅과 사람과 사물의 역사</span>를 한 권의 대백과로 차곡차곡 기록합니다</div>
+        <div class="kw-eyebrow">✨ 오래된 우물의 서재 · 작은 미술전시회 · 성경 절기 &amp; 웨슬리 표준설교 아카이브</div>
+        <div class="kw-headline">흘러가는 영상을 넘어, <span>성경의 땅과 사람과 절기와 사물의 역사</span>를 한 권의 대백과로 차곡차곡 기록합니다</div>
       </div>
       <div class="kw-quote">
         “꿈바온은 한 컵씩 맑은 물을 붓는 중입니다.<br/>
@@ -2001,7 +2011,7 @@
       <div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
           <span style="background:rgba(212,175,55,0.22); border:1px solid #E5C878; color:#F5DF98; font-size:11.5px; font-weight:800; padding:2px 10px; border-radius:999px;">시범 운영 중 · 내부 정비 중</span>
-          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-28 (제1차 검수 반영)</span>
+          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-31 (성경 절기 · 구속사관 12편 신설)</span>
         </div>
         <h2 class="serif" style="font-size:17px; color:#FFFFFF; margin:0 0 5px 0; font-weight:700;">꿈바온 디지털 도서관 시범 운영 중 — 문은 열어 두었습니다. 서가는 계속 채우고 있어요.</h2>
         <p style="font-size:13px; color:#E2D8C8; line-height:1.62; margin:0;">
@@ -2014,8 +2024,9 @@
         <div style="display:flex; flex-wrap:wrap; gap:7px;">
           <button type="button" class="hdr-btn gold" style="font-size:12px; padding:6px 11px;" onclick="if(window.focusAtlasPlace) window.focusAtlasPlace('bethlehem')">1. 🗺️ 베들레헴 지도 열기</button>
           <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('dev-dailyword-ep001')">2. 📘 룻기 1장 (매일말씀 1회)</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">3. 🏺 하나님의 손에 비유된 인장</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">4. 👑 밤을 지키는 사람들 (막 13장)</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openFeastsHall()">3. 🕎 성경 절기 · 구속사관</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">4. 🏺 하나님의 손에 비유된 인장</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">5. 👑 밤을 지키는 사람들 (막 13장)</button>
         </div>
       </div>
     </div>
@@ -2125,11 +2136,19 @@
           </div>
           <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
         </a>
+        <a href="ebooks/2026_꿈바온_성경절기와구속사_대백과.pdf" target="_blank" rel="noopener" style="text-decoration:none; background:rgba(255,255,255,0.06); border:1px solid rgba(212,175,55,0.42); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
+          <div style="flex:1; min-width:0; word-break:keep-all;">
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">🕎 성경 절기관 총서 · 전 12권 완결 (모아딤 총론 + 11대 성경 절기 · A4 텍스트 PDF)</div>
+            <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">여호와의 정하신 때(모아딤) — 성경 절기와 구속사 대백과</div>
+            <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">안식일 · 유월절 · 무교절 · 초실절 · 칠칠절(오순절) · 나팔절 · 대속죄일 · 초막절 · 부림절 · 수전절 · 희년</div>
+          </div>
+          <span class="hdr-btn gold" style="flex-shrink:0; white-space:nowrap;">PDF 열람 →</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 4. 6대 전시관 탭 및 통합 검색 바 -->
+  <!-- 4. 7대 전시관 탭 및 통합 검색 바 -->
   <section class="controls-wrap">
     <div class="hall-tabs" id="hallTabs">
       <button class="hall-tab active" data-cat="all" onclick="selectCategory('all')">
@@ -2156,10 +2175,67 @@
         <div class="hall-tab-top"><span>✝️ HALL 5 · WESLEY</span><span class="hall-count" id="cnt-wesley">0</span></div>
         <div class="hall-tab-title">웨슬리 신학 · 표준설교</div>
       </button>
+      <button class="hall-tab" data-cat="feasts" onclick="selectCategory('feasts')">
+        <div class="hall-tab-top"><span>🕎 HALL 6 · FEASTS</span><span class="hall-count" id="cnt-feasts">15</span></div>
+        <div class="hall-tab-title">성경 절기 · 구속사관</div>
+      </button>
       <button class="hall-tab" data-cat="cinema" onclick="selectCategory('cinema')">
-        <div class="hall-tab-top"><span>🎬 HALL 6 · CINEMA</span><span class="hall-count" id="cnt-cinema">118</span></div>
+        <div class="hall-tab-top"><span>🎬 HALL 7 · CINEMA</span><span class="hall-count" id="cnt-cinema">118</span></div>
         <div class="hall-tab-title">꿈디도 영상실 · 상영관</div>
       </button>
+    </div>
+
+    <!-- 제6관 성경 절기 · 구속사관 전용 큐레이션 배너 & 구속사 달력 5단계 로드맵 -->
+    <div class="feasts-subbar" id="feastsSubbar">
+      <div class="cinema-subbar-top">
+        <div>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🕎 HALL 6 · BIBLICAL FEASTS &amp; REDEMPTIVE CALENDAR ARCHIVE · 여호와의 정하신 때(מוֹעֲדִים · Moadim)</span>
+          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 절기 · 구속사관 — 레위기 23장 7대 절기와 안식일·부림절·수전절·희년까지 성경의 모든 절기를 한눈에 읽습니다</h3>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <a href="ebooks/2026_꿈바온_성경절기와구속사_대백과.pdf" target="_blank" class="hdr-btn gold" style="text-decoration:none;">
+            📕 성경 절기와 구속사 대백과 PDF 열람·인쇄 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 성경 절기 구속사(Redemptive Calendar) 5단계 파노라마 로드맵 -->
+      <div class="wesley-ordo-flow">
+        <div class="wesley-ordo-step">
+          <div class="wesley-ordo-step-num">STAGE 01 · SABBATH &amp; MOADIM</div>
+          <div class="wesley-ordo-step-title">절기 총론과 주간 안식일</div>
+          <div class="wesley-ordo-step-desc">하나님과 만나는 정하신 시간(모아딤)과 창조·출애굽·그리스도 안의 참 안식 (레 23:1–4 · 마 11:28)</div>
+        </div>
+        <div class="wesley-ordo-step">
+          <div class="wesley-ordo-step-num">STAGE 02 · PASSOVER &amp; MATZOT</div>
+          <div class="wesley-ordo-step-title">유월절과 무교절 (봄 1·2)</div>
+          <div class="wesley-ordo-step-desc">문설주의 어린양 피로 구원받고(십자가 대속) 누룩 없는 순전한 떡으로 걷는 성결 (출 12장 · 고전 5:7–8)</div>
+        </div>
+        <div class="wesley-ordo-step">
+          <div class="wesley-ordo-step-num">STAGE 03 · FIRSTFRUITS &amp; PENTECOST</div>
+          <div class="wesley-ordo-step-title">초실절과 칠칠절·오순절 (봄 3·4)</div>
+          <div class="wesley-ordo-step-desc">안식일 이튿날 부활의 첫 열매(보리 첫 단)와 50일째 마가 다락방 성령 강림·두 덩이 떡 (고전 15:20 · 행 2:1)</div>
+        </div>
+        <div class="wesley-ordo-step">
+          <div class="wesley-ordo-step-num">STAGE 04 · AUTUMN HIGH FEASTS</div>
+          <div class="wesley-ordo-step-title">나팔절 · 대속죄일 · 초막절</div>
+          <div class="wesley-ordo-step-desc">각성과 재림의 나팔(7월 1일), 단번에 드리신 영원한 속죄(10일), 생수와 빛의 영원한 장막(15일)</div>
+        </div>
+        <div class="wesley-ordo-step">
+          <div class="wesley-ordo-step-num">STAGE 05 · PURIM · HANUKKAH · JUBILEE</div>
+          <div class="wesley-ordo-step-title">부림절 · 수전절 · 안식년과 희년</div>
+          <div class="wesley-ordo-step-desc">죽음의 제비를 뒤집은 구원(에 9장), 참 성전 예수님(요 10:22), 온 땅에 자유를 선포하는 은혜의 해(레 25장)</div>
+        </div>
+      </div>
+
+      <div class="cinema-filter-pills" id="feastsFilterPills">
+        <button class="c-pill active" data-fcat="all" onclick="selectFeastsCat('all')">전체 절기 문헌 (<span id="fcnt-all">15</span>)</button>
+        <button class="c-pill" data-fcat="sabbath_overview" onclick="selectFeastsCat('sabbath_overview')">🕯️ 절기 총론 · 안식일 · 희년 (<span id="fcnt-sabbath_overview">3</span>)</button>
+        <button class="c-pill" data-fcat="spring" onclick="selectFeastsCat('spring')">🌾 봄 4대 절기 · 유월·무교·초실·오순절 (<span id="fcnt-spring">4</span>)</button>
+        <button class="c-pill" data-fcat="autumn" onclick="selectFeastsCat('autumn')">🎺 가을 3대 절기 · 나팔·속죄·초막절 (<span id="fcnt-autumn">3</span>)</button>
+        <button class="c-pill" data-fcat="history" onclick="selectFeastsCat('history')">📜 역사 절기 · 부림절 · 수전절 (<span id="fcnt-history">2</span>)</button>
+        <button class="c-pill" data-fcat="artifacts_related" onclick="selectFeastsCat('artifacts_related')">🏺 절기 성물 · 유월절 잔 · 우슬초 (<span id="fcnt-artifacts_related">3</span>)</button>
+      </div>
     </div>
 
     <!-- 제5관 웨슬리 신학 · 표준설교관 전용 큐레이션 배너 & 구원의 서정 로드맵 -->
@@ -2421,12 +2497,14 @@
     </p>
   </footer>
 
-  <script src="library_data.js?v=20261028_16x9_86"></script>
+  <script src="library_data.js?v=20261031_feasts12"></script>
   <script>
     const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [], videos: [] };
     let currentCategory = "all";
     let currentVideoCat = "all";
     let currentWesleyCat = "all";
+    let currentFeastsCat = "all";
+    const FEAST_RELATED_IDS = new Set(["artifact-passover-cup-new-covenant", "master30-20", "master30-23"]);
     let currentDoc = null;
     let currentFontSize = 18.5;
 
@@ -2452,14 +2530,25 @@
         `<span>📜 문헌 <strong>${totalDocs}편</strong> · 성화·도판 <strong>${totalImgs}점</strong> · 영상실 <strong>${totalVids}편</strong></span>`;
 
       // 전시관별 카운트 계산
-      const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0, wesley: 0, cinema: totalVids };
+      const counts = { all: totalDocs, atlas: 0, figures: 0, artifacts: 0, devotions: 0, wesley: 0, feasts: 0, cinema: totalVids };
       const wcounts = { all: 0, sermon: 0, doctrine: 0, history: 0, practice: 0 };
+      const fcounts = { all: 0, sabbath_overview: 0, spring: 0, autumn: 0, history: 0, artifacts_related: 0 };
       (LIB.items || []).forEach(it => {
         if (counts[it.category] !== undefined) counts[it.category]++;
         if (it.category === "wesley") {
           wcounts.all++;
-          const wc = it.wCat || "sermon";
+          const wc = it.wCat || it.wSubCat || "sermon";
           if (wcounts[wc] !== undefined) wcounts[wc]++;
+        }
+        if (it.category === "feasts") {
+          fcounts.all++;
+          const fc = it.fSubCat || "overview";
+          if (fc === "overview" || fc === "sabbath") fcounts.sabbath_overview++;
+          else if (fcounts[fc] !== undefined) fcounts[fc]++;
+        } else if (FEAST_RELATED_IDS.has(it.id)) {
+          counts.feasts++;
+          fcounts.all++;
+          fcounts.artifacts_related++;
         }
       });
       Object.keys(counts).forEach(k => {
@@ -2469,6 +2558,10 @@
       Object.keys(wcounts).forEach(k => {
         const el = document.getElementById(`wcnt-${k}`);
         if (el) el.textContent = wcounts[k];
+      });
+      Object.keys(fcounts).forEach(k => {
+        const el = document.getElementById(`fcnt-${k}`);
+        if (el) el.textContent = fcounts[k];
       });
 
       // 영상실 세부 카테고리 카운트 계산
@@ -2735,6 +2828,12 @@
     let currentCinemaLayout = "split"; // 'split' | 'wide' | 'fullscreen' | 'mini'
     let hallBackdropEnabled = true;
 
+    function openFeastsHall() {
+      selectCategory("feasts");
+      const wrap = document.querySelector(".controls-wrap");
+      if (wrap) wrap.scrollIntoView({ behavior: "smooth" });
+    }
+
     function openWesleyHall() {
       selectCategory("wesley");
       const wrap = document.querySelector(".controls-wrap");
@@ -2755,6 +2854,10 @@
       const wSubbar = document.getElementById("wesleySubbar");
       if (wSubbar) {
         wSubbar.classList.toggle("open", cat === "wesley");
+      }
+      const fSubbar = document.getElementById("feastsSubbar");
+      if (fSubbar) {
+        fSubbar.classList.toggle("open", cat === "feasts");
       }
       const subbar = document.getElementById("cinemaSubbar");
       if (subbar) {
@@ -2785,6 +2888,14 @@
       currentWesleyCat = wcat;
       document.querySelectorAll("#wesleyFilterPills .c-pill").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-wcat") === wcat);
+      });
+      renderGrid();
+    }
+
+    function selectFeastsCat(fcat) {
+      currentFeastsCat = fcat;
+      document.querySelectorAll("#feastsFilterPills .c-pill").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-fcat") === fcat);
       });
       renderGrid();
     }
@@ -3001,6 +3112,8 @@
           if (subbar) subbar.classList.remove("open");
           const wSubbar = document.getElementById("wesleySubbar");
           if (wSubbar) wSubbar.classList.remove("open");
+          const fSubbar = document.getElementById("feastsSubbar");
+          if (fSubbar) fSubbar.classList.remove("open");
         }
       }
       document.querySelectorAll(".q-tag").forEach(t => {
@@ -3019,6 +3132,7 @@
       currentCategory = "all";
       currentVideoCat = "all";
       currentWesleyCat = "all";
+      currentFeastsCat = "all";
       document.getElementById("searchInput").value = "";
       document.querySelectorAll(".q-tag").forEach(t => t.classList.remove("active"));
       const op = document.getElementById("origVersePanel");
@@ -3244,8 +3358,22 @@
       }
 
       let items = (LIB.items || []).filter(it => {
-        if (currentCategory !== "all" && it.category !== currentCategory) return false;
-        if (currentCategory === "wesley" && currentWesleyCat !== "all" && (it.wCat || "sermon") !== currentWesleyCat) return false;
+        if (currentCategory === "feasts") {
+          const isFeastDoc = it.category === "feasts" || FEAST_RELATED_IDS.has(it.id);
+          if (!isFeastDoc) return false;
+          if (currentFeastsCat !== "all") {
+            if (currentFeastsCat === "artifacts_related") {
+              if (!FEAST_RELATED_IDS.has(it.id)) return false;
+            } else if (currentFeastsCat === "sabbath_overview") {
+              if (it.category !== "feasts" || (it.fSubCat !== "overview" && it.fSubCat !== "sabbath")) return false;
+            } else {
+              if (it.category !== "feasts" || it.fSubCat !== currentFeastsCat) return false;
+            }
+          }
+        } else if (currentCategory !== "all" && it.category !== currentCategory) {
+          return false;
+        }
+        if (currentCategory === "wesley" && currentWesleyCat !== "all" && (it.wCat || it.wSubCat || "sermon") !== currentWesleyCat) return false;
         if (!q) return true;
         const hay = [
           it.title, it.subtitle, it.scripture, it.era, it.person || "",
@@ -3253,6 +3381,19 @@
         ].join(" ");
         return matchesQuery(hay);
       });
+
+      if (currentCategory === "feasts") {
+        // 절기 총론(00) ~ 희년(11) 12편을 먼저 순서대로 배치하고, 이어서 절기 성물 이야기 3편을 배치
+        items = [...items].sort((a, b) => {
+          const aIsCore = a.category === "feasts" ? 0 : 1;
+          const bIsCore = b.category === "feasts" ? 0 : 1;
+          if (aIsCore !== bIsCore) return aIsCore - bIsCore;
+          if (a.category === "feasts" && b.category === "feasts") {
+            return a.id.localeCompare(b.id);
+          }
+          return 0;
+        });
+      }
 
       // 만약 특정 전시관에 머물러 있는데 결과가 0건이고, 전체 서가에는 결과가 존재하는 경우 자동 확장!
       let autoExpanded = false;
@@ -3272,6 +3413,8 @@
           });
           const wSubbar = document.getElementById("wesleySubbar");
           if (wSubbar) wSubbar.classList.remove("open");
+          const fSubbar = document.getElementById("feastsSubbar");
+          if (fSubbar) fSubbar.classList.remove("open");
           autoExpanded = true;
         }
       }
@@ -3282,7 +3425,8 @@
         figures: "제2관 · 성경 인물 열전 & 역사서관",
         artifacts: "제3관 · 등잔 밑 성경 사물·문화 백과",
         devotions: "제4관 · 성경 한 바퀴 · 매일말씀 서재",
-        wesley: "제5관 · 웨슬리 신학 & 표준설교관"
+        wesley: "제5관 · 웨슬리 신학 & 표준설교관",
+        feasts: "제6관 · 성경 절기 & 구속사관 (여호와의 정하신 때 · 모아딤)"
       };
       if (autoExpanded) {
         document.getElementById("gridStatusText").innerHTML =
