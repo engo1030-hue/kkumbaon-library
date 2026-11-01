@@ -1970,132 +1970,88 @@
     }
   
     /* ======================================================== */
-    /* 🏛️ [신설] 상단 8대 전시관 빠른 선택 네비게이션 바 (경계선 위치) */
+    /* 🏛️ [목사님 확정] 상단 슬림 탭 스트립 (가늘게 1줄 바, 첫 탭: 지도 하나만) */
     /* ======================================================== */
-    .top-hall-navbar {
+    .top-slim-tabs-bar {
       position: sticky;
       top: 0;
       z-index: 105;
-      background: linear-gradient(180deg, #1C1510 0%, #15221F 100%);
-      border-top: 1px solid rgba(212, 175, 55, 0.35);
+      background: rgba(22, 18, 14, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(212, 175, 55, 0.3);
       border-bottom: 1.5px solid rgba(212, 175, 55, 0.45);
-      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.38);
-      padding: 9px clamp(16px, 3.5vw, 68px);
-      transition: background 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
+      padding: 5px clamp(16px, 3.5vw, 68px);
     }
 
-    .top-hall-inner {
+    .top-slim-tabs-inner {
       max-width: 1800px;
       margin: 0 auto;
-    }
-
-    .top-hall-tabs {
-      display: grid;
-      grid-template-columns: repeat(8, minmax(0, 1fr));
-      gap: 7px;
-    }
-
-    .top-hall-tab {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.28);
-      border-radius: 9px;
-      padding: 7px 9px;
-      color: #EDE6DA;
-      cursor: pointer;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 5px;
-      font-family: inherit;
-      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
-      min-width: 0;
-      white-space: nowrap;
-      text-align: left;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .top-slim-tabs-inner::-webkit-scrollbar {
+      display: none;
     }
 
-    .top-hall-tab:hover {
-      background: rgba(212, 175, 55, 0.16);
+    .top-slim-tab {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      border-radius: 6px;
+      padding: 4px 11px;
+      color: #D8D1C3;
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+      font-family: inherit;
+      flex-shrink: 0;
+      height: 30px;
+    }
+
+    .top-slim-tab:hover {
+      background: rgba(212, 175, 55, 0.14);
       border-color: #E5C878;
       color: #FFFFFF;
-      transform: translateY(-1.5px);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     }
 
-    .top-hall-tab.active {
-      background: linear-gradient(135deg, #2E2318 0%, #1C150E 100%);
+    .top-slim-tab.active {
+      background: linear-gradient(135deg, #382A1B 0%, #20170F 100%);
       border-color: #F5DF98;
-      color: #FFFFFF;
-      box-shadow: 0 0 12px rgba(212, 175, 55, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      color: #FFF6DD;
       font-weight: 700;
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.32);
     }
 
-    .top-hall-tab .th-left {
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      min-width: 0;
-      overflow: hidden;
-    }
-
-    .top-hall-tab .th-badge {
+    .top-slim-tab .tst-count {
       font-size: 10.5px;
-      font-weight: 800;
-      color: #D7BC7D;
-      flex-shrink: 0;
-    }
-
-    .top-hall-tab.active .th-badge {
-      color: #F5DF98;
-    }
-
-    .top-hall-tab .th-title {
-      font-size: 12px;
       font-weight: 600;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      letter-spacing: -0.02em;
-    }
-
-    .top-hall-tab .th-count {
-      font-size: 10.5px;
-      font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 999px;
-      background: rgba(0, 0, 0, 0.35);
+      opacity: 0.75;
+      padding: 0 4px;
+      border-radius: 4px;
+      background: rgba(0, 0, 0, 0.3);
       color: #C8BDAE;
-      flex-shrink: 0;
-      transition: all 0.2s ease;
+      margin-left: 2px;
     }
 
-    .top-hall-tab.active .th-count {
-      background: rgba(212, 175, 55, 0.28);
-      color: #F5DF98;
+    .top-slim-tab.active .tst-count {
+      opacity: 1;
+      background: rgba(212, 175, 55, 0.25);
+      color: #F8E7B2;
     }
 
-    @media (max-width: 1360px) {
-      .top-hall-tabs {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-      }
+    .top-slim-tab[data-cat="atlas"] {
+      border-color: rgba(212, 175, 55, 0.45);
     }
-
-    @media (max-width: 780px) {
-      .top-hall-tabs {
-        display: flex;
-        overflow-x: auto;
-        padding-bottom: 2px;
-        gap: 6px;
-        scrollbar-width: none;
-      }
-      .top-hall-tabs::-webkit-scrollbar {
-        display: none;
-      }
-      .top-hall-tab {
-        flex: 0 0 auto;
-        padding: 7px 11px;
-      }
-    }
-
+  
   </style>
   <link rel="stylesheet" href="atrium.css?v=20261028-relief"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261101b"/>
@@ -2135,42 +2091,32 @@
   </section>
 
   <!-- 🏛️ [신설] 상단 8대 전시관 빠른 선택 네비게이션 바 (환영 리본과 지도 경계선 위치) -->
-  <nav class="top-hall-navbar" aria-label="꿈바온 8대 전시관 빠른 선택 네비게이션">
-    <div class="top-hall-inner">
-      <div class="top-hall-tabs">
-        <button type="button" class="top-hall-tab active" data-cat="all" onclick="navigateToHall('all')">
-          <span class="th-left"><span class="th-badge">🏛️ ALL</span><span class="th-title">전체 통합 서가</span></span>
-          <span class="th-count" id="top-cnt-all">152</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="atlas" onclick="navigateToHall('atlas')">
-          <span class="th-left"><span class="th-badge">🗺️ 1관</span><span class="th-title">성경 지도 · 고고학</span></span>
-          <span class="th-count" id="top-cnt-atlas">49</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="figures" onclick="navigateToHall('figures')">
-          <span class="th-left"><span class="th-badge">👑 2관</span><span class="th-title">성경 인물 · 역사</span></span>
-          <span class="th-count" id="top-cnt-figures">31</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="artifacts" onclick="navigateToHall('artifacts')">
-          <span class="th-left"><span class="th-badge">🏺 3관</span><span class="th-title">등잔 밑 사물 · 문화</span></span>
-          <span class="th-count" id="top-cnt-artifacts">17</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="devotions" onclick="navigateToHall('devotions')">
-          <span class="th-left"><span class="th-badge">🌅 4관</span><span class="th-title">성경 한 바퀴 · 매일말씀</span></span>
-          <span class="th-count" id="top-cnt-devotions">28</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="wesley" onclick="navigateToHall('wesley')">
-          <span class="th-left"><span class="th-badge">✝️ 5관</span><span class="th-title">웨슬리 표준설교</span></span>
-          <span class="th-count" id="top-cnt-wesley">22</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="feasts" onclick="navigateToHall('feasts')">
-          <span class="th-left"><span class="th-badge">🕎 6관</span><span class="th-title">성경 절기 · 구속사</span></span>
-          <span class="th-count" id="top-cnt-feasts">15</span>
-        </button>
-        <button type="button" class="top-hall-tab" data-cat="cinema" onclick="navigateToHall('cinema')">
-          <span class="th-left"><span class="th-badge">🎬 7관</span><span class="th-title">꿈디도 영상실</span></span>
-          <span class="th-count" id="top-cnt-cinema">118</span>
-        </button>
-      </div>
+  <nav class="top-slim-tabs-bar" aria-label="꿈바온 8대 전시관 가늘고 빠른 이동 탭">
+    <div class="top-slim-tabs-inner">
+      <button type="button" class="top-slim-tab active" data-cat="atlas" onclick="navigateToHall('atlas')">
+        <span>🗺️ 성경 지도</span><span class="tst-count" id="top-cnt-atlas">49</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="all" onclick="navigateToHall('all')">
+        <span>🏛️ 전체 서가</span><span class="tst-count" id="top-cnt-all">152</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="figures" onclick="navigateToHall('figures')">
+        <span>👑 성경 인물</span><span class="tst-count" id="top-cnt-figures">31</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="artifacts" onclick="navigateToHall('artifacts')">
+        <span>🏺 등잔 밑 사물</span><span class="tst-count" id="top-cnt-artifacts">17</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="devotions" onclick="navigateToHall('devotions')">
+        <span>🌅 매일말씀</span><span class="tst-count" id="top-cnt-devotions">28</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="wesley" onclick="navigateToHall('wesley')">
+        <span>✝️ 웨슬리 신학</span><span class="tst-count" id="top-cnt-wesley">22</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="feasts" onclick="navigateToHall('feasts')">
+        <span>🕎 성경 절기</span><span class="tst-count" id="top-cnt-feasts">15</span>
+      </button>
+      <button type="button" class="top-slim-tab" data-cat="cinema" onclick="navigateToHall('cinema')">
+        <span>🎬 영상실</span><span class="tst-count" id="top-cnt-cinema">118</span>
+      </button>
     </div>
   </nav>
 
@@ -3056,7 +3002,7 @@
       document.querySelectorAll(".hall-tab").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
       });
-      document.querySelectorAll(".top-hall-tab").forEach(btn => {
+      document.querySelectorAll(".top-slim-tab").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
       });
       const wSubbar = document.getElementById("wesleySubbar");
