@@ -2217,6 +2217,11 @@
       <div class="hall-eyebrow"><span></span> 성경의 땅 · 사람 · 이야기</div>
       <h1 id="hallTitle">말씀을 따라, <em>그 땅으로.</em></h1>
       <p>도시를 열면 풍경이 보이고, 그곳에 머문 이야기가 시작됩니다.</p>
+      <div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+        <button type="button" onclick="toggleSignatureVideoStage()" id="sigVideoToggleBtn" style="background:linear-gradient(135deg,#241A10 0%,#3B2A18 100%);color:#F5DF98;border:1.5px solid #C8A45D;padding:9px 18px;border-radius:999px;font-size:13.5px;font-weight:700;cursor:pointer;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 18px rgba(36,26,16,0.22);transition:all 0.2s;">
+          <span>🎬</span> 꿈디도 공식 시그니처 트레일러 (0:30) 감상
+        </button>
+      </div>
     </div>
     <div class="hall-stats" aria-label="도서관 소장 현황">
       <div><strong id="placeTotal">49</strong><span>탐험할 장소</span></div>
@@ -2226,6 +2231,70 @@
     </div>
     <span id="statTotalMB" hidden></span><span id="storageBadge" hidden></span>
   </section>
+
+  <!-- 🎬 꿈디도 3D 시그니처 트레일러 스테이지 (메인 대문 상단 3D 입체 극장) -->
+  <section id="kkumdidoSignatureStage" style="margin:0 0 32px 0;perspective:1600px;">
+    <div style="background:radial-gradient(circle at 50% 0%, rgba(212,175,55,0.16) 0%, rgba(21,17,13,0.98) 65%), linear-gradient(145deg,#120E0A 0%,#1E1710 100%);border:2px solid rgba(212,175,55,0.62);border-radius:24px;padding:22px 26px 24px;box-shadow:0 28px 68px rgba(10,7,4,0.48), 0 0 42px rgba(200,164,93,0.14), inset 0 1px 0 rgba(255,238,190,0.28);transform:rotateX(1.2deg);transition:transform 0.4s ease;">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+          <span style="background:linear-gradient(135deg,rgba(212,175,55,0.28),rgba(158,116,48,0.22));border:1px solid #E5C878;color:#FFF3C4;font-size:11.5px;font-weight:800;padding:4px 12px;border-radius:999px;letter-spacing:0.08em;box-shadow:0 0 14px rgba(212,175,55,0.25);">🏛️ GRAND SIGNATURE TRAILER · 30s</span>
+          <strong style="color:#FFFDF8;font-family:'Noto Serif KR',serif;font-size:clamp(16px,1.4vw,20px);letter-spacing:-0.02em;">꿈바온 디지털 도서관 공식 시그니처 영상 — “세상에 한 컵씩 붓는 맑은 물”</strong>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+          <button type="button" onclick="unmuteAndRestartSignatureVideo()" style="background:linear-gradient(135deg,#E5C878 0%,#B38938 100%);color:#140F09;border:0;padding:8px 16px;border-radius:999px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 16px rgba(212,175,55,0.35);">🔊 웅장한 사운드 켜고 처음부터 감상</button>
+          <button type="button" onclick="toggleSignatureVideoStage(false)" style="background:rgba(255,255,255,0.08);color:#D8CFC0;border:1px solid rgba(255,255,255,0.18);padding:7px 13px;border-radius:999px;font-size:12px;font-weight:600;cursor:pointer;">✕ 대문 영상 접기</button>
+        </div>
+      </div>
+      <div style="position:relative;width:100%;max-width:1360px;margin:0 auto;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#080605;border:1.5px solid rgba(212,175,55,0.48);box-shadow:0 22px 54px rgba(0,0,0,0.72);">
+        <video id="kkumdidoSigVideoEl" src="signature_video/kkumdido_signature_trailer.mp4?v=20261102epic" poster="assets/atrium/cut06_poster.jpg" autoplay muted loop playsinline controls preload="auto" style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+        <button type="button" id="sigFloatingSoundBtn" onclick="unmuteAndRestartSignatureVideo()" style="position:absolute;top:18px;right:18px;background:rgba(20,15,10,0.84);backdrop-filter:blur(8px);color:#F8E3A3;border:1.5px solid #D4AF37;padding:9px 18px;border-radius:999px;font-size:13px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:7px;box-shadow:0 8px 24px rgba(0,0,0,0.55);z-index:10;">
+          <span>🔊</span> 소리 켜기 (웅장한 오케스트라)
+        </button>
+      </div>
+      <!-- 6대 구속사 챕터 바로가기 바 -->
+      <div style="max-width:1360px;margin:12px auto 0;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+        <button type="button" onclick="seekSignatureVideo(0)" style="background:rgba(255,255,255,0.05);color:#EAE0CE;border:1px solid rgba(212,175,55,0.28);padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;">01 · 서고의 문과 등불 (0:00)</button>
+        <button type="button" onclick="seekSignatureVideo(5)" style="background:rgba(255,255,255,0.05);color:#EAE0CE;border:1px solid rgba(212,175,55,0.28);padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;">02 · 노아의 역청과 방주 (0:05)</button>
+        <button type="button" onclick="seekSignatureVideo(10)" style="background:rgba(255,255,255,0.05);color:#EAE0CE;border:1px solid rgba(212,175,55,0.28);padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;">03 · 갈릴리 호수의 아침 (0:10)</button>
+        <button type="button" onclick="seekSignatureVideo(15)" style="background:rgba(255,255,255,0.05);color:#EAE0CE;border:1px solid rgba(212,175,55,0.28);padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;">04 · 빈 무덤과 부활의 빛 (0:15)</button>
+        <button type="button" onclick="seekSignatureVideo(20)" style="background:rgba(255,255,255,0.05);color:#EAE0CE;border:1px solid rgba(212,175,55,0.28);padding:5px 12px;border-radius:999px;font-size:12px;cursor:pointer;">05 · 사도 바울의 항해 (0:20)</button>
+        <button type="button" onclick="seekSignatureVideo(25)" style="background:rgba(255,255,255,0.05);color:#F5DF98;border:1px solid rgba(212,175,55,0.48);padding:5px 12px;border-radius:999px;font-size:12px;font-weight:700;cursor:pointer;">06 · 꿈디도 황금 엠블럼 (0:25)</button>
+      </div>
+    </div>
+  </section>
+  <script>
+    function toggleSignatureVideoStage(forceState) {
+      var stage = document.getElementById('kkumdidoSignatureStage');
+      var vid = document.getElementById('kkumdidoSigVideoEl');
+      if (!stage) return;
+      var show = typeof forceState === 'boolean' ? forceState : (stage.style.display === 'none');
+      stage.style.display = show ? 'block' : 'none';
+      if (!show && vid) { vid.pause(); }
+      else if (show && vid) { vid.play().catch(function(){}); }
+    }
+    function unmuteAndRestartSignatureVideo() {
+      var stage = document.getElementById('kkumdidoSignatureStage');
+      var vid = document.getElementById('kkumdidoSigVideoEl');
+      var btn = document.getElementById('sigFloatingSoundBtn');
+      if (stage) stage.style.display = 'block';
+      if (vid) {
+        vid.muted = false;
+        vid.currentTime = 0;
+        vid.play().catch(function(){});
+      }
+      if (btn) btn.style.display = 'none';
+    }
+    function seekSignatureVideo(sec) {
+      var vid = document.getElementById('kkumdidoSigVideoEl');
+      var btn = document.getElementById('sigFloatingSoundBtn');
+      if (vid) {
+        vid.muted = false;
+        vid.currentTime = sec;
+        vid.play().catch(function(){});
+      }
+      if (btn) btn.style.display = 'none';
+    }
+  </script>
   <section class="explore-hall" id="atlasDrawer" aria-label="성경 세계 지도">
     <div class="hall-toolbar">
       <nav class="region-tabs" aria-label="지도 지역 선택">
@@ -2571,6 +2640,7 @@
           <h3 class="serif" style="font-size:18px; color:#FFF; margin-top:2px;">꿈디도 영상실 — 유튜브로 이탈하지 않고 도서관 상영관 안에서 바로 감상하세요</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <button class="hdr-btn gold" onclick="navigateToHall('atlas');setTimeout(unmuteAndRestartSignatureVideo,200);">🎬 도서관 공식 시그니처 트레일러 (0:30) 감상</button>
           <button class="hdr-btn" onclick="toggleCinemaLights()" id="cinemaLightBtn">💡 객석 암전(조명 끄기)</button>
           <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none;">
             📺 꿈바온 유튜브 채널 (@dreaming_ondal) ↗
