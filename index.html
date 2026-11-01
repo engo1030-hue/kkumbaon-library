@@ -729,6 +729,7 @@
     .cinema-subbar,
     .wesley-subbar,
     .feasts-subbar,
+    .figures-subbar,
     .praise-subbar,
     .deungjan-subbar,
     .soso-subbar {
@@ -745,6 +746,7 @@
     .cinema-subbar.open,
     .wesley-subbar.open,
     .feasts-subbar.open,
+    .figures-subbar.open,
     .praise-subbar.open,
     .deungjan-subbar.open,
     .soso-subbar.open {
@@ -753,6 +755,7 @@
 
     .wesley-subbar,
     .feasts-subbar,
+    .figures-subbar,
     .praise-subbar,
     .deungjan-subbar,
     .soso-subbar {
@@ -2486,6 +2489,41 @@
       </button>
     </div>
 
+    <!-- 👑 제2관 성경 인물대백과 300인 & 구속사 관계망 전용 큐레이션 배너 -->
+    <div class="figures-subbar" id="figuresSubbar">
+      <div class="cinema-subbar-top">
+        <div>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">👑 HALL 2 · BIBLICAL FIGURES ENCYCLOPEDIA (300 FIGURES) · 성경 인물대백과 &amp; 구속사 족보·왕조·선지자 관계망</span>
+          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 인물대백과 — 구속사 기둥 30인(성화 150점 완비), 남북 왕조 40왕, 구약 선지자 50인, 조금 긴 성경이야기 35편을 한눈에 읽습니다</h3>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <a href="figures_encyclopedia_preview.html" class="hdr-btn gold" style="text-decoration:none;">
+            🕸️ 대화면 300인 족보·왕조·선지자 입체 관계망 열기 ↗
+          </a>
+          <a href="figures_encyclopedia_preview.html?view=view-kingdoms" class="hdr-btn" style="text-decoration:none;">
+            👑 남유다 20왕 vs 북이스라엘 20왕 연대기 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 구속사 기둥 30인 투명초상 원클릭 스트립 -->
+      <div style="background:rgba(12,9,6,0.55); border:1px solid rgba(200,164,93,0.3); border-radius:12px; padding:10px 14px; margin:10px 0 14px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700;">🌟 1차 오픈 · 구속사 기둥 30인 (P001 아담 ~ P030 바울) 원클릭 성화 도판 &amp; 열전 바로가기</span>
+          <span style="font-size:11px; color:#C9BFA8;">원형 초상을 누르면 5종 성화 도판과 원어·고고학 열전이 즉시 열립니다</span>
+        </div>
+        <div id="figuresPillarStrip" style="display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;"></div>
+      </div>
+
+      <div class="cinema-filter-pills" id="figuresFilterPills">
+        <button class="c-pill active" data-fgcat="all" onclick="selectFiguresCat('all')">전체 인물 열전 (<span id="fgcnt-all">155</span>)</button>
+        <button class="c-pill" data-fgcat="pillars30" onclick="selectFiguresCat('pillars30')">🌟 1차 오픈 · 구속사 기둥 30인 · 성화 150점 (<span id="fgcnt-pillars30">30</span>)</button>
+        <button class="c-pill" data-fgcat="story35" onclick="selectFiguresCat('story35')">📖 조금 긴 성경이야기 · 사도행전/복음서 열전 (<span id="fgcnt-story35">35</span>)</button>
+        <button class="c-pill" data-fgcat="kings40" onclick="selectFiguresCat('kings40')">👑 2차 오픈 A · 남유다 20왕 &amp; 북이스라엘 20왕 (<span id="fgcnt-kings40">40</span>)</button>
+        <button class="c-pill" data-fgcat="prophets50" onclick="selectFiguresCat('prophets50')">🔥 2차 오픈 B · 구약 선지자 &amp; 포로귀환 50인 (<span id="fgcnt-prophets50">50</span>)</button>
+      </div>
+    </div>
+
     <!-- 🎵 찬양실 전용 큐레이션 배너 -->
     <div class="praise-subbar" id="praiseSubbar">
       <div class="cinema-subbar-top">
@@ -2842,17 +2880,99 @@
   </footer>
 
   <script src="library_data.js?v=20261031_feasts12"></script>
+  <script src="figures_encyclopedia_data.js?v=20261102_full"></script>
   <script>
     const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [], videos: [] };
     let currentCategory = "all";
     let currentVideoCat = "all";
     let currentWesleyCat = "all";
     let currentFeastsCat = "all";
+    let currentFiguresCat = "all";
     const FEAST_RELATED_IDS = new Set(["artifact-passover-cup-new-covenant", "master30-20", "master30-23"]);
     let currentDoc = null;
     let currentFontSize = 18.5;
 
+    function enrichFiguresEncyclopediaIntoLibrary() {
+      const enc = window.KKUMDIDO_FIGURES_DATA;
+      if (!enc || !enc.figures || LIB._figuresEnriched) return;
+      LIB._figuresEnriched = true;
+
+      // 기존 35편 인물관 문헌에 figSubCat 태그 부여
+      (LIB.items || []).forEach(it => {
+        if (it.category === "figures" && !it.figSubCat) {
+          it.figSubCat = "story35";
+        }
+      });
+
+      const newItems = [];
+      enc.figures.forEach(f => {
+        if (!f.hasDossier) return;
+        const docId = `enc-${f.id.toLowerCase()}`;
+        let figSubCat = "pillars30";
+        let catLabel = "👑 인물대백과 · 구속사 기둥 30인";
+        let defaultCover = "assets/figures_tier1/P021/scene2.jpg";
+
+        if (f.num >= 31 && f.num <= 50) {
+          figSubCat = "kings40";
+          catLabel = "🦁 인물대백과 · 남유다 왕조관";
+          defaultCover = (f.num % 2 === 0) ? "assets/figures_tier1/P022/scene3.jpg" : "assets/figures_tier1/P024/scene2.jpg";
+        } else if (f.num >= 51 && f.num <= 70) {
+          figSubCat = "kings40";
+          catLabel = "🐂 인물대백과 · 북이스라엘 왕조관";
+          defaultCover = "assets/figures_tier1/P023/scene1.jpg";
+        } else if (f.num >= 71 && f.num <= 120) {
+          figSubCat = "prophets50";
+          catLabel = "🔥 인물대백과 · 구약 선지자·포로귀환";
+          defaultCover = (f.num <= 85) ? "assets/figures_tier1/P024/scene1.jpg" : (f.num <= 106 ? "assets/figures_tier1/P023/scene3.jpg" : "assets/figures_tier1/P025/scene2.jpg");
+        }
+
+        const gal = (f.scenes && f.scenes.length > 0)
+          ? f.scenes.map(sc => ({ img: sc.img, title: `[${sc.code}] ${f.name}`, caption: sc.title }))
+          : [{ img: defaultCover, title: `[${f.id}] ${f.name}`, caption: `${f.era} · ${f.role}` }];
+
+        const coverImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : (f.masterImg || defaultCover);
+        const fullMd = f.dossierMd + (f.productionNoteMd ? `\n\n---\n\n${f.productionNoteMd}` : "");
+
+        newItems.push({
+          id: docId,
+          encPid: f.id,
+          encNum: f.num,
+          category: "figures",
+          figSubCat: figSubCat,
+          categoryLabel: catLabel,
+          title: `[${f.id}] ${f.name} — ${f.role.split('/')[0].trim()}`,
+          subtitle: `${f.origName} · ${f.era}${f.hasTier1Images ? ' · Tier-1 성화 5종 완비' : ' · 정밀 고증 열전'}`,
+          scripture: f.scriptures,
+          era: f.era,
+          person: f.name,
+          updatedAt: "2026-11-02",
+          cover: coverImg,
+          portrait: f.portrait || "",
+          gallery: gal,
+          tags: [f.id, f.name, f.era, ...f.relatedFigures.slice(0, 3)],
+          summary: f.summary,
+          content: fullMd
+        });
+      });
+
+      LIB.items = [...newItems, ...(LIB.items || [])];
+
+      // 30인 원클릭 초상 스트립 렌더링
+      const stripEl = document.getElementById("figuresPillarStrip");
+      if (stripEl) {
+        const pillars30 = enc.figures.filter(f => f.num >= 1 && f.num <= 30);
+        stripEl.innerHTML = pillars30.map(f => `
+          <div onclick="openReaderModal('enc-${f.id.toLowerCase()}')" style="cursor:pointer; flex-shrink:0; width:76px; text-align:center; padding:6px 4px; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(200,164,93,0.28); transition:all 0.18s;" onmouseover="this.style.borderColor='#E5C168';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(200,164,93,0.28)';this.style.transform='none'">
+            <img src="${f.portrait}" alt="${f.name}" style="width:48px; height:48px; border-radius:50%; object-fit:contain; background:radial-gradient(circle,#382B1C,#120D08); border:1.5px solid #C89D46; display:block; margin:0 auto 4px;" loading="lazy" />
+            <div style="font-size:10px; color:#D7BD82; font-weight:700;">${f.id}</div>
+            <div class="serif" style="font-size:11.5px; color:#FFF; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${f.name}</div>
+          </div>
+        `).join("");
+      }
+    }
+
     function initLibrary() {
+      enrichFiguresEncyclopediaIntoLibrary();
       // 통계 배지 업데이트 (고정 최소값 217 제거, 실제 고유 이미지 수 기준 집계)
       const m = LIB.meta || {};
       const totalDocs = (LIB.items || []).length;
@@ -2897,8 +3017,14 @@
       };
       const wcounts = { all: 0, sermon: 0, doctrine: 0, history: 0, practice: 0 };
       const fcounts = { all: 0, sabbath_overview: 0, spring: 0, autumn: 0, history: 0, artifacts_related: 0 };
+      const fgcounts = { all: 0, pillars30: 0, story35: 0, kings40: 0, prophets50: 0 };
       (LIB.items || []).forEach(it => {
         if (counts[it.category] !== undefined) counts[it.category]++;
+        if (it.category === "figures") {
+          fgcounts.all++;
+          const fgc = it.figSubCat || "story35";
+          if (fgcounts[fgc] !== undefined) fgcounts[fgc]++;
+        }
         if (it.category === "wesley") {
           wcounts.all++;
           const wc = it.wCat || it.wSubCat || "sermon";
@@ -2928,6 +3054,10 @@
       Object.keys(fcounts).forEach(k => {
         const el = document.getElementById(`fcnt-${k}`);
         if (el) el.textContent = fcounts[k];
+      });
+      Object.keys(fgcounts).forEach(k => {
+        const el = document.getElementById(`fgcnt-${k}`);
+        if (el) el.textContent = fgcounts[k];
       });
 
       // 영상실 세부 카테고리 카운트 계산
@@ -3270,6 +3400,9 @@
       const fSubbar = document.getElementById("feastsSubbar");
       if (fSubbar) fSubbar.classList.toggle("open", cat === "feasts");
 
+      const fgSubbar = document.getElementById("figuresSubbar");
+      if (fgSubbar) fgSubbar.classList.toggle("open", cat === "figures");
+
       const pSubbar = document.getElementById("praiseSubbar");
       if (pSubbar) pSubbar.classList.toggle("open", cat === "praise");
 
@@ -3313,6 +3446,14 @@
       currentFeastsCat = fcat;
       document.querySelectorAll("#feastsFilterPills .c-pill").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-fcat") === fcat);
+      });
+      renderGrid();
+    }
+
+    function selectFiguresCat(fgcat) {
+      currentFiguresCat = fgcat;
+      document.querySelectorAll("#figuresFilterPills .c-pill").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-fgcat") === fgcat);
       });
       renderGrid();
     }
@@ -3801,6 +3942,7 @@
           return false;
         }
         if (currentCategory === "wesley" && currentWesleyCat !== "all" && (it.wCat || it.wSubCat || "sermon") !== currentWesleyCat) return false;
+        if (currentCategory === "figures" && currentFiguresCat !== "all" && (it.figSubCat || "story35") !== currentFiguresCat) return false;
         if (!q) return true;
         const hay = [
           it.title, it.subtitle, it.scripture, it.era, it.person || "",
@@ -3887,10 +4029,15 @@
           ? `<img src="${it.cover}" alt="${it.title}" loading="lazy" />`
           : `<div style="width:100%;height:100%;display:grid;place-items:center;color:var(--gold-light);font-family:'Noto Serif KR',serif;font-size:18px;padding:20px;text-align:center;">${it.title}</div>`;
 
+        const portraitBadgeHtml = it.portrait
+          ? `<img src="${it.portrait}" alt="${it.person || ''}" style="position:absolute;bottom:8px;right:10px;width:54px;height:54px;border-radius:50%;background:radial-gradient(circle,#382B1C,#140E09);border:2px solid #E5C168;object-fit:contain;box-shadow:0 4px 12px rgba(0,0,0,0.65);z-index:2;" loading="lazy" />`
+          : "";
+
         return `
           <article class="doc-card" tabindex="0" role="button" data-doc-id="${it.id}" aria-label="${it.title} 문헌 열람" onclick="openReaderModal('${it.id}', this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openReaderModal('${it.id}', this);}">
             <div class="card-thumb">
               ${thumbHtml}
+              ${portraitBadgeHtml}
               <span class="card-cat-badge">${it.categoryLabel}</span>
               ${galCount > 1 ? `<span class="card-gallery-badge">🖼️ 도판 ${galCount}점 수록</span>` : ""}
             </div>
@@ -4337,10 +4484,20 @@
     });
 
     function checkHashAndOpenDoc() {
+      const params = new URLSearchParams(window.location.search);
+      const qDoc = params.get("doc");
+      if (qDoc) {
+        openReaderModal(qDoc);
+        return;
+      }
       const h = window.location.hash || "";
       if (h.startsWith("#doc=")) {
         const docId = decodeURIComponent(h.slice(5).trim());
         if (docId) openReaderModal(docId);
+      } else if (h === "#figures") {
+        navigateToHall("figures");
+      } else if (h === "#atlas") {
+        navigateToHall("atlas");
       }
     }
     window.addEventListener("hashchange", checkHashAndOpenDoc);

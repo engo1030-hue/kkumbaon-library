@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-deep: #0F0C09;
+      --bg-hall: #17130E;
+      --bg-card: #211B14;
+      --bg-parchment: #FBF7EE;
+      --gold-bright: #E5C168;
+      --gold-primary: #C89D46;
+      --gold-muted: #8C6D32;
+      --text-cream: #F4EFE6;
+      --text-warm: #D5CBB8;
+      --text-dim: #9A8E7A;
+      --crimson: #B84A39;
+      --emerald: #3B7A57;
+      --azure: #3B6E8C;
+      --purple: #7851A9;
+      --border-gold: rgba(200, 157, 70, 0.28);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #241C13 0%, var(--bg-deep) 70%);
+      color: var(--text-cream);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .serif { font-family: 'Noto Serif KR', Georgia, serif; }
+
+    /* 상단 헤더 */
+    .top-bar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(15, 12, 9, 0.94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-gold);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .brand-box { display: flex; align-items: center; gap: 12px; }
+    .brand-badge {
+      background: linear-gradient(135deg, var(--gold-primary), #9A7125);
+      color: #120E0A;
+      font-weight: 800;
+      font-size: 11.5px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.06em;
+    }
+    .brand-title { font-size: 18px; font-weight: 700; color: var(--gold-bright); }
+    .top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .btn-top {
+      background: rgba(200, 157, 70, 0.14);
+      border: 1px solid var(--border-gold);
+      color: var(--text-cream);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+    .btn-top:hover, .btn-top.gold {
+      background: linear-gradient(135deg, var(--gold-primary), #9E762B);
+      color: #120E0A;
+      border-color: var(--gold-bright);
+    }
+
+    /* 히어로 영역 */
+    .hero-wrap {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 28px 24px 16px;
+    }
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(36, 28, 19, 0.96), rgba(20, 15, 11, 0.98));
+      border: 1px solid var(--border-gold);
+      border-radius: 18px;
+      padding: 26px 30px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.55);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .hero-left { flex: 1; min-width: 300px; }
+    .hero-eyebrow {
+      color: var(--gold-bright);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .hero-title {
+      font-size: clamp(22px, 2.6vw, 31px);
+      color: #FFF;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 8px;
+    }
+    .hero-sub {
+      color: var(--text-warm);
+      font-size: 14.5px;
+      max-width: 820px;
+    }
+    .hero-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .stat-card {
+      background: rgba(15, 12, 9, 0.75);
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      padding: 12px 18px;
+      text-align: center;
+      min-width: 125px;
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      font-family: 'Noto Serif KR', serif;
+    }
+    .stat-label { font-size: 11.5px; color: var(--text-dim); margin-top: 2px; }
+
+    /* 5대 전시 축 탭 */
+    .axis-tabs {
+      max-width: 1440px;
+      margin: 12px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .axis-tab {
+      background: rgba(33, 27, 20, 0.85);
+      border: 1px solid var(--border-gold);
+      color: var(--text-warm);
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 13.8px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+    .axis-tab:hover { border-color: var(--gold-bright); color: #FFF; }
+    .axis-tab.active {
+      background: linear-gradient(135deg, #C89D46, #8F6922);
+      color: #120E0A;
+      border-color: var(--gold-bright);
+      box-shadow: 0 6px 20px rgba(200, 157, 70, 0.3);
+    }
+    .axis-badge {
+      background: rgba(0,0,0,0.25);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11.5px;
+    }
+    .axis-tab.active .axis-badge { background: rgba(18,14,10,0.2); color: #120E0A; }
+
+    /* 메인 컨테이너 */
+    .main-container {
+      max-width: 1440px;
+      margin: 18px auto 60px;
+      padding: 0 24px;
+    }
+    .view-panel { display: none; }
+    .view-panel.active { display: block; }
+
+    /* 섹션 카드 공통 */
+    .hall-panel {
+      background: rgba(23, 19, 14, 0.92);
+      border: 1px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 24px;
+      box-shadow: 0 14px 36px rgba(0,0,0,0.45);
+    }
+    .hall-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(200, 157, 70, 0.18);
+    }
+    .hall-panel-title { font-size: 20px; color: var(--gold-bright); font-weight: 700; }
+    .hall-panel-desc { font-size: 13.5px; color: var(--text-warm); margin-top: 4px; }
+
+    /* 1차 오픈 30인 시대별 구속사 계보 트리 */
+    .era-flow-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .era-row {
+      background: rgba(33, 27, 20, 0.72);
+      border: 1px solid rgba(200, 157, 70, 0.22);
+      border-radius: 14px;
+      padding: 16px 20px;
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    @media (max-width: 860px) {
+      .era-row { grid-template-columns: 1fr; }
+    }
+    .era-label-box {
+      border-right: 1px solid rgba(200, 157, 70, 0.2);
+      padding-right: 14px;
+    }
+    @media (max-width: 860px) {
+      .era-label-box { border-right: none; border-bottom: 1px solid rgba(200,157,70,0.2); padding-bottom: 10px; }
+    }
+    .era-step-tag {
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      letter-spacing: 0.08em;
+    }
+    .era-step-name {
+      font-size: 16.5px;
+      font-weight: 700;
+      color: #FFF;
+      margin-top: 2px;
+    }
+    .era-step-sub { font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+
+    .era-nodes {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .node-arrow {
+      color: var(--gold-primary);
+      font-size: 16px;
+      font-weight: 700;
+      opacity: 0.65;
+    }
+    .pillar-node {
+      background: linear-gradient(145deg, rgba(42, 34, 24, 0.95), rgba(24, 19, 13, 0.95));
+      border: 1.5px solid rgba(200, 157, 70, 0.42);
+      border-radius: 14px;
+      padding: 10px 14px 10px 10px;
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      cursor: pointer;
+      transition: all 0.22s;
+      min-width: 195px;
+      position: relative;
+    }
+    .pillar-node:hover {
+      transform: translateY(-3px);
+      border-color: var(--gold-bright);
+      box-shadow: 0 10px 24px rgba(200, 157, 70, 0.28);
+    }
+    .pillar-node.messiah {
+      border-color: #FFD778;
+      background: linear-gradient(145deg, rgba(82, 56, 20, 0.95), rgba(40, 26, 10, 0.98));
+      box-shadow: 0 0 22px rgba(229, 193, 104, 0.32);
+    }
+    .pillar-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% 35%, #3A2E1E, #140F0A);
+      border: 2px solid var(--gold-primary);
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .pillar-info { flex: 1; min-width: 0; }
+    .pillar-id { font-size: 10.5px; color: var(--gold-bright); font-weight: 700; }
+    .pillar-name { font-size: 15px; font-weight: 800; color: #FFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .pillar-role { font-size: 11.5px; color: var(--text-warm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* 30인 성화 카드 그리드 */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 18px;
+    }
+    .p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.24s;
+      display: flex;
+      flex-direction: column;
+    }
+    .p-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold-bright);
+      box-shadow: 0 14px 32px rgba(0,0,0,0.55);
+    }
+    .p-card-thumb {
+      position: relative;
+      height: 175px;
+      background: #120E0A;
+      overflow: hidden;
+    }
+    .p-card-thumb img.bg-scene {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .p-card:hover .p-card-thumb img.bg-scene { transform: scale(1.05); }
+    .p-card-portrait {
+      position: absolute;
+      bottom: 8px;
+      right: 10px;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #382B1C, #140E09);
+      border: 2px solid var(--gold-bright);
+      object-fit: contain;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+    }
+    .p-card-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(15, 12, 9, 0.85);
+      border: 1px solid var(--gold-primary);
+      color: var(--gold-bright);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+    .p-card-body { padding: 14px 16px; flex: 1; display: flex; flex-direction: column; }
+    .p-card-era { font-size: 11.5px; color: var(--gold-bright); font-weight: 600; }
+    .p-card-title { font-size: 17px; font-weight: 800; color: #FFF; margin: 2px 0 6px; }
+    .p-card-role { font-size: 12.8px; color: var(--text-warm); margin-bottom: 10px; flex: 1; }
+    .p-card-foot {
+      font-size: 11.5px;
+      color: var(--text-dim);
+      border-top: 1px solid rgba(200,157,70,0.15);
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* 남북 왕조 비교 그리드 */
+    .kingdom-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 980px) {
+      .kingdom-split { grid-template-columns: 1fr; }
+    }
+    .kingdom-col {
+      background: rgba(28, 22, 16, 0.85);
+      border: 1px solid var(--border-gold);
+      border-radius: 14px;
+      padding: 18px;
+    }
+    .kingdom-col-head {
+      padding-bottom: 12px;
+      margin-bottom: 14px;
+      border-bottom: 2px solid var(--gold-primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .king-list { display: flex; flex-direction: column; gap: 10px; }
+    .king-item {
+      background: rgba(18, 14, 10, 0.82);
+      border: 1px solid rgba(200, 157, 70, 0.22);
+      border-radius: 10px;
+      padding: 12px 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .king-item:hover {
+      border-color: var(--gold-bright);
+      background: rgba(40, 31, 21, 0.9);
+      transform: translateX(3px);
+    }
+    .king-num {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--gold-bright);
+      background: rgba(200,157,70,0.14);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    /* 전체 300인 검색 & 필터 */
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+      align-items: center;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 240px;
+      background: rgba(15, 12, 9, 0.9);
+      border: 1px solid var(--border-gold);
+      color: #FFF;
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .pill-btn {
+      background: rgba(33, 27, 20, 0.9);
+      border: 1px solid var(--border-gold);
+      color: var(--text-warm);
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .pill-btn.active {
+      background: var(--gold-primary);
+      color: #120E0A;
+      font-weight: 800;
+    }
+
+    .dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+    }
+    .dir-card {
+      background: rgba(28, 22, 16, 0.88);
+      border: 1px solid rgba(200, 157, 70, 0.24);
+      border-radius: 12px;
+      padding: 13px 15px;
+      cursor: pointer;
+      transition: all 0.18s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dir-card:hover {
+      border-color: var(--gold-bright);
+      background: rgba(45, 35, 24, 0.95);
+      transform: translateY(-2px);
+    }
+    .dir-avatar {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: #140F0A;
+      border: 1.5px solid var(--gold-primary);
+      object-fit: contain;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--gold-bright);
+    }
+
+    /* 우측 슬라이드 상세 열전 드로어 */
+    .drawer-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.72);
+      backdrop-filter: blur(5px);
+      z-index: 300;
+      display: none;
+      justify-content: flex-end;
+    }
+    .drawer-backdrop.open { display: flex; }
+    .drawer-panel {
+      width: min(920px, 96vw);
+      height: 100vh;
+      background: #16120D;
+      border-left: 1px solid var(--gold-primary);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: -20px 0 60px rgba(0,0,0,0.8);
+    }
+    .drawer-header {
+      padding: 18px 24px;
+      background: linear-gradient(135deg, #251D14, #17120C);
+      border-bottom: 1px solid var(--border-gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .drawer-hero {
+      padding: 20px 24px;
+      background: rgba(28, 22, 15, 0.95);
+      border-bottom: 1px solid rgba(200,157,70,0.2);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .drawer-portrait {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #3E3020, #120E09);
+      border: 2.5px solid var(--gold-bright);
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .drawer-tabs {
+      display: flex;
+      background: #120E0A;
+      border-bottom: 1px solid var(--border-gold);
+      padding: 0 24px;
+      gap: 6px;
+      overflow-x: auto;
+    }
+    .d-tab {
+      background: transparent;
+      border: none;
+      border-bottom: 3px solid transparent;
+      color: var(--text-dim);
+      padding: 13px 16px;
+      font-size: 13.8px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .d-tab.active {
+      color: var(--gold-bright);
+      border-bottom-color: var(--gold-bright);
+    }
+    .drawer-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 24px;
+    }
+
+    /* 마크다운 렌더링 스타일 */
+    .md-content {
+      color: var(--text-cream);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+    .md-content h1, .md-content h2, .md-content h3, .md-content h4 {
+      font-family: 'Noto Serif KR', serif;
+      color: var(--gold-bright);
+      margin: 22px 0 10px;
+      line-height: 1.4;
+    }
+    .md-content h2 { font-size: 20px; border-bottom: 1px solid rgba(200,157,70,0.25); padding-bottom: 6px; }
+    .md-content h3 { font-size: 17.5px; color: #F5D78E; }
+    .md-content h4 { font-size: 15.5px; color: #E8C87A; }
+    .md-content p { margin-bottom: 12px; }
+    .md-content ul, .md-content ol { margin: 8px 0 14px 22px; }
+    .md-content li { margin-bottom: 6px; }
+    .md-content strong { color: #FFE39E; }
+    .md-content blockquote {
+      background: rgba(200, 157, 70, 0.1);
+      border-left: 3px solid var(--gold-bright);
+      padding: 12px 16px;
+      margin: 12px 0;
+      border-radius: 0 8px 8px 0;
+      color: #F4E8CE;
+    }
+    .md-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 20px;
+      font-size: 13.5px;
+      background: rgba(15, 12, 9, 0.65);
+    }
+    .md-content th, .md-content td {
+      border: 1px solid rgba(200, 157, 70, 0.25);
+      padding: 9px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .md-content th {
+      background: rgba(200, 157, 70, 0.18);
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    /* 도판 갤러리 */
+    .scene-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .scene-box {
+      background: #1E1812;
+      border: 1px solid var(--border-gold);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .scene-box img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      cursor: zoom-in;
+      display: block;
+    }
+    .scene-cap {
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: var(--text-cream);
+      font-weight: 600;
+    }
+
+    /* 라이트박스 */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 24px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 94vw;
+      max-height: 82vh;
+      border: 2px solid var(--gold-primary);
+      border-radius: 10px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.9);
+    }
+    .lightbox-cap {
+      margin-top: 14px;
+      color: var(--gold-bright);
+      font-size: 16px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 네비게이션 -->
+  <header class="top-bar">
+    <div class="brand-box">
+      <span class="brand-badge">HALL 2 · BIBLICAL FIGURES ENCYCLOPEDIA</span>
+      <span class="brand-title serif">👑 꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망</span>
+    </div>
+    <div class="top-actions">
+      <button class="btn-top" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약과 메시아 계보 대형 차트')">🗺️ 언약의 계보 대형 차트 보기</button>
+      <a href="index.html#figures" class="btn-top gold">🏛️ 꿈디도 본관 서재로 돌아가기</a>
+    </div>
+  </header>
+
+  <!-- 히어로 배너 -->
+  <section class="hero-wrap">
+    <div class="hero-banner">
+      <div class="hero-left">
+        <div class="hero-eyebrow">KKUMBAON BIBLICAL BIOGRAPHY & GENEALOGY ARCHIVE</div>
+        <h1 class="hero-title serif">성경 인물대백과 — 아담부터 바울까지, 구속사의 큰 족보와 열전</h1>
+        <p class="hero-sub">
+          시대별 구속사 기둥 30인(Tier-1 성화 150점 완비)과 남북 왕조 40인·구약 선지자 및 포로귀환 지도자 50인(총 120인 정밀 열전), 그리고 전체 300인 마스터 관계망을 한눈에 탐색합니다. 인물을 클릭하면 원어·고고학 고증 열전과 성화 도판이 열립니다.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card">
+          <div class="stat-num" id="stTotalFigures">300인</div>
+          <div class="stat-label">마스터 분류 인물</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stDossiers">120인</div>
+          <div class="stat-label">1·2차 완결 열전</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num" id="stTier1">30인 · 150점</div>
+          <div class="stat-label">Tier-1 성화 패키지</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5대 전시 축 탭 -->
+  <nav class="axis-tabs">
+    <button class="axis-tab active" data-view="view-pillars" onclick="switchView('view-pillars')">
+      🌿 1차 오픈 · 언약의 계보 & 구속사 기둥 30인 <span class="axis-badge">성화 150점 완비</span>
+    </button>
+    <button class="axis-tab" data-view="view-kingdoms" onclick="switchView('view-kingdoms')">
+      👑 2차 오픈 A · 남유다 20왕 vs 북이스라엘 20왕 왕조관 <span class="axis-badge">P031~P070 완결</span>
+    </button>
+    <button class="axis-tab" data-view="view-prophets" onclick="switchView('view-prophets')">
+      🔥 2차 오픈 B · 구약 선지자관 & 포로귀환 50인 <span class="axis-badge">P071~P120 완결</span>
+    </button>
+    <button class="axis-tab" data-view="view-paul" onclick="switchView('view-paul')">
+      ⛵ 바울의 동역자·서신 관계망 & 신약 인물 <span class="axis-badge">관계도</span>
+    </button>
+    <button class="axis-tab" data-view="view-all300" onclick="switchView('view-all300')">
+      📜 전체 300인 마스터 대백과 색인 <span class="axis-badge">P001~P300 검색</span>
+    </button>
+  </nav>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main class="main-container">
+
+    <!-- [VIEW 1] 언약의 계보 & 구속사 기둥 30인 -->
+    <section class="view-panel active" id="view-pillars">
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">🌿 구속사 중심 계보도 — 창조·족장부터 예수 그리스도와 초대교회까지 (핵심 30인)</h2>
+            <p class="hall-panel-desc">각 인물의 원형 초상 노드를 클릭하시면 5종 성화 도판(인물 마스터 · 투명 초상 · 핵심 성경 장면 3컷)과 제간사·워크간사의 정밀 고증 열전이 열립니다.</p>
+          </div>
+          <button class="btn-top gold" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약의 계보 대형 차트')">🖼️ 언약의 계보 대형 원판 보기</button>
+        </div>
+        <div class="era-flow-wrap" id="lineageTreeContainer"></div>
+      </div>
+
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">🎨 1차 오픈 구속사 기둥 30인 — Tier-1 성화 도판 & 열전 전시관 (P001~P030)</h2>
+            <p class="hall-panel-desc">인물당 5장씩 총 150점의 성경 고증 성화와 원어·신학·고고학 열전이 수록되어 있습니다.</p>
+          </div>
+        </div>
+        <div class="pillars-grid" id="pillarsCardGrid"></div>
+      </div>
+    </section>
+
+    <!-- [VIEW 2] 남유다 20왕 vs 북이스라엘 20왕 왕조관 -->
+    <section class="view-panel" id="view-kingdoms">
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">👑 남유다 단일 다윗 왕조 (20인) vs 북이스라엘 9개 왕조 (20인) 연대기 대조관</h2>
+            <p class="hall-panel-desc">다윗의 등불 언약 아래 345년간 단일 혈통을 이은 남유다 20왕(`P031`~`P050`)과, 금송아지 우상과 9번의 왕조 교체로 209년 만에 멸망한 북이스라엘 20인(`P051`~`P070`)의 전수 열전입니다.</p>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <button class="btn-top gold" onclick="openOverviewModal('judah')">📊 남유다 20왕 마스터 대조표 열기</button>
+            <button class="btn-top gold" onclick="openOverviewModal('israel')">📊 북이스라엘 20왕 마스터 대조표 열기</button>
+          </div>
+        </div>
+        <div class="kingdom-split">
+          <div class="kingdom-col">
+            <div class="kingdom-col-head">
+              <div>
+                <span style="font-size:11.5px; color:var(--gold-bright); font-weight:700;">SOUTHERN KINGDOM OF JUDAH (BC 931~586)</span>
+                <h3 class="serif" style="font-size:18px; color:#FFF;">🦁 남유다 다윗 왕조 20인 (P031~P050)</h3>
+              </div>
+              <span class="king-num">단일 다윗 혈통</span>
+            </div>
+            <div class="king-list" id="judahKingList"></div>
+          </div>
+
+          <div class="kingdom-col">
+            <div class="kingdom-col-head">
+              <div>
+                <span style="font-size:11.5px; color:#E07A5F; font-weight:700;">NORTHERN KINGDOM OF ISRAEL (BC 931~722)</span>
+                <h3 class="serif" style="font-size:18px; color:#FFF;">🐂 북이스라엘 9개 왕조 20인 (P051~P070)</h3>
+              </div>
+              <span class="king-num" style="color:#F29E88;">9개 왕조 교체</span>
+            </div>
+            <div class="king-list" id="israelKingList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- [VIEW 3] 구약 선지자관 & 포로귀환 50인 -->
+    <section class="view-panel" id="view-prophets">
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">🔥 구약 선지자관 및 성전 개혁·포로귀환 지도자 50인 전수관 (P071~P120)</h2>
+            <p class="hall-panel-desc">대·소선지자 15인 전수(`P071`~`P085`), 역사서 활동 선지자 및 주변 신앙 인물 21인(`P086`~`P106`), 성전 개혁·포로귀환·페르시아기 지도자 14인(`P107`~`P120`)의 상세 열전입니다.</p>
+          </div>
+        </div>
+        <div id="prophetsSectionContainer"></div>
+      </div>
+    </section>
+
+    <!-- [VIEW 4] 바울의 동역자와 서신 관계망 -->
+    <section class="view-panel" id="view-paul">
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">⛵ 사도 바울(P030)의 선교 동역자·서신 수취 교회 및 신약 인물 관계망</h2>
+            <p class="hall-panel-desc">1~3차 선교여행과 로마 옥중 서신에 등장하는 동역자·제자·부부 사역자·로마 관료들을 바울(`P030`) 중심으로 연결한 입체 관계도입니다.</p>
+          </div>
+        </div>
+        <div id="paulNetworkContainer"></div>
+      </div>
+    </section>
+
+    <!-- [VIEW 5] 전체 300인 마스터 대백과 색인 -->
+    <section class="view-panel" id="view-all300">
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">📜 꿈디도 성경 인물대백과 전체 300인 마스터 색인 (P001~P300)</h2>
+            <p class="hall-panel-desc">이름, 원어 표기, 활동 시대, 직분, 연결 장소 및 성경 구절로 300인의 성경 인물을 즉시 검색하고 열람할 수 있습니다.</p>
+          </div>
+        </div>
+        <div class="filter-bar">
+          <input type="text" id="figSearchInput" class="search-input" placeholder="🔍 인물 이름(예: 다윗, 아브라함, 히스기야, 엘리사, 브리스길라), 시대, 장소, 성구 검색..." oninput="renderDirectory300()" />
+          <button class="pill-btn active" data-pfilter="all" onclick="setDirFilter('all', this)">전체 (300)</button>
+          <button class="pill-btn" data-pfilter="tier1" onclick="setDirFilter('tier1', this)">🌟 1차 기둥·성화완비 (30)</button>
+          <button class="pill-btn" data-pfilter="dossier" onclick="setDirFilter('dossier', this)">📖 1·2차 열전완결 (120)</button>
+          <button class="pill-btn" data-pfilter="phase3" onclick="setDirFilter('phase3', this)">⛵ 3차 신약·바울망 (80)</button>
+          <button class="pill-btn" data-pfilter="phase4" onclick="setDirFilter('phase4', this)">🏺 4차 구약확장 (100)</button>
+        </div>
+        <div class="dir-grid" id="dir300Grid"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 우측 슬라이드 상세 열전 드로어 -->
+  <div class="drawer-backdrop" id="figureDrawer" onclick="if(event.target===this) closeFigureDrawer()">
+    <div class="drawer-panel">
+      <div class="drawer-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <span class="brand-badge" id="drwBadge">P004 · TIER 1</span>
+          <span style="font-size:13px; color:var(--gold-bright); font-weight:700;" id="drwPhase">1차 오픈 · 구속사 기둥 30인</span>
+        </div>
+        <button class="btn-top" onclick="closeFigureDrawer()">✕ 닫기 (ESC)</button>
+      </div>
+
+      <div class="drawer-hero">
+        <img id="drwPortrait" class="drawer-portrait" src="" alt="" />
+        <div style="flex:1; min-width:240px;">
+          <div style="font-size:12.5px; color:var(--gold-bright); font-weight:700;" id="drwEra">족장시대</div>
+          <h2 class="serif" style="font-size:24px; color:#FFF; margin:2px 0 4px;" id="drwName">아브라함</h2>
+          <div style="font-size:13.5px; color:var(--text-warm); margin-bottom:6px;" id="drwRole">믿음의 조상</div>
+          <div style="font-size:12px; color:var(--text-dim);" id="drwScriptures">근거 성구: 창 11:26-25:10</div>
+        </div>
+      </div>
+
+      <div class="drawer-tabs">
+        <button class="d-tab active" data-dtab="tab-dossier" onclick="switchDrawerTab('tab-dossier')">📜 성경 열전 & 원어·고고학 자료</button>
+        <button class="d-tab" data-dtab="tab-plates" onclick="switchDrawerTab('tab-plates')">🎨 성화 도판 & 시각 고증 기록</button>
+        <button class="d-tab" data-dtab="tab-links" onclick="switchDrawerTab('tab-links')">🔗 연결 인물 · 장소 · 꿈바온 설교/영상</button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="d-tab-pane" id="tab-dossier"></div>
+        <div class="d-tab-pane" id="tab-plates" style="display:none;"></div>
+        <div class="d-tab-pane" id="tab-links" style="display:none;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 라이트박스 -->
+  <div class="lightbox" id="imgLightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="" />
+    <div class="lightbox-cap serif" id="lightboxCap"></div>
+  </div>
+
+  <script src="figures_encyclopedia_data.js?v=20261102_full"></script>
+  <script>
+    const DATA = window.KKUMDIDO_FIGURES_DATA || { figures: [] };
+    const FIGS = DATA.figures || [];
+    const FIG_MAP = {};
+    const NAME_TO_PID = {};
+    FIGS.forEach(f => {
+      FIG_MAP[f.id] = f;
+      const clean = f.name.replace(/\s*\([^)]*\)/g, "").trim();
+      if (!NAME_TO_PID[clean]) NAME_TO_PID[clean] = f.id;
+      NAME_TO_PID[f.name] = f.id;
+    });
+
+    let currentDirFilter = "all";
+
+    function mdToHtml(md) {
+      if (!md) return "<p style='color:var(--text-dim);'>상세 열전 원고를 준비 중입니다.</p>";
+      const lines = md.split("\n");
+      let html = "";
+      let inTable = false;
+      let tableRows = [];
+      let inList = false;
+
+      function flushTable() {
+        if (!inTable || tableRows.length === 0) return;
+        html += "<table>";
+        tableRows.forEach((r, idx) => {
+          const cells = r.split("|").slice(1, -1).map(c => formatInline(c.trim()));
+          if (idx === 0) {
+            html += "<thead><tr>" + cells.map(c => `<th>${c}</th>`).join("") + "</tr></thead><tbody>";
+          } else if ( idx === 1 && r.replace(/[\|\-\:\s]/g, "") === "" ) {
+            // separator row
+          } else {
+            html += "<tr>" + cells.map(c => `<td>${c}</td>`).join("") + "</tr>";
+          }
+        });
+        html += "</tbody></table>";
+        inTable = false;
+        tableRows = [];
+      }
+
+      function flushList() {
+        if (inList) { html += "</ul>"; inList = false; }
+      }
+
+      function formatInline(str) {
+        return str
+          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+          .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+          .replace(/`([^`]+)`/g, "<code style='background:rgba(200,157,70,0.18);padding:1px 5px;border-radius:4px;color:#FFE39E;'>$1</code>");
+      }
+
+      for (let raw of lines) {
+        const line = raw.trim();
+        if (line.startsWith("|") && line.endsWith("|")) {
+          flushList();
+          inTable = true;
+          tableRows.push(line);
+          continue;
+        } else {
+          flushTable();
+        }
+
+        if (!line || line === "---") {
+          flushList();
+          continue;
+        }
+        if (line.startsWith("#### ")) {
+          flushList();
+          html += `<h4>${formatInline(line.slice(5))}</h4>`;
+        } else if (line.startsWith("### ")) {
+          flushList();
+          html += `<h3>${formatInline(line.slice(4))}</h3>`;
+        } else if (line.startsWith("## ")) {
+          flushList();
+          html += `<h2>${formatInline(line.slice(3))}</h2>`;
+        } else if (line.startsWith("# ")) {
+          flushList();
+          html += `<h2>${formatInline(line.slice(2))}</h2>`;
+        } else if (line.startsWith("> ")) {
+          flushList();
+          html += `<blockquote>${formatInline(line.slice(2))}</blockquote>`;
+        } else if (line.startsWith("- ") || line.startsWith("* ") || line.startsWith("• ")) {
+          if (!inList) { html += "<ul>"; inList = true; }
+          html += `<li>${formatInline(line.slice(2))}</li>`;
+        } else {
+          flushList();
+          html += `<p>${formatInline(line)}</p>`;
+        }
+      }
+      flushTable();
+      flushList();
+      return `<div class="md-content">${html}</div>`;
+    }
+
+    function initEncyclopedia() {
+      // 1. 구속사 계보 7단계 트리 렌더링
+      const ERA_STEPS = [
+        { tag: "ERA 01 · CREATION & FLOOD", name: "창조와 홍수 심판 시대", sub: "창세기 1~11장 · 인류의 시조와 방주 언약", pids: ["P001", "P002", "P003"] },
+        { tag: "ERA 02 · PATRIARCHS", name: "족장 시대 (아브라함 4대 언약 계보)", sub: "창세기 12~50장 · 믿음의 조상과 열두 지파의 기원", pids: ["P004", "P005", "P006", "P007", "P008"] },
+        { tag: "ERA 03 · EXODUS & WILDERNESS", name: "출애굽과 광야 시대", sub: "출애굽기~신명기 · 유월절 구속과 시내산 언약·성막", pids: ["P009", "P010", "P011"] },
+        { tag: "ERA 04 · CONQUEST & JUDGES", name: "가나안 정복과 사사·구속자 시대", sub: "여호수아·사사기·룻기 · 약속의 땅 분배와 다윗 계보의 씨앗", pids: ["P012", "P013", "P014", "P015", "P016", "P017"] },
+        { tag: "ERA 05 · UNITED MONARCHY", name: "통일왕국과 다윗 언약 시대", sub: "사무엘상하·열왕기상 1~11장 · 기름부음 받은 왕과 성전 건축", pids: ["P018", "P019", "P020", "P021", "P022"] },
+        { tag: "ERA 06 · PROPHETS & EXILE", name: "분열왕국 선지자와 바벨론 포로기", sub: "열왕기·이사야·다니엘 · 메시아 예언과 하나님 나라의 주권", pids: ["P023", "P024", "P025"] },
+        { tag: "ERA 07 · CHRIST & EARLY CHURCH", name: "예수 그리스도와 사도행전 초대교회", sub: "4복음서·사도행전·서신서 · 구속사의 완성자 예수 그리스도와 땅끝 선교", pids: ["P027", "P028", "P026", "P029", "P030"] }
+      ];
+
+      const treeEl = document.getElementById("lineageTreeContainer");
+      treeEl.innerHTML = ERA_STEPS.map(step => {
+        const nodesHtml = step.pids.map((pid, idx) => {
+          const f = FIG_MAP[pid];
+          if (!f) return "";
+          const isMessiah = pid === "P026";
+          const arrow = idx > 0 ? `<span class="node-arrow">→</span>` : "";
+          return `${arrow}
+            <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
+              <img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />
+              <div class="pillar-info">
+                <div class="pillar-id">${f.id} · ${isMessiah ? '🌟 구속사의 중심' : 'Tier-1 기둥'}</div>
+                <div class="pillar-name serif">${f.name}</div>
+                <div class="pillar-role">${f.role.split('/')[0].trim()}</div>
+              </div>
+            </div>`;
+        }).join("");
+        return `
+          <div class="era-row">
+            <div class="era-label-box">
+              <div class="era-step-tag">${step.tag}</div>
+              <div class="era-step-name serif">${step.name}</div>
+              <div class="era-step-sub">${step.sub}</div>
+            </div>
+            <div class="era-nodes">${nodesHtml}</div>
+          </div>`;
+      }).join("");
+
+      // 2. 1차 오픈 30인 성화 카드 그리드
+      const pillars30 = FIGS.filter(f => f.num >= 1 && f.num <= 30);
+      const pGrid = document.getElementById("pillarsCardGrid");
+      pGrid.innerHTML = pillars30.map(f => {
+        const bgImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : f.masterImg;
+        return `
+          <article class="p-card" onclick="openFigure('${f.id}')">
+            <div class="p-card-thumb">
+              <img class="bg-scene" src="${bgImg}" alt="${f.name}" loading="lazy" />
+              <img class="p-card-portrait" src="${f.portrait}" alt="${f.name}" loading="lazy" />
+              <span class="p-card-badge">${f.id} · 성화 5종 완비</span>
+            </div>
+            <div class="p-card-body">
+              <div class="p-card-era">${f.era}</div>
+              <h3 class="p-card-title serif">${f.name} <span style="font-size:12.5px;font-weight:400;color:var(--text-dim);">${f.origName}</span></h3>
+              <p class="p-card-role">${f.role}</p>
+              <div class="p-card-foot">
+                <span>📖 ${f.scriptures.split(';')[0]}</span>
+                <span style="color:var(--gold-bright);font-weight:700;">열전·성화 보기 →</span>
+              </div>
+            </div>
+          </article>`;
+      }).join("");
+
+      // 3. 남유다 20왕 vs 북이스라엘 20왕 렌더링
+      const judah20 = FIGS.filter(f => f.num >= 31 && f.num <= 50);
+      const israel20 = FIGS.filter(f => f.num >= 51 && f.num <= 70);
+      document.getElementById("judahKingList").innerHTML = judah20.map((f, i) => `
+        <div class="king-item" onclick="openFigure('${f.id}')">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+              <span class="king-num">제${i+1}대 · ${f.id}</span>
+              <strong class="serif" style="font-size:16px;color:#FFF;">${f.name}</strong>
+              <span style="font-size:12px;color:var(--text-dim);">${f.origName}</span>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-warm);">${f.role} · <span style="color:var(--gold-bright);">${f.era}</span></div>
+          </div>
+          <span style="font-size:12px;color:var(--gold-bright);font-weight:700;white-space:nowrap;">열전 보기 →</span>
+        </div>
+      `).join("");
+
+      document.getElementById("israelKingList").innerHTML = israel20.map((f, i) => `
+        <div class="king-item" onclick="openFigure('${f.id}')">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;">
+              <span class="king-num" style="color:#F29E88;">${f.id}</span>
+              <strong class="serif" style="font-size:16px;color:#FFF;">${f.name}</strong>
+              <span style="font-size:12px;color:var(--text-dim);">${f.origName}</span>
+            </div>
+            <div style="font-size:12.5px;color:var(--text-warm);">${f.role} · <span style="color:#F29E88;">${f.era}</span></div>
+          </div>
+          <span style="font-size:12px;color:var(--gold-bright);font-weight:700;white-space:nowrap;">열전 보기 →</span>
+        </div>
+      `).join("");
+
+      // 4. 구약 선지자 및 포로귀환 50인 (P071~P120)
+      const groups = [
+        { title: "🔥 Part 1. 구약 대·소선지자 15인 전수 (P071 엘리사 ~ P085 말라기)", sub: "이사야(P024)·다니엘(P025)·엘리야(P023)와 함께 구약 선지자관 전체를 완성하는 15인의 예언자", list: FIGS.filter(f => f.num >= 71 && f.num <= 85) },
+        { title: "📜 Part 2. 역사서 활동 선지자 및 주변 신앙 인물 21인 (P086 나단 ~ P106 나봇)", sub: "다윗의 양심 나단·갓부터 사르밧 과부·수넴 여인·레갑 족속·바룩·에벳멜렉까지", list: FIGS.filter(f => f.num >= 86 && f.num <= 106) },
+        { title: "🏛️ Part 3. 성전 개혁·포로귀환·페르시아기 지도자 14인 (P107 여호야다 ~ P120 사드락·메삭·아벳느고)", sub: "대제사장 여호야다·힐기야, 스룹바벨·에스라·느헤미야, 에스더·모르드개, 풀무불의 세 친구까지", list: FIGS.filter(f => f.num >= 107 && f.num <= 120) }
+      ];
+      document.getElementById("prophetsSectionContainer").innerHTML = groups.map(g => `
+        <div style="margin-bottom:26px;">
+          <h3 class="serif" style="font-size:18px;color:var(--gold-bright);margin-bottom:4px;">${g.title}</h3>
+          <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px;">${g.sub}</p>
+          <div class="dir-grid">
+            ${g.list.map(f => renderDirCard(f)).join("")}
+          </div>
+        </div>
+      `).join("");
+
+      // 5. 바울 동역자·서신 관계망 및 신약 인물 (P121~P200 + P026~P030)
+      const paulFigures = FIGS.filter(f => f.id === "P030" || f.axis.includes("바울") || (f.num >= 161 && f.num <= 200));
+      const ntFigures = FIGS.filter(f => (f.num >= 26 && f.num <= 29) || (f.num >= 121 && f.num <= 160));
+      document.getElementById("paulNetworkContainer").innerHTML = `
+        <div style="margin-bottom:26px;">
+          <h3 class="serif" style="font-size:18px;color:var(--gold-bright);margin-bottom:6px;">⛵ 사도 바울(P030) 중심 선교 동역자 · 서신 수취인 · 로마 재판 인물망 (${paulFigures.length}인)</h3>
+          <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;">바나바·실라·디모데·누가·브리스길라와 아굴라·빌레몬·오네시모부터 벨릭스·베스도·아그립바 2세까지 바울 사역의 모든 인물 연결망입니다.</p>
+          <div class="dir-grid">${paulFigures.map(f => renderDirCard(f)).join("")}</div>
+        </div>
+        <div>
+          <h3 class="serif" style="font-size:18px;color:var(--gold-bright);margin-bottom:6px;">🕊️ 예수 그리스도와 12제자 · 복음서 · 사도행전 초대교회 인물망 (${ntFigures.length}인)</h3>
+          <div class="dir-grid">${ntFigures.map(f => renderDirCard(f)).join("")}</div>
+        </div>
+      `;
+
+      // 6. 전체 300인 디렉토리
+      renderDirectory300();
+    }
+
+    function renderDirCard(f) {
+      const avatarHtml = f.portrait
+        ? `<img class="dir-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />`
+        : `<div class="dir-avatar">${f.id}</div>`;
+      const statusBadge = f.hasTier1Images
+        ? `<span style="color:#7CE38B;font-size:11px;font-weight:700;">● 성화5종+열전</span>`
+        : (f.hasDossier ? `<span style="color:var(--gold-bright);font-size:11px;font-weight:700;">● 열전완결</span>` : `<span style="color:var(--text-dim);font-size:11px;">마스터색인</span>`);
+      return `
+        <div class="dir-card" onclick="openFigure('${f.id}')">
+          ${avatarHtml}
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:4px;">
+              <span style="font-size:11px;color:var(--gold-primary);font-weight:700;">${f.id} · ${f.era}</span>
+              ${statusBadge}
+            </div>
+            <div class="serif" style="font-size:15.5px;font-weight:800;color:#FFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.name}</div>
+            <div style="font-size:12px;color:var(--text-warm);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.role}</div>
+          </div>
+        </div>`;
+    }
+
+    function setDirFilter(filter, btn) {
+      currentDirFilter = filter;
+      document.querySelectorAll(".pill-btn").forEach(b => b.classList.remove("active"));
+      if (btn) btn.classList.add("active");
+      renderDirectory300();
+    }
+
+    function renderDirectory300() {
+      const q = (document.getElementById("figSearchInput").value || "").trim().toLowerCase();
+      const filtered = FIGS.filter(f => {
+        if (currentDirFilter === "tier1" && !f.hasTier1Images) return false;
+        if (currentDirFilter === "dossier" && !f.hasDossier) return false;
+        if (currentDirFilter === "phase3" && !(f.num >= 121 && f.num <= 200)) return false;
+        if (currentDirFilter === "phase4" && !(f.num >= 201 && f.num <= 300)) return false;
+        if (!q) return true;
+        const hay = `${f.id} ${f.name} ${f.origName} ${f.era} ${f.role} ${f.scriptures} ${(f.relatedFigures||[]).join(" ")} ${(f.relatedPlaces||[]).join(" ")}`.toLowerCase();
+        return hay.includes(q);
+      });
+      document.getElementById("dir300Grid").innerHTML = filtered.map(f => renderDirCard(f)).join("");
+    }
+
+    function switchView(viewId) {
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".axis-tab").forEach(t => t.classList.remove("active"));
+      const target = document.getElementById(viewId);
+      if (target) target.classList.add("active");
+      const btn = document.querySelector(`.axis-tab[data-view="${viewId}"]`);
+      if (btn) btn.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function openOverviewModal(kind) {
+      const title = kind === "judah" ? "남유다 왕조 20인 통치 연대·신학 평가·동시대 선지자 마스터 대조표" : "북이스라엘 왕조 20인 (9개 왕조) 통치 연대·반역사·동시대 선지자 마스터 대조표";
+      const md = kind === "judah" ? DATA.judahOverviewMd : DATA.israelOverviewMd;
+      document.getElementById("drwBadge").textContent = kind === "judah" ? "P031~P050 · JUDAH" : "P051~P070 · ISRAEL";
+      document.getElementById("drwPhase").textContent = "2차 오픈 · 왕조관 마스터 대조표";
+      document.getElementById("drwPortrait").style.display = "none";
+      document.getElementById("drwEra").textContent = kind === "judah" ? "남유다 다윗 단일 왕조 (BC 931~586)" : "북이스라엘 9개 왕조 교체사 (BC 931~722)";
+      document.getElementById("drwName").textContent = title;
+      document.getElementById("drwRole").textContent = "열왕기상하 · 역대하 병행 본문 및 당대 활동 선지자 총괄 대조";
+      document.getElementById("drwScriptures").textContent = "";
+      document.getElementById("tab-dossier").innerHTML = mdToHtml(md);
+      document.getElementById("tab-plates").innerHTML = "<p style='color:var(--text-dim);'>개별 왕을 클릭하시면 인물별 시각 고증 지침을 보실 수 있습니다.</p>";
+      document.getElementById("tab-links").innerHTML = "";
+      switchDrawerTab("tab-dossier");
+      document.getElementById("figureDrawer").classList.add("open");
+    }
+
+    function openFigure(pid) {
+      const f = FIG_MAP[pid];
+      if (!f) return;
+
+      document.getElementById("drwBadge").textContent = `${f.id} · ${f.tier}`;
+      document.getElementById("drwPhase").textContent = `${f.phase} · ${f.axis}`;
+      const portEl = document.getElementById("drwPortrait");
+      if (f.portrait) {
+        portEl.src = f.portrait;
+        portEl.style.display = "block";
+      } else {
+        portEl.style.display = "none";
+      }
+      document.getElementById("drwEra").textContent = `${f.era} | ${f.origName}`;
+      document.getElementById("drwName").textContent = f.name;
+      document.getElementById("drwRole").textContent = f.role;
+      document.getElementById("drwScriptures").textContent = `📖 대표 근거 성구: ${f.scriptures}`;
+
+      // 탭 1: 열전 마크다운
+      let dossierHtml = "";
+      if (f.hasDossier && f.dossierMd) {
+        dossierHtml = mdToHtml(f.dossierMd);
+      } else {
+        dossierHtml = `
+          <div class="md-content">
+            <h2>[${f.id}] ${f.name} (${f.origName}) 마스터 프로필</h2>
+            <table>
+              <thead><tr><th>항목</th><th>내용</th></tr></thead>
+              <tbody>
+                <tr><td><strong>인물 고유 ID / 오픈 차수</strong></td><td>${f.id} · ${f.phase} (${f.tier})</td></tr>
+                <tr><td><strong>소속 전시 축</strong></td><td>${f.axis}</td></tr>
+                <tr><td><strong>활동 시대</strong></td><td>${f.era}</td></tr>
+                <tr><td><strong>직분 및 핵심 역할</strong></td><td>${f.role}</td></tr>
+                <tr><td><strong>주요 연결 인물</strong></td><td>${(f.relatedFigures||[]).join(", ")}</td></tr>
+                <tr><td><strong>주요 연결 장소</strong></td><td>${(f.relatedPlaces||[]).join(", ")}</td></tr>
+                <tr><td><strong>대표 근거 성구</strong></td><td>${f.scriptures}</td></tr>
+              </tbody>
+            </table>
+            <blockquote>본 인물은 꿈디도 인물대백과 300인 마스터 설계도에 등재된 인물로, 아래 [연결 인물 · 장소 · 꿈바온 설교/영상] 탭에서 연관된 인물과 기존 도서관 문헌을 바로 탐색하실 수 있습니다.</blockquote>
+          </div>`;
+      }
+      document.getElementById("tab-dossier").innerHTML = dossierHtml;
+
+      // 탭 2: 성화 도판 & 제작기록
+      let platesHtml = "";
+      if (f.hasTier1Images && f.scenes && f.scenes.length > 0) {
+        platesHtml += `
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:12px;">🖼️ ${f.name}(${f.id}) Tier-1 성화 도판 패키지 (총 5종)</h3>
+          <div class="scene-gallery">
+            ${f.scenes.map(sc => `
+              <div class="scene-box">
+                <img src="${sc.img}" alt="${sc.title}" onclick="openLightbox('${sc.img}', '${f.name} — ${sc.title}')" />
+                <div class="scene-cap">
+                  <div style="font-size:11px;color:var(--gold-bright);">${sc.code}</div>
+                  <div>${sc.title}</div>
+                </div>
+              </div>
+            `).join("")}
+          </div>`;
+        if (f.productionNoteMd) {
+          platesHtml += `<hr style="border:none;border-top:1px solid rgba(200,157,70,0.25);margin:20px 0;" />` + mdToHtml(f.productionNoteMd);
+        }
+      } else {
+        platesHtml = `
+          <div class="md-content">
+            <h3>🎨 시각 고증 및 도판 안내</h3>
+            <p>본 인물의 시대 복식·소품 및 대표 장면 시각 고증 지침은 <strong>[📜 성경 열전 & 원어·고고학 자료]</strong> 탭 하단에 수록되어 있습니다.</p>
+          </div>`;
+      }
+      document.getElementById("tab-plates").innerHTML = platesHtml;
+
+      // 탭 3: 연결 인물 · 장소 · 꿈바온 문헌/영상
+      const relFigBtns = (f.relatedFigures || []).map(rf => {
+        const cleanRf = rf.replace(/\s*\([^)]*\)/g, "").trim();
+        const targetPid = NAME_TO_PID[rf] || NAME_TO_PID[cleanRf];
+        if (targetPid) {
+          return `<button class="btn-top gold" onclick="openFigure('${targetPid}')">👑 ${rf} (${targetPid}) 열전으로 이동 →</button>`;
+        }
+        return `<span class="btn-top" style="cursor:default;">👤 ${rf}</span>`;
+      }).join(" ");
+
+      const relPlacesHtml = (f.relatedPlaces || []).map(pl =>
+        `<a href="index.html#atlas" class="btn-top">📍 ${pl} (성경지도 연동)</a>`
+      ).join(" ");
+
+      const libDocsHtml = (f.linkedLibraryItems && f.linkedLibraryItems.length > 0)
+        ? f.linkedLibraryItems.map(doc => `
+            <a href="index.html?doc=${encodeURIComponent(doc.id)}" class="king-item" style="text-decoration:none;">
+              <div>
+                <div style="font-size:11.5px;color:var(--gold-bright);font-weight:700;">📜 꿈디도 수록 문헌 · ${doc.category.toUpperCase()}</div>
+                <div class="serif" style="font-size:15.5px;color:#FFF;font-weight:700;">${doc.title}</div>
+                <div style="font-size:12px;color:var(--text-dim);">${doc.scripture}</div>
+              </div>
+              <span style="color:var(--gold-bright);font-size:12.5px;font-weight:700;">본관 열람 ↗</span>
+            </a>`).join("")
+        : `<p style="color:var(--text-dim);font-size:13.5px;">직접 매칭된 단행 문헌이 없거나 족보·왕조 통합 문헌에 수록되어 있습니다.</p>`;
+
+      const libVidsHtml = (f.linkedVideos && f.linkedVideos.length > 0)
+        ? f.linkedVideos.map(v => `
+            <a href="https://www.youtube.com/watch?v=${v.videoId}" target="_blank" rel="noopener" class="king-item" style="text-decoration:none;">
+              <div>
+                <div style="font-size:11.5px;color:#7CE38B;font-weight:700;">🎬 꿈바온 유튜브 영상 · ${v.date || ''}</div>
+                <div class="serif" style="font-size:15.5px;color:#FFF;font-weight:700;">${v.title}</div>
+              </div>
+              <span style="color:var(--gold-bright);font-size:12.5px;font-weight:700;">영상 시청 ↗</span>
+            </a>`).join("")
+        : `<p style="color:var(--text-dim);font-size:13.5px;">연결된 개별 유튜브 영상이 없습니다.</p>`;
+
+      document.getElementById("tab-links").innerHTML = `
+        <div style="margin-bottom:22px;">
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🤝 주요 연결 인물 (클릭 시 해당 인물 열전으로 즉시 이동)</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">${relFigBtns || '<span style="color:var(--text-dim);">연결 인물 정보 없음</span>'}</div>
+        </div>
+        <div style="margin-bottom:22px;">
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🗺️ 주요 활동 장소 (제1관 성경 지도 & 고고학 현장관 연동)</h3>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">${relPlacesHtml || '<span style="color:var(--text-dim);">연결 장소 정보 없음</span>'}</div>
+        </div>
+        <div style="margin-bottom:22px;">
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">📚 이 인물과 연결된 꿈디도 서재 문헌 (${(f.linkedLibraryItems||[]).length}편)</h3>
+          <div class="king-list">${libDocsHtml}</div>
+        </div>
+        <div>
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🎬 이 인물과 연결된 꿈바온 영상 (${(f.linkedVideos||[]).length}편)</h3>
+          <div class="king-list">${libVidsHtml}</div>
+        </div>
+      `;
+
+      switchDrawerTab("tab-dossier");
+      document.getElementById("figureDrawer").classList.add("open");
+    }
+
+    function switchDrawerTab(tabId) {
+      document.querySelectorAll(".d-tab-pane").forEach(p => p.style.display = "none");
+      document.querySelectorAll(".d-tab").forEach(t => t.classList.remove("active"));
+      const pane = document.getElementById(tabId);
+      if (pane) pane.style.display = "block";
+      const btn = document.querySelector(`.d-tab[data-dtab="${tabId}"]`);
+      if (btn) btn.classList.add("active");
+    }
+
+    function closeFigureDrawer() {
+      document.getElementById("figureDrawer").classList.remove("open");
+    }
+
+    function openLightbox(src, cap) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("lightboxCap").textContent = cap || "";
+      document.getElementById("imgLightbox").classList.add("open");
+    }
+
+    function closeLightbox() {
+      document.getElementById("imgLightbox").classList.remove("open");
+    }
+
+    window.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        closeLightbox();
+        closeFigureDrawer();
+      }
+    });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      initEncyclopedia();
+      const params = new URLSearchParams(window.location.search);
+      const pid = params.get("id");
+      const view = params.get("view");
+      if (view) switchView(view);
+      if (pid && FIG_MAP[pid]) openFigure(pid);
+    });
+  </script>
+</body>
+</html>
