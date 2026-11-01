@@ -1968,6 +1968,134 @@
     .hall-intro {
       padding: 28px 0 24px !important;
     }
+  
+    /* ======================================================== */
+    /* 🏛️ [신설] 상단 8대 전시관 빠른 선택 네비게이션 바 (경계선 위치) */
+    /* ======================================================== */
+    .top-hall-navbar {
+      position: sticky;
+      top: 0;
+      z-index: 105;
+      background: linear-gradient(180deg, #1C1510 0%, #15221F 100%);
+      border-top: 1px solid rgba(212, 175, 55, 0.35);
+      border-bottom: 1.5px solid rgba(212, 175, 55, 0.45);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.38);
+      padding: 9px clamp(16px, 3.5vw, 68px);
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+
+    .top-hall-inner {
+      max-width: 1800px;
+      margin: 0 auto;
+    }
+
+    .top-hall-tabs {
+      display: grid;
+      grid-template-columns: repeat(8, minmax(0, 1fr));
+      gap: 7px;
+    }
+
+    .top-hall-tab {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      border-radius: 9px;
+      padding: 7px 9px;
+      color: #EDE6DA;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 5px;
+      font-family: inherit;
+      transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+      min-width: 0;
+      white-space: nowrap;
+      text-align: left;
+    }
+
+    .top-hall-tab:hover {
+      background: rgba(212, 175, 55, 0.16);
+      border-color: #E5C878;
+      color: #FFFFFF;
+      transform: translateY(-1.5px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+    }
+
+    .top-hall-tab.active {
+      background: linear-gradient(135deg, #2E2318 0%, #1C150E 100%);
+      border-color: #F5DF98;
+      color: #FFFFFF;
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      font-weight: 700;
+    }
+
+    .top-hall-tab .th-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      min-width: 0;
+      overflow: hidden;
+    }
+
+    .top-hall-tab .th-badge {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: #D7BC7D;
+      flex-shrink: 0;
+    }
+
+    .top-hall-tab.active .th-badge {
+      color: #F5DF98;
+    }
+
+    .top-hall-tab .th-title {
+      font-size: 12px;
+      font-weight: 600;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      letter-spacing: -0.02em;
+    }
+
+    .top-hall-tab .th-count {
+      font-size: 10.5px;
+      font-weight: 700;
+      padding: 1px 6px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.35);
+      color: #C8BDAE;
+      flex-shrink: 0;
+      transition: all 0.2s ease;
+    }
+
+    .top-hall-tab.active .th-count {
+      background: rgba(212, 175, 55, 0.28);
+      color: #F5DF98;
+    }
+
+    @media (max-width: 1360px) {
+      .top-hall-tabs {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 780px) {
+      .top-hall-tabs {
+        display: flex;
+        overflow-x: auto;
+        padding-bottom: 2px;
+        gap: 6px;
+        scrollbar-width: none;
+      }
+      .top-hall-tabs::-webkit-scrollbar {
+        display: none;
+      }
+      .top-hall-tab {
+        flex: 0 0 auto;
+        padding: 7px 11px;
+      }
+    }
+
   </style>
   <link rel="stylesheet" href="atrium.css?v=20261028-relief"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261101b"/>
@@ -2006,34 +2134,47 @@
     </div>
   </section>
 
-  <!-- 🌟 시범 운영 공지 및 처음 방문한 분의 시작점 안내 배너 -->
-  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1360px; margin:16px auto 0; padding:0 24px;">
-    <div style="background:linear-gradient(135deg, #231C16 0%, #2E241C 100%); border:1.5px solid rgba(212,175,55,0.65); border-radius:14px; padding:16px 20px; color:#FAF6EE; box-shadow:0 8px 24px rgba(0,0,0,0.12); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; align-items:center;">
-      <div>
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
-          <span style="background:rgba(212,175,55,0.22); border:1px solid #E5C878; color:#F5DF98; font-size:11.5px; font-weight:800; padding:2px 10px; border-radius:999px;">시범 운영 중 · 내부 정비 중</span>
-          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-31 (성경 절기 · 구속사관 12편 신설)</span>
-        </div>
-        <h2 class="serif" style="font-size:17px; color:#FFFFFF; margin:0 0 5px 0; font-weight:700;">꿈바온 디지털 도서관 시범 운영 중 — 문은 열어 두었습니다. 서가는 계속 채우고 있어요.</h2>
-        <p style="font-size:13px; color:#E2D8C8; line-height:1.62; margin:0;">
-          현재 자료와 그림, 전자책을 차근차근 정리하고 있습니다. 일부 내용과 화면은 보완될 수 있습니다. 편하게 둘러보시고, 잘못된 곳은 <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:#F5DF98; text-decoration:underline; font-weight:700;">꿈바온 유튜브 댓글</a>로 자료 이름과 위치를 알려 주세요.<br/>
-          <span style="color:#C8BDAE; font-size:12.2px;">※ 성경 본문(개역한글·개역개정·WEB)과 꿈바온의 풀어읽기·묵상 해설을 구분하여 읽어 주세요. 그림 중 AI 상상도는 당시 모습을 이해하도록 돕는 삽화입니다.</span>
-        </p>
-      </div>
-      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:12px; padding:12px 15px;">
-        <div style="font-size:12px; color:#F5DF98; font-weight:800; margin-bottom:8px;">🧭 처음 오셨나요? 검토를 마친 대표 이야기로 시작해 보세요</div>
-        <div style="display:flex; flex-wrap:wrap; gap:7px;">
-          <button type="button" class="hdr-btn gold" style="font-size:12px; padding:6px 11px;" onclick="if(window.focusAtlasPlace) window.focusAtlasPlace('bethlehem')">1. 🗺️ 베들레헴 지도 열기</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('dev-dailyword-ep001')">2. 📘 룻기 1장 (매일말씀 1회)</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openFeastsHall()">3. 🕎 성경 절기 · 구속사관</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">4. 🏺 하나님의 손에 비유된 인장</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">5. 👑 밤을 지키는 사람들 (막 13장)</button>
-        </div>
+  <!-- 🏛️ [신설] 상단 8대 전시관 빠른 선택 네비게이션 바 (환영 리본과 지도 경계선 위치) -->
+  <nav class="top-hall-navbar" aria-label="꿈바온 8대 전시관 빠른 선택 네비게이션">
+    <div class="top-hall-inner">
+      <div class="top-hall-tabs">
+        <button type="button" class="top-hall-tab active" data-cat="all" onclick="navigateToHall('all')">
+          <span class="th-left"><span class="th-badge">🏛️ ALL</span><span class="th-title">전체 통합 서가</span></span>
+          <span class="th-count" id="top-cnt-all">152</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="atlas" onclick="navigateToHall('atlas')">
+          <span class="th-left"><span class="th-badge">🗺️ 1관</span><span class="th-title">성경 지도 · 고고학</span></span>
+          <span class="th-count" id="top-cnt-atlas">49</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="figures" onclick="navigateToHall('figures')">
+          <span class="th-left"><span class="th-badge">👑 2관</span><span class="th-title">성경 인물 · 역사</span></span>
+          <span class="th-count" id="top-cnt-figures">31</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="artifacts" onclick="navigateToHall('artifacts')">
+          <span class="th-left"><span class="th-badge">🏺 3관</span><span class="th-title">등잔 밑 사물 · 문화</span></span>
+          <span class="th-count" id="top-cnt-artifacts">17</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="devotions" onclick="navigateToHall('devotions')">
+          <span class="th-left"><span class="th-badge">🌅 4관</span><span class="th-title">성경 한 바퀴 · 매일말씀</span></span>
+          <span class="th-count" id="top-cnt-devotions">28</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="wesley" onclick="navigateToHall('wesley')">
+          <span class="th-left"><span class="th-badge">✝️ 5관</span><span class="th-title">웨슬리 표준설교</span></span>
+          <span class="th-count" id="top-cnt-wesley">22</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="feasts" onclick="navigateToHall('feasts')">
+          <span class="th-left"><span class="th-badge">🕎 6관</span><span class="th-title">성경 절기 · 구속사</span></span>
+          <span class="th-count" id="top-cnt-feasts">15</span>
+        </button>
+        <button type="button" class="top-hall-tab" data-cat="cinema" onclick="navigateToHall('cinema')">
+          <span class="th-left"><span class="th-badge">🎬 7관</span><span class="th-title">꿈디도 영상실</span></span>
+          <span class="th-count" id="top-cnt-cinema">118</span>
+        </button>
       </div>
     </div>
-  </section>
+  </nav>
 
-  <main class="entrance-main">
+<main class="entrance-main">
   <section class="hall-intro" aria-labelledby="hallTitle">
     <div>
       <div class="hall-eyebrow"><span></span> 성경의 땅 · 사람 · 이야기</div>
@@ -2166,6 +2307,34 @@
     </div>
   </section>
 
+  <!-- 🌟 시범 운영 공지 및 처음 방문한 분의 시작점 안내 배너 -->
+  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1360px; margin:16px auto 0; padding:0 24px;">
+    <div style="background:linear-gradient(135deg, #231C16 0%, #2E241C 100%); border:1.5px solid rgba(212,175,55,0.65); border-radius:14px; padding:16px 20px; color:#FAF6EE; box-shadow:0 8px 24px rgba(0,0,0,0.12); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; align-items:center;">
+      <div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
+          <span style="background:rgba(212,175,55,0.22); border:1px solid #E5C878; color:#F5DF98; font-size:11.5px; font-weight:800; padding:2px 10px; border-radius:999px;">시범 운영 중 · 내부 정비 중</span>
+          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-31 (성경 절기 · 구속사관 12편 신설)</span>
+        </div>
+        <h2 class="serif" style="font-size:17px; color:#FFFFFF; margin:0 0 5px 0; font-weight:700;">꿈바온 디지털 도서관 시범 운영 중 — 문은 열어 두었습니다. 서가는 계속 채우고 있어요.</h2>
+        <p style="font-size:13px; color:#E2D8C8; line-height:1.62; margin:0;">
+          현재 자료와 그림, 전자책을 차근차근 정리하고 있습니다. 일부 내용과 화면은 보완될 수 있습니다. 편하게 둘러보시고, 잘못된 곳은 <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:#F5DF98; text-decoration:underline; font-weight:700;">꿈바온 유튜브 댓글</a>로 자료 이름과 위치를 알려 주세요.<br/>
+          <span style="color:#C8BDAE; font-size:12.2px;">※ 성경 본문(개역한글·개역개정·WEB)과 꿈바온의 풀어읽기·묵상 해설을 구분하여 읽어 주세요. 그림 중 AI 상상도는 당시 모습을 이해하도록 돕는 삽화입니다.</span>
+        </p>
+      </div>
+      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:12px; padding:12px 15px;">
+        <div style="font-size:12px; color:#F5DF98; font-weight:800; margin-bottom:8px;">🧭 처음 오셨나요? 검토를 마친 대표 이야기로 시작해 보세요</div>
+        <div style="display:flex; flex-wrap:wrap; gap:7px;">
+          <button type="button" class="hdr-btn gold" style="font-size:12px; padding:6px 11px;" onclick="if(window.focusAtlasPlace) window.focusAtlasPlace('bethlehem')">1. 🗺️ 베들레헴 지도 열기</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('dev-dailyword-ep001')">2. 📘 룻기 1장 (매일말씀 1회)</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openFeastsHall()">3. 🕎 성경 절기 · 구속사관</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">4. 🏺 하나님의 손에 비유된 인장</button>
+          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">5. 👑 밤을 지키는 사람들 (막 13장)</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
   <!-- 4. 7대 전시관 탭 및 통합 검색 바 -->
   <section class="controls-wrap">
     <div class="hall-tabs" id="hallTabs">
@@ -2573,6 +2742,8 @@
       Object.keys(counts).forEach(k => {
         const el = document.getElementById(`cnt-${k}`);
         if (el) el.textContent = counts[k];
+        const topEl = document.getElementById(`top-cnt-${k}`);
+        if (topEl) topEl.textContent = counts[k];
       });
       Object.keys(wcounts).forEach(k => {
         const el = document.getElementById(`wcnt-${k}`);
@@ -2865,9 +3036,27 @@
       if (wrap) wrap.scrollIntoView({ behavior: "smooth" });
     }
 
+        function navigateToHall(cat) {
+      selectCategory(cat);
+      if (cat === "atlas") {
+        const mapSection = document.getElementById("atlasDrawer") || document.getElementById("hallTitle");
+        if (mapSection) {
+          mapSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      } else {
+        const shelfSection = document.querySelector(".controls-wrap") || document.getElementById("libraryShelves");
+        if (shelfSection) {
+          shelfSection.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }
+    }
+
     function selectCategory(cat) {
       currentCategory = cat;
       document.querySelectorAll(".hall-tab").forEach(btn => {
+        btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
+      });
+      document.querySelectorAll(".top-hall-tab").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
       });
       const wSubbar = document.getElementById("wesleySubbar");
