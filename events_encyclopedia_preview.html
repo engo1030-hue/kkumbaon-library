@@ -581,14 +581,15 @@
   <!-- 상단 네비게이션 -->
   <header class="top-bar">
     <div class="brand-box">
-      <span class="brand-badge">🏛️ 꿈디도</span>
-      <h2 class="brand-title serif">성경 사건대백과 (300대 사건)</h2>
+      <span class="brand-badge">ARCHIVE 02 · BIBLICAL EVENTS</span>
+      <h2 class="brand-title serif">꿈디도 제2관 · 신구약 사건대백과 (300대 사건)</h2>
     </div>
     <div class="top-actions">
-      <a href="index.html" class="btn-top">🏛️ 도서관 메인 아트리움</a>
-      <a href="figures_encyclopedia_preview.html" class="btn-top">👑 인물대백과 350인</a>
-      <a href="behinds_encyclopedia_preview.html" class="btn-top">💡 비하인드스토리 300선</a>
-      <button class="btn-top gold" onclick="filterPillarEvents()">⭐ 기둥 30대 사건</button>
+      <a href="kkumdido_12archives_viewer.html" class="btn-top">12대 아카이브 · 3,650</a>
+      <a href="figures_encyclopedia_preview.html" class="btn-top">제1관 인물가계도 (350)</a>
+      <a href="behinds_encyclopedia_preview.html" class="btn-top">제3관 비하인드 (300)</a>
+      <button class="btn-top" onclick="filterPillarEvents()">기둥 30대 사건 (성화 완비)</button>
+      <a href="index.html" class="btn-top gold">꿈디도 본관 대문</a>
     </div>
   </header>
 
@@ -771,9 +772,9 @@
   </div>
 
   <!-- 데이터 스크립트 로드 -->
-  <script src="events_encyclopedia_data.js"></script>
-  <script src="figures_encyclopedia_data.js"></script>
-  <script src="behinds_encyclopedia_data.js"></script>
+  <script src="events_encyclopedia_data.js?v=20261103_v3"></script>
+  <script src="figures_encyclopedia_data.js?v=20261103_v3"></script>
+  <script src="behinds_encyclopedia_data.js?v=20261103_v3"></script>
 
   <script>
     const EVT_DATA = window.KKUMDIDO_EVENTS_DATA || { events: [], comparisons: {} };
@@ -842,15 +843,21 @@
 
       grid.innerHTML = filtered.map(e => `
         <article class="event-card" onclick="openEventModal('${e.id}')">
+          ${e.thumbImg ? `
+            <div style="width:100%;aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid rgba(200,157,70,0.22);background:#0D0A07;position:relative;">
+              <img src="${e.thumbImg}" alt="${e.title}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <span style="position:absolute;top:10px;right:10px;background:rgba(15,12,9,0.85);border:1px solid var(--gold-bright);color:var(--gold-bright);font-size:10.5px;font-weight:800;padding:2px 8px;border-radius:999px;">성화 도판 수록</span>
+            </div>
+          ` : ''}
           <div class="card-top">
             <div class="card-meta-row">
               <span class="card-id-badge">${e.id}</span>
-              ${e.isPillar ? '<span class="card-pillar-tag">⭐ 구속사 기둥</span>' : ''}
+              ${e.isPillar ? '<span class="card-pillar-tag">구속사 기둥</span>' : ''}
               <span class="card-era-tag">${e.era}</span>
             </div>
             <h3 class="card-title serif">${e.title}</h3>
             <div class="card-orig-title">${e.origTitle}</div>
-            <div class="card-scripture">📖 ${e.scriptures}</div>
+            <div class="card-scripture">${e.scriptures}</div>
           </div>
           <div class="card-body">
             <div class="card-summary">${e.summary || '구속사 사건'}</div>
@@ -860,8 +867,8 @@
               ${e.eventTags.map(t => `<span class="c-tag">#${t}</span>`).join('')}
             </div>
             <div class="card-cross-badges">
-              ${e.relatedPersons.slice(0, 3).map(p => `<span class="badge-person">👤 ${p.name}</span>`).join('')}
-              ${e.relatedBehinds.slice(0, 2).map(b => `<span class="badge-behind">💡 ${b.title.slice(0, 10)}...</span>`).join('')}
+              ${e.relatedPersons.slice(0, 3).map(p => `<span class="badge-person">${p.name}</span>`).join('')}
+              ${e.relatedBehinds.slice(0, 2).map(b => `<span class="badge-behind">${b.title.slice(0, 10)}...</span>`).join('')}
             </div>
           </div>
         </article>
@@ -876,18 +883,23 @@
       document.getElementById('modalTitle').textContent = evt.title;
       document.getElementById('modalOrigTitle').textContent = evt.origTitle;
       document.getElementById('modalEra').textContent = `${evt.testament} · ${evt.era}`;
-      document.getElementById('modalScripture').textContent = `📖 성경 본문: ${evt.scriptures}`;
+      document.getElementById('modalScripture').textContent = `성경 본문: ${evt.scriptures}`;
       document.getElementById('modalSummary').textContent = evt.summary;
-      document.getElementById('modalPillarBadge').innerHTML = evt.isPillar ? '<span class="card-pillar-tag">⭐ 구속사 기둥 30선</span>' : '';
+      document.getElementById('modalPillarBadge').innerHTML = evt.isPillar ? '<span class="card-pillar-tag">구속사 기둥 30선</span>' : '';
 
       // 스토리보드 렌더링
       const sbEl = document.getElementById('modalStoryboardContent');
       sbEl.innerHTML = `
+        ${evt.heroImg ? `
+          <div style="margin-bottom:16px;border-radius:12px;overflow:hidden;border:1.5px solid var(--border-gold);background:#0A0806;">
+            <img src="${evt.heroImg}" alt="${evt.title}" style="width:100%;max-height:420px;object-fit:cover;display:block;" />
+          </div>
+        ` : ''}
         <div style="margin-top:14px; font-size:13.5px; line-height:1.7; color:var(--text-warm);">
           <h4 class="serif" style="color:var(--gold-bright); margin-bottom:8px;">[사건의 기승전결 흐름]</h4>
           <p>${evt.summary}</p>
           <div style="margin-top:12px; background:rgba(0,0,0,0.25); padding:12px; border-radius:8px;">
-            <div style="color:var(--gold-primary); font-weight:700; margin-bottom:4px;">📍 발생 장소</div>
+            <div style="color:var(--gold-primary); font-weight:700; margin-bottom:4px;">발생 장소</div>
             <div>${evt.location || '성경 본문 참조'}</div>
           </div>
         </div>
