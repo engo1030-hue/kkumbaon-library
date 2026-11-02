@@ -678,11 +678,13 @@
   <header class="top-bar">
     <div class="brand-box">
       <span class="brand-badge">HALL 2 · BIBLICAL FIGURES ENCYCLOPEDIA</span>
-      <span class="brand-title serif">👑 꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망</span>
+      <span class="brand-title serif">👑 꿈디도 제2관 · 성경 인물대백과 350인 &amp; 구속사 관계망</span>
     </div>
     <div class="top-actions">
-      <button class="btn-top" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약과 메시아 계보 대형 차트')">🗺️ 언약의 계보 대형 차트 보기</button>
-      <a href="index.html#figures" class="btn-top gold">🏛️ 꿈디도 본관 서재로 돌아가기</a>
+      <a href="events_encyclopedia_preview.html" class="btn-top">📜 사건대백과 300대 사건</a>
+      <a href="behinds_encyclopedia_preview.html" class="btn-top">💡 비하인드 300선</a>
+      <button class="btn-top" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약과 메시아 계보 대형 차트')">🗺️ 언약 계보도</button>
+      <a href="index.html#figures" class="btn-top gold">🏛️ 꿈디도 본관 서재</a>
     </div>
   </header>
 
@@ -690,20 +692,20 @@
   <section class="hero-wrap">
     <div class="hero-banner">
       <div class="hero-left">
-        <div class="hero-eyebrow">KKUMBAON BIBLICAL BIOGRAPHY & GENEALOGY ARCHIVE</div>
-        <h1 class="hero-title serif">성경 인물대백과 — 아담부터 바울까지, 구속사의 큰 족보와 열전</h1>
+        <div class="hero-eyebrow">KKUMBAON BIBLICAL BIOGRAPHY &amp; GENEALOGY ARCHIVE</div>
+        <h1 class="hero-title serif">성경 인물대백과 — 아담부터 바울까지, 구속사의 큰 족보와 350인 열전</h1>
         <p class="hero-sub">
-          시대별 구속사 기둥 30인(Tier-1 성화 150점 완비)과 남북 왕조 40인·구약 선지자 및 포로귀환 지도자 50인(총 120인 정밀 열전), 그리고 전체 300인 마스터 관계망을 한눈에 탐색합니다. 인물을 클릭하면 원어·고고학 고증 열전과 성화 도판이 열립니다.
+          시대별 구속사 기둥 30인(Tier-1 성화 150점 완비)과 남북 왕조 40인·구약 선지자 및 포로귀환 지도자 50인, 성경 66권 완전판 50인 보강까지 <strong>전체 350인 마스터 관계망</strong>을 한눈에 탐색합니다. 사건대백과(300대 사건) 및 비하인드스토리(300선)와 1:1:1로 양방향 교차 연결됩니다.
         </p>
       </div>
       <div class="hero-stats">
         <div class="stat-card">
-          <div class="stat-num" id="stTotalFigures">300인</div>
+          <div class="stat-num" id="stTotalFigures">350인</div>
           <div class="stat-label">마스터 분류 인물</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num" id="stDossiers">120인</div>
-          <div class="stat-label">1·2차 완결 열전</div>
+          <div class="stat-num" id="stDossiers">350인</div>
+          <div class="stat-label">1~5차 완결 열전</div>
         </div>
         <div class="stat-card">
           <div class="stat-num" id="stTier1">30인 · 150점</div>
@@ -1290,7 +1292,44 @@
             </a>`).join("")
         : `<p style="color:var(--text-dim);font-size:13.5px;">연결된 개별 유튜브 영상이 없습니다.</p>`;
 
+      // 삼각 연동: 참여 사건(E) 및 연관 비하인드(B) 칩
+      const participatedEventsHtml = (f.enrichedEvents && f.enrichedEvents.length > 0)
+        ? f.enrichedEvents.map(ev => `
+            <a href="events_encyclopedia_preview.html?id=${ev.id}" class="king-item" style="text-decoration:none;">
+              <div>
+                <div style="font-size:11.5px;color:var(--gold-bright);font-weight:700;">📜 구속사 사건 · ${ev.id} (${ev.era})</div>
+                <div class="serif" style="font-size:15px;color:#FFF;font-weight:700;">${ev.title}</div>
+                <div style="font-size:12px;color:var(--text-dim);">${ev.scriptures}</div>
+              </div>
+              <span style="color:var(--gold-bright);font-size:12.5px;font-weight:700;">사건 열람 ↗</span>
+            </a>`).join("")
+        : (f.participatedEvents || []).map(eid => `
+            <a href="events_encyclopedia_preview.html?id=${eid}" class="btn-top gold">📜 참여 사건 ${eid} 열람 →</a>
+          `).join(" ") || `<p style="color:var(--text-dim);font-size:13.5px;">연결된 사건 정보가 업데이트 중입니다.</p>`;
+
+      const relatedBehindsHtml = (f.enrichedBehinds && f.enrichedBehinds.length > 0)
+        ? f.enrichedBehinds.map(bh => `
+            <a href="behinds_encyclopedia_preview.html?id=${bh.id}" class="king-item" style="text-decoration:none;">
+              <div>
+                <div style="font-size:11.5px;color:#D3B4FF;font-weight:700;">💡 숨은 비하인드 · ${bh.id}</div>
+                <div class="serif" style="font-size:15px;color:#FFF;font-weight:700;">${bh.title}</div>
+                <div style="font-size:12px;color:var(--text-dim);">"${bh.hook}"</div>
+              </div>
+              <span style="color:#D3B4FF;font-size:12.5px;font-weight:700;">비하인드 열람 ↗</span>
+            </a>`).join("")
+        : (f.relatedBehinds || []).map(bid => `
+            <a href="behinds_encyclopedia_preview.html?id=${bid}" class="btn-top">💡 비하인드 ${bid} 열람 →</a>
+          `).join(" ") || `<p style="color:var(--text-dim);font-size:13.5px;">연결된 비하인드스토리가 업데이트 중입니다.</p>`;
+
       document.getElementById("tab-links").innerHTML = `
+        <div style="margin-bottom:22px;">
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">📜 이 인물이 참여한 구속사 사건 (${(f.participatedEvents||[]).length}건)</h3>
+          <div class="king-list">${participatedEventsHtml}</div>
+        </div>
+        <div style="margin-bottom:22px;">
+          <h3 class="serif" style="color:#D3B4FF;margin-bottom:10px;">💡 이 인물의 숨은 비하인드스토리 (${(f.relatedBehinds||[]).length}편)</h3>
+          <div class="king-list">${relatedBehindsHtml}</div>
+        </div>
         <div style="margin-bottom:22px;">
           <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🤝 주요 연결 인물 (클릭 시 해당 인물 열전으로 즉시 이동)</h3>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">${relFigBtns || '<span style="color:var(--text-dim);">연결 인물 정보 없음</span>'}</div>
