@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>꿈디도 제2관 · 성경 인물대백과 350인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
+  <title>꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -236,12 +236,12 @@
       border-radius: 14px;
       padding: 16px 20px;
       display: grid;
-      grid-template-columns: 210px minmax(0, 1fr);
+      grid-template-columns: 210px 1fr;
       gap: 18px;
       align-items: center;
     }
     @media (hover: none) and (pointer: coarse) and (max-width: 860px) {
-      .era-row { grid-template-columns: minmax(0, 1fr); }
+      .era-row { grid-template-columns: 1fr; }
     }
     .era-label-box {
       border-right: 1px solid rgba(200, 157, 70, 0.2);
@@ -269,7 +269,12 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
-      min-width: 0;
+    }
+    .node-arrow {
+      color: var(--gold-primary);
+      font-size: 16px;
+      font-weight: 700;
+      opacity: 0.65;
     }
     .pillar-node {
       background: linear-gradient(145deg, rgba(42, 34, 24, 0.95), rgba(24, 19, 13, 0.95));
@@ -308,7 +313,7 @@
     .pillar-name { font-size: 15px; font-weight: 800; color: #FFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pillar-role { font-size: 11.5px; color: var(--text-warm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* 세대는 위에서 아래로, 혼인은 같은 높이로 읽는 계보 전시 */
+    /* 세대는 위에서 아래로, 혼인은 같은 높이로 읽는 계보 전시 (워크간사 세계사 시간의 벽 연동) */
     .gene-hall {
       position: relative;
       overflow: hidden;
@@ -520,7 +525,7 @@
       border-radius: 6px;
     }
 
-    /* 전체 350인 검색 & 필터 */
+    /* 전체 300인 검색 & 필터 */
     .filter-bar {
       display: flex;
       gap: 10px;
@@ -820,7 +825,7 @@
       인물가계도 · 언약의 계보 &amp; 성화 완비 125인 <span class="axis-badge">성화 469점 완비</span>
     </button>
     <button class="axis-tab" data-view="view-kingdoms" onclick="switchView('view-kingdoms')">
-      남유다 20왕 vs 북이스라엘 20왕 왕조관 <span class="axis-badge">P031~P070 성화·열전</span>
+      남유다·북이스라엘 왕조관 (왕·왕비 40인) <span class="axis-badge">P031~P070 성화·열전</span>
     </button>
     <button class="axis-tab" data-view="view-prophets" onclick="switchView('view-prophets')">
       구약 선지자관 &amp; 포로귀환 50인 <span class="axis-badge">P071~P120 성화·열전</span>
@@ -838,27 +843,17 @@
 
     <!-- [VIEW 1] 언약의 계보 & 성화 완비 125인 -->
     <section class="view-panel active" id="view-pillars">
-      <!-- 1-A. 언약과 메시아 정통 가계도 (창세기 5·11장 -> 룻기 4장 -> 마태복음 1장) -->
+      <!-- 1-0. 세로 피라미드 언약 계보 & 세계사 시간의 벽 (워크간사·제간사·안간사 합작) -->
       <div class="hall-panel" style="margin-bottom:22px;">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">언약과 메시아 정통 가계도 — 창세기 5·11장 / 룻기 4장 / 마태복음 1장</h2>
-            <p class="hall-panel-desc">아담과 아브라함에서 다윗 왕조와 포로기를 거쳐 예수 그리스도께 이어지는 구속사 정통 족보입니다. 각 인물을 클릭하면 상세 열전과 성화 도판이 열립니다.</p>
+            <h2 class="hall-panel-title serif">세대를 따라 내려가는 언약의 계보와 350인 인물 탐험</h2>
+            <p class="hall-panel-desc">실선은 본문에 근거한 부모·자녀, 나란한 카드는 부부입니다. 인물을 선택하면 열전과 성화가 열립니다.</p>
           </div>
           <div style="display:flex; gap:8px; flex-wrap:wrap;">
             <button class="btn-top gold" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약의 계보 대형 차트')">언약의 계보 대형 차트 보기</button>
             <a href="assets/lineage/lineage.html" target="_blank" rel="noopener" class="btn-top">2800px 시범 원판 열기 ↗</a>
-          </div>
-        </div>
-        <div class="era-flow-wrap" id="covenantGenealogyContainer"></div>
-      </div>
-
-      <!-- 1-B. 7대 구속사 시대별 기둥 계보도 -->
-      <div class="hall-panel">
-        <div class="hall-panel-head">
-          <div>
-            <h2 class="hall-panel-title serif">7대 구속사 시대 중심 인물 계보도 (기둥 30인)</h2>
-            <p class="hall-panel-desc">각 인물의 원형 초상 노드를 클릭하시면 5종 성화 도판(인물 마스터 · 투명 초상 · 핵심 성경 장면 3컷)과 제간사·워크간사의 정밀 고증 열전이 열립니다.</p>
+            <button class="btn-top" onclick="switchView('view-all300')">350인 전체 색인</button>
           </div>
         </div>
         <div class="gene-hall" id="verticalGenealogy" aria-label="세로로 읽는 성경 인물 계보">
@@ -877,7 +872,24 @@
           <div id="geneLevels" class="gene-levels"></div>
           <p class="gene-after">이 전시는 본문에서 확인되는 줄기와 마태복음 1장의 법적 계보를 보여 줍니다. 누가복음 3장의 계보는 별도 검토 대상입니다. 350인 전체 열전은 위 검색창과 전체 색인에서 탐험할 수 있습니다. 자료·출처: 제간사 · 전시 디자인: 워크 간사 · 도서관 운영·보수: 안간사.</p>
         </div>
-        <div class="hall-panel-head"><div><h3 class="hall-panel-title serif">시대별 인물 탐험</h3><p class="hall-panel-desc">아래 목록은 같은 시대의 주요 인물을 모은 길잡이입니다. 인물 사이에 가족 관계를 뜻하지 않습니다.</p></div></div>
+
+        <div class="hall-panel-head" style="margin-top:16px;">
+          <div>
+            <h3 class="hall-panel-title serif">언약과 메시아 정통 52대 계보 상세 흐름 (창세기 5·11장 / 룻기 4장 / 마태복음 1장)</h3>
+            <p class="hall-panel-desc">아담과 아브라함에서 다윗 왕조와 포로기를 거쳐 예수 그리스도께 이어지는 52대 전체 이름과 열전 바로가기입니다.</p>
+          </div>
+        </div>
+        <div class="era-flow-wrap" id="covenantGenealogyContainer"></div>
+      </div>
+
+      <!-- 1-B. 7대 구속사 시대별 기둥 계보도 -->
+      <div class="hall-panel">
+        <div class="hall-panel-head">
+          <div>
+            <h2 class="hall-panel-title serif">시대별 핵심 인물 탐험 (구속사 기둥 30인)</h2>
+            <p class="hall-panel-desc">아래 목록은 같은 시대의 주요 인물을 모은 길잡이입니다. 각 인물의 원형 초상 노드를 클릭하시면 성화 도판과 정밀 고증 열전이 열립니다.</p>
+          </div>
+        </div>
         <div class="era-flow-wrap" id="lineageTreeContainer"></div>
       </div>
 
@@ -1046,7 +1058,7 @@
 
     let currentDirFilter = "all";
 
-    // 직접 연결과 생략 구간을 구별한 세로 전시. 중간 인물도 열전 색인에는 포함될 수 있다.
+    // 직접 연결과 생략 구간을 구별한 세로 전시 (워크간사 세계사 시간의 벽 연동)
     const GENE_LEVELS = [
       { people: ["P001", "P002"], join: "부부", link: "시작", ref: "창 2:22–24", time: ["절대연대 미정", "창세기 원역사", "세계사 절대연대와 직접 대조하지 않음"] },
       { people: ["P203"], link: "아들", ref: "창 4:25" },
@@ -1071,27 +1083,31 @@
     ];
 
     function renderGenealogy() {
-      const portraitBase = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1"
-        ? "https://kkumbaon.com/kkumbaon-library/" : "";
       const card = (pid, name) => {
         const f = pid ? FIG_MAP[pid] : null;
         const label = f ? f.name : name;
         const image = f && f.portrait
-          ? `<img class="gene-avatar" src="${portraitBase}${f.portrait}" alt="" loading="lazy" />`
+          ? `<img class="gene-avatar" src="${f.portrait}" alt="" loading="lazy" />`
           : `<span class="gene-avatar gene-avatar-fallback" aria-hidden="true">✦</span>`;
         const inside = `${image}<span><small>${pid || '본문 속 연결 인물'}</small><strong>${label}</strong><em>${f ? f.era : '350인 외 계보 연결'}</em></span>`;
         return f ? `<button class="gene-card" type="button" data-gene-pid="${pid}" onclick="openFigure('${pid}')" aria-label="${label} 열전 보기">${inside}</button>`
           : `<div class="gene-card">${inside}</div>`;
       };
-      document.getElementById("geneLevels").innerHTML = GENE_LEVELS.map(level => {
-        const people = (level.people || []).map(pid => card(pid));
-        const names = (level.names || []).map(name => card(null, name));
-        const cards = [...names, ...people].join(level.join ? `<span class="gene-spouse">${level.join}</span>` : "");
-        const body = level.gap ? `<div class="gene-pair"><div class="gene-gap"><span>중간 세대 생략</span><strong>${level.gap}</strong></div></div>` : `<div class="gene-pair">${cards}</div>`;
-        const time = level.time ? `<aside class="gene-time" aria-label="연대와 세계사"><small>시간의 벽</small><strong>${level.time[0]}</strong><span>왕조·시대: ${level.time[1]}</span><span>세계사: ${level.time[2]}</span>${level.time[3] ? `<a href="${level.time[3]}" target="_blank" rel="noopener noreferrer">연대 참고 자료 ↗</a>` : ""}</aside>` : `<div aria-hidden="true"></div>`;
-        return `<div class="gene-level ${level.gap ? 'gap' : ''}">${time}<div class="gene-stage"><span class="gene-join">${level.link}</span>${body}<div class="gene-ref">근거 <b>${level.ref}</b></div></div></div>`;
-      }).join("");
-      document.getElementById("genePeople").innerHTML = FIGS.map(f => `<option value="${f.id} ${f.name}"></option>`).join("");
+      const geneLevelsEl = document.getElementById("geneLevels");
+      if (geneLevelsEl) {
+        geneLevelsEl.innerHTML = GENE_LEVELS.map(level => {
+          const people = (level.people || []).map(pid => card(pid));
+          const names = (level.names || []).map(name => card(null, name));
+          const cards = [...names, ...people].join(level.join ? `<span class="gene-spouse">${level.join}</span>` : "");
+          const body = level.gap ? `<div class="gene-pair"><div class="gene-gap"><span>중간 세대 생략</span><strong>${level.gap}</strong></div></div>` : `<div class="gene-pair">${cards}</div>`;
+          const time = level.time ? `<aside class="gene-time" aria-label="연대와 세계사"><small>시간의 벽</small><strong>${level.time[0]}</strong><span>왕조·시대: ${level.time[1]}</span><span>세계사: ${level.time[2]}</span>${level.time[3] ? `<a href="${level.time[3]}" target="_blank" rel="noopener noreferrer">연대 참고 자료 ↗</a>` : ""}</aside>` : `<div aria-hidden="true"></div>`;
+          return `<div class="gene-level ${level.gap ? 'gap' : ''}">${time}<div class="gene-stage"><span class="gene-join">${level.link}</span>${body}<div class="gene-ref">근거 <b>${level.ref}</b></div></div></div>`;
+        }).join("");
+      }
+      const genePeopleEl = document.getElementById("genePeople");
+      if (genePeopleEl) {
+        genePeopleEl.innerHTML = FIGS.map(f => `<option value="${f.id} ${f.name}"></option>`).join("");
+      }
     }
 
     function searchGenePerson() {
@@ -1238,6 +1254,7 @@
     }
 
     function initEncyclopedia() {
+      renderGenealogy();
       // 0. 언약과 메시아 정통 가계도 (창세기 5·11장 -> 룻기 4장 -> 마태복음 1장)
       const COVENANT_BANDS = [
         {
@@ -1309,7 +1326,8 @@
           const f = FIG_MAP[pid];
           if (!f) return "";
           const isMessiah = pid === "P026";
-          return `<div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
+          return `
+            <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
               <img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />
               <div class="pillar-info">
                 <div class="pillar-id">${f.id} · ${isMessiah ? '구속사의 중심' : (f.hasTier1Images ? 'Tier-1 5종' : '성화완비')}</div>
