@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
+  <title>꿈디도 제2관 · 성경 인물대백과 350인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -236,12 +236,12 @@
       border-radius: 14px;
       padding: 16px 20px;
       display: grid;
-      grid-template-columns: 210px 1fr;
+      grid-template-columns: 210px minmax(0, 1fr);
       gap: 18px;
       align-items: center;
     }
     @media (hover: none) and (pointer: coarse) and (max-width: 860px) {
-      .era-row { grid-template-columns: 1fr; }
+      .era-row { grid-template-columns: minmax(0, 1fr); }
     }
     .era-label-box {
       border-right: 1px solid rgba(200, 157, 70, 0.2);
@@ -269,12 +269,7 @@
       flex-wrap: wrap;
       gap: 12px;
       align-items: center;
-    }
-    .node-arrow {
-      color: var(--gold-primary);
-      font-size: 16px;
-      font-weight: 700;
-      opacity: 0.65;
+      min-width: 0;
     }
     .pillar-node {
       background: linear-gradient(145deg, rgba(42, 34, 24, 0.95), rgba(24, 19, 13, 0.95));
@@ -312,6 +307,94 @@
     .pillar-id { font-size: 10.5px; color: var(--gold-bright); font-weight: 700; }
     .pillar-name { font-size: 15px; font-weight: 800; color: #FFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pillar-role { font-size: 11.5px; color: var(--text-warm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* 세대는 위에서 아래로, 혼인은 같은 높이로 읽는 계보 전시 */
+    .gene-hall {
+      position: relative;
+      overflow: hidden;
+      padding: 28px 18px 38px;
+      border: 1px solid rgba(229, 193, 104, .38);
+      border-radius: 22px;
+      background: radial-gradient(ellipse at 50% 3%, rgba(200,157,70,.19), transparent 48%),
+        linear-gradient(150deg, #252419, #111a18 52%, #17120d);
+      box-shadow: inset 0 0 0 5px rgba(200,157,70,.045), 0 24px 65px rgba(0,0,0,.34);
+      margin-bottom: 22px;
+    }
+    .gene-intro { position: relative; text-align: center; max-width: 820px; margin: 0 auto 22px; }
+    .gene-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .2em; color: var(--gold-bright); }
+    .gene-intro h3 { font-size: clamp(24px, 3.4vw, 39px); line-height: 1.3; margin: 9px 0; }
+    .gene-intro p { color: var(--text-warm); font-size: 14px; line-height: 1.7; }
+    .gene-search { display: flex; gap: 8px; justify-content: center; margin: 20px auto 8px; max-width: 620px; }
+    .gene-search input {
+      flex: 1; min-width: 0; padding: 12px 15px; border-radius: 10px;
+      background: #f8f1e3; border: 1px solid var(--gold-primary); color: #231b12;
+      font: inherit; font-size: 15px;
+    }
+    .gene-search button { padding: 10px 18px; border-radius: 10px; background: var(--gold-bright); border: 0; color: #22170a; font: inherit; font-weight: 800; cursor: pointer; }
+    .gene-search-status { min-height: 24px; font-size: 12px; color: #f1d692; }
+    .gene-legend { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 12px 0 24px; }
+    .gene-legend span { border: 1px solid rgba(229,193,104,.26); border-radius: 99px; padding: 5px 10px; background: rgba(9,17,15,.7); color: #eadfc9; font-size: 11px; }
+    .gene-levels { position: relative; display: grid; gap: 0; max-width: 1040px; margin: auto; }
+    .gene-levels::before {
+      content: ""; position: absolute; inset: 0 0 0 210px; pointer-events: none;
+      clip-path: polygon(50% 0, 100% 100%, 0 100%);
+      background: repeating-linear-gradient(180deg, rgba(211,172,93,.065) 0 2px, transparent 2px 150px),
+        linear-gradient(180deg, rgba(219,184,107,.035), rgba(219,184,107,.12));
+    }
+    .gene-level { position: relative; display: grid; grid-template-columns: 195px minmax(0, 1fr); gap: 15px; padding: 10px 6px 18px; }
+    .gene-stage { position: relative; text-align: center; }
+    .gene-level + .gene-level .gene-stage::before {
+      content: ""; display: block; width: 2px; height: 26px; margin: -10px auto 8px;
+      background: linear-gradient(var(--gold-primary), var(--gold-bright)); box-shadow: 0 0 14px rgba(229,193,104,.55);
+    }
+    .gene-level.gap + .gene-level .gene-stage::before, .gene-level.gap .gene-stage::before { border-left: 2px dashed var(--gold-primary); background: none; box-shadow: none; }
+    .gene-time { align-self: center; text-align: right; border-right: 1px solid rgba(229,193,104,.5); padding: 11px 14px 11px 2px; color: #e7d4ae; }
+    .gene-time small { display: block; color: #d5a94d; font-weight: 800; font-size: 10px; letter-spacing: .1em; }
+    .gene-time strong { display: block; font-family: 'Noto Serif KR', serif; color: #fff1cd; font-size: 15px; margin: 3px 0 5px; }
+    .gene-time span { display: block; font-size: 11px; line-height: 1.45; }
+    .gene-time a { display: inline-block; color: #e9c77c; font-size: 10px; margin-top: 5px; text-decoration: underline; }
+    .gene-join { display: inline-block; position: relative; z-index: 1; padding: 4px 12px; border-radius: 99px;
+      background: #29372e; border: 1px solid rgba(229,193,104,.3); color: #f0d390; font-size: 11px; font-weight: 700; margin-bottom: 9px; }
+    .gene-pair { display: flex; align-items: center; justify-content: center; gap: 9px; flex-wrap: wrap; position: relative; z-index: 1; }
+    .gene-spouse { color: #f6d687; font-size: 12px; padding: 4px 8px; border-top: 1px solid #d6ae58; border-bottom: 1px solid #d6ae58; }
+    .gene-card { width: min(235px, 42vw); min-height: 88px; display: flex; align-items: center; gap: 11px; text-align: left;
+      border: 1px solid rgba(229,193,104,.48); border-radius: 14px; padding: 10px;
+      background: linear-gradient(135deg, #3d3425, #1d2d27 68%, #19201d); color: #fff;
+      box-shadow: 0 10px 0 rgba(0,0,0,.21), 0 19px 28px rgba(0,0,0,.3); font: inherit; }
+    button.gene-card { cursor: pointer; transition: transform .2s, box-shadow .2s, border-color .2s; }
+    button.gene-card:hover, button.gene-card:focus-visible { transform: translateY(-5px); border-color: #ffe099; box-shadow: 0 15px 0 rgba(0,0,0,.19), 0 24px 34px rgba(0,0,0,.37); outline: none; }
+    .gene-card.highlight { border-color: #fff2ae; box-shadow: 0 0 0 3px rgba(255,225,145,.35), 0 22px 35px #0008; }
+    .gene-avatar { width: 54px; height: 64px; flex: none; border-radius: 9px; object-fit: cover; background: #314038; border: 1px solid rgba(229,193,104,.45); }
+    .gene-avatar-fallback { display: grid; place-items: center; font-family: serif; font-size: 26px; color: #f0d48c; }
+    .gene-card small { display: block; color: #e4c779; font-size: 10px; font-weight: 700; }
+    .gene-card strong { display: block; font-family: 'Noto Serif KR', serif; font-size: 16px; margin-top: 2px; line-height: 1.25; }
+    .gene-card em { display: block; font-style: normal; color: #d2c8b5; font-size: 11px; margin-top: 3px; }
+    .gene-level.gap .gene-card { border-style: dashed; background: #1e2823; box-shadow: none; justify-content: center; text-align: center; }
+    .gene-gap { display: grid; gap: 4px; width: min(290px, 80vw); padding: 13px 16px; border: 1px dashed rgba(229,193,104,.5); border-radius: 13px; background: #1e2823; color: #e9d9b8; }
+    .gene-gap span { color: #e1bf72; font-size: 10px; font-weight: 800; letter-spacing: .08em; }
+    .gene-gap strong { font-family: 'Noto Serif KR', serif; font-size: 13px; }
+    .gene-ref { position: relative; z-index: 1; color: #bfb49e; font-size: 11px; margin-top: 9px; line-height: 1.5; }
+    .gene-ref b { color: #ebd297; font-weight: 600; }
+    .gene-after { max-width: 740px; margin: 20px auto 0; border-top: 1px solid rgba(229,193,104,.3); padding-top: 16px; text-align: center; color: #d9cfbc; font-size: 12px; line-height: 1.6; }
+    @media (max-width: 560px) {
+      .gene-hall { padding: 22px 10px; }
+      .gene-levels::before { inset: 0; }
+      .gene-level { display: block; padding: 10px 2px 16px; }
+      .gene-time { display: grid; grid-template-columns: auto 1fr; gap: 2px 8px; text-align: left; max-width: 270px; margin: 0 auto 10px; padding: 9px 10px; border: 1px solid rgba(229,193,104,.4); border-radius: 8px; background: #19231e; }
+      .gene-time small { grid-column: 1 / -1; }
+      .gene-time strong { grid-column: 1 / -1; margin: 0; }
+      .gene-time span, .gene-time a { grid-column: 1 / -1; margin: 0; }
+      .gene-card { width: min(175px, 43vw); min-height: 78px; gap: 6px; padding: 7px; }
+      .gene-avatar { width: 36px; height: 49px; }
+      .gene-card strong { font-size: 13px; }
+      .gene-card em { display: none; }
+      .gene-spouse { padding: 2px; font-size: 10px; }
+      .gene-pair:has(.gene-spouse) { gap: 4px; flex-wrap: nowrap; }
+      .gene-pair:has(.gene-spouse) .gene-card { width: min(110px, 29vw); min-width: 0; flex: none; min-height: 91px; flex-direction: column; text-align: center; justify-content: center; }
+      .gene-pair:has(.gene-spouse) .gene-avatar { width: 34px; height: 38px; }
+      .gene-pair:has(.gene-spouse) .gene-card strong { font-size: 11px; overflow-wrap: anywhere; }
+      .gene-pair:has(.gene-spouse) .gene-card small { font-size: 9px; }
+    }
 
     /* 30인 성화 카드 그리드 */
     .pillars-grid {
@@ -437,7 +520,7 @@
       border-radius: 6px;
     }
 
-    /* 전체 300인 검색 & 필터 */
+    /* 전체 350인 검색 & 필터 */
     .filter-bar {
       display: flex;
       gap: 10px;
@@ -697,7 +780,7 @@
     <div class="top-actions">
       <a href="events_encyclopedia_preview.html" class="btn-top">📜 사건대백과 300대 사건</a>
       <a href="behinds_encyclopedia_preview.html" class="btn-top">💡 비하인드 300선</a>
-      <button class="btn-top" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약과 메시아 계보 대형 차트')">🗺️ 언약 계보도</button>
+      <button class="btn-top" onclick="switchView('view-pillars'); document.getElementById('verticalGenealogy').scrollIntoView({behavior:'smooth'})">🗺️ 세로 계보 탐험</button>
       <a href="index.html#figures" class="btn-top gold">🏛️ 꿈디도 본관 서재</a>
     </div>
   </header>
@@ -744,7 +827,7 @@
       ⛵ 바울의 동역자·서신 관계망 & 신약 인물 <span class="axis-badge">관계도</span>
     </button>
     <button class="axis-tab" data-view="view-all300" onclick="switchView('view-all300')">
-      📜 전체 300인 마스터 대백과 색인 <span class="axis-badge">P001~P300 검색</span>
+      📜 전체 350인 마스터 대백과 색인 <span class="axis-badge">P001~P350 검색</span>
     </button>
   </nav>
 
@@ -756,11 +839,28 @@
       <div class="hall-panel">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">🌿 구속사 중심 계보도 — 창조·족장부터 예수 그리스도와 초대교회까지 (핵심 30인)</h2>
-            <p class="hall-panel-desc">각 인물의 원형 초상 노드를 클릭하시면 5종 성화 도판(인물 마스터 · 투명 초상 · 핵심 성경 장면 3컷)과 제간사·워크간사의 정밀 고증 열전이 열립니다.</p>
+            <h2 class="hall-panel-title serif">🌿 세대를 따라 내려가는 언약의 계보와 350인 인물 탐험</h2>
+            <p class="hall-panel-desc">실선은 본문에 근거한 부모·자녀, 나란한 카드는 부부입니다. 인물을 선택하면 열전과 성화가 열립니다.</p>
           </div>
-          <button class="btn-top gold" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약의 계보 대형 차트')">🖼️ 언약의 계보 대형 원판 보기</button>
+          <button class="btn-top gold" onclick="switchView('view-directory')">📜 350인 전체 색인</button>
         </div>
+        <div class="gene-hall" id="verticalGenealogy" aria-label="세로로 읽는 성경 인물 계보">
+          <div class="gene-intro">
+            <div class="gene-eyebrow">THE COVENANT LINE · VERTICAL GALLERY</div>
+            <h3 class="serif">위에서 아래로 흐르는 언약의 계보</h3>
+            <p>세대는 피라미드의 층처럼 아래로 내려가고, 부부는 같은 층에 섭니다. 왼쪽 시간의 벽에서 왕조와 동시대 세계사를 함께 읽어 보세요.</p>
+            <div class="gene-search">
+              <input id="geneSearchInput" type="search" list="genePeople" placeholder="350인 이름 또는 P번호로 찾기" aria-label="성경 인물 350인 검색" onkeydown="if(event.key==='Enter') searchGenePerson()" />
+              <datalist id="genePeople"></datalist>
+              <button type="button" onclick="searchGenePerson()">인물 찾기</button>
+            </div>
+            <div id="geneSearchStatus" class="gene-search-status" role="status" aria-live="polite"></div>
+            <div class="gene-legend"><span>│ 부모·자녀</span><span>─ 부부</span><span>┆ 중간 세대 생략</span><span>✦ 예수님의 법적 계보 구분</span></div>
+          </div>
+          <div id="geneLevels" class="gene-levels"></div>
+          <p class="gene-after">이 전시는 본문에서 확인되는 줄기와 마태복음 1장의 법적 계보를 보여 줍니다. 누가복음 3장의 계보는 별도 검토 대상입니다. 350인 전체 열전은 위 검색창과 전체 색인에서 탐험할 수 있습니다. 자료·출처: 제간사 · 전시 디자인: 워크 간사 · 도서관 운영·보수: 안간사.</p>
+        </div>
+        <div class="hall-panel-head"><div><h3 class="hall-panel-title serif">시대별 인물 탐험</h3><p class="hall-panel-desc">아래 목록은 같은 시대의 주요 인물을 모은 길잡이입니다. 인물 사이에 가족 관계를 뜻하지 않습니다.</p></div></div>
         <div class="era-flow-wrap" id="lineageTreeContainer"></div>
       </div>
 
@@ -840,12 +940,12 @@
       </div>
     </section>
 
-    <!-- [VIEW 5] 전체 300인 마스터 대백과 색인 -->
+    <!-- [VIEW 5] 전체 350인 마스터 대백과 색인 -->
     <section class="view-panel" id="view-all300">
       <div class="hall-panel">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">📜 꿈디도 성경 인물대백과 전체 300인 마스터 색인 (P001~P300)</h2>
+            <h2 class="hall-panel-title serif">📜 꿈디도 성경 인물대백과 전체 350인 마스터 색인 (P001~P350)</h2>
             <p class="hall-panel-desc">이름, 원어 표기, 활동 시대, 직분, 연결 장소 및 성경 구절로 300인의 성경 인물을 즉시 검색하고 열람할 수 있습니다.</p>
           </div>
         </div>
@@ -918,6 +1018,73 @@
     });
 
     let currentDirFilter = "all";
+
+    // 직접 연결과 생략 구간을 구별한 세로 전시. 중간 인물도 열전 색인에는 포함될 수 있다.
+    const GENE_LEVELS = [
+      { people: ["P001", "P002"], join: "부부", link: "시작", ref: "창 2:22–24", time: ["절대연대 미정", "창세기 원역사", "세계사 절대연대와 직접 대조하지 않음"] },
+      { people: ["P203"], link: "아들", ref: "창 4:25" },
+      { gap: "셋부터 노아까지 여러 세대", link: "중간 세대 생략", ref: "창 5:6–29" },
+      { people: ["P003"], link: "후손", ref: "창 5:28–29" },
+      { people: ["P206"], link: "아들", ref: "창 5:32; 6:10" },
+      { gap: "셈부터 데라까지 여러 세대", link: "중간 세대 생략", ref: "창 11:10–26" },
+      { people: ["P207"], link: "후손", ref: "창 11:24–26" },
+      { people: ["P004", "P005"], join: "부부", link: "데라의 아들 아브라함", ref: "창 11:26, 29", time: ["연대 견해 다양", "족장 가문", "고대 근동의 도시 국가들"] },
+      { people: ["P006", "P213"], join: "부부", link: "아브라함과 사라의 아들 이삭", ref: "창 21:3; 24:67" },
+      { people: ["P007", "P216"], join: "부부", link: "이삭과 리브가의 아들 야곱", ref: "창 25:26; 29:23" },
+      { people: ["P218"], link: "야곱과 레아의 아들", ref: "창 29:35" },
+      { gap: "베레스부터 살몬까지 여러 세대", link: "중간 세대 생략", ref: "룻 4:18–21", time: ["절대연대 논의", "사사 시대", "동지중해 철기 문화"] },
+      { people: ["P245", "P017"], join: "부부", link: "살몬의 아들 보아스", ref: "룻 4:21; 마 1:5" },
+      { names: ["오벳"], link: "보아스와 룻의 아들", ref: "룻 4:17" },
+      { names: ["이새"], link: "오벳의 아들", ref: "룻 4:22" },
+      { people: ["P021"], link: "이새의 아들", ref: "룻 4:22; 삼상 16:1", time: ["약 기원전 10세기", "이스라엘 통일 왕국 · 다윗", "이집트 제3중간기", "https://resources.metmuseum.org/resources/metpublications/pdf/Assyrian_Reliefs_and_Ivories_in_The_Metropolitan_Museum_of_Art_Palace_Reliefs_of_Assurnasirpal_II_an.pdf"] },
+      { people: ["P022"], link: "다윗의 아들", ref: "삼하 12:24; 왕상 1:39", time: ["약 기원전 10세기", "이스라엘 통일 왕국 · 솔로몬", "이집트 제3중간기", "https://resources.metmuseum.org/resources/metpublications/pdf/Assyrian_Reliefs_and_Ivories_in_The_Metropolitan_Museum_of_Art_Palace_Reliefs_of_Assurnasirpal_II_an.pdf"] },
+      { gap: "다윗 왕조의 여러 세대", link: "중간 세대 생략", ref: "마 1:7–16", time: ["기원전 10~1세기", "분열 왕국 → 포로 → 제2성전", "신앗수르 → 바빌로니아 → 페르시아 → 헬라", "https://www.metmuseum.org/toah/ht/04/wae.html"] },
+      { names: ["요셉"], people: ["P028"], join: "부부", link: "마태복음의 법적 계보", ref: "마 1:16, 18–25; 눅 1:26–27", time: ["기원전 1세기 말~기원후 1세기", "헤롯 왕조 · 로마 지배", "동지중해 로마 시대", "https://www.metmuseum.org/toah/ht/04/wae.html"] },
+      { people: ["P026"], link: "마리아에게서 나심 · 요셉의 법적 아들", ref: "마 1:16, 20–25; 눅 2:4–7" }
+    ];
+
+    function renderGenealogy() {
+      const portraitBase = location.protocol === "file:" || location.hostname === "localhost" || location.hostname === "127.0.0.1"
+        ? "https://kkumbaon.com/kkumbaon-library/" : "";
+      const card = (pid, name) => {
+        const f = pid ? FIG_MAP[pid] : null;
+        const label = f ? f.name : name;
+        const image = f && f.portrait
+          ? `<img class="gene-avatar" src="${portraitBase}${f.portrait}" alt="" loading="lazy" />`
+          : `<span class="gene-avatar gene-avatar-fallback" aria-hidden="true">✦</span>`;
+        const inside = `${image}<span><small>${pid || '본문 속 연결 인물'}</small><strong>${label}</strong><em>${f ? f.era : '350인 외 계보 연결'}</em></span>`;
+        return f ? `<button class="gene-card" type="button" data-gene-pid="${pid}" onclick="openFigure('${pid}')" aria-label="${label} 열전 보기">${inside}</button>`
+          : `<div class="gene-card">${inside}</div>`;
+      };
+      document.getElementById("geneLevels").innerHTML = GENE_LEVELS.map(level => {
+        const people = (level.people || []).map(pid => card(pid));
+        const names = (level.names || []).map(name => card(null, name));
+        const cards = [...names, ...people].join(level.join ? `<span class="gene-spouse">${level.join}</span>` : "");
+        const body = level.gap ? `<div class="gene-pair"><div class="gene-gap"><span>중간 세대 생략</span><strong>${level.gap}</strong></div></div>` : `<div class="gene-pair">${cards}</div>`;
+        const time = level.time ? `<aside class="gene-time" aria-label="연대와 세계사"><small>시간의 벽</small><strong>${level.time[0]}</strong><span>왕조·시대: ${level.time[1]}</span><span>세계사: ${level.time[2]}</span>${level.time[3] ? `<a href="${level.time[3]}" target="_blank" rel="noopener noreferrer">연대 참고 자료 ↗</a>` : ""}</aside>` : `<div aria-hidden="true"></div>`;
+        return `<div class="gene-level ${level.gap ? 'gap' : ''}">${time}<div class="gene-stage"><span class="gene-join">${level.link}</span>${body}<div class="gene-ref">근거 <b>${level.ref}</b></div></div></div>`;
+      }).join("");
+      document.getElementById("genePeople").innerHTML = FIGS.map(f => `<option value="${f.id} ${f.name}"></option>`).join("");
+    }
+
+    function searchGenePerson() {
+      const query = document.getElementById("geneSearchInput").value.trim().toLowerCase();
+      const status = document.getElementById("geneSearchStatus");
+      if (!query) { status.textContent = "이름 또는 P번호를 입력해 주세요."; return; }
+      const id = query.match(/p\d{3}/i)?.[0].toUpperCase();
+      const person = (id && FIG_MAP[id]) || FIGS.find(f => f.name.toLowerCase() === query) || FIGS.find(f => f.name.toLowerCase().includes(query));
+      if (!person) { status.textContent = "일치하는 인물을 찾지 못했습니다. 다른 이름이나 P번호로 찾아보세요."; return; }
+      document.querySelectorAll(".gene-card.highlight").forEach(el => el.classList.remove("highlight"));
+      const card = document.querySelector(`[data-gene-pid="${person.id}"]`);
+      if (card) {
+        card.classList.add("highlight");
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        status.textContent = `${person.id} ${person.name} — 세로 계보에서 위치를 표시했습니다. 카드를 누르면 열전이 열립니다.`;
+      } else {
+        status.textContent = `${person.id} ${person.name} — 열전을 열었습니다. 이 인물의 가족 연결선은 출처 확인 뒤 추가됩니다.`;
+        openFigure(person.id);
+      }
+    }
 
     function mdToHtml(md) {
       if (!md) return "<p style='color:var(--text-dim);'>상세 열전 원고를 준비 중입니다.</p>";
@@ -1000,6 +1167,7 @@
     }
 
     function initEncyclopedia() {
+      renderGenealogy();
       // 1. 구속사 계보 7단계 트리 렌더링
       const ERA_STEPS = [
         { tag: "ERA 01 · CREATION & FLOOD", name: "창조와 홍수 심판 시대", sub: "창세기 1~11장 · 인류의 시조와 방주 언약", pids: ["P001", "P002", "P003"] },
@@ -1013,13 +1181,11 @@
 
       const treeEl = document.getElementById("lineageTreeContainer");
       treeEl.innerHTML = ERA_STEPS.map(step => {
-        const nodesHtml = step.pids.map((pid, idx) => {
+        const nodesHtml = step.pids.map(pid => {
           const f = FIG_MAP[pid];
           if (!f) return "";
           const isMessiah = pid === "P026";
-          const arrow = idx > 0 ? `<span class="node-arrow">→</span>` : "";
-          return `${arrow}
-            <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
+          return `<div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
               <img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />
               <div class="pillar-info">
                 <div class="pillar-id">${f.id} · ${isMessiah ? '🌟 구속사의 중심' : 'Tier-1 기둥'}</div>
@@ -1125,7 +1291,7 @@
         </div>
       `;
 
-      // 6. 전체 300인 디렉토리
+      // 6. 전체 350인 디렉토리
       renderDirectory300();
     }
 
