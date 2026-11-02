@@ -35,6 +35,20 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    @media (hover: hover) and (pointer: fine) {
+      html, body {
+        min-width: 1360px !important;
+        overflow-x: auto;
+      }
+      .top-bar {
+        flex-wrap: nowrap !important;
+      }
+    }
+    @media (hover: hover) and (pointer: fine) and (min-width: 1360px) {
+      html, body {
+        overflow-x: hidden !important;
+      }
+    }
     .serif { font-family: 'Noto Serif KR', Georgia, serif; }
 
     /* 상단 헤더 */
