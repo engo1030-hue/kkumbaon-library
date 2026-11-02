@@ -2205,64 +2205,78 @@
       height: 26px !important;
     }
 
-    /* 단정한 상단 12관 아카이브 직행 서브바 */
+    /* 단정한 상단 12관 아카이브 직행 서브바 (2열 구성으로 우측 잘림 원천 방지) */
     .kkumdido-12halls-bar {
       background: #EFEAE0;
       border-bottom: 1px solid #DDD5C5;
-      padding: 0 clamp(14px, 1.8vw, 36px);
-      height: 40px;
+      padding: 8px clamp(16px, 2vw, 36px);
       display: flex;
       align-items: center;
     }
     .kkumdido-12halls-inner {
-      max-width: 1800px;
+      max-width: 1760px;
       width: 100%;
       margin: 0 auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 6px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      white-space: nowrap;
+      gap: 18px;
     }
-    .kkumdido-12halls-inner::-webkit-scrollbar { display: none; }
     .kkumdido-12halls-badge {
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 800;
       color: #F5DF98;
       background: #241A10;
       border: 1px solid #B89446;
-      padding: 3px 10px;
+      padding: 6px 14px;
       border-radius: 999px;
       text-decoration: none;
       letter-spacing: -0.2px;
       flex-shrink: 0;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(36, 26, 16, 0.12);
     }
-    .kkumdido-12halls-links {
+    .kkumdido-12halls-badge:hover {
+      color: #FFFFFF;
+      border-color: #E5C878;
+    }
+    .kkumdido-12halls-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      flex: 1;
+      min-width: 0;
+    }
+    .kkumdido-12halls-row {
       display: flex;
       align-items: center;
-      gap: clamp(6px, 0.85vw, 15px);
-      flex: 1;
       justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: clamp(10px, 1.35vw, 24px);
     }
-    .kkumdido-12halls-links a {
+    .kkumdido-12halls-row a {
       text-decoration: none;
       color: #3B3228;
-      font-size: clamp(12px, 0.84vw, 13.5px);
+      font-size: clamp(12.5px, 0.88vw, 14px);
       font-weight: 700;
       letter-spacing: -0.3px;
-      padding: 4px 2px;
-      transition: color 0.15s ease;
-      flex-shrink: 0;
+      padding: 2px 4px;
+      transition: color 0.15s ease, transform 0.15s ease;
+      white-space: nowrap;
     }
-    .kkumdido-12halls-links a span.h-no {
+    .kkumdido-12halls-row a span.h-no {
       color: #8C621E;
       font-weight: 800;
-      margin-right: 2px;
+      margin-right: 4px;
     }
-    .kkumdido-12halls-links a:hover {
+    .kkumdido-12halls-row a:hover {
       color: #8C621E;
+      transform: translateY(-1px);
+    }
+    .kkumdido-12halls-sep {
+      color: #C9BFA8;
+      font-size: 10px;
+      user-select: none;
     }
 
     @media (hover: none) and (pointer: coarse) and (max-width: 1100px) {
@@ -2309,24 +2323,39 @@
     <button class="entrance-theme" onclick="toggleDarkTheme()" id="themeBtn" aria-label="서가 화면 밝기 전환">밤의 서재</button>
   </header>
 
-  <!-- 단정한 상단 12관 아카이브 직행 바 (이모티콘 배제) -->
+  <!-- 단정한 상단 12관 아카이브 직행 바 (2열 구성 · 이모티콘 배제) -->
   <nav class="kkumdido-12halls-bar" aria-label="꿈디도 12대 아카이브 바로가기">
     <div class="kkumdido-12halls-inner">
       <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">12대 아카이브 · 3,650</a>
-      <div class="kkumdido-12halls-links">
-        <a href="figures_encyclopedia_preview.html"><span class="h-no">가계도</span>인물가계도·족보</a>
-        <a href="kkumdido_12archives_viewer.html?archive=1"><span class="h-no">1관</span>인물대백과</a>
-        <a href="kkumdido_12archives_viewer.html?archive=2"><span class="h-no">2관</span>사건대백과</a>
-        <a href="kkumdido_12archives_viewer.html?archive=3"><span class="h-no">3관</span>비하인드</a>
-        <a href="kkumdido_12archives_viewer.html?archive=4"><span class="h-no">4관</span>외경·중간사</a>
-        <a href="kkumdido_12archives_viewer.html?archive=5"><span class="h-no">5관</span>지리·고고학</a>
-        <a href="kkumdido_12archives_viewer.html?archive=6"><span class="h-no">6관</span>원어사전</a>
-        <a href="kkumdido_12archives_viewer.html?archive=7"><span class="h-no">7관</span>고전·웨슬리</a>
-        <a href="kkumdido_12archives_viewer.html?archive=8"><span class="h-no">8관</span>교리·변증</a>
-        <a href="kkumdido_12archives_viewer.html?archive=9"><span class="h-no">9관</span>한국교회사</a>
-        <a href="kkumdido_12archives_viewer.html?archive=10"><span class="h-no">10관</span>성경난제</a>
-        <a href="kkumdido_12archives_viewer.html?archive=11"><span class="h-no">11관</span>찬송가</a>
-        <a href="kkumdido_12archives_viewer.html?archive=12"><span class="h-no">12관</span>목회툴킷</a>
+      <div class="kkumdido-12halls-rows">
+        <div class="kkumdido-12halls-row">
+          <a href="figures_encyclopedia_preview.html"><span class="h-no">가계도</span>인물가계도·족보</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=1"><span class="h-no">1관</span>인물대백과</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=2"><span class="h-no">2관</span>사건대백과</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=3"><span class="h-no">3관</span>비하인드</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=4"><span class="h-no">4관</span>외경·중간사</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=5"><span class="h-no">5관</span>지리·고고학</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=6"><span class="h-no">6관</span>원어사전</a>
+        </div>
+        <div class="kkumdido-12halls-row">
+          <a href="kkumdido_12archives_viewer.html?archive=7"><span class="h-no">7관</span>고전·웨슬리</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=8"><span class="h-no">8관</span>교리·변증</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=9"><span class="h-no">9관</span>한국교회사</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=10"><span class="h-no">10관</span>성경난제</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=11"><span class="h-no">11관</span>찬송가</a>
+          <span class="kkumdido-12halls-sep">|</span>
+          <a href="kkumdido_12archives_viewer.html?archive=12"><span class="h-no">12관</span>목회툴킷</a>
+        </div>
       </div>
     </div>
   </nav>
@@ -2610,6 +2639,7 @@
         <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
           <a href="figures_encyclopedia_preview.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px;">인물가계도 · 350인 족보 ↗</a>
           <a href="kkumdido_12archives_viewer.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px;">12관 3,650모듈 통합뷰어 ↗</a>
+          <a href="kkumdido_sermon_studio.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px; background:linear-gradient(135deg,#F5DF98,#C9982A); color:#1A1107; font-weight:800;">✍️ 말씀·설교 스튜디오 ↗</a>
         </div>
       </div>
 
