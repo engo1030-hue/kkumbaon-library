@@ -1,0 +1,2476 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#1e1914">
+<title>새오름 온라인 예배당 · 말없이 함께 앉아 기도하는 곳</title>
+<meta name="description" content="말없이 함께 앉아 기도하고 쉬어가는 온라인 예배당, 새오름.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
+<script src="./assets/mqtt.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js'"></script>
+<style>
+  :root {
+    --bg-warm: #f3efe6;
+    --ink-dark: #2c251e;
+    --ink-muted: #766c5e;
+    --gold: #d4a853;
+    --gold-bright: #f5cf76;
+    --panel-bg: rgba(26, 21, 17, 0.84);
+    --panel-border: rgba(212, 168, 83, 0.28);
+    --text-light: #f6f1e7;
+    --text-dim: #bfb5a4;
+    --serif: 'Noto Serif KR', 'KoPubWorldBatang', Georgia, serif;
+    --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    background: #1a1511; color: var(--text-light); font-family: var(--sans);
+  }
+
+  /* 1. 부트(입장) 화면 — 산사 스타일의 고요하고 경건한 오프닝 */
+  .chapel-boot {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 28px; background: radial-gradient(circle at 50% 38%, #f7f3ea 0%, #e8e1d3 100%);
+    color: #3d352b; text-align: center;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+  .chapel-boot.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .boot-mark {
+    color: #8c734b; margin-bottom: 14px;
+    animation: float-slow 3.6s ease-in-out infinite;
+  }
+  .boot-mark svg { width: 46px; height: 46px; stroke-width: 1.3; }
+  .chapel-boot h1 {
+    margin: 0; font-family: var(--serif); font-size: 29px; font-weight: 600;
+    letter-spacing: 6px; padding-left: 6px; color: #2f271e;
+  }
+  .boot-sub {
+    margin: 10px 0 0; font-size: 13.5px; color: #6e6455; line-height: 1.75;
+    max-width: 380px; word-break: keep-all;
+  }
+  .boot-verse {
+    margin: 22px 0 26px; padding: 14px 22px;
+    border-top: 1px solid rgba(140, 115, 75, 0.22);
+    border-bottom: 1px solid rgba(140, 115, 75, 0.22);
+    font-family: var(--serif); font-size: 13px; color: #5b4f3e; line-height: 1.8;
+    max-width: 420px;
+  }
+  .boot-actions {
+    display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px;
+  }
+  .boot-btn-primary {
+    padding: 14px 22px; border-radius: 999px; border: 1px solid #6e5837;
+    background: #3b3024; color: #f8f4ec; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.5px; cursor: pointer; transition: all 0.25s ease;
+    box-shadow: 0 8px 22px rgba(47, 39, 30, 0.16);
+  }
+  .boot-btn-primary:hover { background: #524231; transform: translateY(-1px); }
+  .boot-btn-secondary {
+    padding: 10px 18px; border-radius: 999px; border: none;
+    background: transparent; color: #786d5d; font-size: 12.5px;
+    cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+  .boot-btn-secondary:hover { color: #3b3024; }
+  .boot-dot {
+    width: 5px; height: 5px; margin-top: 22px; background: #a89371;
+    border-radius: 50%; animation: breathe 2s ease-in-out infinite;
+  }
+
+  @keyframes breathe { 50% { opacity: 0.25; transform: scale(0.85); } }
+  @keyframes float-slow { 50% { transform: translateY(-4px); } }
+
+  /* 2. 3D 캔버스 영역 */
+  #canvas-wrap {
+    position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1;
+    cursor: grab;
+  }
+  #canvas-wrap:active { cursor: grabbing; }
+
+  /* 3. 아바타 이름표 오버레이 */
+  #labels-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 10; overflow: hidden;
+  }
+  .avatar-label {
+    position: absolute; transform: translate(-50%, -100%);
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(24, 19, 15, 0.72); border: 1px solid rgba(212, 168, 83, 0.32);
+    color: #f5efe4; font-size: 11.5px; font-weight: 500; white-space: nowrap;
+    backdrop-filter: blur(6px); pointer-events: auto; cursor: pointer;
+    transition: opacity 0.25s ease, transform 0.2s ease;
+    display: flex; align-items: center; gap: 5px;
+  }
+  .avatar-label:hover {
+    background: rgba(45, 35, 25, 0.92); border-color: var(--gold);
+  }
+  .avatar-label.is-me {
+    border-color: rgba(245, 207, 118, 0.75); color: #ffe7a8;
+  }
+  .avatar-bubble {
+    position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+    padding: 5px 11px; border-radius: 12px;
+    background: rgba(247, 239, 222, 0.96); color: #2d241b;
+    font-family: var(--serif); font-size: 11.5px; font-weight: 600;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.28); white-space: nowrap;
+    animation: pop-up 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+  }
+  @keyframes pop-up {
+    from { opacity: 0; transform: translate(-50%, 6px) scale(0.9); }
+    to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  }
+
+  /* 4. 상단 HUD 바 */
+  .top-bar {
+    position: fixed; top: max(14px, env(safe-area-inset-top)); left: 16px; right: 16px;
+    z-index: 30; display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; pointer-events: none;
+  }
+  .top-left, .top-right {
+    display: flex; align-items: center; gap: 8px; pointer-events: auto; flex-wrap: wrap;
+  }
+  .hud-pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 8px 14px; border-radius: 999px;
+    background: var(--panel-bg); border: 1px solid var(--panel-border);
+    color: var(--text-light); font-size: 12.5px; font-weight: 500;
+    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    cursor: pointer; transition: all 0.2s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.25); text-decoration: none;
+  }
+  .hud-pill:hover {
+    border-color: var(--gold); background: rgba(42, 33, 25, 0.92);
+  }
+  .hud-pill.active-gold {
+    background: rgba(212, 168, 83, 0.22); border-color: var(--gold-bright); color: #ffebb3;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #7cd992;
+    box-shadow: 0 0 8px #7cd992;
+  }
+
+  /* 상단 중앙 상태 토스트 / 현재 활동 안내 */
+  .status-banner {
+    position: fixed; top: 68px; left: 50%; transform: translateX(-50%);
+    z-index: 25; padding: 8px 18px; border-radius: 999px;
+    background: rgba(22, 18, 14, 0.78); border: 1px solid rgba(212, 168, 83, 0.3);
+    color: #efe6d5; font-family: var(--serif); font-size: 12.5px;
+    backdrop-filter: blur(8px); pointer-events: none;
+    transition: all 0.35s ease; text-align: center; max-width: 90vw;
+  }
+
+  /* 5. 하단 컨트롤 독 (산사 5대 도구 스타일) */
+  .bottom-dock {
+    position: fixed; bottom: max(18px, env(safe-area-inset-bottom)); left: 50%;
+    transform: translateX(-50%); z-index: 30;
+    display: flex; align-items: center; gap: 6px; padding: 7px 10px;
+    border-radius: 999px; background: rgba(22, 18, 14, 0.88);
+    border: 1px solid rgba(212, 168, 83, 0.35);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    max-width: 96vw; overflow-x: auto;
+  }
+  .dock-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 10px 15px; border-radius: 999px; border: 1px solid transparent;
+    background: transparent; color: #e8dfd1; font-size: 13px; font-weight: 500;
+    cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
+  }
+  .dock-btn:hover {
+    background: rgba(212, 168, 83, 0.14); color: #fff;
+  }
+  .dock-btn.is-active {
+    background: rgba(212, 168, 83, 0.26); border-color: rgba(245, 207, 118, 0.65);
+    color: #ffeaad;
+  }
+  .dock-btn .shortcut {
+    font-size: 10.5px; color: #9c8f7a; padding: 1px 5px;
+    border-radius: 4px; background: rgba(255,255,255,0.06);
+  }
+
+  /* 조작 힌트 */
+  .control-hint {
+    position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%);
+    z-index: 20; font-size: 11.5px; color: rgba(235, 225, 208, 0.68);
+    background: rgba(18, 14, 11, 0.55); padding: 4px 12px; border-radius: 999px;
+    pointer-events: none; white-space: nowrap;
+  }
+
+  /* 6. 사이드/플로팅 패널 공통 */
+  .floating-panel {
+    position: fixed; right: 20px; bottom: 86px; width: 350px; max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 160px); overflow-y: auto;
+    z-index: 40; padding: 20px; border-radius: 22px;
+    background: rgba(24, 19, 15, 0.94); border: 1px solid rgba(212, 168, 83, 0.4);
+    backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
+    display: none; flex-direction: column; gap: 14px;
+  }
+  .floating-panel.is-open { display: flex; animation: slide-up 0.25s ease; }
+  @keyframes slide-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(212, 168, 83, 0.2); padding-bottom: 10px;
+  }
+  .panel-title {
+    margin: 0; font-family: var(--serif); font-size: 16px; font-weight: 600; color: #f7e6be;
+  }
+  .panel-close {
+    background: none; border: none; color: #a89c8a; font-size: 18px; cursor: pointer;
+  }
+  .panel-close:hover { color: #fff; }
+
+  /* 손끝 말씀 필사 (염주 굴리기 대응) 전용 UI */
+  .scroll-wheel-box {
+    position: relative; padding: 18px 16px; border-radius: 16px;
+    background: linear-gradient(180deg, #2b2219 0%, #1f1812 100%);
+    border: 1px solid rgba(212, 168, 83, 0.35); text-align: center;
+    cursor: ns-resize; touch-action: none;
+  }
+  .verse-selector {
+    width: 100%; padding: 8px 10px; border-radius: 10px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(212, 168, 83, 0.3);
+    color: #f2e8d5; font-size: 12.5px; margin-bottom: 10px;
+  }
+  .verse-display {
+    font-family: var(--serif); font-size: 15.5px; line-height: 1.85;
+    min-height: 92px; padding: 8px 4px; word-break: keep-all;
+  }
+  .verse-char {
+    color: rgba(200, 188, 168, 0.26); transition: color 0.18s ease, text-shadow 0.18s ease;
+  }
+  .verse-char.lit {
+    color: #ffe299; text-shadow: 0 0 10px rgba(245, 207, 118, 0.55); font-weight: 600;
+  }
+  .olive-beads-track {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    margin: 12px 0 6px; padding: 8px 0; overflow: hidden;
+  }
+  .olive-bead {
+    width: 16px; height: 22px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #c89d54, #6e4f23 75%, #3d2a10 100%);
+    box-shadow: inset 0 1px 2px rgba(255,255,255,0.35), 0 3px 6px rgba(0,0,0,0.5);
+    transition: transform 0.2s ease;
+  }
+  .olive-bead.active {
+    transform: scale(1.28);
+    background: radial-gradient(circle at 35% 30%, #ffe6a3, #d4a03e 75%, #7a5419 100%);
+    box-shadow: 0 0 12px rgba(245, 207, 118, 0.7);
+  }
+  .wheel-guide {
+    font-size: 11.5px; color: #b5a892; margin-top: 6px;
+  }
+  .step-btn {
+    margin-top: 10px; width: 100%; padding: 10px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.45);
+    background: rgba(212, 168, 83, 0.18); color: #ffe7a8;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+  }
+  .step-btn:hover { background: rgba(212, 168, 83, 0.3); }
+
+  /* 등불 켜기 & 기도제목 리스트 */
+  .prayer-input-group {
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .prayer-input {
+    width: 100%; padding: 10px 12px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.35);
+    background: rgba(255, 255, 255, 0.06); color: #f6efe2;
+    font-size: 13px; font-family: var(--sans);
+  }
+  .prayer-input:focus { outline: none; border-color: var(--gold-bright); }
+  .prayer-list {
+    display: flex; flex-direction: column; gap: 8px; max-height: 210px; overflow-y: auto;
+    padding-right: 4px;
+  }
+  .prayer-item {
+    padding: 10px 12px; border-radius: 12px;
+    background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(212, 168, 83, 0.18);
+    font-size: 12.5px; line-height: 1.55;
+  }
+  .prayer-item-top {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; color: #b8aa93; margin-bottom: 4px;
+  }
+  .amen-mini-btn {
+    background: rgba(212, 168, 83, 0.15); border: 1px solid rgba(212, 168, 83, 0.35);
+    color: #ffe299; border-radius: 999px; padding: 2px 9px; font-size: 11px; cursor: pointer;
+  }
+  .amen-mini-btn:hover { background: rgba(212, 168, 83, 0.32); }
+
+  /* 사운드 믹서 컨트롤 */
+  .sound-row {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.04);
+  }
+  .sound-row-head {
+    display: flex; justify-content: space-between; align-items: center; font-size: 13px;
+  }
+  .sound-slider {
+    width: 100%; accent-color: #d4a853; cursor: pointer;
+  }
+  .sub-select {
+    padding: 6px 10px; border-radius: 8px; background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(212,168,83,0.3); color: #efe5d4; font-size: 12px;
+  }
+
+  /* 모달 (서버 선택 / 헌금함) */
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 80;
+    background: rgba(10, 8, 6, 0.72); backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-backdrop.is-open { display: flex; }
+  .modal-card {
+    width: 100%; max-width: 420px; padding: 24px; border-radius: 22px;
+    background: #211a14; border: 1px solid rgba(212, 168, 83, 0.4);
+    color: #f4ece0; box-shadow: 0 22px 60px rgba(0,0,0,0.65);
+  }
+  .room-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; border-radius: 12px; margin-top: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(212,168,83,0.2);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .room-item:hover, .room-item.active {
+    background: rgba(212, 168, 83, 0.18); border-color: var(--gold-bright);
+  }
+
+  @media (max-width: 680px) {
+    .dock-btn span.label-text { font-size: 12px; }
+    .dock-btn .shortcut { display: none; }
+    .control-hint { display: none; }
+    .floating-panel { right: 12px; left: 12px; width: auto; bottom: 80px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. 부트(입장) 화면 -->
+<main id="chapel-boot" class="chapel-boot" role="dialog" aria-label="새오름 온라인 예배당">
+  <div class="boot-mark" aria-hidden="true">
+    <svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 3v9M14 7h8"/>
+      <path d="M5 18L18 9l13 9"/>
+      <path d="M8 16v14h20V16"/>
+      <path d="M15 30v-8a3 3 0 0 1 6 0v8"/>
+      <line x1="3" y1="30" x2="33" y2="30"/>
+    </svg>
+  </div>
+  <h1>새오름 · 온라인 예배당</h1>
+  <p class="boot-sub">말없이 함께 앉아 기도하고, 잠시 쉬어가는 공간입니다.</p>
+  <div class="boot-verse">
+    “수고하고 무거운 짐 진 자들아 다 내게로 오라<br>내가 너희를 쉬게 하리라”<br>
+    <span style="font-size:11.5px; color:#857763;">— 마태복음 11장 28절</span>
+  </div>
+  <div class="boot-actions">
+    <button class="boot-btn-primary" id="btn-enter-sound">🕊️ 소리 켜고 예배당 들어가기</button>
+    <button class="boot-btn-secondary" id="btn-enter-mute">조용히 들어가기 (소리 끔)</button>
+  </div>
+  <span class="boot-dot" aria-hidden="true"></span>
+</main>
+
+<!-- 2. 3D 캔버스 & 아바타 이름표 오버레이 -->
+<div id="canvas-wrap"></div>
+<div id="labels-layer"></div>
+
+<!-- 3. 상단 HUD 바 -->
+<header class="top-bar">
+  <div class="top-left">
+    <button class="hud-pill" id="btn-room-modal" title="예배당 서버 및 함께 기도하는 성도 보기">
+      <span class="live-dot"></span>
+      <span id="current-room-name">갈릴리 호숫가</span>
+      <span style="color:#c9bc9f;">· <strong id="current-room-count">8</strong>명 함께 기도 중</span>
+    </button>
+    <button class="hud-pill" id="btn-time-mode" title="예배당 시간대 빛 바꾸기">
+      <span id="time-mode-label">☀️ 따스한 주일 한낮</span>
+    </button>
+    <button class="hud-pill" id="btn-camera-view" title="카메라 시점 전환">
+      <span>🎥 시점: <strong id="camera-mode-label">3인칭 산책</strong></span>
+    </button>
+    <button class="hud-pill" id="btn-zoom-in" title="화면 더 크게 확대">
+      <span>🔍 +확대</span>
+    </button>
+    <button class="hud-pill" id="btn-zoom-out" title="공간 더 넓게 축소">
+      <span>🔎 -축소</span>
+    </button>
+    <button class="hud-pill" id="btn-walk-garden" title="예배당 밖 감람산 정원과 갈릴리 연못으로 산책 나가기">
+      <span>🌳 야외 정원·연못 산책</span>
+    </button>
+    <button class="hud-pill" id="btn-zen-mode" title="화면 메뉴를 숨기고 조용히 앉아 쉬기">
+      <span>🌙 가만히 쉬기</span>
+    </button>
+  </div>
+  <div class="top-right">
+    <button class="hud-pill" id="btn-Quick-Audio" title="전체 소리 켜기/끄기">
+      <span id="quick-audio-icon">🔊 소리 켜짐</span>
+    </button>
+    <button class="hud-pill" id="btn-offering-modal" title="온라인 헌금 및 사역 마음 보태기">
+      <span>💛 감사헌금함</span>
+    </button>
+    <a class="hud-pill active-gold" href="./online_chapel_kkumdido.html" title="꿈디도 아트리움 묵상원 버전으로 이동">
+      <span>🏛️ 꿈디도 묵상원 가기 →</span>
+    </a>
+  </div>
+</header>
+
+<!-- 상단 상태 배너 -->
+<div class="status-banner" id="status-banner">
+  바닥을 누르면 걸어가고, 빈 장의자나 강단 앞 무릎기도석을 누르면 조용히 앉아 기도합니다.
+</div>
+
+<!-- 조작 힌트 -->
+<div class="control-hint">
+  바닥 클릭·방향키 이동 · 마우스 드래그 둘러보기 · 휠 확대/축소 · 단축키: [1] 착석기도 [2] 말씀필사 [3] 샬롬인사 [4] 등불켜기
+</div>
+
+<!-- 4. 하단 5대 인터랙션 독(Dock) -->
+<nav class="bottom-dock" aria-label="예배당 도구">
+  <button class="dock-btn" id="dock-sit">
+    <span>🪑</span>
+    <span class="label-text" id="dock-sit-label">자리에 앉아 기도</span>
+    <span class="shortcut">1</span>
+  </button>
+  <button class="dock-btn" id="dock-word">
+    <span>📜</span>
+    <span class="label-text">손끝 말씀 묵상</span>
+    <span class="shortcut">2</span>
+  </button>
+  <button class="dock-btn" id="dock-shalom">
+    <span>🕊️</span>
+    <span class="label-text">샬롬 인사</span>
+    <span class="shortcut">3</span>
+  </button>
+  <button class="dock-btn" id="dock-candle">
+    <span>🕯️</span>
+    <span class="label-text">기도의 등불 켜기</span>
+    <span class="shortcut">4</span>
+  </button>
+  <button class="dock-btn" id="dock-sound">
+    <span>🎵</span>
+    <span class="label-text">소리 · 공동기도</span>
+    <span class="shortcut">5</span>
+  </button>
+</nav>
+
+<!-- 5-A. [손끝 말씀 묵상] 패널 (염주 돌리기 대체) -->
+<aside class="floating-panel" id="panel-word">
+  <div class="panel-header">
+    <h2 class="panel-title">📜 손끝 말씀 묵상 · 올리브 묵상 휠</h2>
+    <button class="panel-close" data-close="panel-word">✕</button>
+  </div>
+  <select class="verse-selector" id="verse-select">
+    <option value="0">시편 23:1-3 (여호와는 나의 목자시니)</option>
+    <option value="1">마태복음 11:28-29 (수고하고 무거운 짐 진 자들아)</option>
+    <option value="2">빌립보서 4:6-7 (아무것도 염려하지 말고)</option>
+    <option value="3">민수기 6:24-26 (여호와는 네게 복을 주시고)</option>
+    <option value="4">룻기 2:12 (여호와께서 네가 행한 일에 보답하시기를)</option>
+  </select>
+  <div class="scroll-wheel-box" id="wheel-box" title="마우스 휠을 굴리거나 위아래로 쓸어 넘기세요">
+    <div class="verse-display" id="verse-display"></div>
+    <div class="olive-beads-track" id="beads-track">
+      <div class="olive-bead"></div>
+      <div class="olive-bead"></div>
+      <div class="olive-bead"></div>
+      <div class="olive-bead active"></div>
+      <div class="olive-bead"></div>
+      <div class="olive-bead"></div>
+      <div class="olive-bead"></div>
+    </div>
+    <div class="wheel-guide">
+      위아래로 쓸어 넘기거나 마우스 휠·화살표 키로 한 글자씩 마음에 새겨보세요.
+    </div>
+    <div style="margin-top:8px; font-size:12px; color:#f5cf76;" id="word-progress-text">
+      이번 말씀 0% · 오늘 완주한 말씀 <strong>0</strong>독
+    </div>
+  </div>
+  <button class="step-btn" id="btn-step-word">✨ 한 구절씩 새기기 (클릭 / 스페이스바)</button>
+</aside>
+
+<!-- 5-B. [기도의 등불 켜기] 패널 (향 올리기 대체) -->
+<aside class="floating-panel" id="panel-candle">
+  <div class="panel-header">
+    <h2 class="panel-title">🕯️ 강단 앞 기도의 등불 올리기</h2>
+    <button class="panel-close" data-close="panel-candle">✕</button>
+  </div>
+  <div style="font-size:12.5px; color:#cfc3b0; line-height:1.6;">
+    고요한 마음을 담아 강단 앞 등잔대에 작은 등불을 밝힙니다. 한 줄 기도제목을 남기시면 함께 있는 성도들이 소리 없이 ‘아멘’으로 중보합니다.
+  </div>
+  <div class="prayer-input-group">
+    <input type="text" class="prayer-input" id="prayer-input" maxlength="65" placeholder="한 줄 기도제목 (비워두면 침묵 기도로 등불만 켭니다)">
+    <button class="step-btn" id="btn-light-candle" style="margin-top:2px;">🕯️ 강단 앞으로 나아가 등불 밝히기</button>
+  </div>
+  <div style="font-size:12px; color:#d4a853; font-weight:600; margin-top:4px;">
+    현재 타오르고 있는 성도들의 등불 (<span id="candle-count-num">12</span>개)
+  </div>
+  <div class="prayer-list" id="prayer-list"></div>
+</aside>
+
+<!-- 5-C. [소리 · 공동기도] 3채널 사운드 믹서 패널 -->
+<aside class="floating-panel" id="panel-sound">
+  <div class="panel-header">
+    <h2 class="panel-title">🎵 세 가지 소리와 공동 기도회</h2>
+    <button class="panel-close" data-close="panel-sound">✕</button>
+  </div>
+
+  <!-- 채널 1: 자연 환경음 -->
+  <div class="sound-row">
+    <div class="sound-row-head">
+      <span>🌲 자연 환경음 (새벽 산새와 바람·빗소리)</span>
+      <select class="sub-select" id="nature-type-select">
+        <option value="breeze">산새와 솔바람</option>
+        <option value="rain">처마 끝 빗소리</option>
+      </select>
+    </div>
+    <input type="range" class="sound-slider" id="slider-nature" min="0" max="100" value="55">
+  </div>
+
+  <!-- 채널 2: 찬양 피아노 -->
+  <div class="sound-row">
+    <div class="sound-row-head">
+      <span>🎹 찬양 피아노 BGM</span>
+      <select class="sub-select" id="piano-track-select">
+        <option value="grace">손경민 · 은혜 (피아노)</option>
+        <option value="worship">예배합니다 (피아노)</option>
+        <option value="pad">성전 묵상 오르간 패드</option>
+      </select>
+    </div>
+    <input type="range" class="sound-slider" id="slider-piano" min="0" max="100" value="65">
+  </div>
+
+  <!-- 채널 3: 목사님 말씀 & 정시 공동 기도회 -->
+  <div class="sound-row">
+    <div class="sound-row-head">
+      <span>🎙️ 목사님 매일말씀 · 공동 기도회</span>
+      <button class="amen-mini-btn" id="btn-toggle-sermon">▶ 말씀 듣기</button>
+    </div>
+    <div style="font-size:11.5px; color:#bfb29e; line-height:1.5;">
+      오늘의 말씀: <strong>[매일말씀] 베들레헴 성문에서 · 룻기 4장</strong><br>
+      매일 06:00(새벽) · 21:00(밤) 정각에는 모든 성도가 함께 듣는 공동 기도회가 열립니다.
+    </div>
+    <input type="range" class="sound-slider" id="slider-voice" min="0" max="100" value="85">
+  </div>
+
+  <!-- 효과음 -->
+  <div class="sound-row" style="padding:8px 12px;">
+    <div class="sound-row-head">
+      <span>🔔 말씀 필사 하프 & 등불 종소리 효과음</span>
+      <input type="checkbox" id="chk-sfx" checked style="accent-color:#d4a853; width:16px; height:16px;">
+    </div>
+  </div>
+</aside>
+
+<!-- 6-A. 예배당 서버(방) 및 방문 성도 모달 -->
+<div class="modal-backdrop" id="modal-rooms">
+  <div class="modal-card" style="max-width:460px;">
+    <div class="panel-header">
+      <h2 class="panel-title">🕊️ 새오름 예배당 서버 & 함께 있는 성도</h2>
+      <button class="panel-close" data-close-modal="modal-rooms">✕</button>
+    </div>
+    <div style="margin-top:10px; padding:10px 12px; border-radius:12px; background:rgba(124,217,146,0.1); border:1px solid rgba(124,217,146,0.32); font-size:12px; line-height:1.55; color:#dff7e4;">
+      🟢 <strong>실시간 네트워크 연동 중:</strong> 현재 이 방에 실제 접속한 성도 <strong id="real-online-count">1</strong>명 (나 포함) · 상주 예배당 지킴이(AI 순례자) <strong id="npc-online-count">7</strong>명
+    </div>
+    <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#dfd2be; padding:6px 4px;">
+      <span>🕯️ 혼자일 때도 외롭지 않게 ‘예배당 지킴이(AI 순례자)’ 함께 보기</span>
+      <input type="checkbox" id="chk-show-npc" checked style="accent-color:#d4a853; width:17px; height:17px; cursor:pointer;">
+    </div>
+    <div style="margin-top:8px; font-size:12.5px; color:#c7baa5;">
+      나의 순례자 호칭 (예배당 안에서 다른 성도들에게 표시되는 이름)
+    </div>
+    <div style="display:flex; gap:8px; margin-top:6px;">
+      <input type="text" class="prayer-input" id="my-name-input" maxlength="16" value="고요한 백합화">
+      <button class="amen-mini-btn" id="btn-save-name" style="padding:0 14px; white-space:nowrap;">변경</button>
+    </div>
+    <div style="margin-top:14px; font-size:12.5px; color:#c7baa5;">
+      어느 예배당에서도 실시간으로 같은 평안을 누릴 수 있습니다.
+    </div>
+    <div id="room-list-container">
+      <div class="room-item active" data-room="갈릴리 호숫가" data-npc="7">
+        <div><strong>갈릴리 호숫가</strong> <span style="font-size:11.5px; color:#a89b87;">· 제1예배당</span></div>
+        <div style="font-size:12px; color:#7cd992;" class="room-status-txt">실시간 연결됨</div>
+      </div>
+      <div class="room-item" data-room="감람산 새벽길" data-npc="5">
+        <div><strong>감람산 새벽길</strong> <span style="font-size:11.5px; color:#a89b87;">· 제2예배당</span></div>
+        <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
+      </div>
+      <div class="room-item" data-room="마가의 다락방" data-npc="9">
+        <div><strong>마가의 다락방</strong> <span style="font-size:11.5px; color:#a89b87;">· 중보기도실</span></div>
+        <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
+      </div>
+      <div class="room-item" data-room="베들레헴 들녘" data-npc="4">
+        <div><strong>베들레헴 들녘</strong> <span style="font-size:11.5px; color:#a89b87;">· 고요한 쉼터</span></div>
+        <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6-B. 감사헌금함 모달 -->
+<div class="modal-backdrop" id="modal-offering">
+  <div class="modal-card">
+    <div class="panel-header">
+      <h2 class="panel-title">💛 예배당 입구 감사·선교 헌금함</h2>
+      <button class="panel-close" data-close-modal="modal-offering">✕</button>
+    </div>
+    <p style="font-size:13px; color:#d8cbb8; line-height:1.7; margin:14px 0;">
+      새오름 온라인 예배당과 꿈바온 말씀 사역을 위해 기도하며 마음을 보태어 주시는 성도님들께 깊이 감사드립니다. 주님께 드리는 마음은 온라인 선교와 다음 세대 양육, 말씀 콘텐츠 제작에 귀하게 사용됩니다.
+    </p>
+    <div style="padding:14px; border-radius:14px; background:rgba(212,168,83,0.1); border:1px solid rgba(212,168,83,0.3); text-align:center;">
+      <div style="font-size:12px; color:#c8b89e;">새오름교회 · 꿈바온 선교 후원</div>
+      <div style="font-size:15px; font-weight:600; color:#ffe6a3; margin:6px 0;" id="offering-account-text">
+        새오름교회 온라인 헌금 안내
+      </div>
+      <button class="step-btn" id="btn-offering-amen" style="margin-top:8px;">🙏 감사와 축복의 기도로 마음 보태기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 6-C. 풀스크린 성화 초고해상도 확대(Zoom Lightbox) 모달 -->
+<div class="modal-backdrop" id="modal-art-zoom" style="z-index:120; background:rgba(8,6,5,0.92);">
+  <div style="width:94vw; max-width:1180px; height:88vh; display:flex; flex-direction:column; border-radius:22px; background:#18130f; border:1px solid rgba(212,168,83,0.5); overflow:hidden; box-shadow:0 28px 80px rgba(0,0,0,0.85);">
+    <div style="padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(212,168,83,0.25); background:#211a14; flex-wrap:wrap; gap:10px;">
+      <div>
+        <strong id="zoom-art-title" style="font-family:var(--serif); font-size:18px; color:#ffe6a3;">성화 크게 보기</strong>
+        <span id="zoom-art-ref" style="margin-left:10px; font-size:12.5px; color:#c8b89e;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="amen-mini-btn" id="btn-art-scale-down" style="padding:6px 12px; font-size:12.5px;">🔎 - 축소</button>
+        <span id="art-scale-label" style="font-size:12.5px; color:#ffe299; min-width:48px; text-align:center;">100%</span>
+        <button class="amen-mini-btn" id="btn-art-scale-up" style="padding:6px 12px; font-size:12.5px;">🔍 + 더 크게 확대</button>
+        <button class="amen-mini-btn" id="btn-art-scale-reset" style="padding:6px 12px; font-size:12.5px;">1:1 원본</button>
+        <button class="panel-close" id="btn-close-art-zoom" style="margin-left:8px; font-size:22px;">✕</button>
+      </div>
+    </div>
+    <div id="zoom-art-viewport" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:grab; background:#0d0a08;">
+      <img id="zoom-art-img" src="./assets/webp/feast_wide_01_sabbath_lamps.webp" alt="성화 확대" style="max-width:92%; max-height:92%; object-fit:contain; transition:transform 0.12s ease-out; transform-origin:center center; border-radius:8px; box-shadow:0 12px 40px rgba(0,0,0,0.7);">
+    </div>
+    <div id="zoom-art-desc" style="padding:14px 22px; font-size:13.5px; color:#e6dac6; line-height:1.65; background:#211a14; border-top:1px solid rgba(212,168,83,0.2);"></div>
+  </div>
+</div>
+
+<!-- 실제 오디오 엘리먼트 -->
+<audio id="audio-piano" loop preload="auto" src="./assets/chapel_audio/piano_grace.mp3"></audio>
+<audio id="audio-voice" preload="auto" src="./assets/chapel_audio/word_ko.mp3"></audio>
+
+<script>
+(() => {
+  /* ==============================================================
+   * 1. 성경 말씀 필사 데이터 (염주 굴리기 대체: 손끝 말씀 묵상)
+   * ============================================================== */
+  const BIBLE_VERSES = [
+    {
+      ref: "시편 23편 1-3절",
+      text: "여호와는 나의 목자시니 내게 부족함이 없으리로다 그가 나를 푸른 풀밭에 누이시며 쉴 만한 물 가로 인도하시는도다 내 영혼을 소생시키시고 자기 이름을 위하여 의의 길로 인도하시는도다"
+    },
+    {
+      ref: "마태복음 11장 28-29절",
+      text: "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라 나는 마음이 온유하고 겸손하니 나의 멍에를 메고 내게 배우라 그리하면 너희 마음이 쉼을 얻으리니"
+    },
+    {
+      ref: "빌립보서 4장 6-7절",
+      text: "아무것도 염려하지 말고 다만 모든 일에 기도와 간구로 너희 구할 것을 감사함으로 하나님께 아뢰라 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라"
+    },
+    {
+      ref: "민수기 6장 24-26절",
+      text: "여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그의 얼굴을 네게 비추사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라"
+    },
+    {
+      ref: "룻기 2장 12절",
+      text: "여호와께서 네가 행한 일에 보답하시기를 원하며 이스라엘의 하나님 여호와께서 그의 날개 아래에 보호를 받으러 온 네게 온전한 상 주시기를 원하노라"
+    }
+  ];
+
+  let currentVerseIdx = 0;
+  let litCharCount = 0;
+  let completedRounds = 0;
+
+  /* ==============================================================
+   * 2. 기도의 등불 초기 목록 (실시간 중보기도)
+   * ============================================================== */
+  const PRAYER_CANDLES = [
+    { author: "온유한 양", text: "사랑하는 가족들의 건강과 마음의 평안을 지켜주소서.", amens: 14, time: "방금 전" },
+    { author: "갈릴리 어부", text: "삶의 거친 풍랑 속에서도 주님의 시선을 놓치지 않게 하소서.", amens: 19, time: "3분 전" },
+    { author: "작은 겨자씨", text: "지치고 상한 영혼들이 이 예배당에서 참된 쉼을 얻기를 기도합니다.", amens: 23, time: "7분 전" },
+    { author: "감람나무 가지", text: "수험생들과 청년들의 앞길에 하나님의 지혜와 담대함을 부어주소서.", amens: 17, time: "12분 전" },
+    { author: "은혜의 등불", text: "새오름교회와 꿈바온 말씀 사역을 통해 열방에 복음이 전해지게 하소서.", amens: 31, time: "18분 전" }
+  ];
+
+  /* ==============================================================
+   * 3. 3채널 Web Audio 자연음 신디사이저 + MP3 하이브리드 오디오 엔진
+   * ============================================================== */
+  let audioCtx = null;
+  let masterMuted = false;
+  let natureGain = null;
+  let padGain = null;
+  let natureType = 'breeze';
+  let birdTimer = null;
+
+  const audioPianoEl = document.getElementById('audio-piano');
+  const audioVoiceEl = document.getElementById('audio-voice');
+
+  function initWebAudio() {
+    if (audioCtx) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
+
+    // 자연음(핑크 노이즈 필터링 바람/빗소리) 생성
+    const bufferSize = audioCtx.sampleRate * 3;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const output = noiseBuffer.getChannelData(0);
+    let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
+    for (let i = 0; i < bufferSize; i++) {
+      const white = Math.random() * 2 - 1;
+      b0 = 0.99886 * b0 + white * 0.0555179;
+      b1 = 0.99332 * b1 + white * 0.0750759;
+      b2 = 0.96900 * b2 + white * 0.1538520;
+      b3 = 0.86650 * b3 + white * 0.3104856;
+      b4 = 0.55000 * b4 + white * 0.5329522;
+      b5 = -0.7616 * b5 - white * 0.0168980;
+      output[i] = (b0 + b1 + b2 + b3 + b4 + b5 + b6 + white * 0.5362) * 0.035;
+      b6 = white * 0.115926;
+    }
+
+    const whiteNoise = audioCtx.createBufferSource();
+    whiteNoise.buffer = noiseBuffer;
+    whiteNoise.loop = true;
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'bandpass';
+    filter.frequency.value = 420;
+    filter.Q.value = 0.7;
+
+    natureGain = audioCtx.createGain();
+    natureGain.gain.value = 0.22;
+
+    whiteNoise.connect(filter);
+    filter.connect(natureGain);
+    natureGain.connect(audioCtx.destination);
+    whiteNoise.start(0);
+
+    // 바람 호흡 LFO
+    setInterval(() => {
+      if (!audioCtx || masterMuted) return;
+      const now = audioCtx.currentTime;
+      if (natureType === 'breeze') {
+        filter.frequency.setTargetAtTime(320 + Math.random() * 240, now, 1.8);
+      } else {
+        filter.frequency.setTargetAtTime(950 + Math.random() * 180, now, 0.8);
+      }
+    }, 2500);
+
+    // 산새 소리 주기적 합성
+    birdTimer = setInterval(() => {
+      if (!audioCtx || masterMuted || natureType !== 'breeze') return;
+      if (Math.random() < 0.55) playBirdChirp();
+    }, 4200);
+  }
+
+  function playBirdChirp() {
+    if (!audioCtx || masterMuted) return;
+    const vol = Number(document.getElementById('slider-nature').value) / 100;
+    if (vol <= 0.02) return;
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    const baseFreq = 2100 + Math.random() * 700;
+    osc.frequency.setValueAtTime(baseFreq, now);
+    osc.frequency.exponentialRampToValueAtTime(baseFreq * 1.28, now + 0.09);
+    osc.frequency.exponentialRampToValueAtTime(baseFreq * 0.92, now + 0.22);
+
+    g.gain.setValueAtTime(0.0001, now);
+    g.gain.linearRampToValueAtTime(0.018 * vol, now + 0.04);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + 0.26);
+  }
+
+  // 말씀 필사 구슬/하프 효과음 & 등불 차임벨 효과음
+  function playHarpBell(pitchIdx = 0, isChime = false) {
+    if (!audioCtx || masterMuted) return;
+    if (!document.getElementById('chk-sfx').checked) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+
+    const scale = [523.25, 587.33, 659.25, 783.99, 880.0, 1046.5]; // C5 펜타토닉
+    const freq = isChime ? 880.0 : scale[pitchIdx % scale.length];
+    const now = audioCtx.currentTime;
+
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = isChime ? 'triangle' : 'sine';
+    osc.frequency.setValueAtTime(freq, now);
+
+    const dur = isChime ? 1.4 : 0.42;
+    g.gain.setValueAtTime(0.001, now);
+    g.gain.linearRampToValueAtTime(isChime ? 0.07 : 0.032, now + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + dur + 0.02);
+  }
+
+  function startAudioSystem(withSound) {
+    initWebAudio();
+    masterMuted = !withSound;
+    if (withSound) {
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+      audioPianoEl.volume = Number(document.getElementById('slider-piano').value) / 100;
+      audioPianoEl.play().catch(() => {});
+      document.getElementById('quick-audio-icon').textContent = '🔊 소리 켜짐';
+    } else {
+      if (natureGain) natureGain.gain.value = 0;
+      audioPianoEl.pause();
+      audioVoiceEl.pause();
+      document.getElementById('quick-audio-icon').textContent = '🔇 소리 꺼짐';
+    }
+  }
+
+  /* ==============================================================
+   * 4. Three.js 3D 예배당 장면(Scene) 구축
+   * ============================================================== */
+  const wrap = document.getElementById('canvas-wrap');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x1f1914);
+  scene.fog = new THREE.FogExp2(0x1f1914, 0.022);
+
+  const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 120);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  wrap.appendChild(renderer.domElement);
+
+  // 조명 시스템
+  const ambientLight = new THREE.AmbientLight(0xffe9c9, 0.62);
+  scene.add(ambientLight);
+
+  const sunLight = new THREE.DirectionalLight(0xffdf9e, 0.95);
+  sunLight.position.set(12, 18, 8);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.width = 2048;
+  sunLight.shadow.mapSize.height = 2048;
+  sunLight.shadow.camera.near = 0.5;
+  sunLight.shadow.camera.far = 50;
+  const d = 16;
+  sunLight.shadow.camera.left = -d;
+  sunLight.shadow.camera.right = d;
+  sunLight.shadow.camera.top = d;
+  sunLight.shadow.camera.bottom = -d;
+  scene.add(sunLight);
+
+  // 십자가 후광 포인트 라이트
+  const crossLight = new THREE.PointLight(0xffb84d, 1.45, 16);
+  crossLight.position.set(0, 5.2, -10.4);
+  scene.add(crossLight);
+
+  // 등불대 따뜻한 빛
+  const candleStandLightL = new THREE.PointLight(0xff9436, 1.1, 9);
+  candleStandLightL.position.set(-2.8, 1.8, -7.2);
+  scene.add(candleStandLightL);
+
+  const candleStandLightR = new THREE.PointLight(0xff9436, 1.1, 9);
+  candleStandLightR.position.set(2.8, 1.8, -7.2);
+  scene.add(candleStandLightR);
+
+  // 절차적(Procedural) 캔버스 텍스처 생성 함수 (CORS 에러 0% 보장)
+  function createWoodFloorTexture() {
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 512;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#4a3523';
+    ctx.fillRect(0, 0, 512, 512);
+    for (let y = 0; y < 512; y += 32) {
+      ctx.fillStyle = (y / 32) % 2 === 0 ? '#4e3825' : '#43301f';
+      ctx.fillRect(0, y, 512, 30);
+      ctx.fillStyle = '#2e1f13';
+      ctx.fillRect(0, y + 30, 512, 2);
+      for (let x = 0; x < 512; x += 128) {
+        const offset = ((y / 32) % 2) * 64;
+        ctx.fillRect((x + offset) % 512, y, 2, 32);
+      }
+    }
+    const tex = new THREE.CanvasTexture(c);
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(6, 8);
+    return tex;
+  }
+
+  function createStainedGlassTexture(hueShift = 0) {
+    const c = document.createElement('canvas');
+    c.width = 256; c.height = 512;
+    const ctx = c.getContext('2d');
+    const grad = ctx.createLinearGradient(0, 0, 0, 512);
+    grad.addColorStop(0, `hsl(${42 + hueShift}, 88%, 68%)`);
+    grad.addColorStop(0.5, `hsl(${28 + hueShift}, 82%, 56%)`);
+    grad.addColorStop(1, `hsl(${195 + hueShift}, 65%, 45%)`);
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, 256, 512);
+
+    // 스테인드글라스 격자 및 십자가 문양
+    ctx.strokeStyle = '#241a12';
+    ctx.lineWidth = 8;
+    ctx.strokeRect(8, 8, 240, 496);
+    ctx.beginPath();
+    ctx.moveTo(128, 8); ctx.lineTo(128, 504);
+    ctx.moveTo(8, 180); ctx.lineTo(248, 180);
+    ctx.moveTo(8, 340); ctx.lineTo(248, 340);
+    ctx.stroke();
+
+    // 중앙 빛나는 원형 후광
+    ctx.fillStyle = 'rgba(255, 248, 215, 0.78)';
+    ctx.beginPath();
+    ctx.arc(128, 180, 46, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+
+    return new THREE.CanvasTexture(c);
+  }
+
+  // 바닥 (예배당 본당 마룻바닥 + 바깥 정원 잔디/돌길)
+  const worldGroup = new THREE.Group();
+  scene.add(worldGroup);
+
+  // 바깥 잔디 마당 (대폭 확장: 90m x 90m)
+  const gardenGeo = new THREE.PlaneGeometry(90, 90);
+  const gardenMat = new THREE.MeshStandardMaterial({ color: 0x22301f, roughness: 0.95 });
+  const gardenMesh = new THREE.Mesh(gardenGeo, gardenMat);
+  gardenMesh.rotation.x = -Math.PI / 2;
+  gardenMesh.position.y = -0.05;
+  gardenMesh.receiveShadow = true;
+  worldGroup.add(gardenMesh);
+
+  // 야외 감람산 돌길 산책로 (예배당 입구 z=12 부터 z=29 까지 이어짐)
+  const pathGeo = new THREE.PlaneGeometry(3.6, 18);
+  const pathMat = new THREE.MeshStandardMaterial({ color: 0x6e6353, roughness: 0.88 });
+  const pathMesh = new THREE.Mesh(pathGeo, pathMat);
+  pathMesh.rotation.x = -Math.PI / 2;
+  pathMesh.position.set(0, -0.02, 20.5);
+  pathMesh.receiveShadow = true;
+  worldGroup.add(pathMesh);
+
+  // 갈릴리 호숫가 잔물결 연못 (좌측 야외 정원 x=-9.5, z=19.5)
+  const pondGroup = new THREE.Group();
+  const pondRim = new THREE.Mesh(
+    new THREE.RingGeometry(4.2, 4.85, 36),
+    new THREE.MeshStandardMaterial({ color: 0x5c5346, roughness: 0.9, side: THREE.DoubleSide })
+  );
+  pondRim.rotation.x = -Math.PI / 2;
+  pondRim.position.y = -0.01;
+  const pondWater = new THREE.Mesh(
+    new THREE.CircleGeometry(4.25, 36),
+    new THREE.MeshStandardMaterial({
+      color: 0x1d5670, emissive: 0x0e3347, emissiveIntensity: 0.55, roughness: 0.18, metalness: 0.35
+    })
+  );
+  pondWater.rotation.x = -Math.PI / 2;
+  pondWater.position.y = -0.02;
+  const pondLight = new THREE.PointLight(0x78c8f0, 0.9, 12);
+  pondLight.position.set(0, 1.5, 0);
+  pondGroup.add(pondRim, pondWater, pondLight);
+  pondGroup.position.set(-9.5, 0, 19.5);
+  worldGroup.add(pondGroup);
+
+  // 야외 감람나무(올리브 나무) 12그루 & 등불 가로등 8개 배치
+  const trunkMat = new THREE.MeshStandardMaterial({ color: 0x4a3421, roughness: 0.9 });
+  const leafMat = new THREE.MeshStandardMaterial({ color: 0x3b5936, roughness: 0.85 });
+  const treeCoords = [
+    [-11, 13], [-14, 17], [-14, 24], [-7, 26],
+    [7, 14], [12, 16], [14, 21], [11, 26],
+    [-11, -3], [11, -3], [-11, 6], [11, 6]
+  ];
+  treeCoords.forEach(([tx, tz], i) => {
+    const tGroup = new THREE.Group();
+    const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.35, 2.2, 10), trunkMat);
+    trunk.position.y = 1.1;
+    trunk.castShadow = true;
+    const crown1 = new THREE.Mesh(new THREE.SphereGeometry(1.35 + (i % 2) * 0.25, 14, 12), leafMat);
+    crown1.position.set(0, 2.7, 0);
+    crown1.scale.y = 0.78;
+    crown1.castShadow = true;
+    tGroup.add(trunk, crown1);
+    tGroup.position.set(tx, 0, tz);
+    worldGroup.add(tGroup);
+  });
+
+  // 산책길 석등(가로등) 6개
+  for (const lz of [14, 19, 24]) {
+    for (const lx of [-2.4, 2.4]) {
+      const lampPost = new THREE.Group();
+      const pole = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.08, 2.3, 10), trunkMat);
+      pole.position.y = 1.15;
+      const bulb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.18, 12, 12),
+        new THREE.MeshBasicMaterial({ color: 0xffe094 })
+      );
+      bulb.position.y = 2.35;
+      lampPost.add(pole, bulb);
+      lampPost.position.set(lx, 0, lz);
+      worldGroup.add(lampPost);
+    }
+  }
+
+  // 예배당 원목 마룻바닥
+  const floorGeo = new THREE.PlaneGeometry(16, 24);
+  const floorMat = new THREE.MeshStandardMaterial({
+    map: createWoodFloorTexture(),
+    roughness: 0.65,
+    metalness: 0.08
+  });
+  const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+  floorMesh.rotation.x = -Math.PI / 2;
+  floorMesh.receiveShadow = true;
+  worldGroup.add(floorMesh);
+
+  // 중앙 버건디·골드 예배당 카펫 러너 (Aisle Runner)
+  const runnerGeo = new THREE.PlaneGeometry(2.1, 21);
+  const runnerMat = new THREE.MeshStandardMaterial({ color: 0x6b2626, roughness: 0.85 });
+  const runnerMesh = new THREE.Mesh(runnerGeo, runnerMat);
+  runnerMesh.rotation.x = -Math.PI / 2;
+  runnerMesh.position.set(0, 0.01, 0.5);
+  runnerMesh.receiveShadow = true;
+  worldGroup.add(runnerMesh);
+
+  // 강단(Chancel) 2단 원목 단상
+  const stageMat = new THREE.MeshStandardMaterial({ color: 0x5c3e26, roughness: 0.55 });
+  const stage1 = new THREE.Mesh(new THREE.BoxGeometry(13.6, 0.35, 5.2), stageMat);
+  stage1.position.set(0, 0.175, -9.2);
+  stage1.receiveShadow = true; stage1.castShadow = true;
+  worldGroup.add(stage1);
+
+  const stage2 = new THREE.Mesh(new THREE.BoxGeometry(8.6, 0.35, 3.4), stageMat);
+  stage2.position.set(0, 0.525, -9.8);
+  stage2.receiveShadow = true; stage2.castShadow = true;
+  worldGroup.add(stage2);
+
+  // 예배당 벽체 (전면 강단 벽 + 좌우 벽)
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0xdfd5c3, roughness: 0.88 });
+  const frontWall = new THREE.Mesh(new THREE.BoxGeometry(16.4, 9.5, 0.5), wallMat);
+  frontWall.position.set(0, 4.75, -11.8);
+  frontWall.receiveShadow = true;
+  worldGroup.add(frontWall);
+
+  // 전면 강단 중앙 원목 패널
+  const altarPanelMat = new THREE.MeshStandardMaterial({ color: 0x3b2718, roughness: 0.6 });
+  const altarPanel = new THREE.Mesh(new THREE.BoxGeometry(4.4, 8.8, 0.18), altarPanelMat);
+  altarPanel.position.set(0, 4.5, -11.5);
+  worldGroup.add(altarPanel);
+
+  // 전면 빛나는 십자가 (Cross)
+  const crossMat = new THREE.MeshStandardMaterial({
+    color: 0xffdf91, emissive: 0xd4942a, emissiveIntensity: 0.75, roughness: 0.3
+  });
+  const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.32, 3.1, 0.22), crossMat);
+  crossV.position.set(0, 5.4, -11.3);
+  const crossH = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.32, 0.22), crossMat);
+  crossH.position.set(0, 5.95, -11.3);
+  worldGroup.add(crossV, crossH);
+
+  // 강대상 (Pulpit) & 펼쳐진 성경책
+  const pulpitGroup = new THREE.Group();
+  const pulpitBody = new THREE.Mesh(
+    new THREE.BoxGeometry(1.3, 1.25, 0.85),
+    new THREE.MeshStandardMaterial({ color: 0x472e1b, roughness: 0.5 })
+  );
+  pulpitBody.position.y = 0.625;
+  pulpitBody.castShadow = true;
+  const pulpitTop = new THREE.Mesh(
+    new THREE.BoxGeometry(1.5, 0.12, 1.05),
+    new THREE.MeshStandardMaterial({ color: 0x5e3e24, roughness: 0.45 })
+  );
+  pulpitTop.position.y = 1.28;
+  pulpitTop.rotation.x = 0.18;
+  // 펼쳐진 성경책
+  const bibleMesh = new THREE.Mesh(
+    new THREE.BoxGeometry(0.65, 0.06, 0.46),
+    new THREE.MeshStandardMaterial({ color: 0xf7f2e4, roughness: 0.7 })
+  );
+  bibleMesh.position.set(0, 1.36, 0.05);
+  bibleMesh.rotation.x = 0.18;
+  pulpitGroup.add(pulpitBody, pulpitTop, bibleMesh);
+  pulpitGroup.position.set(0, 0.7, -9.2);
+  worldGroup.add(pulpitGroup);
+
+  // 강단 좌측 그랜드 피아노
+  const pianoGroup = new THREE.Group();
+  const pianoMat = new THREE.MeshStandardMaterial({ color: 0x1c1815, roughness: 0.25, metalness: 0.2 });
+  const pianoBody = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.45, 1.5), pianoMat);
+  pianoBody.position.y = 0.9;
+  pianoBody.castShadow = true;
+  const pianoKeys = new THREE.Mesh(
+    new THREE.BoxGeometry(1.4, 0.1, 0.28),
+    new THREE.MeshStandardMaterial({ color: 0xfaf6ed })
+  );
+  pianoKeys.position.set(0, 0.85, 0.72);
+  pianoGroup.add(pianoBody, pianoKeys);
+  for (const [lx, lz] of [[-0.75, 0.6], [0.75, 0.6], [0, -0.6]]) {
+    const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.04, 0.7, 10), pianoMat);
+    leg.position.set(lx, 0.35, lz);
+    pianoGroup.add(leg);
+  }
+  pianoGroup.position.set(-4.6, 0.35, -9.3);
+  pianoGroup.rotation.y = 0.35;
+  worldGroup.add(pianoGroup);
+
+  // 좌우 벽과 스테인드글라스 창문 + 햇살 기둥(God Rays)
+  const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 8.5, 24), wallMat);
+  leftWall.position.set(-8.0, 4.25, 0);
+  const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 8.5, 24), wallMat);
+  rightWall.position.set(8.0, 4.25, 0);
+  worldGroup.add(leftWall, rightWall);
+
+  // 원목 서까래 기둥 & 지붕 보
+  const beamMat = new THREE.MeshStandardMaterial({ color: 0x3d2817, roughness: 0.7 });
+  for (let z = -10; z <= 10; z += 5) {
+    const colL = new THREE.Mesh(new THREE.BoxGeometry(0.45, 8.5, 0.45), beamMat);
+    colL.position.set(-7.65, 4.25, z);
+    const colR = new THREE.Mesh(new THREE.BoxGeometry(0.45, 8.5, 0.45), beamMat);
+    colR.position.set(7.65, 4.25, z);
+    const roofBeam = new THREE.Mesh(new THREE.BoxGeometry(15.8, 0.38, 0.38), beamMat);
+    roofBeam.position.set(0, 8.2, z);
+    worldGroup.add(colL, colR, roofBeam);
+  }
+
+  // 스테인드글라스 창문 & 볼류메트릭 빛줄기(God Rays)
+  const godRayMeshes = [];
+  const windowZPositions = [-6.5, -1.5, 3.5, 8.5];
+  windowZPositions.forEach((wz, idx) => {
+    const glassTex = createStainedGlassTexture(idx * 25);
+    const glassMat = new THREE.MeshBasicMaterial({ map: glassTex });
+    const winGeo = new THREE.PlaneGeometry(1.7, 3.6);
+
+    const winL = new THREE.Mesh(winGeo, glassMat);
+    winL.position.set(-7.72, 4.3, wz);
+    winL.rotation.y = Math.PI / 2;
+
+    const winR = new THREE.Mesh(winGeo, glassMat);
+    winR.position.set(7.72, 4.3, wz);
+    winR.rotation.y = -Math.PI / 2;
+
+    worldGroup.add(winL, winR);
+
+    // 창문에서 실내로 쏟아지는 햇살 기둥(God Ray)
+    const rayGeo = new THREE.CylinderGeometry(0.65, 1.45, 7.5, 16, 1, true);
+    const rayMat = new THREE.MeshBasicMaterial({
+      color: 0xffe49e, transparent: true, opacity: 0.085,
+      side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending
+    });
+    const rayL = new THREE.Mesh(rayGeo, rayMat);
+    rayL.position.set(-5.2, 2.5, wz);
+    rayL.rotation.z = -0.62;
+    worldGroup.add(rayL);
+    godRayMeshes.push(rayL);
+  });
+
+  /* ==============================================================
+   * 5. 원목 장의자(Pew) 10개 & 강단 앞 무릎 기도석 6개 생성
+   * ============================================================== */
+  const seats = []; // { id, pos: THREE.Vector3, type: 'pew'|'kneel', occupiedBy: null }
+  const pewMat = new THREE.MeshStandardMaterial({ color: 0x593a22, roughness: 0.55 });
+  const cushionMat = new THREE.MeshStandardMaterial({ color: 0x7a2e2e, roughness: 0.85 });
+
+  const rowZList = [-3.6, -1.2, 1.2, 3.6, 6.0];
+  rowZList.forEach((rz, rIdx) => {
+    for (const side of [-1, 1]) {
+      const px = side * 3.55;
+      const pewGroup = new THREE.Group();
+
+      // 좌판
+      const seatBench = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.12, 0.68), pewMat);
+      seatBench.position.y = 0.48;
+      seatBench.castShadow = true; seatBench.receiveShadow = true;
+      // 붉은 방석 패드
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(4.0, 0.06, 0.56), cushionMat);
+      pad.position.set(0, 0.56, 0.02);
+      // 등받이
+      const backRest = new THREE.Mesh(new THREE.BoxGeometry(4.2, 0.68, 0.12), pewMat);
+      backRest.position.set(0, 0.84, 0.3);
+      backRest.rotation.x = -0.1;
+      backRest.castShadow = true;
+      // 양끝 팔걸이 기둥
+      for (const ex of [-2.05, 2.05]) {
+        const arm = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.95, 0.76), pewMat);
+        arm.position.set(ex, 0.475, 0.02);
+        arm.castShadow = true;
+        pewGroup.add(arm);
+      }
+
+      pewGroup.add(seatBench, pad, backRest);
+      pewGroup.position.set(px, 0, rz);
+      worldGroup.add(pewGroup);
+
+      // 각 장의자마다 2개의 착석 포인트 등록
+      for (const offset of [-1.05, 1.05]) {
+        seats.push({
+          id: `pew_${rIdx}_${side}_${offset}`,
+          label: `${rIdx + 1}열 ${side < 0 ? '좌측' : '우측'} 장의자`,
+          pos: new THREE.Vector3(px + offset, 0, rz - 0.05),
+          type: 'pew',
+          occupiedBy: null
+        });
+      }
+    }
+  });
+
+  // 강단 앞 무릎 기도 방석 6개
+  const kneelXList = [-3.2, -1.9, -0.65, 0.65, 1.9, 3.2];
+  kneelXList.forEach((kx, kIdx) => {
+    const kMesh = new THREE.Mesh(
+      new THREE.BoxGeometry(0.75, 0.14, 0.55),
+      new THREE.MeshStandardMaterial({ color: 0x8a332b, roughness: 0.8 })
+    );
+    kMesh.position.set(kx, 0.07, -6.0);
+    kMesh.castShadow = true; kMesh.receiveShadow = true;
+    worldGroup.add(kMesh);
+
+    seats.push({
+      id: `kneel_${kIdx}`,
+      label: `강단 앞 제${kIdx + 1}무릎기도석`,
+      pos: new THREE.Vector3(kx, 0, -6.0),
+      type: 'kneel',
+      occupiedBy: null
+    });
+  });
+
+  // 야외 갈릴리 연못가 & 감람산 정원 산책 벤치 4석 추가
+  const gardenBenchCoords = [
+    { x: -4.2, z: 18.0, rot: -Math.PI / 2, label: '갈릴리 연못가 제1벤치' },
+    { x: -4.2, z: 21.5, rot: -Math.PI / 2, label: '갈릴리 연못가 제2벤치' },
+    { x: 4.5, z: 17.5, rot: Math.PI / 2, label: '감람산 정원 제1벤치' },
+    { x: 4.5, z: 22.0, rot: Math.PI / 2, label: '감람산 정원 제2벤치' }
+  ];
+  gardenBenchCoords.forEach((gb, idx) => {
+    const bMesh = new THREE.Mesh(new THREE.BoxGeometry(1.9, 0.45, 0.65), pewMat);
+    bMesh.position.set(gb.x, 0.225, gb.z);
+    bMesh.rotation.y = gb.rot;
+    bMesh.castShadow = true; bMesh.receiveShadow = true;
+    worldGroup.add(bMesh);
+    seats.push({
+      id: `garden_bench_${idx}`,
+      label: gb.label,
+      pos: new THREE.Vector3(gb.x, 0, gb.z),
+      type: 'pew',
+      occupiedBy: null
+    });
+  });
+
+  // 예배당 & 야외 성화 산책로 대형 성화 액자 6점 (클릭 시 풀스크린 초고해상도 확대!)
+  const CHAPEL_ARTWORKS = [
+    {
+      title: "1. 안식일의 두 등불 · 거룩한 쉼의 초대",
+      ref: "창세기 2:2-3 · 출애굽기 20:8",
+      img: "./assets/webp/feast_wide_01_sabbath_lamps.webp",
+      desc: "분주한 일손을 내려놓고 주님이 주시는 참된 안식과 평안 속으로 들어가는 성화입니다. (상단 +/- 버튼이나 마우스 휠로 그림을 크게 확대해 보실 수 있습니다.)",
+      pos: new THREE.Vector3(-7.68, 2.5, -4.0),
+      rotY: Math.PI / 2
+    },
+    {
+      title: "2. 유월절 우슬초 · 생명을 살리는 어린양의 피",
+      ref: "출애굽기 12:22",
+      img: "./assets/webp/feast_wide_02_passover_hyssop.webp",
+      desc: "가장 작고 낮은 풀 우슬초에 묻은 어린양의 보혈이 죽음의 재앙을 넘어가게 한 구속의 은혜를 담았습니다.",
+      pos: new THREE.Vector3(-7.68, 2.5, 1.0),
+      rotY: Math.PI / 2
+    },
+    {
+      title: "3. 베들레헴 성문에서 건네받은 신발 · 참된 고엘",
+      ref: "룻기 4:7-17",
+      img: "./assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp",
+      desc: "룻과 나오미의 모든 짐을 기꺼이 대신 짊어진 보아스처럼, 우리 삶의 기업 무를 자가 되신 주님을 묵상합니다.",
+      pos: new THREE.Vector3(7.68, 2.5, -4.0),
+      rotY: -Math.PI / 2
+    },
+    {
+      title: "4. 돌아와 엎드린 사마리아 나병환자의 감사",
+      ref: "누가복음 17:15-16",
+      img: "./assets/webp/fig_wide_03_samaritan_leper.webp",
+      desc: "고침 받은 열 사람 중 오직 주님 발아래 돌아와 엎드려 영광을 돌린 한 사람의 깊은 감사를 그렸습니다.",
+      pos: new THREE.Vector3(7.68, 2.5, 1.0),
+      rotY: -Math.PI / 2
+    },
+    {
+      title: "5. 에벤에셀 · 여기까지 우리를 도우신 하나님 (야외 정원 성화)",
+      ref: "사무엘상 7:12",
+      img: "./assets/webp/2026-09-21-소소한-성경이야기-에벤에셀-i-사무엘상-712.webp",
+      desc: "야외 감람산 정원에 전시된 성화입니다. 지나온 모든 걸음이 하나님의 도우심이었음을 고백하는 도움의 돌입니다.",
+      pos: new THREE.Vector3(6.8, 2.1, 15.5),
+      rotY: -Math.PI / 3
+    },
+    {
+      title: "6. 다른 길로 돌아간 동방박사들 (야외 정원 성화)",
+      ref: "마태복음 2:11-12",
+      img: "./assets/webp/fig_wide_09_magi_another_way.webp",
+      desc: "주님을 만나 경배한 뒤 세상의 옛길로 돌아가지 않고 ‘다른 길’로 걸어간 순례자들의 발걸음입니다.",
+      pos: new THREE.Vector3(6.8, 2.1, 21.5),
+      rotY: -Math.PI / 3
+    }
+  ];
+
+  const chapelArtMeshes = [];
+  const texLoader = new THREE.TextureLoader();
+  const goldFrameMat = new THREE.MeshStandardMaterial({ color: 0xd4a853, metalness: 0.55, roughness: 0.32 });
+
+  CHAPEL_ARTWORKS.forEach((art, idx) => {
+    const g = new THREE.Group();
+    const frame = new THREE.Mesh(new THREE.BoxGeometry(3.2, 2.05, 0.12), goldFrameMat);
+    const fallbackCanvas = document.createElement('canvas');
+    fallbackCanvas.width = 512; fallbackCanvas.height = 320;
+    const fCtx = fallbackCanvas.getContext('2d');
+    fCtx.fillStyle = '#2d2116'; fCtx.fillRect(0, 0, 512, 320);
+    fCtx.strokeStyle = '#d4a853'; fCtx.lineWidth = 8; fCtx.strokeRect(10, 10, 492, 300);
+    fCtx.fillStyle = '#ffe6a3'; fCtx.font = 'bold 22px serif'; fCtx.textAlign = 'center';
+    fCtx.fillText(art.title.split(' · ')[0], 256, 165);
+    fCtx.font = '16px sans-serif'; fCtx.fillStyle = '#d6c6ae';
+    fCtx.fillText('🔍 클릭하면 성화가 크게 확대됩니다', 256, 210);
+
+    const mat = new THREE.MeshBasicMaterial({ map: new THREE.CanvasTexture(fallbackCanvas) });
+    texLoader.load(art.img, (loadedTex) => {
+      mat.map = loadedTex;
+      mat.needsUpdate = true;
+    });
+
+    const plane = new THREE.Mesh(new THREE.PlaneGeometry(2.96, 1.84), mat);
+    plane.position.z = 0.07;
+    plane.userData = { chapelArtIdx: idx };
+    chapelArtMeshes.push(plane);
+
+    g.add(frame, plane);
+    g.position.copy(art.pos);
+    g.rotation.y = art.rotY;
+    worldGroup.add(g);
+  });
+
+  /* ==============================================================
+   * 6. 강단 앞 기도의 등불대(촛불 제단) & 타오르는 불꽃
+   * ============================================================== */
+  const candleFlames = [];
+  function createCandleStand(cx, cz) {
+    const standGroup = new THREE.Group();
+    const tableMat = new THREE.MeshStandardMaterial({ color: 0x3b2818, roughness: 0.5 });
+    const brassMat = new THREE.MeshStandardMaterial({ color: 0xc89d48, metalness: 0.6, roughness: 0.3 });
+
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(1.05, 1.15, 0.9, 24), tableMat);
+    base.position.y = 0.45;
+    base.castShadow = true;
+    const rim = new THREE.Mesh(new THREE.CylinderGeometry(1.12, 1.12, 0.08, 24), brassMat);
+    rim.position.y = 0.92;
+    standGroup.add(base, rim);
+
+    // 10개의 촛불 배치
+    for (let i = 0; i < 10; i++) {
+      const angle = (i / 10) * Math.PI * 2;
+      const r = i % 2 === 0 ? 0.72 : 0.42;
+      const x = Math.cos(angle) * r;
+      const z = Math.sin(angle) * r;
+
+      const cup = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.06, 0.05, 0.14, 10),
+        new THREE.MeshStandardMaterial({ color: 0xfff6e0, roughness: 0.4 })
+      );
+      cup.position.set(x, 1.02, z);
+
+      const flame = new THREE.Mesh(
+        new THREE.SphereGeometry(0.048, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xffb838 })
+      );
+      flame.scale.set(0.8, 1.6, 0.8);
+      flame.position.set(x, 1.14, z);
+      candleFlames.push({ mesh: flame, baseY: 1.14, phase: Math.random() * 10 });
+
+      standGroup.add(cup, flame);
+    }
+
+    standGroup.position.set(cx, 0, cz);
+    worldGroup.add(standGroup);
+  }
+  createCandleStand(-2.8, -7.3);
+  createCandleStand(2.8, -7.3);
+
+  // 입구 우측 감사헌금함
+  const offeringBox = new THREE.Group();
+  const boxBody = new THREE.Mesh(
+    new THREE.BoxGeometry(0.65, 1.1, 0.55),
+    new THREE.MeshStandardMaterial({ color: 0x4f341f, roughness: 0.5 })
+  );
+  boxBody.position.y = 0.55;
+  boxBody.castShadow = true;
+  const boxTop = new THREE.Mesh(
+    new THREE.BoxGeometry(0.72, 0.08, 0.62),
+    new THREE.MeshStandardMaterial({ color: 0xd4a853, metalness: 0.5, roughness: 0.3 })
+  );
+  boxTop.position.y = 1.12;
+  offeringBox.add(boxBody, boxTop);
+  offeringBox.position.set(5.8, 0, 9.5);
+  worldGroup.add(offeringBox);
+
+  // 클릭 이동 파동(Ripple) 링
+  const rippleGeo = new THREE.RingGeometry(0.15, 0.26, 28);
+  const rippleMat = new THREE.MeshBasicMaterial({
+    color: 0xffe08c, side: THREE.DoubleSide, transparent: true, opacity: 0
+  });
+  const rippleMesh = new THREE.Mesh(rippleGeo, rippleMat);
+  rippleMesh.rotation.x = -Math.PI / 2;
+  rippleMesh.position.y = 0.03;
+  worldGroup.add(rippleMesh);
+  let rippleAge = 99;
+
+  /* ==============================================================
+   * 7. 아바타 생성 함수 (나 + 함께 기도하는 성도들)
+   * ============================================================== */
+  const labelsLayer = document.getElementById('labels-layer');
+  const avatars = [];
+
+  function createAvatar({ id, name, robeColor, isMe = false, x = 0, z = 8 }) {
+    const group = new THREE.Group();
+    group.position.set(x, 0, z);
+
+    // 순례자 코트/예배복 몸통
+    const robeMat = new THREE.MeshStandardMaterial({ color: robeColor, roughness: 0.75 });
+    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.34, 0.92, 16), robeMat);
+    body.position.y = 0.46;
+    body.castShadow = true;
+
+    // 스톨(목도리) 디테일
+    const stole = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.23, 0.25, 0.16, 16),
+      new THREE.MeshStandardMaterial({ color: isMe ? 0xd4a853 : 0xb59b72, roughness: 0.6 })
+    );
+    stole.position.y = 0.84;
+
+    // 머리
+    const headMat = new THREE.MeshStandardMaterial({ color: 0xf2d5bb, roughness: 0.65 });
+    const head = new THREE.Mesh(new THREE.SphereGeometry(0.23, 18, 18), headMat);
+    head.position.y = 1.14;
+    head.castShadow = true;
+
+    // 단정한 머리카락
+    const hair = new THREE.Mesh(
+      new THREE.SphereGeometry(0.24, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      new THREE.MeshStandardMaterial({ color: 0x2b211a, roughness: 0.85 })
+    );
+    hair.position.y = 1.16;
+    hair.rotation.x = -0.15;
+
+    // 모은 두 손 (기도 손)
+    const hands = new THREE.Mesh(
+      new THREE.SphereGeometry(0.095, 12, 12),
+      headMat
+    );
+    hands.position.set(0, 0.68, -0.26);
+
+    group.add(body, stole, head, hair, hands);
+    worldGroup.add(group);
+
+    // HTML 이름표 생성
+    const labelEl = document.createElement('div');
+    labelEl.className = 'avatar-label' + (isMe ? ' is-me' : '');
+    labelEl.innerHTML = `<span class="name-span">${name}</span>`;
+    labelsLayer.appendChild(labelEl);
+
+    const av = {
+      id, name, isMe, group, body, head, hands, labelEl,
+      targetPos: new THREE.Vector3(x, 0, z),
+      state: 'standing', // 'standing' | 'walking' | 'sitting' | 'bowing' | 'lighting'
+      seat: null,
+      walkPhase: Math.random() * 10,
+      bowTimer: 0,
+      bubbleTimer: null
+    };
+
+    labelEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isMe) {
+        triggerShalomBow(av, '평안을 빕니다 🕊️');
+      } else {
+        showAvatarBubble(av, '🙏 함께 기도합니다');
+        triggerShalomBow(myAvatar, `${av.name} 님께 샬롬 🕊️`);
+        playHarpBell(2, true);
+      }
+    });
+
+    avatars.push(av);
+    return av;
+  }
+
+  function showAvatarBubble(av, message, duration = 3400) {
+    const old = av.labelEl.querySelector('.avatar-bubble');
+    if (old) old.remove();
+    const b = document.createElement('div');
+    b.className = 'avatar-bubble';
+    b.textContent = message;
+    av.labelEl.appendChild(b);
+    if (av.bubbleTimer) clearTimeout(av.bubbleTimer);
+    av.bubbleTimer = setTimeout(() => b.remove(), duration);
+  }
+
+  // 나의 아바타 생성
+  const myAvatar = createAvatar({
+    id: 'me',
+    name: '고요한 백합화 (나)',
+    robeColor: 0xf0e7d8,
+    isMe: true,
+    x: 0,
+    z: 8.2
+  });
+
+  // 함께 기도하는 동행 성도들 배치
+  const npcConfigs = [
+    { name: '온유한 양', color: 0xd9cbb8, seatIdx: 1 },
+    { name: '갈릴리 어부', color: 0x8da1b5, seatIdx: 4 },
+    { name: '작은 겨자씨', color: 0xc7d1be, seatIdx: 7 },
+    { name: '감람나무 가지', color: 0xbda88e, seatIdx: 12 },
+    { name: '은혜의 등불', color: 0xdec3b4, seatIdx: 20 }, // 무릎기도석
+    { name: '베들레헴 별', color: 0xc9c3d9, seatIdx: 23 }, // 무릎기도석
+    { name: '마가의 다락방', color: 0xd6cdb8, seatIdx: 15 }
+  ];
+
+  npcConfigs.forEach((cfg, idx) => {
+    const seat = seats[cfg.seatIdx];
+    const npc = createAvatar({
+      id: `npc_${idx}`,
+      name: cfg.name,
+      robeColor: cfg.color,
+      isMe: false,
+      x: seat ? seat.pos.x : (idx - 3) * 1.5,
+      z: seat ? seat.pos.z : 2
+    });
+    if (seat) {
+      seat.occupiedBy = npc;
+      npc.seat = seat;
+      npc.state = 'sitting';
+      npc.group.rotation.y = 0; // 강단 정면(z=-11)을 바라봄
+    }
+  });
+
+  /* ==============================================================
+   * 8. 착석, 이동, 샬롬 인사, 등불 켜기 동작 제어
+   * ============================================================== */
+  let sitStartTime = null;
+
+  function unseatAvatar(av) {
+    if (av.seat) {
+      av.seat.occupiedBy = null;
+      av.seat = null;
+    }
+    av.state = 'standing';
+    av.body.scale.y = 1.0;
+    av.body.position.y = 0.46;
+    av.head.position.y = 1.14;
+    av.head.rotation.x = 0;
+    av.hands.position.set(0, 0.68, -0.26);
+    if (av.isMe) {
+      sitStartTime = null;
+      document.getElementById('dock-sit').classList.remove('is-active');
+      document.getElementById('dock-sit-label').textContent = '자리에 앉아 기도';
+    }
+  }
+
+  function sitAvatarAtSeat(av, seat) {
+    unseatAvatar(av);
+    av.targetPos.copy(seat.pos);
+    av.seat = seat;
+    seat.occupiedBy = av;
+    av.state = 'walking_to_seat';
+    if (av.isMe) {
+      setStatusBanner(`${seat.label}로 조용히 걸어가 앉습니다...`);
+    }
+  }
+
+  function toggleMySit() {
+    if (myAvatar.state === 'sitting' || myAvatar.state === 'walking_to_seat') {
+      unseatAvatar(myAvatar);
+      myAvatar.targetPos.set(0, 0, myAvatar.group.position.z + 0.6);
+      setStatusBanner('자리에서 일어났습니다. 바닥을 눌러 예배당을 둘러보세요.');
+      return;
+    }
+    // 가장 가까운 빈 좌석 찾기
+    let bestSeat = null;
+    let minDist = Infinity;
+    for (const s of seats) {
+      if (s.occupiedBy && s.occupiedBy !== myAvatar) continue;
+      const d = myAvatar.group.position.distanceTo(s.pos);
+      if (d < minDist) {
+        minDist = d;
+        bestSeat = s;
+      }
+    }
+    if (bestSeat) {
+      sitAvatarAtSeat(myAvatar, bestSeat);
+    }
+  }
+
+  function triggerShalomBow(av, msg = '평안을 빕니다 🕊️') {
+    if (av.state === 'sitting') {
+      showAvatarBubble(av, msg);
+      av.head.rotation.x = -0.38;
+      return;
+    }
+    unseatAvatar(av);
+    av.state = 'bowing';
+    av.bowTimer = 1.8;
+    showAvatarBubble(av, msg);
+    if (av.isMe) {
+      playHarpBell(4, false);
+      setStatusBanner('두 손을 모으고 함께 있는 성도들에게 평안(샬롬)의 인사를 나눕니다.');
+      // 주변 성도 1~2명이 목례로 화답
+      setTimeout(() => {
+        const responder = avatars[1 + Math.floor(Math.random() * (avatars.length - 1))];
+        if (responder) showAvatarBubble(responder, '🕊️ 샬롬, 평안하세요');
+      }, 750);
+    }
+  }
+
+  // 강단 앞 등불 켜기 시퀀스 (산사의 향 올리기 대응)
+  function startLightingCandleSequence(prayerText) {
+    unseatAvatar(myAvatar);
+    const standPos = new THREE.Vector3(Math.random() < 0.5 ? -2.2 : 2.2, 0, -6.4);
+    myAvatar.targetPos.copy(standPos);
+    myAvatar.state = 'walking_to_candle';
+    myAvatar.pendingPrayer = prayerText;
+    setStatusBanner('🕯️ 강단 앞 등불대로 조용히 나아갑니다...');
+  }
+
+  function setStatusBanner(text) {
+    document.getElementById('status-banner').textContent = text;
+  }
+
+  /* ==============================================================
+   * 9. 카메라 컨트롤 (드래그 회전, 휠 줌, 시점 프리셋)
+   * ============================================================== */
+  let camYaw = 0;
+  let camPitch = 0.34;
+  let camDist = 6.8;
+  let cameraPresetIdx = 0; // 0: 3인칭 기본, 1: 강단 십자가 정면, 2: 예배당 전체 조망, 3: 1인칭 묵상
+  const cameraPresets = [
+    { name: '3인칭 산책', dist: 6.8, pitch: 0.34 },
+    { name: '강단 정면', dist: 3.8, pitch: 0.16 },
+    { name: '예배당 조망', dist: 12.5, pitch: 0.52 },
+    { name: '깊은 묵상', dist: 2.3, pitch: 0.12 }
+  ];
+
+  let isDragging = false;
+  let dragMoved = false;
+  let prevMouse = { x: 0, y: 0 };
+  const raycaster = new THREE.Raycaster();
+  const mouseNDC = new THREE.Vector2();
+
+  wrap.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    dragMoved = false;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
+    camYaw -= dx * 0.0065;
+    camPitch = Math.max(0.08, Math.min(1.15, camPitch + dy * 0.0055));
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+
+  window.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (!dragMoved && e.target === renderer.domElement) {
+      handleSceneClick(e);
+    }
+  });
+
+  wrap.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    camDist = Math.max(1.4, Math.min(26.0, camDist + e.deltaY * 0.006));
+  }, { passive: false });
+
+  // 풀스크린 성화 확대(Zoom Lightbox) 제어
+  let artZoomScale = 1.0;
+  let artPanX = 0, artPanY = 0;
+  let isArtPanning = false, artPanStart = { x: 0, y: 0 };
+  const zoomArtImg = document.getElementById('zoom-art-img');
+  const zoomArtViewport = document.getElementById('zoom-art-viewport');
+
+  function applyArtZoomTransform() {
+    zoomArtImg.style.transform = `translate(${artPanX}px, ${artPanY}px) scale(${artZoomScale})`;
+    document.getElementById('art-scale-label').textContent = `${Math.round(artZoomScale * 100)}%`;
+  }
+
+  function openArtZoomModal(artIdx) {
+    const art = CHAPEL_ARTWORKS[artIdx];
+    if (!art) return;
+    artZoomScale = 1.0; artPanX = 0; artPanY = 0;
+    applyArtZoomTransform();
+    zoomArtImg.src = art.img;
+    document.getElementById('zoom-art-title').textContent = art.title;
+    document.getElementById('zoom-art-ref').textContent = art.ref;
+    document.getElementById('zoom-art-desc').textContent = art.desc;
+    document.getElementById('modal-art-zoom').classList.add('is-open');
+  }
+
+  document.getElementById('btn-art-scale-up').addEventListener('click', () => {
+    artZoomScale = Math.min(3.5, +(artZoomScale + 0.35).toFixed(2));
+    applyArtZoomTransform();
+  });
+  document.getElementById('btn-art-scale-down').addEventListener('click', () => {
+    artZoomScale = Math.max(0.6, +(artZoomScale - 0.35).toFixed(2));
+    if (artZoomScale <= 1.0) { artPanX = 0; artPanY = 0; }
+    applyArtZoomTransform();
+  });
+  document.getElementById('btn-art-scale-reset').addEventListener('click', () => {
+    artZoomScale = 1.0; artPanX = 0; artPanY = 0;
+    applyArtZoomTransform();
+  });
+  document.getElementById('btn-close-art-zoom').addEventListener('click', () => {
+    document.getElementById('modal-art-zoom').classList.remove('is-open');
+  });
+  zoomArtViewport.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    artZoomScale = Math.max(0.6, Math.min(3.5, artZoomScale - e.deltaY * 0.002));
+    if (artZoomScale <= 1.0) { artPanX = 0; artPanY = 0; }
+    applyArtZoomTransform();
+  }, { passive: false });
+  zoomArtViewport.addEventListener('pointerdown', (e) => {
+    isArtPanning = true;
+    artPanStart = { x: e.clientX - artPanX, y: e.clientY - artPanY };
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!isArtPanning) return;
+    artPanX = e.clientX - artPanStart.x;
+    artPanY = e.clientY - artPanStart.y;
+    applyArtZoomTransform();
+  });
+  window.addEventListener('pointerup', () => { isArtPanning = false; });
+
+  function handleSceneClick(e) {
+    mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    raycaster.setFromCamera(mouseNDC, camera);
+
+    // 1) 성화 액자 클릭 시 풀스크린 확대창 열기
+    const artHits = raycaster.intersectObjects(chapelArtMeshes);
+    if (artHits.length > 0) {
+      openArtZoomModal(artHits[0].object.userData.chapelArtIdx);
+      return;
+    }
+
+    // 2) 바닥 및 야외 정원 산책로 클릭 이동 (대폭 확장: x -16~16, z -7.5~26)
+    const hits = raycaster.intersectObjects([floorMesh, gardenMesh, runnerMesh, pathMesh]);
+    if (hits.length > 0) {
+      const pt = hits[0].point;
+      const cx = Math.max(-16.0, Math.min(16.0, pt.x));
+      const cz = Math.max(-7.5, Math.min(26.0, pt.z));
+
+      // 갈릴리 연못 수면 중심부(x:-9.5, z:19.5, 반경 4.0)는 물 가장자리로 보정
+      const pondCenter = new THREE.Vector2(-9.5, 19.5);
+      const click2D = new THREE.Vector2(cx, cz);
+      if (click2D.distanceTo(pondCenter) < 4.1) {
+        const dir = click2D.sub(pondCenter).normalize().multiplyScalar(4.4);
+        click2D.copy(pondCenter).add(dir);
+      }
+
+      // 클릭 지점 근처에 빈 좌석(장의자/무릎기도석/야외 호숫가 벤치)이 있는지 확인
+      for (const s of seats) {
+        if (!s.occupiedBy && s.pos.distanceTo(new THREE.Vector3(click2D.x, 0, click2D.y)) < 0.95) {
+          sitAvatarAtSeat(myAvatar, s);
+          return;
+        }
+      }
+
+      unseatAvatar(myAvatar);
+      myAvatar.targetPos.set(click2D.x, 0, click2D.y);
+      myAvatar.state = 'walking';
+
+      rippleMesh.position.set(click2D.x, 0.03, click2D.y);
+      rippleAge = 0;
+    }
+  }
+
+  // 키보드 조작
+  const keysPressed = {};
+  window.addEventListener('keydown', (e) => {
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+    keysPressed[e.key.toLowerCase()] = true;
+
+    if (e.key === '1') toggleMySit();
+    if (e.key === '2') togglePanel('panel-word', 'dock-word');
+    if (e.key === '3') triggerShalomBow(myAvatar);
+    if (e.key === '4') togglePanel('panel-candle', 'dock-candle');
+    if (e.key === '5') togglePanel('panel-sound', 'dock-sound');
+    if (e.key === ' ' && document.getElementById('panel-word').classList.contains('is-open')) {
+      e.preventDefault();
+      advanceWordChar(2);
+    }
+  });
+  window.addEventListener('keyup', (e) => {
+    keysPressed[e.key.toLowerCase()] = false;
+  });
+
+  /* ==============================================================
+   * 10. 손끝 말씀 묵상 (염주 굴리기 대응 인터랙션)
+   * ============================================================== */
+  const verseDisplayEl = document.getElementById('verse-display');
+  const beadsTrackEl = document.getElementById('beads-track');
+  let beadOffset = 0;
+
+  function renderVerseChars() {
+    const v = BIBLE_VERSES[currentVerseIdx];
+    verseDisplayEl.innerHTML = '';
+    for (let i = 0; i < v.text.length; i++) {
+      const span = document.createElement('span');
+      span.className = 'verse-char' + (i < litCharCount ? ' lit' : '');
+      span.textContent = v.text[i];
+      verseDisplayEl.appendChild(span);
+    }
+    const pct = Math.min(100, Math.round((litCharCount / v.text.length) * 100));
+    document.getElementById('word-progress-text').innerHTML =
+      `이번 말씀 <strong>${pct}%</strong> · 오늘 마음에 새긴 말씀 <strong>${completedRounds}</strong>독`;
+  }
+
+  function advanceWordChar(step = 1) {
+    const v = BIBLE_VERSES[currentVerseIdx];
+    litCharCount += step;
+    beadOffset = (beadOffset + 1) % 7;
+
+    // 올리브 구슬 시각 회전
+    const beads = beadsTrackEl.querySelectorAll('.olive-bead');
+    beads.forEach((b, idx) => {
+      b.classList.toggle('active', idx === beadOffset);
+    });
+
+    playHarpBell(litCharCount, false);
+
+    if (litCharCount >= v.text.length) {
+      completedRounds++;
+      litCharCount = 0;
+      playHarpBell(5, true);
+      showAvatarBubble(myAvatar, `📜 ${v.ref} 묵상 아멘`);
+      setStatusBanner(`✨ 「${v.ref}」 말씀을 끝까지 마음에 새겼습니다 (${completedRounds}독 완주).`);
+    }
+    renderVerseChars();
+  }
+
+  document.getElementById('verse-select').addEventListener('change', (e) => {
+    currentVerseIdx = Number(e.target.value);
+    litCharCount = 0;
+    renderVerseChars();
+  });
+
+  document.getElementById('btn-step-word').addEventListener('click', () => advanceWordChar(2));
+
+  const wheelBox = document.getElementById('wheel-box');
+  wheelBox.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    advanceWordChar(2);
+  }, { passive: false });
+
+  let touchStartY = null;
+  wheelBox.addEventListener('pointerdown', (e) => { touchStartY = e.clientY; });
+  wheelBox.addEventListener('pointermove', (e) => {
+    if (touchStartY === null) return;
+    if (Math.abs(e.clientY - touchStartY) > 18) {
+      advanceWordChar(2);
+      touchStartY = e.clientY;
+    }
+  });
+  wheelBox.addEventListener('pointerup', () => { touchStartY = null; });
+
+  renderVerseChars();
+
+  /* ==============================================================
+   * 11. 기도의 등불(중보기도) 렌더링 및 등불 밝히기
+   * ============================================================== */
+  function renderPrayerList() {
+    const container = document.getElementById('prayer-list');
+    container.innerHTML = '';
+    document.getElementById('candle-count-num').textContent = String(10 + PRAYER_CANDLES.length);
+    PRAYER_CANDLES.forEach((item, idx) => {
+      const div = document.createElement('div');
+      div.className = 'prayer-item';
+      div.innerHTML = `
+        <div class="prayer-item-top">
+          <span>🕯️ <strong>${item.author}</strong> · ${item.time}</span>
+          <button class="amen-mini-btn" data-amen-idx="${idx}">🙏 아멘 ${item.amens}</button>
+        </div>
+        <div>${item.text}</div>
+      `;
+      container.appendChild(div);
+    });
+
+    container.querySelectorAll('[data-amen-idx]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const i = Number(btn.getAttribute('data-amen-idx'));
+        PRAYER_CANDLES[i].amens++;
+        playHarpBell(3, true);
+        showAvatarBubble(myAvatar, '🙏 아멘으로 함께 기도합니다');
+        renderPrayerList();
+      });
+    });
+  }
+  renderPrayerList();
+
+  document.getElementById('btn-light-candle').addEventListener('click', () => {
+    const input = document.getElementById('prayer-input');
+    const txt = input.value.trim() || '조용히 주님 앞에 침묵으로 기도의 등불을 올립니다.';
+    input.value = '';
+    startLightingCandleSequence(txt);
+  });
+
+  /* ==============================================================
+   * 12. UI 이벤트 연결 (부트, 독 패널, 사운드, 시간대, 모달)
+   * ============================================================== */
+  const bootEl = document.getElementById('chapel-boot');
+  document.getElementById('btn-enter-sound').addEventListener('click', () => {
+    bootEl.classList.add('is-hidden');
+    startAudioSystem(true);
+  });
+  document.getElementById('btn-enter-mute').addEventListener('click', () => {
+    bootEl.classList.add('is-hidden');
+    startAudioSystem(false);
+  });
+
+  function togglePanel(panelId, dockBtnId) {
+    const panels = ['panel-word', 'panel-candle', 'panel-sound'];
+    const docks = ['dock-word', 'dock-candle', 'dock-sound'];
+    const target = document.getElementById(panelId);
+    const isOpen = target.classList.contains('is-open');
+
+    panels.forEach(p => document.getElementById(p).classList.remove('is-open'));
+    docks.forEach(d => document.getElementById(d).classList.remove('is-active'));
+
+    if (!isOpen) {
+      target.classList.add('is-open');
+      if (dockBtnId) document.getElementById(dockBtnId).classList.add('is-active');
+    }
+  }
+
+  document.getElementById('dock-sit').addEventListener('click', toggleMySit);
+  document.getElementById('dock-word').addEventListener('click', () => togglePanel('panel-word', 'dock-word'));
+  document.getElementById('dock-shalom').addEventListener('click', () => triggerShalomBow(myAvatar));
+  document.getElementById('dock-candle').addEventListener('click', () => togglePanel('panel-candle', 'dock-candle'));
+  document.getElementById('dock-sound').addEventListener('click', () => togglePanel('panel-sound', 'dock-sound'));
+
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pid = btn.getAttribute('data-close');
+      document.getElementById(pid).classList.remove('is-open');
+      ['dock-word', 'dock-candle', 'dock-sound'].forEach(d => document.getElementById(d).classList.remove('is-active'));
+    });
+  });
+
+  // 전체 소리 퀵 버튼
+  document.getElementById('btn-Quick-Audio').addEventListener('click', () => {
+    startAudioSystem(masterMuted);
+  });
+
+  // 사운드 슬라이더
+  document.getElementById('slider-nature').addEventListener('input', (e) => {
+    initWebAudio();
+    const v = Number(e.target.value) / 100;
+    if (natureGain && !masterMuted) natureGain.gain.value = v * 0.35;
+  });
+  document.getElementById('nature-type-select').addEventListener('change', (e) => {
+    natureType = e.target.value;
+  });
+  document.getElementById('slider-piano').addEventListener('input', (e) => {
+    audioPianoEl.volume = Number(e.target.value) / 100;
+    if (audioPianoEl.paused && !masterMuted) audioPianoEl.play().catch(() => {});
+  });
+  document.getElementById('piano-track-select').addEventListener('change', (e) => {
+    const val = e.target.value;
+    if (val === 'grace') audioPianoEl.src = './assets/chapel_audio/piano_grace.mp3';
+    else if (val === 'worship') audioPianoEl.src = './assets/chapel_audio/piano_worship.mp3';
+    if (!masterMuted && val !== 'pad') audioPianoEl.play().catch(() => {});
+  });
+
+  // 목사님 말씀 재생 토글
+  const btnSermon = document.getElementById('btn-toggle-sermon');
+  btnSermon.addEventListener('click', () => {
+    if (audioVoiceEl.paused) {
+      masterMuted = false;
+      document.getElementById('quick-audio-icon').textContent = '🔊 소리 켜짐';
+      audioVoiceEl.volume = Number(document.getElementById('slider-voice').value) / 100;
+      // BGM 자동 덕킹
+      audioPianoEl.volume = Math.min(audioPianoEl.volume, 0.25);
+      audioVoiceEl.play().catch(() => {});
+      btnSermon.textContent = '⏸ 말씀 일시정지';
+      setStatusBanner('🎙️ 목사님의 [매일말씀]을 함께 경청하며 묵상하고 있습니다.');
+    } else {
+      audioVoiceEl.pause();
+      btnSermon.textContent = '▶ 말씀 듣기';
+      audioPianoEl.volume = Number(document.getElementById('slider-piano').value) / 100;
+    }
+  });
+  document.getElementById('slider-voice').addEventListener('input', (e) => {
+    audioVoiceEl.volume = Number(e.target.value) / 100;
+  });
+
+  // 예배당 시간대 빛 전환 (새벽기도 / 주일 한낮 / 밤 철야기도)
+  let timeMode = 0;
+  const timeModes = [
+    { label: '☀️ 따스한 주일 한낮', bg: 0x1f1914, amb: 0.62, sun: 0.95, rayOp: 0.085 },
+    { label: '🌅 고요한 새벽기도', bg: 0x141b29, amb: 0.42, sun: 0.55, rayOp: 0.045 },
+    { label: '🕯️ 깊은 밤 철야기도', bg: 0x0c0a09, amb: 0.24, sun: 0.15, rayOp: 0.015 }
+  ];
+  document.getElementById('btn-time-mode').addEventListener('click', () => {
+    timeMode = (timeMode + 1) % timeModes.length;
+    const m = timeModes[timeMode];
+    document.getElementById('time-mode-label').textContent = m.label;
+    scene.background.setHex(m.bg);
+    scene.fog.color.setHex(m.bg);
+    ambientLight.intensity = m.amb;
+    sunLight.intensity = m.sun;
+    godRayMeshes.forEach(r => { r.material.opacity = m.rayOp; });
+  });
+
+  // 카메라 시점 프리셋 전환 및 확대/축소 버튼
+  document.getElementById('btn-camera-view').addEventListener('click', () => {
+    cameraPresetIdx = (cameraPresetIdx + 1) % cameraPresets.length;
+    const p = cameraPresets[cameraPresetIdx];
+    camDist = p.dist;
+    camPitch = p.pitch;
+    camYaw = 0;
+    document.getElementById('camera-mode-label').textContent = p.name;
+  });
+
+  document.getElementById('btn-zoom-in').addEventListener('click', () => {
+    camDist = Math.max(1.4, camDist - 1.5);
+  });
+  document.getElementById('btn-zoom-out').addEventListener('click', () => {
+    camDist = Math.min(26.0, camDist + 1.8);
+  });
+
+  let inGarden = false;
+  document.getElementById('btn-walk-garden').addEventListener('click', () => {
+    unseatAvatar(myAvatar);
+    inGarden = !inGarden;
+    if (inGarden) {
+      myAvatar.targetPos.set(0, 0, 18.5);
+      myAvatar.state = 'walking';
+      camDist = 9.0;
+      document.getElementById('btn-walk-garden').innerHTML = '<span>⛪ 예배당 본당으로 들어가기</span>';
+      setStatusBanner('🌳 예배당 문을 나서 감람산 등불 정원과 갈릴리 연못가로 산책을 나갑니다.');
+    } else {
+      myAvatar.targetPos.set(0, 0, 2.5);
+      myAvatar.state = 'walking';
+      camDist = 6.8;
+      document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원·연못 산책</span>';
+      setStatusBanner('⛪ 다시 예배당 본당 십자가 앞으로 걸어 들어갑니다.');
+    }
+  });
+
+  // 🌙 가만히 앉아 쉬기 모드 (UI 숨기고 의자에 앉아 평안히 머물기)
+  let isZenMode = false;
+  document.getElementById('btn-zen-mode').addEventListener('click', () => {
+    isZenMode = !isZenMode;
+    if (isZenMode && myAvatar.state !== 'sitting' && myAvatar.state !== 'walking_to_seat') {
+      toggleMySit();
+    }
+    document.querySelector('.bottom-dock').style.opacity = isZenMode ? '0.12' : '1';
+    document.querySelector('.control-hint').style.display = isZenMode ? 'none' : '';
+    document.getElementById('btn-zen-mode').innerHTML = isZenMode ? '<span>✨ 메뉴 보이기</span>' : '<span>🌙 가만히 쉬기</span>';
+    if (isZenMode) {
+      camDist = 4.6;
+      camPitch = 0.2;
+      camYaw = 0;
+      setStatusBanner('🌙 잠시 모든 생각을 내려놓고, 주님 앞에서 가만히 앉아 쉬어갑니다.');
+    } else {
+      camDist = 6.8;
+      camPitch = 0.34;
+    }
+  });
+
+  // 모달 열기/닫기
+  document.getElementById('btn-room-modal').addEventListener('click', () => {
+    document.getElementById('modal-rooms').classList.add('is-open');
+  });
+  document.getElementById('btn-offering-modal').addEventListener('click', () => {
+    document.getElementById('modal-offering').classList.add('is-open');
+  });
+  document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.getElementById(btn.getAttribute('data-close-modal')).classList.remove('is-open');
+    });
+  });
+
+  document.getElementById('btn-save-name').addEventListener('click', () => {
+    const val = document.getElementById('my-name-input').value.trim();
+    if (val) {
+      myAvatar.name = `${val} (나)`;
+      myAvatar.labelEl.querySelector('.name-span').textContent = myAvatar.name;
+      showAvatarBubble(myAvatar, `🕊️ ${val}`);
+      broadcastMyState('shalom', `🕊️ ${val}`);
+    }
+  });
+
+  /* ==============================================================
+   * 12-B. 실시간 멀티플레이어 동기화 (MQTT WebSocket + BroadcastChannel)
+   *       & 예배당 상주 지킴이(AI 동행 순례자) ON/OFF 제어
+   * ============================================================== */
+  const mySessionId = 'user_' + Math.random().toString(36).slice(2, 10);
+  let currentRoom = '갈릴리 호숫가';
+  let showNpcs = true;
+  const remotePeers = new Map(); // sessionId -> { avatar, lastSeen, room }
+
+  function updateOnlineCounters() {
+    let realInRoom = 1; // 나 자신 포함
+    remotePeers.forEach((peer) => {
+      if (peer.room === currentRoom) realInRoom++;
+    });
+    const npcCount = showNpcs ? npcConfigs.length : 0;
+    const totalCount = realInRoom + npcCount;
+
+    document.getElementById('current-room-count').textContent = String(totalCount);
+    const realEl = document.getElementById('real-online-count');
+    const npcEl = document.getElementById('npc-online-count');
+    if (realEl) realEl.textContent = String(realInRoom);
+    if (npcEl) npcEl.textContent = String(npcCount);
+  }
+
+  // AI 동행 순례자(예배당 지킴이) 표시/숨기기 토글
+  const chkNpc = document.getElementById('chk-show-npc');
+  if (chkNpc) {
+    chkNpc.addEventListener('change', (e) => {
+      showNpcs = e.target.checked;
+      avatars.forEach(av => {
+        if (av.id.startsWith('npc_')) {
+          av.group.visible = showNpcs;
+          av.labelEl.style.visibility = showNpcs ? 'visible' : 'hidden';
+        }
+      });
+      updateOnlineCounters();
+      setStatusBanner(showNpcs
+        ? '🕯️ 예배당 지킴이(AI 동행 순례자)들과 함께 기도합니다.'
+        : '🟢 오직 실제 실시간 접속 성도만 화면에 표시합니다.');
+    });
+  }
+
+  function handleIncomingPacket(data) {
+    if (!data || data.sid === mySessionId) return;
+    let peer = remotePeers.get(data.sid);
+
+    if (data.type === 'leave') {
+      if (peer) {
+        unseatAvatar(peer.avatar);
+        worldGroup.remove(peer.avatar.group);
+        peer.avatar.labelEl.remove();
+        const idx = avatars.indexOf(peer.avatar);
+        if (idx !== -1) avatars.splice(idx, 1);
+        remotePeers.delete(data.sid);
+        updateOnlineCounters();
+      }
+      return;
+    }
+
+    if (!peer) {
+      const av = createAvatar({
+        id: data.sid,
+        name: `🟢 ${data.name || '온라인 성도'}`,
+        robeColor: 0xe3d4b6,
+        isMe: false,
+        x: data.x || 0,
+        z: data.z || 7.5
+      });
+      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '갈릴리 호숫가' };
+      remotePeers.set(data.sid, peer);
+    }
+
+    peer.lastSeen = Date.now();
+    peer.room = data.room || '갈릴리 호숫가';
+    const av = peer.avatar;
+    av.name = `🟢 ${data.name || '온라인 성도'}`;
+    av.labelEl.querySelector('.name-span').textContent = av.name;
+
+    const inSameRoom = (peer.room === currentRoom);
+    av.group.visible = inSameRoom;
+    av.labelEl.style.visibility = inSameRoom ? 'visible' : 'hidden';
+
+    if (inSameRoom) {
+      if (data.seatId) {
+        const seatObj = seats.find(s => s.id === data.seatId);
+        if (seatObj && av.seat !== seatObj) sitAvatarAtSeat(av, seatObj);
+      } else {
+        if (av.seat) unseatAvatar(av);
+        av.targetPos.set(data.x || 0, 0, data.z || 7.5);
+        if (av.group.position.distanceTo(av.targetPos) > 0.12) {
+          av.state = 'walking';
+        }
+      }
+      if (data.action === 'shalom' && data.msg) {
+        showAvatarBubble(av, data.msg);
+      }
+      if (data.action === 'candle' && data.prayer) {
+        PRAYER_CANDLES.unshift({
+          author: data.name || '온라인 성도',
+          text: data.prayer,
+          amens: 1,
+          time: '실시간 방금'
+        });
+        renderPrayerList();
+        showAvatarBubble(av, '🕯️ 기도의 등불을 밝혔습니다');
+      }
+    }
+    updateOnlineCounters();
+  }
+
+  // 1) 로컬 탭 간 실시간 연동 (BroadcastChannel)
+  const bcChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumbaon_saeoreum_chapel_v1') : null;
+  if (bcChannel) {
+    bcChannel.onmessage = (ev) => handleIncomingPacket(ev.data);
+  }
+
+  // 2) 글로벌 인터넷 성도 간 실시간 연동 (WebSocket MQTT Public Broker)
+  let mqttClient = null;
+  const MQTT_TOPIC = 'kkumbaon/chapel/saeoreum/v1/presence';
+  if (window.mqtt) {
+    try {
+      mqttClient = window.mqtt.connect('wss://broker.emqx.io:8084/mqtt', {
+        clientId: 'saeoreum_' + mySessionId,
+        clean: true,
+        connectTimeout: 4000,
+        reconnectPeriod: 4000
+      });
+      mqttClient.on('connect', () => {
+        mqttClient.subscribe(MQTT_TOPIC);
+        broadcastMyState();
+      });
+      mqttClient.on('message', (topic, payload) => {
+        if (topic === MQTT_TOPIC) {
+          try { handleIncomingPacket(JSON.parse(payload.toString())); } catch (_) {}
+        }
+      });
+    } catch (_) {}
+  }
+
+  function broadcastMyState(action = null, extraMsg = null) {
+    const packet = {
+      sid: mySessionId,
+      name: myAvatar.name.replace(' (나)', ''),
+      room: currentRoom,
+      x: Number(myAvatar.targetPos.x.toFixed(2)),
+      z: Number(myAvatar.targetPos.z.toFixed(2)),
+      seatId: myAvatar.seat ? myAvatar.seat.id : null,
+      action,
+      msg: extraMsg,
+      prayer: action === 'candle' ? extraMsg : null
+    };
+    if (bcChannel) bcChannel.postMessage(packet);
+    if (mqttClient && mqttClient.connected) {
+      mqttClient.publish(MQTT_TOPIC, JSON.stringify(packet));
+    }
+  }
+
+  setInterval(() => {
+    broadcastMyState();
+    const now = Date.now();
+    remotePeers.forEach((peer, sid) => {
+      if (now - peer.lastSeen > 8000) {
+        handleIncomingPacket({ sid, type: 'leave' });
+      }
+    });
+  }, 2000);
+
+  window.addEventListener('beforeunload', () => {
+    const leavePkt = { sid: mySessionId, type: 'leave' };
+    if (bcChannel) bcChannel.postMessage(leavePkt);
+    if (mqttClient && mqttClient.connected) mqttClient.publish(MQTT_TOPIC, JSON.stringify(leavePkt));
+  });
+
+  document.querySelectorAll('.room-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('.room-item').forEach(r => r.classList.remove('active'));
+      item.classList.add('active');
+      const rName = item.getAttribute('data-room');
+      currentRoom = rName;
+      document.getElementById('current-room-name').textContent = rName;
+      document.getElementById('modal-rooms').classList.remove('is-open');
+      broadcastMyState();
+      updateOnlineCounters();
+      setStatusBanner(`🕊️ 「${rName}」 예배당으로 조용히 자리를 옮겼습니다.`);
+    });
+  });
+  updateOnlineCounters();
+
+  document.getElementById('btn-offering-amen').addEventListener('click', () => {
+    playHarpBell(5, true);
+    document.getElementById('modal-offering').classList.remove('is-open');
+    showAvatarBubble(myAvatar, '💛 주님께 감사의 마음을 드립니다');
+    setStatusBanner('💛 드려진 기도와 감사의 마음을 하나님께서 기쁘게 받으십니다.');
+  });
+
+  /* ==============================================================
+   * 13. 메인 애니메이션 & 프레임 업데이트 루프
+   * ============================================================== */
+  const clock = new THREE.Clock();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.1);
+    const elapsed = clock.getElapsedTime();
+
+    // 키보드 이동 처리
+    let moveX = 0, moveZ = 0;
+    if (keysPressed['arrowup'] || keysPressed['w']) moveZ -= 1;
+    if (keysPressed['arrowdown'] || keysPressed['s']) moveZ += 1;
+    if (keysPressed['arrowleft'] || keysPressed['a']) moveX -= 1;
+    if (keysPressed['arrowright'] || keysPressed['d']) moveX += 1;
+
+    if (moveX !== 0 || moveZ !== 0) {
+      unseatAvatar(myAvatar);
+      const speed = 3.2 * dt;
+      const forward = new THREE.Vector3(Math.sin(camYaw), 0, Math.cos(camYaw));
+      const right = new THREE.Vector3(Math.cos(camYaw), 0, -Math.sin(camYaw));
+      myAvatar.group.position.addScaledVector(forward, moveZ * speed);
+      myAvatar.group.position.addScaledVector(right, moveX * speed);
+      myAvatar.group.position.x = Math.max(-16.0, Math.min(16.0, myAvatar.group.position.x));
+      myAvatar.group.position.z = Math.max(-7.5, Math.min(26.0, myAvatar.group.position.z));
+      myAvatar.targetPos.copy(myAvatar.group.position);
+      myAvatar.group.rotation.y = Math.atan2(-moveX, -moveZ) + camYaw;
+      myAvatar.walkPhase += dt * 10;
+      myAvatar.body.position.y = 0.46 + Math.abs(Math.sin(myAvatar.walkPhase)) * 0.05;
+    }
+
+    // 모든 아바타 상태 업데이트
+    avatars.forEach(av => {
+      if (av.state === 'walking' || av.state === 'walking_to_seat' || av.state === 'walking_to_candle') {
+        const diff = new THREE.Vector3().subVectors(av.targetPos, av.group.position);
+        diff.y = 0;
+        const dist = diff.length();
+        if (dist > 0.08) {
+          diff.normalize();
+          av.group.position.addScaledVector(diff, Math.min(dist, 2.8 * dt));
+          av.group.rotation.y = Math.atan2(-diff.x, -diff.z);
+          av.walkPhase += dt * 9;
+          av.body.position.y = 0.46 + Math.abs(Math.sin(av.walkPhase)) * 0.045;
+        } else {
+          av.group.position.copy(av.targetPos);
+          if (av.state === 'walking_to_seat' && av.seat) {
+            av.state = 'sitting';
+            av.group.rotation.y = 0; // 강단 십자가를 향해 앉음
+            av.body.scale.y = 0.82;
+            av.body.position.y = 0.38;
+            av.head.position.y = 0.98;
+            av.head.rotation.x = -0.22; // 경건하게 고개 숙임
+            av.hands.position.set(0, 0.62, -0.24);
+            if (av.isMe) {
+              sitStartTime = Date.now();
+              document.getElementById('dock-sit').classList.add('is-active');
+              document.getElementById('dock-sit-label').textContent = '기도 멈추고 일어나기';
+              setStatusBanner(`🙏 ${av.seat.label}에 앉아 조용히 기도하고 있습니다.`);
+            }
+          } else if (av.state === 'walking_to_candle') {
+            av.state = 'bowing';
+            av.bowTimer = 2.2;
+            av.group.rotation.y = 0;
+            playHarpBell(5, true);
+            PRAYER_CANDLES.unshift({
+              author: av.name.replace(' (나)', ''),
+              text: av.pendingPrayer || '조용히 주님 앞에 기도의 등불을 올립니다.',
+              amens: 1,
+              time: '방금 전'
+            });
+            renderPrayerList();
+            showAvatarBubble(av, '🕯️ 기도의 등불을 밝혔습니다');
+            setStatusBanner('🕯️ 강단 앞 등잔대에 내 기도의 등불이 조용히 타오릅니다.');
+          } else {
+            av.state = 'standing';
+            av.body.position.y = 0.46;
+          }
+        }
+      } else if (av.state === 'sitting') {
+        // 앉아서 잔잔하게 숨 쉬는 모션
+        av.head.position.y = 0.98 + Math.sin(elapsed * 1.8 + av.walkPhase) * 0.008;
+      } else if (av.state === 'bowing') {
+        av.bowTimer -= dt;
+        av.head.rotation.x = -0.45;
+        av.hands.position.set(0, 0.74, -0.28);
+        if (av.bowTimer <= 0) {
+          av.state = 'standing';
+          av.head.rotation.x = 0;
+          av.hands.position.set(0, 0.68, -0.26);
+        }
+      }
+    });
+
+    // 기도 착석 시간 표시 업데이트
+    if (myAvatar.state === 'sitting' && sitStartTime && myAvatar.seat) {
+      const sec = Math.floor((Date.now() - sitStartTime) / 1000);
+      const mm = String(Math.floor(sec / 60)).padStart(2, '0');
+      const ss = String(sec % 60).padStart(2, '0');
+      setStatusBanner(`🙏 ${myAvatar.seat.label}에 앉아 기도하고 있습니다 · 머문 시간 ${mm}:${ss}`);
+    }
+
+    // 촛불 흔들림 애니메이션
+    candleFlames.forEach(cf => {
+      cf.mesh.position.y = cf.baseY + Math.sin(elapsed * 7 + cf.phase) * 0.012;
+      cf.mesh.scale.x = 0.8 + Math.sin(elapsed * 11 + cf.phase) * 0.12;
+    });
+    candleStandLightL.intensity = 1.05 + Math.sin(elapsed * 6) * 0.12;
+    candleStandLightR.intensity = 1.05 + Math.cos(elapsed * 5.5) * 0.12;
+
+    // 바닥 클릭 파동 애니메이션
+    if (rippleAge < 1.0) {
+      rippleAge += dt * 1.6;
+      const s = 1 + rippleAge * 3.2;
+      rippleMesh.scale.set(s, s, 1);
+      rippleMesh.material.opacity = Math.max(0, (1 - rippleAge) * 0.65);
+    }
+
+    // 카메라가 부드럽게 내 아바타(또는 강단)를 추적
+    const lookTarget = new THREE.Vector3(
+      myAvatar.group.position.x * 0.65,
+      1.35,
+      myAvatar.group.position.z - 1.6
+    );
+    const desiredCamPos = new THREE.Vector3(
+      lookTarget.x + Math.sin(camYaw) * Math.cos(camPitch) * camDist,
+      lookTarget.y + Math.sin(camPitch) * camDist,
+      lookTarget.z + Math.cos(camYaw) * Math.cos(camPitch) * camDist
+    );
+    camera.position.lerp(desiredCamPos, 0.08);
+    camera.lookAt(lookTarget);
+
+    // 3D 아바타 머리 위 2D 이름표 좌표 투영
+    avatars.forEach(av => {
+      const headWorld = new THREE.Vector3(
+        av.group.position.x,
+        (av.state === 'sitting' ? 1.38 : 1.56),
+        av.group.position.z
+      );
+      headWorld.project(camera);
+      if (headWorld.z > 1) {
+        av.labelEl.style.display = 'none';
+      } else {
+        av.labelEl.style.display = 'flex';
+        const sx = (headWorld.x * 0.5 + 0.5) * window.innerWidth;
+        const sy = (-headWorld.y * 0.5 + 0.5) * window.innerHeight;
+        av.labelEl.style.left = `${sx}px`;
+        av.labelEl.style.top = `${sy}px`;
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+</script>
+</body>
+</html>
