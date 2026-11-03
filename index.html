@@ -61,13 +61,13 @@
     /* PC(마우스·트랙패드 데스크톱 환경)에서는 브라우저 창을 줄여도 레이아웃이 확 줄어들거나 꺾이지 않도록 가로 최소폭(1360px) 고정 */
     @media (hover: hover) and (pointer: fine) {
       html, body {
-        min-width: 1360px !important;
+        min-width: 1440px !important;
         overflow-x: auto;
       }
       .entrance-header,
       .kkumbaon-welcome-bar,
       .entrance-main {
-        min-width: 1360px !important;
+        min-width: 1440px !important;
       }
       .kkumbaon-welcome-inner,
       .hall-intro,
@@ -78,7 +78,7 @@
       .atlas-drawer,
       .controls-wrap,
       .archive-main {
-        min-width: 1292px !important;
+        min-width: 1392px !important;
       }
       .entrance-header,
       .top-header-inner,
@@ -88,7 +88,7 @@
       }
     }
     /* 창 너비가 1360px 이상인 일반 데스크톱 뷰포트에서는 트랙패드 좌우 흔들림 원천 차단 */
-    @media (hover: hover) and (pointer: fine) and (min-width: 1360px) {
+    @media (hover: hover) and (pointer: fine) and (min-width: 1440px) {
       html, body {
         overflow-x: hidden !important;
       }
@@ -2349,7 +2349,109 @@
         gap: 14px !important;
       }
     }
-  </style>
+  
+
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
+html, body {
+  min-width: 1440px !important;
+}
+@media (min-width: 1440px) {
+  html, body { overflow-x: hidden !important; }
+}
+@media (max-width: 1439px) {
+  html, body { overflow-x: auto !important; }
+}
+.entrance-header,
+.kkumdido-12halls-bar,
+.kkumbaon-welcome-bar,
+.top-slim-tabs-bar,
+.entrance-main,
+footer {
+  min-width: 1440px !important;
+  box-sizing: border-box !important;
+}
+.entrance-header {
+  padding: 0 20px !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+}
+.entrance-brand strong {
+  font-size: 18px !important;
+}
+.entrance-nav {
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+}
+.entrance-nav a,
+.entrance-nav button {
+  font-size: 13px !important;
+  padding: 0 2px !important;
+}
+.entrance-nav .nav-12arch-btn,
+.entrance-nav .nav-moses-btn {
+  font-size: 12px !important;
+  padding: 0 9px !important;
+}
+.kkumdido-12halls-bar,
+.kkumbaon-welcome-bar,
+.top-slim-tabs-bar {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+.entrance-main {
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+}
+/* 전체 배경 바 내부의 컨테이너들은 1392px(= 1440 - 48)로 완벽 통일 */
+.kkumdido-12halls-inner,
+.kkumbaon-welcome-inner,
+.top-slim-tabs-inner,
+.hall-intro,
+#kkumdidoSignatureStage,
+.explore-hall,
+.city-story,
+.featured-places,
+.shelf-gateway {
+  width: 1392px !important;
+  max-width: 1392px !important;
+  min-width: 1392px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+.kkumdido-12halls-inner,
+.kkumbaon-welcome-inner,
+.hall-intro {
+  flex-wrap: nowrap !important;
+}
+.kkumdido-12halls-grid {
+  grid-template-columns: repeat(6, auto) !important;
+  width: auto !important;
+}
+/* 하단 양피지 배경 위의 섹션들도 외곽 1440px(좌우 패딩 24px -> 내부 1392px)로 완벽 통일 */
+#ebookShelfSection,
+section[aria-label="시범 운영 및 첫 방문 안내"],
+#kkumdido12ArchivesGateway,
+.controls-wrap,
+.cinema-studio-grid,
+.archive-main,
+.top-header-inner,
+.hero-inner,
+.atlas-drawer {
+  width: 1440px !important;
+  max-width: 1440px !important;
+  min-width: 1440px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+.archive-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+}
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+</style>
   <link rel="stylesheet" href="atrium.css?v=20261102-lock"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
 </head>
@@ -2387,7 +2489,7 @@
         <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">12대 아카이브 · 3,650</a>
         <a href="figures_encyclopedia_preview.html" class="kkumdido-12halls-genealogy"><span class="h-no">가계도</span>인물가계도·족보</a>
         <a href="online_chapel_kkumdido.html" class="kkumdido-12halls-genealogy" style="background:linear-gradient(135deg,#182238,#0d1322); color:#F7DC81; border-color:#D4AF37;" title="꿈디도 3D 아트리움 묵상원 · 성화 전시회 산책하기"><span class="h-no" style="color:#64E3A1;">● 3D</span>🏛️ 꿈디도 산책하기</a>
-        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" style="background:linear-gradient(135deg,#3b2b1d,#241911); color:#FFE6A3; border-color:#D4A853;" title="새오름교회 3D 온라인 예배당 · 감람산 정원 산책하기"><span class="h-no" style="color:#7CD992;">● 3D</span>🕊️ 새오름교회 산책하기</a>
+        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" style="background:linear-gradient(135deg,#3b2b1d,#241911); color:#FFE6A3; border-color:#D4A853;" title="우리 교회 3D 온라인 예배당 · 감람산 정원 산책하기"><span class="h-no" style="color:#7CD992;">● 3D</span>🕊️ 우리 교회 산책하기</a>
       </div>
       <div class="kkumdido-12halls-grid">
         <a href="kkumdido_12archives_viewer.html?archive=1" class="col-first"><span class="h-no">1관</span>인물대백과</a>
@@ -2427,16 +2529,6 @@
       <div class="hall-eyebrow"><span></span> 성경의 땅 · 사람 · 이야기</div>
       <h1 id="hallTitle">말씀을 따라, <em>그 땅으로.</em></h1>
       <p>도시를 열면 풍경이 보이고, 그곳에 머문 이야기가 시작됩니다.</p>
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;">
-        <a href="online_chapel_kkumdido.html" style="display:inline-flex; align-items:center; gap:7px; padding:8px 16px; border-radius:999px; background:linear-gradient(135deg,#182238,#0e1526); color:#F7DC81; border:1.5px solid #D4AF37; font-size:13px; font-weight:800; text-decoration:none; box-shadow:0 6px 18px rgba(14,21,38,0.18);">
-          <span>🏛️</span>
-          <span>꿈디도 산책하기 (3D 아트리움·성화관)</span>
-        </a>
-        <a href="online_chapel_church.html" style="display:inline-flex; align-items:center; gap:7px; padding:8px 16px; border-radius:999px; background:linear-gradient(135deg,#3b2b1d,#241911); color:#FFE6A3; border:1.5px solid #D4A853; font-size:13px; font-weight:800; text-decoration:none; box-shadow:0 6px 18px rgba(36,25,17,0.18);">
-          <span>🕊️</span>
-          <span>새오름교회 산책하기 (3D 예배당·감람산 정원)</span>
-        </a>
-      </div>
     </div>
     <div class="hall-stats" aria-label="도서관 소장 현황">
       <div><strong id="placeTotal">49</strong><span>탐험할 장소</span></div>
@@ -2449,7 +2541,7 @@
   </section>
 
   <!-- 꿈디도 3D 시그니처 트레일러 스테이지 (기본 숨김, 영상실 버튼 클릭 시 활성화) -->
-  <section id="kkumdidoSignatureStage" style="max-width:1800px;margin:0 auto 32px;perspective:1600px;display:none;">
+  <section id="kkumdidoSignatureStage" style="max-width:1392px;margin:0 auto 32px;perspective:1600px;display:none;">
     <div style="background:radial-gradient(circle at 50% 0%, rgba(212,175,55,0.16) 0%, rgba(21,17,13,0.98) 65%), linear-gradient(145deg,#120E0A 0%,#1E1710 100%);border:2px solid rgba(212,175,55,0.62);border-radius:24px;padding:22px 26px 24px;box-shadow:0 28px 68px rgba(10,7,4,0.48), 0 0 42px rgba(200,164,93,0.14), inset 0 1px 0 rgba(255,238,190,0.28);transform:rotateX(1.2deg);transition:transform 0.4s ease;">
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
         <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
@@ -2583,7 +2675,7 @@
       <div class="all-places" id="allPlaces" hidden><div class="all-places-head"><strong>성경의 주요 장소</strong><button id="closePlaces" aria-label="장소 목록 닫기">×</button></div><div id="allPlacesList"></div></div>
       <div class="map-live" id="mapLive" role="status" aria-live="polite"></div>
     </div>
-    <div class="map-caption"><span>휠·두 손가락으로 확대 · 드래그로 이동</span><span>현대 지리 자료를 바탕으로 한 성경 장소 안내 · 위치에 논의가 있는 곳은 별도 표시</span><button id="mapCredits">지도·이미지 출처</button></div>
+    <div class="map-caption"><span>휠·두 손가락으로 확대 · 드래그로 이동</span><span>현대 지리 자료를 바탕으로 한 성경 장소 안내 · 위치에 논의가 있는 곳은 별도 표시</span><button id="mapCredits">소개·출처</button></div>
   </section>
   <section class="city-story" id="cityStory" aria-label="도시 이야기" hidden></section>
   <section class="featured-places" aria-labelledby="featuredTitle">
@@ -2595,7 +2687,7 @@
   <dialog class="credits-dialog" id="creditsDialog"><button class="dialog-close" id="closeCredits" aria-label="출처 안내 닫기">×</button><span class="section-eyebrow">SOURCES & NOTES</span><h2>풍경과 기록의 출처</h2><div id="creditsBody"></div></dialog>
 
   <!-- 3.5. 꿈바온 완결본 전자책(PDF) 열람실 -->
-  <section id="ebookShelfSection" style="max-width:1360px; margin:24px auto 0; padding:0 24px;">
+  <section id="ebookShelfSection" style="max-width:1440px; margin:24px auto 0; padding:0 24px;">
     <div style="background:linear-gradient(135deg, #1E1915 0%, #2A221B 100%); border:1.5px solid var(--border-gold); border-radius:var(--radius-lg); padding:20px 24px; color:#FAF6EE; box-shadow:var(--shadow-card);">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
         <div>
@@ -2653,7 +2745,7 @@
   </section>
 
   <!-- 🌟 시범 운영 공지 및 처음 방문한 분의 시작점 안내 배너 -->
-  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1360px; margin:16px auto 0; padding:0 24px;">
+  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1440px; margin:16px auto 0; padding:0 24px;">
     <div style="background:linear-gradient(135deg, #231C16 0%, #2E241C 100%); border:1.5px solid rgba(212,175,55,0.65); border-radius:14px; padding:16px 20px; color:#FAF6EE; box-shadow:0 8px 24px rgba(0,0,0,0.12); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; align-items:center;">
       <div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
@@ -2681,7 +2773,7 @@
 
   
   <!-- 🏛️ 꿈디도 12대 아카이브 · 3,650모듈 통합 대백과 관문 (12-Dodeca Link) -->
-  <section id="kkumdido12ArchivesGateway" aria-label="꿈디도 12대 아카이브 3,650모듈 통합 마스터 관문" style="max-width:1360px; margin:20px auto 0; padding:0 24px;">
+  <section id="kkumdido12ArchivesGateway" aria-label="꿈디도 12대 아카이브 3,650모듈 통합 마스터 관문" style="max-width:1440px; margin:20px auto 0; padding:0 24px;">
     <div style="background:radial-gradient(circle at 85% 0%, rgba(212,175,55,0.18) 0%, rgba(26,20,15,0.98) 65%), linear-gradient(135deg, #1A140F 0%, #261D15 100%); border:2px solid rgba(229,200,120,0.68); border-radius:18px; padding:22px 24px; color:#FAF6EE; box-shadow:0 20px 50px rgba(0,0,0,0.28);">
       <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-bottom:16px;">
         <div>
@@ -2701,69 +2793,69 @@
 
       <!-- 원스톱 12대 아카이브 직행 검색 바 -->
       <form onsubmit="event.preventDefault(); var v=document.getElementById('gw12SearchInput').value.trim(); window.location.href='kkumdido_12archives_viewer.html'+(v?'?q='+encodeURIComponent(v):'');" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
-        <input id="gw12SearchInput" type="text" placeholder="3,650개 전 모듈 통합 검색: 예) 로마서 8, 시편 23, 웨슬리, 헤세드(W001), 텔단비문(G002), 평양대부흥, 신천지, 장례..." style="flex:1; min-width:240px; padding:11px 16px; border-radius:10px; border:1.5px solid rgba(229,200,120,0.45); background:rgba(10,7,5,0.75); color:#FFF; font-size:13.5px; outline:none;" />
+        <input id="gw12SearchInput" type="text" placeholder="3,650개 전 모듈 통합 검색: 예) 로마서 8, 시편 23, 웨슬리, 헤세드, 텔 단 비문, 평양대부흥, 신천지, 장례..." style="flex:1; min-width:240px; padding:11px 16px; border-radius:10px; border:1.5px solid rgba(229,200,120,0.45); background:rgba(10,7,5,0.75); color:#FFF; font-size:13.5px; outline:none;" />
         <button type="submit" class="hdr-btn gold" style="padding:11px 20px; font-size:13px; cursor:pointer;">12대 아카이브 통합 검색 →</button>
       </form>
 
       <!-- 제1관 ~ 제12관 원클릭 관문 그리드 -->
-      <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(205px, 1fr)); gap:10px;">
+      <div style="display:grid; grid-template-columns:repeat(6, minmax(0, 1fr)); gap:10px;">
         <a href="figures_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제1관 · P001~P350</span><span>350인 · 성화 469점</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제1관 · 인물대백과</span><span>350인 · 성화 469점</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 인물가계도·대백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">언약의 계보·왕조·선지자·바울망 125인 성화 완비</div>
         </a>
         <a href="events_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제2관 · E001~E300</span><span>300건 · 성화 60점</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제2관 · 사건대백과</span><span>300건 · 성화 60점</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 사건대백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">창조부터 새 예루살렘까지 300대 사건·기둥 30선</div>
         </a>
         <a href="behinds_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제3관 · B001~B300</span><span>300편 · 성화 60점</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제3관 · 비하인드관</span><span>300편 · 성화 60점</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 비하인드스토리</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">고대 근동 문화·풍습·원어 행간 비밀 플립카드</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=4" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제4관 · A001~A300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제4관 · 외경·중간사</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">외경에서 말하다</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">신구약 중간사·외경·사해사본·정경사</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=5" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제5관 · G001~G300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제5관 · 지리·고고학</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경지리·고고학대백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">성경 지형·기후·전투·발굴 유물 300선</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=6" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제6관 · W001~W300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제6관 · 원어사전</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">원어핵심단어대사전</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">히브리어 150어 + 헬라어 150어 주해</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=7" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제7관 · C001~C300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제7관 · 고전·웨슬리</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">고전주석·웨슬리설교관</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">교부·종교개혁·청교도·웨슬리 표준설교</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=8" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제8관 · D001~D300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제8관 · 교리·변증</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">교리·이단변증백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">보편신조·조직신학·주요 이단 반박</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=9" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제9관 · K001~K300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제9관 · 한국교회사</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">한국교회사대백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">초기선교·한글성경·부흥·순교자 열전</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=10" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제10관 · Q001~Q300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제10관 · 성경난제</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경난제해답백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">성경 모순 반박·과학과 신앙·일상 Q&amp;A</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=11" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제11관 · H001~H300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제11관 · 찬송가관</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">찬송가비하인드대백과</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">세계 명곡 찬송가·복음성가 작시 실화</div>
         </a>
         <a href="kkumdido_12archives_viewer.html?archive=12" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제12관 · M001~M300</span><span>300편</span></div>
+          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제12관 · 목회툴킷</span><span>300편</span></div>
           <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">목회실전툴킷</div>
           <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">예식서·심방설교·52주 소그룹·교회행정</div>
         </a>
@@ -2842,7 +2934,7 @@
       <!-- 구속사 기둥 및 성화 완비 125인 투명초상 원클릭 스트립 -->
       <div style="background:rgba(12,9,6,0.55); border:1px solid rgba(200,164,93,0.3); border-radius:12px; padding:10px 14px; margin:10px 0 14px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700;">성화·초상 완비 125인 (P001 아담 ~ P125 나다나엘 · 총 469점 성화 도판) 원클릭 열전 바로가기</span>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700;">성화·초상 완비 125인 (아담 ~ 나다나엘 · 총 469점 성화 도판) 원클릭 열전 바로가기</span>
           <span style="font-size:11px; color:#C9BFA8;">원형 초상을 누르면 성화 도판과 원어·고고학 열전이 즉시 열립니다</span>
         </div>
         <div id="figuresPillarStrip" style="display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;"></div>
@@ -3194,14 +3286,57 @@
           <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
 
-        <h3 class="serif" style="margin:28px 0 10px;">3. 성경 원문 · 형태 정보 · 원어 사전 및 지도 출처 안내</h3>
-        <ul style="margin-left:20px; line-height:1.9; font-size:14.2px; color:var(--espresso-mid);">
-          <li><strong>구약 성경 원문 및 형태론:</strong> Westminster Leningrad Codex (WLC, Public Domain) 및 Open Scriptures Hebrew Bible (OSHB MorphHB, CC BY 4.0).</li>
-          <li><strong>신약 성경 원문 및 형태론:</strong> <em>The Greek New Testament: SBL Edition</em> (SBLGNT), edited by Michael W. Holmes, © 2010 Society of Biblical Literature and Logos Bible Software (<a href="https://sblgnt.com/license/" target="_blank" rel="noopener">SBLGNT 공식 라이선스 CC BY 4.0</a>) 및 MorphGNT SBLGNT (CC BY-SA 3.0).</li>
-          <li><strong>원어 사전:</strong> Brown-Driver-Briggs Hebrew Lexicon (BDB, Public Domain), Strong&#39;s Exhaustive Concordance (Public Domain), Abbott-Smith&#39;s <em>A Manual Greek Lexicon of the New Testament</em> (1922, Public Domain).</li>
-          <li><strong>성경 번역본 및 해설 구분:</strong> 직접 인용 성경 본문은 대한성서공회 『개역한글판』(공유 저작물), 『개역개정판』(핵심 구절 인용 시 번역본명 표시), World English Bible (WEB, Public Domain)을 사용하며, 꿈바온의 풀어읽기와 묵상 해설은 정식 번역 성경이 아닌 독립 해설문입니다.</li>
-          <li><strong>지도 및 이미지 출처:</strong> 지형 바탕 지도는 <a href="https://www.naturalearthdata.com/about/terms-of-use/" target="_blank" rel="noopener">Natural Earth (Public Domain)</a>를 사용하며, 실제 유적·풍경 사진은 각 도시 창에 저작자와 라이선스(Wikimedia Commons 등)를 표시합니다. 성경 시대를 재구성한 그림은 당시 모습을 이해하도록 돕는 꿈바온의 AI 상상도 및 공통 묵상 삽화입니다.</li>
-        </ul>
+        <div id="kkumbaonOfficialAboutSources" style="margin-top:20px; padding:18px 20px; border-radius:12px; background:rgba(197,155,82,0.08); border:1px solid rgba(197,155,82,0.35); line-height:1.8; font-size:14px;">
+  <h3 class="serif" style="margin:0 0 10px; font-size:17px;">1. 꿈바온은 누구인가 (소개)</h3>
+  <p style="margin:0 0 8px;">꿈바온은 성경을 깊이 읽도록 돕는 자료와 영상을 만드는 사역입니다. 기독교대한감리회 정회원 목사인 꿈바온 목사가 이끌고, 모든 자료는 무료로 엽니다.</p>
+  <p style="margin:0 0 8px;">꿈바온 사역팀은 자료를 모으고 정리하고 번역하는 데 AI 도구를 함께 씁니다. 성경 본문과 원어, 역사 자료는 아래에 밝힌 출처로 확인하고, 신학 내용은 꿈바온 목사가 책임집니다. 그림 가운데 성경 시대를 재구성한 것은 이해를 돕기 위한 상상도입니다.</p>
+  <p style="margin:0 0 14px;">잘못된 내용을 발견하시면 알려 주십시오. 확인하는 대로 바로잡겠습니다.</p>
+  <p style="margin:0 0 18px; font-weight:700; font-size:13px;">
+    편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)<br>
+    <span style="font-weight:400; font-size:12px; opacity:0.88;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+  </p>
+
+  <h3 class="serif" style="margin:18px 0 10px; font-size:17px;">2. 무엇을 근거로 하는가 (출처 목록)</h3>
+  <ul style="margin:0 0 0 18px; padding:0; line-height:1.85;">
+    <li><strong>2-1. 성경 본문:</strong>
+      <ul style="margin:4px 0 8px 16px;">
+        <li><strong>개역개정판</strong> — 성경전서 개역개정판 © 대한성서공회 1998. 꿈바온 자료는 장절을 밝히고 한 번에 두세 절까지만 인용합니다.</li>
+        <li><strong>World English Bible(WEB)</strong> — 퍼블릭 도메인. 영어 대조에 씁니다.</li>
+        <li><strong>King James Version(1611)</strong> — 영어 대조와 역사 자료에 씁니다.</li>
+      </ul>
+    </li>
+    <li><strong>2-2. 원어 본문·사전·문법:</strong>
+      <ul style="margin:4px 0 8px 16px;">
+        <li><strong>STEPBible.org</strong> (Tyndale House, Cambridge · CC BY 4.0) — TAHOT·TAGNT·TBESH(짧은 뜻만)·TBESG·TEHMC·TEGMC·TIPNR</li>
+        <li><strong>Open Scriptures Hebrew Bible</strong> — WLC 본문 퍼블릭 도메인, 형태소 CC BY 4.0</li>
+        <li><strong>SBL Greek New Testament</strong> — © 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0</li>
+        <li><strong>신약 영어 뜻풀이 원문:</strong> G. Abbott-Smith, <em>A Manual Greek Lexicon of the New Testament</em> (1922, 퍼블릭 도메인)</li>
+        <li><strong>한국어 번역·다듬기:</strong> 꿈바온 사역팀</li>
+      </ul>
+    </li>
+    <li><strong>2-3. 고전 원전 (저작권이 끝난 판에서 꿈바온 사역팀이 직접 옮김):</strong>
+      <ul style="margin:4px 0 8px 16px;">
+        <li>요세푸스 『유대 고대사』·『유대 전쟁사』 — W. Whiston 영역(1737)</li>
+        <li>필론 — C. D. Yonge 영역(1854~1855)</li>
+        <li>칼빈 『기독교 강요』와 주석 — 19세기 영역본</li>
+        <li>존 웨슬리 설교(T. Jackson 판, 1872), 『신약 주해』(1755), 『감리교 종교강령』(1784)</li>
+        <li>찰스 스펄전 설교, 매튜 헨리 『성경 주석』(18세기 초)</li>
+        <li>사도신경·니케아 신경 등 고대 신조, 벨직 신앙고백(1561), 웨스트민스터 신앙고백(1647)</li>
+        <li>외경(집회서 등) — KJV 외경(1611)과 L. Brenton 70인역 영역(1844)에서 옮김</li>
+        <li>탈무드·미쉬나 — 책 이름과 장절만 밝히고 꿈바온 사역팀이 풀어 씀</li>
+      </ul>
+    </li>
+    <li><strong>2-4. 역사·고고학·지도·그림:</strong>
+      <ul style="margin:4px 0 8px 16px;">
+        <li>유물과 비문의 이름, 발견 연도, 소장처 같은 사실은 공개된 학계 자료로 확인하고 꿈바온의 문장으로 씁니다.</li>
+        <li>지형 바탕 지도: Natural Earth (퍼블릭 도메인)</li>
+        <li>유적·풍경 사진: 사진마다 저작자와 라이선스를 표시합니다(Wikimedia Commons 등).</li>
+        <li>성경 시대 재구성 그림: 꿈바온의 AI 상상도</li>
+      </ul>
+    </li>
+    <li><strong>2-5. 찬송가:</strong> 장 번호, 곡명, 작사·작곡자, 연도만 적습니다. 가사는 저작권이 끝난 원문만 짧게 인용합니다.</li>
+  </ul>
+</div>
       </div>
     </div>
   </div>
@@ -3216,8 +3351,8 @@
     </p>
   </footer>
 
-  <script src="library_data.js?v=20261103_v3"></script>
-  <script src="figures_encyclopedia_data.js?v=20261103_v3"></script>
+  <script src="library_data.js?v=20261103_clean"></script>
+  <script src="figures_encyclopedia_data.js?v=20261103_clean"></script>
   <script>
     const LIB = window.KKUMBAON_LIBRARY_DATA || { meta: {}, atlasPins: [], items: [], videos: [] };
     let currentCategory = "all";
@@ -3268,11 +3403,11 @@
         }
 
         const gal = (f.scenes && f.scenes.length > 0)
-          ? f.scenes.map(sc => ({ img: sc.img, title: `[${sc.code}] ${f.name}`, caption: sc.title }))
-          : [{ img: defaultCover, title: `[${f.id}] ${f.name}`, caption: `${f.era} · ${f.role}` }];
+          ? f.scenes.map(sc => ({ img: sc.img, title: `${f.name} — ${sc.title}`, caption: sc.title }))
+          : [{ img: defaultCover, title: `${f.name}`, caption: `${f.era} · ${f.role}` }];
 
         const coverImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : (f.masterImg || defaultCover);
-        const baseMd = f.dossierMd || `### [${f.id}] ${f.name} (${f.origName})\n\n- **시대:** ${f.era}\n- **핵심 사명:** ${f.role}\n- **대표 성구:** ${f.scriptures}\n\n${f.summary}`;
+        const baseMd = f.dossierMd || `■ ${f.name} (${f.origName})\n\n• 시대: ${f.era}\n• 핵심 사명: ${f.role}\n• 대표 성구: ${f.scriptures}\n\n${f.summary}`;
         const fullMd = baseMd + (f.productionNoteMd ? `\n\n---\n\n${f.productionNoteMd}` : "");
 
         newItems.push({
@@ -3282,7 +3417,7 @@
           category: "figures",
           figSubCat: figSubCat,
           categoryLabel: catLabel,
-          title: `[${f.id}] ${f.name} — ${f.role.split('/')[0].trim()}`,
+          title: `${f.name} — ${f.role.split('/')[0].trim()}`,
           subtitle: `${f.origName} · ${f.era}${f.hasTier1Images ? ' · Tier-1 성화 5종 완비' : (f.hasArtwork ? ' · 성화 도판 완비' : ' · 정밀 고증 열전')}`,
           scripture: f.scriptures,
           era: f.era,
@@ -3306,7 +3441,6 @@
         stripEl.innerHTML = artFigures.map(f => `
           <div onclick="openReaderModal('enc-${f.id.toLowerCase()}')" style="cursor:pointer; flex-shrink:0; width:76px; text-align:center; padding:6px 4px; border-radius:10px; background:rgba(255,255,255,0.04); border:1px solid rgba(200,164,93,0.28); transition:all 0.18s;" onmouseover="this.style.borderColor='#E5C168';this.style.transform='translateY(-2px)'" onmouseout="this.style.borderColor='rgba(200,164,93,0.28)';this.style.transform='none'">
             <img src="${f.portrait}" alt="${f.name}" style="width:48px; height:48px; border-radius:50%; object-fit:contain; background:radial-gradient(circle,#382B1C,#120D08); border:1.5px solid #C89D46; display:block; margin:0 auto 4px;" loading="lazy" />
-            <div style="font-size:10px; color:#D7BD82; font-weight:700;">${f.id}</div>
             <div class="serif" style="font-size:11.5px; color:#FFF; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">${f.name}</div>
           </div>
         `).join("");
@@ -4114,8 +4248,8 @@
       const bData = bibleChunkCache[bKey];
       const isOT = bData.testament === "OT";
       const langBadge = isOT
-        ? "🏺 구약 히브리어 원문 (WLC) &amp; BDB·Strong's 원어사전"
-        : "🏛️ 신약 헬라어 원문 (SBLGNT) &amp; Abbott-Smith·Strong's 원어사전";
+        ? "🏺 구약 히브리어 원문 (OSHB WLC) &amp; STEPBible (TAHOT·TBESH) 원어사전"
+        : "🏛️ 신약 헬라어 원문 (SBLGNT) &amp; STEPBible (TAGNT·TBESG) 원어사전";
 
       let versesHtml = "";
       let foundAny = false;
@@ -4177,6 +4311,7 @@
           </div>
         </div>
         ${versesHtml}
+        <div class="orig-credit-box" style="margin-top:12px; padding:10px 14px; border-top:1px dashed rgba(212,175,55,0.3); font-size:11.5px; line-height:1.6; color:#B8ACA0;"><strong>[원어 데이터 출처 표기]</strong><br><strong>원어 본문·문법:</strong> Open Scriptures Hebrew Bible Project (CC BY 4.0) · SBL Greek New Testament (© 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0) · STEP Bible (www.STEPBible.org, Tyndale House Cambridge, CC BY 4.0) — STEPBible 자료를 한국어로 옮기고 다듬었습니다.<br><strong>한국어 뜻풀이:</strong> 꿈바온 사역팀</div>
       `;
     }
 
@@ -4403,7 +4538,7 @@
 
     function formatMarkdownToHtml(md) {
       if (!md) return "";
-      const lines = md.split(/\r?\n/);
+      const lines = String(md).split(/\r?\n/);
       let html = "";
       let inList = false;
       let tableRows = [];
@@ -4430,15 +4565,16 @@
           flushTable();
           continue;
         }
-        const isBullet = ln.startsWith("- ") || ln.startsWith("* ");
+        const isBullet = ln.startsWith("- ") || ln.startsWith("* ") || ln.startsWith("• ");
         let bodyLn = isBullet ? ln.slice(2) : ln;
-        // 인라인 링크, 볼드, 이탤릭, 코드 처리
         bodyLn = bodyLn
           .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, "<a href=\"$2\" target=\"_blank\" rel=\"noopener\" style=\"color:#8c6218; text-decoration:underline; font-weight:600;\">$1</a>")
-          .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
-          .replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, "$1<em>$2</em>")
+          .replace(/\x2a\x2a(.+?)\x2a\x2a/g, "<strong>$1</strong>")
+          .replace(/(^|[^*])\x2a([^*\n]+)\x2a(?!\x2a)/g, "$1<em>$2</em>")
+          .replace(/\x2a/g, "")
+          .replace(/\x23{2,}/g, "")
           .replace(/`([^`]+)`/g, "<code style=\"background:rgba(197,155,56,0.15); padding:1px 5px; border-radius:4px; font-size:0.9em;\">$1</code>");
-        ln = isBullet ? "- " + bodyLn : bodyLn;
+        ln = isBullet ? "• " + bodyLn : bodyLn;
 
         if (ln.startsWith("|")) {
           if (inList) { html += "</ul>"; inList = false; }
@@ -4450,27 +4586,27 @@
           flushTable();
         }
 
-        if (ln === "---" || ln === "***") {
+        if (ln === "---") {
           if (inList) { html += "</ul>"; inList = false; }
           html += "<hr/>";
-        } else if (/^#{4,6}\s+/.test(ln)) {
+        } else if (ln.startsWith("■ ")) {
           if (inList) { html += "</ul>"; inList = false; }
-          html += `<h4>${ln.replace(/^#{4,6}\s+/, "")}</h4>`;
-        } else if (ln.startsWith("### ")) {
+          html += `<h3>${ln.slice(2)}</h3>`;
+        } else if (/^\x23{1,6}\s+/.test(ln)) {
           if (inList) { html += "</ul>"; inList = false; }
-          html += `<h3>${ln.slice(4)}</h3>`;
-        } else if (ln.startsWith("## ")) {
-          if (inList) { html += "</ul>"; inList = false; }
-          html += `<h2>${ln.slice(3)}</h2>`;
-        } else if (ln.startsWith("# ")) {
-          if (inList) { html += "</ul>"; inList = false; }
-          html += `<h2>${ln.slice(2)}</h2>`;
+          html += `<h3>${ln.replace(/^\x23{1,6}\s+/, "")}</h3>`;
         } else if (ln.startsWith("> ")) {
           if (inList) { html += "</ul>"; inList = false; }
           html += `<blockquote>${ln.slice(2)}</blockquote>`;
-        } else if (ln.startsWith("- ") || ln.startsWith("* ")) {
+        } else if (ln.startsWith("• ")) {
           if (!inList) { html += "<ul>"; inList = true; }
-          html += `<li>${ln.slice(2)}</li>`;
+          const itemTxt = ln.slice(2);
+          const cIdx = itemTxt.indexOf(":");
+          if (cIdx > 0 && cIdx < 28 && !itemTxt.slice(0, cIdx).includes("<")) {
+            html += `<li><strong>${itemTxt.slice(0, cIdx + 1)}</strong>${itemTxt.slice(cIdx + 1)}</li>`;
+          } else {
+            html += `<li>${itemTxt}</li>`;
+          }
         } else {
           if (inList) { html += "</ul>"; inList = false; }
           html += `<p>${ln}</p>`;
@@ -4647,17 +4783,17 @@
       }
       targetVerses.sort((a, b) => a[0] - b[0] || a[1] - b[1]);
 
-      // 본문 마크다운 및 원어 핵심 어휘 테이블 조립
+      // 본문 및 원어 핵심 어휘 테이블 조립
       let mdLines = [];
-      mdLines.push(`## 1. 성경 사건과 장소 개관 · ${p.name} (${p.en})`);
-      mdLines.push(`- **사건 제목:** ${ev.title}`);
-      mdLines.push(`- **성경 본문:** ${ev.ref} (개역한글판 Public Domain & ${isOT ? "구약 히브리어 WLC" : "신약 헬라어 SBLGNT"} 원어 대조)`);
-      mdLines.push(`- **시대 및 지역:** ${p.era} · ${p.period}`);
+      mdLines.push(`■ 1. 성경 사건과 장소 개관 · ${p.name} (${p.en})`);
+      mdLines.push(`• 사건 제목: ${ev.title}`);
+      mdLines.push(`• 성경 본문: ${ev.ref} (개역한글판 Public Domain & ${isOT ? "구약 히브리어 WLC" : "신약 헬라어 SBLGNT"} 원어 대조)`);
+      mdLines.push(`• 시대 및 지역: ${p.era} · ${p.period}`);
       mdLines.push(`> ${p.summary}`);
       mdLines.push("");
       mdLines.push("---");
       mdLines.push("");
-      mdLines.push(`## 2. 성경 본문 전문 (${ev.ref} · 개역한글)`);
+      mdLines.push(`■ 2. 성경 본문 전문 (${ev.ref} · 개역한글)`);
 
       let prevCh = null;
       const seenSids = new Set();
@@ -4665,10 +4801,10 @@
 
       targetVerses.forEach(([ch, v, vObj]) => {
         if (prevCh !== null && prevCh !== ch) {
-          mdLines.push(`### ${foundBook[1]} ${ch}장`);
+          mdLines.push(`■ ${foundBook[1]} ${ch}장`);
         }
         prevCh = ch;
-        mdLines.push(`**${ch}:${v}** ${vObj.ko || ""}`);
+        mdLines.push(`[${ch}:${v}] ${vObj.ko || ""}`);
 
         (vObj.w || []).forEach(([surf, sid, mko]) => {
           if (!sid || seenSids.has(sid) || wordRows.length >= 15) return;
@@ -4678,7 +4814,7 @@
           if (!origLemma && !gloss) return;
           seenSids.add(sid);
           const cleanDef = (fullDef || gloss || "").replace(/\|/g, "·").slice(0, 85);
-          wordRows.push(`| **${surf}** | ${origLemma || "-"} (${translit || "-"}) | \`${sid}\` (${mko || "-"}) | **${gloss || "-"}** — ${cleanDef} |`);
+          wordRows.push(`| ${surf} | ${origLemma || "-"} (${translit || "-"}) | ${sid} (${mko || "-"}) | ${gloss || "-"} — ${cleanDef} |`);
         });
       });
 
@@ -4686,10 +4822,12 @@
         mdLines.push("");
         mdLines.push("---");
         mdLines.push("");
-        mdLines.push(`## 3. 본문을 여는 ${isOT ? "히브리어(WLC)" : "헬라어(SBLGNT)"} 원어 단어장`);
+        mdLines.push(`■ 3. 본문을 여는 ${isOT ? "히브리어(WLC)" : "헬라어(SBLGNT)"} 원어 단어장`);
         mdLines.push(`| 원문 어절 | 원형 (음역) | 스트롱 번호 (문법) | 핵심 원뜻 및 원어 사전 해설 |`);
         mdLines.push(`| --- | --- | --- | --- |`);
         wordRows.forEach(r => mdLines.push(r));
+        mdLines.push("");
+        mdLines.push("> " + '원어 본문·문법: Open Scriptures Hebrew Bible Project (CC BY 4.0) · SBL Greek New Testament (© 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0) · STEP Bible (www.STEPBible.org, Tyndale House Cambridge, CC BY 4.0) — STEPBible 자료를 한국어로 옮기고 다듬었습니다. | 한국어 뜻풀이: 꿈바온 사역팀');
       }
 
       // 장소 이미지 갤러리 변환

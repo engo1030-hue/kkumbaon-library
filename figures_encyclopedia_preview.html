@@ -36,14 +36,14 @@
     }
     @media (hover: hover) and (pointer: fine) {
       html, body {
-        min-width: 1360px !important;
+        min-width: 1440px !important;
         overflow-x: auto;
       }
       .top-bar {
         flex-wrap: nowrap !important;
       }
     }
-    @media (hover: hover) and (pointer: fine) and (min-width: 1360px) {
+    @media (hover: hover) and (pointer: fine) and (min-width: 1440px) {
       html, body {
         overflow-x: hidden !important;
       }
@@ -772,7 +772,45 @@
       font-size: 16px;
       font-weight: 700;
     }
-  </style>
+  
+
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
+html, body, .top-bar {
+  min-width: 1440px !important;
+}
+@media (min-width: 1440px) {
+  html, body { overflow-x: hidden !important; }
+}
+@media (max-width: 1439px) {
+  html, body { overflow-x: auto !important; }
+}
+.top-bar,
+.top-actions,
+.hero-banner,
+.axis-tabs,
+.filter-bar {
+  flex-wrap: nowrap !important;
+}
+.hero-wrap,
+.axis-tabs,
+.main-container {
+  width: 1440px !important;
+  max-width: 1440px !important;
+  min-width: 1440px !important;
+  padding-left: 24px !important;
+  padding-right: 24px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  box-sizing: border-box !important;
+}
+.p-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+.art-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+</style>
 </head>
 <body>
 
@@ -799,7 +837,7 @@
         <div class="hero-eyebrow">KKUMBAON BIBLICAL BIOGRAPHY &amp; GENEALOGY ARCHIVE</div>
         <h1 class="hero-title serif">성경 인물가계도 &amp; 인물대백과 — 아담부터 바울까지, 구속사의 큰 족보와 350인 열전</h1>
         <p class="hero-sub">
-          시대별 구속사 기둥 30인(`P001~P030`), 남북 왕조 40인(`P031~P070`), 구약 선지자·포로귀환 50인(`P071~P120`), 신약 제자 첫 묶음(`P121~P125`)까지 <strong>성화·초상 완비 125인(총 469점 원화 도판)</strong>과 <strong>전체 350인 마스터 열전·관계망</strong>을 한눈에 탐색합니다.
+          시대별 구속사 기둥 30인(30인), 남북 왕조(40인), 구약 선지자·포로귀환(50인), 신약 제자 첫 묶음(5인)까지 <strong>성화·초상 완비 125인(총 469점 원화 도판)</strong>과 <strong>전체 350인 마스터 열전·관계망</strong>을 한눈에 탐색합니다.
         </p>
       </div>
       <div class="hero-stats">
@@ -834,7 +872,7 @@
       바울의 동역자·서신 관계망 &amp; 신약 인물 <span class="axis-badge">P121~P200 관계도</span>
     </button>
     <button class="axis-tab" data-view="view-all300" onclick="switchView('view-all300')">
-      전체 350인 마스터 대백과 색인 <span class="axis-badge">P001~P350 전수</span>
+      전체 350인 마스터 대백과 색인 <span class="axis-badge">350인 전수</span>
     </button>
   </nav>
 
@@ -897,7 +935,7 @@
       <div class="hall-panel">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">성화·초상 도판 완비 125인 전시관 (P001~P125 · 총 469점 성화 수록)</h2>
+            <h2 class="hall-panel-title serif">성화·초상 도판 완비 125인 전시관 (총 469점 성화 수록)</h2>
             <p class="hall-panel-desc">워크간사의 고증 성화 도판(Tier-1 73인 5종 풀패키지 + Tier-2 52인 초상·대표장면)과 제간사의 신학·원어 열전이 결합된 125인 전시관입니다.</p>
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;" id="artGalleryFilterBar">
@@ -983,7 +1021,7 @@
       <div class="hall-panel">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">꿈디도 성경 인물대백과 전체 350인 마스터 색인 (P001~P350)</h2>
+            <h2 class="hall-panel-title serif">꿈디도 성경 인물대백과 전체 350인 마스터 색인</h2>
             <p class="hall-panel-desc">이름, 원어 표기, 활동 시대, 직분, 연결 장소 및 성경 구절로 350인의 성경 인물을 즉시 검색하고 열람할 수 있습니다.</p>
           </div>
         </div>
@@ -1043,7 +1081,7 @@
     <div class="lightbox-cap serif" id="lightboxCap"></div>
   </div>
 
-  <script src="figures_encyclopedia_data.js?v=20261103_v3"></script>
+  <script src="figures_encyclopedia_data.js?v=20261103_clean"></script>
   <script>
     const DATA = window.KKUMDIDO_FIGURES_DATA || { figures: [] };
     const FIGS = DATA.figures || [];
@@ -1106,7 +1144,7 @@
       }
       const genePeopleEl = document.getElementById("genePeople");
       if (genePeopleEl) {
-        genePeopleEl.innerHTML = FIGS.map(f => `<option value="${f.id} ${f.name}"></option>`).join("");
+        genePeopleEl.innerHTML = FIGS.map(f => `<option value="${f.name}"></option>`).join("");
       }
     }
 
@@ -1122,16 +1160,16 @@
       if (card) {
         card.classList.add("highlight");
         card.scrollIntoView({ behavior: "smooth", block: "center" });
-        status.textContent = `${person.id} ${person.name} — 세로 계보에서 위치를 표시했습니다. 카드를 누르면 열전이 열립니다.`;
+        status.textContent = `${person.name} — 세로 계보에서 위치를 표시했습니다. 카드를 누르면 열전이 열립니다.`;
       } else {
-        status.textContent = `${person.id} ${person.name} — 열전을 열었습니다. 이 인물의 가족 연결선은 출처 확인 뒤 추가됩니다.`;
+        status.textContent = `${person.name} — 열전을 열었습니다. 이 인물의 가족 연결선은 출처 확인 뒤 추가됩니다.`;
         openFigure(person.id);
       }
     }
 
     function mdToHtml(md) {
       if (!md) return "<p style='color:var(--text-dim);'>상세 열전 원고를 준비 중입니다.</p>";
-      const lines = md.split("\n");
+      const lines = String(md).split("\n");
       let html = "";
       let inTable = false;
       let tableRows = [];
@@ -1144,7 +1182,7 @@
           const cells = r.split("|").slice(1, -1).map(c => formatInline(c.trim()));
           if (idx === 0) {
             html += "<thead><tr>" + cells.map(c => `<th>${c}</th>`).join("") + "</tr></thead><tbody>";
-          } else if ( idx === 1 && r.replace(/[\|\-\:\s]/g, "") === "" ) {
+          } else if (idx === 1 && r.replace(/[\|\-\:\s]/g, "") === "") {
             // separator row
           } else {
             html += "<tr>" + cells.map(c => `<td>${c}</td>`).join("") + "</tr>";
@@ -1160,9 +1198,10 @@
       }
 
       function formatInline(str) {
-        return str
-          .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-          .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+        return String(str || "")
+          .replace(/\x2a\x2a([^*]+)\x2a\x2a/g, "<strong>$1</strong>")
+          .replace(/\x2a([^*]+)\x2a/g, "$1")
+          .replace(/\x23+/g, "")
           .replace(/`([^`]+)`/g, "<code style='background:rgba(200,157,70,0.18);padding:1px 5px;border-radius:4px;color:#FFE39E;'>$1</code>");
       }
 
@@ -1181,24 +1220,25 @@
           flushList();
           continue;
         }
-        if (line.startsWith("#### ")) {
+        const hMatch = line.match(/^\x23{1,6}\s+(.+)$/);
+        if (hMatch) {
           flushList();
-          html += `<h4>${formatInline(line.slice(5))}</h4>`;
-        } else if (line.startsWith("### ")) {
+          html += `<h3>${formatInline(hMatch[1])}</h3>`;
+        } else if (line.startsWith("■ ")) {
           flushList();
-          html += `<h3>${formatInline(line.slice(4))}</h3>`;
-        } else if (line.startsWith("## ")) {
-          flushList();
-          html += `<h2>${formatInline(line.slice(3))}</h2>`;
-        } else if (line.startsWith("# ")) {
-          flushList();
-          html += `<h2>${formatInline(line.slice(2))}</h2>`;
+          html += `<h3>${formatInline(line.slice(2))}</h3>`;
         } else if (line.startsWith("> ")) {
           flushList();
           html += `<blockquote>${formatInline(line.slice(2))}</blockquote>`;
         } else if (line.startsWith("- ") || line.startsWith("* ") || line.startsWith("• ")) {
           if (!inList) { html += "<ul>"; inList = true; }
-          html += `<li>${formatInline(line.slice(2))}</li>`;
+          const body = formatInline(line.slice(2));
+          const cIdx = body.indexOf(":");
+          if (cIdx > 0 && cIdx < 28 && !body.slice(0, cIdx).includes("<")) {
+            html += `<li><strong style="color:var(--gold-bright);">${body.slice(0, cIdx + 1)}</strong>${body.slice(cIdx + 1)}</li>`;
+          } else {
+            html += `<li>${body}</li>`;
+          }
         } else {
           flushList();
           html += `<p>${formatInline(line)}</p>`;
@@ -1225,7 +1265,7 @@
       });
       pGrid.innerHTML = list.map(f => {
         const bgImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : (f.masterImg || (f.scenes && f.scenes[0] ? f.scenes[0].img : ''));
-        const badgeTxt = f.hasTier1Images ? `${f.id} · Tier-1 성화 5종` : `${f.id} · 초상·대표장면 2종`;
+        const badgeTxt = f.hasTier1Images ? `성화 도판 5종 수록` : `초상·성화 2종 수록`;
         return `
           <article class="p-card" onclick="openFigure('${f.id}')">
             <div class="p-card-thumb">
@@ -1286,12 +1326,12 @@
             const arrow = idx > 0 ? `<span class="node-arrow">→</span>` : "";
             const avatar = f.portrait
               ? `<img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />`
-              : `<div class="pillar-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--gold-bright);">${f.id}</div>`;
+              : `<div class="pillar-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--gold-bright);">${f.name.slice(0, 2)}</div>`;
             return `${arrow}
               <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
                 ${avatar}
                 <div class="pillar-info">
-                  <div class="pillar-id">${f.id} · ${isMessiah ? '언약의 완성' : (f.portrait ? '성화완비' : '족보열전')}</div>
+                  <div class="pillar-id">${isMessiah ? '언약의 완성' : (f.portrait ? '성화 수록' : '족보 열전')}</div>
                   <div class="pillar-name serif">${f.name}</div>
                   <div class="pillar-role">${f.role.split('/')[0].trim()}</div>
                 </div>
@@ -1330,7 +1370,7 @@
             <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
               <img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />
               <div class="pillar-info">
-                <div class="pillar-id">${f.id} · ${isMessiah ? '구속사의 중심' : (f.hasTier1Images ? 'Tier-1 5종' : '성화완비')}</div>
+                <div class="pillar-id">${isMessiah ? '구속사의 중심' : (f.hasTier1Images ? '성화 5종' : '성화 수록')}</div>
                 <div class="pillar-name serif">${f.name}</div>
                 <div class="pillar-role">${f.role.split('/')[0].trim()}</div>
               </div>
@@ -1356,10 +1396,10 @@
       document.getElementById("judahKingList").innerHTML = judah20.map((f, i) => `
         <div class="king-item" onclick="openFigure('${f.id}')">
           <div style="display:flex;align-items:center;gap:12px;">
-            ${f.portrait ? `<img src="${f.portrait}" alt="${f.name}" class="dir-avatar" loading="lazy" />` : `<div class="dir-avatar">${f.id}</div>`}
+            ${f.portrait ? `<img src="${f.portrait}" alt="${f.name}" class="dir-avatar" loading="lazy" />` : `<div class="dir-avatar">${f.name.slice(0, 2)}</div>`}
             <div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap;">
-                <span class="king-num">제${i+1}대 · ${f.id}</span>
+                <span class="king-num">남유다 제${i+1}대</span>
                 <strong class="serif" style="font-size:16px;color:#FFF;">${f.name}</strong>
                 <span style="font-size:12px;color:var(--text-dim);">${f.origName}</span>
                 <span style="font-size:11px;color:#7CE38B;font-weight:700;">${f.hasTier1Images ? '● 성화5종' : '● 성화2종'}</span>
@@ -1374,10 +1414,10 @@
       document.getElementById("israelKingList").innerHTML = israel20.map((f, i) => `
         <div class="king-item" onclick="openFigure('${f.id}')">
           <div style="display:flex;align-items:center;gap:12px;">
-            ${f.portrait ? `<img src="${f.portrait}" alt="${f.name}" class="dir-avatar" loading="lazy" />` : `<div class="dir-avatar">${f.id}</div>`}
+            ${f.portrait ? `<img src="${f.portrait}" alt="${f.name}" class="dir-avatar" loading="lazy" />` : `<div class="dir-avatar">${f.name.slice(0, 2)}</div>`}
             <div>
               <div style="display:flex;align-items:center;gap:8px;margin-bottom:3px;flex-wrap:wrap;">
-                <span class="king-num" style="color:#F29E88;">${f.id}</span>
+                <span class="king-num" style="color:#F29E88;">북이스라엘 제${i+1}대</span>
                 <strong class="serif" style="font-size:16px;color:#FFF;">${f.name}</strong>
                 <span style="font-size:12px;color:var(--text-dim);">${f.origName}</span>
                 <span style="font-size:11px;color:#7CE38B;font-weight:700;">${f.hasTier1Images ? '● 성화5종' : '● 성화2종'}</span>
@@ -1391,9 +1431,9 @@
 
       // 4. 구약 선지자 및 포로귀환 50인 (P071~P120)
       const groups = [
-        { title: "Part 1. 구약 대·소선지자 15인 전수 (P071 엘리사 ~ P085 말라기)", sub: "이사야(P024)·다니엘(P025)·엘리야(P023)와 함께 구약 선지자관 전체를 완성하는 15인의 예언자", list: FIGS.filter(f => f.num >= 71 && f.num <= 85) },
-        { title: "Part 2. 역사서 활동 선지자 및 주변 신앙 인물 21인 (P086 나단 ~ P106 나봇)", sub: "다윗의 양심 나단·갓부터 사르밧 과부·수넴 여인·레갑 족속·바룩·에벳멜렉까지", list: FIGS.filter(f => f.num >= 86 && f.num <= 106) },
-        { title: "Part 3. 성전 개혁·포로귀환·페르시아기 지도자 14인 (P107 여호야다 ~ P120 사드락·메삭·아벳느고)", sub: "대제사장 여호야다·힐기야, 스룹바벨·에스라·느헤미야, 에스더·모르드개, 풀무불의 세 친구까지", list: FIGS.filter(f => f.num >= 107 && f.num <= 120) }
+        { title: "Part 1. 구약 대·소선지자 15인 전수 (엘리사 ~ 말라기)", sub: "이사야·다니엘·엘리야와 함께 구약 선지자관 전체를 완성하는 15인의 예언자", list: FIGS.filter(f => f.num >= 71 && f.num <= 85) },
+        { title: "Part 2. 역사서 활동 선지자 및 주변 신앙 인물 21인 (나단 ~ 나봇)", sub: "다윗의 양심 나단·갓부터 사르밧 과부·수넴 여인·레갑 족속·바룩·에벳멜렉까지", list: FIGS.filter(f => f.num >= 86 && f.num <= 106) },
+        { title: "Part 3. 성전 개혁·포로귀환·페르시아기 지도자 14인 (여호야다 ~ 사드락·메삭·아벳느고)", sub: "대제사장 여호야다·힐기야, 스룹바벨·에스라·느헤미야, 에스더·모르드개, 풀무불의 세 친구까지", list: FIGS.filter(f => f.num >= 107 && f.num <= 120) }
       ];
       document.getElementById("prophetsSectionContainer").innerHTML = groups.map(g => `
         <div style="margin-bottom:26px;">
@@ -1410,7 +1450,7 @@
       const ntFigures = FIGS.filter(f => (f.num >= 26 && f.num <= 29) || (f.num >= 121 && f.num <= 160));
       document.getElementById("paulNetworkContainer").innerHTML = `
         <div style="margin-bottom:26px;">
-          <h3 class="serif" style="font-size:18px;color:var(--gold-bright);margin-bottom:6px;">사도 바울(P030) 중심 선교 동역자 · 서신 수취인 · 로마 재판 인물망 (${paulFigures.length}인)</h3>
+          <h3 class="serif" style="font-size:18px;color:var(--gold-bright);margin-bottom:6px;">사도 바울 중심 선교 동역자 · 서신 수취인 · 로마 재판 인물망 (${paulFigures.length}인)</h3>
           <p style="font-size:13px;color:var(--text-dim);margin-bottom:14px;">바나바·실라·디모데·누가·브리스길라와 아굴라·빌레몬·오네시모부터 벨릭스·베스도·아그립바 2세까지 바울 사역의 모든 인물 연결망입니다.</p>
           <div class="dir-grid">${paulFigures.map(f => renderDirCard(f)).join("")}</div>
         </div>
@@ -1427,7 +1467,7 @@
     function renderDirCard(f) {
       const avatarHtml = f.portrait
         ? `<img class="dir-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />`
-        : `<div class="dir-avatar">${f.id}</div>`;
+        : `<div class="dir-avatar">${f.name.slice(0, 2)}</div>`;
       const statusBadge = f.hasTier1Images
         ? `<span style="color:#7CE38B;font-size:11px;font-weight:700;">● 성화5종+열전</span>`
         : (f.portrait
@@ -1438,7 +1478,7 @@
           ${avatarHtml}
           <div style="flex:1;min-width:0;">
             <div style="display:flex;justify-content:space-between;align-items:center;gap:4px;">
-              <span style="font-size:11px;color:var(--gold-primary);font-weight:700;">${f.id} · ${f.era}</span>
+              <span style="font-size:11px;color:var(--gold-primary);font-weight:700;">${f.era}</span>
               ${statusBadge}
             </div>
             <div class="serif" style="font-size:15.5px;font-weight:800;color:#FFF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${f.name}</div>
@@ -1482,7 +1522,7 @@
     function openOverviewModal(kind) {
       const title = kind === "judah" ? "남유다 왕조 20인 통치 연대·신학 평가·동시대 선지자 마스터 대조표" : "북이스라엘 왕조 20인 (9개 왕조) 통치 연대·반역사·동시대 선지자 마스터 대조표";
       const md = kind === "judah" ? DATA.judahOverviewMd : DATA.israelOverviewMd;
-      document.getElementById("drwBadge").textContent = kind === "judah" ? "P031~P050 · JUDAH" : "P051~P070 · ISRAEL";
+      document.getElementById("drwBadge").textContent = kind === "judah" ? "남유다 왕조 20인" : "북이스라엘 왕조 20인";
       document.getElementById("drwPhase").textContent = "2차 오픈 · 왕조관 마스터 대조표";
       document.getElementById("drwPortrait").style.display = "none";
       document.getElementById("drwEra").textContent = kind === "judah" ? "남유다 다윗 단일 왕조 (BC 931~586)" : "북이스라엘 9개 왕조 교체사 (BC 931~722)";
@@ -1500,7 +1540,7 @@
       const f = FIG_MAP[pid];
       if (!f) return;
 
-      document.getElementById("drwBadge").textContent = `${f.id} · ${f.tier}`;
+      document.getElementById("drwBadge").textContent = `제1관 · 성경 인물 열전`;
       document.getElementById("drwPhase").textContent = `${f.phase} · ${f.axis}`;
       const portEl = document.getElementById("drwPortrait");
       if (f.portrait) {
@@ -1521,7 +1561,7 @@
       } else {
         dossierHtml = `
           <div class="md-content">
-            <h2>[${f.id}] ${f.name} (${f.origName}) 마스터 프로필</h2>
+            <h2>${f.name} (${f.origName}) 마스터 프로필</h2>
             <table>
               <thead><tr><th>항목</th><th>내용</th></tr></thead>
               <tbody>
@@ -1544,14 +1584,14 @@
       if (f.scenes && f.scenes.length > 0) {
         const pkgLabel = f.hasTier1Images ? "Tier-1 성화 도판 패키지 (총 5종: 초상·마스터·장면 3컷)" : "성화 도판 패키지 (투명 초상 · 대표 성경 장면)";
         platesHtml += `
-          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:12px;">${f.name}(${f.id}) ${pkgLabel}</h3>
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:12px;">${f.name} — ${pkgLabel}</h3>
           <div class="scene-gallery">
             ${f.portrait ? `
               <div class="scene-box">
                 <img src="${f.portrait}" alt="${f.name} 관계도용 투명 초상" style="object-fit:contain;background:radial-gradient(circle,#3E3020,#120E09);" onclick="openLightbox('${f.portrait}', '${f.name} — 관계도용 투명 초상')" />
                 <div class="scene-cap">
                   <div style="font-size:11px;color:var(--gold-bright);">관계도용 초상</div>
-                  <div>${f.name} (${f.id}) 투명 배경 초상화</div>
+                  <div>${f.name} 투명 배경 초상화</div>
                 </div>
               </div>
             ` : ""}
@@ -1559,7 +1599,7 @@
               <div class="scene-box">
                 <img src="${sc.img}" alt="${sc.title}" onclick="openLightbox('${sc.img}', '${f.name} — ${sc.title}')" />
                 <div class="scene-cap">
-                  <div style="font-size:11px;color:var(--gold-bright);">${sc.code}</div>
+                  <div style="font-size:11px;color:var(--gold-bright);">성화 도판</div>
                   <div>${sc.title}</div>
                 </div>
               </div>
@@ -1582,7 +1622,7 @@
         const cleanRf = rf.replace(/\s*\([^)]*\)/g, "").trim();
         const targetPid = NAME_TO_PID[rf] || NAME_TO_PID[cleanRf];
         if (targetPid) {
-          return `<button class="btn-top gold" onclick="openFigure('${targetPid}')">👑 ${rf} (${targetPid}) 열전으로 이동 →</button>`;
+          return `<button class="btn-top gold" onclick="openFigure('${targetPid}')">👑 ${rf} 열전으로 이동 →</button>`;
         }
         return `<span class="btn-top" style="cursor:default;">👤 ${rf}</span>`;
       }).join(" ");
@@ -1619,7 +1659,7 @@
         ? f.enrichedEvents.map(ev => `
             <a href="events_encyclopedia_preview.html?id=${ev.id}" class="king-item" style="text-decoration:none;">
               <div>
-                <div style="font-size:11.5px;color:var(--gold-bright);font-weight:700;">📜 구속사 사건 · ${ev.id} (${ev.era})</div>
+                <div style="font-size:11.5px;color:var(--gold-bright);font-weight:700;">📜 구속사 사건 · ${ev.era}</div>
                 <div class="serif" style="font-size:15px;color:#FFF;font-weight:700;">${ev.title}</div>
                 <div style="font-size:12px;color:var(--text-dim);">${ev.scriptures}</div>
               </div>
@@ -1633,7 +1673,7 @@
         ? f.enrichedBehinds.map(bh => `
             <a href="behinds_encyclopedia_preview.html?id=${bh.id}" class="king-item" style="text-decoration:none;">
               <div>
-                <div style="font-size:11.5px;color:#D3B4FF;font-weight:700;">💡 숨은 비하인드 · ${bh.id}</div>
+                <div style="font-size:11.5px;color:#D3B4FF;font-weight:700;">💡 숨은 비하인드</div>
                 <div class="serif" style="font-size:15px;color:#FFF;font-weight:700;">${bh.title}</div>
                 <div style="font-size:12px;color:var(--text-dim);">"${bh.hook}"</div>
               </div>
@@ -1713,5 +1753,39 @@
       if (pid && FIG_MAP[pid]) openFigure(pid);
     });
   </script>
+
+<!-- 꿈바온 편찬·출처 기준 (제1판) 소개·출처 모달 & 원어사전 v0.1 카드 -->
+<div id="kkumbaonInfoModalOverlay" style="display:none; position:fixed; inset:0; background:rgba(10,14,24,0.78); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div style="max-width:760px; width:100%; max-height:86vh; overflow-y:auto; background:var(--bg-pane, #1e293b); color:var(--text-primary, #f8fafc); border:1px solid var(--border-strong, #334155); border-radius:14px; padding:26px 28px; box-shadow:0 20px 45px rgba(0,0,0,0.65); line-height:1.75; font-size:14px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color, #334155); padding-bottom:12px; margin-bottom:16px;">
+      <h2 style="margin:0; font-size:18px; color:var(--accent-gold, #f59e0b);">📖 꿈바온 소개 · 출처 기준 (제1판)</h2>
+      <button onclick="document.getElementById('kkumbaonInfoModalOverlay').style.display='none'" style="background:transparent; border:1px solid var(--border-strong, #475569); color:var(--text-primary, #f8fafc); border-radius:8px; padding:4px 12px; cursor:pointer;">닫기 ✕</button>
+    </div>
+    <h3 style="margin:0 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">1. 꿈바온은 누구인가</h3>
+    <p style="margin:0 0 8px;">꿈바온은 성경을 깊이 읽도록 돕는 자료와 영상을 만드는 사역입니다. 기독교대한감리회 정회원 목사인 꿈바온 목사가 이끌고, 모든 자료는 무료로 엽니다.</p>
+    <p style="margin:0 0 8px;">꿈바온 사역팀은 자료를 모으고 정리하고 번역하는 데 AI 도구를 함께 씁니다. 성경 본문과 원어, 역사 자료는 아래에 밝힌 출처로 확인하고, 신학 내용은 꿈바온 목사가 책임집니다. 그림 가운데 성경 시대를 재구성한 것은 이해를 돕기 위한 상상도입니다.</p>
+    <p style="margin:0 0 12px;">잘못된 내용을 발견하시면 알려 주십시오. 확인하는 대로 바로잡겠습니다.</p>
+    <div style="padding:10px 14px; border-radius:8px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); margin-bottom:18px; font-size:13px;">
+      <strong>편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong><br>
+      <span style="font-size:12px; opacity:0.85;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+    </div>
+    <h3 style="margin:14px 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">2. 무엇을 근거로 하는가 (출처 목록)</h3>
+    <ul style="margin:0 0 0 18px; padding:0; line-height:1.8;">
+      <li><strong>성경 본문:</strong> 개역개정판(© 대한성서공회 1998, 장절을 밝히고 한 번에 두세 절까지만 인용) · World English Bible(WEB, 퍼블릭 도메인) · King James Version(1611)</li>
+      <li><strong>원어 본문·사전·문법:</strong> STEPBible.org (Tyndale House, Cambridge · CC BY 4.0 — TAHOT·TAGNT·TBESH(짧은 뜻만)·TBESG·TEHMC·TEGMC·TIPNR) · Open Scriptures Hebrew Bible (WLC 본문 퍼블릭 도메인, 형태소 CC BY 4.0) · SBL Greek New Testament (© 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0) · G. Abbott-Smith, <em>A Manual Greek Lexicon of the New Testament</em> (1922, 퍼블릭 도메인) · 한국어 번역·다듬기: 꿈바온 사역팀</li>
+      <li><strong>고전 원전 (저작권이 끝난 판에서 꿈바온 사역팀이 직접 옮김):</strong> 요세푸스 『유대 고대사』·『유대 전쟁사』(W. Whiston 영역, 1737) · 필론(C. D. Yonge 영역, 1854~1855) · 칼빈 『기독교 강요』와 주석(19세기 영역본) · 존 웨슬리 설교(T. Jackson 판, 1872), 『신약 주해』(1755), 『감리교 종교강령』(1784) · 찰스 스펄전 설교, 매튜 헨리 『성경 주석』(18세기 초) · 사도신경·니케아 신경 등 고대 신조, 벨직 신앙고백(1561), 웨스트민스터 신앙고백(1647) · 외경(KJV 외경 1611, L. Brenton 70인역 영역 1844) · 탈무드·미쉬나(책 이름과 장절만 밝히고 풀어 씀)</li>
+      <li><strong>역사·고고학·지도·그림:</strong> 공개 학계 자료 사실 확인 후 꿈바온 문장으로 작성 · 지형 바탕 지도: Natural Earth (퍼블릭 도메인) · 유적·풍경 사진: 저작자와 라이선스 표시(Wikimedia Commons 등) · 성경 시대 재구성 그림: 꿈바온의 AI 상상도</li>
+      <li><strong>찬송가:</strong> 장 번호, 곡명, 작사·작곡자, 연도만 적으며, 가사는 저작권이 끝난 원문만 짧게 인용합니다.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="kkumbaonOfficialFooterBar" style="padding:10px 18px; text-align:center; font-size:12px; color:#94a3b8; background:rgba(15,23,42,0.92); border-top:1px solid rgba(148,163,184,0.2); line-height:1.5;">
+  <strong style="color:#e2e8f0;">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
+  &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.4); border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
+  <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+</div>
+
 </body>
 </html>
