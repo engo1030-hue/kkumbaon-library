@@ -4221,7 +4221,7 @@ body.dark-theme .knb-card-link {
 
       const newItems = [];
       enc.figures.forEach(f => {
-        if (!f.hasDossier && !f.hasArtwork) return;
+        if (!f.portrait && !f.masterImg) return;
         const docId = `enc-${f.id.toLowerCase()}`;
         let figSubCat = "pillars30";
         let catLabel = "인물대백과 · 구속사 기둥 30인";

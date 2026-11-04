@@ -948,7 +948,7 @@ header {
 
     (async function() {
       try {
-        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261103_clean');
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_300all');
         DATA.forEach(item => {
           item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
           DATA_MAP[item.id] = item;
