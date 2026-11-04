@@ -1301,7 +1301,7 @@
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 기독교 번역 스튜디오</a>',
       '  </div>',
       '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 스튜디오가 바로 열립니다. 특히 [🏺 내 설교 곳간]에 올리시는 설교 원고는 외부에 전송되지 않고 오직 본인 컴퓨터(브라우저)에만 안전하게 보관됩니다.</p>',
-      '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
+      '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
       '</div>'
     ].join('\n');
     document.body.appendChild(modalBg);
@@ -1836,6 +1836,10 @@
     var dateEl = document.getElementById('kkd-card-date');
     var unvZone = document.getElementById('kkd-unverified-zone');
     var verZone = document.getElementById('kkd-verified-zone');
+    var admBtn = document.getElementById('kkd-open-admin-btn');
+    if (admBtn) {
+      admBtn.style.display = isPastorAdmin() ? 'flex' : 'none';
+    }
 
     if (noEl) {
       if (card) {
