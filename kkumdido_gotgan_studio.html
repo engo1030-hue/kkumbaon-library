@@ -966,9 +966,17 @@
   </div>
 
   <div class="self-import-bar">
+    <div style="background:linear-gradient(135deg, rgba(16,185,129,0.13) 0%, rgba(184,137,46,0.12) 100%); border:1.5px solid rgba(16,185,129,0.45); border-radius:11px; padding:12px 16px; margin-bottom:14px; text-align:left; line-height:1.65; font-size:13.5px; color:var(--text-main);">
+      <div style="font-weight:800; font-size:14.5px; color:#047857; margin-bottom:3px; display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+        <span>🔒 [안심 보장 공지] 올리시는 설교 원고는 꿈디도 서버나 운영진에게 단 한 글자도 남지 않습니다!</span>
+      </div>
+      <div style="color:var(--text-sub); font-size:13px;">
+        이곳에 추가·작성하시는 모든 설교문은 외부 인터넷 서버로 전송(업로드)되지 않으며, 오직 <strong>현재 접속하신 본인 컴퓨터(브라우저 내부 저장소 IndexedDB)에만 100% 독립 보관</strong>됩니다. 꿈디도 운영진이나 다른 이용자는 절대 볼 수 없으니 안심하고 나만의 설교 곳간으로 편하게 정리하세요.
+      </div>
+    </div>
     <div class="self-import-top">
       <div class="self-import-info">
-        📖 내 설교문 작성·추가 및 백업 보관 (내 브라우저 독립 저장)
+        📖 내 설교문 작성·추가 및 백업 보관 (내 컴퓨터 단독 저장 · 서버 미전송)
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <input type="file" id="fileInput" multiple accept=".docx,.hwpx,.pdf,.hwp,.txt,.md" style="display:none">
@@ -982,7 +990,7 @@
     <div class="import-guide-note">
       • <strong>지원 파일 형식:</strong> 한글 표준 문서(<code>.hwpx</code>), 워드(<code>.docx</code>), 문자형 PDF(<code>.pdf</code>), 텍스트(<code>.txt</code>, <code>.md</code>)<br>
       • <strong>형식 안내:</strong> 구형 한글(<code>.hwp</code>)은 직접 읽지 못하므로 한글에서 <strong>[다른 이름으로 저장 → 한글 표준 문서(.hwpx)]</strong> 또는 <code>.docx</code>로 변환 후 넣어주세요. PDF 열람·추출은 최초 1회 인터넷 연결이 필요하며, 글자가 없는 스캔(이미지) PDF는 문자 인식이 지원되지 않습니다.<br>
-      • <strong>보관 안내:</strong> 추가·수정한 원고는 <strong>현재 브라우저 저장소(IndexedDB)에 자동 보관</strong>됩니다. 다른 컴퓨터·새 브라우저로 옮기실 때는 <strong>[💾 내 곳간 백업]</strong> 파일을 내려받아 여시고, 새 환경에서 최초 1회 등록 성함과 입장 코드를 입력하시면 그대로 이어집니다.
+      • <strong>보관 안내:</strong> 추가·수정한 원고는 <strong>외부 서버 전송 없이 현재 브라우저 저장소(IndexedDB)에만 자동 보관</strong>됩니다. 다른 컴퓨터·새 브라우저로 옮기시거나 영구 소장하실 때는 <strong>[💾 내 곳간 백업]</strong> 파일을 내려받아 보관하세요.
     </div>
     <div id="saveStatusBanner" class="save-status-banner" role="status" aria-live="polite"></div>
   </div>
@@ -1016,11 +1024,14 @@
        ondragover="event.preventDefault(); this.classList.add('dragover');"
        ondragleave="this.classList.remove('dragover');"
        ondrop="handleDrop(event)">
+    <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.4); color:#047857; font-size:13px; font-weight:800; margin-bottom:12px;">
+      🔒 외부 서버 전송 0% · 오직 내 컴퓨터(브라우저)에만 저장되는 100% 개인 서재
+    </div>
     <div class="empty-icon">📚</div>
     <h2 class="empty-title">설교문 파일이나 폴더를 이곳에 끌어다 놓으세요</h2>
     <p class="empty-desc">
       한글 표준(<code>.hwpx</code>), 워드(<code>.docx</code>), 문자형 PDF(<code>.pdf</code>), 텍스트(<code>.txt</code>, <code>.md</code>) 파일과 폴더를 넣으시면<br>
-      성경 66권별로 자동 분류되어 서재에 꽂힙니다. (구형 <code>.hwp</code>는 <code>.hwpx</code>로 변환 후 추가해 주세요)
+      성경 66권별로 자동 분류되어 서재에 꽂힙니다. <strong>(꿈디도 서버나 운영진에게는 단 한 글자도 남지 않습니다)</strong>
     </p>
     <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
       <button type="button" class="btn-gold" style="font-size:15px; padding:13px 26px;" onclick="openNewSermonModal()">✍️ 새 설교 직접 작성하기</button>

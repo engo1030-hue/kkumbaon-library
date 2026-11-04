@@ -542,7 +542,7 @@
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 기독교 번역 스튜디오</a>',
       '  </div>',
-      '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 프로그램·스튜디오와 인쇄 기능이 다운로드 없이 웹에서 바로 열립니다.</p>',
+      '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 스튜디오가 바로 열립니다. 특히 [🏺 내 설교 곳간]에 올리시는 설교는 꿈디도 서버나 운영진에게 전혀 전송되지 않고 오직 본인 컴퓨터(브라우저)에만 안전하게 보관됩니다.</p>',
       '</div>'
     ].join('\n');
     document.body.appendChild(modalBg);
