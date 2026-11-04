@@ -1494,9 +1494,9 @@ body {
 <!-- TOP COMMAND HEADER -->
 <header class="top-header">
   <div class="brand-area">
-    <span class="logos-badge">👑 꿈바온 프로그램 · 체험관</span>
+    <span class="logos-badge" id="headerLogosBadge">👑 꿈바온 프로그램 · 체험관</span>
     <div>
-      <span class="brand-title">꿈바온 프로그램 — 말씀·설교 스튜디오 <span style="font-size:12px; color:var(--accent-gold); font-weight:700; margin-left:6px;">[📖 요한복음 1~21장 무료 맛보기 체험판]</span></span>
+      <span class="brand-title">꿈바온 프로그램 — 말씀·설교 스튜디오 <span id="headerModeBadge" style="font-size:12px; color:var(--accent-gold); font-weight:700; margin-left:6px; cursor:pointer;" onclick="openProLicenseModal()">[📖 요한복음 1~21장 무료 맛보기 체험판 · 🔑정식판 인증]</span></span>
       <span class="brand-sub">성경 66권(1,189장) × 12대 아카이브(3,650모듈) 설교·강해 자동조립 시스템 | © 꿈바온</span>
     </div>
   </div>
@@ -1511,6 +1511,7 @@ body {
   </div>
 
   <div class="top-actions">
+    <button class="btn btn-gold" onclick="openProLicenseModal()" id="btnProLicense" style="font-weight:800;" title="발급받으신 전용 인증코드(KB-XXXX-XXXX)를 입력하여 성경 66권 전체 정식판 열기">🔑 정식판 번호 입력 (66권 열기)</button>
     <a class="btn" href="./index.html" style="text-decoration:none; display:inline-flex; align-items:center; gap:5px; border-color:var(--accent-gold); color:var(--accent-gold);" title="꿈바온 디지털도서관 본관으로 돌아가기">🏛️ 꿈디도 본관으로</a>
     <button class="btn" onclick="cycleFontScale()" id="btnFontScale" style="border-color:var(--accent-gold); color:var(--accent-gold);" title="화면 전체 글자 크기 확대/조절 (기본 100% → 크게 112% → 특대 124%)">🔍 글자크기: 크게(112%)</button>
     <button class="btn" onclick="toggleLeftPane()" id="btnToggleLeft" title="좌측 성경·12관 패널 접기/펴기">◀ 좌측패널 접기</button>
@@ -1806,6 +1807,41 @@ body {
 <!-- PULPIT PRINT / PDF CONTAINER -->
 <div id="pulpitPrintContainer"></div>
 
+<!-- PRO LICENSE UNLOCK MODAL (KB-XXXX-XXXX) -->
+<div class="modal-backdrop" id="proLicenseModal" onclick="closeProLicenseModal(event)">
+  <div class="modal-box" style="max-width:520px;" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <div>
+        <div style="font-size:12px; font-weight:800; color:var(--accent-gold); margin-bottom:2px;">👑 KKUMBAON SERMON STUDIO · PRO EDITION</div>
+        <h2 style="font-size:19px; font-weight:900; color:var(--text-primary);">꿈바온 설교 프로그램 정식판 인증 (66권 전체 열기)</h2>
+      </div>
+      <button class="btn" onclick="closeProLicenseModal()">✕ 닫기</button>
+    </div>
+    <div class="modal-body" style="padding:20px 22px; line-height:1.65;">
+      <div id="proLicenseModalDesc" style="font-size:14px; color:var(--text-secondary); margin-bottom:14px; background:var(--accent-gold-bg); border:1px solid var(--border-strong); border-radius:10px; padding:12px 14px;">
+        현재 웹 체험관에서는 <strong>『요한복음 1~21장』</strong>이 무료로 열려 있습니다.<br>
+        발급받으신 <strong>등록 성함</strong>과 <strong>전용 인증번호(KB-XXXX-XXXX)</strong>를 입력하시면 <strong>성경 66권(1,189장) × 12대 아카이브(3,650개 모듈) 전체 정식판</strong>이 즉시 열립니다.
+      </div>
+      <div style="display:flex; flex-direction:column; gap:10px;">
+        <div>
+          <label style="display:block; font-size:12.5px; font-weight:800; color:var(--text-primary); margin-bottom:4px;">① 등록 성함 (수령인 성함)</label>
+          <input type="text" id="proLicOwnerInput" class="studio-input" placeholder="예: 최승환 목사" style="font-size:15px; padding:10px 12px;">
+        </div>
+        <div>
+          <label style="display:block; font-size:12.5px; font-weight:800; color:var(--text-primary); margin-bottom:4px;">② 전용 인증번호 (입장 코드)</label>
+          <input type="text" id="proLicKeyInput" class="studio-input" placeholder="예: KB-XXXX-XXXX" style="font-size:15px; padding:10px 12px; font-weight:800; letter-spacing:0.06em; text-transform:uppercase;" onkeydown="if(event.key==='Enter') submitProLicenseUnlock()">
+        </div>
+        <button class="btn btn-gold" onclick="submitProLicenseUnlock()" style="width:100%; padding:12px; font-size:15px; font-weight:900; justify-content:center; margin-top:4px;">
+          🔓 정식판 인증 및 성경 66권(3,650모듈) 전체 열기
+        </button>
+      </div>
+      <div style="margin-top:12px; font-size:12px; color:var(--text-muted); line-height:1.55;">
+        💡 한 번 인증하시면 현재 브라우저에 자동 저장되어 다음 접속 시에도 66권 전체가 바로 열리며, 『내 설교 곳간』 및 『모세의 지팡이』와 동일한 1:1 전용 인증번호(KB-XXXX-XXXX)를 함께 사용하실 수 있습니다.
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- TOAST -->
 <div class="toast-msg" id="toastMsg">설교 노트에 담겼습니다!</div>
 
@@ -1831,8 +1867,105 @@ let state = {
   savedSermons: [],
   currentModalModuleId: null,
   isPreviewMode: false,
-  theme: 'sepia'
+  theme: 'sepia',
+  proUnlocked: false,
+  proOwner: ''
 };
+
+// Master 1:1 License Generator Formula (Unified with 00_목사님전용_사용권발급기.html)
+function computeLicenseCode(ownerName) {
+  const clean = (ownerName || '').replace(/\s+/g, '').trim();
+  if (!clean) return '';
+  const salt = "KKUMBAON-PASTOR-STUDY-2026-SECRET";
+  const str = clean + "::" + salt;
+  let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  const hex1 = ((h1 >>> 0).toString(16).toUpperCase()).padStart(8, '0').slice(0, 4);
+  const hex2 = ((h2 >>> 0).toString(16).toUpperCase()).padStart(8, '0').slice(0, 4);
+  return `KB-${hex1}-${hex2}`;
+}
+
+async function applyProUnlockUI(ownerName, notifyUser = false) {
+  state.proUnlocked = true;
+  state.proOwner = ownerName;
+  const hBadge = document.getElementById('headerLogosBadge');
+  if (hBadge) hBadge.textContent = '👑 꿈바온 프로그램 · 정식판';
+  const mBadge = document.getElementById('headerModeBadge');
+  if (mBadge) {
+    mBadge.textContent = `[👑 정식판 인증됨 · ${ownerName} 전용 (성경 66권 · 3,650모듈 전체 열림)]`;
+    mBadge.style.color = '#fbbf24';
+  }
+  const btnPro = document.getElementById('btnProLicense');
+  if (btnPro) {
+    btnPro.innerHTML = `👑 정식판 (${ownerName})`;
+  }
+  const scopeAllBtn = document.getElementById('scopeBtnAll');
+  if (scopeAllBtn) {
+    scopeAllBtn.textContent = '성경 66권 전체(3,650)';
+  }
+  const searchInp = document.getElementById('globalSearchInput');
+  if (searchInp) {
+    searchInp.placeholder = '성경 66권 장절(예: 창 1, 시 23, 요 21, 롬 8) 또는 인물·사건·원어·키워드 입력...';
+  }
+  const preacherInp = document.getElementById('sermonPreacherInput');
+  if (preacherInp && (!preacherInp.value || preacherInp.value === '꿈바온 사역팀')) {
+    preacherInp.value = ownerName;
+  }
+  await tryAutoFetchLocalJson(notifyUser);
+  renderArchiveFilterGrid();
+  renderBibleTree();
+  updateBibleChapterBanner();
+  renderModuleCards(true);
+}
+
+function openProLicenseModal(requestedBook) {
+  const modal = document.getElementById('proLicenseModal');
+  const desc = document.getElementById('proLicenseModalDesc');
+  if (state.proUnlocked) {
+    if (desc) {
+      desc.innerHTML = `✅ 현재 <strong>${state.proOwner}</strong>님 명의로 <strong>꿈바온 설교 프로그램 정식판(성경 66권 · 3,650모듈 전체)</strong>이 정상 인증되어 모든 권·장이 열려 있습니다.`;
+    }
+  } else if (requestedBook && desc) {
+    desc.innerHTML = `🔒 선택하신 <strong>『${requestedBook}』</strong>은 꿈바온 프로그램 정식판에서 열립니다.<br>발급받으신 <strong>등록 성함</strong>과 <strong>전용 인증번호(KB-XXXX-XXXX)</strong>를 입력하시면 <strong>성경 66권(1,189장) × 12대 아카이브(3,650모듈) 전체</strong>가 즉시 잠금 해제됩니다!`;
+  }
+  if (state.proOwner) {
+    document.getElementById('proLicOwnerInput').value = state.proOwner;
+  }
+  if (modal) modal.classList.add('open');
+}
+
+function closeProLicenseModal(e) {
+  if (e && e.target && e.target.id !== 'proLicenseModal') return;
+  const modal = document.getElementById('proLicenseModal');
+  if (modal) modal.classList.remove('open');
+}
+
+async function submitProLicenseUnlock() {
+  const owner = document.getElementById('proLicOwnerInput').value.trim();
+  const key = document.getElementById('proLicKeyInput').value.trim().toUpperCase();
+  if (!owner || !key) {
+    alert('등록 성함과 전용 인증번호(KB-XXXX-XXXX)를 모두 입력해 주세요.');
+    return;
+  }
+  const expected = computeLicenseCode(owner);
+  if (key !== expected) {
+    alert('인증번호가 일치하지 않습니다.\n발급받으신 정확한 등록 성함(예: OOO 목사)과 전용 인증번호(KB-XXXX-XXXX)를 확인해 주세요.');
+    return;
+  }
+  try {
+    localStorage.setItem('kkumbaon_sermon_pro_owner', owner);
+    localStorage.setItem('kkumbaon_sermon_pro_key', key);
+  } catch (_) {}
+  closeProLicenseModal();
+  await applyProUnlockUI(owner, true);
+  showToast(`🎉 환영합니다, ${owner}님! 성경 66권(3,650모듈) 정식판이 모두 열렸습니다!`);
+}
 
 const ARCHIVE_COLORS = {
   1: '#3b82f6', 2: '#10b981', 3: '#8b5cf6', 4: '#ec4899',
@@ -1850,11 +1983,20 @@ window.addEventListener('keydown', function(e) {
 });
 
 // Initialize Application
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', async () => {
   const todayStr = new Date().toISOString().slice(0, 10);
   document.getElementById('sermonDateInput').value = todayStr;
 
   loadFromLocalStorage();
+
+  // Check if Pro License (KB-XXXX-XXXX) is already saved in this browser
+  try {
+    const savedOwner = (localStorage.getItem('kkumbaon_sermon_pro_owner') || '').trim();
+    const savedKey = (localStorage.getItem('kkumbaon_sermon_pro_key') || '').trim().toUpperCase();
+    if (savedOwner && savedKey && savedKey === computeLicenseCode(savedOwner)) {
+      await applyProUnlockUI(savedOwner, false);
+    }
+  } catch (_) {}
 
   renderArchiveFilterGrid();
   renderBibleTree();
@@ -1893,7 +2035,7 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 // Try automatic fetch of local kkumbaon_12archives_3650modules.json if served in same folder
-async function tryAutoFetchLocalJson() {
+async function tryAutoFetchLocalJson(notify = false) {
   const paths = [
     './kkumbaon_12archives_3650modules.json',
     './00_통합웹뷰어_및_마스터DB/kkumbaon_12archives_3650modules.json'
@@ -1904,12 +2046,12 @@ async function tryAutoFetchLocalJson() {
       if (res.ok) {
         const data = await res.json();
         if (Array.isArray(data) && data.length >= 3000) {
-          mergeExternalJsonData(data, false);
+          mergeExternalJsonData(data, notify);
           return;
         }
       }
     } catch (_) {
-      // Offline file:// double-click mode uses embedded 3,650 modules seamlessly
+      // Offline file:// double-click mode uses embedded modules seamlessly
     }
   }
 }
@@ -2011,6 +2153,10 @@ function triggerCommandGo() {
   if (!q) return;
   const ref = parseScriptureRef(q);
   if (ref) {
+    if (!state.proUnlocked && ref.book !== '요한복음') {
+      openProLicenseModal(ref.book);
+      return;
+    }
     state.selectedBook = ref.book;
     state.selectedChapter = ref.chapter;
     state.bibleScope = 'CHAPTER';
@@ -2090,7 +2236,7 @@ function renderBibleTree() {
   });
 
   container.innerHTML = filteredBooks.map(b => {
-    const isExp = state.expandedBooks.has(b.name) || (kw.length > 0);
+    const isExp = state.expandedBooks.has(b.name) || (kw.length > 0 && (state.proUnlocked || b.name === '요한복음'));
     const isActBook = state.selectedBook === b.name && state.bibleScope !== 'ALL';
     const abbrClass = b.testament === '구약' ? 'book-abbr-ot' : 'book-abbr-nt';
     const mCount = bookCounts[b.name] || 0;
@@ -2105,6 +2251,7 @@ function renderBibleTree() {
       }
     }
 
+    const isBookOpen = state.proUnlocked || b.name === '요한복음';
     return `<div class="book-node ${isExp ? 'expanded' : ''} ${isActBook ? 'active-book' : ''}">
       <div class="book-header" onclick="toggleBookNode('${b.name}')">
         <div class="book-header-left">
@@ -2115,9 +2262,9 @@ function renderBibleTree() {
           </div>
         </div>
         <div class="book-meta-right">
-          ${b.name === '요한복음'
-            ? `<span class="book-ch-count" style="background:rgba(245,158,11,0.2);color:#fbbf24;border:1px solid rgba(245,158,11,0.5);">✨ 맛보기 열림 (${b.chapters}장 · ${mCount}건)</span>`
-            : `<span class="book-ch-count" style="opacity:0.65;">🔒 정식판 (${b.chapters}장)</span>`}
+          ${isBookOpen
+            ? `<span class="book-ch-count" style="background:rgba(245,158,11,0.2);color:#fbbf24;border:1px solid rgba(245,158,11,0.5);">${state.proUnlocked ? '👑 열림' : '✨ 맛보기 열림'} (${b.chapters}장 · ${mCount}건)</span>`
+            : `<span class="book-ch-count" style="opacity:0.75;" title="클릭하여 정식판 인증번호 입력">🔒 정식판 (${b.chapters}장)</span>`}
           <span style="font-size:10px; color:var(--text-muted);">${isExp ? '▲' : '▼'}</span>
         </div>
       </div>
@@ -2127,8 +2274,8 @@ function renderBibleTree() {
 }
 
 function toggleBookNode(bookName) {
-  if (bookName !== '요한복음') {
-    showToast('🔒 [' + bookName + ']은 꿈바온 프로그램 정식 버전에서 제공됩니다. 웹 체험관에서는 『요한복음(1~21장)』을 무료로 체험하실 수 있습니다!');
+  if (!state.proUnlocked && bookName !== '요한복음') {
+    openProLicenseModal(bookName);
     return;
   }
   if (state.expandedBooks.has(bookName)) {
@@ -2150,8 +2297,8 @@ function toggleBookNode(bookName) {
 }
 
 function selectBookAll(bookName) {
-  if (bookName !== '요한복음') {
-    showToast('🔒 [' + bookName + ']은 꿈바온 프로그램 정식 버전에서 제공됩니다.');
+  if (!state.proUnlocked && bookName !== '요한복음') {
+    openProLicenseModal(bookName);
     return;
   }
   state.selectedBook = bookName;
@@ -2165,8 +2312,8 @@ function selectBookAll(bookName) {
 
 function selectBookChapter(bookName, chapterNo) {
   if (window.innerWidth <= 1080) { switchMobileTab('center'); }
-  if (bookName !== '요한복음') {
-    showToast('🔒 [' + bookName + ']은 꿈바온 프로그램 정식 버전에서 제공됩니다.');
+  if (!state.proUnlocked && bookName !== '요한복음') {
+    openProLicenseModal(bookName);
     return;
   }
   state.selectedBook = bookName;
@@ -2202,10 +2349,14 @@ function updateScopeButtons() {
 }
 
 function stepChapter(delta) {
-  state.selectedBook = '요한복음';
+  if (!state.proUnlocked) {
+    state.selectedBook = '요한복음';
+  }
+  const bObj = window.BIBLE_BOOKS.find(b => b.name === state.selectedBook) || window.BIBLE_BOOKS[42];
+  const maxCh = bObj ? bObj.chapters : 21;
   let nextCh = state.selectedChapter + delta;
-  if (nextCh < 1) nextCh = 21;
-  if (nextCh > 21) nextCh = 1;
+  if (nextCh < 1) nextCh = maxCh;
+  if (nextCh > maxCh) nextCh = 1;
   state.selectedChapter = nextCh;
   state.bibleScope = 'CHAPTER';
   updateBibleChapterBanner();
