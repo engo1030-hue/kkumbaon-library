@@ -535,10 +535,10 @@
       '  <div class="kkd-studio-grid" aria-label="꿈디도 통합 스튜디오 바로가기">',
       '    <a href="' + pfx + 'index.html">🏛️ 꿈디도 도서관 본관</a>',
       '    <a href="' + pfx + 'kkumdido_sermon_studio.html" data-kkd-studio-link="1">👑 설교 프로그램 (원어·설교)</a>',
-      '    <a href="' + pfx + 'kkumdido_gotgan_studio.html" data-kkd-studio-link="1">🏺 내 설교 곳간 (웹 서재)</a>',
-      '    <a href="' + pfx + 'kkumdido_gotgan_sample88.html" data-kkd-studio-link="1">📚 한범수 목사 설교 88편 곳간</a>',
+      '    <a href="' + pfx + 'kkumdido_gotgan_studio.html" data-kkd-studio-link="1">🏺 내 설교 곳간 (개인 웹서재)</a>',
       '    <a href="' + pfx + 'kkumdido_jipangi_studio.html" data-kkd-studio-link="1">🪄 모세의 지팡이 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_sunday_school_studio.html" data-kkd-studio-link="1">🌱 교회학교 교사 스튜디오</a>',
+      '    <a href="' + pfx + 'kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1">📋 13부서 52주 커리큘럼</a>',
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 기독교 번역 스튜디오</a>',
       '  </div>',
@@ -671,7 +671,7 @@
     }
   }
 
-  // 설교 곳간(Gotgan) 페이지에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제
+  // 설교 곳간(Gotgan) 페이지에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제 및 개인 서재명 연동
   function unlockGotganIfPresent(card) {
     if (!card) return;
     var gate = document.getElementById('licenseGate');
@@ -680,18 +680,12 @@
       gate.style.display = 'none';
     }
     try {
-      if (typeof window.LICENSE_LOCKED !== 'undefined') {
-        window.LICENSE_LOCKED = false;
-      }
-      var path = (window.location.pathname || '').toLowerCase();
-      // 빈 서재(내 설교 곳간)일 경우 로그인한 목회자/성도님의 이름으로 서재 타이틀 자동 설정
-      if (path.indexOf('sample88') === -1 && typeof window.SERMONS !== 'undefined' && window.SERMONS.length === 0) {
-        window.LICENSED_OWNER = card.name;
-        if (!localStorage.getItem('gotgan_custom_title_set')) {
-          window.LIBRARY_CUSTOM_TITLE = card.name + '의 설교 곳간';
-        }
-        if (typeof window.syncHeaderAndGateNames === 'function') {
-          window.syncHeaderAndGateNames();
+      if (typeof window.applyMemberGotganProfile === 'function') {
+        window.applyMemberGotganProfile(card.name, card.church);
+      } else {
+        var libTitle = document.getElementById('libraryTitle');
+        if (libTitle && (!libTitle.textContent || libTitle.textContent === '목회자의 설교 곳간')) {
+          libTitle.textContent = card.name + '의 설교 곳간';
         }
       }
     } catch (e) {}

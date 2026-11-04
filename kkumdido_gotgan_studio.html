@@ -928,7 +928,6 @@
     <span style="color:#D8CCB8;font-weight:600;">| 사역 스튜디오 바로가기:</span>
     <a href="kkumdido_sermon_studio.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">👑 설교 프로그램</a>
     <a href="kkumdido_gotgan_studio.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">🏺 내 설교 곳간</a>
-    <a href="kkumdido_gotgan_sample88.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">📚 한범수 목사 곳간(88편)</a>
     <a href="kkumdido_jipangi_studio.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">🪄 모세의 지팡이</a>
     <a href="kkumdido_sunday_school_studio.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">🌱 교회학교 스튜디오</a>
     <a href="kkumdido_13dept_52weeks_studio.html" style="color:#FAF6EE;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.08);">📋 13부서 52주 커리큘럼</a>
@@ -969,11 +968,12 @@
   <div class="self-import-bar">
     <div class="self-import-top">
       <div class="self-import-info">
-        📖 내 설교문 추가 및 백업 보관
+        📖 내 설교문 작성·추가 및 백업 보관 (내 브라우저 독립 저장)
       </div>
       <div style="display:flex; gap:8px; flex-wrap:wrap;">
         <input type="file" id="fileInput" multiple accept=".docx,.hwpx,.pdf,.hwp,.txt,.md" style="display:none">
         <input type="file" id="folderInput" webkitdirectory directory multiple style="display:none">
+        <button type="button" class="btn-gold" onclick="openNewSermonModal()">✍️ 새 설교 직접 작성</button>
         <button type="button" class="btn-gold" onclick="document.getElementById('fileInput').click()">+ 설교문 파일 추가 (HWPX·DOCX·PDF·TXT·MD)</button>
         <button type="button" class="btn-outline" onclick="document.getElementById('folderInput').click()">📁 설교 폴더 통째로 불러오기</button>
         <button type="button" class="btn-emerald" onclick="exportStandaloneHtml()" title="새 컴퓨터나 다른 브라우저로 곳간 전체를 옮길 때 단일 HTML 파일로 내려받습니다">💾 내 곳간 백업 (컴퓨터 이전용)</button>
@@ -1023,6 +1023,7 @@
       성경 66권별로 자동 분류되어 서재에 꽂힙니다. (구형 <code>.hwp</code>는 <code>.hwpx</code>로 변환 후 추가해 주세요)
     </p>
     <div style="display:flex; justify-content:center; gap:12px; flex-wrap:wrap;">
+      <button type="button" class="btn-gold" style="font-size:15px; padding:13px 26px;" onclick="openNewSermonModal()">✍️ 새 설교 직접 작성하기</button>
       <button type="button" class="btn-gold" style="font-size:15px; padding:13px 26px;" onclick="document.getElementById('folderInput').click()">📁 설교 폴더 통째로 불러오기</button>
       <button type="button" class="btn-outline" style="font-size:15px; padding:13px 22px;" onclick="document.getElementById('fileInput').click()">+ 설교문 파일 추가 (HWPX·DOCX·PDF·TXT)</button>
     </div>
@@ -1044,20 +1045,20 @@
     <div class="hero-badge" style="margin-top:8px;" id="gateBadge">PASTOR'S SERMON LIBRARY · KKUMBAON</div>
     <h2 id="gateTitle">목회자의 설교 곳간</h2>
     <p id="gateDesc">새것과 옛것을 꺼내어 쓰는 목회자의 전자 서재입니다.<br>안내받으신 <strong>성함</strong>과 <strong>입장 코드</strong>를 입력해 주세요.</p>
-    <input type="text" id="licOwnerInput" class="lic-input" placeholder="수령인 성함 (예: 한범수 목사)">
+    <input type="text" id="licOwnerInput" class="lic-input" placeholder="수령인 성함 (예: 김은혜 목사)">
     <input type="text" id="licKeyInput" class="lic-input" placeholder="전용 인증코드 (예: KB-XXXX-XXXX)" style="letter-spacing:0.08em; font-weight:700;">
     <button type="button" class="btn-gold" style="width:100%; padding:13px; font-size:15px; margin-top:6px;" onclick="verifyAndUnlockLicense()">📖 서재 문 열기</button>
     <div id="gateBackupHint" style="margin-top:12px; font-size:12px; color:#cbbba0; line-height:1.5;">
       💡 같은 브라우저에서는 한 번 등록 후 자동으로 열리며, 새 컴퓨터에서 백업 파일을 처음 여실 때는 등록 성함과 입장 코드를 1회 입력하시면 모든 원고가 그대로 이어집니다.
     </div>
     <div id="gateDedication" style="margin-top:14px; font-size:12px; color:#a89982; font-family:'Noto Serif KR',serif;">
-      No. 001 · 2026.11 · 한범수 목사 드림
+      꿈바온 디지털도서관 · 목회자의 설교 곳간 (마 13:52)
     </div>
   </div>
 </div>
 
 <footer class="footer-drm" id="footerDrm">
-  <div id="dedicationStamp" style="font-size:14px; color:#d8b26e; letter-spacing:0.12em; font-weight:600; margin-bottom:6px;">No. 001 · 2026.11 · 한범수 목사 드림</div>
+  <div id="dedicationStamp" style="font-size:14px; color:#6A4B16; letter-spacing:0.08em; font-weight:700; margin-bottom:6px;">꿈바온 디지털도서관 · 목회자의 개인 설교 곳간 (마 13:52)</div>
 </footer>
 
 <!-- Reader Modal -->
@@ -1169,8 +1170,8 @@ let LIBRARY_EXPORTED_AT = 0;
 let LIBRARY_BADGE = "PASTOR'S SERMON LIBRARY · KKUMBAON";
 let LIBRARY_CUSTOM_TITLE = "목회자의 설교 곳간";
 let LIBRARY_SUBTITLE = "새것과 옛것을 그 곳간에서 · 마태복음 13:52";
-let LIBRARY_DEDICATION = "";
-let LICENSED_OWNER = "한범수 목사";
+let LIBRARY_DEDICATION = "꿈바온 디지털도서관 · 목회자의 개인 설교 곳간 (마 13:52)";
+let LICENSED_OWNER = "목회자";
 let LICENSE_LOCKED = false;
 let CURRENT_THEME = "beige";
 let DELETED_KEYS = [];
@@ -1183,8 +1184,8 @@ if (typeof LIBRARY_EXPORTED_AT === 'undefined') window.LIBRARY_EXPORTED_AT = 0;
 if (typeof LIBRARY_BADGE === 'undefined') window.LIBRARY_BADGE = "PASTOR'S SERMON LIBRARY · KKUMBAON";
 if (typeof LIBRARY_CUSTOM_TITLE === 'undefined') window.LIBRARY_CUSTOM_TITLE = "목회자의 설교 곳간";
 if (typeof LIBRARY_SUBTITLE === 'undefined') window.LIBRARY_SUBTITLE = "새것과 옛것을 그 곳간에서 · 마태복음 13:52";
-if (typeof LIBRARY_DEDICATION === 'undefined') window.LIBRARY_DEDICATION = "";
-if (typeof LICENSED_OWNER === 'undefined') window.LICENSED_OWNER = "한범수 목사";
+if (typeof LIBRARY_DEDICATION === 'undefined') window.LIBRARY_DEDICATION = "꿈바온 디지털도서관 · 목회자의 개인 설교 곳간 (마 13:52)";
+if (typeof LICENSED_OWNER === 'undefined') window.LICENSED_OWNER = "목회자";
 if (typeof LICENSE_LOCKED === 'undefined') window.LICENSE_LOCKED = true;
 if (typeof CURRENT_THEME === 'undefined') window.CURRENT_THEME = "beige";
 if (typeof DELETED_KEYS === 'undefined') window.DELETED_KEYS = [];
@@ -1521,7 +1522,7 @@ function syncHeaderAndGateNames() {
   if (gateBadge) gateBadge.textContent = LIBRARY_BADGE;
   if (gateTitle) gateTitle.textContent = LIBRARY_CUSTOM_TITLE;
   if (licOwnerInput) {
-    const sampleOwner = (LICENSED_OWNER && LICENSED_OWNER !== '목회자') ? LICENSED_OWNER : '한범수 목사';
+    const sampleOwner = (LICENSED_OWNER && LICENSED_OWNER !== '목회자') ? LICENSED_OWNER : '김은혜 목사';
     licOwnerInput.placeholder = `수령인 성함 (예: ${sampleOwner})`;
   }
   if (heroBadge) heroBadge.textContent = LIBRARY_BADGE;
@@ -1546,7 +1547,7 @@ function checkLicenseState() {
   if (!LICENSE_LOCKED) {
     gate.classList.remove('active');
     if (!LIBRARY_DEDICATION) {
-      LIBRARY_DEDICATION = `${getTodayFormatted()} 한범수 목사 드림`;
+      LIBRARY_DEDICATION = `꿈바온 디지털도서관 · 목회자의 개인 설교 곳간 (마 13:52)`;
     }
     if (ded) ded.textContent = LIBRARY_DEDICATION;
     if (gded) gded.textContent = LIBRARY_DEDICATION;
@@ -1554,7 +1555,7 @@ function checkLicenseState() {
     return;
   }
 
-  const liveDedication = LIBRARY_DEDICATION || `${getTodayFormatted()} 한범수 목사 드림`;
+  const liveDedication = LIBRARY_DEDICATION || `꿈바온 디지털도서관 · 목회자의 개인 설교 곳간 (마 13:52)`;
   if (gded) gded.textContent = liveDedication;
 
   const suffixes = [getStorageKeySuffix(), LIBRARY_CUSTOM_TITLE.replace(/\s+/g, '_')];
@@ -1597,7 +1598,7 @@ function verifyAndUnlockLicense() {
   }
   LICENSED_OWNER = owner;
   LICENSE_LOCKED = false;
-  LIBRARY_DEDICATION = `${getTodayFormatted()} 한범수 목사 드림`;
+  LIBRARY_DEDICATION = `꿈바온 디지털도서관 · ${owner}의 설교 곳간 (마 13:52)`;
 
   // Unify library title & badge with the unlocked owner if generic or different recipient
   if (!LIBRARY_CUSTOM_TITLE.includes(owner.replace(/\s*목사$/, ''))) {
@@ -2026,7 +2027,37 @@ function copyCurrentSermon() {
   });
 }
 
-// Edit & Delete Functions
+// Edit, Create New & Delete Functions
+window.applyMemberGotganProfile = function(memberName, memberChurch) {
+  if (!memberName) return;
+  LICENSED_OWNER = memberName;
+  if (!localStorage.getItem('gotgan_custom_title_set') && (LIBRARY_CUSTOM_TITLE === '목회자의 설교 곳간' || !LIBRARY_CUSTOM_TITLE)) {
+    LIBRARY_CUSTOM_TITLE = memberName + '의 설교 곳간';
+    LIBRARY_BADGE = "PASTOR'S SERMON LIBRARY · " + (memberChurch ? memberChurch + ' · ' : '') + memberName;
+  }
+  syncHeaderAndGateNames();
+};
+
+function openNewSermonModal() {
+  populateEditBookSelect();
+  const today = new Date();
+  const yyyy = today.getFullYear();
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const dd = String(today.getDate()).padStart(2, '0');
+  document.getElementById('editSermonId').value = '__NEW__';
+  document.getElementById('editTitleInput').value = '';
+  document.getElementById('editScriptureInput').value = '';
+  document.getElementById('editBookSelect').value = '미분류';
+  document.getElementById('editDateInput').value = `${yyyy}-${mm}-${dd}`;
+  document.getElementById('editSloganInput').value = '';
+  document.getElementById('editBodyTextarea').value = '';
+  document.getElementById('editModal').classList.add('open');
+  setTimeout(() => {
+    const titleIn = document.getElementById('editTitleInput');
+    if (titleIn) titleIn.focus();
+  }, 60);
+}
+
 function openEditModal(id) {
   const s = SERMONS.find(item => item.id === id);
   if (!s) return;
@@ -2056,13 +2087,18 @@ function closeEditModal() {
 
 async function saveEditedSermon() {
   const id = document.getElementById('editSermonId').value;
-  const idx = SERMONS.findIndex(item => item.id === id);
-  if (idx < 0) return;
+  const isNew = (id === '__NEW__');
+  const idx = isNew ? -1 : SERMONS.findIndex(item => item.id === id);
+  if (!isNew && idx < 0) return;
 
-  const old = SERMONS[idx];
+  const old = isNew ? {} : SERMONS[idx];
   const title = document.getElementById('editTitleInput').value.trim() || '제목 없는 설교';
   const scripture = document.getElementById('editScriptureInput').value.trim();
-  const selectedBook = document.getElementById('editBookSelect').value || '미분류';
+  let selectedBook = document.getElementById('editBookSelect').value || '미분류';
+  if (selectedBook === '미분류' && scripture) {
+    const autoBook = detectBook(scripture, title);
+    if (autoBook && autoBook !== '미분류') selectedBook = autoBook;
+  }
   const rawDate = document.getElementById('editDateInput').value.trim();
   const slogan = document.getElementById('editSloganInput').value.trim();
   const bodyText = document.getElementById('editBodyTextarea').value;
@@ -2075,8 +2111,12 @@ async function saveEditedSermon() {
 
   const hall = getHall(selectedBook);
   const charCount = paragraphs.join('').replace(/\s+/g, '').length;
+  const newId = isNew ? ('sermon_manual_' + Date.now()) : old.id;
   const updated = {
     ...old,
+    id: newId,
+    filename: old.filename || (title + '.txt'),
+    fingerprint: old.fingerprint || ('fp_' + newId),
     title,
     scripture,
     book: selectedBook,
@@ -2087,14 +2127,18 @@ async function saveEditedSermon() {
     year: dateObj.year,
     month: dateObj.month,
     slogan,
-    paragraphs,
+    paragraphs: paragraphs.length ? paragraphs : ['(설교 본문을 입력해 주세요)'],
     excerpt: paragraphs[0] ? paragraphs[0].slice(0, 125) + '…' : '',
     charCount,
     readMin: Math.max(3, Math.round(charCount / 550)),
     updatedAt: Date.now()
   };
 
-  SERMONS[idx] = updated;
+  if (isNew) {
+    SERMONS.unshift(updated);
+  } else {
+    SERMONS[idx] = updated;
+  }
   sortSermons(SERMONS);
   await saveSermonsToLocalDB();
   updateStats();
