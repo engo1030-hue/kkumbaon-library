@@ -46,36 +46,36 @@
   }
   .boot-mark svg { width: 46px; height: 46px; stroke-width: 1.3; }
   .chapel-boot h1 {
-    margin: 0; font-family: var(--serif); font-size: 29px; font-weight: 600;
-    letter-spacing: 6px; padding-left: 6px; color: #2f271e;
+    margin: 0; font-family: var(--serif); font-size: 34px; font-weight: 700;
+    letter-spacing: 6px; padding-left: 6px; color: #241c14;
   }
   .boot-sub {
-    margin: 10px 0 0; font-size: 13.5px; color: #6e6455; line-height: 1.75;
-    max-width: 380px; word-break: keep-all;
+    margin: 12px 0 0; font-size: 16px; font-weight: 600; color: #4e4538; line-height: 1.75;
+    max-width: 440px; word-break: keep-all;
   }
   .boot-verse {
-    margin: 22px 0 26px; padding: 14px 22px;
-    border-top: 1px solid rgba(140, 115, 75, 0.22);
-    border-bottom: 1px solid rgba(140, 115, 75, 0.22);
-    font-family: var(--serif); font-size: 13px; color: #5b4f3e; line-height: 1.8;
-    max-width: 420px;
+    margin: 22px 0 26px; padding: 16px 24px;
+    border-top: 1px solid rgba(140, 115, 75, 0.28);
+    border-bottom: 1px solid rgba(140, 115, 75, 0.28);
+    font-family: var(--serif); font-size: 15.5px; font-weight: 600; color: #3d3326; line-height: 1.85;
+    max-width: 480px;
   }
   .boot-actions {
-    display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 280px;
+    display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 310px;
   }
   .boot-btn-primary {
-    padding: 14px 22px; border-radius: 999px; border: 1px solid #6e5837;
-    background: #3b3024; color: #f8f4ec; font-size: 14px; font-weight: 500;
+    padding: 15px 26px; border-radius: 999px; border: 1px solid #6e5837;
+    background: #3b3024; color: #f8f4ec; font-size: 16px; font-weight: 700;
     letter-spacing: 0.5px; cursor: pointer; transition: all 0.25s ease;
     box-shadow: 0 8px 22px rgba(47, 39, 30, 0.16);
   }
   .boot-btn-primary:hover { background: #524231; transform: translateY(-1px); }
   .boot-btn-secondary {
     padding: 10px 18px; border-radius: 999px; border: none;
-    background: transparent; color: #786d5d; font-size: 12.5px;
+    background: transparent; color: #5c5244; font-size: 14.5px; font-weight: 600;
     cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
   }
-  .boot-btn-secondary:hover { color: #3b3024; }
+  .boot-btn-secondary:hover { color: #241c14; }
   .boot-dot {
     width: 5px; height: 5px; margin-top: 22px; background: #a89371;
     border-radius: 50%; animation: breathe 2s ease-in-out infinite;
@@ -97,25 +97,26 @@
   }
   .avatar-label {
     position: absolute; transform: translate(-50%, -100%);
-    padding: 4px 10px; border-radius: 999px;
-    background: rgba(24, 19, 15, 0.72); border: 1px solid rgba(212, 168, 83, 0.32);
-    color: #f5efe4; font-size: 11.5px; font-weight: 500; white-space: nowrap;
+    padding: 5px 13px; border-radius: 999px;
+    background: rgba(24, 19, 15, 0.85); border: 1.5px solid rgba(212, 168, 83, 0.48);
+    color: #fbf6ec; font-size: 14px; font-weight: 700; white-space: nowrap;
     backdrop-filter: blur(6px); pointer-events: auto; cursor: pointer;
     transition: opacity 0.25s ease, transform 0.2s ease;
-    display: flex; align-items: center; gap: 5px;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.35);
   }
   .avatar-label:hover {
-    background: rgba(45, 35, 25, 0.92); border-color: var(--gold);
+    background: rgba(45, 35, 25, 0.96); border-color: var(--gold);
   }
   .avatar-label.is-me {
-    border-color: rgba(245, 207, 118, 0.75); color: #ffe7a8;
+    border-color: rgba(245, 207, 118, 0.9); color: #ffeaad;
   }
   .avatar-bubble {
-    position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
-    padding: 5px 11px; border-radius: 12px;
-    background: rgba(247, 239, 222, 0.96); color: #2d241b;
-    font-family: var(--serif); font-size: 11.5px; font-weight: 600;
-    box-shadow: 0 4px 14px rgba(0,0,0,0.28); white-space: nowrap;
+    position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
+    padding: 6px 14px; border-radius: 12px;
+    background: rgba(251, 246, 234, 0.98); color: #241c14;
+    font-family: var(--serif); font-size: 14px; font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.32); white-space: nowrap;
     animation: pop-up 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
   @keyframes pop-up {
@@ -123,88 +124,100 @@
     to { opacity: 1; transform: translate(-50%, 0) scale(1); }
   }
 
-  /* 4. 상단 HUD 바 */
+  /* 4. 상단 HUD 바 (1줄 칼정렬 고정 & 큼직한 가독성) */
   .top-bar {
     position: fixed; top: max(14px, env(safe-area-inset-top)); left: 16px; right: 16px;
     z-index: 30; display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; pointer-events: none;
+    gap: 10px; pointer-events: none; flex-wrap: nowrap !important;
   }
   .top-left, .top-right {
-    display: flex; align-items: center; gap: 8px; pointer-events: auto; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 7px; pointer-events: auto; flex-wrap: nowrap !important;
   }
   .hud-pill {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 8px 14px; border-radius: 999px;
-    background: var(--panel-bg); border: 1px solid var(--panel-border);
-    color: var(--text-light); font-size: 12.5px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 9px 13.5px; border-radius: 999px;
+    background: rgba(253, 250, 243, 0.96); border: 1.5px solid rgba(184, 142, 60, 0.55);
+    color: #1f1a15; font-size: 14.5px; font-weight: 700;
+    white-space: nowrap !important; flex-shrink: 0 !important;
     backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
     cursor: pointer; transition: all 0.2s ease;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.25); text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.22); text-decoration: none;
+    letter-spacing: -0.01em;
   }
   .hud-pill:hover {
-    border-color: var(--gold); background: rgba(42, 33, 25, 0.92);
+    border-color: #d4a853; background: rgba(42, 33, 25, 0.96); color: #faf3e3;
+  }
+  .hud-pill:hover span, .hud-pill:hover strong {
+    color: #ffe8a3 !important;
   }
   .hud-pill.active-gold {
-    background: rgba(212, 168, 83, 0.22); border-color: var(--gold-bright); color: #ffebb3;
+    background: linear-gradient(135deg, #3B2B18 0%, #241A0F 100%);
+    border-color: #D4A853; color: #FFE8A3; font-weight: 800;
+  }
+  .hud-pill.active-gold:hover {
+    background: linear-gradient(135deg, #4E3920 0%, #322415 100%);
+    color: #FFF4CC;
   }
   .live-dot {
-    width: 7px; height: 7px; border-radius: 50%; background: #7cd992;
-    box-shadow: 0 0 8px #7cd992;
+    width: 8px; height: 8px; border-radius: 50%; background: #16a34a;
+    box-shadow: 0 0 8px rgba(22, 163, 74, 0.75); flex-shrink: 0;
   }
 
   /* 상단 중앙 상태 토스트 / 현재 활동 안내 */
   .status-banner {
-    position: fixed; top: 68px; left: 50%; transform: translateX(-50%);
-    z-index: 25; padding: 8px 18px; border-radius: 999px;
-    background: rgba(22, 18, 14, 0.78); border: 1px solid rgba(212, 168, 83, 0.3);
-    color: #efe6d5; font-family: var(--serif); font-size: 12.5px;
-    backdrop-filter: blur(8px); pointer-events: none;
-    transition: all 0.35s ease; text-align: center; max-width: 90vw;
+    position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
+    z-index: 25; padding: 10px 24px; border-radius: 999px;
+    background: rgba(24, 18, 13, 0.88); border: 1.5px solid rgba(212, 168, 83, 0.55);
+    color: #fff6e5; font-family: var(--serif); font-size: 15.5px; font-weight: 700;
+    backdrop-filter: blur(10px); pointer-events: none;
+    transition: all 0.35s ease; text-align: center; max-width: 92vw;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
   }
 
   /* 5. 하단 컨트롤 독 (산사 5대 도구 스타일) */
   .bottom-dock {
     position: fixed; bottom: max(18px, env(safe-area-inset-bottom)); left: 50%;
     transform: translateX(-50%); z-index: 30;
-    display: flex; align-items: center; gap: 6px; padding: 7px 10px;
-    border-radius: 999px; background: rgba(22, 18, 14, 0.88);
-    border: 1px solid rgba(212, 168, 83, 0.35);
+    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
+    border-radius: 999px; background: rgba(22, 18, 14, 0.92);
+    border: 1.5px solid rgba(212, 168, 83, 0.48);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
     max-width: 96vw; overflow-x: auto;
   }
   .dock-btn {
-    display: flex; align-items: center; gap: 7px;
-    padding: 10px 15px; border-radius: 999px; border: 1px solid transparent;
-    background: transparent; color: #e8dfd1; font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 999px; border: 1px solid transparent;
+    background: transparent; color: #f4ece0; font-size: 15.5px; font-weight: 700;
     cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
   }
   .dock-btn:hover {
-    background: rgba(212, 168, 83, 0.14); color: #fff;
+    background: rgba(212, 168, 83, 0.18); color: #fff;
   }
   .dock-btn.is-active {
-    background: rgba(212, 168, 83, 0.26); border-color: rgba(245, 207, 118, 0.65);
+    background: rgba(212, 168, 83, 0.28); border-color: rgba(245, 207, 118, 0.75);
     color: #ffeaad;
   }
   .dock-btn .shortcut {
-    font-size: 10.5px; color: #9c8f7a; padding: 1px 5px;
-    border-radius: 4px; background: rgba(255,255,255,0.06);
+    font-size: 12px; font-weight: 700; color: #d8cbb8; padding: 2px 6px;
+    border-radius: 5px; background: rgba(255,255,255,0.1);
   }
 
   /* 조작 힌트 */
   .control-hint {
-    position: fixed; bottom: 78px; left: 50%; transform: translateX(-50%);
-    z-index: 20; font-size: 11.5px; color: rgba(235, 225, 208, 0.68);
-    background: rgba(18, 14, 11, 0.55); padding: 4px 12px; border-radius: 999px;
+    position: fixed; bottom: 86px; left: 50%; transform: translateX(-50%);
+    z-index: 20; font-size: 13.5px; font-weight: 600; color: #f5efe4;
+    background: rgba(18, 14, 11, 0.78); border: 1px solid rgba(212, 168, 83, 0.32);
+    padding: 6px 16px; border-radius: 999px;
     pointer-events: none; white-space: nowrap;
   }
 
   /* 6. 사이드/플로팅 패널 공통 */
   .floating-panel {
-    position: fixed; right: 20px; bottom: 86px; width: 350px; max-width: calc(100vw - 32px);
-    max-height: calc(100vh - 160px); overflow-y: auto;
-    z-index: 40; padding: 20px; border-radius: 22px;
-    background: rgba(24, 19, 15, 0.94); border: 1px solid rgba(212, 168, 83, 0.4);
+    position: fixed; right: 20px; bottom: 92px; width: 390px; max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 165px); overflow-y: auto;
+    z-index: 40; padding: 22px; border-radius: 22px;
+    background: rgba(24, 19, 15, 0.96); border: 1.5px solid rgba(212, 168, 83, 0.48);
     backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
     box-shadow: 0 18px 48px rgba(0, 0, 0, 0.55);
     display: none; flex-direction: column; gap: 14px;
@@ -216,13 +229,13 @@
   }
   .panel-header {
     display: flex; align-items: center; justify-content: space-between;
-    border-bottom: 1px solid rgba(212, 168, 83, 0.2); padding-bottom: 10px;
+    border-bottom: 1px solid rgba(212, 168, 83, 0.24); padding-bottom: 10px;
   }
   .panel-title {
-    margin: 0; font-family: var(--serif); font-size: 16px; font-weight: 600; color: #f7e6be;
+    margin: 0; font-family: var(--serif); font-size: 18.5px; font-weight: 700; color: #f7e6be;
   }
   .panel-close {
-    background: none; border: none; color: #a89c8a; font-size: 18px; cursor: pointer;
+    background: none; border: none; color: #c7baa5; font-size: 20px; cursor: pointer;
   }
   .panel-close:hover { color: #fff; }
 
@@ -234,19 +247,19 @@
     cursor: ns-resize; touch-action: none;
   }
   .verse-selector {
-    width: 100%; padding: 8px 10px; border-radius: 10px;
-    background: rgba(255,255,255,0.06); border: 1px solid rgba(212, 168, 83, 0.3);
-    color: #f2e8d5; font-size: 12.5px; margin-bottom: 10px;
+    width: 100%; padding: 9px 12px; border-radius: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(212, 168, 83, 0.35);
+    color: #f2e8d5; font-size: 14.5px; font-weight: 600; margin-bottom: 10px;
   }
   .verse-display {
-    font-family: var(--serif); font-size: 15.5px; line-height: 1.85;
-    min-height: 92px; padding: 8px 4px; word-break: keep-all;
+    font-family: var(--serif); font-size: 18px; line-height: 1.9;
+    min-height: 100px; padding: 8px 4px; word-break: keep-all;
   }
   .verse-char {
-    color: rgba(200, 188, 168, 0.26); transition: color 0.18s ease, text-shadow 0.18s ease;
+    color: rgba(200, 188, 168, 0.3); transition: color 0.18s ease, text-shadow 0.18s ease;
   }
   .verse-char.lit {
-    color: #ffe299; text-shadow: 0 0 10px rgba(245, 207, 118, 0.55); font-weight: 600;
+    color: #ffe299; text-shadow: 0 0 10px rgba(245, 207, 118, 0.55); font-weight: 700;
   }
   .olive-beads-track {
     display: flex; align-items: center; justify-content: center; gap: 8px;
@@ -264,60 +277,60 @@
     box-shadow: 0 0 12px rgba(245, 207, 118, 0.7);
   }
   .wheel-guide {
-    font-size: 11.5px; color: #b5a892; margin-top: 6px;
+    font-size: 13px; color: #cfc3b0; margin-top: 6px;
   }
   .step-btn {
-    margin-top: 10px; width: 100%; padding: 10px; border-radius: 10px;
-    border: 1px solid rgba(212, 168, 83, 0.45);
-    background: rgba(212, 168, 83, 0.18); color: #ffe7a8;
-    font-size: 13px; font-weight: 600; cursor: pointer;
+    margin-top: 10px; width: 100%; padding: 11px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.5);
+    background: rgba(212, 168, 83, 0.22); color: #ffe7a8;
+    font-size: 14.5px; font-weight: 700; cursor: pointer;
   }
-  .step-btn:hover { background: rgba(212, 168, 83, 0.3); }
+  .step-btn:hover { background: rgba(212, 168, 83, 0.34); }
 
   /* 등불 켜기 & 기도제목 리스트 */
   .prayer-input-group {
     display: flex; flex-direction: column; gap: 8px;
   }
   .prayer-input {
-    width: 100%; padding: 10px 12px; border-radius: 10px;
-    border: 1px solid rgba(212, 168, 83, 0.35);
-    background: rgba(255, 255, 255, 0.06); color: #f6efe2;
-    font-size: 13px; font-family: var(--sans);
+    width: 100%; padding: 11px 13px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.4);
+    background: rgba(255, 255, 255, 0.08); color: #f6efe2;
+    font-size: 14.5px; font-family: var(--sans);
   }
   .prayer-input:focus { outline: none; border-color: var(--gold-bright); }
   .prayer-list {
-    display: flex; flex-direction: column; gap: 8px; max-height: 210px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 8px; max-height: 220px; overflow-y: auto;
     padding-right: 4px;
   }
   .prayer-item {
-    padding: 10px 12px; border-radius: 12px;
-    background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(212, 168, 83, 0.18);
-    font-size: 12.5px; line-height: 1.55;
+    padding: 11px 13px; border-radius: 12px;
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 168, 83, 0.22);
+    font-size: 14px; line-height: 1.65;
   }
   .prayer-item-top {
     display: flex; justify-content: space-between; align-items: center;
-    font-size: 11px; color: #b8aa93; margin-bottom: 4px;
+    font-size: 12.5px; color: #cbbba2; margin-bottom: 4px;
   }
   .amen-mini-btn {
-    background: rgba(212, 168, 83, 0.15); border: 1px solid rgba(212, 168, 83, 0.35);
-    color: #ffe299; border-radius: 999px; padding: 2px 9px; font-size: 11px; cursor: pointer;
+    background: rgba(212, 168, 83, 0.18); border: 1px solid rgba(212, 168, 83, 0.4);
+    color: #ffe299; border-radius: 999px; padding: 3px 10px; font-size: 12.5px; font-weight: 700; cursor: pointer;
   }
-  .amen-mini-btn:hover { background: rgba(212, 168, 83, 0.32); }
+  .amen-mini-btn:hover { background: rgba(212, 168, 83, 0.34); }
 
   /* 사운드 믹서 컨트롤 */
   .sound-row {
     display: flex; flex-direction: column; gap: 6px;
-    padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,0.04);
+    padding: 11px 13px; border-radius: 12px; background: rgba(255,255,255,0.05);
   }
   .sound-row-head {
-    display: flex; justify-content: space-between; align-items: center; font-size: 13px;
+    display: flex; justify-content: space-between; align-items: center; font-size: 14.5px; font-weight: 600;
   }
   .sound-slider {
     width: 100%; accent-color: #d4a853; cursor: pointer;
   }
   .sub-select {
-    padding: 6px 10px; border-radius: 8px; background: rgba(0,0,0,0.35);
-    border: 1px solid rgba(212,168,83,0.3); color: #efe5d4; font-size: 12px;
+    padding: 7px 11px; border-radius: 8px; background: rgba(0,0,0,0.4);
+    border: 1px solid rgba(212,168,83,0.35); color: #efe5d4; font-size: 13.5px; font-weight: 600;
   }
 
   /* 모달 (서버 선택 / 헌금함) */
@@ -355,6 +368,7 @@ html, body {
   min-width: 1440px !important;
 }
 .top-bar,
+.top-left,
 .top-right {
   flex-wrap: nowrap !important;
 }
@@ -378,7 +392,7 @@ html, body {
   <p class="boot-sub">말없이 함께 앉아 기도하고, 잠시 쉬어가는 공간입니다.</p>
   <div class="boot-verse">
     “수고하고 무거운 짐 진 자들아 다 내게로 오라<br>내가 너희를 쉬게 하리라”<br>
-    <span style="font-size:11.5px; color:#857763;">— 마태복음 11장 28절</span>
+    <span style="font-size:13.5px; color:#6b5c47; font-weight:700;">— 마태복음 11장 28절</span>
   </div>
   <div class="boot-actions">
     <button class="boot-btn-primary" id="btn-enter-sound">🕊️ 소리 켜고 예배당 들어가기</button>
@@ -397,7 +411,7 @@ html, body {
     <button class="hud-pill" id="btn-room-modal" title="예배당 서버 및 함께 기도하는 성도 보기">
       <span class="live-dot"></span>
       <span id="current-room-name">갈릴리 호숫가</span>
-      <span style="color:#c9bc9f;">· <strong id="current-room-count">8</strong>명 함께 기도 중</span>
+      <span style="color:#6E4B12; font-weight:800;">· <strong id="current-room-count">8</strong>명 함께 기도 중</span>
     </button>
     <button class="hud-pill" id="btn-time-mode" title="예배당 시간대 빛 바꾸기">
       <span id="time-mode-label">☀️ 따스한 주일 한낮</span>
@@ -2077,13 +2091,13 @@ html, body {
       myAvatar.targetPos.set(0, 0, 18.5);
       myAvatar.state = 'walking';
       camDist = 9.0;
-      document.getElementById('btn-walk-garden').innerHTML = '<span>⛪ 예배당 본당으로 들어가기</span>';
+      document.getElementById('btn-walk-garden').innerHTML = '<span>⛪ 본당 들어가기</span>';
       setStatusBanner('🌳 예배당 문을 나서 감람산 등불 정원과 갈릴리 연못가로 산책을 나갑니다.');
     } else {
       myAvatar.targetPos.set(0, 0, 2.5);
       myAvatar.state = 'walking';
       camDist = 6.8;
-      document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원·연못 산책</span>';
+      document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원 산책</span>';
       setStatusBanner('⛪ 다시 예배당 본당 십자가 앞으로 걸어 들어갑니다.');
     }
   });
@@ -2544,7 +2558,7 @@ html, body {
 </div>
 
 
-<div id="kkumbaonOfficialFooterBar" style="padding:10px 18px; text-align:center; font-size:12px; color:#5C5248; background:#F1ECE1; border-top:1px solid #DFD5C5; line-height:1.5;">
+<div id="kkumbaonOfficialFooterBar" style="display:none; padding:10px 18px; text-align:center; font-size:12px; color:#5C5248; background:#F1ECE1; border-top:1px solid #DFD5C5; line-height:1.5;">
   <strong style="color:#1F1A15;">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
   &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:#FFFFFF; color:#8C621E; border:1px solid #C8A45D; border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
