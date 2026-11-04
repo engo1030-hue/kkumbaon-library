@@ -826,12 +826,12 @@
     '  }',
     '}',
     '',
-    '/* 4) 우측 하단 도서관 이용증 & 스튜디오 통합 플로팅 바 */',
+    '/* 4) 우측 하단 도서관 이용증 & 스튜디오 통합 플로팅 바 (모달/라이트박스보다 아래 z-index 로 설정하여 모달 닫기 버튼 가림 원천 방지) */',
     '#kkumdido-pass-fab {',
     '  position: fixed;',
     '  right: 18px;',
     '  bottom: 18px;',
-    '  z-index: 99990;',
+    '  z-index: 850;',
     '  display: inline-flex;',
     '  align-items: center;',
     '  gap: 8px;',
@@ -1227,6 +1227,9 @@
     fab.type = 'button';
     fab.id = 'kkumdido-pass-fab';
     fab.setAttribute('aria-label', '꿈디도 도서관 이용증 및 스튜디오 메뉴');
+    if ((window.location.pathname || '').indexOf('online_chapel_') !== -1) {
+      fab.style.setProperty('display', 'none', 'important');
+    }
     fab.addEventListener('click', function (e) {
       if (e.target && e.target.classList && e.target.classList.contains('kkd-print-quick')) {
         e.stopPropagation();

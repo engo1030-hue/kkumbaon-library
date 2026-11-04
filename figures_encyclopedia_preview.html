@@ -1167,8 +1167,8 @@ html, body, .top-bar {
 
         <div class="hall-panel-head" style="margin-top:16px;">
           <div>
-            <h3 class="hall-panel-title serif">언약과 메시아 정통 52대 계보 상세 흐름 (창세기 5·11장 / 룻기 4장 / 마태복음 1장)</h3>
-            <p class="hall-panel-desc">아담과 아브라함에서 다윗 왕조와 포로기를 거쳐 예수 그리스도께 이어지는 52대 전체 이름과 열전 바로가기입니다.</p>
+            <h3 class="hall-panel-title serif">성경 본문 직계 계보 상세 흐름 (창세기 5·11장 · 룻기 4:18–22 · 마태복음 1:1–16)</h3>
+            <p class="hall-panel-desc">창세기 5장·11장과 룻기 4장, 마태복음 1장의 본문 기록에 근거한 부자(父子)·직계 계보입니다. 화살표(→)는 오직 직계 혈통(출산) 관계만을 나타내며, 배우자·모친은 각 세대 카드 안의 별도 배지로 구분했습니다.</p>
           </div>
         </div>
         <div class="era-flow-wrap" id="covenantGenealogyContainer"></div>
@@ -1557,45 +1557,92 @@ html, body, .top-bar {
 
     function initEncyclopedia() {
       renderGenealogy();
-      // 0. 언약과 메시아 정통 가계도 (창세기 5·11장 -> 룻기 4장 -> 마태복음 1장)
+      // 0. 성경 본문 직계 계보 상세 흐름 (창세기 5·11장 -> 룻기 4:18-22 -> 마태복음 1:1-16)
+      // 화살표(→)는 오직 성경 본문이 기록한 직계(부모→자녀) 세대만을 잇고, 배우자·모친은 카드 내부 배지로 분리 표기합니다.
       const COVENANT_BANDS = [
         {
-          tag: "LINEAGE 01 · GENESIS 5 & 11",
-          name: "원역사에서 아브라함 언약까지",
-          sub: "창세기 5장 · 11장 · 인류의 시조와 믿음의 조상 부르심",
-          pids: ["P001", "P002", "P203", "P003", "P205", "P004", "P005"]
+          tag: "LINEAGE 01 · GENESIS 5 & 11:10–26",
+          name: "아담에서 아브라함까지 (창세기 5장 · 11장 직계 20대)",
+          sub: "창세기 5:1–32 · 11:10–26 · 아담→셋→에녹→므두셀라→노아→셈→데라→아브라함 직계 계보",
+          steps: [
+            { pid: "P001", gen: "1대 · 창 5:3", spousePid: "P002", spouseLabel: "배우자: 하와" },
+            { pid: "P203", gen: "2대 · 창 5:6" },
+            { name: "에노스·게난·마할랄렐·야렛", gen: "3~6대 · 창 5:9–18", role: "셋의 직계 후손 · 여호와의 이름을 부른 세대" },
+            { pid: "P204", gen: "7대 · 창 5:21" },
+            { pid: "P205", gen: "8대 · 창 5:25" },
+            { name: "라멕", gen: "9대 · 창 5:28–29", role: "므두셀라의 아들 · 노아의 부친" },
+            { pid: "P003", gen: "10대 · 창 5:32" },
+            { pid: "P206", gen: "11대 · 창 11:10" },
+            { name: "아르박삿·셀라·에벨·벨렉·르우·스룩·나홀", gen: "12~18대 · 창 11:12–24", role: "셈에서 데라로 이어지는 창세기 11장 직계 조상" },
+            { pid: "P207", gen: "19대 · 창 11:26" },
+            { pid: "P004", gen: "20대 · 창 11:26 / 마 1:2", spousePid: "P005", spouseLabel: "배우자: 사라" }
+          ]
         },
         {
-          tag: "LINEAGE 02 · PATRIARCHS TO JUDGES",
-          name: "족장과 유다·라합·보아스·룻의 계보",
-          sub: "창세기 21·25·29·38장 · 룻기 4장 · 마태복음 1:2-5",
-          pids: ["P006", "P209", "P007", "P210", "P213", "P214", "P013", "P017", "P016"]
+          tag: "LINEAGE 02 · RUTH 4:18–22 & MATTHEW 1:2–6",
+          name: "아브라함에서 다윗까지 (마태복음 1:2–6 제1기 14대 직계)",
+          sub: "창세기 21·25·29·38장 · 룻기 4:18–22 · 마태복음 1:2–6 · 이삭→야곱→유다→보아스→다윗 직계 계보",
+          steps: [
+            { pid: "P006", gen: "21대 · 마 1:2", spousePid: "P213", spouseLabel: "배우자: 리브가" },
+            { pid: "P007", gen: "22대 · 마 1:2", spousePid: "P216", spouseLabel: "배우자: 레아(유다 모친)" },
+            { pid: "P218", gen: "23대 · 마 1:3", spousePid: "P219", spouseLabel: "며느리: 다말(마 1:3)" },
+            { name: "베레스·헤스론·람·아미나답·나손·살몬", gen: "24~29대 · 룻 4:18–20 / 마 1:3–5", role: "유다에서 보아스로 이어지는 직계 6세대", spousePid: "P237", spouseLabel: "살몬의 아내: 라합(마 1:5)" },
+            { pid: "P245", gen: "30대 · 룻 4:21 / 마 1:5", spousePid: "P017", spouseLabel: "배우자: 룻(마 1:5)" },
+            { name: "오벳 → 이새", gen: "31~32대 · 룻 4:21–22 / 마 1:5–6", role: "보아스와 룻의 아들 오벳 · 다윗의 부친 이새" },
+            { pid: "P021", gen: "33대 · 룻 4:22 / 마 1:6", spousePid: "P254", spouseLabel: "솔로몬 모친: 밧세바(마 1:6)" }
+          ]
         },
         {
-          tag: "LINEAGE 03 · DAVIDIC ROYAL LINE TO CHRIST",
-          name: "다윗 왕조에서 포로기·예수 그리스도께로",
-          sub: "사무엘하 7장 · 열왕기 · 스룹바벨 · 마태복음 1:6-16",
-          pids: ["P020", "P022", "P031", "P033", "P034", "P043", "P046", "P049", "P109", "P129", "P028", "P026"]
+          tag: "LINEAGE 03 · MATTHEW 1:6–16",
+          name: "다윗 왕가에서 예수 그리스도까지 (마태복음 1:6–16 제2·3기 직계)",
+          sub: "마태복음 1:6–16 · 솔로몬→유다 왕가→여호야긴(여고냐)→스룹바벨→요셉·마리아→예수 그리스도",
+          steps: [
+            { pid: "P022", gen: "34대 · 마 1:6" },
+            { pid: "P031", gen: "35대 · 마 1:7" },
+            { name: "아비야", gen: "36대 · 마 1:7", role: "르호보암의 아들 · 아사의 부친" },
+            { pid: "P033", gen: "37대 · 마 1:7–8" },
+            { pid: "P034", gen: "38대 · 마 1:8" },
+            { pid: "P035", gen: "39대 · 마 1:8 (요람)" },
+            { pid: "P040", gen: "40대 · 마 1:8–9" },
+            { pid: "P041", gen: "41대 · 마 1:9" },
+            { pid: "P042", gen: "42대 · 마 1:9" },
+            { pid: "P043", gen: "43대 · 마 1:9–10" },
+            { pid: "P044", gen: "44대 · 마 1:10" },
+            { pid: "P045", gen: "45대 · 마 1:10" },
+            { pid: "P046", gen: "46대 · 마 1:10–11" },
+            { pid: "P049", gen: "47대 · 마 1:11–12" },
+            { name: "스알디엘", gen: "48대 · 마 1:12", role: "여고냐(여호야긴)의 아들 · 스룹바벨의 부친" },
+            { pid: "P113", gen: "49대 · 마 1:12" },
+            { name: "아비훗·엘리아김·아소르·사독·아킴·엘리훗·엘르아살·맛단·야곱", gen: "50~58대 · 마 1:13–15", role: "스룹바벨에서 마리아의 남편 요셉으로 이어지는 직계 조상" },
+            { pid: "P135", gen: "59대 · 마 1:16", spousePid: "P028", spouseLabel: "아내(모친): 마리아(마 1:16)" },
+            { pid: "P026", gen: "언약 계보의 완성 · 마 1:16" }
+          ]
         }
       ];
       const covEl = document.getElementById("covenantGenealogyContainer");
       if (covEl) {
         covEl.innerHTML = COVENANT_BANDS.map(band => {
-          const nodesHtml = band.pids.map((pid, idx) => {
-            const f = FIG_MAP[pid];
-            if (!f) return "";
-            const isMessiah = pid === "P026";
-            const arrow = idx > 0 ? `<span class="node-arrow">→</span>` : "";
-            const avatar = f.portrait
-              ? `<img class="pillar-avatar" src="${f.portrait}" alt="${f.name}" loading="lazy" />`
-              : `<div class="pillar-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;color:var(--gold-bright);">${f.name.slice(0, 2)}</div>`;
+          const nodesHtml = band.steps.map((st, idx) => {
+            const f = st.pid ? FIG_MAP[st.pid] : null;
+            const isMessiah = st.pid === "P026";
+            const arrow = idx > 0 ? `<span class="node-arrow" title="직계 출산·혈통 계승(낳고)">→</span>` : "";
+            const displayName = f ? f.name : st.name;
+            const displayRole = f ? f.role.split('/')[0].trim() : (st.role || "");
+            const clickAttr = f ? `onclick="openFigure('${st.pid}')"` : `style="cursor:default; border-style:dashed;"`;
+            const avatar = (f && f.portrait)
+              ? `<img class="pillar-avatar" src="${f.portrait}" alt="${displayName}" loading="lazy" />`
+              : `<div class="pillar-avatar" style="display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:var(--gold-bright);background:rgba(212,175,55,0.12);">${displayName.slice(0, 2)}</div>`;
+            const spouseBadge = st.spousePid && FIG_MAP[st.spousePid]
+              ? `<div onclick="event.stopPropagation(); openFigure('${st.spousePid}');" style="margin-top:4px; display:inline-block; padding:2px 7px; border-radius:999px; font-size:10.5px; font-weight:700; background:rgba(212,175,55,0.15); border:1px solid rgba(212,175,55,0.45); color:#f3d27a; cursor:pointer;" title="배우자·모친 열전 열기">💍 ${st.spouseLabel}</div>`
+              : "";
             return `${arrow}
-              <div class="pillar-node ${isMessiah ? 'messiah' : ''}" onclick="openFigure('${pid}')">
+              <div class="pillar-node ${isMessiah ? 'messiah' : ''}" ${clickAttr}>
                 ${avatar}
                 <div class="pillar-info">
-                  <div class="pillar-id">${isMessiah ? '언약의 완성' : (f.portrait ? '성화 수록' : '족보 열전')}</div>
-                  <div class="pillar-name serif">${f.name}</div>
-                  <div class="pillar-role">${f.role.split('/')[0].trim()}</div>
+                  <div class="pillar-id">${st.gen}</div>
+                  <div class="pillar-name serif">${displayName}</div>
+                  <div class="pillar-role">${displayRole}</div>
+                  ${spouseBadge}
                 </div>
               </div>`;
           }).join("");
@@ -1611,15 +1658,15 @@ html, body, .top-bar {
         }).join("");
       }
 
-      // 1. 구속사 계보 7단계 트리 렌더링
+      // 1. 시대별 핵심 인물 탐험 (족보·계보가 아닌 시대별 주요 인물 분류)
       const ERA_STEPS = [
-        { tag: "ERA 01 · CREATION & FLOOD", name: "창조와 홍수 심판 시대", sub: "창세기 1~11장 · 인류의 시조와 방주 언약", pids: ["P001", "P002", "P003"] },
-        { tag: "ERA 02 · PATRIARCHS", name: "족장 시대 (아브라함 4대 언약 계보)", sub: "창세기 12~50장 · 믿음의 조상과 열두 지파의 기원", pids: ["P004", "P005", "P006", "P007", "P008"] },
-        { tag: "ERA 03 · EXODUS & WILDERNESS", name: "출애굽과 광야 시대", sub: "출애굽기~신명기 · 유월절 구속과 시내산 언약·성막", pids: ["P009", "P010", "P011"] },
-        { tag: "ERA 04 · CONQUEST & JUDGES", name: "가나안 정복과 사사·구속자 시대", sub: "여호수아·사사기·룻기 · 약속의 땅 분배와 다윗 계보의 씨앗", pids: ["P012", "P013", "P014", "P015", "P016", "P017"] },
-        { tag: "ERA 05 · UNITED MONARCHY", name: "통일왕국과 다윗 언약 시대", sub: "사무엘상하·열왕기상 1~11장 · 기름부음 받은 왕과 성전 건축", pids: ["P018", "P019", "P020", "P021", "P022"] },
-        { tag: "ERA 06 · PROPHETS & EXILE", name: "분열왕국 선지자와 바벨론 포로기", sub: "열왕기·이사야·다니엘 · 메시아 예언과 하나님 나라의 주권", pids: ["P023", "P024", "P025"] },
-        { tag: "ERA 07 · CHRIST & EARLY CHURCH", name: "예수 그리스도와 사도행전 초대교회", sub: "4복음서·사도행전·서신서 · 구속사의 완성자 예수 그리스도와 땅끝 선교", pids: ["P027", "P028", "P026", "P029", "P030", "P121", "P122", "P123", "P124", "P125"] }
+        { tag: "ERA 01 · CREATION & FLOOD", name: "창조와 홍수 심판 시대 주요 인물", sub: "창세기 1~11장 · 인류의 시조와 방주 사건의 인물", pids: ["P001", "P002", "P003"] },
+        { tag: "ERA 02 · PATRIARCHS", name: "족장 시대 주요 인물", sub: "창세기 12~50장 · 아브라함·사라·이삭·야곱·요셉", pids: ["P004", "P005", "P006", "P007", "P008"] },
+        { tag: "ERA 03 · EXODUS & WILDERNESS", name: "출애굽과 광야 시대 주요 인물", sub: "출애굽기~신명기 · 유월절 구속과 시내산 언약·성막", pids: ["P009", "P010", "P011"] },
+        { tag: "ERA 04 · CONQUEST & JUDGES", name: "가나안 정복과 사사·룻기 시대 주요 인물", sub: "여호수아·사사기·룻기 · 약속의 땅 분배와 사사 시대의 인물", pids: ["P012", "P013", "P014", "P015", "P016", "P017"] },
+        { tag: "ERA 05 · UNITED MONARCHY", name: "통일왕국 시대 주요 인물", sub: "사무엘상하·열왕기상 1~11장 · 사무엘·사울·다윗·솔로몬", pids: ["P018", "P019", "P020", "P021", "P022"] },
+        { tag: "ERA 06 · PROPHETS & EXILE", name: "분열왕국 선지자와 바벨론 포로기 주요 인물", sub: "열왕기·이사야·다니엘 · 엘리야·이사야·다니엘", pids: ["P023", "P024", "P025"] },
+        { tag: "ERA 07 · CHRIST & EARLY CHURCH", name: "예수 그리스도와 사도행전 초대교회 주요 인물", sub: "4복음서·사도행전·서신서 · 예수 그리스도와 사도·초대교회 인물", pids: ["P027", "P028", "P026", "P029", "P030", "P121", "P122", "P123", "P124", "P125"] }
       ];
 
       const treeEl = document.getElementById("lineageTreeContainer");
@@ -1836,7 +1883,7 @@ html, body, .top-bar {
                 <tr><td><strong>대표 근거 성구</strong></td><td>${f.scriptures}</td></tr>
               </tbody>
             </table>
-            <blockquote>본 인물은 꿈디도 인물대백과 300인 마스터 설계도에 등재된 인물로, 아래 [연결 인물 · 장소 · 꿈바온 설교/영상] 탭에서 연관된 인물과 기존 도서관 문헌을 바로 탐색하실 수 있습니다.</blockquote>
+            <blockquote>본 인물은 꿈디도 인물대백과 350인 마스터 설계도에 등재된 인물로, 아래 [연결 인물 · 장소 · 꿈바온 설교/영상] 탭에서 연관된 인물과 기존 도서관 문헌을 바로 탐색하실 수 있습니다.</blockquote>
           </div>`;
       }
       document.getElementById("tab-dossier").innerHTML = dossierHtml;

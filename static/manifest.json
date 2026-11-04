@@ -1,0 +1,16 @@
+{
+  "name": "모세의 지팡이 - 목회자 미디어 스튜디오",
+  "short_name": "모세의지팡이",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#141C2E",
+  "theme_color": "#141C2E",
+  "description": "한국교회 목회자를 위한 원터치 설교 쇼츠 & 사역 미디어 제작 스튜디오",
+  "icons": [
+    {
+      "src": "/static/kkumbaon_logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

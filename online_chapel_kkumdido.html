@@ -196,11 +196,9 @@
     pointer-events: none; white-space: nowrap;
   }
 
-  /* 도서관 이용증 배지: 하단 5번 독 버튼과 절대 겹치지 않도록 우측 상단 HUD 바로 아래 배치 */
+  /* 도서관 이용증 플로팅 배지: 3D 예배당에서는 하단 독(찬양 버튼)과 성화 확대 모달 버튼을 가리지 않도록 숨김 처리 */
   #kkumdido-pass-fab {
-    bottom: auto !important;
-    top: 66px !important;
-    right: 20px !important;
+    display: none !important;
   }
 
   /* 5. 플로팅 사이드 패널 공통 */

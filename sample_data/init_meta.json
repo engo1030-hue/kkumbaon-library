@@ -1,0 +1,799 @@
+{
+  "tier_meta": {
+    "TIER1": {
+      "code": "TIER1",
+      "prefix": "KB1",
+      "name": "🎬 아론의 지팡이 (방송실용 에디션)",
+      "badge": "🎬 아론의 지팡이 (방송실용)",
+      "desc": "주일설교 쇼츠 발췌·제작 + 교회 행사 숏폼·포스터 + 말씀 낭독 영상 + 찬양 가사 PPT + 주일예배 뼈대 PPT"
+    },
+    "TIER2": {
+      "code": "TIER2",
+      "prefix": "KB2",
+      "name": "👑 모세의 지팡이 (올인원 목회자용)",
+      "badge": "👑 모세의 지팡이 (목회자 올인원)",
+      "desc": "방송실 전 기능 무제한 + 새벽 말씀 + 원클릭 새벽예배용 16:9 PPTX + 웨슬리 표준설교"
+    },
+    "TIER3": {
+      "code": "TIER2",
+      "prefix": "KB2",
+      "name": "👑 모세의 지팡이 (올인원 목회자용)",
+      "badge": "👑 모세의 지팡이 (목회자 올인원)",
+      "desc": "방송실 전 기능 무제한 + 새벽 말씀 + 원클릭 새벽예배용 16:9 PPTX + 웨슬리 표준설교"
+    }
+  },
+  "presets": [
+    {
+      "id": "preset_01",
+      "category": "signature",
+      "is_core_signature": true,
+      "core_order": 1,
+      "name": "🌟 시그니처 1 · 꿈바온 웜골드 명조",
+      "bg_type": "blur",
+      "bg_color": "#141210",
+      "video_scale": 1.05,
+      "title_font": "serif",
+      "title1_color": "#F5DA94",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "shadow_only",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#000000B0",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_muji_01",
+      "category": "muji",
+      "is_core_signature": true,
+      "core_order": 2,
+      "name": "🌿 시그니처 2 · 꿈바온 여백 미니멀",
+      "bg_type": "solid",
+      "bg_color": "#F7F4EE",
+      "video_scale": 0.96,
+      "title_font": "serif",
+      "title1_color": "#7C6A56",
+      "title2_color": "#221E1B",
+      "title_bg": "none",
+      "sub_box": "muji_minimal",
+      "sub_color": "#221E1B",
+      "sub_bg_color": "#F7F4EE00",
+      "accent_bar": "muji_line"
+    },
+    {
+      "id": "preset_custom_church_01",
+      "category": "custom_church",
+      "name": "👑 우리교회 전용 시그니처 (맞춤 제작)",
+      "bg_type": "solid",
+      "bg_color": "#162032",
+      "video_scale": 1.04,
+      "title_font": "serif",
+      "title1_color": "#F5DA94",
+      "title2_color": "#FFFFFF",
+      "title_bg": "dark_card",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#0F172A",
+      "accent_bar": "gold_cross",
+      "is_custom_slot": true
+    },
+    {
+      "id": "preset_02",
+      "category": "signature",
+      "name": "새벽기도 은은한 빛",
+      "bg_type": "solid",
+      "bg_color": "#111A2E",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#FFE066",
+      "title2_color": "#F8F9FA",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#090E1ACC",
+      "accent_bar": "gold_cross"
+    },
+    {
+      "id": "preset_03",
+      "category": "signature",
+      "name": "갈릴리 호수의 아침",
+      "bg_type": "solid",
+      "bg_color": "#133B4E",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#A5F3FC",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#0A222ECC",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_04",
+      "category": "signature",
+      "name": "감람산의 고요한 밤",
+      "bg_type": "solid",
+      "bg_color": "#1B2E23",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#F5DA94",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFFDF7",
+      "sub_bg_color": "#0F1C14D8",
+      "accent_bar": "gold_cross"
+    },
+    {
+      "id": "preset_05",
+      "category": "signature",
+      "name": "다윗의 시편 양피지",
+      "bg_type": "solid",
+      "bg_color": "#F4EFE6",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#8C5319",
+      "title2_color": "#231B12",
+      "title_bg": "none",
+      "sub_box": "solid_dark",
+      "sub_color": "#FFFDF9",
+      "sub_bg_color": "#38291E",
+      "accent_bar": "warm_line"
+    },
+    {
+      "id": "preset_06",
+      "category": "signature",
+      "name": "성전의 등불 · 블랙골드",
+      "bg_type": "solid",
+      "bg_color": "#0C0C0E",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#E6C275",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#F5DA94",
+      "sub_bg_color": "#16161A",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_07",
+      "category": "sermon",
+      "name": "주일강단 · 시네마 블러",
+      "bg_type": "blur",
+      "bg_color": "#1A1D24",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#FFD43B",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#101216",
+      "accent_bar": "gold_line"
+    },
+    {
+      "id": "preset_08",
+      "category": "sermon",
+      "name": "복음 선포 · 큰 화면",
+      "bg_type": "blur",
+      "bg_color": "#1E222B",
+      "video_scale": 1.32,
+      "title_font": "sans",
+      "title1_color": "#FFE066",
+      "title2_color": "#FFFFFF",
+      "title_bg": "dark_card",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#000000D0",
+      "accent_bar": "none"
+    },
+    {
+      "id": "preset_09",
+      "category": "sermon",
+      "name": "은혜의 단비 · 버건디",
+      "bg_type": "solid",
+      "bg_color": "#421820",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#FFD8A8",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#260B10DC",
+      "accent_bar": "gold_cross"
+    },
+    {
+      "id": "preset_10",
+      "category": "sermon",
+      "name": "진리의 말씀 · 로열네이비",
+      "bg_type": "solid",
+      "bg_color": "#162447",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#FFD43B",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#0D1730",
+      "accent_bar": "gold_line"
+    },
+    {
+      "id": "preset_11",
+      "category": "sermon",
+      "name": "부활과 소망 · 크림화이트",
+      "bg_type": "solid",
+      "bg_color": "#EDE5DA",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#B45309",
+      "title2_color": "#1C1917",
+      "title_bg": "white_card",
+      "sub_box": "solid_dark",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#292524",
+      "accent_bar": "warm_line"
+    },
+    {
+      "id": "preset_12",
+      "category": "sermon",
+      "name": "십자가의 길 · 딥플럼",
+      "bg_type": "solid",
+      "bg_color": "#2A1B38",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#E9D8FD",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#190F24",
+      "accent_bar": "gold_cross"
+    },
+    {
+      "id": "preset_13",
+      "category": "modern",
+      "name": "시네마 풀스크린 · 명조",
+      "bg_type": "fullscreen",
+      "bg_color": "#0F0F0F",
+      "video_scale": 1.78,
+      "title_font": "serif",
+      "title1_color": "#F5DA94",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "shadow_only",
+      "sub_color": "#FFE066",
+      "sub_bg_color": "#000000B0",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_14",
+      "category": "modern",
+      "name": "풀스크린 · 골드 배지",
+      "bg_type": "fullscreen",
+      "bg_color": "#111111",
+      "video_scale": 1.78,
+      "title_font": "sans",
+      "title1_color": "#111111",
+      "title2_color": "#FFFFFF",
+      "title_bg": "yellow_pill",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#000000C8",
+      "accent_bar": "none"
+    },
+    {
+      "id": "preset_15",
+      "category": "modern",
+      "name": "풀스크린 · 모던 화이트",
+      "bg_type": "fullscreen",
+      "bg_color": "#181818",
+      "video_scale": 1.78,
+      "title_font": "sans",
+      "title1_color": "#111111",
+      "title2_color": "#111111",
+      "title_bg": "white_card",
+      "sub_box": "solid_white",
+      "sub_color": "#111111",
+      "sub_bg_color": "#FFFFFF",
+      "accent_bar": "none"
+    },
+    {
+      "id": "preset_16",
+      "category": "modern",
+      "name": "청년·다음세대 에메랄드",
+      "bg_type": "solid",
+      "bg_color": "#0F292A",
+      "video_scale": 1.12,
+      "title_font": "sans",
+      "title1_color": "#38D9A9",
+      "title2_color": "#FFFFFF",
+      "title_bg": "dark_card",
+      "sub_box": "solid_yellow",
+      "sub_color": "#091A1A",
+      "sub_bg_color": "#63E6BE",
+      "accent_bar": "none"
+    },
+    {
+      "id": "preset_17",
+      "category": "modern",
+      "name": "말씀 아포리즘 · 모던코랄",
+      "bg_type": "solid",
+      "bg_color": "#1F242D",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#FFFFFF",
+      "title2_color": "#FFFFFF",
+      "title_bg": "orange_pill",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#12151B",
+      "accent_bar": "none"
+    },
+    {
+      "id": "preset_18",
+      "category": "modern",
+      "name": "기독교 다큐 · 스튜디오",
+      "bg_type": "solid",
+      "bg_color": "#18202C",
+      "video_scale": 1.08,
+      "title_font": "sans",
+      "title1_color": "#111111",
+      "title2_color": "#FFFFFF",
+      "title_bg": "yellow_pill",
+      "sub_box": "news_bar",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#0B2545E6",
+      "accent_bar": "gold_line"
+    },
+    {
+      "id": "preset_19",
+      "category": "senior",
+      "name": "어르신 효도 · 황금자막",
+      "bg_type": "solid",
+      "bg_color": "#101828",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#FFD43B",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "solid_yellow",
+      "sub_color": "#000000",
+      "sub_bg_color": "#FFE066",
+      "accent_bar": "gold_line"
+    },
+    {
+      "id": "preset_20",
+      "category": "senior",
+      "name": "어르신 효도 · 백색자막",
+      "bg_type": "solid",
+      "bg_color": "#1E293B",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#74C0FC",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "solid_white",
+      "sub_color": "#0F172A",
+      "sub_bg_color": "#FFFFFF",
+      "accent_bar": "gold_line"
+    },
+    {
+      "id": "preset_21",
+      "category": "senior",
+      "name": "추수감사 · 황금들녘",
+      "bg_type": "solid",
+      "bg_color": "#432818",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#FFE066",
+      "title2_color": "#FFFDF9",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#2B180E",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_22",
+      "category": "senior",
+      "name": "성탄과 강림 · 기쁨의 별",
+      "bg_type": "solid",
+      "bg_color": "#143628",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#FFD43B",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFF9DB",
+      "sub_bg_color": "#0B2118DC",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_23",
+      "category": "senior",
+      "name": "가정예배 · 따뜻한 라떼",
+      "bg_type": "solid",
+      "bg_color": "#3D2E28",
+      "video_scale": 1.0,
+      "title_font": "serif",
+      "title1_color": "#FCD5CE",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "translucent",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#261B17D8",
+      "accent_bar": "gold_cross"
+    },
+    {
+      "id": "preset_24",
+      "category": "senior",
+      "name": "새가족 환영 · 봄빛 소망",
+      "bg_type": "solid",
+      "bg_color": "#1E3A3A",
+      "video_scale": 1.0,
+      "title_font": "sans",
+      "title1_color": "#96F2D7",
+      "title2_color": "#FFFFFF",
+      "title_bg": "none",
+      "sub_box": "outline",
+      "sub_color": "#FFFFFF",
+      "sub_bg_color": "#112424",
+      "accent_bar": "gold_star"
+    },
+    {
+      "id": "preset_muji_02",
+      "category": "muji",
+      "name": "여백 오트밀 린넨 · 북카페 명조",
+      "bg_type": "solid",
+      "bg_color": "#EAE4DC",
+      "video_scale": 0.96,
+      "title_font": "serif",
+      "title1_color": "#8C5A3C",
+      "title2_color": "#2B2522",
+      "title_bg": "none",
+      "sub_box": "muji_minimal",
+      "sub_color": "#2B2522",
+      "sub_bg_color": "#EAE4DC00",
+      "accent_bar": "muji_line"
+    },
+    {
+      "id": "preset_muji_03",
+      "category": "muji",
+      "name": "여백 스톤 세이지 · 침묵과 여백",
+      "bg_type": "solid",
+      "bg_color": "#EFEFEA",
+      "video_scale": 0.96,
+      "title_font": "serif",
+      "title1_color": "#526356",
+      "title2_color": "#1F2621",
+      "title_bg": "none",
+      "sub_box": "muji_minimal",
+      "sub_color": "#1F2621",
+      "sub_bg_color": "#EFEFEA00",
+      "accent_bar": "muji_line"
+    },
+    {
+      "id": "preset_muji_04",
+      "category": "muji",
+      "name": "여백 다크 차콜 · 밤의 관상 명조",
+      "bg_type": "solid",
+      "bg_color": "#1C1B1A",
+      "video_scale": 0.96,
+      "title_font": "serif",
+      "title1_color": "#C2B299",
+      "title2_color": "#F2EFE9",
+      "title_bg": "none",
+      "sub_box": "muji_dark",
+      "sub_color": "#F2EFE9",
+      "sub_bg_color": "#1C1B1A00",
+      "accent_bar": "muji_line"
+    }
+  ],
+  "bgm_list": [
+    {
+      "id": "none",
+      "name": "🔇 배경음악 없음 (목사님 설교 원음만 깔끔하게)",
+      "filename": "",
+      "url": "bgm/"
+    },
+    {
+      "id": "bgm_01",
+      "name": "🎹 01. 나 같은 죄인 살리신 (Public Domain 고전 찬송가 피아노풍)",
+      "filename": "bgm_01_amazing_grace_pd.mp3",
+      "url": "bgm/bgm_01_amazing_grace_pd.mp3"
+    },
+    {
+      "id": "bgm_02",
+      "name": "🌿 02. 광야의 숨결 — 깊은 묵상 연주 (꿈바온 자체 생성 음원(AI 제작)·피아노풍)",
+      "filename": "bgm_02_measured_breath.mp3",
+      "url": "bgm/bgm_02_measured_breath.mp3"
+    },
+    {
+      "id": "bgm_03",
+      "name": "📜 03. 광야의 편지 — 서정 피아노풍 (꿈바온 자체 생성 음원(AI 제작))",
+      "filename": "bgm_03_wilderness_letter.mp3",
+      "url": "bgm/bgm_03_wilderness_letter.mp3"
+    },
+    {
+      "id": "bgm_04",
+      "name": "🙏 04. 내 주를 가까이 하게 함은 (1856 Public Domain 피아노풍 편곡)",
+      "filename": "bgm_04_nearer_my_god_pd.mp3",
+      "url": "bgm/bgm_04_nearer_my_god_pd.mp3"
+    },
+    {
+      "id": "bgm_05",
+      "name": "📖 05. 만복의 근원 하나님 (1551 Public Domain 피아노풍 편곡)",
+      "filename": "bgm_05_doxology_old100th_pd.mp3",
+      "url": "bgm/bgm_05_doxology_old100th_pd.mp3"
+    },
+    {
+      "id": "bgm_06",
+      "name": "✨ 06. 거룩 거룩 거룩 (1861 Public Domain 피아노풍 편곡)",
+      "filename": "bgm_06_holy_holy_holy_pd.mp3",
+      "url": "bgm/bgm_06_holy_holy_holy_pd.mp3"
+    },
+    {
+      "id": "bgm_07",
+      "name": "🕯️ 07. 고요한 밤 거룩한 밤 (1818 Public Domain 피아노풍 편곡)",
+      "filename": "bgm_07_silent_night_pd.mp3",
+      "url": "bgm/bgm_07_silent_night_pd.mp3"
+    },
+    {
+      "id": "bgm_08",
+      "name": "🌅 08. 새벽 제단의 고요한 기도 (꿈바온 자체 생성 음원(AI 제작)·앰비언트 피아노풍)",
+      "filename": "bgm_08_dawn_meditation_orig.mp3",
+      "url": "bgm/bgm_08_dawn_meditation_orig.mp3"
+    }
+  ],
+  "artwork_list": [
+    {
+      "id": "none",
+      "name": "사용 안 함 (설교 영상만)",
+      "filename": "",
+      "url": "artworks/"
+    },
+    {
+      "id": "art_01",
+      "name": "01. 창살 너머 구원의 새벽빛",
+      "filename": "art_01_morning_light.jpg",
+      "url": "artworks/art_01_morning_light.jpg"
+    },
+    {
+      "id": "art_02",
+      "name": "02. 광야 길목과 은혜의 빛줄기",
+      "filename": "art_02_damascus_light.jpg",
+      "url": "artworks/art_02_damascus_light.jpg"
+    },
+    {
+      "id": "art_03",
+      "name": "03. 황혼녘 평화로운 감람산",
+      "filename": "art_03_olive_hill.jpg",
+      "url": "artworks/art_03_olive_hill.jpg"
+    },
+    {
+      "id": "art_04",
+      "name": "04. 양피지 성경 두루마리와 등불",
+      "filename": "art_04_scroll_lamp.jpg",
+      "url": "artworks/art_04_scroll_lamp.jpg"
+    },
+    {
+      "id": "art_05",
+      "name": "05. 열린 예루살렘 성문과 돌길",
+      "filename": "art_05_open_gate.jpg",
+      "url": "artworks/art_05_open_gate.jpg"
+    },
+    {
+      "id": "art_06",
+      "name": "06. 다락방 기도하는 성도들",
+      "filename": "art_06_prayer_window.jpg",
+      "url": "artworks/art_06_prayer_window.jpg"
+    },
+    {
+      "id": "art_07",
+      "name": "07. 간절한 중보기도의 손길",
+      "filename": "art_07_paul_prayer.jpg",
+      "url": "artworks/art_07_paul_prayer.jpg"
+    },
+    {
+      "id": "art_08",
+      "name": "08. 믿음의 동행 (돌담길 발걸음)",
+      "filename": "art_08_footsteps.jpg",
+      "url": "artworks/art_08_footsteps.jpg"
+    },
+    {
+      "id": "art_09",
+      "name": "09. 소망의 바다와 출항",
+      "filename": "art_09_voyage_hope.jpg",
+      "url": "artworks/art_09_voyage_hope.jpg"
+    },
+    {
+      "id": "art_10",
+      "name": "10. 새벽 묵상 책상과 호롱불",
+      "filename": "art_10_desk_lamp.jpg",
+      "url": "artworks/art_10_desk_lamp.jpg"
+    },
+    {
+      "id": "art_11",
+      "name": "11. 순례자의 샌들 발걸음",
+      "filename": "art_11_sandal_road.jpg",
+      "url": "artworks/art_11_sandal_road.jpg"
+    },
+    {
+      "id": "art_12",
+      "name": "12. 매임을 푸시는 해방의 열쇠",
+      "filename": "art_12_chains_freed.jpg",
+      "url": "artworks/art_12_chains_freed.jpg"
+    }
+  ],
+  "samples": [
+    {
+      "id": "voice_sermon_1792548200",
+      "title": "[내영상·목사님육성] 떨면서도 말하는 사람들",
+      "bible_verse": "사도행전 18:1-11",
+      "church_name": "새오름교회",
+      "preacher": "직접 녹음",
+      "duration_text": "2분 0초 (내 육성 녹음 마스터)",
+      "video_path": "sample_data/sample_sermon_demo.mp4",
+      "subtitles": [
+        {
+          "start": 0.0,
+          "end": 16.48,
+          "text": "성경에는 하루 종일 송곳과 바늘을 쥐느라 손바닥에 굳은살이 박인 한 사람이, 어느 항구 도시에서 지내던 시절을 두고 스스로 이렇게 적어 둔 이야기가 있습니다."
+        },
+        {
+          "start": 17.48,
+          "end": 26.7,
+          "text": "내가 너희 가운데 거할 때에 약하고 두려워하고 심히 떨었노라. 그 사람의 이름은 바울입니다."
+        },
+        {
+          "start": 27.44,
+          "end": 37.82,
+          "text": "그리고 그가 떨었다고 고백한 그 도시에서 일 년 반을 머물며 세운 교회가 우리가 잘 아는 고린도 교회입니다."
+        },
+        {
+          "start": 38.82,
+          "end": 50.88,
+          "text": "이 이야기를 들으면 우리는 대개 위대한 사도가 큰 도시에 들어가 담대하게 복음을 전하고 교회를 세운 이야기로 읽을 수 있습니다."
+        },
+        {
+          "start": 51.64,
+          "end": 58.5,
+          "text": "그런데 본문을 천천히 다시 읽으면 그냥 지나치기 쉬운 장면이 하나 있습니다."
+        },
+        {
+          "start": 59.5,
+          "end": 69.4,
+          "text": "주님이 밤에 바울을 찾아오셔서 두려워하지 말라고 하신 때는 일이 막혀 쫓겨난 밤이 아니었습니다."
+        },
+        {
+          "start": 70.58,
+          "end": 81.68,
+          "text": "회당장이 온 집안과 함께 주를 믿고 많은 고린도 사람이 세례를 받았다는 기록 바로 다음이었습니다."
+        },
+        {
+          "start": 82.9,
+          "end": 86.72,
+          "text": "일이 풀리기 시작한 그 무렵에 바울은 떨고 있었습니다."
+        },
+        {
+          "start": 86.72,
+          "end": 93.22,
+          "text": "그리고 주님은 그런 바울을 꾸짖지 않으시고, 한 마디를 들려주셨습니다."
+        },
+        {
+          "start": 93.8,
+          "end": 98.12,
+          "text": "오늘 말씀은 그 밤의 한 마디를 향해 갑니다."
+        },
+        {
+          "start": 98.12,
+          "end": 104.9,
+          "text": "열매가 보이기 시작한 바로 그때 주님은 두려워하지 말라고 하셨습니다."
+        },
+        {
+          "start": 106.06,
+          "end": 111.76,
+          "text": "회당장이 돌아섰다는 소식이 퍼지던 그 밤에도 바울은 떨고 있었던 것입니다."
+        },
+        {
+          "start": 112.74,
+          "end": 118.72,
+          "text": "오랜 신앙생활을 하신 여러분은 아실 것입니다. 두려움은 일이 안 될 때만 찾아오지 않습니다."
+        },
+        {
+          "start": 119.46,
+          "end": 126.48,
+          "text": "기도가 응답되고 일이 풀리기 시작할 때 오히려 이게 무너지면 어쩌나 하는 마음에 잠 못 드는 밤이 있습니다."
+        }
+      ],
+      "clips": [
+        {
+          "id": "clip_1",
+          "grade": "A",
+          "start": 0.0,
+          "end": 38.0,
+          "title_line1": "약하고 두려워하고",
+          "title_line2": "심히 떨었던 바울의 고백",
+          "summary": "송곳과 바늘을 쥐던 바울이 고린도에서 떨며 세운 교회",
+          "reason": "사도 바울의 인간적인 떨림과 연약함을 통해 성도들의 마음을 여는 도입 대목입니다.",
+          "selected": true,
+          "rendered": false,
+          "output_file": ""
+        },
+        {
+          "id": "clip_2",
+          "grade": "A",
+          "start": 51.6,
+          "end": 109.4,
+          "title_line1": "일이 풀리기 시작할 때",
+          "title_line2": "찾아오는 밤의 두려움",
+          "summary": "주님이 밤에 찾아오신 때는 일이 막힌 밤이 아니었습니다",
+          "reason": "기도가 응답되고 일이 풀릴 때 오히려 찾아오는 무게감을 짚어주는 핵심 은혜 대목입니다.",
+          "selected": true,
+          "rendered": false,
+          "output_file": ""
+        }
+      ]
+    },
+    {
+      "id": "sermon_demo_01",
+      "title": "[샘플설교] 두려움을 넘어 담대히 말하는 성도",
+      "bible_verse": "사도행전 18:9-10",
+      "church_name": "우리교회",
+      "preacher": "담임목사",
+      "duration_text": "1분 (내장 시연용 샘플)",
+      "video_path": "sample_data/sample_sermon_demo.mp4",
+      "subtitles": [
+        {
+          "start": 0.0,
+          "end": 8.0,
+          "text": "사랑하는 성도 여러분, 오늘 우리는 떨면서도 말하는 사람들의 이야기를 함께 나눕니다."
+        },
+        {
+          "start": 8.0,
+          "end": 18.0,
+          "text": "때로 사역의 문이 열릴 때 오히려 마음에 뜻밖의 두려움과 깊은 밤이 찾아올 때가 있습니다."
+        },
+        {
+          "start": 18.0,
+          "end": 28.0,
+          "text": "그러나 주님께서는 사람이 다 무너진 뒤가 아니라 밤의 끝자락을 먼저 붙들어 주십니다."
+        },
+        {
+          "start": 28.0,
+          "end": 38.0,
+          "text": "떨림이 다 멈춰서 담대한 것이 아니라 주님의 손에 붙들려 있기에 다시 입을 여는 것입니다."
+        },
+        {
+          "start": 38.0,
+          "end": 48.0,
+          "text": "로뎀나무 아래 지친 영혼을 책망하지 않으시고 먼저 따뜻한 손길로 어루만지시는 주님을 기억하십시오."
+        },
+        {
+          "start": 48.0,
+          "end": 58.0,
+          "text": "이번 한 주간도 우리를 결코 홀로 두지 않으시는 주님의 손길을 의지하며 평안히 걸어가시기를 축복합니다."
+        }
+      ],
+      "clips": [
+        {
+          "id": "clip_1",
+          "grade": "A",
+          "start": 0.0,
+          "end": 38.0,
+          "title_line1": "떨면서도 다시 말하는",
+          "title_line2": "복음의 증인들",
+          "summary": "떨림이 멈춰서가 아니라 주님의 손에 붙들려 다시 말합니다",
+          "reason": "밤의 끝자락을 먼저 붙드시는 주님의 약속을 통해 성도들에게 위로와 용기를 전하는 핵심 대목",
+          "selected": true,
+          "rendered": false,
+          "output_file": ""
+        }
+      ]
+    }
+  ]
+}

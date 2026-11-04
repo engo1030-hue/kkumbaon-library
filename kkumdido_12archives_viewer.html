@@ -536,7 +536,7 @@ header {
         <div class="brand">
           <div class="brand-eyebrow">KKUMBAON DIGITAL LIBRARY · 12-DODECA LINK MASTER ARCHIVE</div>
           <h1>꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 통합 마스터 뷰어</h1>
-          <p>세계 최대 개신교 무료 신학·성경·설교·목회 입체 연동 도서관 (인물·사건·비하인드·외경·지리·원어·주석·교리·교회사·난제·찬송·목회툴킷 전체 통합)</p>
+          <p>개신교 무료 신학·성경·설교·목회 입체 연동 도서관 (인물·사건·비하인드·외경·지리·원어·주석·교리·교회사·난제·찬송·목회툴킷 12대 아카이브 통합)</p>
         </div>
         <div class="header-actions">
           <a class="btn" href="figures_encyclopedia_preview.html" style="text-decoration:none;">제1관 인물가계도·350인</a>
@@ -612,7 +612,7 @@ header {
       if (_LOADED_V_ARCH.has(no)) return;
       try {
         const pad = String(no).padStart(2, '0');
-        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261103_clean`);
+        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261104_inspected`);
         DATA.forEach(m => { if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id]; });
         _LOADED_V_ARCH.add(no);
       } catch (_) {}
@@ -906,7 +906,8 @@ header {
     function cleanCategoryLabel(raw) {
       if (!raw) return "";
       let s = String(raw);
-      s = s.replace(/^(?:\d+_)?\d+차\s*오픈[^·]*·\s*/g, "");
+      s = s.replace(/^(?:\d+_)?\d+차\s*(?:오픈|확장판)?(?:\([^)]*\))?\s*·\s*/g, "");
+      s = s.replace(/^[^·()]*\)\s*·\s*/g, "");
       s = s.replace(/\b\d+_[가-힣]+축\s*\(([^)]+)\)/g, "$1");
       s = s.replace(/\(T\d+_[^)]*\)/g, "");
       s = s.replace(/\bT\d+_/g, "");
@@ -948,7 +949,7 @@ header {
 
     (async function() {
       try {
-        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_300all');
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_inspected');
         DATA.forEach(item => {
           item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
           DATA_MAP[item.id] = item;
