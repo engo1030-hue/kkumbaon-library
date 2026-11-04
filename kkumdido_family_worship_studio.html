@@ -1,0 +1,4156 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>2027 꿈바온 52주 가정예배서 단행본 (전자책·인쇄 겸용 고가독성 12pt+ 에디션)</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+  body {
+    font-family: "Apple SD Gothic Neo", "Pretendard", "Malgun Gothic", sans-serif;
+    font-size: 12pt;
+    line-height: 1.65;
+    color: #1F1A15;
+    background: #F6F2E9;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .nowrap {
+    white-space: nowrap;
+  }
+  .page {
+    width: 210mm;
+    height: 297mm;
+    page-break-after: always;
+    padding: 16mm 18mm 14mm 18mm;
+    background: #FAF8F5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+  }
+  .cover-page {
+    background: linear-gradient(155deg, #FBF8F1 0%, #F1ECE1 60%, #E8DFCE 100%);
+    color: #1F1A15;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    padding: 25mm;
+    border: 2px solid #C8A45D;
+  }
+  .cover-badge {
+    display: inline-block;
+    border: 1px solid #9A6B1F;
+    background: #FFFFFF;
+    color: #6E4B12;
+    padding: 6px 18px;
+    border-radius: 999px;
+    font-size: 12pt;
+    font-weight: 700;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+  }
+  .cover-title {
+    font-family: "AppleMyungjo", "Noto Serif KR", Georgia, serif;
+    font-size: 32pt;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 16px;
+    color: #1F1A15;
+  }
+  .cover-sub {
+    font-size: 14pt;
+    color: #4A3F35;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .cover-copyright-box {
+    background: #FFFFFF;
+    border: 1px solid #D5C7B2;
+    border-radius: 12px;
+    padding: 18px 24px;
+    font-size: 11.5pt;
+    color: #3B3228;
+    max-width: 155mm;
+    line-height: 1.6;
+    text-align: left;
+  }
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1.5px solid #D5C7B2;
+    padding-bottom: 8px;
+    margin-bottom: 12px;
+  }
+  .badge {
+    background: #8C621E;
+    color: #FFFFFF;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 10.5pt;
+    font-weight: 700;
+  }
+  .season-label {
+    font-size: 11pt;
+    font-weight: 700;
+    color: #B45309;
+    white-space: nowrap;
+  }
+  .week-title {
+    font-family: "AppleMyungjo", "Noto Serif KR", serif;
+    font-size: 20pt;
+    font-weight: 800;
+    color: #1F1A15;
+    margin-bottom: 4px;
+  }
+  .week-sub {
+    font-size: 12pt;
+    color: #475569;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .order-bar {
+    display: flex;
+    justify-content: space-between;
+    background: #EFF6FF;
+    border: 1px solid #BFDBFE;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12pt;
+    margin-bottom: 10px;
+  }
+  .box {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    padding: 11px 14px;
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  }
+  .box-title {
+    font-size: 12pt;
+    font-weight: 800;
+    color: #1E3A8A;
+    margin-bottom: 6px;
+    border-bottom: 1px dashed #E2E8F0;
+    padding-bottom: 4px;
+  }
+  .ver-tag {
+    font-size: 10pt;
+    color: #64748B;
+    font-weight: 600;
+  }
+  .body-text {
+    font-size: 12pt;
+    line-height: 1.62;
+    color: #1E293B;
+    text-align: justify;
+    word-break: keep-all;
+  }
+  .scripture-text {
+    font-family: "AppleMyungjo", "Noto Serif KR", serif;
+    font-size: 12pt;
+    line-height: 1.68;
+    color: #0F172A;
+    background: #FFFBEB;
+    border-left: 4px solid #F59E0B;
+    padding: 8px 12px;
+    border-radius: 4px;
+    word-break: keep-all;
+  }
+  .core-lesson {
+    margin-top: 8px;
+    background: #FEF3C7;
+    color: #92400E;
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 12pt;
+    font-weight: 700;
+  }
+  .q-list {
+    padding-left: 18px;
+    font-size: 12pt;
+    line-height: 1.6;
+  }
+  .q-list li {
+    margin-bottom: 5px;
+  }
+  .q-guide {
+    font-size: 11pt;
+    color: #64748B;
+  }
+  .aaron-text {
+    margin-top: 6px;
+    font-family: "AppleMyungjo", serif;
+    font-size: 11.5pt;
+    color: #92400E;
+    font-weight: 700;
+    background: #FFFBEB;
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+  .page-footer {
+    border-top: 1px solid #CBD5E1;
+    padding-top: 6px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 10pt;
+    color: #64748B;
+  }
+  /* TOC Table with strict non-wrapping scripture ref column */
+  table.toc-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #FFFFFF;
+    font-size: 11.5pt;
+  }
+  table.toc-table th {
+    background: #1E3A8A;
+    color: #FFFFFF;
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 11.5pt;
+  }
+  table.toc-table td {
+    border-bottom: 1px solid #E2E8F0;
+    padding: 6px 10px;
+    vertical-align: middle;
+    word-break: keep-all;
+  }
+  .col-w { width: 17%; white-space: nowrap; font-weight: 700; color: #1E3A8A; }
+  .sub-date { font-size: 9.5pt; color: #64748B; font-weight: 500; }
+  .col-t { width: 39%; }
+  .col-r { width: 26%; white-space: nowrap; font-weight: 700; color: #0F172A; }
+  .col-k { width: 18%; color: #B45309; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div id="kkd-studio-topbar" style="position:sticky;top:0;z-index:99980;background:linear-gradient(135deg,#241B13 0%,#3E2E1E 100%);border-bottom:2px solid #C89B3C;padding:8px 18px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;font-family:'Pretendard','Noto Sans KR',sans-serif;font-size:13px;color:#f4eee1;">
+  <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+    <a href="index.html" style="color:#f3c969;font-weight:800;text-decoration:none;padding:5px 11px;border-radius:999px;background:rgba(243,201,105,0.12);border:1px solid rgba(243,201,105,0.4);">🏛️ 꿈디도 본관으로</a>
+    <span style="color:#bfb3a0;font-weight:600;">| 사역 스튜디오 바로가기:</span>
+    <a href="kkumdido_sermon_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">👑 설교 프로그램</a>
+    <a href="kkumdido_gotgan_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">🏺 내 설교 곳간</a>
+    <a href="kkumdido_gotgan_sample88.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">📚 한범수 목사 곳간(88편)</a>
+    <a href="kkumdido_jipangi_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">🪄 모세의 지팡이</a>
+    <a href="kkumdido_sunday_school_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">🌱 교회학교 스튜디오</a>
+    <a href="kkumdido_13dept_52weeks_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">📋 13부서 52주 커리큘럼</a>
+    <a href="kkumdido_family_worship_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">🕯️ 가정예배 스튜디오</a>
+    <a href="kkumdido_translation_studio.html" style="color:#e8e2d5;text-decoration:none;padding:4px 9px;border-radius:7px;background:rgba(255,255,255,0.06);">🌐 기독교 번역기</a>
+  </div>
+</div>
+
+
+<!-- Cover Page -->
+<div class="page cover-page">
+  <div class="cover-badge">2027 KKUMBAON FAMILY WORSHIP BOOK</div>
+  <h1 class="cover-title">2027 꿈바온 52주<br>가정예배서 단행본</h1>
+  <p class="cover-sub">온 가족이 식탁에서 드리는 구속사·원어·축복의 52주 가정예배<br>(전자책·A4 인쇄 겸용 12pt+ 고가독성 에디션)</p>
+  <div class="cover-copyright-box">
+    <strong>[저작권 및 성경 번역본 안내]</strong><br>
+    • 본 단행본에 수록된 모든 성경 본문은 저작권 보호 기간이 만료된 공인 퍼블릭 도메인(Public Domain) <strong>『개역한글판(1961)』</strong>과 히브리어·헬라어 원어에 기초한 <strong>『꿈바온 자체 사역』</strong>만을 사용하여 저작권법에 완벽히 부합합니다.<br>
+    • A4 인쇄 및 태블릿 열람 시 최상의 가독성을 위해 본문 12pt 이상 및 어절 단위 줄바꿈(Keep-All) 조판을 적용하였습니다.<br>
+    • 발행: 꿈바온 미디어 선교회 · 감수: 꿈바온 사역팀
+  </div>
+</div>
+
+<!-- TOC Page 1 (Weeks 1-18) -->
+<div class="page">
+  <div>
+    <div class="page-header"><span class="badge">목차 (1/3)</span><span class="season-label">제01주 ~ 제18주</span></div>
+    <table class="toc-table">
+      <thead><tr><th>주차 (일자)</th><th>예배 제목</th><th>성경 본문 (한 줄 표기)</th><th>원어 키워드</th></tr></thead>
+      <tbody>
+      <tr>
+        <td class="col-w">제01주<br><span class="sub-date">2027-01-03</span></td>
+        <td class="col-t"><strong>빛이 있으라 하시니</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제02주<br><span class="sub-date">2027-01-10</span></td>
+        <td class="col-t"><strong>생기를 불어넣으시니</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제03주<br><span class="sub-date">2027-01-17</span></td>
+        <td class="col-t"><strong>네가 어디 있느냐</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제04주<br><span class="sub-date">2027-01-24</span></td>
+        <td class="col-t"><strong>은혜를 입은 노아와 구원의 방주</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제05주<br><span class="sub-date">2027-01-31</span></td>
+        <td class="col-t"><strong>복이 될지라, 말씀을 따라 걸은 아브라함</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제06주<br><span class="sub-date">2027-02-07</span></td>
+        <td class="col-t"><strong>밤하늘의 뭇별을 보라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제07주<br><span class="sub-date">2027-02-14</span></td>
+        <td class="col-t"><strong>여호와 이레, 산에서 준비하시는 하나님</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제08주<br><span class="sub-date">2027-02-21</span></td>
+        <td class="col-t"><strong>우물을 양보한 이삭과 르호봇의 축복</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제09주<br><span class="sub-date">2027-02-28</span></td>
+        <td class="col-t"><strong>돌베개 위에 세워진 벧엘의 사닥다리</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제10주<br><span class="sub-date">2027-03-07</span></td>
+        <td class="col-t"><strong>이스라엘이라 부를 것이니라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제11주<br><span class="sub-date">2027-03-14</span></td>
+        <td class="col-t"><strong>꿈을 품은 요셉</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제12주<br><span class="sub-date">2027-03-21</span></td>
+        <td class="col-t"><strong>여호와께서 요셉과 함께하시므로</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제13주<br><span class="sub-date">2027-03-28</span></td>
+        <td class="col-t"><strong>악을 선으로 바꾸시는 하나님과 부활의 승리</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제14주<br><span class="sub-date">2027-04-04</span></td>
+        <td class="col-t"><strong>갈대 상자 속의 아기 모세와 하나님의 돌보심</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제15주<br><span class="sub-date">2027-04-11</span></td>
+        <td class="col-t"><strong>타지 않는 떨기나무와 거룩한 땅</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제16주<br><span class="sub-date">2027-04-18</span></td>
+        <td class="col-t"><strong>어린양의 피를 문설주에 바른 유월절의 밤</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제17주<br><span class="sub-date">2027-04-25</span></td>
+        <td class="col-t"><strong>가만히 서서 여호와의 구원을 보라 (홍해의 기적)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제18주<br><span class="sub-date">2027-05-02</span></td>
+        <td class="col-t"><strong>하늘에서 내리는 일용할 양식 만나</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="page-footer"><span>2027 꿈바온 52주 가정예배서</span><span>목차 1</span></div>
+</div>
+
+<!-- TOC Page 2 (Weeks 19-36) -->
+<div class="page">
+  <div>
+    <div class="page-header"><span class="badge">목차 (2/3)</span><span class="season-label">제19주 ~ 제36주</span></div>
+    <table class="toc-table">
+      <thead><tr><th>주차 (일자)</th><th>예배 제목</th><th>성경 본문 (한 줄 표기)</th><th>원어 키워드</th></tr></thead>
+      <tbody>
+      <tr>
+        <td class="col-w">제19주<br><span class="sub-date">2027-05-09</span></td>
+        <td class="col-t"><strong>네 부모를 공경하라, 약속 있는 첫 계명</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제20주<br><span class="sub-date">2027-05-16</span></td>
+        <td class="col-t"><strong>낮에는 구름기둥, 밤에는 불기둥</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제21주<br><span class="sub-date">2027-05-23</span></td>
+        <td class="col-t"><strong>내가 거룩하니 너희도 거룩하라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제22주<br><span class="sub-date">2027-05-30</span></td>
+        <td class="col-t"><strong>여호와는 네게 복을 주시고 (아론의 축복)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제23주<br><span class="sub-date">2027-06-06</span></td>
+        <td class="col-t"><strong>그들은 우리의 밥이라 (여호수아와 갈렙의 믿음)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제24주<br><span class="sub-date">2027-06-13</span></td>
+        <td class="col-t"><strong>들으라 이스라엘, 마음을 다하여 사랑하라 (쉐마의 가정)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제25주<br><span class="sub-date">2027-06-20</span></td>
+        <td class="col-t"><strong>강하고 담대하라, 요단을 건너는 믿음의 첫발</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제26주<br><span class="sub-date">2027-06-27</span></td>
+        <td class="col-t"><strong>오직 나와 내 집은 여호와를 섬기겠노라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제27주<br><span class="sub-date">2027-07-04</span></td>
+        <td class="col-t"><strong>주의 날개 아래 보호받으러 온 룻의 효성과 믿음</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제28주<br><span class="sub-date">2027-07-11</span></td>
+        <td class="col-t"><strong>마음을 통하는 한나의 기도와 사무엘의 응답</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제29주<br><span class="sub-date">2027-07-18</span></td>
+        <td class="col-t"><strong>말씀하옵소서 주의 종이 듣겠나이다</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제30주<br><span class="sub-date">2027-07-25</span></td>
+        <td class="col-t"><strong>마음의 중심을 보시는 하나님과 만군의 여호와의 이름</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제31주<br><span class="sub-date">2027-08-01</span></td>
+        <td class="col-t"><strong>여호와는 나의 목자시니 (푸른 초장의 안식)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제32주<br><span class="sub-date">2027-08-08</span></td>
+        <td class="col-t"><strong>듣는 마음을 구한 솔로몬의 일천번제</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제33주<br><span class="sub-date">2027-08-15</span></td>
+        <td class="col-t"><strong>통이 마르지 아니하고 병이 다하지 아니하리라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제34주<br><span class="sub-date">2027-08-22</span></td>
+        <td class="col-t"><strong>세미한 소리 가운데 찾아오시는 하나님</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제35주<br><span class="sub-date">2027-08-29</span></td>
+        <td class="col-t"><strong>요단강에 일곱 번 몸을 잠근 나아만과 작은 소녀</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제36주<br><span class="sub-date">2027-09-05</span></td>
+        <td class="col-t"><strong>네 눈물과 기도를 보았노라 (히스기야의 기도)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="page-footer"><span>2027 꿈바온 52주 가정예배서</span><span>목차 2</span></div>
+</div>
+
+<!-- TOC Page 3 (Weeks 37-52) -->
+<div class="page">
+  <div>
+    <div class="page-header"><span class="badge">목차 (3/3)</span><span class="season-label">제37주 ~ 제52주</span></div>
+    <table class="toc-table">
+      <thead><tr><th>주차 (일자)</th><th>예배 제목</th><th>성경 본문 (한 줄 표기)</th><th>원어 키워드</th></tr></thead>
+      <tbody>
+      <tr>
+        <td class="col-w">제37주<br><span class="sub-date">2027-09-12</span></td>
+        <td class="col-t"><strong>이때를 위함이 아닌지 누가 알겠느냐 (에스더의 결단)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제38주<br><span class="sub-date">2027-09-19</span></td>
+        <td class="col-t"><strong>하루 세 번 창문을 열고 감사하며 기도한 다니엘</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제39주<br><span class="sub-date">2027-09-26</span></td>
+        <td class="col-t"><strong>너로 말미암아 기쁨을 이기지 못하시며 (스바냐의 노래)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제40주<br><span class="sub-date">2027-10-03</span></td>
+        <td class="col-t"><strong>세상의 빛과 소금, 복 있는 산상수훈의 가정</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제41주<br><span class="sub-date">2027-10-10</span></td>
+        <td class="col-t"><strong>반석 위에 지은 지혜로운 집</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제42주<br><span class="sub-date">2027-10-17</span></td>
+        <td class="col-t"><strong>잠잠하라 고요하라! 풍랑을 꾸짖으신 예수님</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제43주<br><span class="sub-date">2027-10-24</span></td>
+        <td class="col-t"><strong>어린아이의 도시락, 오병이어의 기적</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제44주<br><span class="sub-date">2027-10-31</span></td>
+        <td class="col-t"><strong>가서 너도 이와 같이 하라 (선한 사마리아인)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제45주<br><span class="sub-date">2027-11-07</span></td>
+        <td class="col-t"><strong>아직도 거리가 먼데 달려가 안아주신 아버지</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제46주<br><span class="sub-date">2027-11-14</span></td>
+        <td class="col-t"><strong>오늘 구원이 이 집에 이르렀도다 (삭개오의 변화)</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제47주<br><span class="sub-date">2027-11-21</span></td>
+        <td class="col-t"><strong>돌아와 큰 소리로 하나님께 영광을 돌린 한 사람</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제48주<br><span class="sub-date">2027-11-28</span></td>
+        <td class="col-t"><strong>나는 포도나무요 너희는 가지라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제49주<br><span class="sub-date">2027-12-05</span></td>
+        <td class="col-t"><strong>한밤중에 울려 퍼진 빌립보 감옥의 찬송과 가정 구원</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제50주<br><span class="sub-date">2027-12-12</span></td>
+        <td class="col-t"><strong>하나님의 사랑에서 우리를 끊을 수 없으리라</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제51주<br><span class="sub-date">2027-12-19</span></td>
+        <td class="col-t"><strong>온 백성에게 미칠 큰 기쁨의 좋은 소식, 임마누엘</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    
+      <tr>
+        <td class="col-w">제52주<br><span class="sub-date">2027-12-26</span></td>
+        <td class="col-t"><strong>에벤에셀의 은혜와 알파와 오메가 되시는 주님</strong></td>
+        <td class="col-r"></td>
+        <td class="col-k"></td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+  <div class="page-footer"><span>2027 꿈바온 52주 가정예배서</span><span>목차 3</span></div>
+</div>
+
+
+    <!-- Week 1 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제01주 (2027-01-03)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제01주. 빛이 있으라 하시니</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제01주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 1 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제01주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제01주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 2 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제02주 (2027-01-10)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제02주. 생기를 불어넣으시니</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제02주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 2 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제02주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제02주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 3 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제03주 (2027-01-17)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제03주. 네가 어디 있느냐</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제03주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 3 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제03주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제03주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 4 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제04주 (2027-01-24)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제04주. 은혜를 입은 노아와 구원의 방주</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제04주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 4 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제04주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제04주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 5 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제05주 (2027-01-31)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제05주. 복이 될지라, 말씀을 따라 걸은 아브라함</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제05주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 5 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제05주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제05주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 6 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제06주 (2027-02-07)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제06주. 밤하늘의 뭇별을 보라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제06주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 6 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제06주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제06주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 7 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제07주 (2027-02-14)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제07주. 여호와 이레, 산에서 준비하시는 하나님</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제07주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 7 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제07주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제07주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 8 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제08주 (2027-02-21)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제08주. 우물을 양보한 이삭과 르호봇의 축복</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제08주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 8 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제08주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제08주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 9 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제09주 (2027-02-28)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제09주. 돌베개 위에 세워진 벧엘의 사닥다리</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제09주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 9 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제09주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제09주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 10 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제10주 (2027-03-07)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제10주. 이스라엘이라 부를 것이니라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제10주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 10 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제10주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제10주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 11 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제11주 (2027-03-14)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제11주. 꿈을 품은 요셉</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제11주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 11 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제11주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제11주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 12 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제12주 (2027-03-21)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제12주. 여호와께서 요셉과 함께하시므로</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제12주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 12 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제12주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제12주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 13 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제13주 (2027-03-28)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제13주. 악을 선으로 바꾸시는 하나님과 부활의 승리</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제13주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 13 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제13주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제13주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 14 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제14주 (2027-04-04)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제14주. 갈대 상자 속의 아기 모세와 하나님의 돌보심</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제14주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 14 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제14주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제14주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 15 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제15주 (2027-04-11)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제15주. 타지 않는 떨기나무와 거룩한 땅</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제15주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 15 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제15주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제15주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 16 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제16주 (2027-04-18)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제16주. 어린양의 피를 문설주에 바른 유월절의 밤</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제16주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 16 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제16주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제16주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 17 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제17주 (2027-04-25)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제17주. 가만히 서서 여호와의 구원을 보라 (홍해의 기적)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제17주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 17 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제17주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제17주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 18 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제18주 (2027-05-02)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제18주. 하늘에서 내리는 일용할 양식 만나</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제18주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 18 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제18주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제18주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 19 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제19주 (2027-05-09)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제19주. 네 부모를 공경하라, 약속 있는 첫 계명</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제19주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 19 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제19주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제19주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 20 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제20주 (2027-05-16)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제20주. 낮에는 구름기둥, 밤에는 불기둥</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제20주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 20 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제20주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제20주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 21 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제21주 (2027-05-23)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제21주. 내가 거룩하니 너희도 거룩하라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제21주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 21 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제21주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제21주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 22 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제22주 (2027-05-30)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제22주. 여호와는 네게 복을 주시고 (아론의 축복)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제22주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 22 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제22주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제22주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 23 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제23주 (2027-06-06)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제23주. 그들은 우리의 밥이라 (여호수아와 갈렙의 믿음)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제23주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 23 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제23주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제23주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 24 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제24주 (2027-06-13)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제24주. 들으라 이스라엘, 마음을 다하여 사랑하라 (쉐마의 가정)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제24주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 24 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제24주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제24주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 25 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제25주 (2027-06-20)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제25주. 강하고 담대하라, 요단을 건너는 믿음의 첫발</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제25주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 25 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제25주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제25주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 26 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제26주 (2027-06-27)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제26주. 오직 나와 내 집은 여호와를 섬기겠노라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제26주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 26 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제26주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제26주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 27 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제27주 (2027-07-04)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제27주. 주의 날개 아래 보호받으러 온 룻의 효성과 믿음</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제27주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 27 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제27주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제27주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 28 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제28주 (2027-07-11)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제28주. 마음을 통하는 한나의 기도와 사무엘의 응답</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제28주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 28 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제28주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제28주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 29 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제29주 (2027-07-18)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제29주. 말씀하옵소서 주의 종이 듣겠나이다</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제29주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 29 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제29주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제29주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 30 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제30주 (2027-07-25)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제30주. 마음의 중심을 보시는 하나님과 만군의 여호와의 이름</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제30주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 30 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제30주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제30주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 31 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제31주 (2027-08-01)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제31주. 여호와는 나의 목자시니 (푸른 초장의 안식)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제31주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 31 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제31주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제31주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 32 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제32주 (2027-08-08)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제32주. 듣는 마음을 구한 솔로몬의 일천번제</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제32주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 32 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제32주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제32주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 33 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제33주 (2027-08-15)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제33주. 통이 마르지 아니하고 병이 다하지 아니하리라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제33주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 33 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제33주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제33주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 34 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제34주 (2027-08-22)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제34주. 세미한 소리 가운데 찾아오시는 하나님</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제34주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 34 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제34주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제34주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 35 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제35주 (2027-08-29)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제35주. 요단강에 일곱 번 몸을 잠근 나아만과 작은 소녀</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제35주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 35 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제35주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제35주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 36 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제36주 (2027-09-05)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제36주. 네 눈물과 기도를 보았노라 (히스기야의 기도)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제36주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 36 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제36주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제36주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 37 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제37주 (2027-09-12)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제37주. 이때를 위함이 아닌지 누가 알겠느냐 (에스더의 결단)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제37주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 37 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제37주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제37주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 38 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제38주 (2027-09-19)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제38주. 하루 세 번 창문을 열고 감사하며 기도한 다니엘</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제38주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 38 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제38주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제38주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 39 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제39주 (2027-09-26)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제39주. 너로 말미암아 기쁨을 이기지 못하시며 (스바냐의 노래)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제39주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 39 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제39주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제39주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 40 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제40주 (2027-10-03)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제40주. 세상의 빛과 소금, 복 있는 산상수훈의 가정</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제40주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 40 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제40주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제40주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 41 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제41주 (2027-10-10)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제41주. 반석 위에 지은 지혜로운 집</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제41주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 41 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제41주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제41주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 42 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제42주 (2027-10-17)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제42주. 잠잠하라 고요하라! 풍랑을 꾸짖으신 예수님</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제42주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 42 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제42주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제42주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 43 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제43주 (2027-10-24)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제43주. 어린아이의 도시락, 오병이어의 기적</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제43주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 43 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제43주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제43주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 44 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제44주 (2027-10-31)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제44주. 가서 너도 이와 같이 하라 (선한 사마리아인)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제44주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 44 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제44주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제44주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 45 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제45주 (2027-11-07)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제45주. 아직도 거리가 먼데 달려가 안아주신 아버지</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제45주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 45 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제45주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제45주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 46 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제46주 (2027-11-14)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제46주. 오늘 구원이 이 집에 이르렀도다 (삭개오의 변화)</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제46주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 46 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제46주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제46주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 47 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제47주 (2027-11-21)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제47주. 돌아와 큰 소리로 하나님께 영광을 돌린 한 사람</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제47주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 47 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제47주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제47주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 48 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제48주 (2027-11-28)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제48주. 나는 포도나무요 너희는 가지라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제48주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 48 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제48주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제48주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 49 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제49주 (2027-12-05)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제49주. 한밤중에 울려 퍼진 빌립보 감옥의 찬송과 가정 구원</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제49주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 49 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제49주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제49주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 50 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제50주 (2027-12-12)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제50주. 하나님의 사랑에서 우리를 끊을 수 없으리라</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제50주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 50 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제50주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제50주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 51 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제51주 (2027-12-19)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제51주. 온 백성에게 미칠 큰 기쁨의 좋은 소식, 임마누엘</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제51주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 51 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제51주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제51주 · 2면</span>
+      </div>
+    </div>
+    
+    <!-- Week 52 Page 1: 예배 인도 및 말씀 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">2027 꿈바온 52주 가정예배 · 제52주 (2027-12-26)</span>
+          <span class="season-label"></span>
+        </div>
+        <h2 class="week-title">제52주. 에벤에셀의 은혜와 알파와 오메가 되시는 주님</h2>
+        <p class="week-sub"></p>
+
+        <div class="order-bar">
+          <span>① 찬송: <strong> ()</strong></span>
+          <span>② 신앙고백: <strong>사도신경</strong></span>
+        </div>
+
+        <div class="box box-prayer">
+          <div class="box-title">③ 부모님이 드리는 시작 대표기도</div>
+          <p class="body-text"></p>
+        </div>
+
+        <div class="box box-scripture">
+          <div class="box-title">④ 오늘의 성경 말씀 — <span class="nowrap"></span> <span class="ver-tag">(개역한글 · 꿈바온 원어 사역)</span></div>
+          <div class="scripture-text"></div>
+        </div>
+
+        <div class="box box-word">
+          <div class="box-title">💎 원어 보물상자:  (, ) — </div>
+          <p class="body-text"></p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 (개역한글·원어사역 기준)</span>
+        <span>제52주 · 1면</span>
+      </div>
+    </div>
+
+    <!-- Week 52 Page 2: 5분 설교, 가족 나눔, 축복기도 -->
+    <div class="page">
+      <div>
+        <div class="page-header">
+          <span class="badge">제52주 말씀 강해 및 가족 나눔</span>
+          <span class="season-label"></span>
+        </div>
+
+        <div class="box box-sermon">
+          <div class="box-title">⑤ 온 가족 5분 스토리 설교 — </div>
+          <div class="body-text">{}</div>
+          <div class="core-lesson">✦ 오늘의 핵심 교훈: </div>
+        </div>
+
+        <div class="box box-questions">
+          <div class="box-title">⑥ 식탁에서 나누는 가족 대화 질문 3가지</div>
+          <ul class="q-list"></ul>
+        </div>
+
+        <div class="box box-blessing">
+          <div class="box-title">⑦ 자녀의 머리에 손을 얹고 드리는 축복기도 & ⑧ 주기도문</div>
+          <p class="body-text"></p>
+          <p class="aaron-text">“여호와는 네게 복을 주시고 너를 지키시기를 원하며 여호와는 그 얼굴로 네게 비취사 은혜 베푸시기를 원하며 여호와는 그 얼굴을 네게로 향하여 드사 평강 주시기를 원하노라 (민수기 6:24~26, 개역한글)”</p>
+        </div>
+      </div>
+      <div class="page-footer">
+        <span>2027 꿈바온 52주 가정예배서 · 가정과 교회를 잇는 구속사 식탁</span>
+        <span>제52주 · 2면</span>
+      </div>
+    </div>
+    
+
+  <script src="kkumdido-shield.js"></script>
+</body>
+</html>

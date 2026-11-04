@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>꿈디도 제2관 · 성경 인물대백과 300인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
+  <title>꿈디도 제1관 · 성경 인물대백과 350인 & 구속사 관계망 — 꿈바온 디지털 도서관</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root, [data-theme="light"] {
+      --bg-deep: #F9F6F0;
+      --bg-hall: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-parchment: #FBF7EE;
+      --gold-bright: #8C621E;
+      --gold-primary: #9A6B1F;
+      --gold-muted: #7A5A2B;
+      --text-cream: #1F1A15;
+      --text-warm: #43392F;
+      --text-dim: #6E6256;
+      --crimson: #B84A39;
+      --emerald: #2E6F4E;
+      --azure: #2B5B84;
+      --purple: #6B469B;
+      --border-gold: #DFD5C5;
+    }
+    [data-theme="dark"] {
       --bg-deep: #0F0C09;
       --bg-hall: #17130E;
       --bg-card: #211B14;
@@ -27,12 +44,15 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: radial-gradient(circle at 50% 0%, #241C13 0%, var(--bg-deep) 70%);
+      background: var(--bg-deep);
       color: var(--text-cream);
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.65;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+    [data-theme="dark"] body {
+      background: radial-gradient(circle at 50% 0%, #241C13 0%, var(--bg-deep) 70%);
     }
     @media (hover: hover) and (pointer: fine) {
       html, body {
@@ -810,6 +830,239 @@ html, body, .top-bar {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_PARCHMENT_LIGHT_OVERRIDES] === */
+[data-theme="light"] .top-bar {
+  background: linear-gradient(135deg, #241B13 0%, #3E2E1E 100%) !important;
+  border-bottom: 2px solid #C89B3C !important;
+}
+[data-theme="light"] .top-bar .brand-title {
+  color: #FAF6EE !important;
+}
+[data-theme="light"] .top-bar .brand-badge {
+  background: linear-gradient(135deg, #D8AE48, #B88928);
+  color: #1A120B;
+}
+[data-theme="light"] .top-bar .btn-top {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #FAF6EE;
+}
+[data-theme="light"] .top-bar .btn-top:hover,
+[data-theme="light"] .top-bar .btn-top.gold {
+  background: linear-gradient(135deg, #D8AE48, #B88928);
+  color: #1A120B;
+  border-color: #F3D27A;
+}
+[data-theme="light"] .hero-banner {
+  background: linear-gradient(135deg, #F5EFE2 0%, #EDE3D0 100%);
+  border: 1px solid #D6C7B0;
+  box-shadow: 0 10px 28px rgba(31, 26, 21, 0.07);
+}
+[data-theme="light"] .hero-title { color: #1F1A15 !important; }
+[data-theme="light"] .stat-card {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  box-shadow: 0 4px 12px rgba(31, 26, 21, 0.04);
+}
+[data-theme="light"] .axis-tab {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  color: #3D3329;
+}
+[data-theme="light"] .axis-tab:hover {
+  border-color: #8C621E;
+  color: #1F1A15;
+  background: #FDFBF7;
+}
+[data-theme="light"] .axis-tab.active {
+  background: linear-gradient(135deg, #8C621E, #6E4B12);
+  color: #FFFFFF;
+  border-color: #8C621E;
+  box-shadow: 0 6px 16px rgba(140, 98, 30, 0.22);
+}
+[data-theme="light"] .axis-badge {
+  background: rgba(140, 98, 30, 0.10);
+  color: #5C4B37;
+}
+[data-theme="light"] .axis-tab.active .axis-badge {
+  background: rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+}
+[data-theme="light"] .hall-panel {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  box-shadow: 0 8px 24px rgba(31, 26, 21, 0.06);
+}
+[data-theme="light"] .hall-panel .btn-top:not(.gold) {
+  background: #F4EFE4;
+  border-color: #D6C7B0;
+  color: #2A2118;
+}
+[data-theme="light"] .era-row {
+  background: #F9F6F0;
+  border: 1px solid #E2D8C7;
+}
+[data-theme="light"] .era-step-name { color: #1F1A15 !important; }
+[data-theme="light"] .pillar-node {
+  background: #FFFFFF;
+  border: 1.5px solid #D8CBB6;
+  box-shadow: 0 3px 10px rgba(31, 26, 21, 0.05);
+}
+[data-theme="light"] .pillar-node:hover {
+  border-color: #8C621E;
+  background: #FDFBF7;
+}
+[data-theme="light"] .pillar-node.messiah {
+  background: linear-gradient(145deg, #FFFDF7, #F6EBD4);
+  border-color: #B8862D;
+}
+[data-theme="light"] .pillar-name { color: #1F1A15 !important; }
+[data-theme="light"] .gene-hall {
+  background: radial-gradient(ellipse at 50% 3%, rgba(154,107,31,0.08), transparent 52%),
+    linear-gradient(150deg, #FBF8F1, #F3ECE0 52%, #EFE7D8);
+  border: 1px solid #D6C7B0;
+  box-shadow: inset 0 0 0 4px rgba(140,98,30,0.04), 0 12px 32px rgba(31,26,21,0.06);
+}
+[data-theme="light"] .gene-intro h3 { color: #1F1A15; }
+[data-theme="light"] .gene-search-status { color: #8C621E; }
+[data-theme="light"] .gene-legend span {
+  background: #FFFFFF;
+  border-color: #D6C7B0;
+  color: #3D3329;
+}
+[data-theme="light"] .gene-time {
+  color: #43392F;
+  border-right-color: #D2C3AB;
+}
+[data-theme="light"] .gene-time small { color: #8C621E; }
+[data-theme="light"] .gene-time strong { color: #1F1A15; }
+[data-theme="light"] .gene-time a { color: #8C621E; }
+[data-theme="light"] .gene-join {
+  background: #EFE7D8;
+  border-color: #D2C3AB;
+  color: #6E4B12;
+}
+[data-theme="light"] .gene-spouse {
+  color: #6E4B12;
+  border-color: #C89D46;
+}
+[data-theme="light"] .gene-card {
+  background: #FFFFFF;
+  border: 1px solid #D6C7B0;
+  color: #1F1A15;
+  box-shadow: 0 6px 16px rgba(31, 26, 21, 0.08);
+}
+[data-theme="light"] .gene-card small { color: #8C621E; }
+[data-theme="light"] .gene-card strong { color: #1F1A15; }
+[data-theme="light"] .gene-card em { color: #5C5248; }
+[data-theme="light"] .gene-gap {
+  background: #F6F1E6;
+  border-color: #C8B698;
+  color: #3D3329;
+}
+[data-theme="light"] .gene-gap span { color: #8C621E; }
+[data-theme="light"] .gene-ref { color: #5C5248; }
+[data-theme="light"] .gene-ref b { color: #8C621E; }
+[data-theme="light"] .gene-after { color: #5C5248; border-top-color: #DFD5C5; }
+[data-theme="light"] .p-card {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  box-shadow: 0 4px 14px rgba(31, 26, 21, 0.06);
+}
+[data-theme="light"] .p-card:hover {
+  border-color: #8C621E;
+  box-shadow: 0 12px 28px rgba(31, 26, 21, 0.12);
+}
+[data-theme="light"] .p-card-title { color: #1F1A15 !important; }
+[data-theme="light"] .kingdom-col {
+  background: #F9F6F0;
+  border: 1px solid #DFD5C5;
+}
+[data-theme="light"] .kingdom-col h3 { color: #1F1A15 !important; }
+[data-theme="light"] .king-item {
+  background: #FFFFFF;
+  border: 1px solid #E2D8C7;
+}
+[data-theme="light"] .king-item:hover {
+  background: #FDFBF7;
+  border-color: #8C621E;
+}
+[data-theme="light"] .king-item strong.serif,
+[data-theme="light"] .king-item .serif { color: #1F1A15 !important; }
+[data-theme="light"] .search-input {
+  background: #FFFFFF;
+  color: #1F1A15;
+  border: 1px solid #D6C7B0;
+}
+[data-theme="light"] .pill-btn {
+  background: #F5EFE2;
+  border: 1px solid #D6C7B0;
+  color: #3D3329;
+}
+[data-theme="light"] .pill-btn.active {
+  background: #8C621E;
+  color: #FFFFFF;
+  border-color: #8C621E;
+}
+[data-theme="light"] .dir-card {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+}
+[data-theme="light"] .dir-card:hover {
+  background: #FDFBF7;
+  border-color: #8C621E;
+}
+[data-theme="light"] .dir-card .serif { color: #1F1A15 !important; }
+[data-theme="light"] .drawer-panel {
+  background: #F9F6F0;
+  border-left: 1px solid #D6C7B0;
+  box-shadow: -15px 0 45px rgba(31, 26, 21, 0.22);
+}
+[data-theme="light"] .drawer-header {
+  background: linear-gradient(135deg, #241B13, #3E2E1E);
+  color: #FAF6EE;
+}
+[data-theme="light"] .drawer-header #drwPhase { color: #F5D78E !important; }
+[data-theme="light"] .drawer-header .btn-top {
+  background: rgba(255,255,255,0.1);
+  color: #FAF6EE;
+  border-color: rgba(255,255,255,0.25);
+}
+[data-theme="light"] .drawer-hero {
+  background: #F3ECE0;
+  border-bottom: 1px solid #DFD5C5;
+}
+[data-theme="light"] .drawer-hero #drwName { color: #1F1A15 !important; }
+[data-theme="light"] .drawer-tabs {
+  background: #EFE7D8;
+  border-bottom: 1px solid #DFD5C5;
+}
+[data-theme="light"] .md-content h3 { color: #6E4B12; }
+[data-theme="light"] .md-content h4 { color: #8C621E; }
+[data-theme="light"] .md-content strong { color: #6E4B12; }
+[data-theme="light"] .md-content blockquote {
+  background: rgba(140, 98, 30, 0.08);
+  color: #2A2118;
+}
+[data-theme="light"] .md-content table { background: #FFFFFF; }
+[data-theme="light"] .md-content code { color: #6E4B12 !important; }
+[data-theme="light"] .scene-box {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+}
+[data-theme="light"] #kkumbaonOfficialFooterBar {
+  background: #EFE8D9 !important;
+  color: #4A3F35 !important;
+  border-top: 1px solid #D6C7B0 !important;
+}
+[data-theme="light"] #kkumbaonOfficialFooterBar strong {
+  color: #1F1A15 !important;
+}
+[data-theme="light"] #kkumbaonOfficialFooterBar button {
+  color: #8C621E !important;
+  border-color: rgba(140,98,30,0.4) !important;
+}
 </style>
 </head>
 <body>
@@ -826,6 +1079,7 @@ html, body, .top-bar {
       <a href="behinds_encyclopedia_preview.html" class="btn-top">제3관 비하인드 (300)</a>
       <button class="btn-top" onclick="openLightbox('assets/figures_tier1/lineage_overview.jpg', '꿈디도 언약과 메시아 계보 대형 차트')">언약 계보도 차트</button>
       <a href="assets/lineage/lineage.html" target="_blank" rel="noopener" class="btn-top">계보 시범 원판 ↗</a>
+      <button class="btn-top" onclick="cycleTheme()" id="themeBtn">🎨 테마: 양피지 라이트</button>
       <a href="index.html" class="btn-top gold">꿈디도 본관 대문</a>
     </div>
   </header>
@@ -1095,6 +1349,14 @@ html, body, .top-bar {
     });
 
     let currentDirFilter = "all";
+
+    function cycleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute("data-theme") === "dark" ? "light" : "dark";
+      html.setAttribute("data-theme", next);
+      const btn = document.getElementById("themeBtn");
+      if (btn) btn.textContent = next === "light" ? "🎨 테마: 양피지 라이트" : "🌙 테마: 다크 골드";
+    }
 
     // 직접 연결과 생략 구간을 구별한 세로 전시 (워크간사 세계사 시간의 벽 연동)
     const GENE_LEVELS = [
@@ -1787,5 +2049,6 @@ html, body, .top-bar {
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
+  <script src="kkumdido-shield.js"></script>
 </body>
 </html>

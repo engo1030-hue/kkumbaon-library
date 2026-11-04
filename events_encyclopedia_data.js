@@ -7138,7 +7138,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E121_hero.webp",
+      "thumbImage": "assets/events/E121_thumb.webp"
     },
     {
       "id": "E122",
@@ -7218,7 +7221,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "유향과 몰약은 나무에서 어떻게 채취하며 왜 줄기에 칼로 상처를 내야만 가장 귀한 향기가 흘러나올까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E122_hero.webp",
+      "thumbImage": "assets/events/E122_thumb.webp"
     },
     {
       "id": "E123",
@@ -7270,7 +7276,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 제사장 사가랴의 아들로 태어난 세례 요한은 성전의 화려한 식탁을 버리고 광야의 메뚜기와 석청을 먹었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E123_hero.webp",
+      "thumbImage": "assets/events/E123_thumb.webp"
     },
     {
       "id": "E124",
@@ -7340,7 +7349,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E124_hero.webp",
+      "thumbImage": "assets/events/E124_thumb.webp"
     },
     {
       "id": "E125",
@@ -7380,7 +7392,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E125_hero.webp",
+      "thumbImage": "assets/events/E125_thumb.webp"
     },
     {
       "id": "E126",
@@ -7426,7 +7441,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E126_hero.webp",
+      "thumbImage": "assets/events/E126_thumb.webp"
     },
     {
       "id": "E127",
@@ -7477,7 +7495,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고린도전서 11장 14절('남자가 긴 머리를 하면 부끄러움이 되는 줄 알지 못하느냐')과 1세기 유대인 고증을 통해 본 예수님의 실제 모습은 어떠했을까?, 따뜻하고 강건한 중동 갈릴리 장인의 황갈색 피부와 단정한 머리·수염"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E127_hero.webp",
+      "thumbImage": "assets/events/E127_thumb.webp"
     },
     {
       "id": "E128",
@@ -7523,7 +7544,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 의사 누가는 베드로 장모의 열병을 고치실 때 바람과 바다와 귀신을 잠잠케 하신 동사 '꾸짖으시니'를 사용했을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E128_hero.webp",
+      "thumbImage": "assets/events/E128_thumb.webp"
     },
     {
       "id": "E129",
@@ -7592,7 +7616,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "예수님과 열두 제자가 함께 탔던 1세기 갈릴리 고기잡이 배는 실제로 크기가 얼마나 되었으며 왜 12종류의 서로 다른 나무 조각으로 기워져 있었을까?, 기노살 박물관에 보존된 1세기 갈릴리 목선 복원도(길이 8.27m, 폭 2.3m"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E129_hero.webp",
+      "thumbImage": "assets/events/E129_thumb.webp"
     },
     {
       "id": "E130",
@@ -7638,7 +7665,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "마가복음의 '지붕을 뜯어 구멍을 내고(땅을 파헤치다)'와 누가복음의 '기와(케라모스)를 벗기고'는 1세기 갈릴리 가옥 구조에서 어떻게 조화될까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E130_hero.webp",
+      "thumbImage": "assets/events/E130_thumb.webp"
     },
     {
       "id": "E131",
@@ -7695,7 +7725,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "헬라어 사전에서도 주기도문 외에는 찾아볼 수 없는 특별한 단어 '에피우시오스(일용할)'에는 어떤 세 가지 은혜가 압축되어 있을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E131_hero.webp",
+      "thumbImage": "assets/events/E131_thumb.webp"
     },
     {
       "id": "E132",
@@ -7735,7 +7768,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E132_hero.webp",
+      "thumbImage": "assets/events/E132_thumb.webp"
     },
     {
       "id": "E133",
@@ -7781,7 +7817,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경 본문 중간에 간혹 등장하는 [ ] 대괄호는 무슨 뜻이며 38년 된 병자는 왜 물이 움직이기만 헛되이 기다리고 있었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E133_hero.webp",
+      "thumbImage": "assets/events/E133_thumb.webp"
     },
     {
       "id": "E134",
@@ -7833,7 +7872,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "오늘날 가버나움의 4세기 흰 석회암 회당 기둥 바로 밑에 깔린 시커먼 현무암 기초석이 왜 바로 이 백부장이 지어준 회당 터일까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E134_hero.webp",
+      "thumbImage": "assets/events/E134_thumb.webp"
     },
     {
       "id": "E135",
@@ -7890,7 +7932,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "'내가 혹시 성령을 거스르는 생각을 해서 구원받지 못하는 건 아닐까?' 걱정하는 성도에게 마가복음 3장 30절 문맥은 어떤 명확한 안심을 줄까?, 명백한 성령의 구원 역사를 끝까지 사탄의 짓이라 거부하는 완악한 불신앙과"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E135_hero.webp",
+      "thumbImage": "assets/events/E135_thumb.webp"
     },
     {
       "id": "E136",
@@ -7947,7 +7992,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고대 로마와 유대 여인들이 슬픔의 눈물과 귀한 향유를 담아 보관하던 손가락 크기의 작은 병은 어떻게 생겼을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E136_hero.webp",
+      "thumbImage": "assets/events/E136_thumb.webp"
     },
     {
       "id": "E137",
@@ -7992,7 +8040,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 집주인은 종들이 가라지를 뽑겠다고 할 때 '가라지를 뽑다가 곡식까지 뽑을까 염려하노라 추수 때까지 둘 다 함께 자라게 두라'고 했을까?, 땅속에서 뿌리가 서로 엉켜 자라는 밀과 가라지(독보리)"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E137_hero.webp",
+      "thumbImage": "assets/events/E137_thumb.webp"
     },
     {
       "id": "E138",
@@ -8044,7 +8095,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "예수님과 열두 제자가 함께 탔던 1세기 갈릴리 고기잡이 배는 실제로 크기가 얼마나 되었으며 왜 12종류의 서로 다른 나무 조각으로 기워져 있었을까?, 기노살 박물관에 보존된 1세기 갈릴리 목선 복원도(길이 8.27m, 폭 2.3m"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E138_hero.webp",
+      "thumbImage": "assets/events/E138_thumb.webp"
     },
     {
       "id": "E139",
@@ -8113,7 +8167,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "죽은 소녀를 살리실 때 예수님은 왜 거창한 주문이 아니라 엄마가 아침에 늦잠 자는 딸을 토닥여 깨우는 일상어 '달리다굼'을 쓰셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E139_hero.webp",
+      "thumbImage": "assets/events/E139_thumb.webp"
     },
     {
       "id": "E140",
@@ -8165,7 +8222,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E140_hero.webp",
+      "thumbImage": "assets/events/E140_thumb.webp"
     },
     {
       "id": "E141",
@@ -8205,7 +8265,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E141_hero.webp",
+      "thumbImage": "assets/events/E141_thumb.webp"
     },
     {
       "id": "E142",
@@ -8245,7 +8308,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 복음서 기자들은 오병이어(유대인 5천 명)와 칠병이어(이방인 4천 명)에서 남은 조각을 거둔 바구니의 헬라어 단어를 철저히 구분해 썼을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E142_hero.webp",
+      "thumbImage": "assets/events/E142_thumb.webp"
     },
     {
       "id": "E143",
@@ -8291,7 +8357,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 예수님은 예루살렘 성전이 아니라 이방 목신 판(Pan)의 동굴('음부의 대문')과 로마 황제 신전이 서 있는 가이사랴 빌립보 바위 절벽 앞에서 교회를 선포하셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E143_hero.webp",
+      "thumbImage": "assets/events/E143_thumb.webp"
     },
     {
       "id": "E144",
@@ -8347,7 +8416,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하나님의 성전에 바치는 반 세겔 성전세를 왜 로마 동전으로는 못 내고 페니키아 우상 얼굴이 찍힌 '두로 세겔(은 순도 95%)'로만 환전해 내야 했을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E144_hero.webp",
+      "thumbImage": "assets/events/E144_thumb.webp"
     },
     {
       "id": "E145",
@@ -8408,7 +8480,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 예수님은 '나는 양의 문을 지키는 문지기다'라고 하지 않으시고 '내가 곧 양의 문(튀라)이다'라고 말씀하셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E145_hero.webp",
+      "thumbImage": "assets/events/E145_thumb.webp"
     },
     {
       "id": "E146",
@@ -8454,7 +8529,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 강도 만난 자는 '예루살렘에서 여리고로 내려가다가' 습격을 당했으며 왜 하필 제사장과 레위인이 그 길을 지나가고 있었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E146_hero.webp",
+      "thumbImage": "assets/events/E146_thumb.webp"
     },
     {
       "id": "E147",
@@ -8500,7 +8578,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E147_hero.webp",
+      "thumbImage": "assets/events/E147_thumb.webp"
     },
     {
       "id": "E148",
@@ -8555,7 +8636,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "쥐엄나무 열매 씨앗이 왜 보석 무게 단위인 '캐럿(Carat)'의 기원이 되었으며 당시 유대인들에게 '쥐엄나무 열매를 먹는다'는 속담은 무슨 뜻이었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E148_hero.webp",
+      "thumbImage": "assets/events/E148_thumb.webp"
     },
     {
       "id": "E149",
@@ -8623,7 +8707,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "신약성경을 읽을 때 나오는 '제삼시, 제육시, 제구시, 제십일시'를 오늘날 시계 시각으로 1초 만에 변환하는 공식은 무엇일까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E149_hero.webp",
+      "thumbImage": "assets/events/E149_thumb.webp"
     },
     {
       "id": "E150",
@@ -8693,7 +8780,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 키 작은 부자 세리장 삭개오는 체면을 버리고 길가의 많은 나무 중 하필 '돌무화과나무' 위로 기어 올라갔을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E150_hero.webp",
+      "thumbImage": "assets/events/E150_thumb.webp"
     },
     {
       "id": "E151",
@@ -8769,7 +8859,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "팔레스타인에서 나지도 않는 '나드 향유'는 어디서 수입되었으며 왜 마리아는 뚜껑을 여는 대신 옥합의 긴 목을 아예 깨뜨려 부었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E151_hero.webp",
+      "thumbImage": "assets/events/E151_thumb.webp"
     },
     {
       "id": "E152",
@@ -8842,7 +8935,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하나님의 성전에 바치는 반 세겔 성전세를 왜 로마 동전으로는 못 내고 페니키아 우상 얼굴이 찍힌 '두로 세겔(은 순도 95%)'로만 환전해 내야 했을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E152_hero.webp",
+      "thumbImage": "assets/events/E152_thumb.webp"
     },
     {
       "id": "E153",
@@ -8932,7 +9028,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "감람산에서 예루살렘 성을 내려다보시며 우신 예수님은 왜 자신을 사자나 독수리가 아니라 불길 속에서 새끼를 품는 '암탉'에 비유하셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E153_hero.webp",
+      "thumbImage": "assets/events/E153_thumb.webp"
     },
     {
       "id": "E154",
@@ -9032,7 +9131,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "유월절 식탁에서 마시는 4개의 잔 중 왜 예수님은 식사 직후 세 번째 잔('속량/구속의 잔')을 들어 '내 피로 세우는 새 언약'이라 하시고 네 번째 잔은 천국까지 유보하셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E154_hero.webp",
+      "thumbImage": "assets/events/E154_thumb.webp"
     },
     {
       "id": "E155",
@@ -9145,7 +9247,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "유향과 몰약은 나무에서 어떻게 채취하며 왜 줄기에 칼로 상처를 내야만 가장 귀한 향기가 흘러나올까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E155_hero.webp",
+      "thumbImage": "assets/events/E155_thumb.webp"
     },
     {
       "id": "E156",
@@ -9236,7 +9341,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경에는 막달라 마리아가 '일곱 귀신이 나간 자요 자기 재산으로 예수님을 섬긴 후원자'(눅 8:2~3)라고만 되어 있는데 왜 창녀라는 오해가 생겼을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E156_hero.webp",
+      "thumbImage": "assets/events/E156_thumb.webp"
     },
     {
       "id": "E157",
@@ -9328,7 +9436,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경에서 숫자 7(언약·안식), 8(새 창조·부활), 12(하나님 백성), 40(연단·준비), 153(1부터 17까지의 삼각수·만민 구원)은 각각 어떤 구속사 암호를 품고 있을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E157_hero.webp",
+      "thumbImage": "assets/events/E157_thumb.webp"
     },
     {
       "id": "E158",
@@ -9398,7 +9509,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "마태와 누가는 가룟 유다의 죽음을 왜 서로 다른 각도(원인과 사후 추락 결과)에서 기록했을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E158_hero.webp",
+      "thumbImage": "assets/events/E158_thumb.webp"
     },
     {
       "id": "E159",
@@ -9468,7 +9582,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 헤롯 성전의 수많은 문 중에서 동쪽 중앙 대문만 '미문(아름다운 문)'이라 불렸으며 감람산에서 발굴된 '니카노르 유골함'은 무엇을 증명할까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E159_hero.webp",
+      "thumbImage": "assets/events/E159_thumb.webp"
     },
     {
       "id": "E160",
@@ -9532,7 +9649,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "땅을 안 팔아도 되고 절반만 내도 아무 죄가 아니었는데 왜 아나니아와 삽비라는 '전부 다 바친 척' 거짓말을 하다가 심판을 받았을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E160_hero.webp",
+      "thumbImage": "assets/events/E160_thumb.webp"
     },
     {
       "id": "E161",
@@ -9572,7 +9692,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E161_hero.webp",
+      "thumbImage": "assets/events/E161_thumb.webp"
     },
     {
       "id": "E162",
@@ -9636,7 +9759,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 부활 승천 후 보좌에 앉으신 예수님이 스데반이 순교하는 순간에는 보좌에서 벌떡 일어서서 스데반을 내려다보고 계셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E162_hero.webp",
+      "thumbImage": "assets/events/E162_thumb.webp"
     },
     {
       "id": "E163",
@@ -9694,7 +9820,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "수천 km를 달려 예루살렘 성전까지 왔다가 내시라는 이유로 성전에 들어가지 못하고 돌아가던 재무장관에게 이사야 두루마리는 어떤 구원이 되었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E163_hero.webp",
+      "thumbImage": "assets/events/E163_thumb.webp"
     },
     {
       "id": "E164",
@@ -9757,7 +9886,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "예수님이 아나니아에게 알려주신 다메섹의 거리 이름 '직가(곧은 거리)'는 오늘날 시리아 다마스쿠스 어디에 남아 있을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E164_hero.webp",
+      "thumbImage": "assets/events/E164_thumb.webp"
     },
     {
       "id": "E165",
@@ -9809,7 +9941,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 사도행전은 베드로의 숙소가 '바닷가 무두장이 시몬의 집'임을 세 번이나 반복하며 그 집 옥상에서 이방 선교의 문이 열렸을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E165_hero.webp",
+      "thumbImage": "assets/events/E165_thumb.webp"
     },
     {
       "id": "E166",
@@ -9878,7 +10013,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "사도행전 12장 21~23절의 헤롯 급사 사건이 동시대 유대 역사가 요세푸스의 기록과는 어떻게 소름 돋게 일치할까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E166_hero.webp",
+      "thumbImage": "assets/events/E166_thumb.webp"
     },
     {
       "id": "E167",
@@ -9948,7 +10086,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 사울은 다메섹 회심 후 10년 넘게 '사울'이라 불리다가 구브로 총독 서기오 바울 앞에서부터 '바울'이라는 이름을 썼을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E167_hero.webp",
+      "thumbImage": "assets/events/E167_thumb.webp"
     },
     {
       "id": "E168",
@@ -9994,7 +10135,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E168_hero.webp",
+      "thumbImage": "assets/events/E168_thumb.webp"
     },
     {
       "id": "E169",
@@ -10070,7 +10214,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "할례 자국을 자랑하던 율법주의자들에게 바울이 맞서 내보인 '내 몸의 예수의 흔적(스티그마)'은 실제로 어떤 상처들이었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E169_hero.webp",
+      "thumbImage": "assets/events/E169_thumb.webp"
     },
     {
       "id": "E170",
@@ -10145,7 +10292,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "할례 자국을 자랑하던 율법주의자들에게 바울이 맞서 내보인 '내 몸의 예수의 흔적(스티그마)'은 실제로 어떤 상처들이었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E170_hero.webp",
+      "thumbImage": "assets/events/E170_thumb.webp"
     },
     {
       "id": "E171",
@@ -10209,7 +10359,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "공생애 때는 형 예수님을 믿지 않던 야고보가 부활하신 주님을 만난 뒤 어떻게 변했으며 왜 무릎이 낙타 무릎처럼 딱딱해졌을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E171_hero.webp",
+      "thumbImage": "assets/events/E171_thumb.webp"
     },
     {
       "id": "E172",
@@ -10291,7 +10444,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성령 충만한 대사도 바울과 바나바가 왜 마가 문제로 심히 다투어 갈라섰으며 하나님은 그 갈등을 어떻게 세계 선교의 두 날개로 바꾸셨을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E172_hero.webp",
+      "thumbImage": "assets/events/E172_thumb.webp"
     },
     {
       "id": "E173",
@@ -10361,7 +10517,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "신들의 도시 아테네 한복판에 왜 '알지 못하는 신에게'라는 제단이 서 있었으며 바울은 이를 어떻게 복음의 접촉점으로 삼았을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E173_hero.webp",
+      "thumbImage": "assets/events/E173_thumb.webp"
     },
     {
       "id": "E174",
@@ -10442,7 +10601,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "그리스 델피 아폴로 신전에서 발굴된 '갈리오 비문' 조각 하나가 어떻게 바울의 모든 선교여행과 서신서 연대를 확정 짓는 열쇠가 되었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E174_hero.webp",
+      "thumbImage": "assets/events/E174_thumb.webp"
     },
     {
       "id": "E175",
@@ -10539,7 +10701,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고목이 되어 베어진 감람나무 뿌리에서 다시 솟아나는 새순('네체르')과 야생 돌감람나무 가지를 참감람나무에 접붙이는 농법은 어떤 복음의 비밀을 담고 있을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E175_hero.webp",
+      "thumbImage": "assets/events/E175_thumb.webp"
     },
     {
       "id": "E176",
@@ -10628,7 +10793,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 유대인들은 유월절이 시작되기 전날 밤에 촛불을 켜 들고 집안 찬장 틈새에 남은 작은 누룩 부스러기까지 다 찾아내어 불태웠을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E176_hero.webp",
+      "thumbImage": "assets/events/E176_thumb.webp"
     },
     {
       "id": "E177",
@@ -10702,7 +10870,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "손수건만 얹어도 남의 병을 고치던 대사도 바울이 왜 정작 자기 몸의 질병('육체의 가시')은 고침 받지 못했으며 그 거절이 어떻게 더 큰 응답이 되었을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E177_hero.webp",
+      "thumbImage": "assets/events/E177_thumb.webp"
     },
     {
       "id": "E178",
@@ -10790,7 +10961,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E178_hero.webp",
+      "thumbImage": "assets/events/E178_thumb.webp"
     },
     {
       "id": "E179",
@@ -10860,7 +11034,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E179_hero.webp",
+      "thumbImage": "assets/events/E179_thumb.webp"
     },
     {
       "id": "E180",
@@ -10912,7 +11089,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E180_hero.webp",
+      "thumbImage": "assets/events/E180_thumb.webp"
     },
     {
       "id": "E181",
@@ -10935,8 +11115,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E181_hero.webp",
+      "thumbImg": "assets/events/E181_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -10958,7 +11138,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E181_hero.webp",
+      "thumbImage": "assets/events/E181_thumb.webp"
     },
     {
       "id": "E182",
@@ -10981,8 +11164,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E182_hero.webp",
+      "thumbImg": "assets/events/E182_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11010,7 +11193,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 멜리데 섬 원주민들은 바울의 손에 독사가 매달리자 '살인자'라 했다가 독사를 불에 털고 아무 이상이 없자 단숨에 '신(神)'이라 불렀을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E182_hero.webp",
+      "thumbImage": "assets/events/E182_thumb.webp"
     },
     {
       "id": "E183",
@@ -11033,8 +11219,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E183_hero.webp",
+      "thumbImg": "assets/events/E183_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11050,7 +11236,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 멜리데 섬 원주민들은 바울의 손에 독사가 매달리자 '살인자'라 했다가 독사를 불에 털고 아무 이상이 없자 단숨에 '신(神)'이라 불렀을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E183_hero.webp",
+      "thumbImage": "assets/events/E183_thumb.webp"
     },
     {
       "id": "E184",
@@ -11073,8 +11262,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E184_hero.webp",
+      "thumbImg": "assets/events/E184_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11090,7 +11279,10 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 박해받던 초대교회 성도들은 십자가보다 먼저 '물고기 그림(익투스)'을 서로를 알아보는 비밀 신앙고백 암호로 사용했을까?"
         }
       ],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E184_hero.webp",
+      "thumbImage": "assets/events/E184_thumb.webp"
     },
     {
       "id": "E185",
@@ -11113,8 +11305,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E185_hero.webp",
+      "thumbImg": "assets/events/E185_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11124,7 +11316,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E185_hero.webp",
+      "thumbImage": "assets/events/E185_thumb.webp"
     },
     {
       "id": "E186",
@@ -11147,8 +11342,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E186_hero.webp",
+      "thumbImg": "assets/events/E186_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11164,7 +11359,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E186_hero.webp",
+      "thumbImage": "assets/events/E186_thumb.webp"
     },
     {
       "id": "E187",
@@ -11187,8 +11385,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E187_hero.webp",
+      "thumbImg": "assets/events/E187_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11198,7 +11396,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E187_hero.webp",
+      "thumbImage": "assets/events/E187_thumb.webp"
     },
     {
       "id": "E188",
@@ -11221,8 +11422,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E188_hero.webp",
+      "thumbImg": "assets/events/E188_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11244,7 +11445,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E188_hero.webp",
+      "thumbImage": "assets/events/E188_thumb.webp"
     },
     {
       "id": "E189",
@@ -11267,8 +11471,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E189_hero.webp",
+      "thumbImg": "assets/events/E189_thumb.webp",
       "relatedPersons": [
         {
           "id": "P026",
@@ -11296,7 +11500,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E189_hero.webp",
+      "thumbImage": "assets/events/E189_thumb.webp"
     },
     {
       "id": "E190",
@@ -11319,8 +11526,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "isPillar": false,
       "comparisonKey": null,
       "dossierMd": "• E181~E199 주요 수록 사건 요약: 마태복음 족보 속 다말의 홍색 실 역전(E181), 새 포도주와 새 부대 비유(E182), 두 맹인 치유와 추수할 일꾼 기도(E183), 안식일에 18년 꼬부라진 '아브라함의 딸'을 펴 주심(E184), 수종병 치유와 큰 잔치 초청 비유(E185), 열 명의 나병환자와 돌아와 감사한 사마리아인(E186), 불의한 재판관과 과부의 낙망치 않는 기도 비유(E187), 헬라인들의 방문과 '한 알의 밀알' 강론(E188), 요한복음 14~17장 다락방 고별 강화(참포도나무·보혜사 성령·대제사장 중보기도, E189), 가룟 유다의 은 삼십과 토기장이의 밭 예언 성취(E190), 무덤 인봉과 경비병 배치 역설(E191), 사마리아 성 베드로·요한 안수(E192), 예루살렘 교회의 이방인 회개 공인(E193), 안디옥 식탁 교제 논쟁과 갈라디아서 2:20('내가 그리스도와 함께 십자가에 못 박혔나니') 선언(E194), 바울의 육체의 가시와 '내 은혜가 네게 족하도다'(고후 12:9, E195), 마게도냐·아가야 은혜의 연보 대장정(E196), 디도의 그레데 장로 임명(E197), 야고보서·유다서·히브리서 사역(E198), 노사도 요한의 에베소 사역과 요한복음·요한서신 집필(E199).",
-      "heroImg": "",
-      "thumbImg": "",
+      "heroImg": "assets/events/E190_hero.webp",
+      "thumbImg": "assets/events/E190_thumb.webp",
       "relatedPersons": [
         {
           "id": "P131",
@@ -11336,7 +11543,10 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": false
+      "hasImage": true,
+      "imageReady": true,
+      "heroImage": "assets/events/E190_hero.webp",
+      "thumbImage": "assets/events/E190_thumb.webp"
     },
     {
       "id": "E191",
@@ -16355,5 +16565,6 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "hasImage": false
     }
-  ]
+  ],
+  "imageCompleteCount": 100
 };

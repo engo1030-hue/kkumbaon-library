@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,25 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root {
+    :root, [data-theme="light"] {
+      --bg-deep: #F9F6F0;
+      --bg-hall: #FFFFFF;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FDFBF7;
+      --bg-parchment: #FBF7EE;
+      --gold-bright: #8C621E;
+      --gold-primary: #9A6B1F;
+      --gold-muted: #7A5A2B;
+      --text-cream: #1F1A15;
+      --text-warm: #43392F;
+      --text-dim: #6E6256;
+      --crimson: #B84A39;
+      --emerald: #2E6F4E;
+      --azure: #2B5B84;
+      --purple: #6B469B;
+      --border-gold: #DFD5C5;
+    }
+    [data-theme="dark"] {
       --bg-deep: #0F0C09;
       --bg-hall: #17130E;
       --bg-card: #211B14;
@@ -28,12 +46,15 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: radial-gradient(circle at 50% 0%, #241C13 0%, var(--bg-deep) 70%);
+      background: var(--bg-deep);
       color: var(--text-cream);
       font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.65;
       min-height: 100vh;
       overflow-x: hidden;
+    }
+    [data-theme="dark"] body {
+      background: radial-gradient(circle at 50% 0%, #241C13 0%, var(--bg-deep) 70%);
     }
     @media (hover: hover) and (pointer: fine) {
       html, body {
@@ -611,6 +632,150 @@ html, body, .top-bar {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_PARCHMENT_LIGHT_OVERRIDES] === */
+[data-theme="light"] .top-bar {
+  background: linear-gradient(135deg, #241B13 0%, #3E2E1E 100%) !important;
+  border-bottom: 2px solid #C89B3C !important;
+}
+[data-theme="light"] .top-bar .brand-title { color: #FAF6EE !important; }
+[data-theme="light"] .top-bar .brand-badge {
+  background: linear-gradient(135deg, #D8AE48, #B88928);
+  color: #1A120B;
+}
+[data-theme="light"] .top-bar .btn-top {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.22);
+  color: #FAF6EE;
+}
+[data-theme="light"] .top-bar .btn-top:hover,
+[data-theme="light"] .top-bar .btn-top.gold {
+  background: linear-gradient(135deg, #D8AE48, #B88928);
+  color: #1A120B;
+  border-color: #F3D27A;
+}
+[data-theme="light"] .hero-banner {
+  background: linear-gradient(135deg, #F5EFE2 0%, #EDE3D0 100%);
+  border: 1px solid #D6C7B0;
+  box-shadow: 0 10px 28px rgba(31, 26, 21, 0.07);
+}
+[data-theme="light"] .hero-text h1 { color: #1F1A15; }
+[data-theme="light"] .stat-pill {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+}
+[data-theme="light"] .timeline-btn {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  color: #3D3329;
+}
+[data-theme="light"] .timeline-btn:hover,
+[data-theme="light"] .timeline-btn.active {
+  background: linear-gradient(135deg, #8C621E, #6E4B12);
+  color: #FFFFFF;
+  border-color: #8C621E;
+}
+[data-theme="light"] .type-btn {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  color: #3D3329;
+}
+[data-theme="light"] .type-btn:hover,
+[data-theme="light"] .type-btn.active {
+  background: rgba(140, 98, 30, 0.14);
+  border-color: #8C621E;
+  color: #6E4B12;
+}
+[data-theme="light"] .search-input {
+  background: #FFFFFF;
+  color: #1F1A15;
+  border: 1px solid #D6C7B0;
+}
+[data-theme="light"] .compare-banner {
+  background: linear-gradient(90deg, rgba(140, 98, 30, 0.08), rgba(43, 91, 132, 0.08));
+  border: 1px dashed #C8B698;
+}
+[data-theme="light"] .btn-comp {
+  background: #FFFFFF;
+  border: 1px solid #D6C7B0;
+  color: #2A2118;
+}
+[data-theme="light"] .btn-comp:hover {
+  background: #8C621E;
+  color: #FFFFFF;
+}
+[data-theme="light"] .event-card {
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  box-shadow: 0 4px 14px rgba(31, 26, 21, 0.05);
+}
+[data-theme="light"] .event-card:hover {
+  border-color: #8C621E;
+  box-shadow: 0 12px 26px rgba(31, 26, 21, 0.11);
+  background: #FDFBF7;
+}
+[data-theme="light"] .card-top {
+  border-bottom: 1px solid #EFE8DA;
+}
+[data-theme="light"] .card-bottom {
+  background: #F9F6F0;
+  border-top: 1px solid #EFE8DA;
+}
+[data-theme="light"] .c-tag {
+  background: #EFE8DA;
+  color: #5C5248;
+}
+[data-theme="light"] .badge-person {
+  background: rgba(46, 111, 78, 0.10);
+  border-color: rgba(46, 111, 78, 0.32);
+  color: #1F5B3D;
+}
+[data-theme="light"] .badge-behind {
+  background: rgba(107, 70, 155, 0.10);
+  border-color: rgba(107, 70, 155, 0.32);
+  color: #53327D;
+}
+[data-theme="light"] .modal-content {
+  background: #F9F6F0;
+  border: 1px solid #D6C7B0;
+  box-shadow: 0 25px 60px rgba(31, 26, 21, 0.25);
+}
+[data-theme="light"] .modal-header {
+  background: linear-gradient(135deg, #241B13, #3E2E1E);
+  color: #FAF6EE;
+}
+[data-theme="light"] .modal-header #modalTitle,
+[data-theme="light"] .modal-header #compModalTitle { color: #F5D78E !important; }
+[data-theme="light"] .modal-header #modalOrigTitle,
+[data-theme="light"] .modal-header #modalEra { color: #D8CCB8 !important; }
+[data-theme="light"] .modal-header .btn-close { color: #FAF6EE; }
+[data-theme="light"] .dept-card {
+  background: #FFFFFF;
+  border: 1px solid #E2D8C7;
+  border-left: 3px solid #8C621E;
+}
+[data-theme="light"] .tri-links-section {
+  background: #F3ECE0;
+  border: 1px solid #DFD5C5;
+}
+[data-theme="light"] .tri-chip {
+  background: #FFFFFF;
+  border: 1px solid #D6C7B0;
+  color: #2A2118;
+}
+[data-theme="light"] .compare-table tr:nth-child(even) td {
+  background: #F3ECE0;
+}
+[data-theme="light"] #kkumbaonOfficialFooterBar {
+  background: #EFE8D9 !important;
+  color: #4A3F35 !important;
+  border-top: 1px solid #D6C7B0 !important;
+}
+[data-theme="light"] #kkumbaonOfficialFooterBar strong { color: #1F1A15 !important; }
+[data-theme="light"] #kkumbaonOfficialFooterBar button {
+  color: #8C621E !important;
+  border-color: rgba(140,98,30,0.4) !important;
+}
 </style>
 </head>
 <body>
@@ -626,6 +791,7 @@ html, body, .top-bar {
       <a href="figures_encyclopedia_preview.html" class="btn-top">제1관 인물가계도 (350)</a>
       <a href="behinds_encyclopedia_preview.html" class="btn-top">제3관 비하인드 (300)</a>
       <button class="btn-top" onclick="filterPillarEvents()">기둥 30대 사건 (성화 완비)</button>
+      <button class="btn-top" onclick="cycleTheme()" id="themeBtn">🎨 테마: 양피지 라이트</button>
       <a href="index.html" class="btn-top gold">꿈디도 본관 대문</a>
     </div>
   </header>
@@ -822,6 +988,14 @@ html, body, .top-bar {
     let currentType = 'all';
     let onlyPillar = false;
     let searchQuery = '';
+
+    function cycleTheme() {
+      const html = document.documentElement;
+      const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      const btn = document.getElementById('themeBtn');
+      if (btn) btn.textContent = next === 'light' ? '🎨 테마: 양피지 라이트' : '🌙 테마: 다크 골드';
+    }
 
     
     function formatCleanDossier(raw) {
@@ -1083,5 +1257,6 @@ html, body, .top-bar {
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
+  <script src="kkumdido-shield.js"></script>
 </body>
 </html>

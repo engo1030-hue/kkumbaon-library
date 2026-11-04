@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" data-theme="gold">
+<html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +8,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root, [data-theme="gold"] {
+    :root, [data-theme="light"] {
+      --bg: #F9F6F0;
+      --bg-sub: #F1ECE1;
+      --card: #FFFFFF;
+      --card-hover: #FDFBF7;
+      --text: #1F1A15;
+      --muted: #5C5248;
+      --accent: #8C621E;
+      --accent-soft: rgba(140, 98, 30, 0.12);
+      --gold: #9A6B1F;
+      --border: #DFD5C5;
+      --header-grad: linear-gradient(135deg, #241B13 0%, #3E2E1E 100%);
+      --modal-sec: #F6F1E7;
+    }
+    [data-theme="gold"] {
       --bg: #120E0B;
       --bg-sub: #1A1410;
       --card: #1F1813;
@@ -36,19 +50,14 @@
       --header-grad: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       --modal-sec: rgba(15, 23, 42, 0.45);
     }
-    [data-theme="light"] {
-      --bg: #F9F6F0;
-      --bg-sub: #F1ECE1;
-      --card: #FFFFFF;
-      --card-hover: #FDFBF7;
-      --text: #1F1A15;
-      --muted: #5C5248;
-      --accent: #8C621E;
-      --accent-soft: rgba(140, 98, 30, 0.12);
-      --gold: #9A6B1F;
-      --border: #DFD5C5;
-      --header-grad: linear-gradient(135deg, #241B13 0%, #3E2E1E 100%);
-      --modal-sec: #F6F1E7;
+    [data-theme="light"] .modal-actions-bar .btn {
+      color: var(--text);
+      background: var(--bg-sub);
+      border-color: var(--border);
+    }
+    [data-theme="light"] .modal-actions-bar .btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -533,7 +542,7 @@ header {
           <a class="btn" href="figures_encyclopedia_preview.html" style="text-decoration:none;">제1관 인물가계도·350인</a>
           <a class="btn" href="events_encyclopedia_preview.html" style="text-decoration:none;">제2관 사건대백과</a>
           <a class="btn" href="behinds_encyclopedia_preview.html" style="text-decoration:none;">제3관 비하인드</a>
-          <button class="btn" onclick="cycleTheme()" id="themeBtn">테마: 꿈디도 골드</button>
+          <button class="btn" onclick="cycleTheme()" id="themeBtn">🎨 테마: 양피지 라이트</button>
           <a class="btn btn-gold" href="index.html">꿈디도 본관 대문</a>
         </div>
       </div>
@@ -790,13 +799,13 @@ header {
             <h4>성화 도판 패키지 (${item.portrait ? '투명 초상 + ' : ''}장면 ${item.scenes.length}컷)</h4>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:8px;">
               ${item.portrait ? `
-                <div style="background:#140F0A;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+                <div style="background:var(--bg-sub);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
                   <img src="${item.portrait}" alt="${escapeHtml(item.title)}" style="width:100%;height:190px;object-fit:contain;display:block;background:radial-gradient(circle,#3E3020,#120E09);" />
                   <div style="padding:8px 10px;font-size:0.8rem;color:var(--gold);font-weight:700;">관계도용 투명 초상</div>
                 </div>
               ` : ''}
               ${item.scenes.map(sc => `
-                <div style="background:#140F0A;border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+                <div style="background:var(--bg-sub);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
                   <img src="${sc.img}" alt="${escapeHtml(sc.title)}" style="width:100%;height:190px;object-fit:cover;display:block;" />
                   <div style="padding:8px 10px;font-size:0.8rem;color:var(--text);">${escapeHtml(sc.title)}</div>
                 </div>
@@ -883,8 +892,8 @@ header {
     }
 
     const THEMES = [
-      { key: "gold", label: "🎨 테마: 꿈디도 골드" },
       { key: "light", label: "🎨 테마: 양피지 라이트" },
+      { key: "gold", label: "🎨 테마: 꿈디도 골드" },
       { key: "midnight", label: "🎨 테마: 심야 블루" }
     ];
     let themeIdx = 0;
@@ -976,11 +985,12 @@ header {
 </div>
 
 
-<div id="kkumbaonOfficialFooterBar" style="padding:10px 18px; text-align:center; font-size:12px; color:#94a3b8; background:rgba(15,23,42,0.92); border-top:1px solid rgba(148,163,184,0.2); line-height:1.5;">
-  <strong style="color:#e2e8f0;">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
-  &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:rgba(245,158,11,0.15); color:#fbbf24; border:1px solid rgba(245,158,11,0.4); border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
+<div id="kkumbaonOfficialFooterBar" style="padding:10px 18px; text-align:center; font-size:12px; color:var(--text-muted); background:var(--bg-sub); border-top:1px solid var(--border); line-height:1.5;">
+  <strong style="color:var(--text);">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
+  &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:rgba(154,107,31,0.12); color:var(--gold); border:1px solid var(--border-strong); border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
+  <script src="kkumdido-shield.js"></script>
 </body>
 </html>

@@ -748,7 +748,6 @@
     .wesley-subbar,
     .feasts-subbar,
     .figures-subbar,
-    .praise-subbar,
     .deungjan-subbar,
     .soso-subbar {
       display: none;
@@ -765,7 +764,6 @@
     .wesley-subbar.open,
     .feasts-subbar.open,
     .figures-subbar.open,
-    .praise-subbar.open,
     .deungjan-subbar.open,
     .soso-subbar.open {
       display: block;
@@ -774,7 +772,6 @@
     .wesley-subbar,
     .feasts-subbar,
     .figures-subbar,
-    .praise-subbar,
     .deungjan-subbar,
     .soso-subbar {
       background: linear-gradient(135deg, #19130E 0%, #2B2015 55%, #1E1710 100%);
@@ -2205,11 +2202,11 @@
       height: 26px !important;
     }
 
-    /* 단정한 상단 12관 아카이브 직행 서브바 (좌측 당김 배치 & 1~6관/7~12관 위아래 칼정렬) */
+    /* 단정한 상단 12관 아카이브 직행 서브바 (좌측 2x2 배지 그리드 & 우측 1~6관/7~12관 6x2 수평 칼정렬 · 고전 도서관 톤앤매너 통일) */
     .kkumdido-12halls-bar {
       background: #EFEAE0;
-      border-bottom: 1px solid #DDD5C5;
-      padding: 8px clamp(16px, 2vw, 36px);
+      border-bottom: 1px solid #D8CEBC;
+      padding: 11px clamp(16px, 2vw, 36px);
       display: flex;
       align-items: center;
     }
@@ -2219,51 +2216,61 @@
       margin: 0 auto;
       display: flex;
       align-items: center;
-      justify-content: flex-start;
-      gap: clamp(18px, 2vw, 34px);
+      justify-content: space-between;
+      gap: 24px;
     }
     .kkumdido-12halls-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 7px 9px;
       flex-shrink: 0;
+      padding-right: 20px;
+      border-right: 1px solid #D2C7B2;
     }
     .kkumdido-12halls-badge {
-      font-size: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
       font-weight: 800;
       color: #F5DF98;
       background: #241A10;
       border: 1px solid #B89446;
-      padding: 6px 14px;
-      border-radius: 999px;
+      padding: 6px 15px;
+      border-radius: 8px;
       text-decoration: none;
-      letter-spacing: -0.2px;
+      letter-spacing: -0.25px;
       flex-shrink: 0;
       white-space: nowrap;
-      box-shadow: 0 2px 6px rgba(36, 26, 16, 0.12);
+      box-shadow: 0 2px 5px rgba(36, 26, 16, 0.10);
+      transition: all 0.15s ease;
     }
     .kkumdido-12halls-badge:hover {
       color: #FFFFFF;
+      background: #352617;
       border-color: #E5C878;
     }
     .kkumdido-12halls-genealogy {
-      font-size: 12.5px;
-      font-weight: 800;
-      color: #3B3228;
-      background: #FBF8F1;
-      border: 1px solid #C8A45D;
-      padding: 5px 13px;
-      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #2E251D;
+      background: #FAF6ED;
+      border: 1px solid #C8B696;
+      padding: 6px 14px;
+      border-radius: 8px;
       text-decoration: none;
       letter-spacing: -0.3px;
       white-space: nowrap;
-      box-shadow: 0 1px 4px rgba(36, 26, 16, 0.06);
+      box-shadow: 0 1px 3px rgba(36, 26, 16, 0.04);
       transition: all 0.15s ease;
     }
     .kkumdido-12halls-genealogy span.h-no {
       color: #8C621E;
       font-weight: 800;
-      margin-right: 5px;
+      margin-right: 6px;
     }
     .kkumdido-12halls-genealogy:hover {
       background: #241A10;
@@ -2274,10 +2281,11 @@
       color: #E5C878;
     }
     .kkumdido-12halls-grid {
+      flex: 1;
       display: grid;
-      grid-template-columns: repeat(6, auto);
-      column-gap: clamp(18px, 2.1vw, 36px);
-      row-gap: 4px;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      column-gap: 12px;
+      row-gap: 9px;
       align-items: center;
     }
     .kkumdido-12halls-grid a {
@@ -2285,16 +2293,17 @@
       display: inline-flex;
       align-items: center;
       text-decoration: none;
-      color: #3B3228;
-      font-size: clamp(12.5px, 0.88vw, 14px);
+      color: #241A10;
+      font-size: 15px;
       font-weight: 700;
-      letter-spacing: -0.3px;
-      padding: 2px 4px 2px clamp(18px, 1.8vw, 32px);
-      transition: color 0.15s ease, transform 0.15s ease;
+      letter-spacing: -0.35px;
+      padding: 3px 6px 3px 16px;
+      border-radius: 6px;
+      transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
       white-space: nowrap;
     }
     .kkumdido-12halls-grid a.col-first {
-      padding-left: 4px;
+      padding-left: 6px;
     }
     .kkumdido-12halls-grid a:not(.col-first)::before {
       content: '|';
@@ -2302,8 +2311,8 @@
       left: 0;
       top: 50%;
       transform: translateY(-50%);
-      color: #C9BFA8;
-      font-size: 10px;
+      color: #C4B89E;
+      font-size: 11px;
       font-weight: 400;
       user-select: none;
       pointer-events: none;
@@ -2311,11 +2320,263 @@
     .kkumdido-12halls-grid a span.h-no {
       color: #8C621E;
       font-weight: 800;
-      margin-right: 5px;
+      margin-right: 6px;
     }
     .kkumdido-12halls-grid a:hover {
-      color: #8C621E;
+      color: #6E4B12;
+      background: rgba(200, 164, 93, 0.14);
       transform: translateY(-1px);
+    }
+
+    /* 사역 스튜디오 (8종) 메가 드로어 (서랍 메뉴) */
+    .kkumdido-studios-drawer {
+      display: none;
+      background: linear-gradient(180deg, #FBF8F1 0%, #F2ECE0 100%);
+      border-bottom: 2px solid #C8A45D;
+      padding: 18px 24px 20px;
+      box-shadow: 0 14px 32px rgba(24, 18, 10, 0.12);
+      position: relative;
+      z-index: 990;
+    }
+    .kkumdido-studios-drawer.open {
+      display: block;
+      animation: studioDrawerFade 0.2s ease-out;
+    }
+    @keyframes studioDrawerFade {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .kkd-drawer-inner {
+      width: 1392px;
+      max-width: 1392px;
+      min-width: 1392px;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .kkd-drawer-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #DFD5C3;
+    }
+    .kkd-drawer-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15.5px;
+      font-weight: 800;
+      color: #241A10;
+    }
+    .kkd-drawer-title span.sub {
+      font-size: 13px;
+      font-weight: 600;
+      color: #6E5D4B;
+    }
+    .kkd-drawer-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .kkd-drawer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px 12px;
+    }
+    .kkd-studio-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 11px 15px;
+      background: #FFFFFF;
+      border: 1px solid #D5C8B3;
+      border-radius: 10px;
+      text-decoration: none;
+      color: #241A10;
+      transition: all 0.16s ease;
+      box-shadow: 0 2px 6px rgba(36, 26, 16, 0.04);
+    }
+    .kkd-studio-card:hover {
+      border-color: #8C621E;
+      background: #FDF9EF;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 14px rgba(36, 26, 16, 0.09);
+    }
+    .kkd-studio-card.featured {
+      background: linear-gradient(135deg, #FFFDF7 0%, #F7EDD4 100%);
+      border-color: #B89446;
+    }
+    .kkd-studio-card strong {
+      display: block;
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #1F170E;
+      margin-bottom: 2px;
+    }
+    .kkd-studio-card small {
+      display: block;
+      font-size: 12px;
+      color: #6E5D4B;
+      font-weight: 600;
+    }
+    .kkd-studio-card .arr {
+      font-size: 14px;
+      font-weight: 800;
+      color: #8C621E;
+      flex-shrink: 0;
+    }
+    body.dark-theme .kkumdido-studios-drawer {
+      background: linear-gradient(180deg, #161B26 0%, #10141D 100%);
+      border-bottom-color: rgba(212, 175, 55, 0.45);
+    }
+    body.dark-theme .kkd-drawer-title { color: #F5EFE6; }
+    body.dark-theme .kkd-drawer-title span.sub { color: #B8AE9E; }
+    body.dark-theme .kkd-drawer-top { border-bottom-color: rgba(212, 175, 55, 0.22); }
+    body.dark-theme .kkd-studio-card {
+      background: #1C2331;
+      border-color: rgba(212, 175, 55, 0.28);
+      color: #F5EFE6;
+    }
+    body.dark-theme .kkd-studio-card strong { color: #F7DC81; }
+    body.dark-theme .kkd-studio-card small { color: #C7B9A5; }
+
+    /* 통합 빠른 검색 모달 (Global Quick Search Modal) */
+    .kkd-qsearch-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 14, 10, 0.62);
+      backdrop-filter: blur(4px);
+      z-index: 3000;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 86px;
+    }
+    .kkd-qsearch-backdrop.open {
+      display: flex;
+    }
+    .kkd-qsearch-box {
+      width: min(760px, calc(100vw - 32px));
+      background: #FBF8F1;
+      border: 1.5px solid #C8A45D;
+      border-radius: 14px;
+      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+      overflow: hidden;
+      color: #241A10;
+    }
+    .kkd-qsearch-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: #F4EFE3;
+      border-bottom: 1px solid #DED4C1;
+    }
+    .kkd-qsearch-head input {
+      flex: 1;
+      border: 1px solid #C8B89A;
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 11px 15px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1F170E;
+      outline: none;
+    }
+    .kkd-qsearch-head input:focus {
+      border-color: #8C621E;
+      box-shadow: 0 0 0 3px rgba(140, 98, 30, 0.15);
+    }
+    .kkd-qsearch-close {
+      border: 1px solid #C8B89A;
+      background: #FFFFFF;
+      color: #4A3F35;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .kkd-qsearch-chips {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+      padding: 11px 20px;
+      background: #F7F3E8;
+      border-bottom: 1px solid #E5DEC9;
+      font-size: 13px;
+    }
+    .kkd-qsearch-chips span {
+      font-weight: 800;
+      color: #8C621E;
+      margin-right: 4px;
+    }
+    .kkd-qsearch-chips button {
+      border: 1px solid #D5C8B3;
+      background: #FFFFFF;
+      color: #3B3228;
+      border-radius: 999px;
+      padding: 4px 11px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .kkd-qsearch-chips button:hover {
+      background: #241A10;
+      color: #F5DF98;
+      border-color: #B89446;
+    }
+    .kkd-qsearch-body {
+      max-height: 440px;
+      overflow-y: auto;
+      padding: 16px 20px 20px;
+    }
+    .kkd-qsearch-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      width: 100%;
+      text-align: left;
+      padding: 11px 14px;
+      background: #FFFFFF;
+      border: 1px solid #E2D9C8;
+      border-radius: 9px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #241A10;
+      transition: all 0.14s ease;
+    }
+    .kkd-qsearch-item:hover {
+      border-color: #8C621E;
+      background: #FDF9EF;
+    }
+    .kkd-qsearch-item strong {
+      display: block;
+      font-size: 15px;
+      font-weight: 800;
+      color: #1F170E;
+    }
+    .kkd-qsearch-item small {
+      display: block;
+      font-size: 12.5px;
+      color: #6E5D4B;
+      margin-top: 2px;
+    }
+    .kkd-qsearch-badge {
+      font-size: 12px;
+      font-weight: 800;
+      color: #8C621E;
+      background: #F6EFE0;
+      border: 1px solid #D8C7A6;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
     }
 
     @media (max-width: 1150px) {
@@ -2363,6 +2624,7 @@ html, body {
 }
 .entrance-header,
 .kkumdido-12halls-bar,
+.kkumdido-studios-drawer,
 .kkumbaon-welcome-bar,
 .top-slim-tabs-bar,
 .entrance-main,
@@ -2371,26 +2633,99 @@ footer {
   box-sizing: border-box !important;
 }
 .entrance-header {
-  padding: 0 20px !important;
+  height: 90px !important;
+  padding: 0 24px !important;
   gap: 10px !important;
   flex-wrap: nowrap !important;
+  justify-content: space-between !important;
+}
+.entrance-brand {
+  gap: 11px !important;
+  flex-shrink: 0 !important;
+}
+.entrance-emblem {
+  width: 45px !important;
+  height: 50px !important;
 }
 .entrance-brand strong {
-  font-size: 18px !important;
+  font-size: 21.5px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.8px !important;
+}
+.entrance-brand small {
+  font-size: 9.5px !important;
+  letter-spacing: 2.3px !important;
+  font-weight: 600 !important;
+  margin-top: 5px !important;
 }
 .entrance-nav {
-  gap: 6px !important;
+  gap: 9.5px !important;
+  margin-left: auto !important;
   flex-wrap: nowrap !important;
+  overflow: visible !important;
 }
 .entrance-nav a,
 .entrance-nav button {
-  font-size: 13px !important;
-  padding: 0 2px !important;
+  font-size: 15.5px !important;
+  font-weight: 700 !important;
+  padding: 0 3px !important;
+  letter-spacing: -0.4px !important;
 }
-.entrance-nav .nav-12arch-btn,
-.entrance-nav .nav-moses-btn {
-  font-size: 12px !important;
-  padding: 0 9px !important;
+.entrance-nav .nav-current {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+.entrance-nav .nav-search-btn {
+  background: #FBF9F3 !important;
+  color: #2E251D !important;
+  border: 1px solid #C8B89A !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  height: 36px !important;
+  padding: 0 11px !important;
+  border-radius: 8px !important;
+  margin-left: 3px !important;
+  box-shadow: 0 1px 3px rgba(36, 26, 16, 0.05) !important;
+}
+.entrance-nav .nav-search-btn:hover {
+  border-color: #8C621E !important;
+  background: #FFFFFF !important;
+  color: #1F170E !important;
+}
+.entrance-nav .nav-studio-trigger {
+  background: #241A10 !important;
+  color: #F5DF98 !important;
+  border: 1px solid #B89446 !important;
+  font-size: 13.5px !important;
+  font-weight: 800 !important;
+  height: 36px !important;
+  padding: 0 12px !important;
+  border-radius: 8px !important;
+  margin-left: 1px !important;
+  box-shadow: 0 2px 6px rgba(36, 26, 16, 0.14) !important;
+}
+.entrance-nav .nav-studio-trigger:hover,
+.entrance-nav .nav-studio-trigger.active {
+  background: #352617 !important;
+  color: #FFFFFF !important;
+  border-color: #E5C878 !important;
+}
+.entrance-nav .nav-guide-btn {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  margin-left: 1px !important;
+  padding-left: 8px !important;
+  color: #4A554C !important;
+}
+.entrance-theme {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  padding: 7px 11px !important;
+  border-radius: 8px !important;
+  border-color: #C8B89A !important;
+  color: #2E251D !important;
+  background: #FBF9F3 !important;
+  flex-shrink: 0 !important;
 }
 .kkumdido-12halls-bar,
 .kkumbaon-welcome-bar,
@@ -2425,13 +2760,11 @@ footer {
   flex-wrap: nowrap !important;
 }
 .kkumdido-12halls-grid {
-  grid-template-columns: repeat(6, auto) !important;
+  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
   width: auto !important;
 }
 /* 하단 양피지 배경 위의 섹션들도 외곽 1440px(좌우 패딩 24px -> 내부 1392px)로 완벽 통일 */
 #ebookShelfSection,
-section[aria-label="시범 운영 및 첫 방문 안내"],
-#kkumdido12ArchivesGateway,
 .controls-wrap,
 .cinema-studio-grid,
 .archive-main,
@@ -2451,8 +2784,468 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
   grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_PARCHMENT_LIGHT_DEFAULT_START] === */
+body:not(.dark-theme) .kkumbaon-welcome-bar {
+  background: linear-gradient(90deg, #EFE8D9 0%, #F7F3EA 50%, #EFE8D9 100%);
+  border-bottom: 1.5px solid #D8CEBC;
+  color: #1F1A15;
+}
+body:not(.dark-theme) .kw-eyebrow {
+  color: #8C621E;
+}
+body:not(.dark-theme) .kw-headline {
+  color: #1F1A15;
+}
+body:not(.dark-theme) .kw-headline span {
+  color: #8C621E;
+}
+body:not(.dark-theme) .kw-quote {
+  color: #3B3228;
+  background: #FFFFFF;
+  border: 1px solid #DFD5C5;
+  border-left: 3px solid #8C621E;
+}
+body:not(.dark-theme) .entrance-main {
+  background: radial-gradient(ellipse at 60% -20%, #EFE8D8 0, transparent 65%), #F6F2E9 !important;
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .hall-intro h1 {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .hall-intro h1 em {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .hall-intro p {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .hall-eyebrow {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .hall-eyebrow > span {
+  background: #8C621E !important;
+}
+body:not(.dark-theme) .hall-stats > div {
+  border-left-color: #D8CEBC !important;
+}
+body:not(.dark-theme) .hall-stats strong {
+  color: #241A10 !important;
+}
+body:not(.dark-theme) .hall-stats span {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .region-tabs button {
+  color: #4A3F35 !important;
+}
+body:not(.dark-theme) .region-tabs button:hover {
+  background: #EBE3D3 !important;
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .region-tabs .is-active {
+  background: #8C621E !important;
+  color: #FFFFFF !important;
+  border-color: #7A5418 !important;
+}
+body:not(.dark-theme) .place-search-wrap {
+  background: #FFFFFF !important;
+  border: 1px solid #D5C8B3 !important;
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .place-search-wrap input {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .place-search-wrap input::placeholder {
+  color: #85786A !important;
+}
+body:not(.dark-theme) .map-caption {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .map-caption button {
+  color: #8C621E !important;
+  border-bottom-color: #8C621E !important;
+}
+body:not(.dark-theme) .city-story {
+  border-top-color: #DFD5C5 !important;
+}
+body:not(.dark-theme) .section-eyebrow {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .story-topline button {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .story-content h2 {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .story-subtitle {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .story-intro {
+  color: #3B3228 !important;
+}
+body:not(.dark-theme) .story-feature-tags span {
+  background: #FFFFFF !important;
+  border-color: #DFD5C5 !important;
+  color: #4A3F35 !important;
+}
+body:not(.dark-theme) .story-events,
+body:not(.dark-theme) .story-events li,
+body:not(.dark-theme) .story-docs-section {
+  border-color: #DFD5C5 !important;
+}
+body:not(.dark-theme) .story-events li span {
+  color: #2A2118 !important;
+}
+body:not(.dark-theme) .story-events a {
+  color: #8C621E !important;
+  font-weight: 700 !important;
+}
+body:not(.dark-theme) .location-note,
+body:not(.dark-theme) .story-image-caption,
+body:not(.dark-theme) .story-docs-heading span {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .story-doc {
+  background: #FFFFFF !important;
+  border-color: #DFD5C5 !important;
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .story-doc small {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .featured-card {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .feature-text p {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .feature-text > span {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) .shelf-gateway {
+  border-top-color: #DFD5C5 !important;
+}
+body:not(.dark-theme) .shelf-gateway h2 {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) .shelf-gateway p {
+  color: #5C5248 !important;
+}
+body:not(.dark-theme) .gateway-arrow {
+  color: #8C621E !important;
+}
+body:not(.dark-theme) #ebookShelfSection > div {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F7F3EA 100%) !important;
+  border-color: #D8C7A8 !important;
+  color: #1F1A15 !important;
+  box-shadow: 0 8px 28px rgba(30, 25, 21, 0.06) !important;
+}
+body:not(.dark-theme) #ebookShelfSection h3 {
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) #ebookShelfSection p {
+  color: #4A3F35 !important;
+}
+body:not(.dark-theme) #ebookShelfGrid > a,
+body:not(.dark-theme) #ebookShelfGrid > div {
+  background: #FDFBF7 !important;
+  border-color: #DFD5C5 !important;
+  color: #1F1A15 !important;
+}
+body:not(.dark-theme) #ebookShelfGrid > a div,
+body:not(.dark-theme) #ebookShelfGrid > div div {
+  color: #3B3228 !important;
+}
+body:not(.dark-theme) #ebookShelfGrid > a div:first-child,
+body:not(.dark-theme) #ebookShelfGrid > div div:first-child {
+  color: #8C621E !important;
+}
+body.dark-theme .kkumdido-studios-bar {
+  background: linear-gradient(90deg, #121622 0%, #1a2133 50%, #121622 100%) !important;
+  border-bottom-color: rgba(212, 175, 55, 0.38) !important;
+}
+/* === [KKUMDIDO_PARCHMENT_LIGHT_DEFAULT_END] === */
+
+/* === [KKUMDIDO_NOTICE_BOARD_START] === */
+.kkumdido-notice-board {
+  width: 1392px;
+  max-width: 1392px;
+  margin: 0 auto 20px;
+  box-sizing: border-box;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.knb-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 11px 18px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8F3E8 100%);
+  border: 1.5px solid #D5C4A1;
+  box-shadow: 0 6px 20px rgba(31, 26, 21, 0.05);
+  transition: all 0.25s ease;
+}
+body.dark-theme .knb-bar {
+  background: linear-gradient(135deg, rgba(28, 23, 18, 0.95) 0%, rgba(19, 15, 12, 0.98) 100%);
+  border-color: rgba(212, 175, 55, 0.42);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+.knb-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  flex: 1;
+}
+.knb-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8C621E 0%, #6E4B12 100%);
+  color: #FFFDF9;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+body.dark-theme .knb-label {
+  background: linear-gradient(135deg, #D4AF37 0%, #9E7B22 100%);
+  color: #14100B;
+}
+.knb-new-badge {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: #B83B2A;
+  color: #FFFFFF;
+  font-size: 10.5px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+}
+.knb-date {
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #7A6A58;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+body.dark-theme .knb-date {
+  color: #C2B299;
+}
+.knb-cat {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: #8C621E;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+body.dark-theme .knb-cat {
+  color: #E5C878;
+}
+.knb-headline-link {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1F1A15;
+  text-decoration: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.knb-headline-link:hover {
+  color: #8C621E;
+  text-decoration: underline;
+}
+body.dark-theme .knb-headline-link {
+  color: #F5EFE6;
+}
+body.dark-theme .knb-headline-link:hover {
+  color: #F7DC81;
+}
+.knb-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+.knb-nav-btn {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid #D5C4A1;
+  background: #FDFBF7;
+  color: #5C4B37;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.knb-nav-btn:hover {
+  background: #EFE7D6;
+}
+body.dark-theme .knb-nav-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(212, 175, 55, 0.35);
+  color: #E5C878;
+}
+.knb-toggle-btn {
+  padding: 6px 13px;
+  border-radius: 999px;
+  border: 1px solid #C8B288;
+  background: #F3ECE0;
+  color: #3B2E1E;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.knb-toggle-btn:hover {
+  background: #E6DAC4;
+}
+body.dark-theme .knb-toggle-btn {
+  background: rgba(212, 175, 55, 0.14);
+  border-color: rgba(212, 175, 55, 0.45);
+  color: #F7DC81;
+}
+.knb-drawer {
+  margin-top: 10px;
+  padding: 20px 22px;
+  border-radius: 16px;
+  background: #FDFBF7;
+  border: 1.5px solid #D8C7A8;
+  box-shadow: 0 12px 32px rgba(31, 26, 21, 0.08);
+}
+body.dark-theme .knb-drawer {
+  background: rgba(20, 16, 12, 0.97);
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+}
+.knb-drawer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #E5DCCB;
+}
+body.dark-theme .knb-drawer-header {
+  border-bottom-color: rgba(212, 175, 55, 0.22);
+}
+.knb-drawer-title {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 16px;
+  font-weight: 800;
+  color: #1F1A15;
+}
+body.dark-theme .knb-drawer-title {
+  color: #F7DC81;
+}
+.knb-drawer-sub {
+  font-size: 12.5px;
+  color: #6E5F4F;
+}
+body.dark-theme .knb-drawer-sub {
+  color: #BFB29E;
+}
+.knb-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.knb-card {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #FFFFFF;
+  border: 1px solid #E2D7C3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 8px;
+}
+body.dark-theme .knb-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(212, 175, 55, 0.24);
+}
+.knb-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.knb-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  flex-wrap: wrap;
+}
+.knb-card-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #1F1A15;
+  line-height: 1.4;
+}
+body.dark-theme .knb-card-title {
+  color: #F5EFE6;
+}
+.knb-card-desc {
+  font-size: 12.5px;
+  color: #4A3F35;
+  line-height: 1.55;
+}
+body.dark-theme .knb-card-desc {
+  color: #C7B9A5;
+}
+.knb-card-link {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #8C621E;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: #F6F0E4;
+}
+.knb-card-link:hover {
+  background: #EAE0CC;
+}
+body.dark-theme .knb-card-link {
+  background: rgba(212, 175, 55, 0.15);
+  color: #F7DC81;
+}
+@media (max-width: 900px) {
+  .kkumdido-notice-board {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 14px;
+  }
+  .knb-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .knb-left {
+    flex-wrap: wrap;
+  }
+  .knb-headline-link {
+    white-space: normal;
+  }
+  .knb-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* === [KKUMDIDO_NOTICE_BOARD_END] === */
 </style>
-  <link rel="stylesheet" href="atrium.css?v=20261102-lock"/>
+  <link rel="stylesheet" href="atrium.css?v=20261104-light"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
 </head>
 <body>
@@ -2471,25 +3264,74 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       <button type="button" data-cat="deungjan" onclick="navigateToHall('deungjan')">등잔 밑</button>
       <button type="button" data-cat="figures" onclick="navigateToHall('figures')">성경 인물</button>
       <button type="button" data-cat="feasts" onclick="navigateToHall('feasts')">성경 절기</button>
-      <button type="button" data-cat="praise" onclick="navigateToHall('praise')">찬양실</button>
       <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">영상실</button>
       <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">웨슬리관</button>
-      <a href="kkumdido_12archives_viewer.html" class="nav-12arch-btn" style="text-decoration:none;">12관 대백과 ↗</a>
-        <a href="kkumdido_sermon_studio.html" class="nav-12arch-btn" style="text-decoration:none; background:linear-gradient(135deg,#F5DF98,#C9982A); color:#1A1107; font-weight:800;">👑 꿈바온 프로그램 ↗</a>
-      <button type="button" class="nav-moses-btn" onclick="enterMosesSanctuary()">모세의 지팡이 ↗</button>
+      <button type="button" class="nav-search-btn" onclick="openQuickSearchModal()" title="성경 인물·사건·지명·원어·설교 통합 검색 (단축키: Cmd+K)">🔍 통합검색</button>
+      <button type="button" class="nav-studio-trigger" id="studioDrawerBtn" onclick="toggleStudiosDrawer(event)" aria-expanded="false">👑 사역 스튜디오 ▾</button>
       <button type="button" class="nav-guide-btn" onclick="openBlueprintModal()">도서관 안내 ↗</button>
     </nav>
-    <button class="entrance-theme" onclick="toggleDarkTheme()" id="themeBtn" aria-label="서가 화면 밝기 전환">밤의 서재</button>
+    <button class="entrance-theme" onclick="toggleDarkTheme()" id="themeBtn" aria-label="서가 화면 밝기 전환">🌙 밤의 서재</button>
   </header>
 
-  <!-- 단정한 상단 12관 아카이브 직행 바 (좌측 밀착 배치 · 1~6관/7~12관 6열 수직 칼정렬) -->
+  <!-- 사역 스튜디오 & 설교 곳간 (8종 무설치 웹서재) 메가 드로어 (클릭 시 펼침) -->
+  <section id="kkumdidoStudiosDrawer" class="kkumdido-studios-drawer" aria-label="꿈바온 사역 프로그램 및 스튜디오 메가 서랍">
+    <div class="kkd-drawer-inner">
+      <div class="kkd-drawer-top">
+        <div class="kkd-drawer-title">
+          <span>👑 꿈바온 목회·사역 스튜디오 &amp; 설교 곳간 (8종 무설치 웹서재)</span>
+          <span class="sub">설치 없이 브라우저에서 즉시 열리는 목회·설교·교육·번역 통합 연구실</span>
+        </div>
+        <div class="kkd-drawer-actions">
+          <button type="button" onclick="enterMosesSanctuary(); toggleStudiosDrawer();" style="cursor:pointer;color:#241A10;background:#FBF5E6;border:1px solid #C8A45D;font-weight:800;font-size:13px;padding:6px 13px;border-radius:8px;">🏛️ 본관 내 모세의 지팡이 성소 열기</button>
+          <button type="button" onclick="window.kkumdidoPass && window.kkumdidoPass.open()" style="cursor:pointer;color:#F5DF98;background:#241A10;border:1px solid #B89446;font-weight:800;font-size:13px;padding:6px 14px;border-radius:8px;">🪪 도서관 이용증 발급·로그인</button>
+          <button type="button" onclick="toggleStudiosDrawer()" style="cursor:pointer;color:#5C5248;background:#FFFFFF;border:1px solid #D5C8B3;font-weight:700;font-size:13px;padding:6px 11px;border-radius:8px;">닫기 ✕</button>
+        </div>
+      </div>
+      <div class="kkd-drawer-grid">
+        <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>👑 꿈바온 설교 프로그램</strong><small>원어·주석·강해·설교 빌더 스튜디오</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>🏺 내 설교 곳간 (개인 웹서재)</strong><small>무설치 설교 원고·예화·자료 보관함</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_gotgan_sample88.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>📚 한범수 목사 곳간 (88편)</strong><small>실전 강해설교 88편 아카이브 샘플</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_jipangi_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>🪄 모세의 지팡이 스튜디오</strong><small>목회·행정·심방·기도문 올인원 도구</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_sunday_school_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>🌱 교회학교 교사 스튜디오</strong><small>주일학교 설교·공과·활동지 제작실</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>📋 13부서 52주 커리큘럼</strong><small>영아부~장년부 1년 52주 표준 교육과정</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_family_worship_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>🕯️ 52주 가정예배 스튜디오</strong><small>온 가족이 함께 드리는 52주 가정예배서</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_translation_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+          <div><strong>🌐 기독교 번역 스튜디오</strong><small>8개국어 성경·신학·설교 전문 번역기</small></div>
+          <span class="arr">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 단정한 상단 12관 아카이브 직행 바 (좌측 2x2 배지 그리드 · 우측 1~6관/7~12관 6x2 수평 칼정렬 · 고전 톤앤매너 통일) -->
   <nav class="kkumdido-12halls-bar" aria-label="꿈디도 12대 아카이브 바로가기">
     <div class="kkumdido-12halls-inner">
       <div class="kkumdido-12halls-left">
-        <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">12대 아카이브 · 3,650</a>
+        <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">🏛️ 12대 아카이브 · 3,650 ↗</a>
         <a href="figures_encyclopedia_preview.html" class="kkumdido-12halls-genealogy"><span class="h-no">가계도</span>인물가계도·족보</a>
-        <a href="online_chapel_kkumdido.html" class="kkumdido-12halls-genealogy" style="background:linear-gradient(135deg,#182238,#0d1322); color:#F7DC81; border-color:#D4AF37;" title="꿈디도 3D 아트리움 묵상원 · 성화 전시회 산책하기"><span class="h-no" style="color:#64E3A1;">● 3D</span>🏛️ 꿈디도 산책하기</a>
-        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" style="background:linear-gradient(135deg,#3b2b1d,#241911); color:#FFE6A3; border-color:#D4A853;" title="우리 교회 3D 온라인 예배당 · 감람산 정원 산책하기"><span class="h-no" style="color:#7CD992;">● 3D</span>🕊️ 우리 교회 산책하기</a>
+        <a href="online_chapel_kkumdido.html" class="kkumdido-12halls-genealogy" title="꿈디도 3D 아트리움 묵상원 · 성화 전시회 산책하기"><span class="h-no">3D 전시</span>🏛️ 꿈디도 산책하기</a>
+        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" title="우리 교회 3D 온라인 예배당 · 감람산 정원 산책하기"><span class="h-no">3D 예배당</span>🕊️ 우리 교회 산책하기</a>
       </div>
       <div class="kkumdido-12halls-grid">
         <a href="kkumdido_12archives_viewer.html?archive=1" class="col-first"><span class="h-no">1관</span>인물대백과</a>
@@ -2507,6 +3349,29 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       </div>
     </div>
   </nav>
+
+  <!-- 🔍 꿈디도 3,650 통합 빠른 검색 모달 (Global Quick Search) -->
+  <div id="kkumdidoQuickSearchModal" class="kkd-qsearch-backdrop" onclick="if(event.target===this)closeQuickSearchModal()" role="dialog" aria-modal="true" aria-label="꿈바온 디지털 도서관 통합 검색">
+    <div class="kkd-qsearch-box">
+      <div class="kkd-qsearch-head">
+        <span style="font-size:20px;">🔍</span>
+        <input type="search" id="kkdQuickSearchInput" placeholder="성경 인물·사건·지명(49곳)·원어(히브리어/헬라어)·설교·문헌 통합 검색..." oninput="runQuickSearch(this.value)" onkeydown="if(event.key==='Enter')go12ArchivesSearch()" autocomplete="off"/>
+        <button type="button" class="kkd-qsearch-close" onclick="closeQuickSearchModal()">닫기 (ESC)</button>
+      </div>
+      <div class="kkd-qsearch-chips">
+        <span>추천 검색:</span>
+        <button type="button" onclick="setQuickSearchTerm('다윗')">다윗</button>
+        <button type="button" onclick="setQuickSearchTerm('예루살렘')">예루살렘</button>
+        <button type="button" onclick="setQuickSearchTerm('로고스')">로고스</button>
+        <button type="button" onclick="setQuickSearchTerm('우슬초')">우슬초</button>
+        <button type="button" onclick="setQuickSearchTerm('웨슬리')">존 웨슬리</button>
+        <button type="button" onclick="setQuickSearchTerm('유월절')">유월절</button>
+        <button type="button" onclick="setQuickSearchTerm('산상수훈')">산상수훈</button>
+        <button type="button" onclick="setQuickSearchTerm('요한복음')">요한복음</button>
+      </div>
+      <div class="kkd-qsearch-body" id="kkdQuickSearchResults"></div>
+    </div>
+  </div>
 
   <!-- 꿈디도 3줄 웰컴 리본 바 (상단 헤더와 지도 탐험 홀 사이) -->
   <section class="kkumbaon-welcome-bar" aria-label="꿈바온 디지털 도서관 환영 인사">
@@ -2539,6 +3404,122 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
     </div>
     <span id="statTotalMB" hidden></span><span id="storageBadge" hidden></span>
   </section>
+
+  <!-- 꿈디도 사서실 새소식 · 정기 업데이트 공지란 (What's New) -->
+  <section id="kkumdidoNoticeBoard" class="kkumdido-notice-board" aria-label="꿈바온 디지털 도서관 새소식 및 업데이트 공지">
+    <div class="knb-bar">
+      <div class="knb-left">
+        <span class="knb-label">📜 사서실 공지</span>
+        <span id="knbNewBadge" class="knb-new-badge">NEW</span>
+        <span id="knbDate" class="knb-date">2026.11.04</span>
+        <span id="knbCat" class="knb-cat">[제6관 · 원어사전]</span>
+        <a id="knbHeadline" href="kkumdido_12archives_viewer.html?archive=6" class="knb-headline-link">히브리어·헬라어 원어사전 2단계 핵심어(1,359어 · v1.2) 뜻 갈래 712어 정밀 매핑 완료</a>
+      </div>
+      <div class="knb-right">
+        <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(-1)" title="이전 업데이트 소식" aria-label="이전 소식">‹</button>
+        <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(1)" title="다음 업데이트 소식" aria-label="다음 소식">›</button>
+        <button type="button" id="knbToggleBtn" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()" aria-expanded="false">최근 업데이트 내역 (<span id="knbTotalCount">6</span>) ▾</button>
+      </div>
+    </div>
+    <div id="knbDrawer" class="knb-drawer" hidden>
+      <div class="knb-drawer-header">
+        <div>
+          <div class="knb-drawer-title">🏛️ 꿈디도 사서실 정기 업데이트 기록 (What's New)</div>
+          <div class="knb-drawer-sub">제간사·워크간사·안간사의 원어 고증과 학술 검수를 거쳐 새로 올라온 성경 연구 문헌과 아카이브 소식입니다.</div>
+        </div>
+        <button type="button" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()">✕ 접기</button>
+      </div>
+      <div id="knbGrid" class="knb-grid"></div>
+    </div>
+  </section>
+  <script src="kkumdido_updates.js?v=20261104"></script>
+  <script>
+  (function(){
+    var idx = 0;
+    var timer = null;
+    function getUpdates() {
+      return (window.KKUMDIDO_UPDATES && window.KKUMDIDO_UPDATES.length) ? window.KKUMDIDO_UPDATES : [];
+    }
+    function renderBar() {
+      var list = getUpdates();
+      if (!list.length) return;
+      var item = list[idx % list.length];
+      var badge = document.getElementById('knbNewBadge');
+      var dateEl = document.getElementById('knbDate');
+      var catEl = document.getElementById('knbCat');
+      var headEl = document.getElementById('knbHeadline');
+      var cntEl = document.getElementById('knbTotalCount');
+      if (badge) badge.style.display = item.isNew ? 'inline-block' : 'none';
+      if (dateEl) dateEl.textContent = item.date;
+      if (catEl) catEl.textContent = '[' + item.category + ']';
+      if (headEl) {
+        headEl.textContent = item.title;
+        headEl.href = item.link || '#';
+      }
+      if (cntEl) cntEl.textContent = list.length;
+    }
+    function renderDrawer() {
+      var list = getUpdates();
+      var grid = document.getElementById('knbGrid');
+      if (!grid || !list.length) return;
+      grid.innerHTML = list.map(function(item) {
+        var newTag = item.isNew ? '<span class="knb-new-badge">NEW</span>' : '';
+        return '<div class="knb-card">' +
+          '<div>' +
+            '<div class="knb-card-top">' +
+              '<div class="knb-card-meta">' + newTag + '<span class="knb-date">' + item.date + '</span><span class="knb-cat">[' + item.category + ']</span></div>' +
+            '</div>' +
+            '<div class="knb-card-title" style="margin-top:6px;">' + item.title + '</div>' +
+            '<div class="knb-card-desc" style="margin-top:5px;">' + (item.desc || '') + '</div>' +
+          '</div>' +
+          '<a href="' + (item.link || '#') + '" class="knb-card-link" style="margin-top:8px;">' + (item.linkLabel || '자세히 보기') + ' →</a>' +
+        '</div>';
+      }).join('');
+    }
+    window.stepKkumdidoNotice = function(dir) {
+      var list = getUpdates();
+      if (!list.length) return;
+      idx = (idx + dir + list.length) % list.length;
+      renderBar();
+      resetTimer();
+    };
+    window.toggleKkumdidoNoticeDrawer = function() {
+      var drawer = document.getElementById('knbDrawer');
+      var btn = document.getElementById('knbToggleBtn');
+      var list = getUpdates();
+      if (!drawer) return;
+      var isHidden = drawer.hasAttribute('hidden');
+      if (isHidden) {
+        renderDrawer();
+        drawer.removeAttribute('hidden');
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.innerHTML = '업데이트 내역 접기 ▲';
+        }
+      } else {
+        drawer.setAttribute('hidden', '');
+        if (btn) {
+          btn.setAttribute('aria-expanded', 'false');
+          btn.innerHTML = '최근 업데이트 내역 (<span id="knbTotalCount">' + list.length + '</span>) ▾';
+        }
+      }
+    };
+    function resetTimer() {
+      if (timer) clearInterval(timer);
+      timer = setInterval(function() {
+        var drawer = document.getElementById('knbDrawer');
+        if (drawer && !drawer.hasAttribute('hidden')) return;
+        var list = getUpdates();
+        if (list.length > 1) {
+          idx = (idx + 1) % list.length;
+          renderBar();
+        }
+      }, 6500);
+    }
+    renderBar();
+    resetTimer();
+  })();
+  </script>
 
   <!-- 꿈디도 3D 시그니처 트레일러 스테이지 (기본 숨김, 영상실 버튼 클릭 시 활성화) -->
   <section id="kkumdidoSignatureStage" style="max-width:1392px;margin:0 auto 32px;perspective:1600px;display:none;">
@@ -2590,7 +3571,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       try {
         localStorage.setItem("kkb_gate_pass_v1", JSON.stringify({ ts: Number(ts), sig: sig }));
       } catch (e) {}
-      window.location.href = "/kkumbaon-moses/?gate_ts=" + encodeURIComponent(ts) + "&gate_sig=" + encodeURIComponent(sig);
+      window.location.href = "kkumdido_jipangi_studio.html?gate_ts=" + encodeURIComponent(ts) + "&gate_sig=" + encodeURIComponent(sig);
     }
     function toggleSignatureVideoStage(forceState) {
       var stage = document.getElementById('kkumdidoSignatureStage');
@@ -2744,125 +3725,6 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
     </div>
   </section>
 
-  <!-- 🌟 시범 운영 공지 및 처음 방문한 분의 시작점 안내 배너 -->
-  <section aria-label="시범 운영 및 첫 방문 안내" style="max-width:1440px; margin:16px auto 0; padding:0 24px;">
-    <div style="background:linear-gradient(135deg, #231C16 0%, #2E241C 100%); border:1.5px solid rgba(212,175,55,0.65); border-radius:14px; padding:16px 20px; color:#FAF6EE; box-shadow:0 8px 24px rgba(0,0,0,0.12); display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px; align-items:center;">
-      <div>
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
-          <span style="background:rgba(212,175,55,0.22); border:1px solid #E5C878; color:#F5DF98; font-size:11.5px; font-weight:800; padding:2px 10px; border-radius:999px;">시범 운영 중 · 내부 정비 중</span>
-          <span style="font-size:12px; color:#C8BDAE;">최신 정비일: 2026-10-31 (성경 절기 · 구속사관 12편 신설)</span>
-        </div>
-        <h2 class="serif" style="font-size:17px; color:#FFFFFF; margin:0 0 5px 0; font-weight:700;">꿈바온 디지털 도서관 시범 운영 중 — 문은 열어 두었습니다. 서가는 계속 채우고 있어요.</h2>
-        <p style="font-size:13px; color:#E2D8C8; line-height:1.62; margin:0;">
-          현재 자료와 그림, 전자책을 차근차근 정리하고 있습니다. 일부 내용과 화면은 보완될 수 있습니다. 편하게 둘러보시고, 잘못된 곳은 <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:#F5DF98; text-decoration:underline; font-weight:700;">꿈바온 유튜브 댓글</a>로 자료 이름과 위치를 알려 주세요.<br/>
-          <span style="color:#C8BDAE; font-size:12.2px;">※ 성경 본문(개역한글·개역개정·WEB)과 꿈바온의 풀어읽기·묵상 해설을 구분하여 읽어 주세요. 그림 중 AI 상상도는 당시 모습을 이해하도록 돕는 삽화입니다.</span>
-        </p>
-      </div>
-      <div style="background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:12px; padding:12px 15px;">
-        <div style="font-size:12px; color:#F5DF98; font-weight:800; margin-bottom:8px;">🧭 처음 오셨나요? 검토를 마친 대표 이야기로 시작해 보세요</div>
-        <div style="display:flex; flex-wrap:wrap; gap:7px;">
-          <button type="button" class="hdr-btn gold" style="font-size:12px; padding:6px 11px;" onclick="if(window.focusAtlasPlace) window.focusAtlasPlace('bethlehem')">1. 🗺️ 베들레헴 지도 열기</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('dev-dailyword-ep001')">2. 📘 룻기 1장 (매일말씀 1회)</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openFeastsHall()">3. 🕎 성경 절기 · 구속사관</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('artifact-soso-02')">4. 🏺 하나님의 손에 비유된 인장</button>
-          <button type="button" class="hdr-btn" style="font-size:12px; padding:6px 11px; background:rgba(255,255,255,0.12); color:#FFF;" onclick="openReaderModal('fig-chronicle-05')">5. 👑 밤을 지키는 사람들 (막 13장)</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  
-  <!-- 🏛️ 꿈디도 12대 아카이브 · 3,650모듈 통합 대백과 관문 (12-Dodeca Link) -->
-  <section id="kkumdido12ArchivesGateway" aria-label="꿈디도 12대 아카이브 3,650모듈 통합 마스터 관문" style="max-width:1440px; margin:20px auto 0; padding:0 24px;">
-    <div style="background:radial-gradient(circle at 85% 0%, rgba(212,175,55,0.18) 0%, rgba(26,20,15,0.98) 65%), linear-gradient(135deg, #1A140F 0%, #261D15 100%); border:2px solid rgba(229,200,120,0.68); border-radius:18px; padding:22px 24px; color:#FAF6EE; box-shadow:0 20px 50px rgba(0,0,0,0.28);">
-      <div style="display:flex; align-items:flex-start; justify-content:space-between; flex-wrap:wrap; gap:14px; margin-bottom:16px;">
-        <div>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:5px;">
-            <span style="background:linear-gradient(135deg,#E5C878,#B88B38); color:#140F09; font-size:11.5px; font-weight:900; padding:3px 11px; border-radius:999px; letter-spacing:0.06em;">12-DODECA LINK · GRAND OPEN</span>
-            <span style="font-size:12px; color:#F5DF98; font-weight:700;">세계 최대 개신교 무료 신학·성경·설교·목회 입체 연동 아카이브 (총 3,650개 모듈 · 성화 도판 589점 수록)</span>
-          </div>
-          <h3 class="serif" style="font-size:clamp(18px, 1.6vw, 22px); color:#FFFFFF; margin:2px 0 4px; font-weight:800;">꿈디도 12대 아카이브 · 3,650모듈 통합 마스터 대백과 (P·E·B·A·G·W·C·D·K·Q·H·M)</h3>
-          <p style="font-size:13px; color:#D8CFC0; margin:0;">성경 본문 한 구절이나 키워드만 검색해도 <strong>인물·사건·비하인드·외경·지리·원어·웨슬리주석·교리변증·한국교회사·난제해답·찬송가·목회툴킷</strong>이 거미줄처럼 한 번에 열립니다.</p>
-        </div>
-        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-          <a href="figures_encyclopedia_preview.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px;">인물가계도 · 350인 족보 ↗</a>
-          <a href="kkumdido_12archives_viewer.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px;">12관 3,650모듈 통합뷰어 ↗</a>
-          <a href="kkumdido_sermon_studio.html" class="hdr-btn gold" style="text-decoration:none; font-size:13px; padding:9px 15px; background:linear-gradient(135deg,#F5DF98,#C9982A); color:#1A1107; font-weight:800;">👑 꿈바온 프로그램 (말씀·설교 스튜디오) ↗</a>
-        </div>
-      </div>
-
-      <!-- 원스톱 12대 아카이브 직행 검색 바 -->
-      <form onsubmit="event.preventDefault(); var v=document.getElementById('gw12SearchInput').value.trim(); window.location.href='kkumdido_12archives_viewer.html'+(v?'?q='+encodeURIComponent(v):'');" style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:14px;">
-        <input id="gw12SearchInput" type="text" placeholder="3,650개 전 모듈 통합 검색: 예) 로마서 8, 시편 23, 웨슬리, 헤세드, 텔 단 비문, 평양대부흥, 신천지, 장례..." style="flex:1; min-width:240px; padding:11px 16px; border-radius:10px; border:1.5px solid rgba(229,200,120,0.45); background:rgba(10,7,5,0.75); color:#FFF; font-size:13.5px; outline:none;" />
-        <button type="submit" class="hdr-btn gold" style="padding:11px 20px; font-size:13px; cursor:pointer;">12대 아카이브 통합 검색 →</button>
-      </form>
-
-      <!-- 제1관 ~ 제12관 원클릭 관문 그리드 -->
-      <div style="display:grid; grid-template-columns:repeat(6, minmax(0, 1fr)); gap:10px;">
-        <a href="figures_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제1관 · 인물대백과</span><span>350인 · 성화 469점</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 인물가계도·대백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">언약의 계보·왕조·선지자·바울망 125인 성화 완비</div>
-        </a>
-        <a href="events_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제2관 · 사건대백과</span><span>300건 · 성화 60점</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 사건대백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">창조부터 새 예루살렘까지 300대 사건·기둥 30선</div>
-        </a>
-        <a href="behinds_encyclopedia_preview.html" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.45); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제3관 · 비하인드관</span><span>300편 · 성화 60점</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경 비하인드스토리</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">고대 근동 문화·풍습·원어 행간 비밀 플립카드</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=4" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제4관 · 외경·중간사</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">외경에서 말하다</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">신구약 중간사·외경·사해사본·정경사</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=5" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제5관 · 지리·고고학</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경지리·고고학대백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">성경 지형·기후·전투·발굴 유물 300선</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=6" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제6관 · 원어사전</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">원어핵심단어대사전</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">히브리어 150어 + 헬라어 150어 주해</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=7" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제7관 · 고전·웨슬리</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">고전주석·웨슬리설교관</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">교부·종교개혁·청교도·웨슬리 표준설교</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=8" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제8관 · 교리·변증</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">교리·이단변증백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">보편신조·조직신학·주요 이단 반박</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=9" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제9관 · 한국교회사</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">한국교회사대백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">초기선교·한글성경·부흥·순교자 열전</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=10" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제10관 · 성경난제</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">성경난제해답백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">성경 모순 반박·과학과 신앙·일상 Q&amp;A</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=11" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제11관 · 찬송가관</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">찬송가비하인드대백과</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">세계 명곡 찬송가·복음성가 작시 실화</div>
-        </a>
-        <a href="kkumdido_12archives_viewer.html?archive=12" style="text-decoration:none; background:rgba(255,255,255,0.05); border:1px solid rgba(212,175,55,0.35); border-radius:11px; padding:11px 13px; color:#FFF; transition:all 0.18s;">
-          <div style="display:flex; justify-content:space-between; font-size:11px; color:#F5DF98; font-weight:800;"><span>제12관 · 목회툴킷</span><span>300편</span></div>
-          <div class="serif" style="font-size:14.5px; font-weight:700; margin-top:3px;">목회실전툴킷</div>
-          <div style="font-size:11.5px; color:#C8BDAE; margin-top:2px;">예식서·심방설교·52주 소그룹·교회행정</div>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- 4. 전시관 탭 및 통합 검색 바 -->
   <section class="controls-wrap">
     <div class="hall-tabs" id="hallTabs">
@@ -2894,12 +3756,8 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         <div class="hall-tab-top"><span>FEASTS</span><span class="hall-count" id="cnt-feasts">15</span></div>
         <div class="hall-tab-title">성경 절기</div>
       </button>
-      <button class="hall-tab" data-cat="praise" onclick="selectCategory('praise')">
-        <div class="hall-tab-top"><span>PRAISE</span><span class="hall-count" id="cnt-praise">2</span></div>
-        <div class="hall-tab-title">찬양실</div>
-      </button>
       <button class="hall-tab" data-cat="cinema" onclick="selectCategory('cinema')">
-        <div class="hall-tab-top"><span>CINEMA</span><span class="hall-count" id="cnt-cinema">118</span></div>
+        <div class="hall-tab-top"><span>CINEMA</span><span class="hall-count" id="cnt-cinema">120</span></div>
         <div class="hall-tab-title">영상실</div>
       </button>
       <button class="hall-tab" data-cat="wesley" onclick="selectCategory('wesley')">
@@ -2947,21 +3805,6 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         <button class="c-pill" data-fgcat="prophets50" onclick="selectFiguresCat('prophets50')">2차 오픈 B · 구약 선지자 &amp; 포로귀환 50인 (<span id="fgcnt-prophets50">50</span>)</button>
         <button class="c-pill" data-fgcat="nt80" onclick="selectFiguresCat('nt80')">3차 오픈 · 신약 복음서 &amp; 바울 관계망 (<span id="fgcnt-nt80">5</span>)</button>
         <button class="c-pill" data-fgcat="story35" onclick="selectFiguresCat('story35')">조금 긴 성경이야기 · 사도행전/복음서 열전 (<span id="fgcnt-story35">35</span>)</button>
-      </div>
-    </div>
-
-    <!-- 🎵 찬양실 전용 큐레이션 배너 -->
-    <div class="praise-subbar" id="praiseSubbar">
-      <div class="cinema-subbar-top">
-        <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🎵 PRAISE &amp; WORSHIP ARCHIVE · 찬양과 묵상</span>
-          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">꿈바온 찬양실 — 잔잔한 피아노 찬양 연주와 영혼을 적시는 묵상 찬양 영상을 차곡차곡 모아갑니다</h3>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" class="hdr-btn gold" style="text-decoration:none;">
-            📺 찬양 유튜브 재생목록 바로가기 ↗
-          </a>
-        </div>
       </div>
     </div>
 
@@ -3221,7 +4064,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
           <button class="hdr-btn" onclick="changeFontSize(-1.5)" aria-label="글자 작게">가-</button>
           <button class="hdr-btn" onclick="changeFontSize(1.5)" aria-label="글자 크게">가+</button>
           <button class="hdr-btn" onclick="copyCurrentDocLink()" id="copyLinkBtn" title="이 자료의 고유 공유 주소를 복사합니다">🔗 이 글 링크 복사</button>
-          <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">📋 원고 전문 복사</button>
+          <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">🪪 도서관 이용증</button>
           <button class="hdr-btn gold" onclick="window.print()">🖨️ A4 유인물 인쇄 / PDF</button>
           <button class="hdr-btn" id="readerCloseBtn" onclick="closeReaderModal()">✕ 닫기</button>
         </div>
@@ -3283,7 +4126,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
           <li><strong>✝️ 웨슬리 신학관 &amp; 전자책 열람:</strong> 상단 <code>✝️ 웨슬리 신학관</code> 또는 제5관 탭을 누르면 구원의 서정 로드맵과 표준설교 16선을 분류별로 열람하거나 PDF 총서로 내려받을 수 있습니다.</li>
           <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
-          <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>📋 원고 전문 복사</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
+          <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>🪪 도서관 이용증</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
 
         <div id="kkumbaonOfficialAboutSources" style="margin-top:20px; padding:18px 20px; border-radius:12px; background:rgba(197,155,82,0.08); border:1px solid rgba(197,155,82,0.35); line-height:1.8; font-size:14px;">
@@ -3816,17 +4659,16 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
 
     function openCinemaHall() {
       selectCategory("cinema");
-      const wrap = document.querySelector(".controls-wrap");
+      const wrap = document.getElementById("cinemaStudioWrap") || document.querySelector(".controls-wrap");
       if (wrap) wrap.scrollIntoView({ behavior: "smooth" });
     }
 
-        function updateViewForCategory(cat) {
+    function updateViewForCategory(cat) {
       const entranceMain = document.querySelector(".entrance-main");
       const controlsWrap = document.querySelector(".controls-wrap");
       const archiveMain = document.querySelector(".archive-main");
       const libraryShelves = document.getElementById("libraryShelves");
       const ebookSection = document.getElementById("ebookShelfSection");
-      const pilotBanner = document.querySelector('section[aria-label="시범 운영 및 첫 방문 안내"]');
 
       if (cat === "atlas") {
         // [목사님 확정] 첫 번째 메인 탭(성경 지도)에서는 딱 지도와 4대 도시 카드에서 끝나고, 그 밑의 서가는 숨김!
@@ -3835,7 +4677,6 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         if (ebookSection) ebookSection.style.display = "none";
         if (controlsWrap) controlsWrap.style.display = "none";
         if (archiveMain) archiveMain.style.display = "none";
-        if (pilotBanner) pilotBanner.style.display = "none";
       } else {
         // 다른 서가 탭: 지도는 숨기고 서가 영역을 시원하게 상단에 표시!
         if (entranceMain) entranceMain.style.display = "none";
@@ -3843,17 +4684,40 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         if (ebookSection) ebookSection.style.display = (cat === "all") ? "block" : "none";
         if (controlsWrap) controlsWrap.style.display = "block";
         if (archiveMain) archiveMain.style.display = "block";
-        if (pilotBanner) pilotBanner.style.display = "block";
       }
     }
 
     function navigateToHall(cat) {
+      if (cat === "praise") cat = "cinema";
       updateViewForCategory(cat);
       selectCategory(cat);
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (cat === "atlas") {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else if (cat === "cinema") {
+        // [목사님 확정] 영상실 진입 시: 화면을 내렸을 때 바로 영상 뷰어만 시원하게 나오도록 스크롤!
+        setTimeout(() => {
+          const target = document.getElementById("cinemaStudioWrap") || document.querySelector(".controls-wrap");
+          if (target) {
+            const headerOffset = 90;
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: Math.max(0, elementPosition - headerOffset), behavior: "smooth" });
+          }
+        }, 60);
+      } else {
+        // 다른 개별 카테고리 진입 시: 서가 컨트롤/목록 영역으로 부드럽게 이동하여 해당 카테고리만 깔끔하게 감상
+        setTimeout(() => {
+          const controlsWrap = document.querySelector(".controls-wrap");
+          if (controlsWrap) {
+            const headerOffset = 90;
+            const elementPosition = controlsWrap.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({ top: Math.max(0, elementPosition - headerOffset), behavior: "smooth" });
+          }
+        }, 60);
+      }
     }
 
     function selectCategory(cat) {
+      if (cat === "praise") cat = "cinema";
       currentCategory = cat;
       updateViewForCategory(cat);
 
@@ -3861,7 +4725,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       document.querySelectorAll(".entrance-nav [data-cat]").forEach(btn => {
         btn.classList.toggle("nav-current", btn.getAttribute("data-cat") === cat);
       });
-      // 서가 내부 10개 탭 활성화 표시
+      // 서가 내부 탭 활성화 표시
       document.querySelectorAll(".hall-tab").forEach(btn => {
         btn.classList.toggle("active", btn.getAttribute("data-cat") === cat);
       });
@@ -3879,9 +4743,6 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       const fgSubbar = document.getElementById("figuresSubbar");
       if (fgSubbar) fgSubbar.classList.toggle("open", cat === "figures");
 
-      const pSubbar = document.getElementById("praiseSubbar");
-      if (pSubbar) pSubbar.classList.toggle("open", cat === "praise");
-
       const dSubbar = document.getElementById("deungjanSubbar");
       if (dSubbar) dSubbar.classList.toggle("open", cat === "deungjan");
 
@@ -3893,13 +4754,11 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
 
       const studio = document.getElementById("cinemaStudioWrap");
       if (studio) {
-        if (cat === "cinema" || cat === "praise") {
+        if (cat === "cinema") {
           studio.classList.add("open");
           if (currentCinemaLayout === "mini") setCinemaLayoutMode("split");
           if (!currentPlayingVideoId && (LIB.videos || []).length > 0) {
-            const featured = (cat === "praise")
-              ? ((LIB.videos || []).find(v => v.vCat === "praise") || LIB.videos[0])
-              : ((LIB.videos || []).find(v => v.vCat === "sermon") || LIB.videos[0]);
+            const featured = ((LIB.videos || []).find(v => v.vCat === "sermon") || LIB.videos[0]);
             playInKkumbaonCinema(featured.videoId, false, false);
           }
         } else {
@@ -4335,9 +5194,8 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         return false;
       };
 
-      if (currentCategory === "cinema" || currentCategory === "praise") {
+      if (currentCategory === "cinema") {
         const vids = (LIB.videos || []).filter(v => {
-          if (currentCategory === "praise") return v.vCat === "praise";
           if (currentVideoCat !== "all" && v.vCat !== currentVideoCat) return false;
           if (!q) return true;
           const hay = [v.title, v.subtitle || "", v.vCatLabel, v.summary, v.publishedAt].join(" ");
@@ -4359,9 +5217,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
           }
         }
 
-        const hallTitle = currentCategory === "praise"
-          ? `<strong>🎵 찬양실 (꿈바온 찬양 아카이브)</strong> — 은혜로운 묵상 찬양 <strong>${vids.length}편</strong>이 준비되어 있습니다. 카드를 누르면 위 상영관에서 즉시 재생됩니다.`
-          : `<strong>🎬 영상실 (도서관 전용 시네마 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 영상이 준비되었습니다. 카드를 누르면 위 상영관에서 즉시 재생됩니다.`;
+        const hallTitle = `<strong>🎬 영상실 (도서관 전용 시네마 상영관)</strong> — 총 <strong>${vids.length}편</strong>의 꿈바온 영상이 준비되었습니다. 카드를 누르면 위 상영관에서 즉시 재생됩니다.`;
 
         document.getElementById("gridStatusText").innerHTML = hallTitle;
 
@@ -4380,7 +5236,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
               <div class="card-body">
                 <div class="card-scripture">
                   <span>📅 ${v.publishedAt} 게시</span>
-                  <span style="color:var(--espresso-muted);font-weight:600;">${currentCategory === "praise" ? "🎵 찬양실" : "🎬 영상실"}</span>
+                  <span style="color:var(--espresso-muted);font-weight:600;">🎬 영상실</span>
                 </div>
                 <h3 class="card-title">${v.title}</h3>
                 ${v.subtitle ? `<div style="font-size:12px; color:var(--gold-primary); font-weight:700; margin-bottom:6px;">${v.subtitle}</div>` : ""}
@@ -4475,7 +5331,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
         feasts: "성경 절기 & 구속사관 (여호와의 정하신 때 · 모아딤)",
         soso: "소소한 성경이야기 서재",
         deungjan: "등잔 밑 성경 사물·문화 백과",
-        praise: "꿈바온 찬양실"
+        cinema: "꿈디도 영상실"
       };
       if (autoExpanded) {
         document.getElementById("gridStatusText").innerHTML =
@@ -4940,7 +5796,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById("copyDocBtn");
         btn.textContent = "✅ 복사 완료!";
-        setTimeout(() => { btn.textContent = "📋 원고 전문 복사"; }, 1800);
+        setTimeout(() => { btn.textContent = "🪪 도서관 이용증"; }, 1800);
       });
     }
 
@@ -4950,8 +5806,139 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       document.getElementById("themeBtn").textContent = isDark ? "📜 양피지 서재" : "🌙 밤의 서재";
     }
 
+    function toggleStudiosDrawer(e) {
+      if (e) e.stopPropagation();
+      const drawer = document.getElementById("kkumdidoStudiosDrawer");
+      const btn = document.getElementById("studioDrawerBtn");
+      if (!drawer) return;
+      const isOpen = drawer.classList.toggle("open");
+      if (btn) {
+        btn.classList.toggle("active", isOpen);
+        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        btn.textContent = isOpen ? "👑 사역 스튜디오 ▴" : "👑 사역 스튜디오 ▾";
+      }
+    }
+
+    document.addEventListener("click", e => {
+      const drawer = document.getElementById("kkumdidoStudiosDrawer");
+      const btn = document.getElementById("studioDrawerBtn");
+      if (drawer && drawer.classList.contains("open")) {
+        if (!drawer.contains(e.target) && (!btn || !btn.contains(e.target))) {
+          toggleStudiosDrawer();
+        }
+      }
+    });
+
+    function openQuickSearchModal() {
+      const modal = document.getElementById("kkumdidoQuickSearchModal");
+      if (!modal) return;
+      modal.classList.add("open");
+      const input = document.getElementById("kkdQuickSearchInput");
+      if (input) {
+        setTimeout(() => input.focus(), 40);
+        runQuickSearch(input.value || "");
+      }
+    }
+
+    function closeQuickSearchModal() {
+      const modal = document.getElementById("kkumdidoQuickSearchModal");
+      if (modal) modal.classList.remove("open");
+    }
+
+    function setQuickSearchTerm(term) {
+      const input = document.getElementById("kkdQuickSearchInput");
+      if (input) {
+        input.value = term;
+        input.focus();
+      }
+      runQuickSearch(term);
+    }
+
+    function go12ArchivesSearch(termOverride) {
+      const input = document.getElementById("kkdQuickSearchInput");
+      const q = (termOverride !== undefined ? termOverride : (input ? input.value : "")).trim();
+      window.location.href = q
+        ? `kkumdido_12archives_viewer.html?q=${encodeURIComponent(q)}`
+        : "kkumdido_12archives_viewer.html";
+    }
+
+    function runQuickSearch(raw) {
+      const box = document.getElementById("kkdQuickSearchResults");
+      if (!box) return;
+      const q = (raw || "").trim().toLowerCase();
+      let html = "";
+
+      if (q) {
+        html += `<a href="kkumdido_12archives_viewer.html?q=${encodeURIComponent(raw.trim())}" class="kkd-qsearch-item" style="background:linear-gradient(135deg,#241A10,#38291A);color:#F5DF98;border-color:#B89446;">
+          <div>
+            <strong style="color:#F5DF98;">🏛️ 「${raw.trim()}」 — 12대 아카이브 · 3,650모듈 대백과 전체 검색 ↗</strong>
+            <small style="color:#E2CFA3;">인물(350) · 사건(300) · 비하인드(300) · 원어사전(1,359) · 주석·설교·교리 통합 열람</small>
+          </div>
+          <span class="kkd-qsearch-badge" style="background:#3D2D1D;color:#F5DF98;border-color:#C8A45D;">3,650 대백과 ↗</span>
+        </a>`;
+      } else {
+        html += `<a href="kkumdido_12archives_viewer.html" class="kkd-qsearch-item" style="background:linear-gradient(135deg,#FFFDF7,#F6ECD2);border-color:#C8A45D;">
+          <div>
+            <strong>🏛️ 꿈디도 12대 아카이브 · 3,650모듈 통합 대백과 열기 ↗</strong>
+            <small>검색어를 입력하시거나 위 추천 키워드를 누르면 본관 서가·성경 지도·12대 아카이브를 즉시 찾아드립니다.</small>
+          </div>
+          <span class="kkd-qsearch-badge">전체 열람 ↗</span>
+        </a>`;
+      }
+
+      // 1) 성경 지도 도시 검색 (window.CITIES_DATA)
+      if (Array.isArray(window.CITIES_DATA)) {
+        const cities = window.CITIES_DATA.filter(c => {
+          if (!q) return false;
+          const hay = `${c.name || ""} ${c.en || ""} ${c.region || ""} ${c.summary || ""} ${c.Verses || ""}`.toLowerCase();
+          return hay.includes(q);
+        }).slice(0, 4);
+        cities.forEach(c => {
+          html += `<button type="button" class="kkd-qsearch-item" onclick="closeQuickSearchModal(); navigateToHall('atlas'); setTimeout(()=>{ const m=document.querySelector('[data-city-id=\\'${c.id}\\']'); if(m)m.click(); },120);">
+            <div>
+              <strong>🗺️ [성경 지도] ${c.name} (${c.en || ""})</strong>
+              <small>${(c.summary || "").slice(0, 75)}...</small>
+            </div>
+            <span class="kkd-qsearch-badge">성경 지도</span>
+          </button>`;
+        });
+      }
+
+      // 2) 본관 문헌 및 영상 검색 (allDocs)
+      if (typeof allDocs !== "undefined" && Array.isArray(allDocs)) {
+        const docs = allDocs.filter(d => {
+          if (!q) return false;
+          const hay = `${d.title || ""} ${d.scripture || ""} ${d.summary || ""} ${(d.tags || []).join(" ")}`.toLowerCase();
+          return hay.includes(q);
+        }).slice(0, 8);
+        docs.forEach(d => {
+          const isVid = d.category === "cinema" || d.category === "praise" || d.videoId;
+          const action = isVid
+            ? `closeQuickSearchModal(); navigateToHall('cinema');`
+            : `closeQuickSearchModal(); openReaderModal('${d.id}');`;
+          html += `<button type="button" class="kkd-qsearch-item" onclick="${action}">
+            <div>
+              <strong>${isVid ? "🎬" : "📖"} ${d.title}</strong>
+              <small>${d.scripture ? d.scripture + " · " : ""}${(d.summary || "").slice(0, 68)}</small>
+            </div>
+            <span class="kkd-qsearch-badge">${d.categoryLabel || "본관 서가"}</span>
+          </button>`;
+        });
+      }
+
+      box.innerHTML = html;
+    }
+
     window.addEventListener("keydown", e => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        openQuickSearchModal();
+        return;
+      }
       if (e.key === "Escape") {
+        closeQuickSearchModal();
+        const drawer = document.getElementById("kkumdidoStudiosDrawer");
+        if (drawer && drawer.classList.contains("open")) toggleStudiosDrawer();
         closeReaderModal();
         closeBlueprintModal();
         if (currentCinemaLayout === "fullscreen") {
@@ -5093,6 +6080,7 @@ section[aria-label="시범 운영 및 첫 방문 안내"],
       });
     })();
   </script>
+  <script src="kkumdido-shield.js"></script>
 </body>
 </html>
 
