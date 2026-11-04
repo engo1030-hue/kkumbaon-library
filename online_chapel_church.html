@@ -212,9 +212,16 @@
     pointer-events: none; white-space: nowrap;
   }
 
+  /* 도서관 이용증 배지: 하단 5번 독 버튼과 절대 겹치지 않도록 우측 상단 HUD 바로 아래 배치 */
+  #kkumdido-pass-fab {
+    bottom: auto !important;
+    top: 66px !important;
+    right: 20px !important;
+  }
+
   /* 6. 사이드/플로팅 패널 공통 */
   .floating-panel {
-    position: fixed; right: 20px; bottom: 92px; width: 390px; max-width: calc(100vw - 32px);
+    position: fixed; right: 20px; bottom: 92px; width: 410px; max-width: calc(100vw - 32px);
     max-height: calc(100vh - 165px); overflow-y: auto;
     z-index: 40; padding: 22px; border-radius: 22px;
     background: rgba(24, 19, 15, 0.96); border: 1.5px solid rgba(212, 168, 83, 0.48);
@@ -452,7 +459,7 @@ html, body {
 
 <!-- 조작 힌트 -->
 <div class="control-hint">
-  바닥 클릭·방향키 이동 · 마우스 드래그 둘러보기 · 휠 확대/축소 · 단축키: [1] 착석기도 [2] 말씀필사 [3] 샬롬인사 [4] 등불켜기
+  바닥 클릭·방향키 이동 · 마우스 드래그 둘러보기 · 휠 확대/축소 · 단축키: [1] 착석기도 [2] 말씀필사 [3] 샬롬인사 [4] 등불켜기 [5] 말씀·소리
 </div>
 
 <!-- 4. 하단 5대 인터랙션 독(Dock) -->
@@ -478,8 +485,8 @@ html, body {
     <span class="shortcut">4</span>
   </button>
   <button class="dock-btn" id="dock-sound">
-    <span>🎵</span>
-    <span class="label-text">소리 · 공동기도</span>
+    <span>🎙️</span>
+    <span class="label-text">말씀 · 찬양 · 소리</span>
     <span class="shortcut">5</span>
   </button>
 </nav>
@@ -537,23 +544,46 @@ html, body {
   <div class="prayer-list" id="prayer-list"></div>
 </aside>
 
-<!-- 5-C. [소리 · 공동기도] 3채널 사운드 믹서 패널 -->
+<!-- 5-C. [말씀 · 찬양 · 소리] 3채널 사운드 믹서 패널 -->
 <aside class="floating-panel" id="panel-sound">
   <div class="panel-header">
-    <h2 class="panel-title">🎵 세 가지 소리와 공동 기도회</h2>
+    <h2 class="panel-title">🎙️ 조금 긴 성경이야기 · 예배당 소리</h2>
     <button class="panel-close" data-close="panel-sound">✕</button>
   </div>
 
-  <!-- 채널 1: 자연 환경음 -->
-  <div class="sound-row">
-    <div class="sound-row-head">
-      <span>🌲 자연 환경음 (새벽 산새와 바람·빗소리)</span>
-      <select class="sub-select" id="nature-type-select">
-        <option value="breeze">산새와 솔바람</option>
-        <option value="rain">처마 끝 빗소리</option>
-      </select>
+  <!-- 채널 1 (최상단): 지난 주 조금 긴 성경이야기 & 매일말씀 경청 -->
+  <div class="sound-row" style="border:1.5px solid rgba(245,207,118,0.45); background:linear-gradient(180deg, rgba(46,35,24,0.88) 0%, rgba(28,21,15,0.92) 100%);">
+    <div style="display:flex; gap:10px; align-items:center; margin-bottom:4px;">
+      <img id="sermon-cover-thumb" src="./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="조금 긴 성경이야기" style="width:78px; height:46px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,168,83,0.5); flex-shrink:0;">
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:11.5px; color:#f5cf76; font-weight:700;" id="sermon-badge-label">📖 지난 주 조금 긴 성경이야기 (주일말씀)</div>
+        <div style="font-size:14px; color:#fff; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="sermon-title-label">책을 들고 나온 사람들 · 사도행전 19:1–20</div>
+      </div>
     </div>
-    <input type="range" class="sound-slider" id="slider-nature" min="0" max="100" value="55">
+
+    <select class="sub-select" id="sermon-track-select" style="width:100%; padding:7px 10px; font-size:13px; margin:2px 0;">
+      <option value="./assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="📖 지난 주 조금 긴 성경이야기 (주일말씀)" data-title="책을 들고 나온 사람들 · 사도행전 19:1–20" data-thumb="./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" data-vid="Y9sNVVxkZj4" selected>📖 [조금 긴 성경이야기] 책을 들고 나온 사람들 · 행 19:1–20 (29:35)</option>
+      <option value="./assets/chapel_audio/word_ko.mp3" data-badge="🌅 오늘의 매일말씀 낭독" data-title="베들레헴 성문에서 · 룻기 4:1–22" data-thumb="./assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp" data-vid="73mMWY2v-SA">🌅 [매일말씀] 베들레헴 성문에서 · 룻기 4:1–22 (02:30)</option>
+    </select>
+
+    <div style="display:flex; align-items:center; gap:6px; margin-top:4px;">
+      <button class="amen-mini-btn" id="btn-sermon-rew" title="15초 뒤로" style="padding:5px 9px; font-size:12px;">↺ -15초</button>
+      <button class="amen-mini-btn" id="btn-toggle-sermon" style="flex:1; padding:7px 12px; font-size:13.5px; font-weight:800; background:rgba(212,168,83,0.28); border-color:#f5cf76; color:#fff2c2;">▶ 말씀 듣기</button>
+      <button class="amen-mini-btn" id="btn-sermon-fwd" title="15초 앞으로" style="padding:5px 9px; font-size:12px;">+15초 ↻</button>
+      <button class="amen-mini-btn" id="btn-open-sermon-video" title="작은 미술전시회 영상으로 보기" style="padding:6px 10px; font-size:12.5px;">🎬 영상</button>
+    </div>
+
+    <!-- 구간 이동(Seek) 바 & 재생 시간 -->
+    <div style="display:flex; align-items:center; gap:8px; margin-top:4px;">
+      <span id="sermon-cur-time" style="font-size:11.5px; color:#e5d8c3; font-variant-numeric:tabular-nums; min-width:36px;">00:00</span>
+      <input type="range" class="sound-slider" id="sermon-seek" min="0" max="1000" value="0" style="flex:1;">
+      <span id="sermon-dur-time" style="font-size:11.5px; color:#bfb29e; font-variant-numeric:tabular-nums; min-width:36px; text-align:right;">29:35</span>
+    </div>
+
+    <div style="display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:2px;">
+      <span style="font-size:12px; color:#cfc3b0;">🔊 말씀 음성 볼륨</span>
+      <input type="range" class="sound-slider" id="slider-voice" min="0" max="100" value="90" style="width:62%;">
+    </div>
   </div>
 
   <!-- 채널 2: 찬양 피아노 -->
@@ -566,20 +596,19 @@ html, body {
         <option value="pad">성전 묵상 오르간 패드</option>
       </select>
     </div>
-    <input type="range" class="sound-slider" id="slider-piano" min="0" max="100" value="65">
+    <input type="range" class="sound-slider" id="slider-piano" min="0" max="100" value="55">
   </div>
 
-  <!-- 채널 3: 목사님 말씀 & 정시 공동 기도회 -->
+  <!-- 채널 3: 자연 환경음 -->
   <div class="sound-row">
     <div class="sound-row-head">
-      <span>🎙️ 목사님 매일말씀 · 공동 기도회</span>
-      <button class="amen-mini-btn" id="btn-toggle-sermon">▶ 말씀 듣기</button>
+      <span>🌲 자연 환경음 (새벽 산새와 바람·빗소리)</span>
+      <select class="sub-select" id="nature-type-select">
+        <option value="breeze">산새와 솔바람</option>
+        <option value="rain">처마 끝 빗소리</option>
+      </select>
     </div>
-    <div style="font-size:11.5px; color:#bfb29e; line-height:1.5;">
-      오늘의 말씀: <strong>[매일말씀] 베들레헴 성문에서 · 룻기 4장</strong><br>
-      매일 06:00(새벽) · 21:00(밤) 정각에는 모든 성도가 함께 듣는 공동 기도회가 열립니다.
-    </div>
-    <input type="range" class="sound-slider" id="slider-voice" min="0" max="100" value="85">
+    <input type="range" class="sound-slider" id="slider-nature" min="0" max="100" value="45">
   </div>
 
   <!-- 효과음 -->
@@ -686,9 +715,24 @@ html, body {
   </div>
 </div>
 
+<!-- 6-D. [조금 긴 성경이야기] 예배당 내부 영상 상영 모달 -->
+<div class="modal-backdrop" id="modal-sermon-video" style="z-index:125; background:rgba(8,6,5,0.92);">
+  <div style="width:94vw; max-width:980px; border-radius:20px; background:#18130f; border:1.5px solid rgba(212,168,83,0.55); overflow:hidden; box-shadow:0 28px 80px rgba(0,0,0,0.85);">
+    <div style="padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(212,168,83,0.25); background:#211a14;">
+      <div>
+        <strong id="sermon-video-modal-title" style="font-family:var(--serif); font-size:18px; color:#ffe6a3;">📖 [조금 긴 성경이야기] 책을 들고 나온 사람들 · 사도행전 19:1–20</strong>
+      </div>
+      <button class="panel-close" id="btn-close-sermon-video" style="font-size:22px;">✕</button>
+    </div>
+    <div style="position:relative; width:100%; padding-top:56.25%; background:#000;">
+      <iframe id="sermon-video-iframe" src="" title="조금 긴 성경이야기 영상" style="position:absolute; inset:0; width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+  </div>
+</div>
+
 <!-- 실제 오디오 엘리먼트 -->
 <audio id="audio-piano" loop preload="auto" src="./assets/chapel_audio/piano_grace.mp3"></audio>
-<audio id="audio-voice" preload="auto" src="./assets/chapel_audio/word_ko.mp3"></audio>
+<audio id="audio-voice" preload="metadata" src="./assets/chapel_audio/sermon_20261101_ko.mp3"></audio>
 
 <script>
 (() => {
@@ -1300,10 +1344,10 @@ html, body {
   // 예배당 & 야외 성화 산책로 대형 성화 액자 6점 (클릭 시 풀스크린 초고해상도 확대!)
   const CHAPEL_ARTWORKS = [
     {
-      title: "1. 안식일의 두 등불 · 거룩한 쉼의 초대",
-      ref: "창세기 2:2-3 · 출애굽기 20:8",
-      img: "./assets/webp/feast_wide_01_sabbath_lamps.webp",
-      desc: "분주한 일손을 내려놓고 주님이 주시는 참된 안식과 평안 속으로 들어가는 성화입니다. (상단 +/- 버튼이나 마우스 휠로 그림을 크게 확대해 보실 수 있습니다.)",
+      title: "1. 책을 들고 나온 사람들 · 에베소 성도들의 결단 (지난 주 조금 긴 성경이야기)",
+      ref: "사도행전 19:1–20",
+      img: "./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp",
+      desc: "일꾼 바울의 땀 묻은 앞치마와 수건을 통해 일하신 하나님, 그리고 은 오만이나 되는 마술책을 스스로 들고 나와 불사르며 주의 이름을 높인 에베소 성도들의 이야기입니다. (하단 [5] 말씀·소리 메뉴에서 전체 말씀을 경청하실 수 있습니다.)",
       pos: new THREE.Vector3(-7.68, 2.5, -4.0),
       rotY: Math.PI / 2
     },
@@ -2026,24 +2070,129 @@ html, body {
     if (!masterMuted && val !== 'pad') audioPianoEl.play().catch(() => {});
   });
 
-  // 목사님 말씀 재생 토글
+  // 목사님 말씀 (조금 긴 성경이야기 / 매일말씀) 재생·구간 이동·영상 모달
   const btnSermon = document.getElementById('btn-toggle-sermon');
+  const sermonTrackSelect = document.getElementById('sermon-track-select');
+  const sermonSeek = document.getElementById('sermon-seek');
+  const sermonCurTime = document.getElementById('sermon-cur-time');
+  const sermonDurTime = document.getElementById('sermon-dur-time');
+
+  function formatTimeMMSS(sec) {
+    if (!isFinite(sec) || sec < 0) return '00:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  function updateSermonPlayUI() {
+    const selOpt = sermonTrackSelect.options[sermonTrackSelect.selectedIndex];
+    const titleTxt = selOpt ? selOpt.getAttribute('data-title') : '책을 들고 나온 사람들 · 사도행전 19:1–20';
+    if (!audioVoiceEl.paused) {
+      btnSermon.textContent = '⏸ 말씀 일시정지';
+      setStatusBanner(`🎙️ 목사님의 「${titleTxt}」 말씀을 경청하며 묵상하고 있습니다.`);
+    } else {
+      btnSermon.textContent = '▶ 말씀 듣기';
+    }
+  }
+
   btnSermon.addEventListener('click', () => {
     if (audioVoiceEl.paused) {
       masterMuted = false;
       document.getElementById('quick-audio-icon').textContent = '🔊 소리 켜짐';
       audioVoiceEl.volume = Number(document.getElementById('slider-voice').value) / 100;
-      // BGM 자동 덕킹
-      audioPianoEl.volume = Math.min(audioPianoEl.volume, 0.25);
-      audioVoiceEl.play().catch(() => {});
-      btnSermon.textContent = '⏸ 말씀 일시정지';
-      setStatusBanner('🎙️ 목사님의 [매일말씀]을 함께 경청하며 묵상하고 있습니다.');
+      audioPianoEl.volume = Math.min(audioPianoEl.volume, 0.22);
+      audioVoiceEl.play().then(updateSermonPlayUI).catch(() => {});
+      updateSermonPlayUI();
     } else {
       audioVoiceEl.pause();
       btnSermon.textContent = '▶ 말씀 듣기';
       audioPianoEl.volume = Number(document.getElementById('slider-piano').value) / 100;
     }
   });
+
+  sermonTrackSelect.addEventListener('change', () => {
+    const opt = sermonTrackSelect.options[sermonTrackSelect.selectedIndex];
+    const wasPlaying = !audioVoiceEl.paused;
+    audioVoiceEl.src = sermonTrackSelect.value;
+    document.getElementById('sermon-badge-label').textContent = opt.getAttribute('data-badge') || '';
+    document.getElementById('sermon-title-label').textContent = opt.getAttribute('data-title') || '';
+    document.getElementById('sermon-cover-thumb').src = opt.getAttribute('data-thumb') || '';
+    sermonSeek.value = 0;
+    sermonCurTime.textContent = '00:00';
+    sermonDurTime.textContent = sermonTrackSelect.value.includes('sermon_20261101') ? '29:35' : '02:30';
+    if (wasPlaying) {
+      audioVoiceEl.play().then(updateSermonPlayUI).catch(() => {});
+    } else {
+      btnSermon.textContent = '▶ 말씀 듣기';
+    }
+  });
+
+  audioVoiceEl.addEventListener('loadedmetadata', () => {
+    if (isFinite(audioVoiceEl.duration) && audioVoiceEl.duration > 0) {
+      sermonDurTime.textContent = formatTimeMMSS(audioVoiceEl.duration);
+    }
+  });
+
+  let isSeekingSermon = false;
+  sermonSeek.addEventListener('mousedown', () => { isSeekingSermon = true; });
+  sermonSeek.addEventListener('touchstart', () => { isSeekingSermon = true; }, { passive: true });
+  sermonSeek.addEventListener('input', () => {
+    const dur = (isFinite(audioVoiceEl.duration) && audioVoiceEl.duration > 0)
+      ? audioVoiceEl.duration
+      : (sermonTrackSelect.value.includes('sermon_20261101') ? 1775 : 150);
+    const targetSec = (Number(sermonSeek.value) / 1000) * dur;
+    sermonCurTime.textContent = formatTimeMMSS(targetSec);
+  });
+  sermonSeek.addEventListener('change', () => {
+    const dur = (isFinite(audioVoiceEl.duration) && audioVoiceEl.duration > 0)
+      ? audioVoiceEl.duration
+      : (sermonTrackSelect.value.includes('sermon_20261101') ? 1775 : 150);
+    audioVoiceEl.currentTime = (Number(sermonSeek.value) / 1000) * dur;
+    isSeekingSermon = false;
+  });
+
+  audioVoiceEl.addEventListener('timeupdate', () => {
+    if (isSeekingSermon) return;
+    const dur = (isFinite(audioVoiceEl.duration) && audioVoiceEl.duration > 0)
+      ? audioVoiceEl.duration
+      : (sermonTrackSelect.value.includes('sermon_20261101') ? 1775 : 150);
+    sermonCurTime.textContent = formatTimeMMSS(audioVoiceEl.currentTime);
+    sermonDurTime.textContent = formatTimeMMSS(dur);
+    sermonSeek.value = Math.min(1000, Math.round((audioVoiceEl.currentTime / dur) * 1000));
+  });
+
+  audioVoiceEl.addEventListener('ended', () => {
+    btnSermon.textContent = '▶ 말씀 듣기';
+    audioPianoEl.volume = Number(document.getElementById('slider-piano').value) / 100;
+  });
+
+  document.getElementById('btn-sermon-rew').addEventListener('click', () => {
+    audioVoiceEl.currentTime = Math.max(0, (audioVoiceEl.currentTime || 0) - 15);
+  });
+  document.getElementById('btn-sermon-fwd').addEventListener('click', () => {
+    const dur = (isFinite(audioVoiceEl.duration) && audioVoiceEl.duration > 0) ? audioVoiceEl.duration : 1775;
+    audioVoiceEl.currentTime = Math.min(dur, (audioVoiceEl.currentTime || 0) + 15);
+  });
+
+  const sermonVideoModal = document.getElementById('modal-sermon-video');
+  const sermonVideoIframe = document.getElementById('sermon-video-iframe');
+  document.getElementById('btn-open-sermon-video').addEventListener('click', () => {
+    const opt = sermonTrackSelect.options[sermonTrackSelect.selectedIndex];
+    const vid = (opt && opt.getAttribute('data-vid')) || 'Y9sNVVxkZj4';
+    const title = (opt && opt.getAttribute('data-title')) || '책을 들고 나온 사람들 · 사도행전 19:1–20';
+    audioVoiceEl.pause();
+    audioPianoEl.pause();
+    btnSermon.textContent = '▶ 말씀 듣기';
+    document.getElementById('sermon-video-modal-title').textContent = `📖 ${title}`;
+    sermonVideoIframe.src = `https://www.youtube.com/embed/${vid}?autoplay=1&rel=0`;
+    sermonVideoModal.classList.add('is-open');
+  });
+  document.getElementById('btn-close-sermon-video').addEventListener('click', () => {
+    sermonVideoModal.classList.remove('is-open');
+    sermonVideoIframe.src = '';
+    if (!masterMuted) audioPianoEl.play().catch(() => {});
+  });
+
   document.getElementById('slider-voice').addEventListener('input', (e) => {
     audioVoiceEl.volume = Number(e.target.value) / 100;
   });
