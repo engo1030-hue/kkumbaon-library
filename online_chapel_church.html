@@ -360,11 +360,192 @@
     background: rgba(212, 168, 83, 0.18); border-color: var(--gold-bright);
   }
 
+  /* 7. 부트 화면 남·여 아바타 빠른 선택기 */
+  .boot-avatar-box {
+    display: flex; flex-direction: column; gap: 10px;
+    width: 100%; max-width: 390px; margin-bottom: 16px;
+    padding: 14px 18px; border-radius: 18px;
+    background: rgba(255, 252, 245, 0.82);
+    border: 1.5px solid rgba(140, 115, 75, 0.35);
+    box-shadow: 0 6px 18px rgba(47, 39, 30, 0.08);
+  }
+  .boot-gender-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .boot-gender-btn {
+    padding: 10px 12px; border-radius: 12px;
+    border: 1.5px solid rgba(140, 115, 75, 0.35);
+    background: rgba(255, 255, 255, 0.7); color: #4e4234;
+    font-size: 14.5px; font-weight: 700; cursor: pointer;
+    transition: all 0.2s ease; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .boot-gender-btn.active {
+    background: #3b3024; color: #ffeaad; border-color: #b88b38;
+    box-shadow: 0 4px 12px rgba(59, 48, 36, 0.22);
+  }
+
+  /* 8. 아바타 꾸미기 패널 전용 스타일 */
+  .cust-section {
+    display: flex; flex-direction: column; gap: 6px;
+  }
+  .cust-label {
+    font-size: 12.5px; font-weight: 700; color: #dfd2be;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cust-seg {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(84px, 1fr));
+    gap: 6px;
+  }
+  .cust-chip {
+    padding: 8px 10px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.3);
+    background: rgba(255, 255, 255, 0.06); color: #e8dcc8;
+    font-size: 13px; font-weight: 700; cursor: pointer;
+    text-align: center; transition: all 0.18s ease; white-space: nowrap;
+  }
+  .cust-chip:hover {
+    background: rgba(212, 168, 83, 0.18); color: #fff;
+  }
+  .cust-chip.active {
+    background: linear-gradient(135deg, #d4a853 0%, #9a6b1f 100%);
+    color: #17120c; border-color: #ffe6a3; font-weight: 800;
+    box-shadow: 0 3px 10px rgba(212, 168, 83, 0.35);
+  }
+  .swatch-row {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .color-swatch {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    cursor: pointer; transition: transform 0.18s ease, border-color 0.18s ease;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.4);
+  }
+  .color-swatch:hover { transform: scale(1.12); }
+  .color-swatch.active {
+    border-color: #ffe6a3; transform: scale(1.18);
+    box-shadow: 0 0 0 2px rgba(212, 168, 83, 0.65);
+  }
+
+  /* 9. 좌측 하단 실시간 채팅 & 액션 바 (코루라이브 스타일 + 예배당 품격) */
+  .chapel-chat-stack {
+    position: fixed; left: 18px; bottom: 118px;
+    width: 356px; max-width: calc(100vw - 36px);
+    z-index: 32; display: flex; flex-direction: column; gap: 7px;
+    pointer-events: none; transition: opacity 0.3s ease;
+  }
+  .chapel-chat-stack > * { pointer-events: auto; }
+  .chapel-chatlog {
+    position: relative; width: 100%; margin-top: 10px; padding-top: 16px;
+    border: 1.5px solid rgba(212, 168, 83, 0.42); border-radius: 18px;
+    background: rgba(20, 16, 12, 0.84);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  }
+  .chatlog-tab-toggle, .chatlog-tab-block {
+    position: absolute; top: 0; transform: translateY(-50%);
+    height: 22px; padding: 0 11px; border-radius: 999px;
+    border: 1px solid rgba(212, 168, 83, 0.48);
+    background: rgba(34, 26, 19, 0.96); color: #eddcc0;
+    font-size: 11.5px; font-weight: 700; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 4px;
+  }
+  .chatlog-tab-toggle { left: 16px; }
+  .chatlog-tab-block { right: 14px; }
+  .chatlog-tab-toggle:hover, .chatlog-tab-block:hover {
+    color: #ffe6a3; border-color: #f5cf76;
+  }
+  .chapel-chat-list {
+    list-style: none; margin: 0; padding: 4px 10px 10px;
+    max-height: 155px; overflow-y: auto; scrollbar-width: thin;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .chapel-chatlog.is-folded .chapel-chat-list {
+    max-height: 30px; overflow: hidden;
+  }
+  .chapel-chat-list li {
+    display: flex; align-items: baseline; gap: 6px;
+    padding: 3px 7px; border-radius: 8px;
+    font-size: 13px; line-height: 1.45; color: #f5ede0;
+    cursor: pointer; transition: background 0.15s;
+  }
+  .chapel-chat-list li:hover { background: rgba(255, 255, 255, 0.06); }
+  .chapel-chat-list li.is-tip {
+    background: rgba(212, 168, 83, 0.13); color: #ffe299; cursor: default; font-size: 12px;
+  }
+  .chapel-chat-list .chat-who {
+    font-weight: 700; color: #d8c39e; white-space: nowrap; flex-shrink: 0;
+  }
+  .chapel-chat-list li.is-mine .chat-who { color: #ffcf66; }
+  .chapel-chat-list .chat-msg {
+    flex: 1; word-break: break-word; color: #f7f1e6;
+  }
+  .chapel-chat-list .chat-block-btn {
+    display: none; padding: 1px 8px; border-radius: 999px;
+    border: none; background: #d9534f; color: #fff;
+    font-size: 11px; font-weight: 700; cursor: pointer; flex-shrink: 0;
+  }
+  .chapel-chat-list li.show-block .chat-block-btn { display: inline-block; }
+  .blocked-users-box {
+    border-top: 1px solid rgba(212, 168, 83, 0.25);
+    padding: 8px 12px; font-size: 12px; color: #cfc3b0; display: none;
+  }
+  .blocked-users-box.is-open { display: block; }
+
+  /* 빠른 액션·감정표현 버튼 줄 */
+  .quick-action-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
+    padding: 6px; border-radius: 14px;
+    background: rgba(22, 18, 14, 0.88);
+    border: 1px solid rgba(212, 168, 83, 0.38);
+    backdrop-filter: blur(12px);
+  }
+  .emote-pill-btn {
+    padding: 7px 8px; border-radius: 10px; border: 1px solid rgba(212, 168, 83, 0.25);
+    background: rgba(255, 255, 255, 0.06); color: #f4ece0;
+    font-size: 12.5px; font-weight: 700; cursor: pointer;
+    white-space: nowrap; transition: all 0.18s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .emote-pill-btn:hover {
+    background: rgba(212, 168, 83, 0.24); border-color: rgba(245, 207, 118, 0.6); color: #fff;
+  }
+  .emote-pill-btn.active {
+    background: rgba(212, 168, 83, 0.35); border-color: #ffdf85; color: #ffe8a3;
+  }
+
+  /* 채팅 입력바 */
+  .chapel-chatbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 5px 6px 5px 15px; border-radius: 999px;
+    background: rgba(22, 18, 14, 0.94);
+    border: 1.5px solid rgba(212, 168, 83, 0.5);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+  .chapel-chatbar:focus-within {
+    border-color: #ffcf66; box-shadow: 0 0 0 2px rgba(245, 207, 118, 0.25);
+  }
+  .chapel-chatbar input {
+    flex: 1; min-width: 0; border: none; background: transparent;
+    color: #fff8eb; font-size: 14px; font-weight: 500; font-family: var(--sans);
+    padding: 6px 0; outline: none; user-select: text; -webkit-user-select: text;
+  }
+  .chapel-chatbar input::placeholder { color: #a89a86; }
+  .chapel-chatbar button {
+    width: 36px; height: 36px; border-radius: 50%; border: none;
+    background: linear-gradient(135deg, #e5c168 0%, #b3832d 100%);
+    color: #1a1209; font-size: 15px; font-weight: 800;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: transform 0.15s ease;
+  }
+  .chapel-chatbar button:hover { transform: scale(1.06); }
+
   @media (max-width: 680px) {
     .dock-btn span.label-text { font-size: 12px; }
     .dock-btn .shortcut { display: none; }
     .control-hint { display: none; }
     .floating-panel { right: 12px; left: 12px; width: auto; bottom: 80px; }
+    .chapel-chat-stack { left: 12px; right: 12px; width: auto; bottom: 78px; }
   }
 
 
@@ -395,10 +576,24 @@ html, body {
   </div>
   <h1>새오름 · 온라인 예배당</h1>
   <p class="boot-sub">말없이 함께 앉아 기도하고, 잠시 쉬어가는 공간입니다.</p>
-  <div class="boot-verse">
+  <div class="boot-verse" style="margin: 16px 0 18px; padding: 12px 22px;">
     “수고하고 무거운 짐 진 자들아 다 내게로 오라<br>내가 너희를 쉬게 하리라”<br>
     <span style="font-size:13.5px; color:#6b5c47; font-weight:700;">— 마태복음 11장 28절</span>
   </div>
+
+  <!-- 입장 전 남/여 아바타 & 호칭 빠른 선택 -->
+  <div class="boot-avatar-box" aria-label="내 아바타 성별 및 호칭 선택">
+    <div style="font-size:13px; font-weight:700; color:#4a3e2e;">👤 내 순례자 아바타 선택 (입장 후에도 언제든 꾸밀 수 있습니다)</div>
+    <div class="boot-gender-row">
+      <button type="button" class="boot-gender-btn active" data-boot-gender="M" id="boot-gender-m">👨 남성 (형제)</button>
+      <button type="button" class="boot-gender-btn" data-boot-gender="F" id="boot-gender-f">👩 여성 (자매)</button>
+    </div>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <span style="font-size:12.5px; font-weight:700; color:#5c4f3e; white-space:nowrap;">순례자 호칭:</span>
+      <input type="text" id="boot-name-input" maxlength="16" value="고요한 백합화" style="flex:1; padding:7px 11px; border-radius:9px; border:1px solid rgba(140,115,75,0.4); background:#fff; color:#241c14; font-size:13.5px; font-weight:700; user-select:text; -webkit-user-select:text;">
+    </div>
+  </div>
+
   <div class="boot-actions">
     <button class="boot-btn-primary" id="btn-enter-sound">🕊️ 소리 켜고 예배당 들어가기</button>
     <button class="boot-btn-secondary" id="btn-enter-mute">조용히 들어가기 (소리 끔)</button>
@@ -417,6 +612,9 @@ html, body {
       <span class="live-dot"></span>
       <span id="current-room-name">갈릴리 호숫가</span>
       <span style="color:#6E4B12; font-weight:800;">· <strong id="current-room-count">8</strong>명 함께 기도 중</span>
+    </button>
+    <button class="hud-pill" id="btn-top-avatar" title="남·여 성별, 헤어스타일, 예배복, 성경책·등불 소품 꾸미기">
+      <span>👤 내 아바타 꾸미기</span>
     </button>
     <button class="hud-pill" id="btn-time-mode" title="예배당 시간대 빛 바꾸기">
       <span id="time-mode-label">☀️ 따스한 주일 한낮</span>
@@ -452,42 +650,163 @@ html, body {
 
 <!-- 상단 상태 배너 -->
 <div class="status-banner" id="status-banner">
-  바닥을 누르면 걸어가고, 빈 장의자나 강단 앞 무릎기도석을 누르면 조용히 앉아 기도합니다.
+  바닥을 누르면 사람처럼 걸어가고, 빈 장의자에 앉거나 강단 앞에서 무릎 꿇고 기도할 수 있습니다.
 </div>
 
 <!-- 조작 힌트 -->
 <div class="control-hint">
-  바닥 클릭·방향키 이동 · 마우스 드래그 둘러보기 · 휠 확대/축소 · 단축키: [1] 착석기도 [2] 말씀필사 [3] 샬롬인사 [4] 등불켜기 [5] 말씀·소리
+  바닥 클릭·방향키(WASD) 걷기 · 의자 클릭 착석 · 무릎기도석 클릭 무릎기도 · Enter 채팅 · 단축키 [1]의자착석 [2]무릎기도 [3]아바타꾸미기 [4]말씀묵상 [5]등불켜기 [6]말씀·소리
 </div>
 
-<!-- 4. 하단 5대 인터랙션 독(Dock) -->
+<!-- 4-A. 좌측 하단 실시간 성도 교제·기도 채팅 & 빠른 액션 바 (코루라이브 스타일) -->
+<section class="chapel-chat-stack" id="chapel-chat-stack" aria-label="실시간 성도 교제 채팅 및 액션">
+  <div class="chapel-chatlog" id="chapel-chatlog">
+    <button type="button" class="chatlog-tab-toggle" id="btn-chatlog-toggle" title="대화창 접기/펴기">
+      <span id="chatlog-toggle-label">💬 실시간 교제·기도 나눔 (접기 ▼)</span>
+    </button>
+    <button type="button" class="chatlog-tab-block" id="btn-chatlog-block-panel" hidden>
+      차단 <span id="blocked-count-num">0</span>
+    </button>
+    <ul class="chapel-chat-list" id="chapel-chat-list"></ul>
+    <div class="blocked-users-box" id="blocked-users-box"></div>
+  </div>
+
+  <!-- 빠른 액션·포즈 버튼 바 -->
+  <div class="quick-action-row" role="toolbar" aria-label="아바타 액션 및 기도 자세">
+    <button type="button" class="emote-pill-btn" data-emote-btn="sit" title="가장 가까운 의자에 진짜 앉듯이 착석">🪑 의자착석</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="kneel" title="두 무릎을 꿇고 두 손 모아 간절히 기도">🧎 무릎기도</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="praise" title="두 팔을 높이 들고 아멘 할렐루야 찬양">🙌 할렐루야</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="wave" title="손을 흔들며 평안의 샬롬 인사">🕊️ 손인사</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="amen" title="두 손 모아 고개 숙여 아멘 화답">🙏 아멘목례</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="read" title="성경책을 펴 들고 말씀 읽기">📖 말씀읽기</button>
+  </div>
+
+  <!-- 채팅 입력 폼 -->
+  <form class="chapel-chatbar" id="chapel-chat-form" autocomplete="off">
+    <input type="text" id="chapel-chat-input" maxlength="45" placeholder="평안의 인사나 기도제목을 나누세요 (Enter)...">
+    <button type="submit" id="chapel-chat-send" title="보내기">🕊️</button>
+  </form>
+</section>
+
+<!-- 4-B. 하단 6대 인터랙션 독(Dock) -->
 <nav class="bottom-dock" aria-label="예배당 도구">
   <button class="dock-btn" id="dock-sit">
     <span>🪑</span>
-    <span class="label-text" id="dock-sit-label">자리에 앉아 기도</span>
+    <span class="label-text" id="dock-sit-label">의자 착석</span>
     <span class="shortcut">1</span>
+  </button>
+  <button class="dock-btn" id="dock-kneel">
+    <span>🧎</span>
+    <span class="label-text" id="dock-kneel-label">무릎 기도</span>
+    <span class="shortcut">2</span>
+  </button>
+  <button class="dock-btn" id="dock-avatar">
+    <span>👤</span>
+    <span class="label-text">아바타 꾸미기</span>
+    <span class="shortcut">3</span>
   </button>
   <button class="dock-btn" id="dock-word">
     <span>📜</span>
     <span class="label-text">손끝 말씀 묵상</span>
-    <span class="shortcut">2</span>
-  </button>
-  <button class="dock-btn" id="dock-shalom">
-    <span>🕊️</span>
-    <span class="label-text">샬롬 인사</span>
-    <span class="shortcut">3</span>
+    <span class="shortcut">4</span>
   </button>
   <button class="dock-btn" id="dock-candle">
     <span>🕯️</span>
     <span class="label-text">기도의 등불 켜기</span>
-    <span class="shortcut">4</span>
+    <span class="shortcut">5</span>
   </button>
   <button class="dock-btn" id="dock-sound">
     <span>🎙️</span>
     <span class="label-text">말씀 · 찬양 · 소리</span>
-    <span class="shortcut">5</span>
+    <span class="shortcut">6</span>
   </button>
 </nav>
+
+<!-- 5-0. [내 아바타 꾸미기] 패널 (남/여 성별, 헤어, 의상, 소품, 안경/모자) -->
+<aside class="floating-panel" id="panel-avatar">
+  <div class="panel-header">
+    <h2 class="panel-title">👤 내 순례자 아바타 꾸미기</h2>
+    <button class="panel-close" data-close="panel-avatar">✕</button>
+  </div>
+
+  <!-- 1) 남/여 성별 선택 -->
+  <div class="cust-section">
+    <div class="cust-label"><span>성별 선택</span><span style="color:#f5cf76; font-size:11.5px;">체형과 헤어스타일이 바뀝니다</span></div>
+    <div class="cust-seg" style="grid-template-columns: 1fr 1fr;">
+      <button type="button" class="cust-chip active" data-cust-gender="M">👨 남성 (형제)</button>
+      <button type="button" class="cust-chip" data-cust-gender="F">👩 여성 (자매)</button>
+    </div>
+  </div>
+
+  <!-- 2) 헤어스타일 & 머리색 -->
+  <div class="cust-section">
+    <div class="cust-label"><span>헤어스타일 & 머리색</span></div>
+    <div class="cust-seg" id="cust-hair-styles">
+      <button type="button" class="cust-chip active" data-cust-hair="0" id="hair-btn-0">단정 숏컷</button>
+      <button type="button" class="cust-chip" data-cust-hair="1" id="hair-btn-1">부드러운 가르마</button>
+      <button type="button" class="cust-chip" data-cust-hair="2" id="hair-btn-2">깔끔 댄디컷</button>
+    </div>
+    <div class="swatch-row" id="cust-hair-colors" style="margin-top:4px;">
+      <button type="button" class="color-swatch active" data-hair-color="#221a15" style="background:#221a15;" title="자연 흑갈색"></button>
+      <button type="button" class="color-swatch" data-hair-color="#4a3222" style="background:#4a3222;" title="따뜻한 밤색"></button>
+      <button type="button" class="color-swatch" data-hair-color="#111113" style="background:#111113;" title="차분한 검정"></button>
+      <button type="button" class="color-swatch" data-hair-color="#7a5638" style="background:#7a5638;" title="골든 브라운"></button>
+      <button type="button" class="color-swatch" data-hair-color="#c8ccd0" style="background:#c8ccd0;" title="은백색(실버 그레이)"></button>
+    </div>
+  </div>
+
+  <!-- 3) 예배 복장 스타일 & 색상 -->
+  <div class="cust-section">
+    <div class="cust-label"><span>예배 복장 & 색상</span></div>
+    <div class="cust-seg" id="cust-outfit-types">
+      <button type="button" class="cust-chip active" data-cust-outfit="suit">👔 주일 정장·원피스</button>
+      <button type="button" class="cust-chip" data-cust-outfit="robe">⛪ 성가대 예배가운</button>
+      <button type="button" class="cust-chip" data-cust-outfit="casual">🧶 니트 가디건</button>
+    </div>
+    <div class="swatch-row" id="cust-outfit-colors" style="margin-top:4px;">
+      <button type="button" class="color-swatch active" data-outfit-color="#2c3e58" style="background:#2c3e58;" title="네이비 블루"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#f0e7d8" style="background:#f0e7d8;" title="아이보리 화이트"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#36393f" style="background:#36393f;" title="차콜 그레이"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#8c6d53" style="background:#8c6d53;" title="베이지 브라운"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#4b6048" style="background:#4b6048;" title="올리브 그린"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#6e2c35" style="background:#6e2c35;" title="버건디 와인"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#7c6d94" style="background:#7c6d94;" title="라벤더 퍼플"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#c99e93" style="background:#c99e93;" title="로즈 베이지"></button>
+    </div>
+  </div>
+
+  <!-- 4) 손에 드는 소품 (채팅창에 /성경책 /등불 /종려가지 /가방 입력도 가능) -->
+  <div class="cust-section">
+    <div class="cust-label"><span>손 소품</span><span style="color:#b8aa96; font-size:11px;">채팅창에 /성경책 /등불 /가방 입력 가능</span></div>
+    <div class="cust-seg" id="cust-props" style="grid-template-columns: repeat(3, 1fr);">
+      <button type="button" class="cust-chip" data-cust-prop="none">🤲 빈손(기도)</button>
+      <button type="button" class="cust-chip active" data-cust-prop="bible">📖 성경책</button>
+      <button type="button" class="cust-chip" data-cust-prop="candle">🕯️ 기도등불</button>
+      <button type="button" class="cust-chip" data-cust-prop="palm">🌿 종려가지</button>
+      <button type="button" class="cust-chip" data-cust-prop="bag">👜 성경가방</button>
+    </div>
+  </div>
+
+  <!-- 5) 안경 & 머리 장식 -->
+  <div class="cust-section">
+    <div class="cust-label"><span>안경 · 모자 장식</span></div>
+    <div class="cust-seg" id="cust-accessories" style="grid-template-columns: repeat(4, 1fr);">
+      <button type="button" class="cust-chip active" data-cust-acc="none">없음</button>
+      <button type="button" class="cust-chip" data-cust-acc="glasses">👓 안경</button>
+      <button type="button" class="cust-chip" data-cust-acc="beret">🎩 베레모</button>
+      <button type="button" class="cust-chip" data-cust-acc="crown">✨ 은혜화관</button>
+    </div>
+  </div>
+
+  <!-- 6) 순례자 이름 변경 -->
+  <div class="cust-section">
+    <div class="cust-label"><span>나의 순례자 호칭</span></div>
+    <div style="display:flex; gap:6px;">
+      <input type="text" class="prayer-input" id="cust-name-input" maxlength="16" value="고요한 백합화" style="padding:8px 11px; font-size:13.5px;">
+      <button type="button" class="amen-mini-btn" id="btn-cust-save-name" style="padding:0 14px; white-space:nowrap;">이름 적용</button>
+    </div>
+  </div>
+</aside>
 
 <!-- 5-A. [손끝 말씀 묵상] 패널 (염주 돌리기 대체) -->
 <aside class="floating-panel" id="panel-word">
@@ -1289,8 +1608,9 @@ html, body {
         seats.push({
           id: `pew_${rIdx}_${side}_${offset}`,
           label: `${rIdx + 1}열 ${side < 0 ? '좌측' : '우측'} 장의자`,
-          pos: new THREE.Vector3(px + offset, 0, rz - 0.05),
+          pos: new THREE.Vector3(px + offset, 0, rz - 0.08),
           type: 'pew',
+          lookAngle: 0,
           occupiedBy: null
         });
       }
@@ -1313,6 +1633,7 @@ html, body {
       label: `강단 앞 제${kIdx + 1}무릎기도석`,
       pos: new THREE.Vector3(kx, 0, -6.0),
       type: 'kneel',
+      lookAngle: 0,
       occupiedBy: null
     });
   });
@@ -1335,6 +1656,7 @@ html, body {
       label: gb.label,
       pos: new THREE.Vector3(gb.x, 0, gb.z),
       type: 'pew',
+      lookAngle: gb.rot,
       occupiedBy: null
     });
   });
@@ -1500,63 +1822,544 @@ html, body {
   let rippleAge = 99;
 
   /* ==============================================================
-   * 7. 아바타 생성 함수 (나 + 함께 기도하는 성도들)
+   * 7. 관절형 3D 사람 아바타 생성 엔진 (남/여 성별, 헤어, 의상, 소품, 걷기/착석/무릎기도)
    * ============================================================== */
   const labelsLayer = document.getElementById('labels-layer');
   const avatars = [];
 
-  function createAvatar({ id, name, robeColor, isMe = false, x = 0, z = 8 }) {
+  const DEFAULT_MY_CUSTOM = {
+    name: '고요한 백합화',
+    gender: 'M',
+    hairStyle: 0,
+    hairColor: '#221a15',
+    outfitType: 'suit',
+    outfitColor: '#2c3e58',
+    prop: 'bible',
+    accessory: 'none'
+  };
+
+  function loadMyCustom() {
+    try {
+      const raw = JSON.parse(localStorage.getItem('kkumbaon_chapel_avatar_v2') || 'null');
+      if (raw && typeof raw === 'object') {
+        return {
+          name: (typeof raw.name === 'string' && raw.name.trim()) ? raw.name.trim().slice(0, 16) : DEFAULT_MY_CUSTOM.name,
+          gender: raw.gender === 'F' ? 'F' : 'M',
+          hairStyle: [0, 1, 2].includes(Number(raw.hairStyle)) ? Number(raw.hairStyle) : 0,
+          hairColor: typeof raw.hairColor === 'string' ? raw.hairColor : DEFAULT_MY_CUSTOM.hairColor,
+          outfitType: ['suit', 'robe', 'casual'].includes(raw.outfitType) ? raw.outfitType : 'suit',
+          outfitColor: typeof raw.outfitColor === 'string' ? raw.outfitColor : DEFAULT_MY_CUSTOM.outfitColor,
+          prop: ['none', 'bible', 'candle', 'palm', 'bag'].includes(raw.prop) ? raw.prop : 'bible',
+          accessory: ['none', 'glasses', 'beret', 'crown'].includes(raw.accessory) ? raw.accessory : 'none'
+        };
+      }
+    } catch (_) {}
+    return { ...DEFAULT_MY_CUSTOM };
+  }
+
+  function saveMyCustom(cfg = myCustom) {
+    try { localStorage.setItem('kkumbaon_chapel_avatar_v2', JSON.stringify(cfg)); } catch (_) {}
+  }
+
+  const myCustom = loadMyCustom();
+
+  // 손 소품 3D 메쉬 생성기 (성경책 / 기도등불 / 종려가지 / 성경가방)
+  function createPropMesh(propType) {
+    const pGroup = new THREE.Group();
+    if (propType === 'bible') {
+      const cover = new THREE.Mesh(
+        new THREE.BoxGeometry(0.16, 0.21, 0.045),
+        new THREE.MeshStandardMaterial({ color: 0x5c1d24, roughness: 0.55 })
+      );
+      const pages = new THREE.Mesh(
+        new THREE.BoxGeometry(0.148, 0.198, 0.036),
+        new THREE.MeshStandardMaterial({ color: 0xfbf5e6, roughness: 0.7 })
+      );
+      pages.position.x = 0.004;
+      const crossV = new THREE.Mesh(
+        new THREE.BoxGeometry(0.016, 0.09, 0.048),
+        new THREE.MeshBasicMaterial({ color: 0xf2c968 })
+      );
+      const crossH = new THREE.Mesh(
+        new THREE.BoxGeometry(0.06, 0.016, 0.048),
+        new THREE.MeshBasicMaterial({ color: 0xf2c968 })
+      );
+      crossH.position.y = 0.015;
+      pGroup.add(cover, pages, crossV, crossH);
+    } else if (propType === 'candle') {
+      const base = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.045, 0.055, 0.05, 12),
+        new THREE.MeshStandardMaterial({ color: 0xc89d48, metalness: 0.6, roughness: 0.3 })
+      );
+      const wax = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.03, 0.032, 0.13, 12),
+        new THREE.MeshStandardMaterial({ color: 0xfff8e8, roughness: 0.45 })
+      );
+      wax.position.y = 0.08;
+      const flame = new THREE.Mesh(
+        new THREE.SphereGeometry(0.028, 10, 10),
+        new THREE.MeshBasicMaterial({ color: 0xffc642 })
+      );
+      flame.scale.set(0.8, 1.65, 0.8);
+      flame.position.y = 0.165;
+      pGroup.add(base, wax, flame);
+    } else if (propType === 'palm') {
+      const stemMat = new THREE.MeshStandardMaterial({ color: 0x3b7a38, roughness: 0.65, side: THREE.DoubleSide });
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.01, 0.015, 0.42, 8), stemMat);
+      stem.position.y = 0.16;
+      pGroup.add(stem);
+      for (let i = 0; i < 7; i++) {
+        const leaf = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.012, 0.032), stemMat);
+        leaf.position.set((i % 2 === 0 ? 1 : -1) * 0.055, 0.08 + i * 0.042, 0);
+        leaf.rotation.z = (i % 2 === 0 ? -0.35 : 0.35);
+        pGroup.add(leaf);
+      }
+    } else if (propType === 'bag') {
+      const bagBody = new THREE.Mesh(
+        new THREE.BoxGeometry(0.075, 0.22, 0.29),
+        new THREE.MeshStandardMaterial({ color: 0x4a3423, roughness: 0.55 })
+      );
+      bagBody.position.y = -0.12;
+      const handle = new THREE.Mesh(
+        new THREE.TorusGeometry(0.045, 0.01, 8, 14, Math.PI),
+        new THREE.MeshStandardMaterial({ color: 0x2b1d12, roughness: 0.5 })
+      );
+      handle.rotation.y = Math.PI / 2;
+      handle.position.y = -0.01;
+      const clasp = new THREE.Mesh(
+        new THREE.BoxGeometry(0.082, 0.028, 0.04),
+        new THREE.MeshStandardMaterial({ color: 0xd4a853, metalness: 0.6, roughness: 0.3 })
+      );
+      clasp.position.y = -0.05;
+      pGroup.add(bagBody, handle, clasp);
+    }
+    return pGroup;
+  }
+
+  // 사람다운 다관절 3D 캐릭터 메쉬 조립
+  function buildHumanRig(cfg, isMe) {
+    const gender = cfg.gender === 'F' ? 'F' : 'M';
+    const hairStyle = Number(cfg.hairStyle) || 0;
+    const hairColor = cfg.hairColor || '#221a15';
+    const outfitType = cfg.outfitType || 'suit';
+    const outfitColor = cfg.outfitColor || '#2c3e58';
+    const propType = cfg.prop || 'none';
+    const accType = cfg.accessory || 'none';
+
+    const skinMat = new THREE.MeshStandardMaterial({ color: 0xf5d8be, roughness: 0.62 });
+    const hairMat = new THREE.MeshStandardMaterial({ color: hairColor, roughness: 0.78 });
+    const mainClothMat = new THREE.MeshStandardMaterial({ color: outfitColor, roughness: 0.72 });
+    const pantsMat = new THREE.MeshStandardMaterial({
+      color: outfitType === 'suit' ? (gender === 'M' ? 0x23272e : outfitColor) : 0x32363d,
+      roughness: 0.78
+    });
+    const shoeMat = new THREE.MeshStandardMaterial({ color: gender === 'F' ? 0x3b261a : 0x1e1916, roughness: 0.5 });
+    const whiteShirtMat = new THREE.MeshStandardMaterial({ color: 0xfbf8f1, roughness: 0.65 });
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xd4a853, metalness: 0.45, roughness: 0.35 });
+
+    const root = new THREE.Group();
+
+    // 바닥 그림자 & 내 캐릭터 황금 링
+    const shadow = new THREE.Mesh(
+      new THREE.CircleGeometry(0.32, 24),
+      new THREE.MeshBasicMaterial({ color: 0x090705, transparent: true, opacity: 0.38, depthWrite: false })
+    );
+    shadow.rotation.x = -Math.PI / 2;
+    shadow.position.y = 0.012;
+    root.add(shadow);
+
+    if (isMe) {
+      const meRing = new THREE.Mesh(
+        new THREE.RingGeometry(0.35, 0.42, 32),
+        new THREE.MeshBasicMaterial({ color: 0xffd269, side: THREE.DoubleSide, transparent: true, opacity: 0.85, depthWrite: false })
+      );
+      meRing.rotation.x = -Math.PI / 2;
+      meRing.position.y = 0.018;
+      root.add(meRing);
+    }
+
+    // 골반(Pelvis) 루트: 걷기 바운스, 의자 착석 높이, 무릎기도 높이 제어
+    const pelvis = new THREE.Group();
+    root.add(pelvis);
+
+    // 1) 좌·우 다리 (고관절 Hip -> 허벅지 Thigh -> 무릎 관절 Knee -> 종아리 Shin -> 신발 Shoe)
+    function makeLeg(side) {
+      const hipGroup = new THREE.Group();
+      hipGroup.position.set(side * 0.105, 0.56, 0);
+
+      const thighMat = (gender === 'F' && outfitType !== 'casual') ? skinMat : pantsMat;
+      const thigh = new THREE.Mesh(new THREE.CylinderGeometry(0.068, 0.058, 0.28, 12), thighMat);
+      thigh.position.y = -0.14;
+      thigh.castShadow = true;
+      hipGroup.add(thigh);
+
+      const kneeBall = new THREE.Mesh(new THREE.SphereGeometry(0.056, 10, 10), thighMat);
+      kneeBall.position.y = -0.28;
+      hipGroup.add(kneeBall);
+
+      const shinGroup = new THREE.Group();
+      shinGroup.position.set(0, -0.28, 0);
+
+      const shin = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.055, 0.045, 0.25, 12),
+        (gender === 'F' && outfitType === 'suit') ? skinMat : pantsMat
+      );
+      shin.position.y = -0.125;
+      shin.castShadow = true;
+      shinGroup.add(shin);
+
+      // 발과 구두 (앞쪽 -Z 방향으로 발끝이 나감)
+      const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.095, 0.065, 0.17), shoeMat);
+      shoe.position.set(0, -0.25, -0.035);
+      shoe.castShadow = true;
+      shinGroup.add(shoe);
+
+      hipGroup.add(shinGroup);
+      pelvis.add(hipGroup);
+      return { hip: hipGroup, shin: shinGroup };
+    }
+
+    const leftLeg = makeLeg(-1);
+    const rightLeg = makeLeg(1);
+
+    // 2) 상체(Torso) 그룹 (허리/골반 위 y=0.56 기준 회전)
+    const torso = new THREE.Group();
+    torso.position.set(0, 0.56, 0);
+    pelvis.add(torso);
+
+    // 골반/엉덩이 연결부
+    const hipBox = new THREE.Mesh(
+      new THREE.CylinderGeometry(gender === 'F' ? 0.155 : 0.165, gender === 'F' ? 0.165 : 0.16, 0.12, 16),
+      (gender === 'F' || outfitType === 'robe') ? mainClothMat : pantsMat
+    );
+    hipBox.position.y = 0.02;
+    torso.add(hipBox);
+
+    // 여성 스커트 또는 성가대 가운 하단 자락
+    let skirtMesh = null;
+    if (outfitType === 'robe' || (gender === 'F' && outfitType === 'suit')) {
+      const skirtLen = outfitType === 'robe' ? 0.36 : 0.24;
+      const skirtTop = gender === 'F' ? 0.145 : 0.165;
+      const skirtBot = outfitType === 'robe' ? 0.25 : 0.22;
+      skirtMesh = new THREE.Mesh(new THREE.CylinderGeometry(skirtTop, skirtBot, skirtLen, 18), mainClothMat);
+      skirtMesh.position.y = -skirtLen / 2 + 0.04;
+      skirtMesh.castShadow = true;
+      torso.add(skirtMesh);
+    }
+
+    // 흉부 몸통 (남성은 어깨가 넓고 탄탄함, 여성은 부드러운 실루엣)
+    const topR = gender === 'M' ? 0.205 : 0.172;
+    const botR = gender === 'M' ? 0.162 : 0.142;
+    const chest = new THREE.Mesh(new THREE.CylinderGeometry(topR, botR, 0.42, 18), mainClothMat);
+    chest.position.y = 0.24;
+    chest.scale.z = 0.78;
+    chest.castShadow = true;
+    torso.add(chest);
+
+    // 복장 디테일 (정장 셔츠·넥타이·브로치 / 성가대 스톨 / 가디건 이너)
+    if (outfitType === 'suit') {
+      const shirtV = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.16, 0.04), whiteShirtMat);
+      shirtV.position.set(0, 0.36, -0.135);
+      torso.add(shirtV);
+      if (gender === 'M') {
+        const tie = new THREE.Mesh(
+          new THREE.BoxGeometry(0.036, 0.18, 0.045),
+          new THREE.MeshStandardMaterial({ color: 0x8c262e, roughness: 0.5 })
+        );
+        tie.position.set(0, 0.31, -0.142);
+        torso.add(tie);
+      } else {
+        const brooch = new THREE.Mesh(new THREE.SphereGeometry(0.025, 10, 10), goldMat);
+        brooch.position.set(0, 0.36, -0.155);
+        torso.add(brooch);
+      }
+    } else if (outfitType === 'robe') {
+      const stoleCollar = new THREE.Mesh(new THREE.CylinderGeometry(topR + 0.008, topR + 0.015, 0.08, 18), goldMat);
+      stoleCollar.scale.z = 0.8;
+      stoleCollar.position.y = 0.41;
+      const stoleL = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.36, 0.02), goldMat);
+      stoleL.position.set(-0.065, 0.24, -0.15);
+      const stoleR = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.36, 0.02), goldMat);
+      stoleR.position.set(0.065, 0.24, -0.15);
+      torso.add(stoleCollar, stoleL, stoleR);
+    } else if (outfitType === 'casual') {
+      const innerTee = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.38, 0.03), whiteShirtMat);
+      innerTee.position.set(0, 0.24, -0.135);
+      torso.add(innerTee);
+    }
+
+    // 착석 시 무릎 위에 펼쳐지는 성경책 (평소엔 숨김)
+    const lapBible = createPropMesh('bible');
+    lapBible.position.set(0, 0.06, -0.22);
+    lapBible.rotation.x = Math.PI / 2 - 0.25;
+    lapBible.visible = false;
+    torso.add(lapBible);
+
+    // 3) 좌·우 팔 (어깨 관절 Shoulder -> 상완 UpperArm -> 팔꿈치 관절 Elbow -> 전완 Forearm -> 손 Hand)
+    const shoulderX = gender === 'M' ? 0.235 : 0.20;
+    function makeArm(side) {
+      const shoulderGroup = new THREE.Group();
+      shoulderGroup.position.set(side * shoulderX, 0.41, 0);
+
+      const shoulderCap = new THREE.Mesh(new THREE.SphereGeometry(0.056, 12, 12), mainClothMat);
+      shoulderGroup.add(shoulderCap);
+
+      const upperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.044, 0.20, 12), mainClothMat);
+      upperArm.position.y = -0.10;
+      upperArm.castShadow = true;
+      shoulderGroup.add(upperArm);
+
+      const forearmGroup = new THREE.Group();
+      forearmGroup.position.set(0, -0.20, 0);
+
+      const elbowBall = new THREE.Mesh(new THREE.SphereGeometry(0.044, 10, 10), mainClothMat);
+      forearmGroup.add(elbowBall);
+
+      const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.038, 0.17, 12), mainClothMat);
+      forearm.position.y = -0.085;
+      forearm.castShadow = true;
+      forearmGroup.add(forearm);
+
+      const hand = new THREE.Mesh(new THREE.SphereGeometry(0.046, 12, 12), skinMat);
+      hand.position.set(0, -0.185, 0);
+      forearmGroup.add(hand);
+
+      shoulderGroup.add(forearmGroup);
+      torso.add(shoulderGroup);
+      return { arm: shoulderGroup, forearm: forearmGroup, hand };
+    }
+
+    const leftArm = makeArm(-1);
+    const rightArm = makeArm(1);
+
+    // 오른손 소품 장착
+    let handPropMesh = null;
+    if (propType !== 'none') {
+      handPropMesh = createPropMesh(propType);
+      if (propType === 'bible') {
+        handPropMesh.position.set(-0.04, -0.19, -0.06);
+        handPropMesh.rotation.set(0.3, 0.4, 0);
+      } else if (propType === 'candle') {
+        handPropMesh.position.set(-0.02, -0.19, -0.08);
+        handPropMesh.rotation.x = -0.65;
+      } else if (propType === 'palm') {
+        handPropMesh.position.set(0, -0.19, -0.06);
+        handPropMesh.rotation.x = -0.45;
+      } else if (propType === 'bag') {
+        handPropMesh.position.set(0.03, -0.19, 0);
+      }
+      rightArm.forearm.add(handPropMesh);
+    }
+
+    // 말씀 읽기 액션용 임시 성경책
+    const readBibleMesh = createPropMesh('bible');
+    readBibleMesh.position.set(-0.08, -0.18, -0.08);
+    readBibleMesh.rotation.set(0.5, 0.2, 0);
+    readBibleMesh.visible = false;
+    rightArm.forearm.add(readBibleMesh);
+
+    // 4) 목 & 머리 & 이목구비 & 남/여 헤어스타일 (Head Group)
+    const headGroup = new THREE.Group();
+    headGroup.position.set(0, 0.45, 0);
+    torso.add(headGroup);
+
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.065, 0.09, 12), skinMat);
+    neck.position.y = 0.04;
+    headGroup.add(neck);
+
+    const headBall = new THREE.Mesh(new THREE.SphereGeometry(0.195, 22, 20), skinMat);
+    headBall.position.y = 0.21;
+    headBall.scale.set(0.96, 1.04, 0.95);
+    headBall.castShadow = true;
+    headGroup.add(headBall);
+
+    // 양쪽 귀
+    for (const s of [-1, 1]) {
+      const ear = new THREE.Mesh(new THREE.SphereGeometry(0.038, 10, 10), skinMat);
+      ear.position.set(s * 0.185, 0.20, 0);
+      ear.scale.set(0.55, 0.9, 0.7);
+      headGroup.add(ear);
+    }
+
+    // 눈, 눈동자, 발그레한 볼, 온화한 미소 (전면 -Z 방향)
+    const eyeDarkMat = new THREE.MeshStandardMaterial({ color: 0x1a1410, roughness: 0.25 });
+    const blushMat = new THREE.MeshBasicMaterial({ color: 0xeb9888, transparent: true, opacity: 0.42 });
+    const eyes = [];
+    for (const s of [-1, 1]) {
+      const eye = new THREE.Mesh(new THREE.SphereGeometry(0.022, 12, 12), eyeDarkMat);
+      eye.position.set(s * 0.068, 0.22, -0.175);
+      eye.scale.set(1.0, 1.15, 0.5);
+      headGroup.add(eye);
+      eyes.push(eye);
+
+      const blush = new THREE.Mesh(new THREE.CircleGeometry(0.032, 12), blushMat);
+      blush.position.set(s * 0.105, 0.175, -0.172);
+      blush.rotation.y = Math.PI + s * 0.35;
+      headGroup.add(blush);
+    }
+
+    // 남/여 성별별 헤어스타일 3종 조형
+    const hairGroup = new THREE.Group();
+    headGroup.add(hairGroup);
+
+    // 기본 정수리·뒤통수 헤어 캡
+    const cap = new THREE.Mesh(
+      new THREE.SphereGeometry(0.206, 20, 16, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      hairMat
+    );
+    cap.position.y = 0.22;
+    cap.rotation.x = 0.18; // 뒤통수(+Z)까지 자연스럽게 덮음
+    hairGroup.add(cap);
+
+    if (gender === 'M') {
+      if (hairStyle === 0) {
+        // 남성 0: 단정한 숏컷 + 앞머리
+        const fringe = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.075, 0.09), hairMat);
+        fringe.position.set(0.02, 0.34, -0.145);
+        fringe.rotation.z = -0.08;
+        hairGroup.add(fringe);
+      } else if (hairStyle === 1) {
+        // 남성 1: 부드러운 가르마펌
+        const partL = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), hairMat);
+        partL.position.set(-0.075, 0.33, -0.12);
+        partL.scale.set(1.1, 0.65, 0.9);
+        const partR = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), hairMat);
+        partR.position.set(0.075, 0.33, -0.12);
+        partR.scale.set(1.1, 0.65, 0.9);
+        hairGroup.add(partL, partR);
+      } else {
+        // 남성 2: 깔끔한 볼륨 댄디컷
+        const topVol = new THREE.Mesh(new THREE.SphereGeometry(0.16, 14, 12), hairMat);
+        topVol.position.set(0, 0.34, -0.04);
+        topVol.scale.set(1.05, 0.6, 1.12);
+        hairGroup.add(topVol);
+      }
+    } else {
+      // 여성 자매 헤어스타일 3종
+      const bangs = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 10), hairMat);
+      bangs.position.set(0, 0.33, -0.105);
+      bangs.scale.set(1.18, 0.52, 0.75);
+      hairGroup.add(bangs);
+
+      if (hairStyle === 0) {
+        // 여성 0: 어깨 아래로 내려오는 단정한 긴 생머리
+        const backLong = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.34, 0.12), hairMat);
+        backLong.position.set(0, 0.09, 0.13);
+        backLong.rotation.x = 0.08;
+        const sideL = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.035, 0.28, 10), hairMat);
+        sideL.position.set(-0.165, 0.11, -0.02);
+        const sideR = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.035, 0.28, 10), hairMat);
+        sideR.position.set(0.165, 0.11, -0.02);
+        hairGroup.add(backLong, sideL, sideR);
+      } else if (hairStyle === 1) {
+        // 여성 1: 우아한 단발 보브컷 + 진주 머리핀
+        for (const s of [-1, 1]) {
+          const bobSide = new THREE.Mesh(new THREE.SphereGeometry(0.12, 14, 12), hairMat);
+          bobSide.position.set(s * 0.135, 0.16, 0.02);
+          bobSide.scale.set(0.68, 1.25, 1.15);
+          hairGroup.add(bobSide);
+        }
+        const bobBack = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 12), hairMat);
+        bobBack.position.set(0, 0.16, 0.08);
+        bobBack.scale.set(1.08, 1.0, 0.75);
+        const pin = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.018, 0.02), goldMat);
+        pin.position.set(-0.145, 0.27, -0.11);
+        pin.rotation.y = 0.5;
+        hairGroup.add(bobBack, pin);
+      } else {
+        // 여성 2: 정갈한 로우번 올림머리 + 금빛 리본 장식
+        const bun = new THREE.Mesh(new THREE.SphereGeometry(0.095, 14, 14), hairMat);
+        bun.position.set(0, 0.14, 0.21);
+        const bunRing = new THREE.Mesh(new THREE.TorusGeometry(0.078, 0.016, 8, 18), goldMat);
+        bunRing.position.set(0, 0.14, 0.18);
+        hairGroup.add(bun, bunRing);
+      }
+    }
+
+    // 5) 안경 & 모자 장식
+    if (accType === 'glasses') {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0xc89d48, metalness: 0.65, roughness: 0.25 });
+      for (const s of [-1, 1]) {
+        const rim = new THREE.Mesh(new THREE.TorusGeometry(0.042, 0.006, 8, 18), glassMat);
+        rim.position.set(s * 0.068, 0.22, -0.186);
+        headGroup.add(rim);
+      }
+      const bridge = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.008, 0.008), glassMat);
+      bridge.position.set(0, 0.225, -0.186);
+      headGroup.add(bridge);
+    } else if (accType === 'beret') {
+      const beretMat = new THREE.MeshStandardMaterial({ color: 0x7a2b32, roughness: 0.8 });
+      const beret = new THREE.Mesh(new THREE.SphereGeometry(0.21, 18, 12), beretMat);
+      beret.position.set(0.02, 0.39, 0.01);
+      beret.scale.set(1.08, 0.36, 1.05);
+      beret.rotation.z = -0.14;
+      headGroup.add(beret);
+    } else if (accType === 'crown') {
+      const wreath = new THREE.Mesh(new THREE.TorusGeometry(0.195, 0.018, 8, 24), goldMat);
+      wreath.rotation.x = Math.PI / 2 - 0.12;
+      wreath.position.set(0, 0.35, 0);
+      headGroup.add(wreath);
+    }
+
+    return {
+      root,
+      pelvis,
+      torso,
+      headGroup,
+      eyes,
+      legL: leftLeg.hip,
+      shinL: leftLeg.shin,
+      legR: rightLeg.hip,
+      shinR: rightLeg.shin,
+      armL: leftArm.arm,
+      forearmL: leftArm.forearm,
+      armR: rightArm.arm,
+      forearmR: rightArm.forearm,
+      skirtMesh,
+      lapBible,
+      handPropMesh,
+      readBibleMesh
+    };
+  }
+
+  function createAvatar({ id, name, custom = {}, isMe = false, x = 0, z = 8 }) {
     const group = new THREE.Group();
     group.position.set(x, 0, z);
-
-    // 순례자 코트/예배복 몸통
-    const robeMat = new THREE.MeshStandardMaterial({ color: robeColor, roughness: 0.75 });
-    const body = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.34, 0.92, 16), robeMat);
-    body.position.y = 0.46;
-    body.castShadow = true;
-
-    // 스톨(목도리) 디테일
-    const stole = new THREE.Mesh(
-      new THREE.CylinderGeometry(0.23, 0.25, 0.16, 16),
-      new THREE.MeshStandardMaterial({ color: isMe ? 0xd4a853 : 0xb59b72, roughness: 0.6 })
-    );
-    stole.position.y = 0.84;
-
-    // 머리
-    const headMat = new THREE.MeshStandardMaterial({ color: 0xf2d5bb, roughness: 0.65 });
-    const head = new THREE.Mesh(new THREE.SphereGeometry(0.23, 18, 18), headMat);
-    head.position.y = 1.14;
-    head.castShadow = true;
-
-    // 단정한 머리카락
-    const hair = new THREE.Mesh(
-      new THREE.SphereGeometry(0.24, 16, 12, 0, Math.PI * 2, 0, Math.PI * 0.58),
-      new THREE.MeshStandardMaterial({ color: 0x2b211a, roughness: 0.85 })
-    );
-    hair.position.y = 1.16;
-    hair.rotation.x = -0.15;
-
-    // 모은 두 손 (기도 손)
-    const hands = new THREE.Mesh(
-      new THREE.SphereGeometry(0.095, 12, 12),
-      headMat
-    );
-    hands.position.set(0, 0.68, -0.26);
-
-    group.add(body, stole, head, hair, hands);
     worldGroup.add(group);
+
+    const cfg = {
+      gender: custom.gender || 'M',
+      hairStyle: custom.hairStyle ?? 0,
+      hairColor: custom.hairColor || '#221a15',
+      outfitType: custom.outfitType || 'suit',
+      outfitColor: custom.outfitColor || '#2c3e58',
+      prop: custom.prop || 'none',
+      accessory: custom.accessory || 'none'
+    };
+
+    const rig = buildHumanRig(cfg, isMe);
+    group.add(rig.root);
 
     // HTML 이름표 생성
     const labelEl = document.createElement('div');
     labelEl.className = 'avatar-label' + (isMe ? ' is-me' : '');
-    labelEl.innerHTML = `<span class="name-span">${name}</span>`;
+    const genderBadge = cfg.gender === 'F' ? '👩' : '👨';
+    labelEl.innerHTML = `<span class="gender-span">${genderBadge}</span><span class="name-span">${name}</span>`;
     labelsLayer.appendChild(labelEl);
 
     const av = {
-      id, name, isMe, group, body, head, hands, labelEl,
+      id,
+      name,
+      isMe,
+      custom: cfg,
+      group,
+      rig,
+      labelEl,
       targetPos: new THREE.Vector3(x, 0, z),
-      state: 'standing', // 'standing' | 'walking' | 'sitting' | 'bowing' | 'lighting'
+      state: 'standing', // 'standing' | 'walking' | 'walking_to_seat' | 'walking_to_candle' | 'sitting' | 'kneeling' | 'bowing'
       seat: null,
+      emote: null,       // 'praise' | 'wave' | 'amen' | 'read'
+      emoteTimer: 0,
       walkPhase: Math.random() * 10,
       bowTimer: 0,
       bubbleTimer: null
@@ -1565,10 +2368,10 @@ html, body {
     labelEl.addEventListener('click', (e) => {
       e.stopPropagation();
       if (isMe) {
-        triggerShalomBow(av, '평안을 빕니다 🕊️');
+        triggerAvatarEmote(av, 'wave', '평안을 빕니다 🕊️');
       } else {
         showAvatarBubble(av, '🙏 함께 기도합니다');
-        triggerShalomBow(myAvatar, `${av.name} 님께 샬롬 🕊️`);
+        triggerAvatarEmote(myAvatar, 'wave', `${av.name.replace('🟢 ', '')} 님께 샬롬 🕊️`);
         playHarpBell(2, true);
       }
     });
@@ -1577,7 +2380,18 @@ html, body {
     return av;
   }
 
-  function showAvatarBubble(av, message, duration = 3400) {
+  function rebuildAvatarRig(av, newCustom) {
+    av.custom = { ...av.custom, ...newCustom };
+    if (av.rig && av.rig.root) {
+      av.group.remove(av.rig.root);
+    }
+    av.rig = buildHumanRig(av.custom, av.isMe);
+    av.group.add(av.rig.root);
+    const gSpan = av.labelEl.querySelector('.gender-span');
+    if (gSpan) gSpan.textContent = av.custom.gender === 'F' ? '👩' : '👨';
+  }
+
+  function showAvatarBubble(av, message, duration = 4200) {
     const old = av.labelEl.querySelector('.avatar-bubble');
     if (old) old.remove();
     const b = document.createElement('div');
@@ -1588,25 +2402,25 @@ html, body {
     av.bubbleTimer = setTimeout(() => b.remove(), duration);
   }
 
-  // 나의 아바타 생성
+  // 나의 아바타 생성 (저장된 커스터마이징 반영)
   const myAvatar = createAvatar({
     id: 'me',
-    name: '고요한 백합화 (나)',
-    robeColor: 0xf0e7d8,
+    name: `${myCustom.name} (나)`,
+    custom: myCustom,
     isMe: true,
     x: 0,
     z: 8.2
   });
 
-  // 함께 기도하는 동행 성도들 배치
+  // 함께 기도하는 동행 성도들 배치 (남/여 성별, 다양한 헤어와 예배복, 장의자 착석 및 강단 앞 무릎기도!)
   const npcConfigs = [
-    { name: '온유한 양', color: 0xd9cbb8, seatIdx: 1 },
-    { name: '갈릴리 어부', color: 0x8da1b5, seatIdx: 4 },
-    { name: '작은 겨자씨', color: 0xc7d1be, seatIdx: 7 },
-    { name: '감람나무 가지', color: 0xbda88e, seatIdx: 12 },
-    { name: '은혜의 등불', color: 0xdec3b4, seatIdx: 20 }, // 무릎기도석
-    { name: '베들레헴 별', color: 0xc9c3d9, seatIdx: 23 }, // 무릎기도석
-    { name: '마가의 다락방', color: 0xd6cdb8, seatIdx: 15 }
+    { name: '온유한 양', seatIdx: 1, custom: { gender: 'F', hairStyle: 0, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#f0e7d8', prop: 'bible', accessory: 'none' } },
+    { name: '갈릴리 어부', seatIdx: 4, custom: { gender: 'M', hairStyle: 0, hairColor: '#111113', outfitType: 'suit', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
+    { name: '작은 겨자씨', seatIdx: 7, custom: { gender: 'F', hairStyle: 1, hairColor: '#4a3222', outfitType: 'casual', outfitColor: '#4b6048', prop: 'none', accessory: 'beret' } },
+    { name: '감람나무 가지', seatIdx: 12, custom: { gender: 'M', hairStyle: 1, hairColor: '#c8ccd0', outfitType: 'suit', outfitColor: '#8c6d53', prop: 'bag', accessory: 'glasses' } },
+    { name: '은혜의 등불', seatIdx: 20, custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 강단 앞 무릎기도석
+    { name: '베들레헴 별', seatIdx: 23, custom: { gender: 'M', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#36393f', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
+    { name: '마가의 다락방', seatIdx: 15, custom: { gender: 'F', hairStyle: 0, hairColor: '#7a5638', outfitType: 'suit', outfitColor: '#6e2c35', prop: 'candle', accessory: 'none' } }
   ];
 
   npcConfigs.forEach((cfg, idx) => {
@@ -1614,7 +2428,7 @@ html, body {
     const npc = createAvatar({
       id: `npc_${idx}`,
       name: cfg.name,
-      robeColor: cfg.color,
+      custom: cfg.custom,
       isMe: false,
       x: seat ? seat.pos.x : (idx - 3) * 1.5,
       z: seat ? seat.pos.z : 2
@@ -1622,15 +2436,30 @@ html, body {
     if (seat) {
       seat.occupiedBy = npc;
       npc.seat = seat;
-      npc.state = 'sitting';
-      npc.group.rotation.y = 0; // 강단 정면(z=-11)을 바라봄
+      npc.state = seat.type === 'kneel' ? 'kneeling' : 'sitting';
+      npc.group.rotation.y = seat.lookAngle || 0;
     }
   });
 
   /* ==============================================================
-   * 8. 착석, 이동, 샬롬 인사, 등불 켜기 동작 제어
+   * 8. 착석(의자), 무릎기도, 이동, 액션(할렐루야·손인사·아멘·말씀읽기) 제어
    * ============================================================== */
   let sitStartTime = null;
+
+  function syncDockPostureButtons() {
+    const isSitting = myAvatar.state === 'sitting' || (myAvatar.state === 'walking_to_seat' && myAvatar.seat && myAvatar.seat.type === 'pew');
+    const isKneeling = myAvatar.state === 'kneeling' || (myAvatar.state === 'walking_to_seat' && myAvatar.seat && myAvatar.seat.type === 'kneel');
+    const sitBtn = document.getElementById('dock-sit');
+    const kneelBtn = document.getElementById('dock-kneel');
+    if (sitBtn) {
+      sitBtn.classList.toggle('is-active', isSitting);
+      document.getElementById('dock-sit-label').textContent = isSitting ? '일어나기' : '의자 착석';
+    }
+    if (kneelBtn) {
+      kneelBtn.classList.toggle('is-active', isKneeling);
+      document.getElementById('dock-kneel-label').textContent = isKneeling ? '일어나기' : '무릎 기도';
+    }
+  }
 
   function unseatAvatar(av) {
     if (av.seat) {
@@ -1638,15 +2467,10 @@ html, body {
       av.seat = null;
     }
     av.state = 'standing';
-    av.body.scale.y = 1.0;
-    av.body.position.y = 0.46;
-    av.head.position.y = 1.14;
-    av.head.rotation.x = 0;
-    av.hands.position.set(0, 0.68, -0.26);
+    av.emote = null;
     if (av.isMe) {
       sitStartTime = null;
-      document.getElementById('dock-sit').classList.remove('is-active');
-      document.getElementById('dock-sit-label').textContent = '자리에 앉아 기도';
+      syncDockPostureButtons();
     }
   }
 
@@ -1657,21 +2481,27 @@ html, body {
     seat.occupiedBy = av;
     av.state = 'walking_to_seat';
     if (av.isMe) {
-      setStatusBanner(`${seat.label}로 조용히 걸어가 앉습니다...`);
+      syncDockPostureButtons();
+      setStatusBanner(seat.type === 'kneel'
+        ? `🧎 ${seat.label}로 나아가 두 무릎을 꿇고 기도합니다...`
+        : `🪑 ${seat.label}로 걸어가 의자에 착석합니다...`);
+      broadcastMyState();
     }
   }
 
+  // [1] 의자 착석 토글 (가장 가까운 빈 장의자/벤치에 진짜 앉듯이 착석)
   function toggleMySit() {
-    if (myAvatar.state === 'sitting' || myAvatar.state === 'walking_to_seat') {
+    if (myAvatar.state === 'sitting' || (myAvatar.state === 'walking_to_seat' && myAvatar.seat && myAvatar.seat.type === 'pew')) {
       unseatAvatar(myAvatar);
-      myAvatar.targetPos.set(0, 0, myAvatar.group.position.z + 0.6);
-      setStatusBanner('자리에서 일어났습니다. 바닥을 눌러 예배당을 둘러보세요.');
+      myAvatar.targetPos.set(myAvatar.group.position.x, 0, myAvatar.group.position.z + 0.55);
+      setStatusBanner('의자에서 일어났습니다. 바닥을 눌러 예배당을 걸어보세요.');
+      broadcastMyState();
       return;
     }
-    // 가장 가까운 빈 좌석 찾기
     let bestSeat = null;
     let minDist = Infinity;
     for (const s of seats) {
+      if (s.type !== 'pew') continue;
       if (s.occupiedBy && s.occupiedBy !== myAvatar) continue;
       const d = myAvatar.group.position.distanceTo(s.pos);
       if (d < minDist) {
@@ -1684,35 +2514,90 @@ html, body {
     }
   }
 
-  function triggerShalomBow(av, msg = '평안을 빕니다 🕊️') {
-    if (av.state === 'sitting') {
-      showAvatarBubble(av, msg);
-      av.head.rotation.x = -0.38;
+  // [2] 무릎 기도 토글 (강단 앞 무릎기도석이 가까우면 기도석에, 아니면 현재 자리에서 즉시 두 무릎을 꿇고 기도!)
+  function toggleMyKneel() {
+    if (myAvatar.state === 'kneeling' || (myAvatar.state === 'walking_to_seat' && myAvatar.seat && myAvatar.seat.type === 'kneel')) {
+      unseatAvatar(myAvatar);
+      setStatusBanner('무릎 기도를 마치고 자리에서 일어났습니다.');
+      broadcastMyState();
       return;
     }
-    unseatAvatar(av);
-    av.state = 'bowing';
-    av.bowTimer = 1.8;
-    showAvatarBubble(av, msg);
-    if (av.isMe) {
-      playHarpBell(4, false);
-      setStatusBanner('두 손을 모으고 함께 있는 성도들에게 평안(샬롬)의 인사를 나눕니다.');
-      // 주변 성도 1~2명이 목례로 화답
-      setTimeout(() => {
-        const responder = avatars[1 + Math.floor(Math.random() * (avatars.length - 1))];
-        if (responder) showAvatarBubble(responder, '🕊️ 샬롬, 평안하세요');
-      }, 750);
+    // 근처(4.5m 이내)에 빈 무릎기도석이 있으면 그 방석으로 걸어가 무릎을 꿇음
+    let bestKneel = null;
+    let minDist = Infinity;
+    for (const s of seats) {
+      if (s.type !== 'kneel') continue;
+      if (s.occupiedBy && s.occupiedBy !== myAvatar) continue;
+      const d = myAvatar.group.position.distanceTo(s.pos);
+      if (d < minDist) {
+        minDist = d;
+        bestKneel = s;
+      }
+    }
+    if (bestKneel && minDist <= 4.5) {
+      sitAvatarAtSeat(myAvatar, bestKneel);
+    } else {
+      // 현재 서 있는 자리(또는 의자 앞 통로)에서 즉시 무릎 꿇고 기도
+      if (myAvatar.seat) {
+        myAvatar.group.position.z += 0.45;
+        myAvatar.targetPos.copy(myAvatar.group.position);
+      }
+      unseatAvatar(myAvatar);
+      myAvatar.state = 'kneeling';
+      myAvatar.group.rotation.y = 0; // 십자가 정면을 향함
+      sitStartTime = Date.now();
+      syncDockPostureButtons();
+      playHarpBell(3, false);
+      showAvatarBubble(myAvatar, '🧎 주님 앞에 무릎 꿇고 기도합니다');
+      setStatusBanner('🧎 두 무릎을 꿇고 두 손을 모아 주님 앞에 간절히 기도하고 있습니다.');
+      broadcastMyState('kneel', '🧎 주님 앞에 무릎 꿇고 기도합니다');
     }
   }
 
-  // 강단 앞 등불 켜기 시퀀스 (산사의 향 올리기 대응)
+  // 4대 감정·신앙 액션 실행 ('praise' | 'wave' | 'amen' | 'read')
+  const EMOTE_META = {
+    praise: { dur: 3.6, defaultMsg: '🙌 아멘! 할렐루야 찬양합니다!', banner: '🙌 두 손을 높이 들고 하나님을 찬양합니다.' },
+    wave:   { dur: 3.0, defaultMsg: '🕊️ 샬롬! 주님의 평안을 빕니다', banner: '🕊️ 함께 있는 성도들에게 손을 흔들며 샬롬 인사를 건넵니다.' },
+    amen:   { dur: 2.8, defaultMsg: '🙏 아멘, 마음 모아 함께 기도합니다', banner: '🙏 두 손을 가슴에 모으고 경건히 고개 숙여 아멘으로 화답합니다.' },
+    read:   { dur: 4.2, defaultMsg: '📖 주의 말씀은 내 발의 등이요 내 길의 빛이니이다', banner: '📖 성경책을 펴 들고 하나님의 말씀을 깊이 묵상합니다.' }
+  };
+
+  function triggerAvatarEmote(av, emoteKey, customMsg = null) {
+    const meta = EMOTE_META[emoteKey] || EMOTE_META.wave;
+    const msg = customMsg || meta.defaultMsg;
+    av.emote = emoteKey;
+    av.emoteTimer = meta.dur;
+    showAvatarBubble(av, msg, meta.dur * 1000);
+
+    if (av.isMe) {
+      playHarpBell(emoteKey === 'praise' ? 5 : 4, emoteKey === 'praise');
+      setStatusBanner(meta.banner);
+      broadcastMyState(emoteKey, msg);
+      if (emoteKey === 'wave' || emoteKey === 'praise') {
+        setTimeout(() => {
+          const npcs = avatars.filter(a => a.id.startsWith('npc_') && a.group.visible);
+          if (npcs.length > 0) {
+            const responder = npcs[Math.floor(Math.random() * npcs.length)];
+            const reply = emoteKey === 'praise' ? '🙌 아멘 할렐루야!' : '🕊️ 샬롬, 반갑습니다!';
+            triggerAvatarEmote(responder, emoteKey === 'praise' ? 'amen' : 'wave', reply);
+          }
+        }, 700);
+      }
+    }
+  }
+
+  function triggerShalomBow(av, msg = '평안을 빕니다 🕊️') {
+    triggerAvatarEmote(av, 'wave', msg);
+  }
+
+  // 강단 앞 등불 켜기 시퀀스
   function startLightingCandleSequence(prayerText) {
     unseatAvatar(myAvatar);
     const standPos = new THREE.Vector3(Math.random() < 0.5 ? -2.2 : 2.2, 0, -6.4);
     myAvatar.targetPos.copy(standPos);
     myAvatar.state = 'walking_to_candle';
     myAvatar.pendingPrayer = prayerText;
-    setStatusBanner('🕯️ 강단 앞 등불대로 조용히 나아갑니다...');
+    setStatusBanner('🕯️ 강단 앞 등불대로 조용히 걸어 나아갑니다...');
   }
 
   function setStatusBanner(text) {
@@ -1870,17 +2755,30 @@ html, body {
     }
   }
 
-  // 키보드 조작
+  // 키보드 조작 (1:의자착석, 2:무릎기도, 3:아바타꾸미기, 4:말씀묵상, 5:등불켜기, 6:말씀·소리, Enter:채팅)
   const keysPressed = {};
   window.addEventListener('keydown', (e) => {
-    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) return;
+    const activeTag = document.activeElement ? document.activeElement.tagName : '';
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeTag)) {
+      if (e.key === 'Escape') document.activeElement.blur();
+      return;
+    }
     keysPressed[e.key.toLowerCase()] = true;
 
+    if (e.key === 'Enter') {
+      const chatInput = document.getElementById('chapel-chat-input');
+      if (chatInput && document.getElementById('chapel-boot').classList.contains('is-hidden')) {
+        e.preventDefault();
+        chatInput.focus();
+      }
+      return;
+    }
     if (e.key === '1') toggleMySit();
-    if (e.key === '2') togglePanel('panel-word', 'dock-word');
-    if (e.key === '3') triggerShalomBow(myAvatar);
-    if (e.key === '4') togglePanel('panel-candle', 'dock-candle');
-    if (e.key === '5') togglePanel('panel-sound', 'dock-sound');
+    if (e.key === '2') toggleMyKneel();
+    if (e.key === '3') togglePanel('panel-avatar', 'dock-avatar');
+    if (e.key === '4') togglePanel('panel-word', 'dock-word');
+    if (e.key === '5') togglePanel('panel-candle', 'dock-candle');
+    if (e.key === '6') togglePanel('panel-sound', 'dock-sound');
     if (e.key === ' ' && document.getElementById('panel-word').classList.contains('is-open')) {
       e.preventDefault();
       advanceWordChar(2);
@@ -2002,45 +2900,395 @@ html, body {
   });
 
   /* ==============================================================
-   * 12. UI 이벤트 연결 (부트, 독 패널, 사운드, 시간대, 모달)
+   * 12. UI 이벤트 연결 (부트 성별선택, 아바타 꾸미기, 채팅, 독 패널, 사운드)
    * ============================================================== */
+  function syncCustomizerUI() {
+    const g = myCustom.gender || 'M';
+    const bootM = document.getElementById('boot-gender-m');
+    const bootF = document.getElementById('boot-gender-f');
+    if (bootM) bootM.classList.toggle('active', g === 'M');
+    if (bootF) bootF.classList.toggle('active', g === 'F');
+
+    const bootName = document.getElementById('boot-name-input');
+    if (bootName && document.activeElement !== bootName) bootName.value = myCustom.name;
+    const custName = document.getElementById('cust-name-input');
+    if (custName && document.activeElement !== custName) custName.value = myCustom.name;
+    const roomNameInput = document.getElementById('my-name-input');
+    if (roomNameInput && document.activeElement !== roomNameInput) roomNameInput.value = myCustom.name;
+
+    // 성별별 헤어스타일 버튼 이름 업데이트
+    const hairLabels = g === 'F'
+      ? ['단정한 긴머리', '우아한 단발컷', '정갈한 올림머리']
+      : ['단정 숏컷', '부드러운 가르마', '깔끔 댄디컷'];
+    hairLabels.forEach((lbl, idx) => {
+      const el = document.getElementById(`hair-btn-${idx}`);
+      if (el) el.textContent = lbl;
+    });
+
+    document.querySelectorAll('[data-cust-gender]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-gender') === g);
+    });
+    document.querySelectorAll('[data-cust-hair]').forEach(btn => {
+      btn.classList.toggle('active', Number(btn.getAttribute('data-cust-hair')) === Number(myCustom.hairStyle));
+    });
+    document.querySelectorAll('[data-hair-color]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-hair-color').toLowerCase() === (myCustom.hairColor || '').toLowerCase());
+    });
+    document.querySelectorAll('[data-cust-outfit]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-outfit') === myCustom.outfitType);
+    });
+    document.querySelectorAll('[data-outfit-color]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-outfit-color').toLowerCase() === (myCustom.outfitColor || '').toLowerCase());
+    });
+    document.querySelectorAll('[data-cust-prop]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-prop') === myCustom.prop);
+    });
+    document.querySelectorAll('[data-cust-acc]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-acc') === myCustom.accessory);
+    });
+  }
+
+  function applyMyCustomChange(patch, bannerMsg = null) {
+    Object.assign(myCustom, patch);
+    saveMyCustom();
+    myAvatar.name = `${myCustom.name} (나)`;
+    const nSpan = myAvatar.labelEl.querySelector('.name-span');
+    if (nSpan) nSpan.textContent = myAvatar.name;
+    rebuildAvatarRig(myAvatar, myCustom);
+    syncCustomizerUI();
+    broadcastMyState();
+    if (bannerMsg) setStatusBanner(bannerMsg);
+  }
+
+  syncCustomizerUI();
+
+  // 부트 화면 남/여 성별 및 닉네임 이벤트
+  document.querySelectorAll('[data-boot-gender]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.getAttribute('data-boot-gender');
+      const nextColor = (g === 'F' && myCustom.outfitColor === '#2c3e58')
+        ? '#f0e7d8'
+        : (g === 'M' && myCustom.outfitColor === '#f0e7d8' ? '#2c3e58' : myCustom.outfitColor);
+      applyMyCustomChange({ gender: g, outfitColor: nextColor });
+    });
+  });
+
+  const bootNameInput = document.getElementById('boot-name-input');
+  if (bootNameInput) {
+    bootNameInput.addEventListener('change', () => {
+      const v = bootNameInput.value.trim();
+      if (v) applyMyCustomChange({ name: v });
+    });
+  }
+
+  // 아바타 꾸미기 패널 이벤트 연결
+  document.querySelectorAll('[data-cust-gender]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.getAttribute('data-cust-gender');
+      applyMyCustomChange(
+        { gender: g },
+        g === 'F' ? '👩 여성(자매) 아바타 체형과 헤어스타일로 변경했습니다.' : '👨 남성(형제) 아바타 체형과 헤어스타일로 변경했습니다.'
+      );
+      playHarpBell(2, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-hair]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ hairStyle: Number(btn.getAttribute('data-cust-hair')) }, '💇 헤어스타일을 단정하게 정돈했습니다.');
+      playHarpBell(1, false);
+    });
+  });
+  document.querySelectorAll('[data-hair-color]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ hairColor: btn.getAttribute('data-hair-color') });
+      playHarpBell(1, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-outfit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ outfitType: btn.getAttribute('data-cust-outfit') }, '👔 예배 복장 스타일을 변경했습니다.');
+      playHarpBell(3, false);
+    });
+  });
+  document.querySelectorAll('[data-outfit-color]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ outfitColor: btn.getAttribute('data-outfit-color') });
+      playHarpBell(2, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-prop]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ prop: btn.getAttribute('data-cust-prop') }, '🤲 손에 드는 예배 소품을 변경했습니다.');
+      playHarpBell(4, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-acc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ accessory: btn.getAttribute('data-cust-acc') }, '✨ 안경·모자 장식을 변경했습니다.');
+      playHarpBell(4, false);
+    });
+  });
+  document.getElementById('btn-cust-save-name').addEventListener('click', () => {
+    const val = document.getElementById('cust-name-input').value.trim();
+    if (val) {
+      applyMyCustomChange({ name: val }, `🕊️ 순례자 호칭을 「${val}」(으)로 변경했습니다.`);
+      showAvatarBubble(myAvatar, `🕊️ ${val}`);
+    }
+  });
+
   const bootEl = document.getElementById('chapel-boot');
-  document.getElementById('btn-enter-sound').addEventListener('click', () => {
+  function enterChapelWithAudio(withSound) {
+    if (bootNameInput && bootNameInput.value.trim()) {
+      applyMyCustomChange({ name: bootNameInput.value.trim() });
+    }
     bootEl.classList.add('is-hidden');
-    startAudioSystem(true);
-  });
-  document.getElementById('btn-enter-mute').addEventListener('click', () => {
-    bootEl.classList.add('is-hidden');
-    startAudioSystem(false);
-  });
+    startAudioSystem(withSound);
+  }
+  document.getElementById('btn-enter-sound').addEventListener('click', () => enterChapelWithAudio(true));
+  document.getElementById('btn-enter-mute').addEventListener('click', () => enterChapelWithAudio(false));
 
   function togglePanel(panelId, dockBtnId) {
-    const panels = ['panel-word', 'panel-candle', 'panel-sound'];
-    const docks = ['dock-word', 'dock-candle', 'dock-sound'];
+    const panels = ['panel-avatar', 'panel-word', 'panel-candle', 'panel-sound'];
+    const docks = ['dock-avatar', 'dock-word', 'dock-candle', 'dock-sound'];
     const target = document.getElementById(panelId);
+    if (!target) return;
     const isOpen = target.classList.contains('is-open');
 
-    panels.forEach(p => document.getElementById(p).classList.remove('is-open'));
-    docks.forEach(d => document.getElementById(d).classList.remove('is-active'));
+    panels.forEach(p => {
+      const el = document.getElementById(p);
+      if (el) el.classList.remove('is-open');
+    });
+    docks.forEach(d => {
+      const el = document.getElementById(d);
+      if (el) el.classList.remove('is-active');
+    });
 
     if (!isOpen) {
       target.classList.add('is-open');
-      if (dockBtnId) document.getElementById(dockBtnId).classList.add('is-active');
+      if (dockBtnId && document.getElementById(dockBtnId)) {
+        document.getElementById(dockBtnId).classList.add('is-active');
+      }
     }
   }
 
   document.getElementById('dock-sit').addEventListener('click', toggleMySit);
+  document.getElementById('dock-kneel').addEventListener('click', toggleMyKneel);
+  document.getElementById('dock-avatar').addEventListener('click', () => togglePanel('panel-avatar', 'dock-avatar'));
+  document.getElementById('btn-top-avatar').addEventListener('click', () => togglePanel('panel-avatar', 'dock-avatar'));
   document.getElementById('dock-word').addEventListener('click', () => togglePanel('panel-word', 'dock-word'));
-  document.getElementById('dock-shalom').addEventListener('click', () => triggerShalomBow(myAvatar));
   document.getElementById('dock-candle').addEventListener('click', () => togglePanel('panel-candle', 'dock-candle'));
   document.getElementById('dock-sound').addEventListener('click', () => togglePanel('panel-sound', 'dock-sound'));
 
   document.querySelectorAll('[data-close]').forEach(btn => {
     btn.addEventListener('click', () => {
       const pid = btn.getAttribute('data-close');
-      document.getElementById(pid).classList.remove('is-open');
-      ['dock-word', 'dock-candle', 'dock-sound'].forEach(d => document.getElementById(d).classList.remove('is-active'));
+      const el = document.getElementById(pid);
+      if (el) el.classList.remove('is-open');
+      ['dock-avatar', 'dock-word', 'dock-candle', 'dock-sound'].forEach(d => {
+        const dEl = document.getElementById(d);
+        if (dEl) dEl.classList.remove('is-active');
+      });
     });
+  });
+
+  /* ==============================================================
+   * 12-A. 좌측 하단 코루라이브 스타일 실시간 성도 교제 채팅 & 액션 바
+   * ============================================================== */
+  const chatlogBox = document.getElementById('chapel-chatlog');
+  const chatListEl = document.getElementById('chapel-chat-list');
+  const chatFormEl = document.getElementById('chapel-chat-form');
+  const chatInputEl = document.getElementById('chapel-chat-input');
+  const btnChatToggle = document.getElementById('btn-chatlog-toggle');
+  const chatToggleLabel = document.getElementById('chatlog-toggle-label');
+  const btnBlockPanel = document.getElementById('btn-chatlog-block-panel');
+  const blockedCountNum = document.getElementById('blocked-count-num');
+  const blockedUsersBox = document.getElementById('blocked-users-box');
+  const blockedUsers = new Map(); // sid -> name
+
+  btnChatToggle.addEventListener('click', () => {
+    const collapsed = chatlogBox.classList.toggle('is-collapsed');
+    chatToggleLabel.textContent = collapsed
+      ? '💬 실시간 교제·기도 나눔 (펴기 ▲)'
+      : '💬 실시간 교제·기도 나눔 (접기 ▼)';
+  });
+
+  btnBlockPanel.addEventListener('click', () => {
+    blockedUsersBox.classList.toggle('is-open');
+  });
+
+  function renderBlockedUsers() {
+    blockedCountNum.textContent = String(blockedUsers.size);
+    btnBlockPanel.hidden = blockedUsers.size === 0;
+    if (blockedUsers.size === 0) {
+      blockedUsersBox.classList.remove('is-open');
+      blockedUsersBox.innerHTML = '';
+      return;
+    }
+    blockedUsersBox.innerHTML = '';
+    blockedUsers.forEach((uName, sid) => {
+      const row = document.createElement('div');
+      row.className = 'blocked-item';
+      row.innerHTML = `<span>🚫 ${uName}</span><button type="button" data-unblock="${sid}">차단 해제</button>`;
+      blockedUsersBox.appendChild(row);
+    });
+    blockedUsersBox.querySelectorAll('[data-unblock]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const sid = btn.getAttribute('data-unblock');
+        blockedUsers.delete(sid);
+        renderBlockedUsers();
+      });
+    });
+  }
+
+  function appendChatMessage({ sid = null, name, text, isSystem = false, isMe = false }) {
+    if (sid && blockedUsers.has(sid)) return;
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+
+    const li = document.createElement('li');
+    li.className = 'chapel-chat-item' + (isSystem ? ' is-system' : '');
+    if (sid) li.setAttribute('data-chat-sid', sid);
+
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'chat-time';
+    timeSpan.textContent = `${hh}:${mm}`;
+    li.appendChild(timeSpan);
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'chat-sender' + (isMe ? ' is-me' : '');
+    nameSpan.textContent = `${name}:`;
+    li.appendChild(nameSpan);
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    li.appendChild(textSpan);
+
+    if (!isMe && !isSystem && sid) {
+      const blkBtn = document.createElement('button');
+      blkBtn.type = 'button';
+      blkBtn.className = 'chat-block-btn';
+      blkBtn.textContent = '차단';
+      blkBtn.title = '이 사용자의 채팅 숨기기';
+      blkBtn.addEventListener('click', () => {
+        blockedUsers.set(sid, name);
+        chatListEl.querySelectorAll(`[data-chat-sid="${sid}"]`).forEach(el => el.remove());
+        renderBlockedUsers();
+      });
+      li.appendChild(blkBtn);
+    }
+
+    chatListEl.appendChild(li);
+    while (chatListEl.children.length > 50) {
+      chatListEl.removeChild(chatListEl.firstChild);
+    }
+    chatListEl.scrollTop = chatListEl.scrollHeight;
+  }
+
+  // 초기 환영 교제 메시지
+  appendChatMessage({
+    name: '예배당 안내',
+    text: '샬롬! 장의자를 누르면 앉고, 강단 앞 기도방석이나 [무릎기도]를 누르면 무릎 꿇고 기도합니다. (/성경책 /등불 /가방 /빈손 입력 가능)',
+    isSystem: true
+  });
+  appendChatMessage({
+    sid: 'npc_0',
+    name: '온유한 양',
+    text: '평안을 빕니다 🕊️ 오늘도 주님의 은혜 안에서 고요한 쉼을 누리세요.'
+  });
+  appendChatMessage({
+    sid: 'npc_4',
+    name: '은혜의 등불',
+    text: '강단 십자가 앞에서 두 무릎을 꿇고 함께 중보하며 기도하고 있습니다 🙏'
+  });
+
+  // 빠른 액션 바 버튼 클릭
+  document.querySelectorAll('[data-emote-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const act = btn.getAttribute('data-emote-btn');
+      if (act === 'sit') toggleMySit();
+      else if (act === 'kneel') toggleMyKneel();
+      else triggerAvatarEmote(myAvatar, act);
+    });
+  });
+
+  // 채팅 전송 및 슬래시(/) 소품·자세 명령어 처리
+  chatFormEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raw = chatInputEl.value.trim();
+    if (!raw) return;
+    chatInputEl.value = '';
+
+    // 슬래시 명령어 지원
+    if (raw === '/성경책') {
+      applyMyCustomChange({ prop: 'bible' }, '📖 손에 성경책을 들었습니다.');
+      showAvatarBubble(myAvatar, '📖 성경책을 들었습니다');
+      return;
+    }
+    if (raw === '/등불' || raw === '/촛불') {
+      applyMyCustomChange({ prop: 'candle' }, '🕯️ 손에 기도의 등불을 들었습니다.');
+      showAvatarBubble(myAvatar, '🕯️ 기도의 등불을 들었습니다');
+      return;
+    }
+    if (raw === '/종려가지') {
+      applyMyCustomChange({ prop: 'palm' }, '🌿 손에 종려가지를 들었습니다.');
+      showAvatarBubble(myAvatar, '🌿 호산나! 종려가지를 들었습니다');
+      return;
+    }
+    if (raw === '/가방') {
+      applyMyCustomChange({ prop: 'bag' }, '👜 손에 성경가방을 들었습니다.');
+      showAvatarBubble(myAvatar, '👜 성경가방을 들었습니다');
+      return;
+    }
+    if (raw === '/빈손') {
+      applyMyCustomChange({ prop: 'none' }, '🤲 손 소품을 내려놓았습니다.');
+      return;
+    }
+    if (raw === '/무릎기도') {
+      toggleMyKneel();
+      return;
+    }
+    if (raw === '/착석') {
+      toggleMySit();
+      return;
+    }
+
+    showAvatarBubble(myAvatar, raw, 5200);
+    appendChatMessage({
+      sid: mySessionId,
+      name: myCustom.name,
+      text: raw,
+      isMe: true
+    });
+    playHarpBell(2, false);
+    broadcastMyState('chat', raw);
+
+    // AI 동행 순례자 따뜻한 화답 (혼자 접속했을 때도 살아있는 교제 경험)
+    if (showNpcs) {
+      const npcs = avatars.filter(a => a.id.startsWith('npc_') && a.group.visible);
+      if (npcs.length > 0 && /샬롬|평안|아멘|기도|감사|할렐루야|은혜|축복|주님|반갑/.test(raw)) {
+        setTimeout(() => {
+          const responder = npcs[Math.floor(Math.random() * npcs.length)];
+          let reply = '🙏 아멘, 마음 모아 함께 기도합니다.';
+          let emote = 'amen';
+          if (/샬롬|평안|반갑/.test(raw)) {
+            reply = `🕊️ ${myCustom.name} 님, 주님의 이름으로 환영하고 축복합니다!`;
+            emote = 'wave';
+          } else if (/할렐루야|찬양|감사/.test(raw)) {
+            reply = '🙌 아멘 할렐루야! 하나님께 감사와 찬양을 올려드립니다.';
+            emote = 'praise';
+          }
+          showAvatarBubble(responder, reply, 4800);
+          responder.emote = emote;
+          responder.emoteTimer = 3.0;
+          appendChatMessage({
+            sid: responder.id,
+            name: responder.name,
+            text: reply
+          });
+        }, 1100);
+      }
+    }
   });
 
   // 전체 소리 퀵 버튼
@@ -2244,7 +3492,7 @@ html, body {
       myAvatar.targetPos.set(0, 0, 2.5);
       myAvatar.state = 'walking';
       camDist = 6.8;
-      document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원 산책</span>';
+      document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원·연못 산책</span>';
       setStatusBanner('⛪ 다시 예배당 본당 십자가 앞으로 걸어 들어갑니다.');
     }
   });
@@ -2253,10 +3501,11 @@ html, body {
   let isZenMode = false;
   document.getElementById('btn-zen-mode').addEventListener('click', () => {
     isZenMode = !isZenMode;
-    if (isZenMode && myAvatar.state !== 'sitting' && myAvatar.state !== 'walking_to_seat') {
+    if (isZenMode && myAvatar.state !== 'sitting' && myAvatar.state !== 'kneeling' && myAvatar.state !== 'walking_to_seat') {
       toggleMySit();
     }
     document.querySelector('.bottom-dock').style.opacity = isZenMode ? '0.12' : '1';
+    document.querySelector('.chapel-chat-stack').style.opacity = isZenMode ? '0.08' : '1';
     document.querySelector('.control-hint').style.display = isZenMode ? 'none' : '';
     document.getElementById('btn-zen-mode').innerHTML = isZenMode ? '<span>✨ 메뉴 보이기</span>' : '<span>🌙 가만히 쉬기</span>';
     if (isZenMode) {
@@ -2286,10 +3535,9 @@ html, body {
   document.getElementById('btn-save-name').addEventListener('click', () => {
     const val = document.getElementById('my-name-input').value.trim();
     if (val) {
-      myAvatar.name = `${val} (나)`;
-      myAvatar.labelEl.querySelector('.name-span').textContent = myAvatar.name;
+      applyMyCustomChange({ name: val });
       showAvatarBubble(myAvatar, `🕊️ ${val}`);
-      broadcastMyState('shalom', `🕊️ ${val}`);
+      broadcastMyState('wave', `🕊️ ${val}`);
     }
   });
 
@@ -2300,7 +3548,7 @@ html, body {
   const mySessionId = 'user_' + Math.random().toString(36).slice(2, 10);
   let currentRoom = '갈릴리 호숫가';
   let showNpcs = true;
-  const remotePeers = new Map(); // sessionId -> { avatar, lastSeen, room }
+  const remotePeers = new Map(); // sessionId -> { avatar, lastSeen, room, customSig }
 
   function updateOnlineCounters() {
     let realInRoom = 1; // 나 자신 포함
@@ -2352,17 +3600,21 @@ html, body {
       return;
     }
 
+    const customSig = data.custom ? JSON.stringify(data.custom) : '';
     if (!peer) {
       const av = createAvatar({
         id: data.sid,
         name: `🟢 ${data.name || '온라인 성도'}`,
-        robeColor: 0xe3d4b6,
+        custom: data.custom || {},
         isMe: false,
         x: data.x || 0,
         z: data.z || 7.5
       });
-      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '갈릴리 호숫가' };
+      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '갈릴리 호숫가', customSig };
       remotePeers.set(data.sid, peer);
+    } else if (data.custom && peer.customSig !== customSig) {
+      peer.customSig = customSig;
+      rebuildAvatarRig(peer.avatar, data.custom);
     }
 
     peer.lastSeen = Date.now();
@@ -2384,11 +3636,27 @@ html, body {
         av.targetPos.set(data.x || 0, 0, data.z || 7.5);
         if (av.group.position.distanceTo(av.targetPos) > 0.12) {
           av.state = 'walking';
+        } else if (data.state === 'kneeling') {
+          av.state = 'kneeling';
         }
       }
-      if (data.action === 'shalom' && data.msg) {
+
+      if (data.action === 'chat' && data.msg) {
+        if (!blockedUsers.has(data.sid)) {
+          showAvatarBubble(av, data.msg, 5200);
+          appendChatMessage({ sid: data.sid, name: data.name || '온라인 성도', text: data.msg });
+        }
+      } else if (['praise', 'wave', 'amen', 'read'].includes(data.action)) {
+        av.emote = data.action;
+        av.emoteTimer = 3.2;
+        if (data.msg) showAvatarBubble(av, data.msg, 3600);
+      } else if (data.action === 'kneel') {
+        av.state = 'kneeling';
+        if (data.msg) showAvatarBubble(av, data.msg, 3600);
+      } else if (data.action === 'shalom' && data.msg) {
         showAvatarBubble(av, data.msg);
       }
+
       if (data.action === 'candle' && data.prayer) {
         PRAYER_CANDLES.unshift({
           author: data.name || '온라인 성도',
@@ -2435,10 +3703,12 @@ html, body {
   function broadcastMyState(action = null, extraMsg = null) {
     const packet = {
       sid: mySessionId,
-      name: myAvatar.name.replace(' (나)', ''),
+      name: myCustom.name,
+      custom: myCustom,
       room: currentRoom,
       x: Number(myAvatar.targetPos.x.toFixed(2)),
       z: Number(myAvatar.targetPos.z.toFixed(2)),
+      state: myAvatar.state,
       seatId: myAvatar.seat ? myAvatar.seat.id : null,
       action,
       msg: extraMsg,
@@ -2515,8 +3785,174 @@ html, body {
   };
 
   /* ==============================================================
-   * 13. 메인 애니메이션 & 프레임 업데이트 루프
+   * 13. 다관절 사람 아바타 포즈 엔진 & 메인 애니메이션 루프
+   *     - 걷기: 허벅지·무릎·종아리·팔·팔꿈치 교차 스윙
+   *     - 의자 착석(sitting): 엉덩이를 의자 높이로 낮추고 허벅지 수평 + 무릎 90도 굽힘 + 무릎 위 손/성경책
+   *     - 무릎 기도(kneeling): 두 무릎을 바닥/방석에 꿇고 종아리를 뒤로 접은 채 두 손 모아 간절히 기도
    * ============================================================== */
+  function updateAvatarPose(av, dt, elapsed, isMoving) {
+    const rig = av.rig;
+    if (!rig) return;
+
+    // 기본 눈 뜨기 & 소품 가시성 초기화
+    rig.eyes.forEach(e => { e.scale.y = 1.15; });
+    if (rig.lapBible) rig.lapBible.visible = false;
+    if (rig.readBibleMesh) rig.readBibleMesh.visible = false;
+    if (rig.handPropMesh) rig.handPropMesh.visible = true;
+    if (rig.skirtMesh) {
+      rig.skirtMesh.scale.set(1, 1, 1);
+      rig.skirtMesh.rotation.set(0, 0, 0);
+    }
+
+    if (isMoving) {
+      // 1) 사람이 걷는 자연스러운 보행 모션 (허벅지·무릎·발·어깨·팔꿈치 연동)
+      av.walkPhase += dt * 9.5;
+      const p = av.walkPhase;
+      const swing = Math.sin(p);
+      const bob = Math.abs(Math.cos(p * 2)) * 0.032;
+
+      rig.pelvis.position.set(0, bob, 0);
+      rig.legL.rotation.set(swing * 0.58, 0, 0);
+      rig.legR.rotation.set(-swing * 0.58, 0, 0);
+      rig.shinL.rotation.set(-Math.max(0, -Math.cos(p)) * 0.62 - 0.06, 0, 0);
+      rig.shinR.rotation.set(-Math.max(0, Math.cos(p)) * 0.62 - 0.06, 0, 0);
+
+      rig.torso.rotation.set(-0.04, -swing * 0.08, swing * 0.025);
+      rig.headGroup.rotation.set(Math.sin(p * 2) * 0.025, swing * 0.05, 0);
+
+      rig.armL.rotation.set(-swing * 0.46, 0, 0.06);
+      rig.forearmL.rotation.set(0.32 + Math.max(0, -swing) * 0.25, 0, 0);
+
+      if (av.custom.prop && av.custom.prop !== 'none') {
+        rig.armR.rotation.set(0.36 + swing * 0.14, -0.15, -0.08);
+        rig.forearmR.rotation.set(0.68, -0.1, 0);
+      } else {
+        rig.armR.rotation.set(swing * 0.46, 0, -0.06);
+        rig.forearmR.rotation.set(0.32 + Math.max(0, swing) * 0.25, 0, 0);
+      }
+      if (rig.skirtMesh) rig.skirtMesh.scale.set(1, 1, 1.12);
+    } else if (av.state === 'sitting') {
+      // 2) 진짜 의자(장의자·벤치)에 앉는 자세: 골반 하강 + 허벅지 앞으로 수평 + 무릎 90도 아래로 굽힘
+      const breath = Math.sin(elapsed * 1.8 + av.walkPhase) * 0.015;
+      rig.pelvis.position.set(0, -0.09, 0.04);
+      rig.legL.rotation.set(1.48, 0.06, 0);
+      rig.legR.rotation.set(1.48, -0.06, 0);
+      rig.shinL.rotation.set(-1.48, 0, 0);
+      rig.shinR.rotation.set(-1.48, 0, 0);
+
+      if (rig.skirtMesh) {
+        rig.skirtMesh.scale.set(1.06, 0.78, 1.36);
+        rig.skirtMesh.rotation.x = 0.36;
+      }
+
+      rig.torso.rotation.set(-0.04 + breath * 0.5, 0, 0);
+      rig.headGroup.rotation.set(-0.14 + breath, 0, 0);
+
+      rig.armL.rotation.set(0.42, 0.22, 0.08);
+      rig.forearmL.rotation.set(0.88, 0.28, 0);
+      rig.armR.rotation.set(0.42, -0.22, -0.08);
+      rig.forearmR.rotation.set(0.88, -0.28, 0);
+
+      if (av.custom.prop === 'bible') {
+        if (rig.lapBible) rig.lapBible.visible = true;
+        if (rig.handPropMesh) rig.handPropMesh.visible = false;
+      }
+    } else if (av.state === 'kneeling') {
+      // 3) 무릎 꿇고 기도하는 자세: 두 무릎이 바닥/방석에 닿고 종아리가 뒤로 접히며 두 손을 가슴 앞에 모음
+      const breath = Math.sin(elapsed * 1.6 + av.walkPhase) * 0.018;
+      rig.pelvis.position.set(0, -0.24 + breath * 0.3, -0.04);
+      rig.legL.rotation.set(0.18, 0.05, 0);
+      rig.legR.rotation.set(0.18, -0.05, 0);
+      rig.shinL.rotation.set(-1.62, 0, 0);
+      rig.shinR.rotation.set(-1.62, 0, 0);
+
+      if (rig.skirtMesh) {
+        rig.skirtMesh.scale.set(1.08, 0.75, 1.22);
+      }
+
+      rig.torso.rotation.set(-0.22 + breath * 0.6, 0, 0);
+      rig.headGroup.rotation.set(-0.34 + breath, 0, 0);
+      rig.eyes.forEach(e => { e.scale.y = 0.14; }); // 눈을 감고 간절히 기도
+
+      rig.armL.rotation.set(0.78, 0.42, 0.18);
+      rig.forearmL.rotation.set(1.28, 0.38, 0.22);
+      rig.armR.rotation.set(0.78, -0.42, -0.18);
+      rig.forearmR.rotation.set(1.28, -0.38, -0.22);
+      if (rig.handPropMesh) rig.handPropMesh.visible = false;
+    } else {
+      // 4) 서 있는 기본 자세 (또는 강단 앞 등불 점화 목례)
+      const breath = Math.sin(elapsed * 1.8 + av.walkPhase);
+      rig.pelvis.position.set(0, breath * 0.008, 0);
+      rig.legL.rotation.set(0, 0, 0);
+      rig.legR.rotation.set(0, 0, 0);
+      rig.shinL.rotation.set(0, 0, 0);
+      rig.shinR.rotation.set(0, 0, 0);
+
+      rig.torso.rotation.set(breath * 0.012, 0, 0);
+      rig.headGroup.rotation.set(breath * 0.018, Math.sin(elapsed * 0.6 + av.walkPhase) * 0.05, 0);
+
+      rig.armL.rotation.set(0.06, 0, 0.07);
+      rig.forearmL.rotation.set(0.22, 0.08, 0);
+      if (av.custom.prop && av.custom.prop !== 'none') {
+        rig.armR.rotation.set(0.38, -0.18, -0.08);
+        rig.forearmR.rotation.set(0.72, -0.15, 0);
+      } else {
+        rig.armR.rotation.set(0.06, 0, -0.07);
+        rig.forearmR.rotation.set(0.22, -0.08, 0);
+      }
+
+      if (av.state === 'bowing') {
+        rig.torso.rotation.x = -0.28;
+        rig.headGroup.rotation.x = -0.36;
+        rig.eyes.forEach(e => { e.scale.y = 0.14; });
+        rig.armL.rotation.set(0.68, 0.38, 0.14);
+        rig.forearmL.rotation.set(1.15, 0.3, 0);
+        rig.armR.rotation.set(0.68, -0.38, -0.14);
+        rig.forearmR.rotation.set(1.15, -0.3, 0);
+      }
+    }
+
+    // 5) 상체 감정·신앙 액션 오버레이 (서 있을 때, 의자에 앉아 있을 때, 무릎 꿇고 있을 때 모두 작동!)
+    if (av.emote) {
+      av.emoteTimer -= dt;
+      if (av.emoteTimer <= 0) {
+        av.emote = null;
+      } else if (av.emote === 'praise') {
+        // 🙌 두 손을 높이 들고 할렐루야 찬양
+        const w = Math.sin(elapsed * 7.5) * 0.14;
+        rig.armL.rotation.set(2.65, 0, -0.25 + w);
+        rig.forearmL.rotation.set(0.25, 0, 0);
+        rig.armR.rotation.set(2.65, 0, 0.25 + w);
+        rig.forearmR.rotation.set(0.25, 0, 0);
+        rig.headGroup.rotation.set(0.16, w * 0.4, 0);
+      } else if (av.emote === 'wave') {
+        // 🕊️ 오른손을 흔들며 평안의 샬롬 인사
+        const w = Math.sin(elapsed * 11.0) * 0.32;
+        rig.armR.rotation.set(2.25, -0.2, 0.28 + w * 0.5);
+        rig.forearmR.rotation.set(0.45, 0, w);
+        rig.headGroup.rotation.set(0.04, 0, w * 0.12);
+      } else if (av.emote === 'amen') {
+        // 🙏 두 손을 가슴 앞에 모으고 경건히 고개 숙여 아멘 화답
+        rig.torso.rotation.x -= 0.20;
+        rig.headGroup.rotation.x = -0.38;
+        rig.eyes.forEach(e => { e.scale.y = 0.14; });
+        rig.armL.rotation.set(0.75, 0.42, 0.16);
+        rig.forearmL.rotation.set(1.25, 0.35, 0.2);
+        rig.armR.rotation.set(0.75, -0.42, -0.16);
+        rig.forearmR.rotation.set(1.25, -0.35, -0.2);
+      } else if (av.emote === 'read') {
+        // 📖 성경책을 두 손으로 펴 들고 말씀 읽기
+        if (rig.readBibleMesh) rig.readBibleMesh.visible = true;
+        if (rig.handPropMesh) rig.handPropMesh.visible = false;
+        rig.armL.rotation.set(0.62, 0.32, 0.1);
+        rig.forearmL.rotation.set(0.95, 0.25, 0);
+        rig.armR.rotation.set(0.62, -0.32, -0.1);
+        rig.forearmR.rotation.set(0.95, -0.25, 0);
+        rig.headGroup.rotation.set(-0.24, Math.sin(elapsed * 2.5) * 0.12, 0);
+      }
+    }
+  }
+
   const clock = new THREE.Clock();
 
   function animate() {
@@ -2531,8 +3967,10 @@ html, body {
     if (keysPressed['arrowleft'] || keysPressed['a']) moveX -= 1;
     if (keysPressed['arrowright'] || keysPressed['d']) moveX += 1;
 
+    let myKeyMoving = false;
     if (moveX !== 0 || moveZ !== 0) {
       unseatAvatar(myAvatar);
+      myKeyMoving = true;
       const speed = 3.2 * dt;
       const forward = new THREE.Vector3(Math.sin(camYaw), 0, Math.cos(camYaw));
       const right = new THREE.Vector3(Math.cos(camYaw), 0, -Math.sin(camYaw));
@@ -2542,78 +3980,73 @@ html, body {
       myAvatar.group.position.z = Math.max(-7.5, Math.min(26.0, myAvatar.group.position.z));
       myAvatar.targetPos.copy(myAvatar.group.position);
       myAvatar.group.rotation.y = Math.atan2(-moveX, -moveZ) + camYaw;
-      myAvatar.walkPhase += dt * 10;
-      myAvatar.body.position.y = 0.46 + Math.abs(Math.sin(myAvatar.walkPhase)) * 0.05;
     }
 
-    // 모든 아바타 상태 업데이트
+    // 모든 아바타 이동 & 다관절 포즈 업데이트
     avatars.forEach(av => {
+      let isMoving = (av === myAvatar && myKeyMoving);
+
       if (av.state === 'walking' || av.state === 'walking_to_seat' || av.state === 'walking_to_candle') {
         const diff = new THREE.Vector3().subVectors(av.targetPos, av.group.position);
         diff.y = 0;
         const dist = diff.length();
         if (dist > 0.08) {
           diff.normalize();
-          av.group.position.addScaledVector(diff, Math.min(dist, 2.8 * dt));
+          av.group.position.addScaledVector(diff, Math.min(dist, 2.9 * dt));
           av.group.rotation.y = Math.atan2(-diff.x, -diff.z);
-          av.walkPhase += dt * 9;
-          av.body.position.y = 0.46 + Math.abs(Math.sin(av.walkPhase)) * 0.045;
+          isMoving = true;
         } else {
           av.group.position.copy(av.targetPos);
           if (av.state === 'walking_to_seat' && av.seat) {
-            av.state = 'sitting';
-            av.group.rotation.y = 0; // 강단 십자가를 향해 앉음
-            av.body.scale.y = 0.82;
-            av.body.position.y = 0.38;
-            av.head.position.y = 0.98;
-            av.head.rotation.x = -0.22; // 경건하게 고개 숙임
-            av.hands.position.set(0, 0.62, -0.24);
+            av.state = av.seat.type === 'kneel' ? 'kneeling' : 'sitting';
+            av.group.rotation.y = av.seat.lookAngle || 0;
             if (av.isMe) {
               sitStartTime = Date.now();
-              document.getElementById('dock-sit').classList.add('is-active');
-              document.getElementById('dock-sit-label').textContent = '기도 멈추고 일어나기';
-              setStatusBanner(`🙏 ${av.seat.label}에 앉아 조용히 기도하고 있습니다.`);
+              syncDockPostureButtons();
+              playHarpBell(3, false);
+              setStatusBanner(av.state === 'kneeling'
+                ? `🧎 ${av.seat.label}에서 두 무릎을 꿇고 간절히 기도하고 있습니다.`
+                : `🪑 ${av.seat.label}에 앉아 조용히 예배하며 기도하고 있습니다.`);
+              broadcastMyState();
             }
           } else if (av.state === 'walking_to_candle') {
             av.state = 'bowing';
-            av.bowTimer = 2.2;
+            av.bowTimer = 2.4;
             av.group.rotation.y = 0;
             playHarpBell(5, true);
+            const prayerMsg = av.pendingPrayer || '조용히 주님 앞에 기도의 등불을 올립니다.';
             PRAYER_CANDLES.unshift({
-              author: av.name.replace(' (나)', ''),
-              text: av.pendingPrayer || '조용히 주님 앞에 기도의 등불을 올립니다.',
+              author: myCustom.name,
+              text: prayerMsg,
               amens: 1,
               time: '방금 전'
             });
             renderPrayerList();
             showAvatarBubble(av, '🕯️ 기도의 등불을 밝혔습니다');
             setStatusBanner('🕯️ 강단 앞 등잔대에 내 기도의 등불이 조용히 타오릅니다.');
+            if (av.isMe) broadcastMyState('candle', prayerMsg);
           } else {
             av.state = 'standing';
-            av.body.position.y = 0.46;
           }
         }
-      } else if (av.state === 'sitting') {
-        // 앉아서 잔잔하게 숨 쉬는 모션
-        av.head.position.y = 0.98 + Math.sin(elapsed * 1.8 + av.walkPhase) * 0.008;
       } else if (av.state === 'bowing') {
         av.bowTimer -= dt;
-        av.head.rotation.x = -0.45;
-        av.hands.position.set(0, 0.74, -0.28);
         if (av.bowTimer <= 0) {
           av.state = 'standing';
-          av.head.rotation.x = 0;
-          av.hands.position.set(0, 0.68, -0.26);
         }
       }
+
+      updateAvatarPose(av, dt, elapsed, isMoving);
     });
 
-    // 기도 착석 시간 표시 업데이트
-    if (myAvatar.state === 'sitting' && sitStartTime && myAvatar.seat) {
+    // 기도 착석 / 무릎기도 경과 시간 표시 업데이트
+    if ((myAvatar.state === 'sitting' || myAvatar.state === 'kneeling') && sitStartTime) {
       const sec = Math.floor((Date.now() - sitStartTime) / 1000);
       const mm = String(Math.floor(sec / 60)).padStart(2, '0');
       const ss = String(sec % 60).padStart(2, '0');
-      setStatusBanner(`🙏 ${myAvatar.seat.label}에 앉아 기도하고 있습니다 · 머문 시간 ${mm}:${ss}`);
+      const placeTxt = myAvatar.seat ? myAvatar.seat.label : '강단 십자가 앞';
+      const actTxt = myAvatar.state === 'kneeling' ? '🧎 두 무릎을 꿇고 기도 중' : '🪑 의자에 앉아 묵상 중';
+      setStatusBanner(`${actTxt} (${placeTxt}) · 머문 시간 ${mm}:${ss}`);
     }
 
     // 촛불 흔들림 애니메이션
@@ -2646,11 +4079,12 @@ html, body {
     camera.position.lerp(desiredCamPos, 0.08);
     camera.lookAt(lookTarget);
 
-    // 3D 아바타 머리 위 2D 이름표 좌표 투영
+    // 3D 아바타 머리 위 2D 이름표 좌표 투영 (서기 / 의자착석 / 무릎기도 높이 자동 반영)
     avatars.forEach(av => {
+      const labelY = av.state === 'kneeling' ? 1.22 : (av.state === 'sitting' ? 1.38 : 1.62);
       const headWorld = new THREE.Vector3(
         av.group.position.x,
-        (av.state === 'sitting' ? 1.38 : 1.56),
+        labelY,
         av.group.position.z
       );
       headWorld.project(camera);

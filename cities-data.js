@@ -2531,10 +2531,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/pure_master30_27.webp",
-        "caption": "관련 성경 이야기 도판: 구약의 중요한 도시 1편 — 세겜과 벧엘 (약속과 단)",
+        "src": "assets/webp/atlas_shechem_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 세겜(Shechem) — 그리심산과 에발산 사이의 골짜기 성읍과 상수리나무 아래 언약의 돌단 (창 12:6, 수 24:1)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-27"
       }
     ],
@@ -2552,10 +2554,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/pure_master30_27.webp",
-        "caption": "관련 성경 이야기 도판: 구약의 중요한 도시 1편 — 세겜과 벧엘 (약속과 단)",
+        "src": "assets/webp/atlas_bethel_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 벧엘(Bethel) — 에브라임 산지의 석회암 바위 언덕과 별빛·새벽빛 아래 야곱의 돌베개 기둥 제단 (창 28:18-19)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-27"
       }
     ],
@@ -2748,27 +2752,24 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/st_master_14.webp",
-        "caption": "관련 성경 이야기 도판: 형제라 부르는 사람들 — 아나니아 · 사울(바울) · 바나바의 이야기",
+        "src": "assets/webp/atlas_damascus_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 다메섹(Damascus) — 헤르몬산 만년설에서 흐르는 아마나강(바라다강) 오아시스 성읍과 로마 시대 직가(Straight Street) 열주 거리 (행 9:2-11)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "fig-chronicle-12"
       }
     ],
     "antioch": [
       {
-        "src": "assets/webp/pure_master30_28.webp",
-        "caption": "관련 성경 이야기 도판: 바울 1차 전도여행 다큐 — 2,300km 대장정의 서막",
+        "src": "assets/webp/atlas_antioch_syria_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 수리아 안디옥(Antioch on the Orontes) — 실피우스산 절벽 아래 오론테스강과 로마 열주대로, 등불 켜진 초기 이방 선교 교회 (행 11:26, 13:1-3)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-28"
-      },
-      {
-        "src": "assets/webp/pure_master30_29.webp",
-        "caption": "관련 성경 이야기 도판: 바울 2차 전도여행 — 마게도냐 환상과 유럽의 관문",
-        "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
-        "docId": "master30-29"
       }
     ],
     "tarsus": [
@@ -2785,10 +2786,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/st_master_14.webp",
-        "caption": "관련 성경 이야기 도판: 형제라 부르는 사람들 — 아나니아 · 사울(바울) · 바나바의 이야기",
+        "src": "assets/webp/atlas_tarsus_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 길리기아 다소(Tarsus) — 타우루스산맥 아래 키드누스강 로마 돌다리와 바울 시대의 염소 털 천막 직조 공방 거리 (행 21:39)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "fig-chronicle-12"
       }
     ],
@@ -2806,10 +2809,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/pure_master30_28.webp",
-        "caption": "관련 성경 이야기 도판: 바울 1차 전도여행 다큐 — 2,300km 대장정의 서막",
+        "src": "assets/webp/atlas_pisidian_antioch_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 비시디아 안디옥(Pisidian Antioch) — 타우루스 고원 지대에 우뚝 선 로마 수도교 아치 유적과 언덕 위 유대 회당 (행 13:14)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-28"
       }
     ],
@@ -2827,10 +2832,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/pure_master30_28.webp",
-        "caption": "관련 성경 이야기 도판: 바울 1차 전도여행 다큐 — 2,300km 대장정의 서막",
+        "src": "assets/webp/atlas_lystra_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 루스드라(Lystra) — 리고니아 평원의 소박한 농경 성읍 성문 앞 광장과 흙벽돌 가옥, 구릉지 목초지 풍경 (행 14:6-8, 16:1)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-28"
       }
     ],
@@ -3025,10 +3032,12 @@ window.DREAMBAON_ATLAS = {
     ],
     "thessalonica": [
       {
-        "src": "assets/webp/pure_master30_29.webp",
-        "caption": "관련 성경 이야기 도판: 바울 2차 전도여행 — 마게도냐 환상과 유럽의 관문",
+        "src": "assets/webp/atlas_thessalonica_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 데살로니가(Thessalonica) — 에게해 테르마이코스만을 마주한 마게도냐 항구 성벽과 에그나티아 가도(Via Egnatia) 석조 도로 (행 17:1)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-29"
       }
     ],
@@ -3046,10 +3055,12 @@ window.DREAMBAON_ATLAS = {
         "kind": "오늘의 풍경"
       },
       {
-        "src": "assets/webp/pure_master30_29.webp",
-        "caption": "관련 성경 이야기 도판: 바울 2차 전도여행 — 마게도냐 환상과 유럽의 관문",
+        "src": "assets/webp/atlas_berea_pure.webp",
+        "caption": "관련 성경 이야기 도판: [성경 지리·역사 복원] 베뢰아(Berea) — 베르미온산 기슭의 수목과 물줄기 사이 유대 회당 안에서 간절한 마음으로 날마다 성경 두루마리를 상고하는 성도들 (행 17:10-11)",
         "kind": "이야기 도판",
-        "credit": "꿈바온 기존 소장 도판 · 장면을 표현한 그림",
+        "credit": "꿈바온 성경 고고학 복원 성화 · 당시 모습을 이해하도록 돕는 그림",
+        "width": 1920,
+        "height": 1080,
         "docId": "master30-29"
       }
     ],

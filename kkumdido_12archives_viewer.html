@@ -547,7 +547,7 @@ header {
         </div>
       </div>
       <div class="search-row">
-        <input id="searchInput" class="search-input" type="text" placeholder="검색어 입력: 인물·사건·주제(아담, 다윗, 헤세드, 로고스, 텔 단 비문, 웨슬리, 평양대부흥, 장례, 신천지), 성경구절(로마서 8, 시편 23, 창 22)..." oninput="resetAndRender()" />
+        <input id="searchInput" class="search-input" type="text" placeholder="검색어 입력: 인물·사건·주제(아담, 다윗, 헤세드, 로고스, 텔 단 비문, 웨슬리, 사도신경, 평양대부흥, 장례), 성경구절(로마서 8, 시편 23, 창 22)..." oninput="resetAndRender()" />
         <button class="btn" onclick="clearSearch()">✕ 초기화</button>
       </div>
       <div class="quick-tags">
@@ -560,7 +560,7 @@ header {
         <span class="q-tag" onclick="quickSearch('텔 단 비문')">텔 단 비문</span>
         <span class="q-tag" onclick="quickSearch('수전절')">수전절</span>
         <span class="q-tag" onclick="quickSearch('평양대부흥')">평양대부흥</span>
-        <span class="q-tag" onclick="quickSearch('신천지')">이단·신천지 반박</span>
+        <span class="q-tag" onclick="quickSearch('사도신경')">사도신경·정통교리</span>
         <span class="q-tag" onclick="quickSearch('나 같은 죄인 살리신')">나 같은 죄인 살리신</span>
         <span class="q-tag" onclick="quickSearch('장례')">장례·심방·예식</span>
       </div>
@@ -570,8 +570,8 @@ header {
   <div class="tabs-container" id="tabsContainer"></div>
 
   <div class="stats-bar">
-    <div id="resultCount">총 3,650개 모듈 로드 완료</div>
-    <div>카드를 클릭하면 <strong>성화 도판 · 심층 원고 전문(Full Text)</strong>과 <strong>12각 입체 양방향 하이퍼링크</strong> 및 <strong>설교·목회 원클릭 복사 창</strong>이 열립니다.</div>
+    <div id="resultCount">12대 아카이브 3,650 · 본문 완성 1,765 (순차 집필 중)</div>
+    <div>카드를 클릭하면 <strong>성화 도판 · 핵심 성구 · 요약 및 본문</strong>과 <strong>12각 입체 양방향 하이퍼링크</strong>가 열립니다.</div>
   </div>
 
   <div class="grid" id="cardGrid"></div>
@@ -612,7 +612,7 @@ header {
       if (_LOADED_V_ARCH.has(no)) return;
       try {
         const pad = String(no).padStart(2, '0');
-        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261104_inspected`);
+        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261104_audit2`);
         DATA.forEach(m => { if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id]; });
         _LOADED_V_ARCH.add(no);
       } catch (_) {}
@@ -692,7 +692,8 @@ header {
     function renderGrid() {
       const grid = document.getElementById("cardGrid");
       const slice = filteredData.slice(0, displayLimit);
-      document.getElementById("resultCount").textContent = `검색 결과: ${filteredData.length.toLocaleString()}개 모듈 (현재 ${slice.length.toLocaleString()}개 표시 중)`;
+      const completedInFilter = filteredData.filter(x => !x.isPreparing).length;
+      document.getElementById("resultCount").textContent = `12대 아카이브 ${filteredData.length.toLocaleString()}개 모듈 · 본문 완성 ${completedInFilter.toLocaleString()}건 (현재 ${slice.length.toLocaleString()}개 표시 중)`;
       grid.innerHTML = slice.map(item => {
         const bgScene = item.thumbImg || (item.scenes && item.scenes.length > 1 ? item.scenes[1].img : (item.masterImg || ""));
         const mediaHtml = (item.portrait || bgScene) ? `
@@ -702,13 +703,19 @@ header {
             <span style="position:absolute;top:8px;left:8px;background:rgba(15,12,9,0.85);border:1px solid var(--gold);color:var(--gold);font-size:0.68rem;font-weight:800;padding:2px 8px;border-radius:999px;">성화 도판 수록</span>
           </div>
         ` : "";
+        const prepBadgeHtml = item.isPreparing
+          ? `<span style="font-size:0.71rem;padding:2px 8px;border-radius:999px;background:rgba(140,98,30,0.12);border:1px solid var(--border);color:var(--muted);font-weight:700;">본문 준비 중</span>`
+          : "";
         return `
         <div class="card" onclick="openModal('${item.id}')">
           <div>
             ${mediaHtml}
             <div class="card-top">
               <span class="badge-id">${escapeHtml(item.archive_name.replace(/\s*\(\d+.*\)$/, ''))}</span>
-              <span class="badge-archive">${escapeHtml(cleanCategoryLabel(item.category))}</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                ${prepBadgeHtml}
+                <span class="badge-archive">${escapeHtml(cleanCategoryLabel(item.category))}</span>
+              </div>
             </div>
             <div class="card-title">${escapeHtml(item.title)}</div>
             <div class="card-sub">${escapeHtml(item.subtitle)}</div>
@@ -717,7 +724,7 @@ header {
           </div>
           <div class="card-footer">
             <span>12각 연동 ${(item.links || []).length}건</span>
-            <span style="color:var(--accent);font-weight:700;">심층 전문 열람 →</span>
+            <span style="color:var(--accent);font-weight:700;">${item.isPreparing ? '요약 보기 →' : '심층 전문 열람 →'}</span>
           </div>
         </div>
       `}).join("");
@@ -767,7 +774,7 @@ header {
     async function openModal(id, fromBack = false) {
       const item = DATA_MAP[id];
       if (!item) return;
-      if (!item.detail) { await _ensureVDetail(item.archive_no); }
+      if (!item.isPreparing && !item.detail) { await _ensureVDetail(item.archive_no); }
       if (!fromBack && modalHistory[modalHistory.length - 1] !== id) {
         modalHistory.push(id);
       }
@@ -814,11 +821,30 @@ header {
           </div>`;
       }
 
-      const detailSectionHtml = item.detail
-        ? `<div class="modal-section">
-            <h4>심층 강해 · 원문 주해 · 고증 · 목회 예식 전문</h4>
-            <div class="md-body">${formatMarkdown(item.detail)}</div>
+      const safetyBoxHtml = item.safetyNotice
+        ? `<div class="modal-section" style="border:1.5px solid #D97706;background:rgba(217,119,6,0.09);">
+            <div class="md-body" style="font-weight:600;">${formatMarkdown(item.safetyNotice)}</div>
           </div>`
+        : "";
+
+      const detailSectionHtml = item.isPreparing
+        ? `<div class="modal-section" style="border-style:dashed;text-align:center;padding:20px 18px;color:var(--muted);">
+            <p style="font-weight:700;color:var(--text);margin-bottom:4px;">이 항목은 제목과 요약, 핵심 성구까지 정리된 상태입니다. 본문은 준비 중입니다.</p>
+            <p style="font-size:0.84rem;">아래 12각 입체 연동 그물망을 통해 이미 완성된 관련 인물·사건·원어·비하인드 본문을 먼저 열람하실 수 있습니다.</p>
+          </div>`
+        : (item.detail
+            ? `<div class="modal-section">
+                <h4>심층 강해 · 원문 주해 · 고증 · 목회 예식 전문</h4>
+                <div class="md-body">${formatMarkdown(item.detail)}</div>
+              </div>
+              <div class="modal-section">
+                <h4>설교 · 목회 · 현장 적용 가이드</h4>
+                <p>${formatMarkdown(item.application)}</p>
+              </div>`
+            : "");
+
+      const modalPrepBadge = item.isPreparing
+        ? `<span style="margin-left:8px;font-size:0.74rem;padding:2px 8px;border-radius:999px;background:rgba(140,98,30,0.12);border:1px solid var(--border);color:var(--muted);font-weight:700;">본문 준비 중</span>`
         : "";
 
       box.innerHTML = `
@@ -828,6 +854,7 @@ header {
             <div>
               <span class="badge-id">${escapeHtml(item.archive_name.replace(/\s*\(\d+.*\)$/, ''))}</span>
               <span class="badge-archive" style="margin-left:8px;">${escapeHtml(cleanCategoryLabel(item.category))}</span>
+              ${modalPrepBadge}
               <h2 class="serif" style="margin-top:8px;font-size:1.38rem;line-height:1.4;">${escapeHtml(item.title)}</h2>
               <p style="color:var(--muted);font-size:0.9rem;margin-top:4px;">${escapeHtml(item.subtitle)}</p>
             </div>
@@ -837,6 +864,7 @@ header {
             <button class="modal-close" onclick="closeModal()">✕ 닫기</button>
           </div>
         </div>
+        ${safetyBoxHtml}
         ${artworkSectionHtml}
         <div class="modal-section">
           <h4>핵심 성경 본문</h4>
@@ -847,10 +875,6 @@ header {
           <p>${formatMarkdown(item.summary)}</p>
         </div>
         ${detailSectionHtml}
-        <div class="modal-section">
-          <h4>설교 · 목회 · 현장 적용 가이드</h4>
-          <p>${formatMarkdown(item.application)}</p>
-        </div>
         ${linkedChips ? `
         <div class="modal-section">
           <h4>12각 입체 연동 그물망 (클릭하면 해당 모듈로 즉시 이동합니다)</h4>
@@ -859,7 +883,7 @@ header {
         <div class="modal-actions-bar" style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
           <button class="btn" onclick="window.print()">A4 유인물 인쇄 / PDF</button>
           <button class="btn" onclick="copyItem('${item.id}', false)">핵심 요약 복사</button>
-          <button class="load-more-btn" onclick="copyItem('${item.id}', true)">심층 전문 포함 전체 복사</button>
+          ${item.isPreparing ? '' : `<button class="load-more-btn" onclick="copyItem('${item.id}', true)">심층 전문 포함 전체 복사</button>`}
         </div>
       `;
       document.getElementById("modalBackdrop").classList.add("open");
@@ -949,7 +973,7 @@ header {
 
     (async function() {
       try {
-        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_inspected');
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_audit2');
         DATA.forEach(item => {
           item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
           DATA_MAP[item.id] = item;
