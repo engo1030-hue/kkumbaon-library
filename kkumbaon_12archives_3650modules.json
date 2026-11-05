@@ -6703,7 +6703,29 @@
     ],
     "book": "마태복음",
     "chapter": 9,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P126/portrait.webp",
+    "masterImg": "assets/figures/P126/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "마 9:9 · 가버나움 세관에서 주님의 부르심을 받음",
+        "scripture": "마 9:9",
+        "img": "assets/figures/P126/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "마 9:10-13 · 마태의 집에서 열린 큰 잔치와 죄인을 부르러 오신 주님",
+        "scripture": "마 9:10-13",
+        "img": "assets/figures/P126/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "눅 5:28 · 모든 것을 버리고 일어나 주님을 따름",
+        "scripture": "눅 5:28",
+        "img": "assets/figures/P126/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P127",
@@ -6733,7 +6755,29 @@
     ],
     "book": "요한복음",
     "chapter": 11,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P127/portrait.webp",
+    "masterImg": "assets/figures/P127/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "요 11:16 · 우리도 주와 함께 죽으러 가자고 결단함",
+        "scripture": "요 11:16",
+        "img": "assets/figures/P127/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "요 14:5-6 · 주여 어디로 가시는지 알지 못하거늘 그 길을 어찌 알겠사옵나이까",
+        "scripture": "요 14:5-6",
+        "img": "assets/figures/P127/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "요 20:26-28 · 부활하신 주님 앞에서 나의 주님이시요 나의 하나님이시니이다 고백함",
+        "scripture": "요 20:26-28",
+        "img": "assets/figures/P127/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P128",
@@ -6759,7 +6803,29 @@
     ],
     "book": "마태복음",
     "chapter": 10,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P128/portrait.webp",
+    "masterImg": "assets/figures/P128/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "마 10:3; 막 3:18 · 열두 사도로 부름받아 주님의 말씀을 경청함",
+        "scripture": "마 10:3; 막 3:18",
+        "img": "assets/figures/P128/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 6:15 · 갈릴리 길 위에서 주님과 사도 공동체를 따라 동행함",
+        "scripture": "눅 6:15",
+        "img": "assets/figures/P128/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "행 1:13-14 · 마가 다락방에서 마음을 같이하여 기도에 힘씀",
+        "scripture": "행 1:13-14",
+        "img": "assets/figures/P128/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P129",
@@ -6786,7 +6852,29 @@
     ],
     "book": "마태복음",
     "chapter": 10,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P129/portrait.webp",
+    "masterImg": "assets/figures/P129/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "마 10:3; 막 3:18 · 열두 사도로 부름받아 주님의 말씀을 경청함",
+        "scripture": "마 10:3; 막 3:18",
+        "img": "assets/figures/P129/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "요 14:22 · 주여 어찌하여 자기를 우리에게는 나타내시고 세상에는 아니하려 하시나이까 질문함",
+        "scripture": "요 14:22",
+        "img": "assets/figures/P129/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "행 1:13-14 · 마가 다락방에서 무릎을 꿇고 두 손을 모아 기도에 힘씀",
+        "scripture": "행 1:13-14",
+        "img": "assets/figures/P129/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P130",
@@ -6817,7 +6905,29 @@
     ],
     "book": "마태복음",
     "chapter": 10,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P130/portrait.webp",
+    "masterImg": "assets/figures/P130/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "마 10:4; 막 3:18 · 열두 사도로 부름받아 주님의 말씀을 경청함",
+        "scripture": "마 10:4; 막 3:18",
+        "img": "assets/figures/P130/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 6:15 · 세리 출신 마태와 한 제자 공동체 안에서 주님의 가르침을 들음",
+        "scripture": "눅 6:15",
+        "img": "assets/figures/P130/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "행 1:13-14 · 마가 다락방에서 무릎을 꿇고 두 손을 모아 합심 기도에 힘씀",
+        "scripture": "행 1:13-14",
+        "img": "assets/figures/P130/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P131",
@@ -6849,7 +6959,29 @@
     ],
     "book": "마태복음",
     "chapter": 26,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P131/portrait.webp",
+    "masterImg": "assets/figures/P131/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "요 12:6; 13:29 · 제자 공동체의 돈궤(돈주머니)와 물품을 맡아 관리함",
+        "scripture": "요 12:6; 13:29",
+        "img": "assets/figures/P131/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "요 13:26-27 · 최후의 만찬에서 예수님이 찍어 건네시는 떡 조각을 받음",
+        "scripture": "요 13:26-27",
+        "img": "assets/figures/P131/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "마 26:47-50; 눅 22:47-48 · 겟세마네 동산에서 예수님께 입맞추려고 다가감",
+        "scripture": "마 26:47-50; 눅 22:47-48",
+        "img": "assets/figures/P131/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P132",
@@ -6882,7 +7014,29 @@
     ],
     "book": "사도행전",
     "chapter": 1,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P132/portrait.webp",
+    "masterImg": "assets/figures/P132/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "행 1:21-22 · 요한의 세례부터 공생애 기간 동안 주님과 제자 무리를 줄곧 동행함",
+        "scripture": "행 1:21-22",
+        "img": "assets/figures/P132/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "행 1:22 · 부활하신 주님을 목격한 부활의 증인으로 공동체 안에 섬",
+        "scripture": "행 1:22",
+        "img": "assets/figures/P132/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "행 1:23-26 · 마가 다락방의 기도와 제비뽑기를 통해 열한 사도의 수에 가입됨",
+        "scripture": "행 1:23-26",
+        "img": "assets/figures/P132/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P133",
@@ -6916,7 +7070,29 @@
     ],
     "book": "마가복음",
     "chapter": 6,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P133/portrait.webp",
+    "masterImg": "assets/figures/P133/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "막 6:3; 요 7:5 · 공생애 기간 멀리서 예수님과 제자 무리를 지켜봄",
+        "scripture": "막 6:3; 요 7:5",
+        "img": "assets/figures/P133/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "고전 15:7 · 부활하신 예수님을 인격적으로 만나 회심하고 사도로 변화됨",
+        "scripture": "고전 15:7",
+        "img": "assets/figures/P133/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "행 15:13-21 · 예루살렘 공의회에서 사도들과 장로들 앞에 서서 최종 판결을 선언함",
+        "scripture": "행 15:13-21",
+        "img": "assets/figures/P133/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P134",
@@ -6939,7 +7115,29 @@
     ],
     "book": "마태복음",
     "chapter": 13,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P134/portrait.webp",
+    "masterImg": "assets/figures/P134/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "유 1:1-2 · 예수 그리스도의 종이요 야고보의 형제인 유다가 양피지에 서신을 기록함",
+        "scripture": "유 1:1-2",
+        "img": "assets/figures/P134/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "유 1:3, 20-21 · 성도들에게 단번에 주신 믿음의 도를 위하여 힘써 싸우라 권면함",
+        "scripture": "유 1:3, 20-21",
+        "img": "assets/figures/P134/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "유 1:22-23 · 의심하는 자들을 긍휼히 여기고 붙들어 세우며 공동체를 돌봄",
+        "scripture": "유 1:22-23",
+        "img": "assets/figures/P134/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P135",
@@ -6967,7 +7165,29 @@
     ],
     "book": "마태복음",
     "chapter": 1,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P135/portrait.webp",
+    "masterImg": "assets/figures/P135/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "마 1:19; 13:55 · 나사렛 목공 작업장에서 성실하게 나무를 다듬는 의로운 사람 요셉",
+        "scripture": "마 1:19; 13:55",
+        "img": "assets/figures/P135/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "마 1:20-24 · 꿈에 나타난 주의 사자의 말씀을 듣고 순종하여 마리아를 데려옴",
+        "scripture": "마 1:20-24",
+        "img": "assets/figures/P135/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "마 2:13-15 · 밤에 일어나 아기 예수님과 어머니 마리아를 데리고 애굽으로 피신함",
+        "scripture": "마 2:13-15",
+        "img": "assets/figures/P135/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P136",
@@ -6997,7 +7217,29 @@
     ],
     "book": "누가복음",
     "chapter": 1,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P136/portrait.webp",
+    "masterImg": "assets/figures/P136/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "눅 1:8-20 · 성소 분향단 우편에 서신 가브리엘 천사로부터 세례 요한 탄생 예고를 들음",
+        "scripture": "눅 1:8-20",
+        "img": "assets/figures/P136/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 1:57-66 · 서판에 아기의 이름을 요한이라 기록하자 곧 입이 열리고 혀가 풀림",
+        "scripture": "눅 1:57-66",
+        "img": "assets/figures/P136/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "눅 1:67-79 · 성령이 충만하여 돋아나는 해와 구원의 뿔을 찬양하는 베네딕투스를 선포함",
+        "scripture": "눅 1:67-79",
+        "img": "assets/figures/P136/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P137",
@@ -7027,7 +7269,29 @@
     ],
     "book": "누가복음",
     "chapter": 1,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P137/portrait.webp",
+    "masterImg": "assets/figures/P137/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "눅 1:24-25 · 노년에 잉태한 후 주께서 내 부끄러움을 없게 하셨다며 하나님께 감사함",
+        "scripture": "눅 1:24-25",
+        "img": "assets/figures/P137/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 1:39-45 · 유대 산골 집을 찾아온 친족 마리아를 성령 충만하여 내 주의 어머니라 축복함",
+        "scripture": "눅 1:39-45",
+        "img": "assets/figures/P137/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "눅 1:57-60 · 아들을 낳아 이웃과 친족들 앞에서 아기의 이름을 요한이라 할 것이라 선언함",
+        "scripture": "눅 1:57-60",
+        "img": "assets/figures/P137/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P138",
@@ -7060,7 +7324,29 @@
     ],
     "book": "누가복음",
     "chapter": 2,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P138/portrait.webp",
+    "masterImg": "assets/figures/P138/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "눅 2:25-27 · 이스라엘의 위로를 기다리던 중 성령의 감동으로 예루살렘 성전에 들어감",
+        "scripture": "눅 2:25-27",
+        "img": "assets/figures/P138/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 2:28-32 · 아기 예수님을 두 팔에 안고 이방을 비추는 빛이라 찬송함(눈크 디미티스)",
+        "scripture": "눅 2:28-32",
+        "img": "assets/figures/P138/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "눅 2:34-35 · 요셉과 마리아를 축복하며 아기로 인한 구원과 어머니의 마음을 찌를 칼을 예언함",
+        "scripture": "눅 2:34-35",
+        "img": "assets/figures/P138/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P139",
@@ -7090,7 +7376,29 @@
     ],
     "book": "누가복음",
     "chapter": 2,
-    "isPreparing": false
+    "isPreparing": false,
+    "portrait": "assets/figures/P139/portrait.webp",
+    "masterImg": "assets/figures/P139/master.jpg",
+    "scenes": [
+      {
+        "code": "장면 1",
+        "title": "눅 2:36-37 · 84세 과부 여선지자로서 성전을 떠나지 않고 주야로 금식하며 기도함",
+        "scripture": "눅 2:36-37",
+        "img": "assets/figures/P139/scene1.jpg"
+      },
+      {
+        "code": "장면 2",
+        "title": "눅 2:38상 · 마침 그 시각에 나아와 시므온·마리아·요셉 곁에서 아기 예수님을 뵙고 하나님께 감사함",
+        "scripture": "눅 2:38",
+        "img": "assets/figures/P139/scene2.jpg"
+      },
+      {
+        "code": "장면 3",
+        "title": "눅 2:38하 · 예루살렘의 속량을 바라는 모든 사람에게 구주 예수님에 대하여 말하며 증언함",
+        "scripture": "눅 2:38",
+        "img": "assets/figures/P139/scene3.jpg"
+      }
+    ]
   },
   {
     "id": "P140",
@@ -24394,7 +24702,9 @@
     ],
     "book": "창세기",
     "chapter": 2,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B031_hero.webp",
+    "thumbImg": "assets/behinds/B031_thumb.webp"
   },
   {
     "id": "B032",
@@ -24428,7 +24738,9 @@
     ],
     "book": "창세기",
     "chapter": 4,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B032_hero.webp",
+    "thumbImg": "assets/behinds/B032_thumb.webp"
   },
   {
     "id": "B033",
@@ -24462,7 +24774,9 @@
     ],
     "book": "창세기",
     "chapter": 5,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B033_hero.webp",
+    "thumbImg": "assets/behinds/B033_thumb.webp"
   },
   {
     "id": "B034",
@@ -24496,7 +24810,9 @@
     ],
     "book": "창세기",
     "chapter": 6,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B034_hero.webp",
+    "thumbImg": "assets/behinds/B034_thumb.webp"
   },
   {
     "id": "B035",
@@ -24526,7 +24842,9 @@
     ],
     "book": "창세기",
     "chapter": 11,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B035_hero.webp",
+    "thumbImg": "assets/behinds/B035_thumb.webp"
   },
   {
     "id": "B036",
@@ -24553,7 +24871,9 @@
     ],
     "book": "창세기",
     "chapter": 16,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B036_hero.webp",
+    "thumbImg": "assets/behinds/B036_thumb.webp"
   },
   {
     "id": "B037",
@@ -24576,7 +24896,9 @@
     ],
     "book": "창세기",
     "chapter": 19,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B037_hero.webp",
+    "thumbImg": "assets/behinds/B037_thumb.webp"
   },
   {
     "id": "B038",
@@ -24604,7 +24926,9 @@
     ],
     "book": "창세기",
     "chapter": 23,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B038_hero.webp",
+    "thumbImg": "assets/behinds/B038_thumb.webp"
   },
   {
     "id": "B039",
@@ -24630,7 +24954,9 @@
     ],
     "book": "창세기",
     "chapter": 24,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B039_hero.webp",
+    "thumbImg": "assets/behinds/B039_thumb.webp"
   },
   {
     "id": "B040",
@@ -24656,7 +24982,9 @@
     ],
     "book": "창세기",
     "chapter": 31,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B040_hero.webp",
+    "thumbImg": "assets/behinds/B040_thumb.webp"
   },
   {
     "id": "B041",
@@ -24687,7 +25015,9 @@
     ],
     "book": "창세기",
     "chapter": 37,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B041_hero.webp",
+    "thumbImg": "assets/behinds/B041_thumb.webp"
   },
   {
     "id": "B042",
@@ -24714,7 +25044,9 @@
     ],
     "book": "창세기",
     "chapter": 39,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B042_hero.webp",
+    "thumbImg": "assets/behinds/B042_thumb.webp"
   },
   {
     "id": "B043",
@@ -24737,7 +25069,9 @@
     ],
     "book": "창세기",
     "chapter": 41,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B043_hero.webp",
+    "thumbImg": "assets/behinds/B043_thumb.webp"
   },
   {
     "id": "B044",
@@ -24771,7 +25105,9 @@
     ],
     "book": "창세기",
     "chapter": 48,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B044_hero.webp",
+    "thumbImg": "assets/behinds/B044_thumb.webp"
   },
   {
     "id": "B045",
@@ -24795,7 +25131,9 @@
     ],
     "book": "출애굽기",
     "chapter": 3,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B045_hero.webp",
+    "thumbImg": "assets/behinds/B045_thumb.webp"
   },
   {
     "id": "B046",
@@ -24819,7 +25157,9 @@
     ],
     "book": "출애굽기",
     "chapter": 13,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B046_hero.webp",
+    "thumbImg": "assets/behinds/B046_thumb.webp"
   },
   {
     "id": "B047",
@@ -24842,7 +25182,9 @@
     ],
     "book": "출애굽기",
     "chapter": 16,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B047_hero.webp",
+    "thumbImg": "assets/behinds/B047_thumb.webp"
   },
   {
     "id": "B048",
@@ -24869,7 +25211,9 @@
     ],
     "book": "출애굽기",
     "chapter": 21,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B048_hero.webp",
+    "thumbImg": "assets/behinds/B048_thumb.webp"
   },
   {
     "id": "B049",
@@ -24899,7 +25243,9 @@
     ],
     "book": "출애굽기",
     "chapter": 28,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B049_hero.webp",
+    "thumbImg": "assets/behinds/B049_thumb.webp"
   },
   {
     "id": "B050",
@@ -24931,7 +25277,9 @@
     ],
     "book": "출애굽기",
     "chapter": 23,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B050_hero.webp",
+    "thumbImg": "assets/behinds/B050_thumb.webp"
   },
   {
     "id": "B051",
@@ -24964,7 +25312,9 @@
     ],
     "book": "민수기",
     "chapter": 21,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B051_hero.webp",
+    "thumbImg": "assets/behinds/B051_thumb.webp"
   },
   {
     "id": "B052",
@@ -24996,7 +25346,9 @@
     ],
     "book": "민수기",
     "chapter": 22,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B052_hero.webp",
+    "thumbImg": "assets/behinds/B052_thumb.webp"
   },
   {
     "id": "B053",
@@ -25020,7 +25372,9 @@
     ],
     "book": "여호수아",
     "chapter": 3,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B053_hero.webp",
+    "thumbImg": "assets/behinds/B053_thumb.webp"
   },
   {
     "id": "B054",
@@ -25049,7 +25403,9 @@
     ],
     "book": "여호수아",
     "chapter": 2,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B054_hero.webp",
+    "thumbImg": "assets/behinds/B054_thumb.webp"
   },
   {
     "id": "B055",
@@ -25083,7 +25439,9 @@
     ],
     "book": "여호수아",
     "chapter": 8,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B055_hero.webp",
+    "thumbImg": "assets/behinds/B055_thumb.webp"
   },
   {
     "id": "B056",
@@ -25109,7 +25467,9 @@
     ],
     "book": "사사기",
     "chapter": 3,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B056_hero.webp",
+    "thumbImg": "assets/behinds/B056_thumb.webp"
   },
   {
     "id": "B057",
@@ -25137,7 +25497,9 @@
     ],
     "book": "사사기",
     "chapter": 4,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B057_hero.webp",
+    "thumbImg": "assets/behinds/B057_thumb.webp"
   },
   {
     "id": "B058",
@@ -25169,7 +25531,9 @@
     ],
     "book": "사사기",
     "chapter": 7,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B058_hero.webp",
+    "thumbImg": "assets/behinds/B058_thumb.webp"
   },
   {
     "id": "B059",
@@ -25193,7 +25557,9 @@
     ],
     "book": "사사기",
     "chapter": 9,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B059_hero.webp",
+    "thumbImg": "assets/behinds/B059_thumb.webp"
   },
   {
     "id": "B060",
@@ -25222,7 +25588,9 @@
     ],
     "book": "사사기",
     "chapter": 12,
-    "isPreparing": false
+    "isPreparing": false,
+    "heroImg": "assets/behinds/B060_hero.webp",
+    "thumbImg": "assets/behinds/B060_thumb.webp"
   },
   {
     "id": "B061",
