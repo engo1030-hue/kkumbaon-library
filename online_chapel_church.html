@@ -1091,7 +1091,7 @@ html, body {
     { author: "갈릴리 어부", text: "삶의 거친 풍랑 속에서도 주님의 시선을 놓치지 않게 하소서.", amens: 19, time: "3분 전" },
     { author: "작은 겨자씨", text: "지치고 상한 영혼들이 이 예배당에서 참된 쉼을 얻기를 기도합니다.", amens: 23, time: "7분 전" },
     { author: "감람나무 가지", text: "수험생들과 청년들의 앞길에 하나님의 지혜와 담대함을 부어주소서.", amens: 17, time: "12분 전" },
-    { author: "은혜의 등불", text: "우리 교회와 꿈바온 말씀 사역을 통해 열방에 복음이 전해지게 하소서.", amens: 31, time: "18분 전" }
+    { author: "김 사모", text: "우리 교회와 꿈바온 말씀 사역을 통해 열방에 복음이 전해지게 하소서.", amens: 31, time: "18분 전" }
   ];
 
   /* ==============================================================
@@ -2418,8 +2418,8 @@ html, body {
     { name: '갈릴리 어부', seatIdx: 4, custom: { gender: 'M', hairStyle: 0, hairColor: '#111113', outfitType: 'suit', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
     { name: '작은 겨자씨', seatIdx: 7, custom: { gender: 'F', hairStyle: 1, hairColor: '#4a3222', outfitType: 'casual', outfitColor: '#4b6048', prop: 'none', accessory: 'beret' } },
     { name: '감람나무 가지', seatIdx: 12, custom: { gender: 'M', hairStyle: 1, hairColor: '#c8ccd0', outfitType: 'suit', outfitColor: '#8c6d53', prop: 'bag', accessory: 'glasses' } },
-    { name: '은혜의 등불', seatIdx: 20, custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 강단 앞 무릎기도석
-    { name: '베들레헴 별', seatIdx: 23, custom: { gender: 'M', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#36393f', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
+    { name: '김 사모', seatIdx: 20, custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 강단 앞 무릎기도석
+    { name: '한 목사', seatIdx: 23, custom: { gender: 'M', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#36393f', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
     { name: '마가의 다락방', seatIdx: 15, custom: { gender: 'F', hairStyle: 0, hairColor: '#7a5638', outfitType: 'suit', outfitColor: '#6e2c35', prop: 'candle', accessory: 'none' } }
   ];
 
@@ -3198,8 +3198,13 @@ html, body {
   });
   appendChatMessage({
     sid: 'npc_4',
-    name: '은혜의 등불',
+    name: '김 사모',
     text: '강단 십자가 앞에서 두 무릎을 꿇고 함께 중보하며 기도하고 있습니다 🙏'
+  });
+  appendChatMessage({
+    sid: 'npc_5',
+    name: '한 목사',
+    text: '예배당을 찾아오신 모든 성도님들을 주님의 이름으로 축복합니다 🕊️'
   });
 
   // 빠른 액션 바 버튼 클릭
