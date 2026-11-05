@@ -594,25 +594,79 @@ header {
     });
     const _KKUM_V_KEY = new TextEncoder().encode("KKUMBAON_KKUMDIDO_ARK_2026_SOLA_SCRIPTURA");
     const _LOADED_V_ARCH = new Set();
-    async function _fetchDecV(url) {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('Chunk fetch failed');
-      const encBuf = new Uint8Array(await res.arrayBuffer());
+    async function _decompressXorBytes(encBuf) {
+      let rawBuf = encBuf;
       const klen = _KKUM_V_KEY.length;
-      const gzipBuf = new Uint8Array(encBuf.length);
-      for (let i = 0; i < encBuf.length; i++) gzipBuf[i] = encBuf[i] ^ _KKUM_V_KEY[i % klen];
-      const ds = new DecompressionStream('gzip');
+      let decBuf = new Uint8Array(rawBuf.length);
+      for (let i = 0; i < rawBuf.length; i++) decBuf[i] = rawBuf[i] ^ _KKUM_V_KEY[i % klen];
+      if (!(decBuf[0] === 0x1f && decBuf[1] === 0x8b) && decBuf[0] !== 0x78) {
+        try {
+          const b64Str = new TextDecoder().decode(rawBuf).trim();
+          const binStr = atob(b64Str);
+          rawBuf = new Uint8Array(binStr.length);
+          for (let i = 0; i < binStr.length; i++) rawBuf[i] = binStr.charCodeAt(i);
+          decBuf = new Uint8Array(rawBuf.length);
+          for (let i = 0; i < rawBuf.length; i++) decBuf[i] = rawBuf[i] ^ _KKUM_V_KEY[i % klen];
+        } catch (_) {}
+      }
+      const fmt = (decBuf[0] === 0x78) ? 'deflate' : 'gzip';
+      const ds = new DecompressionStream(fmt);
       const writer = ds.writable.getWriter();
-      writer.write(gzipBuf);
+      writer.write(decBuf);
       writer.close();
       return JSON.parse(await new Response(ds.readable).text());
+    }
+    function _loadScriptB64Fallback(chunkName) {
+      return new Promise((resolve, reject) => {
+        if (window._KKUM_DB_B64 && window._KKUM_DB_B64[chunkName]) {
+          return resolve(window._KKUM_DB_B64[chunkName]);
+        }
+        const candidates = [
+          `./assets/db_chunks/${chunkName}.js?v=20261106_fix`,
+          `../assets/db_chunks/${chunkName}.js?v=20261106_fix`
+        ];
+        let idx = 0;
+        function tryNext() {
+          if (idx >= candidates.length) return reject(new Error('Script fallback failed'));
+          const s = document.createElement('script');
+          s.src = candidates[idx++];
+          s.onload = () => {
+            if (window._KKUM_DB_B64 && window._KKUM_DB_B64[chunkName]) resolve(window._KKUM_DB_B64[chunkName]);
+            else tryNext();
+          };
+          s.onerror = () => tryNext();
+          document.head.appendChild(s);
+        }
+        tryNext();
+      });
+    }
+    async function _fetchDecV(url) {
+      const m = url.match(/([a-zA-Z0-9_]+)\.dat/);
+      const chunkName = m ? m[1] : '';
+      if (window.location.protocol !== 'file:') {
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            const encBuf = new Uint8Array(await res.arrayBuffer());
+            return await _decompressXorBytes(encBuf);
+          }
+        } catch (_) {}
+      }
+      if (chunkName) {
+        const b64 = await _loadScriptB64Fallback(chunkName);
+        const binStr = atob(b64);
+        const encBuf = new Uint8Array(binStr.length);
+        for (let i = 0; i < binStr.length; i++) encBuf[i] = binStr.charCodeAt(i);
+        return await _decompressXorBytes(encBuf);
+      }
+      throw new Error('Chunk fetch failed');
     }
     async function _ensureVDetail(archNo) {
       const no = Number(archNo) || 1;
       if (_LOADED_V_ARCH.has(no)) return;
       try {
         const pad = String(no).padStart(2, '0');
-        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261104_audit2`);
+        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261106_fix`);
         DATA.forEach(m => { if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id]; });
         _LOADED_V_ARCH.add(no);
       } catch (_) {}
@@ -672,20 +726,49 @@ header {
     function resetAndRender() {
       displayLimit = 100;
       const q = document.getElementById("searchInput").value.trim().toLowerCase();
-      filteredData = DATA.filter(item => {
+      const qNoSpace = q.replace(/\s+/g, '');
+      const matched = DATA.filter(item => {
         if (currentArchive !== 0 && item.archive_no !== currentArchive) return false;
         if (!q) return true;
-        return (
-          item.id.toLowerCase().includes(q) ||
-          item.title.toLowerCase().includes(q) ||
-          item.subtitle.toLowerCase().includes(q) ||
-          item.scripture.toLowerCase().includes(q) ||
-          item.summary.toLowerCase().includes(q) ||
-          item.application.toLowerCase().includes(q) ||
-          item.category.toLowerCase().includes(q) ||
-          (item.detail && item.detail.toLowerCase().includes(q))
-        );
+        const idL = (item.id || '').toLowerCase();
+        const titleL = (item.title || '').toLowerCase();
+        const subL = (item.subtitle || '').toLowerCase();
+        const scripL = (item.scripture || '').toLowerCase();
+        const sumL = (item.summary || '').toLowerCase();
+        const appL = (item.application || '').toLowerCase();
+        const catL = (item.category || '').toLowerCase();
+        const detL = (item.detail || '').toLowerCase();
+        if (
+          idL.includes(q) || titleL.includes(q) || subL.includes(q) ||
+          scripL.includes(q) || sumL.includes(q) || appL.includes(q) ||
+          catL.includes(q) || detL.includes(q)
+        ) return true;
+        if (qNoSpace.length >= 2) {
+          const titleNS = titleL.replace(/\s+/g, '');
+          const subNS = subL.replace(/\s+/g, '');
+          const sumNS = sumL.replace(/\s+/g, '');
+          if (titleNS.includes(qNoSpace) || subNS.includes(qNoSpace) || sumNS.includes(qNoSpace)) return true;
+          if (q === '평양대부흥' && titleL.includes('평양') && titleL.includes('대부흥')) return true;
+        }
+        return false;
       });
+      if (q) {
+        matched.sort((a, b) => {
+          const score = (it) => {
+            const t = (it.title || '').toLowerCase();
+            const tNS = t.replace(/\s+/g, '');
+            const s = (it.subtitle || '').toLowerCase();
+            if (it.id.toLowerCase() === q) return 100;
+            if (t.includes(q) || (qNoSpace.length >= 2 && tNS.includes(qNoSpace))) return 80;
+            if (q === '평양대부흥' && t.includes('평양') && t.includes('대부흥')) return 85;
+            if (s.includes(q)) return 60;
+            if ((it.scripture || '').toLowerCase().includes(q)) return 40;
+            return 10;
+          };
+          return score(b) - score(a);
+        });
+      }
+      filteredData = matched;
       renderGrid();
     }
 
@@ -973,7 +1056,7 @@ header {
 
     (async function() {
       try {
-        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261104_audit2');
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261106_fix');
         DATA.forEach(item => {
           item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
           DATA_MAP[item.id] = item;
