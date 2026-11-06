@@ -97,9 +97,9 @@
   }
   .avatar-label {
     position: absolute; transform: translate(-50%, -100%);
-    padding: 5px 13px; border-radius: 999px;
-    background: rgba(24, 19, 15, 0.85); border: 1.5px solid rgba(212, 168, 83, 0.48);
-    color: #fbf6ec; font-size: 14px; font-weight: 700; white-space: nowrap;
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(24, 19, 15, 0.88); border: 1px solid rgba(212, 168, 83, 0.48);
+    color: #fbf6ec; font-size: 13px; font-weight: 700; white-space: nowrap;
     backdrop-filter: blur(6px); pointer-events: auto; cursor: pointer;
     transition: opacity 0.25s ease, transform 0.2s ease;
     display: flex; align-items: center; gap: 6px;
@@ -113,9 +113,9 @@
   }
   .avatar-bubble {
     position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
-    padding: 6px 14px; border-radius: 12px;
+    padding: 5px 12px; border-radius: 6px;
     background: rgba(251, 246, 234, 0.98); color: #241c14;
-    font-family: var(--serif); font-size: 14px; font-weight: 700;
+    font-family: var(--serif); font-size: 13.5px; font-weight: 700;
     box-shadow: 0 4px 14px rgba(0,0,0,0.32); white-space: nowrap;
     animation: pop-up 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   }
@@ -124,92 +124,94 @@
     to { opacity: 1; transform: translate(-50%, 0) scale(1); }
   }
 
-  /* 4. 상단 HUD 바 (1줄 칼정렬 고정 & 큼직한 가독성) */
+  /* 4. 상단 홈페이지형 가로 헤더 바 (타원형 캡슐 배제 · 1줄 가로 스크롤 정렬 · 겹침 원천 차단) */
   .top-bar {
-    position: fixed; top: max(14px, env(safe-area-inset-top)); left: 16px; right: 16px;
+    position: fixed; top: 0; left: 0; right: 0;
+    min-height: 44px; padding: max(6px, env(safe-area-inset-top)) 14px 6px 14px;
+    background: rgba(18, 14, 11, 0.94);
+    border-bottom: 1px solid rgba(212, 168, 83, 0.42);
     z-index: 30; display: flex; align-items: center; justify-content: space-between;
-    gap: 10px; pointer-events: none; flex-wrap: nowrap !important;
+    gap: 8px; pointer-events: auto; flex-wrap: nowrap !important;
+    overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.45);
   }
+  .top-bar::-webkit-scrollbar { display: none; }
   .top-left, .top-right {
-    display: flex; align-items: center; gap: 7px; pointer-events: auto; flex-wrap: nowrap !important;
+    display: flex; align-items: center; gap: 6px; pointer-events: auto; flex-wrap: nowrap !important; flex-shrink: 0;
   }
   .hud-pill {
     display: inline-flex; align-items: center; gap: 6px;
-    padding: 9px 13.5px; border-radius: 999px;
-    background: rgba(253, 250, 243, 0.96); border: 1.5px solid rgba(184, 142, 60, 0.55);
-    color: #1f1a15; font-size: 14.5px; font-weight: 700;
+    padding: 6px 11px; border-radius: 6px;
+    background: rgba(36, 28, 21, 0.92); border: 1px solid rgba(212, 168, 83, 0.38);
+    color: #f6efe2; font-size: 13px; font-weight: 700;
     white-space: nowrap !important; flex-shrink: 0 !important;
-    backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-    cursor: pointer; transition: all 0.2s ease;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.22); text-decoration: none;
-    letter-spacing: -0.01em;
+    cursor: pointer; transition: all 0.18s ease;
+    text-decoration: none; letter-spacing: -0.01em;
   }
+  .hud-pill span { color: inherit !important; }
+  .hud-pill strong { color: #ffe8a3 !important; }
   .hud-pill:hover {
-    border-color: #d4a853; background: rgba(42, 33, 25, 0.96); color: #faf3e3;
-  }
-  .hud-pill:hover span, .hud-pill:hover strong {
-    color: #ffe8a3 !important;
+    border-color: #d4a853; background: rgba(58, 45, 32, 0.96); color: #fff6e0;
   }
   .hud-pill.active-gold {
-    background: linear-gradient(135deg, #3B2B18 0%, #241A0F 100%);
+    background: linear-gradient(135deg, #4A351C 0%, #2C1F10 100%);
     border-color: #D4A853; color: #FFE8A3; font-weight: 800;
   }
   .hud-pill.active-gold:hover {
-    background: linear-gradient(135deg, #4E3920 0%, #322415 100%);
+    background: linear-gradient(135deg, #5C4324 0%, #382815 100%);
     color: #FFF4CC;
   }
   .live-dot {
-    width: 8px; height: 8px; border-radius: 50%; background: #16a34a;
-    box-shadow: 0 0 8px rgba(22, 163, 74, 0.75); flex-shrink: 0;
+    width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.75); flex-shrink: 0;
   }
 
-  /* 상단 중앙 상태 토스트 / 현재 활동 안내 */
+  /* 상단 중앙 상태 알림 바 (기본 접힘/숨김, 상태 변경 시에만 잠시 표시) */
   .status-banner {
-    position: fixed; top: 70px; left: 50%; transform: translateX(-50%);
-    z-index: 25; padding: 10px 24px; border-radius: 999px;
-    background: rgba(24, 18, 13, 0.88); border: 1.5px solid rgba(212, 168, 83, 0.55);
-    color: #fff6e5; font-family: var(--serif); font-size: 15.5px; font-weight: 700;
+    position: fixed; top: 52px; left: 50%; transform: translateX(-50%);
+    z-index: 25; padding: 7px 16px; border-radius: 6px;
+    background: rgba(20, 15, 11, 0.94); border: 1px solid rgba(212, 168, 83, 0.48);
+    color: #fff6e5; font-family: var(--serif); font-size: 13.5px; font-weight: 700;
     backdrop-filter: blur(10px); pointer-events: none;
-    transition: all 0.35s ease; text-align: center; max-width: 92vw;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+    transition: opacity 0.25s ease, transform 0.25s ease; text-align: center; max-width: 92vw;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .status-banner.is-faded {
+    opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(-6px);
   }
 
-  /* 5. 하단 컨트롤 독 (산사 5대 도구 스타일) */
+  /* 5. 하단 컨트롤 독 (홈페이지 가로 툴바 스타일) */
   .bottom-dock {
-    position: fixed; bottom: max(18px, env(safe-area-inset-bottom)); left: 50%;
+    position: fixed; bottom: max(10px, env(safe-area-inset-bottom)); left: 50%;
     transform: translateX(-50%); z-index: 30;
-    display: flex; align-items: center; gap: 8px; padding: 8px 12px;
-    border-radius: 999px; background: rgba(22, 18, 14, 0.92);
-    border: 1.5px solid rgba(212, 168, 83, 0.48);
+    display: flex; align-items: center; gap: 6px; padding: 6px 8px;
+    border-radius: 8px; background: rgba(18, 14, 11, 0.94);
+    border: 1px solid rgba(212, 168, 83, 0.45);
     backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-    box-shadow: 0 12px 34px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
     max-width: 96vw; overflow-x: auto;
   }
   .dock-btn {
-    display: flex; align-items: center; gap: 8px;
-    padding: 11px 18px; border-radius: 999px; border: 1px solid transparent;
-    background: transparent; color: #f4ece0; font-size: 15.5px; font-weight: 700;
-    cursor: pointer; white-space: nowrap; transition: all 0.2s ease;
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(212, 168, 83, 0.2);
+    background: rgba(255, 255, 255, 0.04); color: #f4ece0; font-size: 13.5px; font-weight: 700;
+    cursor: pointer; white-space: nowrap; transition: all 0.18s ease;
   }
   .dock-btn:hover {
-    background: rgba(212, 168, 83, 0.18); color: #fff;
+    background: rgba(212, 168, 83, 0.18); border-color: rgba(212, 168, 83, 0.5); color: #fff;
   }
   .dock-btn.is-active {
-    background: rgba(212, 168, 83, 0.28); border-color: rgba(245, 207, 118, 0.75);
+    background: rgba(212, 168, 83, 0.28); border-color: rgba(245, 207, 118, 0.8);
     color: #ffeaad;
   }
   .dock-btn .shortcut {
-    font-size: 12px; font-weight: 700; color: #d8cbb8; padding: 2px 6px;
-    border-radius: 5px; background: rgba(255,255,255,0.1);
+    font-size: 11px; font-weight: 700; color: #d8cbb8; padding: 1px 5px;
+    border-radius: 4px; background: rgba(255,255,255,0.1);
   }
 
-  /* 조작 힌트 */
+  /* 조작 힌트: 화면 가림 방지를 위해 기본 숨김 */
   .control-hint {
-    position: fixed; bottom: 86px; left: 50%; transform: translateX(-50%);
-    z-index: 20; font-size: 13.5px; font-weight: 600; color: #f5efe4;
-    background: rgba(18, 14, 11, 0.78); border: 1px solid rgba(212, 168, 83, 0.32);
-    padding: 6px 16px; border-radius: 999px;
-    pointer-events: none; white-space: nowrap;
+    display: none !important;
   }
 
   /* 도서관 이용증 플로팅 배지: 3D 예배당에서는 하단 독(찬양 버튼)과 성화 확대 모달 버튼을 가리지 않도록 숨김 처리 */
@@ -426,45 +428,67 @@
     box-shadow: 0 0 0 2px rgba(212, 168, 83, 0.65);
   }
 
-  /* 9. 좌측 하단 실시간 채팅 & 액션 바 (코루라이브 스타일 + 예배당 품격) */
+  /* 9. 좌측 하단 실시간 채팅 & 액션 바 (홈페이지 가로 게시판 탭 스타일 · 초기 접힘) */
   .chapel-chat-stack {
-    position: fixed; left: 18px; bottom: 118px;
-    width: 356px; max-width: calc(100vw - 36px);
-    z-index: 32; display: flex; flex-direction: column; gap: 7px;
+    position: fixed; left: 16px; bottom: 72px;
+    width: 356px; max-width: calc(100vw - 32px);
+    z-index: 32; display: flex; flex-direction: column; gap: 5px;
     pointer-events: none; transition: opacity 0.3s ease;
   }
   .chapel-chat-stack > * { pointer-events: auto; }
   .chapel-chatlog {
-    position: relative; width: 100%; margin-top: 10px; padding-top: 16px;
-    border: 1.5px solid rgba(212, 168, 83, 0.42); border-radius: 18px;
-    background: rgba(20, 16, 12, 0.84);
+    position: relative; width: 100%; margin-top: 0; padding-top: 0;
+    border: 1px solid rgba(212, 168, 83, 0.45); border-radius: 6px;
+    background: rgba(18, 14, 11, 0.94);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
   }
-  .chatlog-tab-toggle, .chatlog-tab-block {
-    position: absolute; top: 0; transform: translateY(-50%);
-    height: 22px; padding: 0 11px; border-radius: 999px;
-    border: 1px solid rgba(212, 168, 83, 0.48);
-    background: rgba(34, 26, 19, 0.96); color: #eddcc0;
-    font-size: 11.5px; font-weight: 700; cursor: pointer;
+  .chatlog-tab-toggle {
+    position: relative; top: auto; left: auto; transform: none;
+    width: 100%; height: 34px; padding: 0 12px; border-radius: 0;
+    border: none; border-bottom: 1px solid rgba(212, 168, 83, 0.25);
+    background: rgba(34, 26, 19, 0.96); color: #ffe8a3;
+    font-size: 12.5px; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 6px;
+    text-align: left;
+  }
+  .chapel-chatlog.is-collapsed .chatlog-tab-toggle,
+  .chapel-chat-stack.is-collapsed .chatlog-tab-toggle {
+    border-bottom: none;
+  }
+  .chatlog-tab-block {
+    position: absolute; top: 6px; right: 10px; transform: none;
+    height: 22px; padding: 0 8px; border-radius: 4px;
+    border: 1px solid rgba(212, 168, 83, 0.45);
+    background: rgba(24, 18, 13, 0.95); color: #eddcc0;
+    font-size: 11px; font-weight: 700; cursor: pointer;
     display: inline-flex; align-items: center; gap: 4px;
   }
-  .chatlog-tab-toggle { left: 16px; }
-  .chatlog-tab-block { right: 14px; }
   .chatlog-tab-toggle:hover, .chatlog-tab-block:hover {
-    color: #ffe6a3; border-color: #f5cf76;
+    color: #fff4cc; background: rgba(48, 37, 26, 0.98);
   }
   .chapel-chat-list {
-    list-style: none; margin: 0; padding: 4px 10px 10px;
-    max-height: 155px; overflow-y: auto; scrollbar-width: thin;
+    list-style: none; margin: 0; padding: 8px 10px;
+    max-height: 150px; overflow-y: auto; scrollbar-width: thin;
     display: flex; flex-direction: column; gap: 4px;
   }
-  .chapel-chatlog.is-folded .chapel-chat-list {
-    max-height: 30px; overflow: hidden;
+  /* 접힌 상태일 때 채팅 목록, 차단 버튼, 포즈 버튼 줄, 채팅 입력바 모두 숨김 */
+  .chapel-chat-stack.is-collapsed .chapel-chat-list,
+  .chapel-chat-stack.is-collapsed .chatlog-tab-block,
+  .chapel-chat-stack.is-collapsed .blocked-users-box,
+  .chapel-chat-stack.is-collapsed .quick-action-row,
+  .chapel-chat-stack.is-collapsed .chapel-chatbar,
+  .chapel-chatlog.is-collapsed .chapel-chat-list,
+  .chapel-chatlog.is-collapsed .chatlog-tab-block,
+  .chapel-chatlog.is-collapsed .blocked-users-box,
+  .chapel-chatlog.is-collapsed ~ .quick-action-row,
+  .chapel-chatlog.is-collapsed ~ .chapel-chatbar {
+    display: none !important;
   }
   .chapel-chat-list li {
     display: flex; align-items: baseline; gap: 6px;
-    padding: 3px 7px; border-radius: 8px;
+    padding: 3px 7px; border-radius: 5px;
     font-size: 13px; line-height: 1.45; color: #f5ede0;
     cursor: pointer; transition: background 0.15s;
   }
@@ -480,7 +504,7 @@
     flex: 1; word-break: break-word; color: #f7f1e6;
   }
   .chapel-chat-list .chat-block-btn {
-    display: none; padding: 1px 8px; border-radius: 999px;
+    display: none; padding: 1px 8px; border-radius: 4px;
     border: none; background: #d9534f; color: #fff;
     font-size: 11px; font-weight: 700; cursor: pointer; flex-shrink: 0;
   }
@@ -491,18 +515,18 @@
   }
   .blocked-users-box.is-open { display: block; }
 
-  /* 빠른 액션·감정표현 버튼 줄 */
+  /* 빠른 액션·감정표현 버튼 줄 (가로 게시판 버튼형) */
   .quick-action-row {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
-    padding: 6px; border-radius: 14px;
-    background: rgba(22, 18, 14, 0.88);
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+    padding: 5px; border-radius: 6px;
+    background: rgba(18, 14, 11, 0.94);
     border: 1px solid rgba(212, 168, 83, 0.38);
     backdrop-filter: blur(12px);
   }
   .emote-pill-btn {
-    padding: 7px 8px; border-radius: 10px; border: 1px solid rgba(212, 168, 83, 0.25);
-    background: rgba(255, 255, 255, 0.06); color: #f4ece0;
-    font-size: 12.5px; font-weight: 700; cursor: pointer;
+    padding: 6px 8px; border-radius: 5px; border: 1px solid rgba(212, 168, 83, 0.25);
+    background: rgba(255, 255, 255, 0.05); color: #f4ece0;
+    font-size: 12px; font-weight: 700; cursor: pointer;
     white-space: nowrap; transition: all 0.18s ease;
     display: inline-flex; align-items: center; justify-content: center; gap: 4px;
   }
@@ -513,12 +537,12 @@
     background: rgba(212, 168, 83, 0.35); border-color: #ffdf85; color: #ffe8a3;
   }
 
-  /* 채팅 입력바 */
+  /* 채팅 입력바 (직사각 보드형) */
   .chapel-chatbar {
     display: flex; align-items: center; gap: 6px;
-    padding: 5px 6px 5px 15px; border-radius: 999px;
-    background: rgba(22, 18, 14, 0.94);
-    border: 1.5px solid rgba(212, 168, 83, 0.5);
+    padding: 4px 6px 4px 12px; border-radius: 6px;
+    background: rgba(18, 14, 11, 0.96);
+    border: 1px solid rgba(212, 168, 83, 0.5);
     backdrop-filter: blur(14px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   }
@@ -527,25 +551,25 @@
   }
   .chapel-chatbar input {
     flex: 1; min-width: 0; border: none; background: transparent;
-    color: #fff8eb; font-size: 14px; font-weight: 500; font-family: var(--sans);
+    color: #fff8eb; font-size: 13.5px; font-weight: 500; font-family: var(--sans);
     padding: 6px 0; outline: none; user-select: text; -webkit-user-select: text;
   }
   .chapel-chatbar input::placeholder { color: #a89a86; }
   .chapel-chatbar button {
-    width: 36px; height: 36px; border-radius: 50%; border: none;
+    height: 32px; padding: 0 12px; border-radius: 5px; border: none;
     background: linear-gradient(135deg, #e5c168 0%, #b3832d 100%);
-    color: #1a1209; font-size: 15px; font-weight: 800;
+    color: #1a1209; font-size: 13px; font-weight: 800;
     cursor: pointer; display: flex; align-items: center; justify-content: center;
     flex-shrink: 0; transition: transform 0.15s ease;
   }
-  .chapel-chatbar button:hover { transform: scale(1.06); }
+  .chapel-chatbar button:hover { transform: scale(1.03); }
 
   @media (max-width: 680px) {
-    .dock-btn span.label-text { font-size: 12px; }
+    .dock-btn span.label-text { font-size: 11px; }
     .dock-btn .shortcut { display: none; }
     .control-hint { display: none; }
-    .floating-panel { right: 12px; left: 12px; width: auto; bottom: 80px; }
-    .chapel-chat-stack { left: 12px; right: 12px; width: auto; bottom: 78px; }
+    .floating-panel { right: 10px; left: 10px; width: auto; bottom: 56px; border-radius: 8px; }
+    .chapel-chat-stack { left: 8px; right: 8px; width: auto; bottom: 50px; }
   }
 
 
@@ -563,7 +587,7 @@ html, body {
 }
 
 @media (max-width: 1024px), (pointer: coarse) {
-  html, body, .top-bar, .header {
+  html, body, .header {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100vw !important;
@@ -577,7 +601,7 @@ html, body {
     padding-right: 12px !important;
     box-sizing: border-box !important;
   }
-  .top-bar, .top-actions, .hero-banner, .filter-bar, .compare-banner, .axis-tabs {
+  .top-actions, .hero-banner, .filter-bar, .compare-banner, .axis-tabs {
     flex-wrap: wrap !important;
   }
   .behinds-grid, .events-grid, .p-grid, .art-grid, .grid {
@@ -586,7 +610,7 @@ html, body {
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 </style>
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107c"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107d"/>
 </head>
 <body class="is-3d-chapel-page">
 
@@ -675,8 +699,8 @@ html, body {
   </div>
 </header>
 
-<!-- 상단 상태 배너 -->
-<div class="status-banner" id="status-banner">
+<!-- 상단 상태 배너 (초기 접힘/숨김) -->
+<div class="status-banner is-faded" id="status-banner">
   바닥을 누르면 사람처럼 걸어가고, 빈 장의자에 앉거나 강단 앞에서 무릎 꿇고 기도할 수 있습니다.
 </div>
 
@@ -685,11 +709,11 @@ html, body {
   바닥 클릭·방향키(WASD) 걷기 · 의자 클릭 착석 · 무릎기도석 클릭 무릎기도 · Enter 채팅 · 단축키 [1]의자착석 [2]무릎기도 [3]아바타꾸미기 [4]말씀묵상 [5]등불켜기 [6]말씀·소리
 </div>
 
-<!-- 4-A. 좌측 하단 실시간 성도 교제·기도 채팅 & 빠른 액션 바 (코루라이브 스타일) -->
-<section class="chapel-chat-stack" id="chapel-chat-stack" aria-label="실시간 성도 교제 채팅 및 액션">
-  <div class="chapel-chatlog" id="chapel-chatlog">
-    <button type="button" class="chatlog-tab-toggle" id="btn-chatlog-toggle" title="대화창 접기/펴기">
-      <span id="chatlog-toggle-label">💬 실시간 교제·기도 나눔 (접기 ▼)</span>
+<!-- 4-A. 좌측 하단 실시간 성도 교제·기도 채팅 & 빠른 액션 바 (초기 접힘 상태 시작) -->
+<section class="chapel-chat-stack is-collapsed" id="chapel-chat-stack" aria-label="실시간 성도 교제 채팅 및 액션">
+  <div class="chapel-chatlog is-collapsed" id="chapel-chatlog">
+    <button type="button" class="chatlog-tab-toggle" id="btn-chatlog-toggle" title="대화창 및 포즈 바 열기/접기">
+      <span id="chatlog-toggle-label">💬 실시간 교제·기도 나눔 &amp; 포즈 (열기 ▲)</span>
     </button>
     <button type="button" class="chatlog-tab-block" id="btn-chatlog-block-panel" hidden>
       차단 <span id="blocked-count-num">0</span>
@@ -2634,11 +2658,9 @@ html, body {
     el.textContent = text;
     el.classList.remove('is-faded');
     if (statusBannerTimer) clearTimeout(statusBannerTimer);
-    if (window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
-      statusBannerTimer = setTimeout(() => {
-        el.classList.add('is-faded');
-      }, 3500);
-    }
+    statusBannerTimer = setTimeout(() => {
+      el.classList.add('is-faded');
+    }, 2800);
   }
 
   /* ==============================================================
@@ -3131,6 +3153,7 @@ html, body {
   /* ==============================================================
    * 12-A. 좌측 하단 코루라이브 스타일 실시간 성도 교제 채팅 & 액션 바
    * ============================================================== */
+  const chatStackBox = document.getElementById('chapel-chat-stack');
   const chatlogBox = document.getElementById('chapel-chatlog');
   const chatListEl = document.getElementById('chapel-chat-list');
   const chatFormEl = document.getElementById('chapel-chat-form');
@@ -3144,32 +3167,27 @@ html, body {
 
   btnChatToggle.addEventListener('click', () => {
     const collapsed = chatlogBox.classList.toggle('is-collapsed');
+    if (chatStackBox) chatStackBox.classList.toggle('is-collapsed', collapsed);
     chatToggleLabel.textContent = collapsed
-      ? '💬 실시간 교제·기도 나눔 (펴기 ▲)'
-      : '💬 실시간 교제·기도 나눔 (접기 ▼)';
+      ? '💬 실시간 교제·기도 나눔 & 포즈 (열기 ▲)'
+      : '💬 실시간 교제·기도 나눔 & 포즈 (접기 ▼)';
   });
 
   btnBlockPanel.addEventListener('click', () => {
     blockedUsersBox.classList.toggle('is-open');
   });
 
-  // 모바일 화면 초기 최적화: 채팅창 기본 접힘 및 안내 배너 자동 페이드
+  // PC·모바일 초기 쾌적 모드: 모든 배너와 채팅창·포즈바를 접힌 상태로 시작
   const initMobileChapelUI = () => {
-    const isMobile = window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-    if (isMobile) {
-      if (chatlogBox) {
-        chatlogBox.classList.add('is-collapsed');
-        if (chatToggleLabel) {
-          chatToggleLabel.textContent = '💬 실시간 교제·기도 나눔 (펴기 ▲)';
-        }
-      }
-      const statusEl = document.getElementById('status-banner');
-      if (statusEl) {
-        statusEl.addEventListener('click', () => statusEl.classList.add('is-faded'));
-        setTimeout(() => {
-          statusEl.classList.add('is-faded');
-        }, 4000);
-      }
+    if (chatlogBox) chatlogBox.classList.add('is-collapsed');
+    if (chatStackBox) chatStackBox.classList.add('is-collapsed');
+    if (chatToggleLabel) {
+      chatToggleLabel.textContent = '💬 실시간 교제·기도 나눔 & 포즈 (열기 ▲)';
+    }
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.classList.add('is-faded');
+      statusEl.addEventListener('click', () => statusEl.classList.add('is-faded'));
     }
   };
   initMobileChapelUI();
@@ -4102,14 +4120,18 @@ html, body {
       updateAvatarPose(av, dt, elapsed, isMoving);
     });
 
-    // 기도 착석 / 무릎기도 경과 시간 표시 업데이트
+    // 기도 착석 / 무릎기도 경과 시간: 화면을 가리지 않고 하단 독 버튼에 깔끔히 표시
     if ((myAvatar.state === 'sitting' || myAvatar.state === 'kneeling') && sitStartTime) {
       const sec = Math.floor((Date.now() - sitStartTime) / 1000);
       const mm = String(Math.floor(sec / 60)).padStart(2, '0');
       const ss = String(sec % 60).padStart(2, '0');
-      const placeTxt = myAvatar.seat ? myAvatar.seat.label : '강단 십자가 앞';
-      const actTxt = myAvatar.state === 'kneeling' ? '🧎 두 무릎을 꿇고 기도 중' : '🪑 의자에 앉아 묵상 중';
-      setStatusBanner(`${actTxt} (${placeTxt}) · 머문 시간 ${mm}:${ss}`);
+      if (myAvatar.state === 'kneeling') {
+        const kl = document.getElementById('dock-kneel-label');
+        if (kl) kl.textContent = `무릎 기도 ${mm}:${ss}`;
+      } else {
+        const sl = document.getElementById('dock-sit-label');
+        if (sl) sl.textContent = `의자 착석 ${mm}:${ss}`;
+      }
     }
 
     // 촛불 흔들림 애니메이션

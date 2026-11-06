@@ -157,17 +157,16 @@
       if (!chatlogBox || !chatStack) return;
       chatlogBox.classList.toggle('is-collapsed', isCollapsed);
       chatlogBox.classList.toggle('is-folded', isCollapsed);
+      chatStack.classList.toggle('is-collapsed', isCollapsed);
       chatStack.classList.toggle('chat-is-collapsed', isCollapsed);
       if (chatToggleLabel) {
-        const baseTitle = chatToggleLabel.textContent.includes('말씀') ? '💬 실시간 말씀·기도 나눔' : '💬 실시간 교제·기도 나눔';
-        chatToggleLabel.textContent = isCollapsed ? `${baseTitle} (펴기 ▲)` : `${baseTitle} (접기 ▼)`;
+        const baseTitle = chatToggleLabel.textContent.includes('말씀') ? '💬 실시간 말씀·기도 나눔 & 포즈' : '💬 실시간 교제·기도 나눔 & 포즈';
+        chatToggleLabel.textContent = isCollapsed ? `${baseTitle} (열기 ▲)` : `${baseTitle} (접기 ▼)`;
       }
     }
 
     if (chatlogBox && chatStack) {
-      if (getCurrentMode() === 'mobile') {
-        syncChapelChatFoldState(true);
-      }
+      syncChapelChatFoldState(true);
       if (btnChatToggle) {
         btnChatToggle.addEventListener('click', function () {
           setTimeout(function () {
@@ -178,20 +177,17 @@
       }
     }
 
-    // 모바일에서 상단 상태 배너(#status-banner) 3초 후 자동 페이드아웃 (화면 가림 원천 방지)
+    // 상단 상태 배너(#status-banner) 초기 접힘 유지 및 상태 변경 시 2.8초 표시 후 자동 페이드아웃
     const statusBanner = document.getElementById('status-banner');
     if (statusBanner) {
+      statusBanner.classList.add('is-faded');
       let bannerTimer = null;
-      const flashStatusBanner = function () {
-        statusBanner.classList.add('mobile-toast-active');
+      const obs = new MutationObserver(function () {
+        statusBanner.classList.remove('is-faded');
         clearTimeout(bannerTimer);
         bannerTimer = setTimeout(function () {
-          statusBanner.classList.remove('mobile-toast-active');
-        }, 3200);
-      };
-      flashStatusBanner();
-      const obs = new MutationObserver(function () {
-        flashStatusBanner();
+          statusBanner.classList.add('is-faded');
+        }, 2800);
       });
       obs.observe(statusBanner, { childList: true, characterData: true, subtree: true });
     }

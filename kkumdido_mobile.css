@@ -1150,18 +1150,18 @@
     font-size: 11.5px !important;
   }
 
-  /* 3D 예배당 상단 HUD 바: 1줄 초슬림 가로 스크롤 트랙 (상단 겹침 원천 차단) */
+  /* 3D 예배당 상단 HUD 바: 홈페이지형 가로 헤더 바 (상단 겹침 원천 차단) */
   html:not(.pc-override).is-3d-chapel-page .top-bar,
   html:not(.pc-override) body.is-3d-chapel-page .top-bar,
   html:not(.pc-override) #canvas-wrap ~ .top-bar,
   .is-3d-chapel-page .top-bar {
     position: fixed !important;
-    top: max(4px, env(safe-area-inset-top)) !important;
-    left: 6px !important;
-    right: 6px !important;
-    height: 36px !important;
-    width: calc(100vw - 12px) !important;
-    padding: 0 4px !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    min-height: 38px !important;
+    width: 100vw !important;
+    padding: max(4px, env(safe-area-inset-top)) 6px 4px 6px !important;
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
@@ -1203,14 +1203,14 @@
   }
 
   html:not(.pc-override) .hud-pill {
-    padding: 3px 8px !important;
+    padding: 4px 8px !important;
     min-height: 28px !important;
     height: 28px !important;
     font-size: 10.5px !important;
-    gap: 3px !important;
+    gap: 4px !important;
     border-width: 1px !important;
-    border-radius: 999px !important;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25) !important;
+    border-radius: 5px !important;
+    box-shadow: none !important;
     display: inline-flex !important;
     align-items: center !important;
     white-space: nowrap !important;
@@ -1229,28 +1229,28 @@
     display: none !important;
   }
 
-  /* 3D 예배당 상태 배너: 모바일에서 화면 중앙을 가리지 않고 상단 HUD 밑에 슬림하게 안착 */
+  /* 3D 예배당 상태 배너: 기본 접힘/숨김, 상태 변경 시 상단 헤더 아래 직사각 보드로 잠시 표시 */
   html:not(.pc-override) .status-banner,
   .is-3d-chapel-page .status-banner {
     top: calc(max(4px, env(safe-area-inset-top)) + 40px) !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    padding: 3px 12px !important;
+    padding: 5px 12px !important;
     font-size: 11px !important;
     line-height: 1.35 !important;
-    border-radius: 999px !important;
+    border-radius: 6px !important;
     width: auto !important;
     max-width: calc(100vw - 20px) !important;
     white-space: normal !important;
     word-break: keep-all !important;
     text-align: center !important;
-    background: rgba(20, 16, 12, 0.85) !important;
-    border: 1px solid rgba(212, 168, 83, 0.45) !important;
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3) !important;
+    background: rgba(20, 16, 12, 0.94) !important;
+    border: 1px solid rgba(212, 168, 83, 0.48) !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35) !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     cursor: pointer !important;
-    transition: opacity 0.5s ease, transform 0.3s ease !important;
+    transition: opacity 0.3s ease, transform 0.25s ease !important;
     z-index: 90 !important;
   }
   html:not(.pc-override) .status-banner.is-faded,
@@ -1260,14 +1260,14 @@
     transform: translateX(-50%) translateY(-6px) !important;
   }
 
-  /* 모바일 대화창 스택: 좌측 하단 슬림 배치 */
+  /* 모바일 대화창 스택: 좌하단 홈페이지 가로 게시판 스타일 */
   html:not(.pc-override) .chapel-chat-stack,
   .is-3d-chapel-page .chapel-chat-stack {
-    left: 8px !important;
-    right: 8px !important;
-    bottom: calc(max(6px, env(safe-area-inset-bottom)) + 48px) !important;
+    left: 6px !important;
+    right: 6px !important;
+    bottom: calc(max(4px, env(safe-area-inset-bottom)) + 44px) !important;
     width: auto !important;
-    max-width: calc(100vw - 16px) !important;
+    max-width: calc(100vw - 12px) !important;
     gap: 4px !important;
     z-index: 85 !important;
   }
@@ -1275,15 +1275,15 @@
   html:not(.pc-override) .chapel-chatlog,
   .is-3d-chapel-page .chapel-chatlog {
     margin-top: 0 !important;
-    padding-top: 6px !important;
-    border-radius: 12px !important;
-    background: rgba(20, 16, 12, 0.88) !important;
+    padding-top: 0 !important;
+    border-radius: 6px !important;
+    background: rgba(18, 14, 11, 0.94) !important;
     border: 1px solid rgba(212, 168, 83, 0.45) !important;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
-    transition: all 0.25s ease !important;
+    transition: all 0.22s ease !important;
   }
 
-  /* ⭐️ [핵심] 대화창이 접혀 있을 때: 화면 85% 가시 확보! */
+  /* 대화창이 접혀 있을 때: 깔끔한 직사각 가로 게시판 헤더 바만 표시 */
   html:not(.pc-override) .chapel-chatlog.is-collapsed,
   html:not(.pc-override) .chapel-chatlog.is-folded,
   .is-3d-chapel-page .chapel-chatlog.is-collapsed,
@@ -1295,36 +1295,39 @@
     box-shadow: none !important;
   }
 
-  /* 접힌 상태에서는 오직 펴기 알약 버튼만 단정하게 표시 */
   html:not(.pc-override) .chapel-chatlog.is-collapsed .chatlog-tab-toggle,
   html:not(.pc-override) .chapel-chatlog.is-folded .chatlog-tab-toggle,
   .is-3d-chapel-page .chapel-chatlog.is-collapsed .chatlog-tab-toggle,
   .is-3d-chapel-page .chapel-chatlog.is-folded .chatlog-tab-toggle {
     position: static !important;
     transform: none !important;
-    height: 28px !important;
+    width: 100% !important;
+    height: 30px !important;
     padding: 0 12px !important;
     font-size: 11px !important;
-    font-weight: 700 !important;
-    border-radius: 999px !important;
-    background: rgba(24, 18, 13, 0.92) !important;
+    font-weight: 800 !important;
+    border-radius: 6px !important;
+    background: rgba(20, 16, 12, 0.94) !important;
     border: 1px solid rgba(212, 168, 83, 0.5) !important;
     color: #F5DF98 !important;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4) !important;
-    display: inline-flex !important;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.45) !important;
+    display: flex !important;
     align-items: center !important;
+    justify-content: space-between !important;
     cursor: pointer !important;
   }
 
-  /* 접혀 있을 때 차단 버튼 숨김 */
+  /* 접혀 있을 때 차단 버튼, 채팅 리스트, 입력창, 퀵 액션 완전 숨김 */
   html:not(.pc-override) .chapel-chatlog.is-collapsed .chatlog-tab-block,
   html:not(.pc-override) .chapel-chatlog.is-folded .chatlog-tab-block,
   .is-3d-chapel-page .chapel-chatlog.is-collapsed .chatlog-tab-block,
-  .is-3d-chapel-page .chapel-chatlog.is-folded .chatlog-tab-block {
-    display: none !important;
-  }
-
-  /* 접혀 있을 때 채팅 리스트, 입력창, 퀵 액션 완전 숨김 */
+  .is-3d-chapel-page .chapel-chatlog.is-folded .chatlog-tab-block,
+  html:not(.pc-override) .chapel-chat-stack.is-collapsed .chapel-chat-list,
+  html:not(.pc-override) .chapel-chat-stack.is-collapsed .quick-action-row,
+  html:not(.pc-override) .chapel-chat-stack.is-collapsed .chapel-chatbar,
+  .is-3d-chapel-page .chapel-chat-stack.is-collapsed .chapel-chat-list,
+  .is-3d-chapel-page .chapel-chat-stack.is-collapsed .quick-action-row,
+  .is-3d-chapel-page .chapel-chat-stack.is-collapsed .chapel-chatbar,
   html:not(.pc-override) .chapel-chatlog.is-collapsed .chapel-chat-list,
   html:not(.pc-override) .chapel-chatlog.is-folded .chapel-chat-list,
   html:not(.pc-override) .chapel-chatlog.is-collapsed + .quick-action-row,
@@ -1367,23 +1370,23 @@
     font-weight: 700 !important;
   }
 
-  /* 모바일에서 빠른 액션 바: 바텀 독과 중복되므로 접혀 있을 땐 숨김, 펼쳤을 때 1줄 슬림 */
+  /* 모바일에서 빠른 액션 바: 펼쳤을 때 1줄 직사각 보드 */
   html:not(.pc-override) .quick-action-row,
   .is-3d-chapel-page .quick-action-row {
     display: grid !important;
     grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-    gap: 2px !important;
-    padding: 2px !important;
-    border-radius: 8px !important;
-    background: rgba(22, 18, 14, 0.88) !important;
+    gap: 3px !important;
+    padding: 3px !important;
+    border-radius: 6px !important;
+    background: rgba(18, 14, 11, 0.94) !important;
   }
 
   html:not(.pc-override) .emote-pill-btn,
   .is-3d-chapel-page .emote-pill-btn {
-    padding: 3px 2px !important;
+    padding: 4px 2px !important;
     min-height: 26px !important;
     font-size: 9.5px !important;
-    border-radius: 6px !important;
+    border-radius: 5px !important;
     gap: 1px !important;
     letter-spacing: -0.4px !important;
     overflow: hidden !important;
@@ -1396,11 +1399,11 @@
 
   html:not(.pc-override) .chapel-chatbar,
   .is-3d-chapel-page .chapel-chatbar {
-    padding: 2px 3px 2px 10px !important;
+    padding: 3px 4px 3px 10px !important;
     border-width: 1px !important;
-    background: rgba(22, 18, 14, 0.92) !important;
+    background: rgba(18, 14, 11, 0.96) !important;
     min-height: 32px !important;
-    border-radius: 999px !important;
+    border-radius: 6px !important;
   }
 
   html:not(.pc-override) .chapel-chatbar input,
@@ -1411,29 +1414,30 @@
 
   html:not(.pc-override) .chapel-chatbar button,
   .is-3d-chapel-page .chapel-chatbar button {
-    width: 26px !important;
     height: 26px !important;
-    font-size: 12px !important;
+    padding: 0 9px !important;
+    border-radius: 4px !important;
+    font-size: 11.5px !important;
   }
 
-  /* 하단 바텀 독 (5대 핵심 인터랙션: 의자착석, 무릎기도, 아바타꾸미기, 말씀묵상, 등불/교제) */
+  /* 하단 바텀 독 (홈페이지 가로 툴바 스타일) */
   html:not(.pc-override) .bottom-dock,
   .is-3d-chapel-page .bottom-dock {
     position: fixed !important;
-    bottom: max(6px, env(safe-area-inset-bottom)) !important;
-    left: 8px !important;
-    right: 8px !important;
+    bottom: max(4px, env(safe-area-inset-bottom)) !important;
+    left: 6px !important;
+    right: 6px !important;
     transform: none !important;
     width: auto !important;
-    max-width: calc(100vw - 16px) !important;
-    height: 42px !important;
-    padding: 3px 6px !important;
-    gap: 4px !important;
-    justify-content: space-around !important;
+    max-width: calc(100vw - 12px) !important;
+    height: 38px !important;
+    padding: 3px 4px !important;
+    gap: 3px !important;
+    justify-content: space-between !important;
     align-items: center !important;
-    background: rgba(22, 18, 14, 0.94) !important;
+    background: rgba(18, 14, 11, 0.95) !important;
     border: 1px solid rgba(212, 168, 83, 0.48) !important;
-    border-radius: 999px !important;
+    border-radius: 6px !important;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
     z-index: 95 !important;
   }
@@ -1455,13 +1459,13 @@
     flex: 1 1 0 !important;
     justify-content: center !important;
     padding: 3px 2px !important;
-    min-height: 32px !important;
-    height: 32px !important;
-    font-size: 10.5px !important;
-    gap: 3px !important;
-    background: transparent !important;
-    border: none !important;
-    border-radius: 8px !important;
+    min-height: 30px !important;
+    height: 30px !important;
+    font-size: 10px !important;
+    gap: 2px !important;
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(212, 168, 83, 0.2) !important;
+    border-radius: 5px !important;
     color: #eddcc0 !important;
     white-space: nowrap !important;
   }
@@ -1473,11 +1477,8 @@
 
   html:not(.pc-override) .dock-btn span.label-text,
   .is-3d-chapel-page .dock-btn span.label-text {
-    font-size: 10.5px !important;
+    font-size: 10px !important;
     font-weight: 700 !important;
-  }
-  html:not(.pc-override) #dock-kneel {
-    display: none !important;
   }
 
   html:not(.pc-override) .dock-btn {
