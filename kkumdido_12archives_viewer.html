@@ -2,11 +2,15 @@
 <html lang="ko" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#161311" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 마스터 웹 뷰어</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261106"/>
   <style>
     :root, [data-theme="light"] {
       --bg: #F9F6F0;
@@ -448,85 +452,167 @@
   
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-html, body {
-  min-width: 1440px !important;
-}
-@media (min-width: 1440px) {
-  html, body { overflow-x: hidden !important; }
-}
-@media (max-width: 1439px) {
-  html, body { overflow-x: auto !important; }
-}
-header {
-  min-width: 1440px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  box-sizing: border-box !important;
-}
-.header-inner {
-  width: 1392px !important;
-  max-width: 1392px !important;
-  min-width: 1392px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-.tabs-container,
-.stats-bar,
-.grid {
-  width: 1440px !important;
-  max-width: 1440px !important;
-  min-width: 1440px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-.top-bar,
-.header-actions,
-.search-row,
-.stats-bar {
-  flex-wrap: nowrap !important;
-}
-.brand {
-  flex: 1 1 auto !important;
-  min-width: 0 !important;
-}
-.header-actions {
-  flex-shrink: 0 !important;
-}
-.brand h1 {
-  font-size: 1.42rem !important;
-  white-space: nowrap !important;
-}
-.brand p {
-  font-size: 0.81rem !important;
-  white-space: nowrap !important;
-}
-.header-actions .btn {
-  padding: 7px 11px !important;
-  font-size: 0.78rem !important;
-  white-space: nowrap !important;
-}
-.tabs-container {
-  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
-}
-.tab-btn {
-  padding: 9px 10px !important;
-  font-size: 0.76rem !important;
-  gap: 4px !important;
-  white-space: nowrap !important;
-}
-.tab-btn .cnt {
-  font-size: 0.7rem !important;
-  padding: 2px 6px !important;
-  flex-shrink: 0 !important;
-}
-.grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+/* PC 와이드 환경(1025px 이상, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
+@media (min-width: 1025px) {
+  html:not(.mobile-mode), html:not(.mobile-mode) body {
+    min-width: 1440px !important;
+  }
+  html:not(.mobile-mode) body {
+    overflow-x: hidden !important;
+  }
+  html:not(.mobile-mode) header {
+    min-width: 1440px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .header-inner {
+    width: 1392px !important;
+    max-width: 1392px !important;
+    min-width: 1392px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .tabs-container,
+  html:not(.mobile-mode) .stats-bar,
+  html:not(.mobile-mode) .grid {
+    width: 1440px !important;
+    max-width: 1440px !important;
+    min-width: 1440px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .top-bar,
+  html:not(.mobile-mode) .header-actions,
+  html:not(.mobile-mode) .search-row,
+  html:not(.mobile-mode) .stats-bar {
+    flex-wrap: nowrap !important;
+  }
+  html:not(.mobile-mode) .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  html:not(.mobile-mode) .header-actions {
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .brand h1 {
+    font-size: 1.42rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .brand p {
+    font-size: 0.81rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .header-actions .btn {
+    padding: 7px 11px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .tabs-container {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+  html:not(.mobile-mode) .tab-btn {
+    padding: 9px 10px !important;
+    font-size: 0.76rem !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .tab-btn .cnt {
+    font-size: 0.7rem !important;
+    padding: 2px 6px !important;
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_12ARCHIVES_MOBILE_MODE_START] === */
+@media (max-width: 1024px), (pointer: coarse) {
+  html.mobile-mode, html.mobile-mode body {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-bottom: 74px !important;
+  }
+  html.mobile-mode header,
+  html.mobile-mode .header-inner,
+  html.mobile-mode .tabs-container,
+  html.mobile-mode .stats-bar,
+  html.mobile-mode .grid {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html.mobile-mode .top-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  html.mobile-mode .brand h1 {
+    font-size: 1.15rem !important;
+  }
+  html.mobile-mode .header-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  html.mobile-mode .tabs-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+  html.mobile-mode .tabs-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  html.mobile-mode .tab-btn {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 16px !important;
+    font-size: 12px !important;
+    padding: 7px 12px !important;
+  }
+  html.mobile-mode .search-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  html.mobile-mode .grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  html.mobile-mode .modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    padding: 14px !important;
+    box-sizing: border-box !important;
+  }
+}
+/* === [KKUMDIDO_12ARCHIVES_MOBILE_MODE_END] === */
 </style>
 </head>
 <body>
@@ -1099,6 +1185,31 @@ header {
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
+    <a href="index.html" class="kkumdido-mobile-tab-item" data-tab-action="home">
+      <span class="tab-icon">🏛️</span>
+      <span>홈·지도</span>
+    </a>
+    <button type="button" class="kkumdido-mobile-tab-item active" data-tab-action="halls">
+      <span class="tab-icon">📚</span>
+      <span>12대관</span>
+    </button>
+    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
+      <span class="tab-icon">📖</span>
+      <span>강해·주석</span>
+    </a>
+    <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
+      <span class="tab-icon">⛪</span>
+      <span>채플</span>
+    </a>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
+      <span class="tab-icon">🔍</span>
+      <span>검색</span>
+    </button>
+  </nav>
+
   <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261106"></script>
 </body>
 </html>

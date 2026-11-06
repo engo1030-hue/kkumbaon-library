@@ -49,12 +49,12 @@
       color: var(--text-dark);
       line-height: 1.55;
       min-height: 100vh;
-      min-width: 1400px;
+      min-width: 0;
       overflow-x: auto;
     }
 
     header, .studio-dock-wrap, .main-container {
-      min-width: 1400px;
+      min-width: 0;
     }
 
     /* 상단 로열 딥 네이비 & 샴페인 골드 헤더 */
@@ -239,7 +239,7 @@
       color: #94A3B8;
       margin-left: 6px;
     }
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .studio-cat-wrap { grid-template-columns: minmax(0, 1fr); }
     }
     .studio-tabs-grid {
@@ -250,12 +250,12 @@
       box-sizing: border-box;
     }
 
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .studio-tabs-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       }
     }
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .studio-tabs-grid {
         grid-template-columns: 1fr !important;
       }
@@ -351,7 +351,7 @@
       align-items: start;
     }
 
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .main-container {
         grid-template-columns: minmax(0, 1fr) !important;
       }
@@ -513,7 +513,7 @@
       box-shadow: 0 3px 10px rgba(15, 23, 42, 0.04);
     }
 
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .clip-card {
         grid-template-columns: 1fr;
       }
@@ -978,7 +978,7 @@
       margin-bottom: 14px;
     }
 
-    @media (max-width: 1px) {
+    @media (max-width: 1024px) {
       .schedule-inputs {
         grid-template-columns: 1fr;
       }
@@ -1890,7 +1890,7 @@
       <!-- [2단계] 승인번호 입력 및 열기 -->
       <div style="background:#FFFDF7; border:1.5px solid #F3D999; border-radius:16px; padding:15px; margin-bottom:12px; text-align:left;">
         <div style="font-size:13px; font-weight:800; color:#92400E; margin-bottom:8px;">
-          🔑 <b>[2단계]</b> 한범수 목사님께 전달받으신 승인번호 입력
+          🔑 <b>[2단계]</b> 꿈바온 목사님께 전달받으신 승인번호 입력
         </div>
         <div style="margin-bottom:10px;">
           <input type="text" id="lockCodeInput" placeholder="예: KB-XXXX-XXXX (목사님 1:1 전용 입장코드)" style="width:100%; box-sizing:border-box; padding:11px 12px; border-radius:8px; border:2px solid #D4AF37; font-size:15.5px; font-weight:900; text-align:center; letter-spacing:1.5px; font-family:monospace; background:#FFFFFF;" />
@@ -2885,7 +2885,7 @@
             스마트폰 음성메모로 직접 녹음하신 <b>본인 육성 파일(.m4a/.mp3/.wav)</b>을 올리시거나 지금 마이크로 바로 녹음하시면, <b>황금 보컬 음질 보정 + 대본 자막 자동 싱크 + 성화 모션 + 찬양풍 BGM</b>이 결합된 1080×1920 MP4 영상이 완성됩니다! (<b>공개 영상에는 육성 녹음을 사용해 주세요.</b> 음성 없이 찬양풍 BGM 묵상 영상으로도 제작 가능합니다.)
           </p>
 
-          <!-- 원클릭 설교 묵상 문구 예시 8선 (성경 본문 미내장 · 한범수 목사 설교 원고 발췌 예시) -->
+          <!-- 원클릭 설교 묵상 문구 예시 8선 (성경 본문 미내장 · 꿈바온 목사 설교 원고 발췌 예시) -->
           <div style="background:#FAF7F0; border:1px solid #E5DEC9; border-radius:14px; padding:14px 16px; margin-bottom:18px;">
             <div style="font-size:13px; font-weight:900; color:#5C4D32; margin-bottom:8px;">
               ✨ 원클릭 설교·묵상 문구 예시 8선 (성경 본문은 내장하지 않으며, 우리교회 말씀이나 묵상 문구를 직접 입력해 주세요)
@@ -7771,7 +7771,7 @@ ${st.error || "로그를 확인해 주세요."}`);
       });
     }
 
-    // 📖 [스튜디오 3] 오늘의 말씀·묵상 낭독 예시 문구 8선 (성경 본문 미내장 · 한범수 목사 설교 원고 발췌)
+    // 📖 [스튜디오 3] 오늘의 말씀·묵상 낭독 예시 문구 8선 (성경 본문 미내장 · 꿈바온 목사 설교 원고 발췌)
     const BIBLE_READING_PRESETS = [
       {
         title: "떨면서도 말하는 사람들",
@@ -10864,5 +10864,6 @@ ${st.error || "로그를 확인해 주세요."}`);
   </script>
 
   <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261106"></script>
 </body>
 </html>

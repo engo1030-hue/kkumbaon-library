@@ -333,7 +333,7 @@
     .pillar-name { font-size: 15px; font-weight: 800; color: #FFF; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .pillar-role { font-size: 11.5px; color: var(--text-warm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-    /* 세대는 위에서 아래로, 혼인은 같은 높이로 읽는 계보 전시 (워크간사 세계사 시간의 벽 연동) */
+    /* 세대는 위에서 아래로, 혼인은 같은 높이로 읽는 계보 전시 (세계사 시간의 벽 연동) */
     .gene-hall {
       position: relative;
       overflow: hidden;
@@ -795,6 +795,7 @@
   
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
+@media (min-width: 1025px) {
 html, body, .top-bar {
   min-width: 1440px !important;
 }
@@ -828,6 +829,31 @@ html, body, .top-bar {
 }
 .art-grid {
   grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+}
+
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  html, body, .top-bar, .header {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  .hero-wrap, .theme-nav-wrap, .timeline-nav-wrap, .filter-bar-wrap, .compare-bar-wrap, .grid-wrap, .axis-tabs, .main-container, .header, .grid, .table-wrap, .container {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+  }
+  .top-bar, .top-actions, .hero-banner, .filter-bar, .compare-banner, .axis-tabs {
+    flex-wrap: wrap !important;
+  }
+  .behinds-grid, .events-grid, .p-grid, .art-grid, .grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 
@@ -1090,8 +1116,8 @@ html, body, .top-bar {
       <div class="hero-left">
         <div class="hero-eyebrow">KKUMBAON BIBLICAL BIOGRAPHY &amp; GENEALOGY ARCHIVE</div>
         <h1 class="hero-title serif">성경 인물가계도 &amp; 인물대백과 — 아담부터 바울까지, 구속사의 큰 족보와 350인 열전</h1>
-        <p class="hero-sub">
-          시대별 구속사 기둥 30인(30인), 남북 왕조(40인), 구약 선지자·포로귀환(50인), 신약 제자 첫 묶음(5인)까지 <strong>성화·초상 완비 125인(총 469점 원화 도판)</strong>과 <strong>전체 350인 마스터 열전·관계망</strong>을 한눈에 탐색합니다.
+        <p class="hero-sub" id="heroSubText">
+          시대별 구속사 기둥 30인(30인), 남북 왕조(40인), 구약 선지자·포로귀환(50인), 신약 제자·초대교회(19인)까지 <strong>성화·초상 완비 139인(총 511점 원화 도판)</strong>과 <strong>전체 350인 마스터 열전·관계망</strong>을 한눈에 탐색합니다.
         </p>
       </div>
       <div class="hero-stats">
@@ -1100,12 +1126,12 @@ html, body, .top-bar {
           <div class="stat-label">마스터 수록 인물</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num" id="stDossiers">125인 · 469점</div>
+          <div class="stat-num" id="stDossiers">139인 · 511점</div>
           <div class="stat-label">성화·초상 도판 완비</div>
         </div>
         <div class="stat-card">
-          <div class="stat-num" id="stTier1">73인 풀패키지</div>
-          <div class="stat-label">Tier-1 5종 성화</div>
+          <div class="stat-num" id="stTier1">87인 완비</div>
+          <div class="stat-label">성화 5종 수록</div>
         </div>
       </div>
     </div>
@@ -1113,8 +1139,8 @@ html, body, .top-bar {
 
   <!-- 5대 전시 축 탭 -->
   <nav class="axis-tabs">
-    <button class="axis-tab active" data-view="view-pillars" onclick="switchView('view-pillars')">
-      인물가계도 · 언약의 계보 &amp; 성화 완비 125인 <span class="axis-badge">성화 469점 완비</span>
+    <button class="axis-tab active" data-view="view-pillars" id="axisTabPillars" onclick="switchView('view-pillars')">
+      인물가계도 · 언약의 계보 &amp; 성화 완비 139인 <span class="axis-badge">성화 511점 완비</span>
     </button>
     <button class="axis-tab" data-view="view-kingdoms" onclick="switchView('view-kingdoms')">
       남유다·북이스라엘 왕조관 (왕·왕비 40인) <span class="axis-badge">P031~P070 성화·열전</span>
@@ -1133,9 +1159,9 @@ html, body, .top-bar {
   <!-- 메인 콘텐츠 영역 -->
   <main class="main-container">
 
-    <!-- [VIEW 1] 언약의 계보 & 성화 완비 125인 -->
+    <!-- [VIEW 1] 언약의 계보 & 성화 완비 139인 -->
     <section class="view-panel active" id="view-pillars">
-      <!-- 1-0. 세로 피라미드 언약 계보 & 세계사 시간의 벽 (워크간사·제간사·안간사 합작) -->
+      <!-- 1-0. 세로 피라미드 언약 계보 & 세계사 시간의 벽 (꿈바온 사역팀 편찬) -->
       <div class="hall-panel" style="margin-bottom:22px;">
         <div class="hall-panel-head">
           <div>
@@ -1162,7 +1188,7 @@ html, body, .top-bar {
             <div class="gene-legend"><span>│ 부모·자녀</span><span>─ 부부</span><span>┆ 중간 세대 생략</span><span>✦ 예수님의 법적 계보 구분</span></div>
           </div>
           <div id="geneLevels" class="gene-levels"></div>
-          <p class="gene-after">이 전시는 본문에서 확인되는 줄기와 마태복음 1장의 법적 계보를 보여 줍니다. 누가복음 3장의 계보는 별도 검토 대상입니다. 350인 전체 열전은 위 검색창과 전체 색인에서 탐험할 수 있습니다. 자료·출처: 제간사 · 전시 디자인: 워크 간사 · 도서관 운영·보수: 안간사.</p>
+          <p class="gene-after">이 전시는 본문에서 확인되는 줄기와 마태복음 1장의 법적 계보를 보여 줍니다. 누가복음 3장의 계보는 별도 검토 대상입니다. 350인 전체 열전은 위 검색창과 전체 색인에서 탐험할 수 있습니다. 편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사.</p>
         </div>
 
         <div class="hall-panel-head" style="margin-top:16px;">
@@ -1185,20 +1211,20 @@ html, body, .top-bar {
         <div class="era-flow-wrap" id="lineageTreeContainer"></div>
       </div>
 
-      <!-- 1-C. 성화·초상 완비 125인 전시관 (P001~P125) -->
+      <!-- 1-C. 성화·초상 완비 139인 전시관 (P001~P139) -->
       <div class="hall-panel">
         <div class="hall-panel-head">
           <div>
-            <h2 class="hall-panel-title serif">성화·초상 도판 완비 125인 전시관 (총 469점 성화 수록)</h2>
-            <p class="hall-panel-desc">워크간사의 고증 성화 도판(Tier-1 73인 5종 풀패키지 + Tier-2 52인 초상·대표장면)과 제간사의 신학·원어 열전이 결합된 125인 전시관입니다.</p>
+            <h2 class="hall-panel-title serif" id="artGalleryHeading">성화·초상 도판 완비 139인 전시관 (총 511점 성화 수록)</h2>
+            <p class="hall-panel-desc" id="artGallerySub">꿈바온 사역팀의 고증 성화 도판(성화 5종 완비 87인 + 초상·대표장면 52인)과 신학·원어 열전이 결합된 139인 전시관입니다.</p>
           </div>
           <div style="display:flex; gap:6px; flex-wrap:wrap;" id="artGalleryFilterBar">
-            <button class="pill-btn active" onclick="filterArtGallery('all125', this)">전체 성화 완비 (125인)</button>
-            <button class="pill-btn" onclick="filterArtGallery('p1_30', this)">1차 구속사 기둥 (30인)</button>
+            <button class="pill-btn active" id="btnArtAll" onclick="filterArtGallery('all125', this)">전체 성화 완비 (139인)</button>
+            <button class="pill-btn" onclick="filterArtGallery('p1_30', this)">구속사 기둥 (30인)</button>
             <button class="pill-btn" onclick="filterArtGallery('p31_70', this)">남북 왕조 40왕 (40인)</button>
             <button class="pill-btn" onclick="filterArtGallery('p71_120', this)">선지자·포로귀환 (50인)</button>
-            <button class="pill-btn" onclick="filterArtGallery('p121_125', this)">신약 제자 첫 묶음 (5인)</button>
-            <button class="pill-btn" onclick="filterArtGallery('tier1only', this)">Tier-1 5종 풀패키지 (73인)</button>
+            <button class="pill-btn" id="btnArtNt" onclick="filterArtGallery('p121_125', this)">신약 제자·초대교회 (19인)</button>
+            <button class="pill-btn" id="btnArtTier1" onclick="filterArtGallery('tier1only', this)">성화 5종 완비 (87인)</button>
           </div>
         </div>
         <div class="pillars-grid" id="pillarsCardGrid"></div>
@@ -1263,7 +1289,7 @@ html, body, .top-bar {
         <div class="hall-panel-head">
           <div>
             <h2 class="hall-panel-title serif">사도 바울(P030)의 선교 동역자·서신 수취 교회 및 신약 인물 관계망</h2>
-            <p class="hall-panel-desc">예수 그리스도와 12제자(`P121~P125` 성화 완비 포함) 및 1~3차 선교여행과 로마 옥중 서신에 등장하는 동역자·제자·부부 사역자·로마 관료들을 연결한 입체 관계도입니다.</p>
+            <p class="hall-panel-desc">예수 그리스도와 12제자·초대교회 인물(`P121~P139` 성화 완비 포함) 및 1~3차 선교여행과 로마 옥중 서신에 등장하는 동역자·제자·부부 사역자·로마 관료들을 연결한 입체 관계도입니다.</p>
           </div>
         </div>
         <div id="paulNetworkContainer"></div>
@@ -1281,12 +1307,12 @@ html, body, .top-bar {
         </div>
         <div class="filter-bar">
           <input type="text" id="figSearchInput" class="search-input" placeholder="인물 이름(예: 다윗, 아브라함, 히스기야, 엘리사, 야고보, 브리스길라), 시대, 장소, 성구 검색..." oninput="renderDirectory300()" />
-          <button class="pill-btn active" data-pfilter="all" onclick="setDirFilter('all', this)">전체 (350)</button>
-          <button class="pill-btn" data-pfilter="art125" onclick="setDirFilter('art125', this)">성화·초상 완비 (125)</button>
-          <button class="pill-btn" data-pfilter="tier1" onclick="setDirFilter('tier1', this)">Tier-1 5종 풀패키지 (73)</button>
-          <button class="pill-btn" data-pfilter="phase2" onclick="setDirFilter('phase2', this)">2차 왕조·선지자 (90)</button>
-          <button class="pill-btn" data-pfilter="phase3" onclick="setDirFilter('phase3', this)">3차 신약·바울망 (80)</button>
-          <button class="pill-btn" data-pfilter="phase4" onclick="setDirFilter('phase4', this)">4·5차 구약·신약 확장 (150)</button>
+          <button class="pill-btn active" id="dirBtnAll" data-pfilter="all" onclick="setDirFilter('all', this)">전체 (350)</button>
+          <button class="pill-btn" id="dirBtnArt" data-pfilter="art125" onclick="setDirFilter('art125', this)">성화·초상 완비 (139)</button>
+          <button class="pill-btn" id="dirBtnTier1" data-pfilter="tier1" onclick="setDirFilter('tier1', this)">성화 5종 완비 (87)</button>
+          <button class="pill-btn" data-pfilter="phase2" onclick="setDirFilter('phase2', this)">왕조·선지자 (90)</button>
+          <button class="pill-btn" data-pfilter="phase3" onclick="setDirFilter('phase3', this)">신약·바울 관계망 (80)</button>
+          <button class="pill-btn" data-pfilter="phase4" onclick="setDirFilter('phase4', this)">구약·신약 확장 (150)</button>
         </div>
         <div class="dir-grid" id="dir300Grid"></div>
       </div>
@@ -1299,8 +1325,8 @@ html, body, .top-bar {
     <div class="drawer-panel">
       <div class="drawer-header">
         <div style="display:flex; align-items:center; gap:10px;">
-          <span class="brand-badge" id="drwBadge">P004 · TIER 1</span>
-          <span style="font-size:13px; color:var(--gold-bright); font-weight:700;" id="drwPhase">1차 오픈 · 구속사 기둥 30인</span>
+          <span class="brand-badge" id="drwBadge">제1관 · 성경 인물 열전</span>
+          <span style="font-size:13px; color:var(--gold-bright); font-weight:700;" id="drwPhase">구속사 핵심 30인</span>
         </div>
         <button class="btn-top" onclick="closeFigureDrawer()">✕ 닫기 (ESC)</button>
       </div>
@@ -1358,7 +1384,7 @@ html, body, .top-bar {
       if (btn) btn.textContent = next === "light" ? "🎨 테마: 양피지 라이트" : "🌙 테마: 다크 골드";
     }
 
-    // 직접 연결과 생략 구간을 구별한 세로 전시 (워크간사 세계사 시간의 벽 연동)
+    // 직접 연결과 생략 구간을 구별한 세로 전시 (세계사 시간의 벽 연동)
     const GENE_LEVELS = [
       { people: ["P001", "P002"], join: "부부", link: "시작", ref: "창 2:22–24", time: ["절대연대 미정", "창세기 원역사", "세계사 절대연대와 직접 대조하지 않음"] },
       { people: ["P203"], link: "아들", ref: "창 4:25" },
@@ -1521,7 +1547,7 @@ html, body, .top-bar {
         if (currentArtFilter === "p1_30") return f.num >= 1 && f.num <= 30;
         if (currentArtFilter === "p31_70") return f.num >= 31 && f.num <= 70;
         if (currentArtFilter === "p71_120") return f.num >= 71 && f.num <= 120;
-        if (currentArtFilter === "p121_125") return f.num >= 121 && f.num <= 125;
+        if (currentArtFilter === "p121_125") return f.num >= 121 && f.num <= 200;
         if (currentArtFilter === "tier1only") return !!f.hasTier1Images;
         return true;
       });
@@ -1556,6 +1582,46 @@ html, body, .top-bar {
     }
 
     function initEncyclopedia() {
+      // meta 수치 자동 바인딩 (2-1 자동화)
+      const m = DATA.meta || {};
+      const totalFigs = m.totalFigures || FIGS.length || 350;
+      const imgDone = m.imageCompleteCount || FIGS.filter(f => f.portrait).length || 139;
+      const imgPts = m.totalFigureImages || 511;
+      const t1Done = m.tier1CompleteCount || FIGS.filter(f => f.hasTier1Images).length || 87;
+      const t2Done = imgDone - t1Done;
+      const ntArtCount = FIGS.filter(f => f.portrait && f.num >= 121 && f.num <= 200).length || 19;
+
+      const elTotal = document.getElementById("stTotalFigures");
+      if (elTotal) elTotal.textContent = `${totalFigs}인`;
+      const elDoss = document.getElementById("stDossiers");
+      if (elDoss) elDoss.textContent = `${imgDone}인 · ${imgPts}점`;
+      const elT1 = document.getElementById("stTier1");
+      if (elT1) elT1.textContent = `${t1Done}인 완비`;
+      const elHeroSub = document.getElementById("heroSubText");
+      if (elHeroSub) {
+        elHeroSub.innerHTML = `시대별 구속사 기둥 30인(30인), 남북 왕조(40인), 구약 선지자·포로귀환(50인), 신약 제자·초대교회(${ntArtCount}인)까지 <strong>성화·초상 완비 ${imgDone}인(총 ${imgPts}점 원화 도판)</strong>과 <strong>전체 ${totalFigs}인 마스터 열전·관계망</strong>을 한눈에 탐색합니다.`;
+      }
+      const elAxisTab = document.getElementById("axisTabPillars");
+      if (elAxisTab) {
+        elAxisTab.innerHTML = `인물가계도 · 언약의 계보 &amp; 성화 완비 ${imgDone}인 <span class="axis-badge">성화 ${imgPts}점 완비</span>`;
+      }
+      const elArtHead = document.getElementById("artGalleryHeading");
+      if (elArtHead) elArtHead.textContent = `성화·초상 도판 완비 ${imgDone}인 전시관 (총 ${imgPts}점 성화 수록)`;
+      const elArtSub = document.getElementById("artGallerySub");
+      if (elArtSub) elArtSub.textContent = `꿈바온 사역팀의 고증 성화 도판(성화 5종 완비 ${t1Done}인 + 초상·대표장면 ${t2Done}인)과 신학·원어 열전이 결합된 ${imgDone}인 전시관입니다.`;
+      const btnArtAll = document.getElementById("btnArtAll");
+      if (btnArtAll) btnArtAll.textContent = `전체 성화 완비 (${imgDone}인)`;
+      const btnArtNt = document.getElementById("btnArtNt");
+      if (btnArtNt) btnArtNt.textContent = `신약 제자·초대교회 (${ntArtCount}인)`;
+      const btnArtT1 = document.getElementById("btnArtTier1");
+      if (btnArtT1) btnArtT1.textContent = `성화 5종 완비 (${t1Done}인)`;
+      const dirBtnAll = document.getElementById("dirBtnAll");
+      if (dirBtnAll) dirBtnAll.textContent = `전체 (${totalFigs})`;
+      const dirBtnArt = document.getElementById("dirBtnArt");
+      if (dirBtnArt) dirBtnArt.textContent = `성화·초상 완비 (${imgDone})`;
+      const dirBtnT1 = document.getElementById("dirBtnTier1");
+      if (dirBtnT1) dirBtnT1.textContent = `성화 5종 완비 (${t1Done})`;
+
       renderGenealogy();
       // 0. 성경 본문 직계 계보 상세 흐름 (창세기 5·11장 -> 룻기 4:18-22 -> 마태복음 1:1-16)
       // 화살표(→)는 오직 성경 본문이 기록한 직계(부모→자녀) 세대만을 잇고, 배우자·모친은 카드 내부 배지로 분리 표기합니다.
@@ -1832,7 +1898,7 @@ html, body, .top-bar {
       const title = kind === "judah" ? "남유다 왕조 20인 통치 연대·신학 평가·동시대 선지자 마스터 대조표" : "북이스라엘 왕조 20인 (9개 왕조) 통치 연대·반역사·동시대 선지자 마스터 대조표";
       const md = kind === "judah" ? DATA.judahOverviewMd : DATA.israelOverviewMd;
       document.getElementById("drwBadge").textContent = kind === "judah" ? "남유다 왕조 20인" : "북이스라엘 왕조 20인";
-      document.getElementById("drwPhase").textContent = "2차 오픈 · 왕조관 마스터 대조표";
+      document.getElementById("drwPhase").textContent = "왕조관 마스터 대조표";
       document.getElementById("drwPortrait").style.display = "none";
       document.getElementById("drwEra").textContent = kind === "judah" ? "남유다 다윗 단일 왕조 (BC 931~586)" : "북이스라엘 9개 왕조 교체사 (BC 931~722)";
       document.getElementById("drwName").textContent = title;
@@ -1874,7 +1940,7 @@ html, body, .top-bar {
             <table>
               <thead><tr><th>항목</th><th>내용</th></tr></thead>
               <tbody>
-                <tr><td><strong>인물 고유 ID / 오픈 차수</strong></td><td>${f.id} · ${f.phase} (${f.tier})</td></tr>
+                <tr><td><strong>인물 고유 번호 / 수록 구분</strong></td><td>${f.id} · ${f.phase}${f.tier ? ` (${f.tier})` : ''}</td></tr>
                 <tr><td><strong>소속 전시 축</strong></td><td>${f.axis}</td></tr>
                 <tr><td><strong>활동 시대</strong></td><td>${f.era}</td></tr>
                 <tr><td><strong>직분 및 핵심 역할</strong></td><td>${f.role}</td></tr>
@@ -1891,7 +1957,7 @@ html, body, .top-bar {
       // 탭 2: 성화 도판 & 제작기록
       let platesHtml = "";
       if (f.scenes && f.scenes.length > 0) {
-        const pkgLabel = f.hasTier1Images ? "Tier-1 성화 도판 패키지 (총 5종: 초상·마스터·장면 3컷)" : "성화 도판 패키지 (투명 초상 · 대표 성경 장면)";
+        const pkgLabel = f.hasTier1Images ? "성화 도판 패키지 (총 5종: 초상·마스터·장면 3컷)" : "성화 도판 패키지 (투명 초상 · 대표 성경 장면)";
         platesHtml += `
           <h3 class="serif" style="color:var(--gold-bright);margin-bottom:12px;">${f.name} — ${pkgLabel}</h3>
           <div class="scene-gallery">
@@ -2006,7 +2072,7 @@ html, body, .top-bar {
           <div style="display:flex;gap:8px;flex-wrap:wrap;">${relFigBtns || '<span style="color:var(--text-dim);">연결 인물 정보 없음</span>'}</div>
         </div>
         <div style="margin-bottom:22px;">
-          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🗺️ 주요 활동 장소 (제1관 성경 지도 & 고고학 현장관 연동)</h3>
+          <h3 class="serif" style="color:var(--gold-bright);margin-bottom:10px;">🗺️ 주요 활동 장소 (성경 지도 & 고고학 전시실 연동)</h3>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">${relPlacesHtml || '<span style="color:var(--text-dim);">연결 장소 정보 없음</span>'}</div>
         </div>
         <div style="margin-bottom:22px;">
@@ -2097,5 +2163,6 @@ html, body, .top-bar {
 </div>
 
   <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261106"></script>
 </body>
 </html>

@@ -2,7 +2,10 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#161311" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>꿈바온 디지털 도서관 · 성경 지도·인물 역사서·고고학·사물 백과 아카이브</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,15 +61,15 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* PC(마우스·트랙패드 데스크톱 환경)에서는 브라우저 창을 줄여도 레이아웃이 확 줄어들거나 꺾이지 않도록 가로 최소폭(1360px) 고정 */
-    @media (hover: hover) and (pointer: fine) {
-      html, body {
+    /* PC(마우스·트랙패드 데스크톱 환경)에서는 브라우저 창을 줄여도 레이아웃이 확 줄어들거나 꺾이지 않도록 가로 최소폭(1440px) 고정 (모바일 모드 제외) */
+    @media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+      html:not(.mobile-mode), html:not(.mobile-mode) body {
         min-width: 1440px !important;
         overflow-x: auto;
       }
-      .entrance-header,
-      .kkumbaon-welcome-bar,
-      .entrance-main {
+      html:not(.mobile-mode) .entrance-header,
+      html:not(.mobile-mode) .kkumbaon-welcome-bar,
+      html:not(.mobile-mode) .entrance-main {
         min-width: 1440px !important;
       }
       .kkumbaon-welcome-inner,
@@ -2613,175 +2616,175 @@
   
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-html, body {
-  min-width: 1440px !important;
-}
-@media (min-width: 1440px) {
-  html, body { overflow-x: hidden !important; }
-}
-@media (max-width: 1439px) {
-  html, body { overflow-x: auto !important; }
-}
-.entrance-header,
-.kkumdido-12halls-bar,
-.kkumdido-studios-drawer,
-.kkumbaon-welcome-bar,
-.top-slim-tabs-bar,
-.entrance-main,
-footer {
-  min-width: 1440px !important;
-  box-sizing: border-box !important;
-}
-.entrance-header {
-  height: 90px !important;
-  padding: 0 24px !important;
-  gap: 10px !important;
-  flex-wrap: nowrap !important;
-  justify-content: space-between !important;
-}
-.entrance-brand {
-  gap: 11px !important;
-  flex-shrink: 0 !important;
-}
-.entrance-emblem {
-  width: 45px !important;
-  height: 50px !important;
-}
-.entrance-brand strong {
-  font-size: 21.5px !important;
-  font-weight: 800 !important;
-  letter-spacing: -0.8px !important;
-}
-.entrance-brand small {
-  font-size: 9.5px !important;
-  letter-spacing: 2.3px !important;
-  font-weight: 600 !important;
-  margin-top: 5px !important;
-}
-.entrance-nav {
-  gap: 9.5px !important;
-  margin-left: auto !important;
-  flex-wrap: nowrap !important;
-  overflow: visible !important;
-}
-.entrance-nav a,
-.entrance-nav button {
-  font-size: 15.5px !important;
-  font-weight: 700 !important;
-  padding: 0 3px !important;
-  letter-spacing: -0.4px !important;
-}
-.entrance-nav .nav-current {
-  font-size: 16px !important;
-  font-weight: 800 !important;
-}
-.entrance-nav .nav-search-btn {
-  background: #FBF9F3 !important;
-  color: #2E251D !important;
-  border: 1px solid #C8B89A !important;
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  height: 36px !important;
-  padding: 0 11px !important;
-  border-radius: 8px !important;
-  margin-left: 3px !important;
-  box-shadow: 0 1px 3px rgba(36, 26, 16, 0.05) !important;
-}
-.entrance-nav .nav-search-btn:hover {
-  border-color: #8C621E !important;
-  background: #FFFFFF !important;
-  color: #1F170E !important;
-}
-.entrance-nav .nav-studio-trigger {
-  background: #241A10 !important;
-  color: #F5DF98 !important;
-  border: 1px solid #B89446 !important;
-  font-size: 13.5px !important;
-  font-weight: 800 !important;
-  height: 36px !important;
-  padding: 0 12px !important;
-  border-radius: 8px !important;
-  margin-left: 1px !important;
-  box-shadow: 0 2px 6px rgba(36, 26, 16, 0.14) !important;
-}
-.entrance-nav .nav-studio-trigger:hover,
-.entrance-nav .nav-studio-trigger.active {
-  background: #352617 !important;
-  color: #FFFFFF !important;
-  border-color: #E5C878 !important;
-}
-.entrance-nav .nav-guide-btn {
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  margin-left: 1px !important;
-  padding-left: 8px !important;
-  color: #4A554C !important;
-}
-.entrance-theme {
-  font-size: 13.5px !important;
-  font-weight: 700 !important;
-  padding: 7px 11px !important;
-  border-radius: 8px !important;
-  border-color: #C8B89A !important;
-  color: #2E251D !important;
-  background: #FBF9F3 !important;
-  flex-shrink: 0 !important;
-}
-.kkumdido-12halls-bar,
-.kkumbaon-welcome-bar,
-.top-slim-tabs-bar {
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-}
-.entrance-main {
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-}
-/* 전체 배경 바 내부의 컨테이너들은 1392px(= 1440 - 48)로 완벽 통일 */
-.kkumdido-12halls-inner,
-.kkumbaon-welcome-inner,
-.top-slim-tabs-inner,
-.hall-intro,
-#kkumdidoSignatureStage,
-.explore-hall,
-.city-story,
-.featured-places,
-.shelf-gateway {
-  width: 1392px !important;
-  max-width: 1392px !important;
-  min-width: 1392px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-.kkumdido-12halls-inner,
-.kkumbaon-welcome-inner,
-.hall-intro {
-  flex-wrap: nowrap !important;
-}
-.kkumdido-12halls-grid {
-  grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
-  width: auto !important;
-}
-/* 하단 양피지 배경 위의 섹션들도 외곽 1440px(좌우 패딩 24px -> 내부 1392px)로 완벽 통일 */
-#ebookShelfSection,
-.controls-wrap,
-.cinema-studio-grid,
-.archive-main,
-.top-header-inner,
-.hero-inner,
-.atlas-drawer {
-  width: 1440px !important;
-  max-width: 1440px !important;
-  min-width: 1440px !important;
-  padding-left: 24px !important;
-  padding-right: 24px !important;
-  margin-left: auto !important;
-  margin-right: auto !important;
-  box-sizing: border-box !important;
-}
-.archive-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+/* PC 와이드 환경(1025px 이상, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
+@media (min-width: 1025px) {
+  html:not(.mobile-mode), html:not(.mobile-mode) body {
+    min-width: 1440px !important;
+  }
+  html:not(.mobile-mode) body {
+    overflow-x: hidden !important;
+  }
+  html:not(.mobile-mode) .entrance-header,
+  html:not(.mobile-mode) .kkumdido-12halls-bar,
+  html:not(.mobile-mode) .kkumdido-studios-drawer,
+  html:not(.mobile-mode) .kkumbaon-welcome-bar,
+  html:not(.mobile-mode) .top-slim-tabs-bar,
+  html:not(.mobile-mode) .entrance-main,
+  html:not(.mobile-mode) footer {
+    min-width: 1440px !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .entrance-header {
+    height: 90px !important;
+    padding: 0 24px !important;
+    gap: 10px !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+  }
+  html:not(.mobile-mode) .entrance-brand {
+    gap: 11px !important;
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .entrance-emblem {
+    width: 45px !important;
+    height: 50px !important;
+  }
+  html:not(.mobile-mode) .entrance-brand strong {
+    font-size: 21.5px !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.8px !important;
+  }
+  html:not(.mobile-mode) .entrance-brand small {
+    font-size: 9.5px !important;
+    letter-spacing: 2.3px !important;
+    font-weight: 600 !important;
+    margin-top: 5px !important;
+  }
+  html:not(.mobile-mode) .entrance-nav {
+    gap: 9.5px !important;
+    margin-left: auto !important;
+    flex-wrap: nowrap !important;
+    overflow: visible !important;
+  }
+  html:not(.mobile-mode) .entrance-nav a,
+  html:not(.mobile-mode) .entrance-nav button {
+    font-size: 15.5px !important;
+    font-weight: 700 !important;
+    padding: 0 3px !important;
+    letter-spacing: -0.4px !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-current {
+    font-size: 16px !important;
+    font-weight: 800 !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-search-btn {
+    background: #FBF9F3 !important;
+    color: #2E251D !important;
+    border: 1px solid #C8B89A !important;
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    height: 36px !important;
+    padding: 0 11px !important;
+    border-radius: 8px !important;
+    margin-left: 3px !important;
+    box-shadow: 0 1px 3px rgba(36, 26, 16, 0.05) !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-search-btn:hover {
+    border-color: #8C621E !important;
+    background: #FFFFFF !important;
+    color: #1F170E !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-studio-trigger {
+    background: #241A10 !important;
+    color: #F5DF98 !important;
+    border: 1px solid #B89446 !important;
+    font-size: 13.5px !important;
+    font-weight: 800 !important;
+    height: 36px !important;
+    padding: 0 12px !important;
+    border-radius: 8px !important;
+    margin-left: 1px !important;
+    box-shadow: 0 2px 6px rgba(36, 26, 16, 0.14) !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-studio-trigger:hover,
+  html:not(.mobile-mode) .entrance-nav .nav-studio-trigger.active {
+    background: #352617 !important;
+    color: #FFFFFF !important;
+    border-color: #E5C878 !important;
+  }
+  html:not(.mobile-mode) .entrance-nav .nav-guide-btn {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    margin-left: 1px !important;
+    padding-left: 8px !important;
+    color: #4A554C !important;
+  }
+  html:not(.mobile-mode) .entrance-theme {
+    font-size: 13.5px !important;
+    font-weight: 700 !important;
+    padding: 7px 11px !important;
+    border-radius: 8px !important;
+    border-color: #C8B89A !important;
+    color: #2E251D !important;
+    background: #FBF9F3 !important;
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .kkumdido-12halls-bar,
+  html:not(.mobile-mode) .kkumbaon-welcome-bar,
+  html:not(.mobile-mode) .top-slim-tabs-bar {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  html:not(.mobile-mode) .entrance-main {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  /* 전체 배경 바 내부의 컨테이너들은 1392px(= 1440 - 48)로 완벽 통일 */
+  html:not(.mobile-mode) .kkumdido-12halls-inner,
+  html:not(.mobile-mode) .kkumbaon-welcome-inner,
+  html:not(.mobile-mode) .top-slim-tabs-inner,
+  html:not(.mobile-mode) .hall-intro,
+  html:not(.mobile-mode) #kkumdidoSignatureStage,
+  html:not(.mobile-mode) .explore-hall,
+  html:not(.mobile-mode) .city-story,
+  html:not(.mobile-mode) .featured-places,
+  html:not(.mobile-mode) .shelf-gateway {
+    width: 1392px !important;
+    max-width: 1392px !important;
+    min-width: 1392px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .kkumdido-12halls-inner,
+  html:not(.mobile-mode) .kkumbaon-welcome-inner,
+  html:not(.mobile-mode) .hall-intro {
+    flex-wrap: nowrap !important;
+  }
+  html:not(.mobile-mode) .kkumdido-12halls-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
+    width: auto !important;
+  }
+  /* 하단 양피지 배경 위의 섹션들도 외곽 1440px(좌우 패딩 24px -> 내부 1392px)로 완벽 통일 */
+  html:not(.mobile-mode) #ebookShelfSection,
+  html:not(.mobile-mode) .controls-wrap,
+  html:not(.mobile-mode) .cinema-studio-grid,
+  html:not(.mobile-mode) .archive-main,
+  html:not(.mobile-mode) .top-header-inner,
+  html:not(.mobile-mode) .hero-inner,
+  html:not(.mobile-mode) .atlas-drawer {
+    width: 1440px !important;
+    max-width: 1440px !important;
+    min-width: 1440px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .archive-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 
@@ -2812,30 +2815,52 @@ body:not(.dark-theme) .entrance-main {
 }
 body:not(.dark-theme) .hall-intro h1 {
   color: #1F1A15 !important;
+  font-size: clamp(34px, 3.2vw, 48px) !important;
+  line-height: 1.35 !important;
+  margin: 8px 0 6px !important;
 }
 body:not(.dark-theme) .hall-intro h1 em {
   color: #8C621E !important;
 }
 body:not(.dark-theme) .hall-intro p {
-  color: #5C5248 !important;
+  color: #4A4035 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.01em !important;
 }
 body:not(.dark-theme) .hall-eyebrow {
   color: #8C621E !important;
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
 }
 body:not(.dark-theme) .hall-eyebrow > span {
   background: #8C621E !important;
+  width: 28px !important;
+  height: 2px !important;
 }
 body:not(.dark-theme) .hall-stats > div {
   border-left-color: #D8CEBC !important;
+  padding-left: 20px !important;
+  gap: 4px !important;
 }
 body:not(.dark-theme) .hall-stats strong {
   color: #241A10 !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
 }
 body:not(.dark-theme) .hall-stats span {
-  color: #5C5248 !important;
+  color: #4E4437 !important;
+  font-size: 13.2px !important;
+  font-weight: 600 !important;
 }
 body:not(.dark-theme) .region-tabs button {
   color: #4A3F35 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 8px 15px !important;
 }
 body:not(.dark-theme) .region-tabs button:hover {
   background: #EBE3D3 !important;
@@ -2845,17 +2870,77 @@ body:not(.dark-theme) .region-tabs .is-active {
   background: #8C621E !important;
   color: #FFFFFF !important;
   border-color: #7A5418 !important;
+  font-size: 14px !important;
+  font-weight: 800 !important;
 }
 body:not(.dark-theme) .place-search-wrap {
   background: #FFFFFF !important;
   border: 1px solid #D5C8B3 !important;
   color: #5C5248 !important;
+  width: 290px !important;
+  padding: 8px 12px !important;
 }
 body:not(.dark-theme) .place-search-wrap input {
   color: #1F1A15 !important;
+  font-size: 13.5px !important;
 }
 body:not(.dark-theme) .place-search-wrap input::placeholder {
   color: #85786A !important;
+  font-size: 13.5px !important;
+}
+
+/* 밤의 서재(다크 테마)에서도 동일한 황금 비율 폰트 크기 보장 */
+body.dark-theme .hall-intro h1 {
+  font-size: clamp(34px, 3.2vw, 48px) !important;
+  line-height: 1.35 !important;
+  margin: 8px 0 6px !important;
+}
+body.dark-theme .hall-intro p {
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 1.55 !important;
+  letter-spacing: -0.01em !important;
+}
+body.dark-theme .hall-eyebrow {
+  font-size: 13.5px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.04em !important;
+}
+body.dark-theme .hall-eyebrow > span {
+  width: 28px !important;
+  height: 2px !important;
+}
+body.dark-theme .hall-stats > div {
+  padding-left: 20px !important;
+  gap: 4px !important;
+}
+body.dark-theme .hall-stats strong {
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+}
+body.dark-theme .hall-stats span {
+  font-size: 13.2px !important;
+  font-weight: 600 !important;
+}
+body.dark-theme .region-tabs button {
+  font-size: 14px !important;
+  font-weight: 600 !important;
+  padding: 8px 15px !important;
+}
+body.dark-theme .region-tabs .is-active {
+  font-size: 14px !important;
+  font-weight: 800 !important;
+}
+body.dark-theme .place-search-wrap {
+  width: 290px !important;
+  padding: 8px 12px !important;
+}
+body.dark-theme .place-search-wrap input {
+  font-size: 13.5px !important;
+}
+body.dark-theme .place-search-wrap input::placeholder {
+  font-size: 13.5px !important;
 }
 body:not(.dark-theme) .map-caption {
   color: #5C5248 !important;
@@ -3001,11 +3086,11 @@ body.dark-theme .knb-bar {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  padding: 5px 11px;
+  padding: 5px 12px;
   border-radius: 999px;
   background: linear-gradient(135deg, #8C621E 0%, #6E4B12 100%);
   color: #FFFDF9;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 800;
   letter-spacing: 0.02em;
   white-space: nowrap;
@@ -3021,13 +3106,13 @@ body.dark-theme .knb-label {
   border-radius: 6px;
   background: #B83B2A;
   color: #FFFFFF;
-  font-size: 10.5px;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 0.04em;
   flex-shrink: 0;
 }
 .knb-date {
-  font-size: 12.5px;
+  font-size: 13.5px;
   font-weight: 700;
   color: #7A6A58;
   white-space: nowrap;
@@ -3037,7 +3122,7 @@ body.dark-theme .knb-date {
   color: #C2B299;
 }
 .knb-cat {
-  font-size: 12.5px;
+  font-size: 14px;
   font-weight: 800;
   color: #8C621E;
   white-space: nowrap;
@@ -3047,7 +3132,7 @@ body.dark-theme .knb-cat {
   color: #E5C878;
 }
 .knb-headline-link {
-  font-size: 14px;
+  font-size: 15.5px;
   font-weight: 700;
   color: #1F1A15;
   text-decoration: none;
@@ -3073,13 +3158,13 @@ body.dark-theme .knb-headline-link:hover {
   flex-shrink: 0;
 }
 .knb-nav-btn {
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 1px solid #D5C4A1;
   background: #FDFBF7;
   color: #5C4B37;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 800;
   line-height: 1;
   cursor: pointer;
@@ -3096,12 +3181,12 @@ body.dark-theme .knb-nav-btn {
   color: #E5C878;
 }
 .knb-toggle-btn {
-  padding: 6px 13px;
+  padding: 6px 14px;
   border-radius: 999px;
   border: 1px solid #C8B288;
   background: #F3ECE0;
   color: #3B2E1E;
-  font-size: 12px;
+  font-size: 13.2px;
   font-weight: 700;
   cursor: pointer;
   white-space: nowrap;
@@ -3247,8 +3332,15 @@ body.dark-theme .knb-card-link {
 </style>
   <link rel="stylesheet" href="atrium.css?v=20261104-light"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261106"/>
 </head>
 <body>
+
+  <!-- PC 와이드 모드 강제 보기 시 모바일 화면 상단에 노출되는 알림 띠 -->
+  <div id="kkumdidoPcOverrideBanner" class="kkumdido-pc-override-banner">
+    <span>🖥️ 현재 PC 화면으로 보고 계십니다.</span>
+    <button type="button" onclick="setKkumdidoViewMode('mobile')">📱 모바일 모드로 전환</button>
+  </div>
 
   <a class="skip-map" href="#placeSearch">지도 탐색으로 건너뛰기</a>
   <header class="entrance-header">
@@ -3425,7 +3517,7 @@ body.dark-theme .knb-card-link {
       <div class="knb-drawer-header">
         <div>
           <div class="knb-drawer-title">🏛️ 꿈디도 사서실 정기 업데이트 기록 (What's New)</div>
-          <div class="knb-drawer-sub">제간사·워크간사·안간사의 원어 고증과 학술 검수를 거쳐 새로 올라온 성경 연구 문헌과 아카이브 소식입니다.</div>
+          <div class="knb-drawer-sub">꿈바온 사역팀의 원어 고증과 학술 검수를 거쳐 새로 올라온 성경 연구 문헌과 아카이브 소식입니다.</div>
         </div>
         <button type="button" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()">✕ 접기</button>
       </div>
@@ -3680,7 +3772,7 @@ body.dark-theme .knb-card-link {
       <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:12px;" id="ebookShelfGrid">
         <a href="ebooks/2026_꿈바온_웨슬리표준설교_매일말씀강해집.pdf" target="_blank" rel="noopener" style="text-decoration:none; background:rgba(200,164,93,0.12); border:1.5px solid rgba(229,200,120,0.65); border-radius:12px; padding:14px 18px; display:flex; align-items:center; justify-content:space-between; gap:14px; color:#FFF; min-width:0; overflow:hidden; transition:all 0.2s;">
           <div style="flex:1; min-width:0; word-break:keep-all;">
-            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">✝️ 제5관 웨슬리 신학관 총서 · 2026-10-28 개정판 (69p · 텍스트 PDF)</div>
+            <div style="font-size:11.5px; color:var(--gold-light); font-weight:700;">✝️ 웨슬리 신학 전시실 총서 · 2026-10-28 개정판 (69p · 텍스트 PDF)</div>
             <div class="serif" style="font-size:15.5px; font-weight:700; margin-top:3px; line-height:1.35;">존 웨슬리 주요 설교 해설 16편 &amp; 관련 신학 자료 6편</div>
             <div style="font-size:12px; color:#CFC4B4; margin-top:2px;">설교 번호: Jackson/Sugden 판본 기준 · 개역한글·WEB 대조 · 원어·스트롱 번호 · STEP 해설</div>
           </div>
@@ -3725,11 +3817,11 @@ body.dark-theme .knb-card-link {
     </div>
   </section>
 
-  <!-- 4. 전시관 탭 및 통합 검색 바 -->
+  <!-- 4. 상설 전시실·서가 탭 및 통합 검색 바 -->
   <section class="controls-wrap">
     <div class="hall-tabs" id="hallTabs">
       <button class="hall-tab" data-cat="all" onclick="selectCategory('all')">
-        <div class="hall-tab-top"><span>ALL</span><span class="hall-count" id="cnt-all">152</span></div>
+        <div class="hall-tab-top"><span>ALL</span><span class="hall-count" id="cnt-all">291</span></div>
         <div class="hall-tab-title">전체 서가</div>
       </button>
       <button class="hall-tab active" data-cat="atlas" onclick="navigateToHall('atlas')">
@@ -3741,7 +3833,7 @@ body.dark-theme .knb-card-link {
         <div class="hall-tab-title">매일말씀</div>
       </button>
       <button class="hall-tab" data-cat="soso" onclick="selectCategory('soso')">
-        <div class="hall-tab-top"><span>STORY</span><span class="hall-count" id="cnt-soso">16</span></div>
+        <div class="hall-tab-top"><span>STORY</span><span class="hall-count" id="cnt-soso">14</span></div>
         <div class="hall-tab-title">소소한 성경이야기</div>
       </button>
       <button class="hall-tab" data-cat="deungjan" onclick="selectCategory('deungjan')">
@@ -3749,7 +3841,7 @@ body.dark-theme .knb-card-link {
         <div class="hall-tab-title">등잔 밑</div>
       </button>
       <button class="hall-tab" data-cat="figures" onclick="selectCategory('figures')">
-        <div class="hall-tab-top"><span>FIGURES</span><span class="hall-count" id="cnt-figures">35</span></div>
+        <div class="hall-tab-top"><span>FIGURES</span><span class="hall-count" id="cnt-figures">174</span></div>
         <div class="hall-tab-title">성경 인물</div>
       </button>
       <button class="hall-tab" data-cat="feasts" onclick="selectCategory('feasts')">
@@ -3757,25 +3849,25 @@ body.dark-theme .knb-card-link {
         <div class="hall-tab-title">성경 절기</div>
       </button>
       <button class="hall-tab" data-cat="cinema" onclick="selectCategory('cinema')">
-        <div class="hall-tab-top"><span>CINEMA</span><span class="hall-count" id="cnt-cinema">120</span></div>
+        <div class="hall-tab-top"><span>CINEMA</span><span class="hall-count" id="cnt-cinema">123</span></div>
         <div class="hall-tab-title">영상실</div>
       </button>
       <button class="hall-tab" data-cat="wesley" onclick="selectCategory('wesley')">
         <div class="hall-tab-top"><span>WESLEY</span><span class="hall-count" id="cnt-wesley">22</span></div>
-        <div class="hall-tab-title">웨슬리관</div>
+        <div class="hall-tab-title">웨슬리 전시실</div>
       </button>
     </div>
 
-    <!-- 제1관 성경 인물가계도 & 인물대백과 350인 전용 큐레이션 배너 -->
+    <!-- 상설 전시실 · 성경 인물가계도 & 인물대백과 350인 전용 큐레이션 배너 -->
     <div class="figures-subbar" id="figuresSubbar">
       <div class="cinema-subbar-top">
         <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">ARCHIVE 01 · BIBLICAL CORE ARCHIVES · 성경 3대 코어 대백과 1:1:1 삼각 연동 (인물 350 × 사건 300 × 비하인드 300)</span>
-          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 인물가계도·인물대백과(350인 · 성화 완비 125인 469점) · 사건대백과(300대 사건) · 비하인드(300선)</h3>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">EXHIBITION · BIBLICAL CORE ARCHIVES · 성경 3대 코어 대백과 1:1:1 삼각 연동 (인물 350 × 사건 300 × 비하인드 300)</span>
+          <h3 class="serif" id="figuresSubbarTitle" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 인물가계도·인물대백과(350인 · 성화 완비 139인 511점) · 사건대백과(300대 사건) · 비하인드(300선)</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <a href="figures_encyclopedia_preview.html" class="hdr-btn gold" style="text-decoration:none;">
-            인물가계도 · 350인 대백과 (성화 469점) ↗
+          <a href="figures_encyclopedia_preview.html" id="figuresSubbarBtn" class="hdr-btn gold" style="text-decoration:none;">
+            인물가계도 · 350인 대백과 (성화 511점) ↗
           </a>
           <a href="events_encyclopedia_preview.html" class="hdr-btn" style="text-decoration:none;">
             사건대백과 300대 사건 (성화 60점) ↗
@@ -3789,21 +3881,21 @@ body.dark-theme .knb-card-link {
         </div>
       </div>
 
-      <!-- 구속사 기둥 및 성화 완비 125인 투명초상 원클릭 스트립 -->
+      <!-- 구속사 기둥 및 성화 완비 139인 투명초상 원클릭 스트립 -->
       <div style="background:rgba(12,9,6,0.55); border:1px solid rgba(200,164,93,0.3); border-radius:12px; padding:10px 14px; margin:10px 0 14px;">
         <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700;">성화·초상 완비 125인 (아담 ~ 나다나엘 · 총 469점 성화 도판) 원클릭 열전 바로가기</span>
+          <span id="figuresStripLabel" style="font-size:11.5px; color:var(--gold-light); font-weight:700;">성화·초상 완비 139인 (아담 ~ 안나 · 총 511점 성화 도판) 원클릭 열전 바로가기</span>
           <span style="font-size:11px; color:#C9BFA8;">원형 초상을 누르면 성화 도판과 원어·고고학 열전이 즉시 열립니다</span>
         </div>
         <div id="figuresPillarStrip" style="display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin;"></div>
       </div>
 
       <div class="cinema-filter-pills" id="figuresFilterPills">
-        <button class="c-pill active" data-fgcat="all" onclick="selectFiguresCat('all')">전체 인물 열전 (<span id="fgcnt-all">160</span>)</button>
-        <button class="c-pill" data-fgcat="pillars30" onclick="selectFiguresCat('pillars30')">1차 오픈 · 구속사 기둥 30인 (<span id="fgcnt-pillars30">30</span>)</button>
-        <button class="c-pill" data-fgcat="kings40" onclick="selectFiguresCat('kings40')">2차 오픈 A · 남유다 20왕 &amp; 북이스라엘 20왕 (<span id="fgcnt-kings40">40</span>)</button>
-        <button class="c-pill" data-fgcat="prophets50" onclick="selectFiguresCat('prophets50')">2차 오픈 B · 구약 선지자 &amp; 포로귀환 50인 (<span id="fgcnt-prophets50">50</span>)</button>
-        <button class="c-pill" data-fgcat="nt80" onclick="selectFiguresCat('nt80')">3차 오픈 · 신약 복음서 &amp; 바울 관계망 (<span id="fgcnt-nt80">5</span>)</button>
+        <button class="c-pill active" data-fgcat="all" onclick="selectFiguresCat('all')">전체 인물 열전 (<span id="fgcnt-all">174</span>)</button>
+        <button class="c-pill" data-fgcat="pillars30" onclick="selectFiguresCat('pillars30')">구속사 기둥 30인 (<span id="fgcnt-pillars30">30</span>)</button>
+        <button class="c-pill" data-fgcat="kings40" onclick="selectFiguresCat('kings40')">남유다 20왕 &amp; 북이스라엘 20왕 (<span id="fgcnt-kings40">40</span>)</button>
+        <button class="c-pill" data-fgcat="prophets50" onclick="selectFiguresCat('prophets50')">구약 선지자 &amp; 포로귀환 50인 (<span id="fgcnt-prophets50">50</span>)</button>
+        <button class="c-pill" data-fgcat="nt80" onclick="selectFiguresCat('nt80')">신약 복음서 &amp; 바울 관계망 (<span id="fgcnt-nt80">19</span>)</button>
         <button class="c-pill" data-fgcat="story35" onclick="selectFiguresCat('story35')">조금 긴 성경이야기 · 사도행전/복음서 열전 (<span id="fgcnt-story35">35</span>)</button>
       </div>
     </div>
@@ -3816,7 +3908,7 @@ body.dark-theme .knb-card-link {
           <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">등잔 밑 성경 백과 — 우슬초, 놋뱀, 방주의 역청, 빌려온 도끼, 은나팔 등 성경 속 감추어진 사물과 역사적 실체를 밝힙니다</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <span class="hdr-btn gold">총 18편 사물 도판 해설</span>
+          <span class="hdr-btn gold" id="deungjanBadgeCount">총 18편 사물 도판 해설</span>
         </div>
       </div>
     </div>
@@ -3829,17 +3921,17 @@ body.dark-theme .knb-card-link {
           <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">소소한 성경이야기 — 다윗의 열쇠, 인장반지, 눈물병, 청색 끈 등 말씀 뒤에 숨겨진 풍성한 배경과 구속사적 은혜</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <span class="hdr-btn gold">문헌 16편 · 관련 영상 41편</span>
+          <span class="hdr-btn gold" id="sosoBadgeCount">문헌 14편 · 관련 영상 42편</span>
         </div>
       </div>
     </div>
 
-    <!-- 제6관 성경 절기 · 구속사관 전용 큐레이션 배너 & 구속사 달력 5단계 로드맵 -->
+    <!-- 상설 전시실 · 성경 절기 전시실 전용 큐레이션 배너 & 구속사 달력 5단계 로드맵 -->
     <div class="feasts-subbar" id="feastsSubbar">
       <div class="cinema-subbar-top">
         <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🕎 HALL 6 · BIBLICAL FEASTS &amp; REDEMPTIVE CALENDAR ARCHIVE · 여호와의 정하신 때(מוֹעֲדִים · Moadim)</span>
-          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 절기 · 구속사관 — 레위기 23장 7대 절기와 안식일·부림절·수전절·희년까지 성경의 모든 절기를 한눈에 읽습니다</h3>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">🕎 EXHIBITION · BIBLICAL FEASTS &amp; REDEMPTIVE CALENDAR ARCHIVE · 여호와의 정하신 때(מוֹעֲדִים · Moadim)</span>
+          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">성경 절기 전시실 — 레위기 23장 7대 절기와 안식일·부림절·수전절·희년까지 성경의 모든 절기를 한눈에 읽습니다</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
           <a href="ebooks/2026_꿈바온_성경절기와구속사_대백과.pdf" target="_blank" class="hdr-btn gold" style="text-decoration:none;">
@@ -3887,12 +3979,12 @@ body.dark-theme .knb-card-link {
       </div>
     </div>
 
-    <!-- 제5관 웨슬리 신학 · 표준설교관 전용 큐레이션 배너 & 구원의 서정 로드맵 -->
+    <!-- 상설 전시실 · 웨슬리 신학 전시실 전용 큐레이션 배너 & 구원의 서정 로드맵 -->
     <div class="wesley-subbar" id="wesleySubbar">
       <div class="cinema-subbar-top">
         <div>
-          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">✝️ HALL 5 · WESLEYAN THEOLOGY &amp; STANDARD SERMONS ARCHIVE · 한 권의 책의 사람(Homo Unius Libri)</span>
-          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">웨슬리 신학 · 표준설교관 — 존 웨슬리 표준설교 16선과 구원의 서정을 『꿈바온 매일말씀』 6단 스타일로 읽습니다</h3>
+          <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">✝️ EXHIBITION · WESLEYAN THEOLOGY &amp; STANDARD SERMONS ARCHIVE · 한 권의 책의 사람(Homo Unius Libri)</span>
+          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">웨슬리 신학 전시실 — 존 웨슬리 표준설교 16선과 구원의 서정을 『꿈바온 매일말씀』 6단 스타일로 읽습니다</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
           <a href="kkumdido_12archives_viewer.html?archive=7" class="hdr-btn gold" style="text-decoration:none;">
@@ -4111,20 +4203,21 @@ body.dark-theme .knb-card-link {
           꿈바온 디지털 도서관은 흘러가는 영상 너머에 있는 성경의 땅과 사람, 사물의 역사와 매일의 말씀 풀어읽기, 그리고 웨슬리 복음주의 신학 유산을 한 권의 책처럼 차곡차곡 기록하고 나누는 성경 아카이브입니다.
         </p>
 
-        <h3 class="serif" style="margin:24px 0 10px;">1. 7대 상설 전시관 구성</h3>
+        <h3 class="serif" style="margin:24px 0 10px;">1. 상설 전시실·서재 및 12대 아카이브(제1관~제12관) 구성</h3>
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
-          <li><strong>🗺️ 제1관 · 성경 지도 &amp; 고고학 현장관:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(49개 주요 성경 장소 핀 연동) 및 5대 성경 고고학 비문 도감(텔 단·메사·검은 오벨리스크·실로암·빌라도 비문), 사해 사본과 쿰란 동굴군, 가버나움·에베소·고린도·빌립보의 고고학 복원 도감.</li>
-          <li><strong>👑 제2관 · 성경 인물 열전 &amp; 역사서관:</strong> 『조금 긴 성경이야기』 정본 원고 전문 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 성경 인물 중심의 깊은 역사 이야기.</li>
-          <li><strong>🏺 제3관 · 등잔 밑 성경 사물·문화 백과:</strong> 고대 근동과 성경 시대의 생활 사물·풍습(열쇠, 인장반지, 눈물병, 성전 반 세겔과 두 렙돈, 유월절 네 잔과 새 언약, 방주의 창, 신발 등 32편)을 원어·고고학 노트와 함께 복음의 빛으로 읽어 내는 백과사전.</li>
-          <li><strong>🌅 제4관 · 성경 한 바퀴 · 매일말씀 서재:</strong> 『꿈바온 매일말씀 — 성경 한 바퀴』 5개년 대장정 마스터플랜과 제1회~제28회(룻기·에스더·사무엘상) 6쪽 자료집 및 낭독 원고 완결본을 수록한 말씀 서재.</li>
-          <li><strong>✝️ 제5관 · 웨슬리 신학 &amp; 표준설교관:</strong> 존 웨슬리의 핵심 『표준설교(Standard Sermons, Jackson/Sugden 판본 번호 기준)』 주요 설교 해설 16편과 구원의 서정 총론·웨슬리 4기둥·올더스게이트 회심 일기·속회 규칙·찰스 웨슬리 찬송 신학 등 관련 신학 자료 6편(총 22편)을 『꿈바온 매일말씀』 6단 스타일로 재구성·해설한 신학관.</li>
-          <li><strong>🕎 제6관 · 성경 절기 &amp; 구속사관:</strong> 여호와의 정하신 때(모아딤) 총론과 주간 안식일, 레위기 23장 봄·가을 7대 절기(유월절·무교절·초실절·칠칠절·나팔절·대속죄일·초막절), 역사 절기(부림절·수전절), 안식년과 희년까지 전 12편 완결 대백과 및 절기 성물 아카이브.</li>
-          <li><strong>🎬 제7관 · 꿈디도 영상실 (유튜브 상영관):</strong> 꿈바온 공식 유튜브 채널(<code>@dreaming_ondal</code>)에 수록된 조금 긴 성경이야기·매일묵상·소소한 성경이야기·찬양 영상 118편을 도서관 상영관 안에서 바로 감상하는 영상 상영관.</li>
+          <li><strong>🗺️ 성경 지도 &amp; 고고학 전시실:</strong> 인터랙티브 지중해·가나안 고고학 실측 대지도(49개 주요 성경 장소 핀 연동) 및 5대 성경 고고학 비문 도감(텔 단·메사·검은 오벨리스크·실로암·빌라도 비문), 사해 사본과 쿰란 동굴군, 가버나움·에베소·고린도·빌립보의 고고학 복원 도감.</li>
+          <li><strong>👑 성경 인물 열전 전시실:</strong> 『조금 긴 성경이야기』 정본 원고 전문 및 성경 인물 대백과(350인 · 성화 완비 139인 511점) 수록. 아볼로와 브리스길라·아굴라, 바울, 실라, 베드로, 다윗, 세례 요한 등 성경 인물 중심의 깊은 역사 이야기.</li>
+          <li><strong>🏺 등잔 밑 성경 사물·문화 백과 &amp; 소소한 성경이야기:</strong> 고대 근동과 성경 시대의 생활 사물·풍습(등잔 밑 18편 · 소소한 성경이야기 14편, 총 32편)을 원어·고고학 노트와 함께 복음의 빛으로 읽어 내는 백과사전.</li>
+          <li><strong>🌅 성경 한 바퀴 · 매일말씀 서재:</strong> 『꿈바온 매일말씀 — 성경 한 바퀴』 5개년 대장정 마스터플랜과 제1회~제28회(룻기·에스더·사무엘상) 6쪽 자료집 및 낭독 원고 완결본을 수록한 말씀 서재.</li>
+          <li><strong>✝️ 웨슬리 신학 전시실:</strong> 존 웨슬리의 핵심 『표준설교(Standard Sermons, Jackson/Sugden 판본 번호 기준)』 주요 설교 해설 16편과 구원의 서정 총론·웨슬리 4기둥·올더스게이트 회심 일기·속회 규칙·찰스 웨슬리 찬송 신학 등 관련 신학 자료 6편(총 22편)을 『꿈바온 매일말씀』 6단 스타일로 재구성·해설한 전시실.</li>
+          <li><strong>🕎 성경 절기 전시실:</strong> 여호와의 정하신 때(모아딤) 총론과 주간 안식일, 레위기 23장 봄·가을 7대 절기(유월절·무교절·초실절·칠칠절·나팔절·대속죄일·초막절), 역사 절기(부림절·수전절), 안식년과 희년까지 전 12편 완결 대백과 및 절기 성물 아카이브.</li>
+          <li><strong>🎬 꿈디도 영상실 (유튜브 상영관):</strong> 꿈바온 공식 유튜브 채널(<code>@dreaming_ondal</code>)에 수록된 조금 긴 성경이야기·매일묵상·소소한 성경이야기·찬양 영상 123편을 도서관 상영관 안에서 바로 감상하는 영상 상영관.</li>
+          <li><strong>🏛️ 12대 아카이브 (제1관~제12관 · 3,650모듈):</strong> 상단 바로가기 바를 통해 제1관 인물(350) · 제2관 사건(300) · 제3관 비하인드(300) · 제4관 지리(400) · 제5관 난제(200) · 제6관 원어(500) · 제7관 주석·설교(300) · 제8관 조직신학(200) · 제9관 교회사(200) · 제10관 구약강해(500) · 제11관 신약강해(500) · 제12관 52주 커리큘럼(52)으로 바로 이동하실 수 있습니다.</li>
         </ul>
 
         <h3 class="serif" style="margin:28px 0 10px;">2. 열람 및 인쇄 활용 안내</h3>
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
-          <li><strong>✝️ 웨슬리 신학관 &amp; 전자책 열람:</strong> 상단 <code>✝️ 웨슬리 신학관</code> 또는 제5관 탭을 누르면 구원의 서정 로드맵과 표준설교 16선을 분류별로 열람하거나 PDF 총서로 내려받을 수 있습니다.</li>
+          <li><strong>✝️ 웨슬리 신학 전시실 &amp; 전자책 열람:</strong> 상단 <code>웨슬리 전시실</code> 탭을 누르면 구원의 서정 로드맵과 표준설교 16선을 분류별로 열람하거나 PDF 총서로 내려받을 수 있습니다.</li>
           <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
           <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>🪪 도서관 이용증</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
@@ -4189,9 +4282,14 @@ body.dark-theme .knb-card-link {
     <p style="margin-top:6px;">오직 성경(Sola Scriptura) · 오직 그리스도(Solus Christus) · 세상에 한 컵씩 붓는 맑은 물</p>
     <p style="margin-top:8px; font-size:12.5px; color:#BAAFA0;">정통 복음주의 신앙과 공인 성경의 터 위에서, 성경의 역사와 문화·구속사의 깊이를 성도들과 함께 나누는 열린 서재입니다.</p>
     <p style="margin-top:6px; font-size:11.5px; color:#C59B52; font-weight:600;">
-      🏛️ 도서관 관장: 안간사 &nbsp;|&nbsp; 성화·도판 협력: 지간사 &nbsp;|&nbsp; 원고 집필: 꿈바온 목사 &amp; 클간사
+      🏛️ 편찬: 꿈바온 사역팀 &nbsp;|&nbsp; 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)
       &nbsp;·&nbsp; <span style="color:#E5DEC9; font-weight:normal;">누적 방문 <strong id="footerVisitorCount" style="color:#D7BD82; font-weight:700;">-</strong>회</span>
     </p>
+    <div style="margin-top: 14px;">
+      <button id="kkumdidoFooterModeBtn" class="kkumdido-mode-switch-btn" type="button" onclick="toggleKkumdidoViewMode()">
+        🖥️ PC 와이드 화면으로 보기
+      </button>
+    </div>
   </footer>
 
   <script src="library_data.js?v=20261103_clean"></script>
@@ -4388,6 +4486,29 @@ body.dark-theme .knb-card-link {
         const el = document.getElementById(`vcnt-${k}`);
         if (el) el.textContent = vcounts[k];
       });
+
+      // 전시실 서브바 배지 및 인물대백과 meta 숫자 자동 연동 (2-1 자동화)
+      const djBadge = document.getElementById("deungjanBadgeCount");
+      if (djBadge) djBadge.textContent = `총 ${counts.deungjan}편 사물 도판 해설`;
+      const sosoBadge = document.getElementById("sosoBadgeCount");
+      if (sosoBadge) sosoBadge.textContent = `문헌 ${counts.soso}편 · 관련 영상 ${vcounts.story}편`;
+
+      const fMeta = (window.KKUMDIDO_FIGURES_DATA && window.KKUMDIDO_FIGURES_DATA.meta) || {};
+      const figTotal = fMeta.totalFigures || 350;
+      const figImgDone = fMeta.imageCompleteCount || 139;
+      const figImgPts = fMeta.totalFigureImages || 511;
+      const figTitleEl = document.getElementById("figuresSubbarTitle");
+      if (figTitleEl) {
+        figTitleEl.textContent = `성경 인물가계도·인물대백과(${figTotal}인 · 성화 완비 ${figImgDone}인 ${figImgPts}점) · 사건대백과(300대 사건) · 비하인드(300선)`;
+      }
+      const figBtnEl = document.getElementById("figuresSubbarBtn");
+      if (figBtnEl) {
+        figBtnEl.textContent = `인물가계도 · ${figTotal}인 대백과 (성화 ${figImgPts}점) ↗`;
+      }
+      const figStripEl = document.getElementById("figuresStripLabel");
+      if (figStripEl) {
+        figStripEl.textContent = `성화·초상 완비 ${figImgDone}인 (총 ${figImgPts}점 성화 도판) 원클릭 열전 바로가기`;
+      }
 
       if (typeof document.getElementById("mapPinsLayer") !== "undefined" && document.getElementById("mapPinsLayer")) initAtlasMap();
       renderGrid();
@@ -5323,12 +5444,12 @@ body.dark-theme .knb-card-link {
 
       const catNames = {
         all: "전체 통합 서가",
-        atlas: "제1관 · 성경 지도 & 고고학 현장관",
-        figures: "제2관 · 성경 인물 열전 & 역사서관",
-        artifacts: "제3관 · 등잔 밑 성경 사물·문화 백과",
-        devotions: "제4관 · 성경 한 바퀴 · 매일말씀 서재",
-        wesley: "제5관 · 웨슬리 신학 & 표준설교관",
-        feasts: "성경 절기 & 구속사관 (여호와의 정하신 때 · 모아딤)",
+        atlas: "성경 지도 & 고고학 전시실",
+        figures: "성경 인물 열전 전시실",
+        artifacts: "등잔 밑 성경 사물·문화 백과",
+        devotions: "성경 한 바퀴 · 매일말씀 서재",
+        wesley: "웨슬리 신학 & 표준설교 전시실",
+        feasts: "성경 절기 & 구속사 전시실 (여호와의 정하신 때 · 모아딤)",
         soso: "소소한 성경이야기 서재",
         deungjan: "등잔 밑 성경 사물·문화 백과",
         cinema: "꿈디도 영상실"
@@ -6080,7 +6201,32 @@ body.dark-theme .knb-card-link {
       });
     })();
   </script>
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
+    <button type="button" class="kkumdido-mobile-tab-item active" data-tab-action="home">
+      <span class="tab-icon">🏛️</span>
+      <span>홈·지도</span>
+    </button>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="halls">
+      <span class="tab-icon">📚</span>
+      <span>12대관</span>
+    </button>
+    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
+      <span class="tab-icon">📖</span>
+      <span>강해·주석</span>
+    </a>
+    <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
+      <span class="tab-icon">⛪</span>
+      <span>채플</span>
+    </a>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search">
+      <span class="tab-icon">🔍</span>
+      <span>빠른검색</span>
+    </button>
+  </nav>
+
   <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261106"></script>
 </body>
 </html>
 

@@ -45,14 +45,14 @@
     background: var(--bg-main);
     color: var(--text-dark);
     min-height: 100vh;
-    min-width: 1320px;
+    min-width: 0;
     overflow-x: auto;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
   .top-header, .container {
-    min-width: 1320px;
+    min-width: 0;
   }
 
   /* 상단 헤더: 절제된 여백과 단아한 타이포그래피 */
@@ -251,13 +251,13 @@
     align-items: start;
   }
 
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     .grid-2col, .grid-story {
       grid-template-columns: 1fr;
     }
   }
 
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     #tabPanel3 .grid-2col {
       grid-template-columns: 1fr !important;
       gap: 20px;
@@ -700,7 +700,7 @@
     gap: 6px;
   }
 
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     .cut-chips-grid {
       grid-template-columns: repeat(3, 1fr);
     }
@@ -792,7 +792,7 @@
     margin-top: 14px;
   }
 
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     .guide-grid, .form-row, .btn-grid-2 {
       grid-template-columns: 1fr;
     }
@@ -1047,7 +1047,7 @@
   }
 
   /* 모바일 스마트폰 특화 최적화 */
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     .video-modal-backdrop {
       padding: 10px !important;
     }
@@ -1201,7 +1201,7 @@
   }
 
   /* 모바일에서 연간 기획표 모달 테이블을 읽기 편한 가로 카드 리스트로 자동 변환 */
-  @media (max-width: 1px) {
+  @media (max-width: 1024px) {
     .plan-modal-backdrop {
       padding: 12px;
     }
@@ -8068,5 +8068,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 </script>
   <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261106"></script>
 </body>
 </html>
