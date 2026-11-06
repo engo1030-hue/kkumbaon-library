@@ -534,7 +534,7 @@ html, body {
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 </style>
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107b"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107c"/>
 </head>
 <body>
 
@@ -3373,6 +3373,29 @@ html, body {
   }
   animate();
 
+  // 모바일 화면 초기 최적화: 채팅창 기본 접힘 및 안내 배너 자동 페이드
+  const initMobileChapelUI = () => {
+    const isMobile = window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isMobile) {
+      const chatlogBox = document.getElementById('chapel-chatlog');
+      const chatToggleLabel = document.getElementById('chatlog-toggle-label');
+      if (chatlogBox) {
+        chatlogBox.classList.add('is-collapsed');
+        if (chatToggleLabel) {
+          chatToggleLabel.textContent = '💬 실시간 말씀·기도 나눔 (펴기 ▲)';
+        }
+      }
+      const statusEl = document.getElementById('status-banner');
+      if (statusEl) {
+        statusEl.addEventListener('click', () => statusEl.classList.add('is-faded'));
+        setTimeout(() => {
+          statusEl.classList.add('is-faded');
+        }, 4000);
+      }
+    }
+  };
+  initMobileChapelUI();
+
   window.addEventListener('resize', () => {
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
@@ -3415,6 +3438,6 @@ html, body {
 </div>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107b"></script>
+  <script src="kkumdido_mobile.js?v=20261107c"></script>
 </body>
 </html>

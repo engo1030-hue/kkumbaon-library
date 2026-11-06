@@ -1,7 +1,8 @@
 /*!
- * 🏛️ 꿈바온 디지털 도서관 (꿈디도) 모바일 특화 모드 컨트롤러 v3.0 (Compact Edition)
- * - PC 접속 시: 기존 1440px 와이드 디자인 100% 온전 유지
- * - 모바일 접속 시: 100% 자동으로 모바일 전용 컴팩트 버전으로 즉시 전환
+ * 🏛️ 꿈바온 디지털 도서관 (꿈디도) & 🕊️ 새오름 온라인 예배당 모바일 자동전환 컨트롤러 v5.0
+ * - 스마트폰/태블릿 접속 시: 100% 자동으로 모바일 최적화 모드(.mobile-mode) 즉시 전환
+ * - 상단 헤더 및 푸터에 [📱 모바일 ↔ 🖥️ PC화면] 원터치 전환 스위치 제공
+ * - 3D 예배당/묵상원: 모바일 입장 시 대화창 기본 접힘(1줄 캡슐) + 상단 1줄 초슬림 바 + 상태배너 자동 페이드아웃
  */
 (function initKkumdidoMobileMode() {
   'use strict';
@@ -59,6 +60,56 @@
     window.setKkumdidoViewMode(next);
   };
 
+  function ensurePcOverrideBanner() {
+    if (!document.body || document.getElementById('kkumdidoPcOverrideBanner')) return;
+    const banner = document.createElement('div');
+    banner.id = 'kkumdidoPcOverrideBanner';
+    banner.className = 'kkumdido-pc-override-banner';
+    banner.innerHTML =
+      '<span>🖥️ 현재 PC 와이드 화면 모드로 보고 계십니다</span>' +
+      '<button type="button" onclick="window.setKkumdidoViewMode(\'mobile\')">📱 모바일 최적화로 전환</button>';
+    document.body.insertBefore(banner, document.body.firstChild);
+  }
+
+  function ensureHeaderQuickSwitch() {
+    if (document.getElementById('kkumdidoHeaderModeBtn')) return;
+
+    // 1) 도서관 본관 (.entrance-nav)
+    const entranceNav = document.querySelector('.entrance-nav');
+    if (entranceNav) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'kkumdidoHeaderModeBtn';
+      btn.className = 'kkumdido-header-mode-btn';
+      btn.onclick = window.toggleKkumdidoViewMode;
+      entranceNav.appendChild(btn);
+      return;
+    }
+
+    // 2) 3D 온라인 예배당 / 꿈디도 묵상원 (.top-bar .top-right)
+    const chapelTopRight = document.querySelector('#canvas-wrap ~ .top-bar .top-right') || document.querySelector('.is-3d-chapel-page .top-bar .top-right');
+    if (chapelTopRight) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'kkumdidoHeaderModeBtn';
+      btn.className = 'hud-pill';
+      btn.onclick = window.toggleKkumdidoViewMode;
+      chapelTopRight.appendChild(btn);
+      return;
+    }
+
+    // 3) 서브페이지 상단 액션바 (.top-actions / .header-actions / .header-right)
+    const subHeaderActions = document.querySelector('.top-actions, .header-actions, .header-right');
+    if (subHeaderActions) {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.id = 'kkumdidoHeaderModeBtn';
+      btn.className = 'btn-top kkumdido-header-mode-btn';
+      btn.onclick = window.toggleKkumdidoViewMode;
+      subHeaderActions.appendChild(btn);
+    }
+  }
+
   function updateSwitchButtons(mode) {
     const pcBanner = document.getElementById('kkumdidoPcOverrideBanner');
     if (pcBanner) {
@@ -67,6 +118,11 @@
     const modeBtn = document.getElementById('kkumdidoFooterModeBtn');
     if (modeBtn) {
       modeBtn.innerHTML = mode === 'mobile' ? '🖥️ PC 와이드 화면으로 보기' : '📱 모바일 최적화 모드로 전환';
+    }
+    const headerBtn = document.getElementById('kkumdidoHeaderModeBtn');
+    if (headerBtn) {
+      headerBtn.innerHTML = mode === 'mobile' ? '🖥️ PC버전' : '📱 모바일버전';
+      headerBtn.title = mode === 'mobile' ? 'PC 와이드 화면으로 전환' : '모바일 최적화 화면으로 전환';
     }
   }
 
@@ -77,24 +133,67 @@
     document.documentElement.classList.add('is-3d-chapel-page');
     if (document.body) document.body.classList.add('is-3d-chapel-page');
 
-    // 상단 좌측 바에 도서관 홈 복귀 미니 버튼 추가 (모바일에서 탭바 대신 활용)
+    // 상단 좌측 바에 도서관 홈 복귀 미니 버튼 추가
     const topLeft = document.querySelector('.top-bar .top-left');
     if (topLeft && !document.getElementById('btn-chapel-home-mobile')) {
-      const homeLink = document.createElement('a');
-      homeLink.id = 'btn-chapel-home-mobile';
-      homeLink.className = 'hud-pill';
-      homeLink.href = './index.html';
-      homeLink.innerHTML = '<span>🏛️ 홈</span>';
-      topLeft.insertBefore(homeLink, topLeft.firstChild);
+      const hasHomeLink = topLeft.querySelector('a[href*="index.html"]');
+      if (!hasHomeLink) {
+        const homeLink = document.createElement('a');
+        homeLink.id = 'btn-chapel-home-mobile';
+        homeLink.className = 'hud-pill';
+        homeLink.href = './index.html';
+        homeLink.innerHTML = '<span>🏛️ 꿈디도 홈</span>';
+        topLeft.insertBefore(homeLink, topLeft.firstChild);
+      }
     }
 
-    // 모바일에서 상태 배너 문구를 한 줄로 간결하게 다듬기
-    if (getCurrentMode() === 'mobile') {
-      const statusBanner = document.getElementById('status-banner');
-      if (statusBanner && statusBanner.textContent.length > 28) {
-        statusBanner.dataset.fullText = statusBanner.textContent.trim();
-        statusBanner.textContent = '바닥 터치로 이동 · 빈 의자 착석 · 강단 앞 무릎기도';
+    // 실시간 교제·기도 나눔 대화창 접기/펴기 동기화 (is-collapsed & is-folded 통합 및 모바일 기본 접힘)
+    const chatlogBox = document.getElementById('chapel-chatlog');
+    const chatStack = document.getElementById('chapel-chat-stack');
+    const btnChatToggle = document.getElementById('btn-chatlog-toggle');
+    const chatToggleLabel = document.getElementById('chatlog-toggle-label');
+
+    function syncChapelChatFoldState(isCollapsed) {
+      if (!chatlogBox || !chatStack) return;
+      chatlogBox.classList.toggle('is-collapsed', isCollapsed);
+      chatlogBox.classList.toggle('is-folded', isCollapsed);
+      chatStack.classList.toggle('chat-is-collapsed', isCollapsed);
+      if (chatToggleLabel) {
+        const baseTitle = chatToggleLabel.textContent.includes('말씀') ? '💬 실시간 말씀·기도 나눔' : '💬 실시간 교제·기도 나눔';
+        chatToggleLabel.textContent = isCollapsed ? `${baseTitle} (펴기 ▲)` : `${baseTitle} (접기 ▼)`;
       }
+    }
+
+    if (chatlogBox && chatStack) {
+      if (getCurrentMode() === 'mobile') {
+        syncChapelChatFoldState(true);
+      }
+      if (btnChatToggle) {
+        btnChatToggle.addEventListener('click', function () {
+          setTimeout(function () {
+            const nowCollapsed = chatlogBox.classList.contains('is-collapsed') || chatlogBox.classList.contains('is-folded');
+            syncChapelChatFoldState(nowCollapsed);
+          }, 0);
+        });
+      }
+    }
+
+    // 모바일에서 상단 상태 배너(#status-banner) 3초 후 자동 페이드아웃 (화면 가림 원천 방지)
+    const statusBanner = document.getElementById('status-banner');
+    if (statusBanner) {
+      let bannerTimer = null;
+      const flashStatusBanner = function () {
+        statusBanner.classList.add('mobile-toast-active');
+        clearTimeout(bannerTimer);
+        bannerTimer = setTimeout(function () {
+          statusBanner.classList.remove('mobile-toast-active');
+        }, 3200);
+      };
+      flashStatusBanner();
+      const obs = new MutationObserver(function () {
+        flashStatusBanner();
+      });
+      obs.observe(statusBanner, { childList: true, characterData: true, subtree: true });
     }
   }
 
@@ -145,8 +244,10 @@
   applyMode(getCurrentMode());
 
   document.addEventListener('DOMContentLoaded', function () {
-    applyMode(getCurrentMode());
+    ensurePcOverrideBanner();
     optimize3DChapelForMobile();
+    ensureHeaderQuickSwitch();
+    applyMode(getCurrentMode());
     setupTabBar();
 
     let resizeTimer;

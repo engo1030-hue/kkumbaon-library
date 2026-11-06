@@ -586,7 +586,7 @@ html, body {
 }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 </style>
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107b"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107c"/>
 </head>
 <body>
 
@@ -2627,8 +2627,18 @@ html, body {
     setStatusBanner('🕯️ 강단 앞 등불대로 조용히 걸어 나아갑니다...');
   }
 
+  let statusBannerTimer = null;
   function setStatusBanner(text) {
-    document.getElementById('status-banner').textContent = text;
+    const el = document.getElementById('status-banner');
+    if (!el) return;
+    el.textContent = text;
+    el.classList.remove('is-faded');
+    if (statusBannerTimer) clearTimeout(statusBannerTimer);
+    if (window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      statusBannerTimer = setTimeout(() => {
+        el.classList.add('is-faded');
+      }, 3500);
+    }
   }
 
   /* ==============================================================
@@ -3142,6 +3152,27 @@ html, body {
   btnBlockPanel.addEventListener('click', () => {
     blockedUsersBox.classList.toggle('is-open');
   });
+
+  // 모바일 화면 초기 최적화: 채팅창 기본 접힘 및 안내 배너 자동 페이드
+  const initMobileChapelUI = () => {
+    const isMobile = window.innerWidth <= 768 || window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    if (isMobile) {
+      if (chatlogBox) {
+        chatlogBox.classList.add('is-collapsed');
+        if (chatToggleLabel) {
+          chatToggleLabel.textContent = '💬 실시간 교제·기도 나눔 (펴기 ▲)';
+        }
+      }
+      const statusEl = document.getElementById('status-banner');
+      if (statusEl) {
+        statusEl.addEventListener('click', () => statusEl.classList.add('is-faded'));
+        setTimeout(() => {
+          statusEl.classList.add('is-faded');
+        }, 4000);
+      }
+    }
+  };
+  initMobileChapelUI();
 
   function renderBlockedUsers() {
     blockedCountNum.textContent = String(blockedUsers.size);
@@ -4178,6 +4209,6 @@ html, body {
 </div>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107b"></script>
+  <script src="kkumdido_mobile.js?v=20261107c"></script>
 </body>
 </html>
