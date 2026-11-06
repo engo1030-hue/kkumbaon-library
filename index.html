@@ -3328,6 +3328,288 @@ body.dark-theme .knb-card-link {
     grid-template-columns: 1fr;
   }
 }
+/* ==========================================================================
+   📱 모바일 화면 (스마트폰 360~430px) 메인 뷰포트 긴급 무결점 오버라이드
+   ========================================================================== */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  html, body {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  
+  /* 1. 상단 슬림 헤더 (높이 48px, 로고 옆 삐져나오는 PC 메뉴 완전 숨김 & 겹침 0%) */
+  .entrance-header {
+    height: 48px !important;
+    padding: 0 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 6px !important;
+    background: #181411 !important;
+    border-bottom: 1px solid rgba(197, 155, 56, 0.35) !important;
+    box-sizing: border-box !important;
+  }
+  .entrance-brand {
+    gap: 5px !important;
+    min-width: 0 !important;
+    flex-shrink: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+  }
+  .entrance-emblem {
+    width: 20px !important;
+    height: 24px !important;
+    flex-shrink: 0 !important;
+  }
+  .entrance-brand strong {
+    font-size: 13.5px !important;
+    color: #F8EED9 !important;
+    white-space: nowrap !important;
+  }
+  .entrance-brand small {
+    display: none !important;
+  }
+  .entrance-nav {
+    display: flex !important;
+    gap: 4px !important;
+    margin-left: auto !important;
+    align-items: center !important;
+    overflow: visible !important;
+    flex-shrink: 0 !important;
+  }
+  /* PC용 메뉴 버튼들은 모바일 헤더에서 완전 숨김 (스크린샷 1번 잘림 현상 원천 박멸) */
+  .entrance-nav > button[data-cat],
+  .entrance-nav > a,
+  .entrance-nav .nav-guide-btn,
+  .entrance-nav .nav-12arch-btn,
+  .entrance-nav .nav-moses-btn {
+    display: none !important;
+  }
+  .entrance-nav .nav-search-btn {
+    height: 30px !important;
+    width: 32px !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    border-radius: 6px !important;
+    background: rgba(251, 249, 243, 0.12) !important;
+    color: #F5DF98 !important;
+    border: 1px solid rgba(212, 175, 55, 0.45) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-shrink: 0 !important;
+  }
+  .entrance-nav .nav-search-btn::before {
+    content: "🔍" !important;
+    font-size: 13.5px !important;
+  }
+  .entrance-nav .nav-studio-trigger {
+    height: 30px !important;
+    padding: 0 8px !important;
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    border-radius: 6px !important;
+    background: linear-gradient(135deg, #382817 0%, #241A10 100%) !important;
+    color: #F5DF98 !important;
+    border: 1px solid #C8A45D !important;
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+  .entrance-theme {
+    height: 30px !important;
+    width: 32px !important;
+    padding: 0 !important;
+    font-size: 0 !important;
+    border-radius: 6px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.35) !important;
+    color: #E5C878 !important;
+    flex-shrink: 0 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  .entrance-theme::before {
+    content: "🌙" !important;
+    font-size: 13.5px !important;
+  }
+
+  /* 2. 상단 12관 아카이브 직행 바 (2열 50% 균등 배치, 글자 잘림 원천 차단) */
+  .kkumdido-12halls-bar {
+    padding: 6px 8px !important;
+    background: #1C1713 !important;
+    border-bottom: 1px solid rgba(197, 155, 56, 0.28) !important;
+  }
+  .kkumdido-12halls-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .kkumdido-12halls-left {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 5px !important;
+    width: 100% !important;
+    padding-right: 0 !important;
+    padding-bottom: 5px !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+    box-sizing: border-box !important;
+  }
+  .kkumdido-12halls-badge,
+  .kkumdido-12halls-genealogy {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    font-size: 11px !important;
+    padding: 4px 6px !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: clip !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 2px !important;
+  }
+  .kkumdido-12halls-genealogy .h-no {
+    margin-right: 2px !important;
+    font-size: 9.5px !important;
+    padding: 1px 3px !important;
+  }
+  .kkumdido-12halls-grid {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 4px !important;
+    width: 100% !important;
+    padding-bottom: 2px !important;
+  }
+  .kkumdido-12halls-grid::-webkit-scrollbar { display: none !important; }
+  .kkumdido-12halls-grid a {
+    flex: 0 0 auto !important;
+    font-size: 11px !important;
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 3px 8px !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+    border: 1px solid rgba(212, 175, 55, 0.24) !important;
+    border-radius: 999px !important;
+    color: #EAE0CE !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+  }
+
+  /* 3. 웰컴 리본 바 (글자 잘림 0건, 슬림 1~2줄 정돈) */
+  .kkumbaon-welcome-bar {
+    padding: 8px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .kkumbaon-welcome-inner {
+    width: 100% !important;
+    max-width: 100% !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 3px !important;
+  }
+  .kw-left {
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 3px !important;
+  }
+  .kw-eyebrow {
+    font-size: 10.5px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    line-height: 1.35 !important;
+    color: #C59B38 !important;
+  }
+  .kw-headline {
+    font-size: 12px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    line-height: 1.4 !important;
+    color: #F8F5EE !important;
+  }
+  .kw-quote {
+    display: none !important;
+  }
+
+  /* 4. 사서실 공지 바 (가로 삐져나옴 원천 차단) */
+  .kkumdido-notice-board {
+    width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+    margin: 8px 0 !important;
+  }
+  .knb-bar {
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+    padding: 6px 10px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  .knb-title {
+    font-size: 11.5px !important;
+    white-space: normal !important;
+    word-break: keep-all !important;
+    flex: 1 1 100% !important;
+    line-height: 1.35 !important;
+  }
+  .knb-controls {
+    margin-left: auto !important;
+    gap: 4px !important;
+  }
+
+  /* 5. 지역 탭 및 인트로 */
+  .hall-intro {
+    padding: 10px 0 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .hall-intro h1 {
+    font-size: 22px !important;
+    line-height: 1.3 !important;
+    margin: 2px 0 !important;
+  }
+  .hall-intro p {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+  }
+  .hall-stats {
+    display: none !important;
+  }
+  .region-tabs {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 4px !important;
+    padding: 4px 2px !important;
+  }
+  .region-tabs::-webkit-scrollbar { display: none !important; }
+  .region-tabs button {
+    flex-shrink: 0 !important;
+    font-size: 11.5px !important;
+    padding: 6px 10px !important;
+    white-space: nowrap !important;
+  }
+}
 /* === [KKUMDIDO_NOTICE_BOARD_END] === */
 </style>
   <link rel="stylesheet" href="atrium.css?v=20261107a"/>
