@@ -5,9 +5,9 @@
      완벽한 모바일 전용 앱(PWA) 스타일로 자동 전환
    ========================================================================== */
 
-@media (max-width: 1024px), (pointer: coarse) {
-  html.mobile-mode,
-  html.mobile-mode body {
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  html:not(.pc-override),
+  html:not(.pc-override) body {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100vw !important;
@@ -17,36 +17,36 @@
     padding: 0 !important;
   }
 
-  html.mobile-mode body {
+  html:not(.pc-override) body {
     padding-bottom: 70px !important; /* 하단 엄지 탭바 여백 */
   }
 
   /* 모든 대형 컨테이너의 1440px/1392px 강제 폭 완전 해제 -> 100% 유동형 전환 */
-  html.mobile-mode .entrance-header,
-  html.mobile-mode .kkumdido-12halls-bar,
-  html.mobile-mode .kkumdido-studios-drawer,
-  html.mobile-mode .kkd-drawer-inner,
-  html.mobile-mode .kkumbaon-welcome-bar,
-  html.mobile-mode .top-slim-tabs-bar,
-  html.mobile-mode .entrance-main,
-  html.mobile-mode footer,
-  html.mobile-mode .kkumdido-12halls-inner,
-  html.mobile-mode .kkumbaon-welcome-inner,
-  html.mobile-mode .top-slim-tabs-inner,
-  html.mobile-mode .hall-intro,
-  html.mobile-mode #kkumdidoSignatureStage,
-  html.mobile-mode .explore-hall,
-  html.mobile-mode .city-story,
-  html.mobile-mode .featured-places,
-  html.mobile-mode .shelf-gateway,
-  html.mobile-mode #ebookShelfSection,
-  html.mobile-mode .controls-wrap,
-  html.mobile-mode .cinema-studio-grid,
-  html.mobile-mode .archive-main,
-  html.mobile-mode .top-header-inner,
-  html.mobile-mode .hero-inner,
-  html.mobile-mode .atlas-drawer,
-  html.mobile-mode .kkumdido-notice-board {
+  html:not(.pc-override) .entrance-header,
+  html:not(.pc-override) .kkumdido-12halls-bar,
+  html:not(.pc-override) .kkumdido-studios-drawer,
+  html:not(.pc-override) .kkd-drawer-inner,
+  html:not(.pc-override) .kkumbaon-welcome-bar,
+  html:not(.pc-override) .top-slim-tabs-bar,
+  html:not(.pc-override) .entrance-main,
+  html:not(.pc-override) footer,
+  html:not(.pc-override) .kkumdido-12halls-inner,
+  html:not(.pc-override) .kkumbaon-welcome-inner,
+  html:not(.pc-override) .top-slim-tabs-inner,
+  html:not(.pc-override) .hall-intro,
+  html:not(.pc-override) #kkumdidoSignatureStage,
+  html:not(.pc-override) .explore-hall,
+  html:not(.pc-override) .city-story,
+  html:not(.pc-override) .featured-places,
+  html:not(.pc-override) .shelf-gateway,
+  html:not(.pc-override) #ebookShelfSection,
+  html:not(.pc-override) .controls-wrap,
+  html:not(.pc-override) .cinema-studio-grid,
+  html:not(.pc-override) .archive-main,
+  html:not(.pc-override) .top-header-inner,
+  html:not(.pc-override) .hero-inner,
+  html:not(.pc-override) .atlas-drawer,
+  html:not(.pc-override) .kkumdido-notice-board {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
@@ -55,11 +55,11 @@
     margin-right: 0 !important;
   }
 
-  html.mobile-mode .entrance-main,
-  html.mobile-mode #ebookShelfSection,
-  html.mobile-mode .controls-wrap,
-  html.mobile-mode .archive-main,
-  html.mobile-mode .atlas-drawer {
+  html:not(.pc-override) .entrance-main,
+  html:not(.pc-override) #ebookShelfSection,
+  html:not(.pc-override) .controls-wrap,
+  html:not(.pc-override) .archive-main,
+  html:not(.pc-override) .atlas-drawer {
     padding-left: 12px !important;
     padding-right: 12px !important;
   }
@@ -67,7 +67,7 @@
   /* ==========================================================================
      1. 상단 슬림 모바일 헤더 (오른쪽 잘림 0% 완벽 맞춤)
      ========================================================================== */
-  html.mobile-mode .entrance-header {
+  html:not(.pc-override) .entrance-header {
     height: 56px !important;
     padding: 0 10px !important;
     display: flex !important;
@@ -84,32 +84,32 @@
     border-bottom: 1px solid rgba(197, 155, 56, 0.3) !important;
   }
 
-  html.mobile-mode .entrance-brand {
+  html:not(.pc-override) .entrance-brand {
     gap: 6px !important;
     align-items: center !important;
     flex-shrink: 1 !important;
     min-width: 0 !important;
   }
 
-  html.mobile-mode .entrance-emblem {
+  html:not(.pc-override) .entrance-emblem {
     width: 26px !important;
     height: 30px !important;
     flex-shrink: 0 !important;
     color: #E5C878 !important;
   }
 
-  html.mobile-mode .entrance-brand strong {
+  html:not(.pc-override) .entrance-brand strong {
     font-size: 15px !important;
     letter-spacing: -0.6px !important;
     white-space: nowrap !important;
     color: #F7EAD0 !important;
   }
 
-  html.mobile-mode .entrance-brand small {
+  html:not(.pc-override) .entrance-brand small {
     display: none !important;
   }
 
-  html.mobile-mode .entrance-nav {
+  html:not(.pc-override) .entrance-nav {
     display: flex !important;
     align-items: center !important;
     gap: 4px !important;
@@ -121,16 +121,16 @@
   }
 
   /* 긴 텍스트 메뉴 항목은 모바일 헤더에서 숨김 */
-  html.mobile-mode .entrance-nav > a,
-  html.mobile-mode .entrance-nav > button:not(.nav-search-btn):not(.nav-studio-trigger) {
+  html:not(.pc-override) .entrance-nav > a,
+  html:not(.pc-override) .entrance-nav > button:not(.nav-search-btn):not(.nav-studio-trigger) {
     display: none !important;
   }
 
-  html.mobile-mode .entrance-nav .nav-guide-btn {
+  html:not(.pc-override) .entrance-nav .nav-guide-btn {
     display: none !important;
   }
 
-  html.mobile-mode .entrance-nav .nav-search-btn {
+  html:not(.pc-override) .entrance-nav .nav-search-btn {
     height: 30px !important;
     padding: 0 7px !important;
     font-size: 11px !important;
@@ -142,7 +142,7 @@
     margin-left: 0 !important;
   }
 
-  html.mobile-mode .entrance-nav .nav-studio-trigger {
+  html:not(.pc-override) .entrance-nav .nav-studio-trigger {
     height: 30px !important;
     padding: 0 8px !important;
     font-size: 11px !important;
@@ -156,7 +156,7 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
   }
 
-  html.mobile-mode .entrance-theme {
+  html:not(.pc-override) .entrance-theme {
     height: 30px !important;
     padding: 0 7px !important;
     font-size: 11px !important;
@@ -170,21 +170,21 @@
 
   /* 430px 이하 일반 스마트폰 세로 폭에서 상단 헤더 초정밀 다이어트 */
   @media (max-width: 430px) {
-    html.mobile-mode .entrance-header {
+    html:not(.pc-override) .entrance-header {
       padding: 0 8px !important;
       gap: 4px !important;
     }
-    html.mobile-mode .entrance-emblem {
+    html:not(.pc-override) .entrance-emblem {
       width: 22px !important;
       height: 26px !important;
     }
-    html.mobile-mode .entrance-brand strong {
+    html:not(.pc-override) .entrance-brand strong {
       font-size: 14px !important;
       letter-spacing: -0.8px !important;
     }
-    html.mobile-mode .entrance-nav .nav-search-btn,
-    html.mobile-mode .entrance-nav .nav-studio-trigger,
-    html.mobile-mode .entrance-theme {
+    html:not(.pc-override) .entrance-nav .nav-search-btn,
+    html:not(.pc-override) .entrance-nav .nav-studio-trigger,
+    html:not(.pc-override) .entrance-theme {
       font-size: 10.5px !important;
       padding: 0 6px !important;
       height: 28px !important;
@@ -194,39 +194,39 @@
   /* ==========================================================================
      2. 사역 스튜디오 8종 서랍 (Drawer) 모바일 1열/2열 최적화
      ========================================================================== */
-  html.mobile-mode .kkumdido-studios-drawer {
+  html:not(.pc-override) .kkumdido-studios-drawer {
     padding: 12px !important;
   }
 
-  html.mobile-mode .kkd-drawer-top {
+  html:not(.pc-override) .kkd-drawer-top {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 10px !important;
   }
 
-  html.mobile-mode .kkd-drawer-title {
+  html:not(.pc-override) .kkd-drawer-title {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 4px !important;
     font-size: 14px !important;
   }
 
-  html.mobile-mode .kkd-drawer-title span.sub {
+  html:not(.pc-override) .kkd-drawer-title span.sub {
     font-size: 11.5px !important;
   }
 
-  html.mobile-mode .kkd-drawer-actions {
+  html:not(.pc-override) .kkd-drawer-actions {
     width: 100% !important;
     flex-wrap: wrap !important;
     gap: 6px !important;
   }
 
-  html.mobile-mode .kkd-drawer-actions button {
+  html:not(.pc-override) .kkd-drawer-actions button {
     font-size: 11.5px !important;
     padding: 6px 10px !important;
   }
 
-  html.mobile-mode .kkd-drawer-grid {
+  html:not(.pc-override) .kkd-drawer-grid {
     grid-template-columns: 1fr !important;
     gap: 8px !important;
   }
@@ -234,20 +234,20 @@
   /* ==========================================================================
      3. 상단 12대 아카이브 직행 바 (모바일 맞춤형 2x2 배지 + 3x4 전시관 그리드)
      ========================================================================== */
-  html.mobile-mode .kkumdido-12halls-bar {
+  html:not(.pc-override) .kkumdido-12halls-bar {
     padding: 10px 12px !important;
     background: #1C1713 !important;
     border-bottom: 1px solid rgba(197, 155, 56, 0.28) !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-inner {
+  html:not(.pc-override) .kkumdido-12halls-inner {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 10px !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-left {
+  html:not(.pc-override) .kkumdido-12halls-left {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 6px !important;
@@ -258,8 +258,8 @@
     border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-badge,
-  html.mobile-mode .kkumdido-12halls-genealogy {
+  html:not(.pc-override) .kkumdido-12halls-badge,
+  html:not(.pc-override) .kkumdido-12halls-genealogy {
     width: 100% !important;
     min-width: 0 !important;
     font-size: 12px !important;
@@ -271,14 +271,14 @@
     white-space: nowrap !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-grid {
+  html:not(.pc-override) .kkumdido-12halls-grid {
     display: grid !important;
     grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
     gap: 6px !important;
     width: 100% !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-grid a {
+  html:not(.pc-override) .kkumdido-12halls-grid a {
     font-size: 12px !important;
     padding: 6px 6px !important;
     background: rgba(255, 255, 255, 0.05) !important;
@@ -292,11 +292,11 @@
     white-space: nowrap !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-grid a::before {
+  html:not(.pc-override) .kkumdido-12halls-grid a::before {
     display: none !important;
   }
 
-  html.mobile-mode .kkumdido-12halls-grid a span.h-no {
+  html:not(.pc-override) .kkumdido-12halls-grid a span.h-no {
     color: #E5C878 !important;
     margin-right: 4px !important;
     font-size: 11px !important;
@@ -305,32 +305,32 @@
   /* ==========================================================================
      4. 3줄 웰컴 리본 바 (줄바꿈 허용으로 오른쪽 잘림 원천 해결!)
      ========================================================================== */
-  html.mobile-mode .kkumbaon-welcome-bar {
+  html:not(.pc-override) .kkumbaon-welcome-bar {
     padding: 14px 12px !important;
   }
 
-  html.mobile-mode .kkumbaon-welcome-inner {
+  html:not(.pc-override) .kkumbaon-welcome-inner {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 10px !important;
   }
 
-  html.mobile-mode .kw-eyebrow {
+  html:not(.pc-override) .kw-eyebrow {
     font-size: 11.5px !important;
     line-height: 1.45 !important;
     white-space: normal !important;
     word-break: keep-all !important;
   }
 
-  html.mobile-mode .kw-headline {
+  html:not(.pc-override) .kw-headline {
     font-size: 15px !important;
     line-height: 1.48 !important;
     white-space: normal !important;
     word-break: keep-all !important;
   }
 
-  html.mobile-mode .kw-quote {
+  html:not(.pc-override) .kw-quote {
     font-size: 12px !important;
     line-height: 1.55 !important;
     padding: 9px 12px !important;
@@ -343,7 +343,7 @@
   /* ==========================================================================
      5. 탐험 홀 인트로 & 소장 통계 카드 (2열 칼정렬)
      ========================================================================== */
-  html.mobile-mode .hall-intro {
+  html:not(.pc-override) .hall-intro {
     padding: 16px 0 12px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -351,26 +351,26 @@
     gap: 12px !important;
   }
 
-  html.mobile-mode .hall-intro h1 {
+  html:not(.pc-override) .hall-intro h1 {
     font-size: 26px !important;
     line-height: 1.25 !important;
     letter-spacing: -0.8px !important;
   }
 
-  html.mobile-mode .hall-intro p {
+  html:not(.pc-override) .hall-intro p {
     font-size: 13px !important;
     line-height: 1.5 !important;
     margin-top: 4px !important;
   }
 
-  html.mobile-mode .hall-stats {
+  html:not(.pc-override) .hall-stats {
     display: grid !important;
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 8px !important;
     width: 100% !important;
   }
 
-  html.mobile-mode .hall-stats > div {
+  html:not(.pc-override) .hall-stats > div {
     min-width: 0 !important;
     padding: 10px 12px !important;
     border-radius: 10px !important;
@@ -378,16 +378,16 @@
     border: 1px solid rgba(197, 155, 56, 0.25) !important;
   }
 
-  html.mobile-mode body.dark-theme .hall-stats > div {
+  html:not(.pc-override) body.dark-theme .hall-stats > div {
     background: rgba(255, 255, 255, 0.04) !important;
   }
 
-  html.mobile-mode .hall-stats strong {
+  html:not(.pc-override) .hall-stats strong {
     font-size: 20px !important;
     display: block !important;
   }
 
-  html.mobile-mode .hall-stats span {
+  html:not(.pc-override) .hall-stats span {
     font-size: 11px !important;
     white-space: normal !important;
     word-break: keep-all !important;
@@ -398,12 +398,12 @@
   /* ==========================================================================
      6. 사서실 공지 바 (KNB) 모바일 최적화
      ========================================================================== */
-  html.mobile-mode .kkumdido-notice-board {
+  html:not(.pc-override) .kkumdido-notice-board {
     margin: 6px 0 12px !important;
     padding: 0 !important;
   }
 
-  html.mobile-mode .knb-bar {
+  html:not(.pc-override) .knb-bar {
     flex-direction: column !important;
     align-items: stretch !important;
     gap: 8px !important;
@@ -413,14 +413,14 @@
     box-sizing: border-box !important;
   }
 
-  html.mobile-mode .knb-left {
+  html:not(.pc-override) .knb-left {
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 5px !important;
     width: 100% !important;
   }
 
-  html.mobile-mode .knb-headline-link {
+  html:not(.pc-override) .knb-headline-link {
     display: block !important;
     width: 100% !important;
     font-size: 13px !important;
@@ -430,31 +430,31 @@
     margin-top: 2px !important;
   }
 
-  html.mobile-mode .knb-right {
+  html:not(.pc-override) .knb-right {
     display: flex !important;
     justify-content: flex-end !important;
     width: 100% !important;
     gap: 6px !important;
   }
 
-  html.mobile-mode .knb-grid {
+  html:not(.pc-override) .knb-grid {
     grid-template-columns: 1fr !important;
   }
 
   /* ==========================================================================
      7. 시그니처 영상 스테이지 & 지도 툴바
      ========================================================================== */
-  html.mobile-mode #kkumdidoSignatureStage {
+  html:not(.pc-override) #kkumdidoSignatureStage {
     margin: 8px 0 14px !important;
     padding: 0 !important;
   }
 
-  html.mobile-mode .sig-stage-card {
+  html:not(.pc-override) .sig-stage-card {
     border-radius: 12px !important;
     padding: 10px !important;
   }
 
-  html.mobile-mode .hall-toolbar {
+  html:not(.pc-override) .hall-toolbar {
     display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
@@ -463,14 +463,14 @@
     margin-bottom: 10px !important;
   }
 
-  html.mobile-mode .place-search-wrap {
+  html:not(.pc-override) .place-search-wrap {
     width: 100% !important;
     order: 1 !important;
     margin-left: 0 !important;
     box-sizing: border-box !important;
   }
 
-  html.mobile-mode .region-tabs {
+  html:not(.pc-override) .region-tabs {
     width: 100% !important;
     order: 2 !important;
     display: flex !important;
@@ -481,11 +481,11 @@
     gap: 5px !important;
   }
 
-  html.mobile-mode .region-tabs::-webkit-scrollbar {
+  html:not(.pc-override) .region-tabs::-webkit-scrollbar {
     display: none !important;
   }
 
-  html.mobile-mode .region-tabs button {
+  html:not(.pc-override) .region-tabs button {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
     font-size: 12px !important;
@@ -495,7 +495,7 @@
   /* ==========================================================================
      8. 성경세계지도 아틀라스 & 도시 팝오버
      ========================================================================== */
-  html.mobile-mode .atlas-viewport {
+  html:not(.pc-override) .atlas-viewport {
     width: 100% !important;
     height: 400px !important;
     min-height: 360px !important;
@@ -503,16 +503,16 @@
     position: relative !important;
   }
 
-  html.mobile-mode .map-heading {
+  html:not(.pc-override) .map-heading {
     top: 12px !important;
     left: 12px !important;
   }
 
-  html.mobile-mode .map-region-name {
+  html:not(.pc-override) .map-region-name {
     font-size: 18px !important;
   }
 
-  html.mobile-mode .city-popover {
+  html:not(.pc-override) .city-popover {
     top: auto !important;
     bottom: 10px !important;
     left: 10px !important;
@@ -527,7 +527,7 @@
   /* ==========================================================================
      9. 도서관 서가 & 12대 아카이브 그리드 (1열 카드 피드)
      ========================================================================== */
-  html.mobile-mode .controls-wrap .hall-tabs {
+  html:not(.pc-override) .controls-wrap .hall-tabs {
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
@@ -537,20 +537,20 @@
     scrollbar-width: none !important;
   }
 
-  html.mobile-mode .controls-wrap .hall-tabs::-webkit-scrollbar {
+  html:not(.pc-override) .controls-wrap .hall-tabs::-webkit-scrollbar {
     display: none !important;
   }
 
-  html.mobile-mode .hall-tab {
+  html:not(.pc-override) .hall-tab {
     flex-shrink: 0 !important;
     min-width: 88px !important;
     padding: 8px 10px !important;
   }
 
-  html.mobile-mode .archive-grid,
-  html.mobile-mode .featured-grid,
-  html.mobile-mode .story-grid,
-  html.mobile-mode .cinema-studio-grid {
+  html:not(.pc-override) .archive-grid,
+  html:not(.pc-override) .featured-grid,
+  html:not(.pc-override) .story-grid,
+  html:not(.pc-override) .cinema-studio-grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 14px !important;
@@ -560,7 +560,7 @@
   /* ==========================================================================
      10. 리더 모달 (문서/성화 뷰어) 풀스크린
      ========================================================================== */
-  html.mobile-mode .reader-modal {
+  html:not(.pc-override) .reader-modal {
     position: fixed !important;
     inset: 0 !important;
     width: 100vw !important;
@@ -573,16 +573,16 @@
     z-index: 99999 !important;
   }
 
-  html.mobile-mode footer {
+  html:not(.pc-override) footer {
     padding: 24px 14px 86px !important;
     text-align: center !important;
   }
 
   /* 도서관 이용증 우측 하단 플로팅 바가 모바일 하단 탭바에 가려지지 않도록 위치 조정 */
-  html.mobile-mode #kkumdido-pass-fab {
-    bottom: 66px !important;
-    right: 10px !important;
-    transform: scale(0.9) !important;
+  html:not(.pc-override) #kkumdido-pass-fab {
+    bottom: 62px !important;
+    right: 8px !important;
+    transform: scale(0.82) !important;
     transform-origin: bottom right !important;
   }
 }
@@ -594,8 +594,8 @@
   display: none;
 }
 
-@media (max-width: 1024px), (pointer: coarse) {
-  html.mobile-mode .kkumdido-mobile-tab-bar {
+@media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+  html:not(.pc-override) .kkumdido-mobile-tab-bar {
     display: flex !important;
     position: fixed !important;
     bottom: 0 !important;

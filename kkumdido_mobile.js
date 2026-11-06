@@ -1,23 +1,21 @@
 /*!
- * 🏛️ 꿈바온 디지털 도서관 (꿈디도) 모바일 특화 모드 컨트롤러 v1.0
+ * 🏛️ 꿈바온 디지털 도서관 (꿈디도) 모바일 특화 모드 컨트롤러 v2.1
  * - PC 접속 시: 기존 1440px 와이드 디자인 100% 온전 유지
- * - 모바일 접속 시: 모바일 전용 앱(PWA) 스타일 레이아웃 & 하단 엄지 탭바 자동 활성화
- * - PC ↔ 모바일 수동 스위처 지원
+ * - 모바일 접속 시: 100% 자동으로 모바일 전용 버전으로 즉시 전환
  */
 (function initKkumdidoMobileMode() {
   'use strict';
 
-  const STORAGE_KEY = 'kkumdido_view_mode'; // 'mobile' | 'pc' | null
+  const STORAGE_KEY = 'kkumdido_view_mode_session'; // 세션 단위로만 수동 오버라이드 유지 (새로 접속 시 모바일은 무조건 자동 모바일 모드!)
 
-  // 1. 디바이스 판별 함수
   function detectIsMobileDevice() {
-    const ua = navigator.userAgent || navigator.vendor || window.opera;
-    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(ua);
-    const isSmallScreen = window.innerWidth <= 1024;
-    return isMobileUA || isSmallScreen;
+    const ua = navigator.userAgent || navigator.vendor || window.opera || '';
+    const isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet|KAKAOTALK|NAVER|Instagram|FBAN|FBAV/i.test(ua);
+    const isTouch = window.matchMedia && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const isSmallScreen = window.innerWidth <= 1024 || window.screen.width <= 1024;
+    return isMobileUA || isTouch || isSmallScreen;
   }
 
-  // 2. 모드 적용 함수
   function applyMode(mode) {
     const docEl = document.documentElement;
     const bodyEl = document.body;
@@ -31,27 +29,27 @@
       }
     } else {
       docEl.classList.remove('mobile-mode');
-      docEl.classList.add('pc-override');
-      if (bodyEl) {
-        bodyEl.classList.remove('mobile-mode');
-        bodyEl.classList.add('pc-override');
+      if (detectIsMobileDevice()) {
+        docEl.classList.add('pc-override');
+        if (bodyEl) bodyEl.classList.add('pc-override');
+      } else {
+        docEl.classList.remove('pc-override');
+        if (bodyEl) bodyEl.classList.remove('pc-override');
       }
     }
     updateSwitchButtons(mode);
   }
 
-  // 3. 현재 모드 결정
   function getCurrentMode() {
-    const saved = localStorage.getItem(STORAGE_KEY);
+    const saved = sessionStorage.getItem(STORAGE_KEY);
     if (saved === 'pc' || saved === 'mobile') {
       return saved;
     }
     return detectIsMobileDevice() ? 'mobile' : 'pc';
   }
 
-  // 4. 모드 전환 (사용자 명시적 토글)
   window.setKkumdidoViewMode = function (mode) {
-    localStorage.setItem(STORAGE_KEY, mode);
+    sessionStorage.setItem(STORAGE_KEY, mode);
     applyMode(mode);
   };
 
@@ -61,7 +59,6 @@
     window.setKkumdidoViewMode(next);
   };
 
-  // 5. 스위처 버튼 상태 갱신
   function updateSwitchButtons(mode) {
     const pcBanner = document.getElementById('kkumdidoPcOverrideBanner');
     if (pcBanner) {
@@ -73,7 +70,6 @@
     }
   }
 
-  // 6. 하단 엄지 탭바 탭 전환 리스너
   function setupTabBar() {
     const tabs = document.querySelectorAll('.kkumdido-mobile-tab-item');
     if (!tabs || tabs.length === 0) return;
@@ -86,8 +82,10 @@
 
         switch (action) {
           case 'home':
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (this.tagName === 'BUTTON') {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
             break;
           case 'halls':
             e.preventDefault();
@@ -96,12 +94,6 @@
               const topPos = hallsSection.getBoundingClientRect().top + window.pageYOffset - 65;
               window.scrollTo({ top: topPos, behavior: 'smooth' });
             }
-            break;
-          case 'sermon':
-            // 설교스튜디오 새 창 또는 이동
-            break;
-          case 'chapel':
-            // 채플 링크 정상 이동
             break;
           case 'search':
             e.preventDefault();
@@ -122,24 +114,20 @@
     });
   }
 
-  // 7. 초기 실행 (DOM Ready 전 즉시 클래스 적용으로 화면 깜빡임 방지)
-  const initialMode = getCurrentMode();
-  applyMode(initialMode);
+  applyMode(getCurrentMode());
 
-  // 8. DOM 완료 후 UI 및 이벤트 바인딩
   document.addEventListener('DOMContentLoaded', function () {
     applyMode(getCurrentMode());
     setupTabBar();
 
-    // 화면 리사이즈 시 (수동 저장이 없을 때 자동 반응)
     let resizeTimer;
     window.addEventListener('resize', function () {
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(function () {
-        if (!localStorage.getItem(STORAGE_KEY)) {
+        if (!sessionStorage.getItem(STORAGE_KEY)) {
           applyMode(detectIsMobileDevice() ? 'mobile' : 'pc');
         }
-      }, 200);
+      }, 150);
     });
   });
 })();

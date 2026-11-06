@@ -2616,8 +2616,8 @@
   
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-/* PC 와이드 환경(1025px 이상, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
-@media (min-width: 1025px) {
+/* PC 와이드 환경(1025px 이상 마우스 데스크톱, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
   html:not(.mobile-mode), html:not(.mobile-mode) body {
     min-width: 1440px !important;
   }
@@ -3330,9 +3330,9 @@ body.dark-theme .knb-card-link {
 }
 /* === [KKUMDIDO_NOTICE_BOARD_END] === */
 </style>
-  <link rel="stylesheet" href="atrium.css?v=20261104-light"/>
+  <link rel="stylesheet" href="atrium.css?v=20261107a"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261106"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107a"/>
 </head>
 <body>
 
@@ -6226,7 +6226,7 @@ body.dark-theme .knb-card-link {
   </nav>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261106"></script>
+  <script src="kkumdido_mobile.js?v=20261107a"></script>
 </body>
 </html>
 

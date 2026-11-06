@@ -19,7 +19,7 @@ html,body{scroll-behavior:smooth}body{background:#f2efe7}button,input,a{-webkit-
 .popover-image>.local-map{width:100%;height:100%}
 @media(prefers-reduced-motion:reduce){.atlas-viewport.has-depth .map-perspective{transform:none}}
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-@media (min-width: 1025px) {
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
   html:not(.mobile-mode),
   html:not(.mobile-mode) body {
     min-width: 1440px !important;
