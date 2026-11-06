@@ -1,12 +1,12 @@
 /*!
- * 🏛️ 꿈바온 디지털 도서관 (꿈디도) 모바일 특화 모드 컨트롤러 v2.1
+ * 🏛️ 꿈바온 디지털 도서관 (꿈디도) 모바일 특화 모드 컨트롤러 v3.0 (Compact Edition)
  * - PC 접속 시: 기존 1440px 와이드 디자인 100% 온전 유지
- * - 모바일 접속 시: 100% 자동으로 모바일 전용 버전으로 즉시 전환
+ * - 모바일 접속 시: 100% 자동으로 모바일 전용 컴팩트 버전으로 즉시 전환
  */
 (function initKkumdidoMobileMode() {
   'use strict';
 
-  const STORAGE_KEY = 'kkumdido_view_mode_session'; // 세션 단위로만 수동 오버라이드 유지 (새로 접속 시 모바일은 무조건 자동 모바일 모드!)
+  const STORAGE_KEY = 'kkumdido_view_mode_session';
 
   function detectIsMobileDevice() {
     const ua = navigator.userAgent || navigator.vendor || window.opera || '';
@@ -70,6 +70,34 @@
     }
   }
 
+  function optimize3DChapelForMobile() {
+    const canvasWrap = document.getElementById('canvas-wrap');
+    if (!canvasWrap) return;
+
+    document.documentElement.classList.add('is-3d-chapel-page');
+    if (document.body) document.body.classList.add('is-3d-chapel-page');
+
+    // 상단 좌측 바에 도서관 홈 복귀 미니 버튼 추가 (모바일에서 탭바 대신 활용)
+    const topLeft = document.querySelector('.top-bar .top-left');
+    if (topLeft && !document.getElementById('btn-chapel-home-mobile')) {
+      const homeLink = document.createElement('a');
+      homeLink.id = 'btn-chapel-home-mobile';
+      homeLink.className = 'hud-pill';
+      homeLink.href = './index.html';
+      homeLink.innerHTML = '<span>🏛️ 홈</span>';
+      topLeft.insertBefore(homeLink, topLeft.firstChild);
+    }
+
+    // 모바일에서 상태 배너 문구를 한 줄로 간결하게 다듬기
+    if (getCurrentMode() === 'mobile') {
+      const statusBanner = document.getElementById('status-banner');
+      if (statusBanner && statusBanner.textContent.length > 28) {
+        statusBanner.dataset.fullText = statusBanner.textContent.trim();
+        statusBanner.textContent = '바닥 터치로 이동 · 빈 의자 착석 · 강단 앞 무릎기도';
+      }
+    }
+  }
+
   function setupTabBar() {
     const tabs = document.querySelectorAll('.kkumdido-mobile-tab-item');
     if (!tabs || tabs.length === 0) return;
@@ -91,7 +119,7 @@
             e.preventDefault();
             const hallsSection = document.getElementById('libraryShelves') || document.querySelector('.kkumdido-12halls-bar');
             if (hallsSection) {
-              const topPos = hallsSection.getBoundingClientRect().top + window.pageYOffset - 65;
+              const topPos = hallsSection.getBoundingClientRect().top + window.pageYOffset - 55;
               window.scrollTo({ top: topPos, behavior: 'smooth' });
             }
             break;
@@ -118,6 +146,7 @@
 
   document.addEventListener('DOMContentLoaded', function () {
     applyMode(getCurrentMode());
+    optimize3DChapelForMobile();
     setupTabBar();
 
     let resizeTimer;
