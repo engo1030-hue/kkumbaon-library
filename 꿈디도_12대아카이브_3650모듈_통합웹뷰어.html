@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#161311" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 마스터 웹 뷰어</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <style>
+    :root, [data-theme="light"] {
+      --bg: #F9F6F0;
+      --bg-sub: #F1ECE1;
+      --card: #FFFFFF;
+      --card-hover: #FDFBF7;
+      --text: #1F1A15;
+      --muted: #5C5248;
+      --accent: #8C621E;
+      --accent-soft: rgba(140, 98, 30, 0.12);
+      --gold: #9A6B1F;
+      --border: #DFD5C5;
+      --header-grad: linear-gradient(135deg, #241B13 0%, #3E2E1E 100%);
+      --modal-sec: #F6F1E7;
+    }
+    [data-theme="gold"] {
+      --bg: #120E0B;
+      --bg-sub: #1A1410;
+      --card: #1F1813;
+      --card-hover: #292019;
+      --text: #FAF6EE;
+      --muted: #C4B7A6;
+      --accent: #E5C878;
+      --accent-soft: rgba(229, 200, 120, 0.15);
+      --gold: #F5DF98;
+      --border: rgba(212, 175, 55, 0.32);
+      --header-grad: linear-gradient(135deg, #16110C 0%, #2B2015 55%, #1A130D 100%);
+      --modal-sec: rgba(14, 10, 7, 0.55);
+    }
+    [data-theme="midnight"] {
+      --bg: #0f172a;
+      --bg-sub: #162038;
+      --card: #1e293b;
+      --card-hover: #26354d;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --gold: #fbbf24;
+      --border: #334155;
+      --header-grad: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      --modal-sec: rgba(15, 23, 42, 0.45);
+    }
+    [data-theme="light"] .modal-actions-bar .btn {
+      color: var(--text);
+      background: var(--bg-sub);
+      border-color: var(--border);
+    }
+    [data-theme="light"] .modal-actions-bar .btn:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      padding-bottom: 80px;
+    }
+    .serif { font-family: 'Noto Serif KR', Georgia, serif; }
+    header {
+      background: var(--header-grad);
+      color: #FAF6EE;
+      padding: 22px 24px 20px;
+      border-bottom: 1.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
+    }
+    .header-inner {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .brand-eyebrow {
+      font-size: 0.76rem;
+      color: #F5DF98;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      margin-bottom: 3px;
+    }
+    .brand h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.25rem, 2vw, 1.65rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #FFFFFF;
+    }
+    .brand p {
+      font-size: 0.88rem;
+      color: #D8CFC0;
+      margin-top: 3px;
+    }
+    .header-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(229, 200, 120, 0.45);
+      background: rgba(255,255,255,0.08);
+      color: #FAF6EE;
+      cursor: pointer;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.15s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn:hover {
+      background: rgba(229, 200, 120, 0.22);
+      border-color: #F5DF98;
+    }
+    .btn-gold {
+      background: linear-gradient(135deg, #E5C878 0%, #B88B38 100%);
+      color: #16110B;
+      border: none;
+      font-weight: 800;
+    }
+    .btn-gold:hover {
+      filter: brightness(1.08);
+      background: linear-gradient(135deg, #E5C878 0%, #B88B38 100%);
+    }
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-input {
+      flex: 1;
+      min-width: 260px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 1.5px solid rgba(229, 200, 120, 0.45);
+      background: rgba(12, 9, 6, 0.78);
+      color: #fff;
+      font-size: 0.96rem;
+      outline: none;
+    }
+    .search-input:focus {
+      border-color: #F5DF98;
+      box-shadow: 0 0 0 3px rgba(229, 200, 120, 0.2);
+    }
+    .search-input::placeholder { color: #A69B8D; }
+    .quick-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      align-items: center;
+    }
+    .q-tag {
+      font-size: 0.76rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(229, 200, 120, 0.28);
+      color: #EAE0CE;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .q-tag:hover {
+      background: rgba(229, 200, 120, 0.22);
+      color: #FFF;
+      border-color: #F5DF98;
+    }
+    .tabs-container {
+      max-width: 1440px;
+      margin: 18px auto 0;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
+      gap: 8px;
+    }
+    .tab-btn {
+      padding: 10px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--text);
+      font-size: 0.82rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+    }
+    .tab-btn .cnt {
+      font-size: 0.73rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--accent);
+      color: #140F0A;
+      border-color: var(--accent);
+    }
+    .tab-btn.active .cnt, .tab-btn:hover .cnt {
+      background: rgba(0,0,0,0.18);
+      color: #140F0A;
+    }
+    .stats-bar {
+      max-width: 1440px;
+      margin: 16px auto 14px;
+      padding: 10px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .grid {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      padding: 18px 20px;
+      cursor: pointer;
+      transition: transform 0.16s, border-color 0.16s, background 0.16s, box-shadow 0.16s;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      background: var(--card-hover);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.28);
+    }
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .badge-id {
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 3px 9px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .badge-archive {
+      font-size: 0.76rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .card-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.06rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      color: var(--text);
+      line-height: 1.42;
+    }
+    .card-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 9px;
+    }
+    .card-scripture {
+      font-size: 0.81rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .card-summary {
+      font-size: 0.86rem;
+      color: var(--text);
+      opacity: 0.92;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 9px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+    .load-more-wrap {
+      text-align: center;
+      margin-top: 30px;
+    }
+    .load-more-btn {
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #E5C878 0%, #B88B38 100%);
+      color: #140F0A;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      font-size: 0.92rem;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+    .load-more-btn:hover { filter: brightness(1.08); }
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.78);
+      backdrop-filter: blur(5px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 100;
+    }
+    .modal-backdrop.open { display: flex; }
+    .modal {
+      background: var(--card);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      max-width: 880px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 28px 30px;
+      box-shadow: 0 28px 70px rgba(0,0,0,0.65);
+    }
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .modal-close {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 999px;
+      padding: 7px 14px;
+      cursor: pointer;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+    .modal-close:hover { background: var(--accent-soft); }
+    .modal-section {
+      background: var(--modal-sec);
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 16px 18px;
+      margin-top: 14px;
+    }
+    .modal-section h4 {
+      font-size: 0.88rem;
+      color: var(--gold);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .md-body h3, .md-body h4 {
+      color: var(--gold);
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.02rem;
+      margin: 16px 0 8px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--border);
+    }
+    .md-body h3:first-child { margin-top: 4px; }
+    .md-body p, .md-body li {
+      font-size: 0.93rem;
+      line-height: 1.75;
+      margin-bottom: 6px;
+    }
+    .md-body ul, .md-body ol {
+      padding-left: 20px;
+      margin-bottom: 10px;
+    }
+    .link-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 11px;
+      margin: 3px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .link-chip:hover {
+      background: var(--accent);
+      color: #140F0A;
+      transform: translateY(-1px);
+    }
+    .link-chip strong { color: var(--gold); }
+    .link-chip:hover strong { color: #140F0A; }
+    @media print {
+      header, .tabs-container, .stats-bar, .grid, .load-more-wrap, .modal-actions-bar, .modal-close { display: none !important; }
+      body { background: #fff; color: #000; padding: 0; }
+      .modal-backdrop { position: static; display: block !important; background: none; padding: 0; }
+      .modal { max-width: 100%; max-height: none; box-shadow: none; border: none; padding: 0; }
+    }
+  
+
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
+/* PC 와이드 환경(1025px 이상, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
+@media (min-width: 1025px) {
+  html:not(.mobile-mode), html:not(.mobile-mode) body {
+    min-width: 1440px !important;
+  }
+  html:not(.mobile-mode) body {
+    overflow-x: hidden !important;
+  }
+  html:not(.mobile-mode) header {
+    min-width: 1440px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .header-inner {
+    width: 1392px !important;
+    max-width: 1392px !important;
+    min-width: 1392px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .tabs-container,
+  html:not(.mobile-mode) .stats-bar,
+  html:not(.mobile-mode) .grid {
+    width: 1440px !important;
+    max-width: 1440px !important;
+    min-width: 1440px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    box-sizing: border-box !important;
+  }
+  html:not(.mobile-mode) .top-bar,
+  html:not(.mobile-mode) .header-actions,
+  html:not(.mobile-mode) .search-row,
+  html:not(.mobile-mode) .stats-bar {
+    flex-wrap: nowrap !important;
+  }
+  html:not(.mobile-mode) .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+  html:not(.mobile-mode) .header-actions {
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .brand h1 {
+    font-size: 1.42rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .brand p {
+    font-size: 0.81rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .header-actions .btn {
+    padding: 7px 11px !important;
+    font-size: 0.78rem !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .tabs-container {
+    grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  }
+  html:not(.mobile-mode) .tab-btn {
+    padding: 9px 10px !important;
+    font-size: 0.76rem !important;
+    gap: 4px !important;
+    white-space: nowrap !important;
+  }
+  html:not(.mobile-mode) .tab-btn .cnt {
+    font-size: 0.7rem !important;
+    padding: 2px 6px !important;
+    flex-shrink: 0 !important;
+  }
+  html:not(.mobile-mode) .grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_12ARCHIVES_MOBILE_MODE_START] === */
+@media (max-width: 1024px), (pointer: coarse) {
+  html.mobile-mode, html.mobile-mode body {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+    padding-bottom: 74px !important;
+  }
+  html.mobile-mode header,
+  html.mobile-mode .header-inner,
+  html.mobile-mode .tabs-container,
+  html.mobile-mode .stats-bar,
+  html.mobile-mode .grid {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+  html.mobile-mode .top-bar {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 10px !important;
+  }
+  html.mobile-mode .brand h1 {
+    font-size: 1.15rem !important;
+  }
+  html.mobile-mode .header-actions {
+    width: 100% !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+  html.mobile-mode .tabs-container {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    padding: 8px 12px !important;
+  }
+  html.mobile-mode .tabs-container::-webkit-scrollbar {
+    display: none !important;
+  }
+  html.mobile-mode .tab-btn {
+    flex-shrink: 0 !important;
+    white-space: nowrap !important;
+    border-radius: 16px !important;
+    font-size: 12px !important;
+    padding: 7px 12px !important;
+  }
+  html.mobile-mode .search-row {
+    flex-direction: column !important;
+    gap: 8px !important;
+  }
+  html.mobile-mode .grid {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+  html.mobile-mode .modal {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+    border-radius: 0 !important;
+    padding: 14px !important;
+    box-sizing: border-box !important;
+  }
+}
+/* === [KKUMDIDO_12ARCHIVES_MOBILE_MODE_END] === */
+</style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="top-bar">
+        <div class="brand">
+          <div class="brand-eyebrow">KKUMBAON DIGITAL LIBRARY · 12-DODECA LINK MASTER ARCHIVE</div>
+          <h1>꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 통합 마스터 뷰어</h1>
+          <p>개신교 무료 신학·성경·설교·목회 입체 연동 도서관 (인물·사건·비하인드·외경·지리·원어·주석·교리·교회사·난제·찬송·목회툴킷 12대 아카이브 통합)</p>
+        </div>
+        <div class="header-actions">
+          <a class="btn" href="figures_encyclopedia_preview.html" style="text-decoration:none;">제1관 인물가계도·350인</a>
+          <a class="btn" href="events_encyclopedia_preview.html" style="text-decoration:none;">제2관 사건대백과</a>
+          <a class="btn" href="behinds_encyclopedia_preview.html" style="text-decoration:none;">제3관 비하인드</a>
+          <button class="btn" onclick="cycleTheme()" id="themeBtn">🎨 테마: 양피지 라이트</button>
+          <a class="btn btn-gold" href="index.html">꿈디도 본관 대문</a>
+        </div>
+      </div>
+      <div class="search-row">
+        <input id="searchInput" class="search-input" type="text" placeholder="검색어 입력: 인물·사건·주제(아담, 다윗, 헤세드, 로고스, 텔 단 비문, 웨슬리, 사도신경, 평양대부흥, 장례), 성경구절(로마서 8, 시편 23, 창 22)..." oninput="resetAndRender()" />
+        <button class="btn" onclick="clearSearch()">✕ 초기화</button>
+      </div>
+      <div class="quick-tags">
+        <span style="font-size:0.76rem;color:#F5DF98;font-weight:700;margin-right:4px;">추천 검색:</span>
+        <span class="q-tag" onclick="quickSearch('로마서 8')">로마서 8장</span>
+        <span class="q-tag" onclick="quickSearch('시편 23')">시편 23편</span>
+        <span class="q-tag" onclick="quickSearch('웨슬리')">존 웨슬리</span>
+        <span class="q-tag" onclick="quickSearch('헤세드')">헤세드</span>
+        <span class="q-tag" onclick="quickSearch('로고스')">로고스</span>
+        <span class="q-tag" onclick="quickSearch('텔 단 비문')">텔 단 비문</span>
+        <span class="q-tag" onclick="quickSearch('수전절')">수전절</span>
+        <span class="q-tag" onclick="quickSearch('평양대부흥')">평양대부흥</span>
+        <span class="q-tag" onclick="quickSearch('사도신경')">사도신경·정통교리</span>
+        <span class="q-tag" onclick="quickSearch('나 같은 죄인 살리신')">나 같은 죄인 살리신</span>
+        <span class="q-tag" onclick="quickSearch('장례')">장례·심방·예식</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="tabs-container" id="tabsContainer"></div>
+
+  <div class="stats-bar">
+    <div id="resultCount">12대 아카이브 3,650 · 본문 완성 1,765 (순차 집필 중)</div>
+    <div>카드를 클릭하면 <strong>성화 도판 · 핵심 성구 · 요약 및 본문</strong>과 <strong>12각 입체 양방향 하이퍼링크</strong>가 열립니다.</div>
+  </div>
+
+  <div class="grid" id="cardGrid"></div>
+  <div class="load-more-wrap">
+    <button id="loadMoreBtn" class="load-more-btn" onclick="loadMore()">더 보기 (+100개)</button>
+  </div>
+
+  <div class="modal-backdrop" id="modalBackdrop" onclick="if(event.target===this) closeModal()">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <script>
+    let DATA = [];
+    const DATA_MAP = {};
+    window.addEventListener('keydown', function(e) {
+      if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 's' || e.key.toLowerCase() === 'u')) {
+        e.preventDefault();
+        return false;
+      }
+    });
+    const _KKUM_V_KEY = new TextEncoder().encode("KKUMBAON_KKUMDIDO_ARK_2026_SOLA_SCRIPTURA");
+    const _LOADED_V_ARCH = new Set();
+    async function _decompressXorBytes(encBuf) {
+      let rawBuf = encBuf;
+      const klen = _KKUM_V_KEY.length;
+      let decBuf = new Uint8Array(rawBuf.length);
+      for (let i = 0; i < rawBuf.length; i++) decBuf[i] = rawBuf[i] ^ _KKUM_V_KEY[i % klen];
+      if (!(decBuf[0] === 0x1f && decBuf[1] === 0x8b) && decBuf[0] !== 0x78) {
+        try {
+          const b64Str = new TextDecoder().decode(rawBuf).trim();
+          const binStr = atob(b64Str);
+          rawBuf = new Uint8Array(binStr.length);
+          for (let i = 0; i < binStr.length; i++) rawBuf[i] = binStr.charCodeAt(i);
+          decBuf = new Uint8Array(rawBuf.length);
+          for (let i = 0; i < rawBuf.length; i++) decBuf[i] = rawBuf[i] ^ _KKUM_V_KEY[i % klen];
+        } catch (_) {}
+      }
+      const fmt = (decBuf[0] === 0x78) ? 'deflate' : 'gzip';
+      const ds = new DecompressionStream(fmt);
+      const writer = ds.writable.getWriter();
+      writer.write(decBuf);
+      writer.close();
+      return JSON.parse(await new Response(ds.readable).text());
+    }
+    function _loadScriptB64Fallback(chunkName) {
+      return new Promise((resolve, reject) => {
+        if (window._KKUM_DB_B64 && window._KKUM_DB_B64[chunkName]) {
+          return resolve(window._KKUM_DB_B64[chunkName]);
+        }
+        const candidates = [
+          `./assets/db_chunks/${chunkName}.js?v=20261106_fix`,
+          `../assets/db_chunks/${chunkName}.js?v=20261106_fix`
+        ];
+        let idx = 0;
+        function tryNext() {
+          if (idx >= candidates.length) return reject(new Error('Script fallback failed'));
+          const s = document.createElement('script');
+          s.src = candidates[idx++];
+          s.onload = () => {
+            if (window._KKUM_DB_B64 && window._KKUM_DB_B64[chunkName]) resolve(window._KKUM_DB_B64[chunkName]);
+            else tryNext();
+          };
+          s.onerror = () => tryNext();
+          document.head.appendChild(s);
+        }
+        tryNext();
+      });
+    }
+    async function _fetchDecV(url) {
+      const m = url.match(/([a-zA-Z0-9_]+)\.dat/);
+      const chunkName = m ? m[1] : '';
+      if (window.location.protocol !== 'file:') {
+        try {
+          const res = await fetch(url);
+          if (res.ok) {
+            const encBuf = new Uint8Array(await res.arrayBuffer());
+            return await _decompressXorBytes(encBuf);
+          }
+        } catch (_) {}
+      }
+      if (chunkName) {
+        const b64 = await _loadScriptB64Fallback(chunkName);
+        const binStr = atob(b64);
+        const encBuf = new Uint8Array(binStr.length);
+        for (let i = 0; i < binStr.length; i++) encBuf[i] = binStr.charCodeAt(i);
+        return await _decompressXorBytes(encBuf);
+      }
+      throw new Error('Chunk fetch failed');
+    }
+    async function _ensureVDetail(archNo) {
+      const no = Number(archNo) || 1;
+      if (_LOADED_V_ARCH.has(no)) return;
+      try {
+        const pad = String(no).padStart(2, '0');
+        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261106_fix`);
+        DATA.forEach(m => { if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id]; });
+        _LOADED_V_ARCH.add(no);
+      } catch (_) {}
+    }
+
+    const ARCHIVES = [
+      { no: 0, label: "전체 아카이브", count: 3650 },
+      { no: 1, label: "제1관 인물대백과", count: 350 },
+      { no: 2, label: "제2관 사건대백과", count: 300 },
+      { no: 3, label: "제3관 비하인드스토리", count: 300 },
+      { no: 4, label: "제4관 외경에서 말하다", count: 300 },
+      { no: 5, label: "제5관 성경지리고고학", count: 300 },
+      { no: 6, label: "제6관 원어핵심단어사전", count: 300 },
+      { no: 7, label: "제7관 고전주석·웨슬리관", count: 300 },
+      { no: 8, label: "제8관 교리·이단변증백과", count: 300 },
+      { no: 9, label: "제9관 한국교회사대백과", count: 300 },
+      { no: 10, label: "제10관 성경난제해답백과", count: 300 },
+      { no: 11, label: "제11관 찬송가비하인드", count: 300 },
+      { no: 12, label: "제12관 목회실전툴킷", count: 300 }
+    ];
+
+    let currentArchive = 0;
+    let displayLimit = 100;
+    let filteredData = DATA;
+    let modalHistory = [];
+
+    function initTabs() {
+      const wrap = document.getElementById("tabsContainer");
+      wrap.innerHTML = ARCHIVES.map(a =>
+        `<button class="tab-btn ${a.no === currentArchive ? 'active' : ''}" onclick="selectArchive(${a.no})">
+          <span>${a.label}</span>
+          <span class="cnt">${a.count.toLocaleString()}</span>
+        </button>`
+      ).join("");
+    }
+
+    function selectArchive(no) {
+      currentArchive = no;
+      initTabs();
+      resetAndRender();
+    }
+
+    function quickSearch(q) {
+      document.getElementById("searchInput").value = q;
+      currentArchive = 0;
+      initTabs();
+      resetAndRender();
+    }
+
+    function clearSearch() {
+      document.getElementById("searchInput").value = "";
+      currentArchive = 0;
+      initTabs();
+      resetAndRender();
+    }
+
+    function resetAndRender() {
+      displayLimit = 100;
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const qNoSpace = q.replace(/\s+/g, '');
+      const matched = DATA.filter(item => {
+        if (currentArchive !== 0 && item.archive_no !== currentArchive) return false;
+        if (!q) return true;
+        const idL = (item.id || '').toLowerCase();
+        const titleL = (item.title || '').toLowerCase();
+        const subL = (item.subtitle || '').toLowerCase();
+        const scripL = (item.scripture || '').toLowerCase();
+        const sumL = (item.summary || '').toLowerCase();
+        const appL = (item.application || '').toLowerCase();
+        const catL = (item.category || '').toLowerCase();
+        const detL = (item.detail || '').toLowerCase();
+        if (
+          idL.includes(q) || titleL.includes(q) || subL.includes(q) ||
+          scripL.includes(q) || sumL.includes(q) || appL.includes(q) ||
+          catL.includes(q) || detL.includes(q)
+        ) return true;
+        if (qNoSpace.length >= 2) {
+          const titleNS = titleL.replace(/\s+/g, '');
+          const subNS = subL.replace(/\s+/g, '');
+          const sumNS = sumL.replace(/\s+/g, '');
+          if (titleNS.includes(qNoSpace) || subNS.includes(qNoSpace) || sumNS.includes(qNoSpace)) return true;
+          if (q === '평양대부흥' && titleL.includes('평양') && titleL.includes('대부흥')) return true;
+        }
+        return false;
+      });
+      if (q) {
+        matched.sort((a, b) => {
+          const score = (it) => {
+            const t = (it.title || '').toLowerCase();
+            const tNS = t.replace(/\s+/g, '');
+            const s = (it.subtitle || '').toLowerCase();
+            if (it.id.toLowerCase() === q) return 100;
+            if (t.includes(q) || (qNoSpace.length >= 2 && tNS.includes(qNoSpace))) return 80;
+            if (q === '평양대부흥' && t.includes('평양') && t.includes('대부흥')) return 85;
+            if (s.includes(q)) return 60;
+            if ((it.scripture || '').toLowerCase().includes(q)) return 40;
+            return 10;
+          };
+          return score(b) - score(a);
+        });
+      }
+      filteredData = matched;
+      renderGrid();
+    }
+
+    function renderGrid() {
+      const grid = document.getElementById("cardGrid");
+      const slice = filteredData.slice(0, displayLimit);
+      const completedInFilter = filteredData.filter(x => !x.isPreparing).length;
+      document.getElementById("resultCount").textContent = `12대 아카이브 ${filteredData.length.toLocaleString()}개 모듈 · 본문 완성 ${completedInFilter.toLocaleString()}건 (현재 ${slice.length.toLocaleString()}개 표시 중)`;
+      grid.innerHTML = slice.map(item => {
+        const bgScene = item.thumbImg || (item.scenes && item.scenes.length > 1 ? item.scenes[1].img : (item.masterImg || ""));
+        const mediaHtml = (item.portrait || bgScene) ? `
+          <div style="position:relative;width:100%;height:142px;border-radius:10px;overflow:hidden;margin-bottom:10px;border:1px solid var(--border);background:#0F0C09;">
+            ${bgScene ? `<img src="${bgScene}" alt="${escapeHtml(item.title)}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;opacity:${item.portrait ? '0.58' : '0.95'};" />` : ''}
+            ${item.portrait ? `<img src="${item.portrait}" alt="${escapeHtml(item.title)}" loading="lazy" style="position:absolute;bottom:0;right:10px;height:132px;object-fit:contain;filter:drop-shadow(0 6px 14px rgba(0,0,0,0.85));" />` : ''}
+            <span style="position:absolute;top:8px;left:8px;background:rgba(15,12,9,0.85);border:1px solid var(--gold);color:var(--gold);font-size:0.68rem;font-weight:800;padding:2px 8px;border-radius:999px;">성화 도판 수록</span>
+          </div>
+        ` : "";
+        const prepBadgeHtml = item.isPreparing
+          ? `<span style="font-size:0.71rem;padding:2px 8px;border-radius:999px;background:rgba(140,98,30,0.12);border:1px solid var(--border);color:var(--muted);font-weight:700;">본문 준비 중</span>`
+          : "";
+        return `
+        <div class="card" onclick="openModal('${item.id}')">
+          <div>
+            ${mediaHtml}
+            <div class="card-top">
+              <span class="badge-id">${escapeHtml(item.archive_name.replace(/\s*\(\d+.*\)$/, ''))}</span>
+              <div style="display:flex;align-items:center;gap:6px;">
+                ${prepBadgeHtml}
+                <span class="badge-archive">${escapeHtml(cleanCategoryLabel(item.category))}</span>
+              </div>
+            </div>
+            <div class="card-title">${escapeHtml(item.title)}</div>
+            <div class="card-sub">${escapeHtml(item.subtitle)}</div>
+            <div class="card-scripture">${escapeHtml(item.scripture)}</div>
+            <div class="card-summary">${escapeHtml(item.summary)}</div>
+          </div>
+          <div class="card-footer">
+            <span>12각 연동 ${(item.links || []).length}건</span>
+            <span style="color:var(--accent);font-weight:700;">${item.isPreparing ? '요약 보기 →' : '심층 전문 열람 →'}</span>
+          </div>
+        </div>
+      `}).join("");
+      document.getElementById("loadMoreBtn").style.display = filteredData.length > displayLimit ? "inline-block" : "none";
+    }
+
+    function loadMore() {
+      displayLimit += 100;
+      renderGrid();
+    }
+
+    function formatMarkdown(md) {
+      if (!md) return "";
+      let html = escapeHtml(md);
+      html = html.replace(/\b([PEBAGWCDKQHM]\d{3})\b/g, (m, code) => {
+        const target = DATA_MAP[code];
+        const tName = target ? target.title.replace(/^\[[A-Z]\d{3}\]\s*/, "").split("—")[0].split("(")[0].trim().slice(0, 16) : code;
+        return `<span class="link-chip" style="padding:1px 8px;font-size:0.78rem;margin:0 2px;" onclick="event.stopPropagation();openModal('${code}')"><strong>${escapeHtml(tName)}</strong></span>`;
+      });
+      html = html.replace(/\x2a\x2a([^*]+)\x2a\x2a/g, '<strong>$1</strong>').replace(/\x2a/g, '');
+      html = html.replace(/`([^`]+)`/g, '<code style="background:var(--accent-soft);color:var(--gold);padding:1px 5px;border-radius:4px;">$1</code>');
+      const lines = html.split("\n");
+      let out = [];
+      let inList = false;
+      for (let line of lines) {
+        let s = line.trim();
+        if (!s || s === "---") continue;
+        if (s.startsWith("■ ") || /^\x23{1,6}\s+/.test(s) || (/^\[.+\]$/.test(s) && s.length < 48)) {
+          if (inList) { out.push("</ul>"); inList = false; }
+          let cleanHdr = s.replace(/^\x23+\s*/, "");
+          out.push(`<h3>${cleanHdr}</h3>`);
+        } else if (s.startsWith("- ") || s.startsWith("* ") || s.startsWith("• ")) {
+          if (!inList) { out.push("<ul>"); inList = true; }
+          out.push(`<li>${s.slice(2)}</li>`);
+        } else if (/^\d+\.\s+/.test(s)) {
+          if (!inList) { out.push("<ul>"); inList = true; }
+          out.push(`<li>${s}</li>`);
+        } else {
+          if (inList) { out.push("</ul>"); inList = false; }
+          out.push(`<p>${s}</p>`);
+        }
+      }
+      if (inList) out.push("</ul>");
+      return out.join("\n");
+    }
+
+    async function openModal(id, fromBack = false) {
+      const item = DATA_MAP[id];
+      if (!item) return;
+      if (!item.isPreparing && !item.detail) { await _ensureVDetail(item.archive_no); }
+      if (!fromBack && modalHistory[modalHistory.length - 1] !== id) {
+        modalHistory.push(id);
+      }
+      const box = document.getElementById("modalContent");
+      const linkedChips = (item.links || []).map(lid => {
+        const t = DATA_MAP[lid];
+        if (!t) return "";
+        const shortTitle = t.title.split("—")[0].split("(")[0].trim().slice(0, 18);
+        const hallShort = (t.archive_name || '').split('·')[0].trim();
+        return `<button type="button" class="link-chip" onclick="openModal('${lid}')"><strong>${escapeHtml(hallShort)}</strong> <span>${escapeHtml(shortTitle)}</span></button>`;
+      }).join("");
+
+      const backBtnHtml = modalHistory.length > 1
+        ? `<button class="modal-close" style="margin-right:6px;" onclick="goBackModal()">← 이전 모듈</button>`
+        : "";
+
+      let artworkSectionHtml = "";
+      if (item.heroImg) {
+        artworkSectionHtml = `
+          <div class="modal-section">
+            <h4>성화 도판</h4>
+            <div style="border-radius:12px;overflow:hidden;border:1px solid var(--border);background:#0A0806;">
+              <img src="${item.heroImg}" alt="${escapeHtml(item.title)}" style="width:100%;max-height:420px;object-fit:cover;display:block;" />
+            </div>
+          </div>`;
+      } else if (item.scenes && item.scenes.length > 0) {
+        artworkSectionHtml = `
+          <div class="modal-section">
+            <h4>성화 도판 패키지 (${item.portrait ? '투명 초상 + ' : ''}장면 ${item.scenes.length}컷)</h4>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:8px;">
+              ${item.portrait ? `
+                <div style="background:var(--bg-sub);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+                  <img src="${item.portrait}" alt="${escapeHtml(item.title)}" style="width:100%;height:190px;object-fit:contain;display:block;background:radial-gradient(circle,#3E3020,#120E09);" />
+                  <div style="padding:8px 10px;font-size:0.8rem;color:var(--gold);font-weight:700;">관계도용 투명 초상</div>
+                </div>
+              ` : ''}
+              ${item.scenes.map(sc => `
+                <div style="background:var(--bg-sub);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+                  <img src="${sc.img}" alt="${escapeHtml(sc.title)}" style="width:100%;height:190px;object-fit:cover;display:block;" />
+                  <div style="padding:8px 10px;font-size:0.8rem;color:var(--text);">${escapeHtml(sc.title)}</div>
+                </div>
+              `).join("")}
+            </div>
+          </div>`;
+      }
+
+      const safetyBoxHtml = item.safetyNotice
+        ? `<div class="modal-section" style="border:1.5px solid #D97706;background:rgba(217,119,6,0.09);">
+            <div class="md-body" style="font-weight:600;">${formatMarkdown(item.safetyNotice)}</div>
+          </div>`
+        : "";
+
+      const detailSectionHtml = item.isPreparing
+        ? `<div class="modal-section" style="border-style:dashed;text-align:center;padding:20px 18px;color:var(--muted);">
+            <p style="font-weight:700;color:var(--text);margin-bottom:4px;">이 항목은 제목과 요약, 핵심 성구까지 정리된 상태입니다. 본문은 준비 중입니다.</p>
+            <p style="font-size:0.84rem;">아래 12각 입체 연동 그물망을 통해 이미 완성된 관련 인물·사건·원어·비하인드 본문을 먼저 열람하실 수 있습니다.</p>
+          </div>`
+        : (item.detail
+            ? `<div class="modal-section">
+                <h4>심층 강해 · 원문 주해 · 고증 · 목회 예식 전문</h4>
+                <div class="md-body">${formatMarkdown(item.detail)}</div>
+              </div>
+              <div class="modal-section">
+                <h4>설교 · 목회 · 현장 적용 가이드</h4>
+                <p>${formatMarkdown(item.application)}</p>
+              </div>`
+            : "");
+
+      const modalPrepBadge = item.isPreparing
+        ? `<span style="margin-left:8px;font-size:0.74rem;padding:2px 8px;border-radius:999px;background:rgba(140,98,30,0.12);border:1px solid var(--border);color:var(--muted);font-weight:700;">본문 준비 중</span>`
+        : "";
+
+      box.innerHTML = `
+        <div class="modal-header">
+          <div style="display:flex;align-items:center;gap:14px;">
+            ${item.portrait ? `<img src="${item.portrait}" alt="${escapeHtml(item.title)}" style="width:68px;height:68px;border-radius:50%;object-fit:contain;border:2px solid var(--gold);background:radial-gradient(circle,#3E3020,#120E09);flex-shrink:0;" />` : ''}
+            <div>
+              <span class="badge-id">${escapeHtml(item.archive_name.replace(/\s*\(\d+.*\)$/, ''))}</span>
+              <span class="badge-archive" style="margin-left:8px;">${escapeHtml(cleanCategoryLabel(item.category))}</span>
+              ${modalPrepBadge}
+              <h2 class="serif" style="margin-top:8px;font-size:1.38rem;line-height:1.4;">${escapeHtml(item.title)}</h2>
+              <p style="color:var(--muted);font-size:0.9rem;margin-top:4px;">${escapeHtml(item.subtitle)}</p>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;">
+            ${backBtnHtml}
+            <button class="modal-close" onclick="closeModal()">✕ 닫기</button>
+          </div>
+        </div>
+        ${safetyBoxHtml}
+        ${artworkSectionHtml}
+        <div class="modal-section">
+          <h4>핵심 성경 본문</h4>
+          <p style="font-weight:700;color:var(--accent);">${escapeHtml(item.scripture)}</p>
+        </div>
+        <div class="modal-section">
+          <h4>핵심 주해 · 역사 배경 · 내용 요약</h4>
+          <p>${formatMarkdown(item.summary)}</p>
+        </div>
+        ${detailSectionHtml}
+        ${linkedChips ? `
+        <div class="modal-section">
+          <h4>12각 입체 연동 그물망 (클릭하면 해당 모듈로 즉시 이동합니다)</h4>
+          <div style="margin-top:6px;">${linkedChips}</div>
+        </div>` : ""}
+        <div class="modal-actions-bar" style="margin-top:20px;display:flex;gap:10px;justify-content:flex-end;flex-wrap:wrap;">
+          <button class="btn" onclick="window.print()">A4 유인물 인쇄 / PDF</button>
+          <button class="btn" onclick="copyItem('${item.id}', false)">핵심 요약 복사</button>
+          ${item.isPreparing ? '' : `<button class="load-more-btn" onclick="copyItem('${item.id}', true)">심층 전문 포함 전체 복사</button>`}
+        </div>
+      `;
+      document.getElementById("modalBackdrop").classList.add("open");
+      box.scrollTop = 0;
+    }
+
+    function goBackModal() {
+      if (modalHistory.length > 1) {
+        modalHistory.pop();
+        const prevId = modalHistory[modalHistory.length - 1];
+        openModal(prevId, true);
+      }
+    }
+
+    function closeModal() {
+      modalHistory = [];
+      document.getElementById("modalBackdrop").classList.remove("open");
+    }
+
+    function copyItem(id, includeDetail) {
+      const item = DATA_MAP[id];
+      if (!item) return;
+      let text = `[${item.archive_name}] ${item.title}\n- 부제/출전: ${item.subtitle}\n- 성경본문: ${item.scripture}\n- 핵심요약: ${item.summary}\n- 목회적용: ${item.application}`;
+      if (includeDetail && item.detail) {
+        text += `\n\n[심층 전문]\n${item.detail}`;
+      }
+      navigator.clipboard.writeText(text).then(() => {
+        alert("설교·강의 인용 클립보드에 복사되었습니다!");
+      });
+    }
+
+    const THEMES = [
+      { key: "light", label: "🎨 테마: 양피지 라이트" },
+      { key: "gold", label: "🎨 테마: 꿈디도 골드" },
+      { key: "midnight", label: "🎨 테마: 심야 블루" }
+    ];
+    let themeIdx = 0;
+    function cycleTheme() {
+      themeIdx = (themeIdx + 1) % THEMES.length;
+      document.documentElement.setAttribute("data-theme", THEMES[themeIdx].key);
+      document.getElementById("themeBtn").textContent = THEMES[themeIdx].label;
+    }
+
+    function cleanCategoryLabel(raw) {
+      if (!raw) return "";
+      let s = String(raw);
+      s = s.replace(/^(?:\d+_)?\d+차\s*(?:오픈|확장판)?(?:\([^)]*\))?\s*·\s*/g, "");
+      s = s.replace(/^[^·()]*\)\s*·\s*/g, "");
+      s = s.replace(/\b\d+_[가-힣]+축\s*\(([^)]+)\)/g, "$1");
+      s = s.replace(/\(T\d+_[^)]*\)/g, "");
+      s = s.replace(/\bT\d+_/g, "");
+      s = s.replace(/\b\d+장_/g, "");
+      s = s.replace(/\b0?\d+_/g, "");
+      s = s.replace(/\d+선(?:_[가-힣A-Za-z0-9_]+)*/g, "");
+      s = s.replace(/^\((.+)\)$/, "$1");
+      return s.trim();
+    }
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function applyUrlParams() {
+      const params = new URLSearchParams(window.location.search);
+      const arch = parseInt(params.get("archive") || "0", 10);
+      const q = params.get("q") || "";
+      const id = params.get("id") || "";
+      if (arch >= 1 && arch <= 12) {
+        currentArchive = arch;
+      }
+      if (q) {
+        document.getElementById("searchInput").value = q;
+      }
+      initTabs();
+      resetAndRender();
+      if (id && DATA_MAP[id.toUpperCase()]) {
+        openModal(id.toUpperCase());
+      }
+    }
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
+
+    (async function() {
+      try {
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261106_fix');
+        DATA.forEach(item => {
+          item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
+          DATA_MAP[item.id] = item;
+        });
+      } catch (_) {}
+      applyUrlParams();
+    })();
+  </script>
+
+<!-- 꿈바온 편찬·출처 기준 (제1판) 소개·출처 모달 & 원어사전 v0.1 카드 -->
+<div id="kkumbaonInfoModalOverlay" style="display:none; position:fixed; inset:0; background:rgba(10,14,24,0.78); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div style="max-width:760px; width:100%; max-height:86vh; overflow-y:auto; background:var(--bg-pane, #1e293b); color:var(--text-primary, #f8fafc); border:1px solid var(--border-strong, #334155); border-radius:14px; padding:26px 28px; box-shadow:0 20px 45px rgba(0,0,0,0.65); line-height:1.75; font-size:14px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color, #334155); padding-bottom:12px; margin-bottom:16px;">
+      <h2 style="margin:0; font-size:18px; color:var(--accent-gold, #f59e0b);">📖 꿈바온 소개 · 출처 기준 (제1판)</h2>
+      <button onclick="document.getElementById('kkumbaonInfoModalOverlay').style.display='none'" style="background:transparent; border:1px solid var(--border-strong, #475569); color:var(--text-primary, #f8fafc); border-radius:8px; padding:4px 12px; cursor:pointer;">닫기 ✕</button>
+    </div>
+    <h3 style="margin:0 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">1. 꿈바온은 누구인가</h3>
+    <p style="margin:0 0 8px;">꿈바온은 성경을 깊이 읽도록 돕는 자료와 영상을 만드는 사역입니다. 기독교대한감리회 정회원 목사인 꿈바온 목사가 이끌고, 모든 자료는 무료로 엽니다.</p>
+    <p style="margin:0 0 8px;">꿈바온 사역팀은 자료를 모으고 정리하고 번역하는 데 AI 도구를 함께 씁니다. 성경 본문과 원어, 역사 자료는 아래에 밝힌 출처로 확인하고, 신학 내용은 꿈바온 목사가 책임집니다. 그림 가운데 성경 시대를 재구성한 것은 이해를 돕기 위한 상상도입니다.</p>
+    <p style="margin:0 0 12px;">잘못된 내용을 발견하시면 알려 주십시오. 확인하는 대로 바로잡겠습니다.</p>
+    <div style="padding:10px 14px; border-radius:8px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); margin-bottom:18px; font-size:13px;">
+      <strong>편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong><br>
+      <span style="font-size:12px; opacity:0.85;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+    </div>
+    <h3 style="margin:14px 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">2. 무엇을 근거로 하는가 (출처 목록)</h3>
+    <ul style="margin:0 0 0 18px; padding:0; line-height:1.8;">
+      <li><strong>성경 본문:</strong> 개역개정판(© 대한성서공회 1998, 장절을 밝히고 한 번에 두세 절까지만 인용) · World English Bible(WEB, 퍼블릭 도메인) · King James Version(1611)</li>
+      <li><strong>원어 본문·사전·문법:</strong> STEPBible.org (Tyndale House, Cambridge · CC BY 4.0 — TAHOT·TAGNT·TBESH(짧은 뜻만)·TBESG·TEHMC·TEGMC·TIPNR) · Open Scriptures Hebrew Bible (WLC 본문 퍼블릭 도메인, 형태소 CC BY 4.0) · SBL Greek New Testament (© 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0) · G. Abbott-Smith, <em>A Manual Greek Lexicon of the New Testament</em> (1922, 퍼블릭 도메인) · 한국어 번역·다듬기: 꿈바온 사역팀</li>
+      <li><strong>고전 원전 (저작권이 끝난 판에서 꿈바온 사역팀이 직접 옮김):</strong> 요세푸스 『유대 고대사』·『유대 전쟁사』(W. Whiston 영역, 1737) · 필론(C. D. Yonge 영역, 1854~1855) · 칼빈 『기독교 강요』와 주석(19세기 영역본) · 존 웨슬리 설교(T. Jackson 판, 1872), 『신약 주해』(1755), 『감리교 종교강령』(1784) · 찰스 스펄전 설교, 매튜 헨리 『성경 주석』(18세기 초) · 사도신경·니케아 신경 등 고대 신조, 벨직 신앙고백(1561), 웨스트민스터 신앙고백(1647) · 외경(KJV 외경 1611, L. Brenton 70인역 영역 1844) · 탈무드·미쉬나(책 이름과 장절만 밝히고 풀어 씀)</li>
+      <li><strong>역사·고고학·지도·그림:</strong> 공개 학계 자료 사실 확인 후 꿈바온 문장으로 작성 · 지형 바탕 지도: Natural Earth (퍼블릭 도메인) · 유적·풍경 사진: 저작자와 라이선스 표시(Wikimedia Commons 등) · 성경 시대 재구성 그림: 꿈바온의 AI 상상도</li>
+      <li><strong>찬송가:</strong> 장 번호, 곡명, 작사·작곡자, 연도만 적으며, 가사는 저작권이 끝난 원문만 짧게 인용합니다.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="kkumbaonOfficialFooterBar" style="padding:10px 18px; text-align:center; font-size:12px; color:var(--text-muted); background:var(--bg-sub); border-top:1px solid var(--border); line-height:1.5;">
+  <strong style="color:var(--text);">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
+  &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:rgba(154,107,31,0.12); color:var(--gold); border:1px solid var(--border-strong); border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
+  <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+</div>
+
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
+    <a href="index.html" class="kkumdido-mobile-tab-item" data-tab-action="home">
+      <span class="tab-icon">🏛️</span>
+      <span>홈·지도</span>
+    </a>
+    <button type="button" class="kkumdido-mobile-tab-item active" data-tab-action="halls">
+      <span class="tab-icon">📚</span>
+      <span>12대관</span>
+    </button>
+    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
+      <span class="tab-icon">📖</span>
+      <span>강해·주석</span>
+    </a>
+    <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
+      <span class="tab-icon">⛪</span>
+      <span>채플</span>
+    </a>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
+      <span class="tab-icon">🔍</span>
+      <span>검색</span>
+    </button>
+  </nav>
+
+  <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261107e"></script>
+</body>
+</html>

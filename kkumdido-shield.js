@@ -154,7 +154,7 @@
 
   function isPastorAdmin() {
     var c = getCard();
-    if (c && (c.cardNo === 'KKD-2026-6903' || (c.name && c.name.indexOf('한범수') !== -1))) return true;
+    if (c && (c.cardNo === 'KKD-2026-6903' || (c.name && c.name.indexOf('꿈바온') !== -1))) return true;
     try {
       if (sessionStorage.getItem('kkumdido_admin_unlocked') === '1') return true;
     } catch (e) {}
@@ -1058,18 +1058,22 @@
     '}',
     '.kkd-adm-table th {',
     '  position: sticky; top: 0; background: #211b14; color: #f3c969; font-weight: 800;',
-    '  padding: 10px 11px; border-bottom: 1px solid rgba(216,178,110,0.35); white-space: nowrap; z-index: 2;',
+    '  padding: 10px 12px; border-bottom: 1px solid rgba(216,178,110,0.35); white-space: nowrap; z-index: 2;',
+    '  font-size: 12.5px; letter-spacing: -0.01em;',
     '}',
     '.kkd-adm-table td {',
-    '  padding: 9px 11px; border-bottom: 1px solid rgba(255,255,255,0.07); color: #e8e0d0; vertical-align: middle;',
+    '  padding: 10px 12px; border-bottom: 1px solid rgba(255,255,255,0.07); color: #e8e0d0; vertical-align: middle;',
+    '  line-height: 1.45;',
     '}',
     '.kkd-adm-table tr:hover td { background: rgba(216,178,110,0.06); }',
     '.kkd-pill {',
-    '  display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;',
+    '  display: inline-flex; align-items: center; padding: 2.5px 8px; border-radius: 999px; font-size: 11px; font-weight: 700;',
     '  margin: 1px 2px; border: 1px solid rgba(243,201,105,0.35); background: rgba(243,201,105,0.1); color: #f3c969;',
+    '  white-space: nowrap; line-height: 1.35;',
     '}',
-    '.kkd-pill.green { border-color: rgba(52,211,153,0.45); background: rgba(52,211,153,0.12); color: #6ee7b7; }',
-    '.kkd-pill.blue { border-color: rgba(96,165,250,0.45); background: rgba(96,165,250,0.12); color: #93c5fd; }',
+    '.kkd-pill.green { border-color: rgba(52,211,153,0.45); background: rgba(52,211,153,0.12); color: #6ee7b7; white-space: nowrap; }',
+    '.kkd-pill.blue { border-color: rgba(96,165,250,0.45); background: rgba(96,165,250,0.12); color: #93c5fd; white-space: nowrap; }',
+    '.kkd-pill.gray { border-color: rgba(255,255,255,0.18); background: rgba(255,255,255,0.06); color: #e2dac9; white-space: nowrap; }',
     '.kkd-kb-btn {',
     '  padding: 5px 9px; border-radius: 7px; border: 1px solid rgba(243,201,105,0.5);',
     '  background: rgba(243,201,105,0.14); color: #ffd97d; font-size: 11.5px; font-weight: 800; cursor: pointer; white-space: nowrap;',
@@ -1464,7 +1468,7 @@
 
   function requestOpenAdminModal() {
     if (!isPastorAdmin()) {
-      var pin = window.prompt('👑 [한범수 목사님 전용 관제실]\n목사님 전용 4자리 비밀번호(PIN)를 입력해 주세요:', '');
+      var pin = window.prompt('👑 [꿈바온 목사님 전용 관제실]\n목사님 전용 4자리 비밀번호(PIN)를 입력해 주세요:', '');
       if (pin === null) return;
       if (String(pin).trim() !== ADMIN_PIN) {
         showToast('🔒 비밀번호가 일치하지 않습니다.');
@@ -1550,21 +1554,21 @@
         var kbCode = computeLicenseCode(m.name);
         return [
           '<tr>',
-          '  <td style="white-space:nowrap;"><div><b>' + escapeHtml(m.issuedAt || '-') + '</b></div><div style="font-size:11px; color:#9a8f7c;">최근: ' + escapeHtml((m.lastSeenAt || '').slice(5, 16)) + '</div></td>',
-          '  <td style="font-family:monospace; font-weight:800; color:#f3c969; white-space:nowrap;">' + escapeHtml(m.cardNo) + '</td>',
-          '  <td style="font-weight:800; color:#fff; white-space:nowrap;">' + escapeHtml(m.name) + '</td>',
-          '  <td>' + escapeHtml(m.church || '꿈바온 가족') + '</td>',
-          '  <td><span class="kkd-pill ' + (m.provider === '카카오' ? '' : 'blue') + '">' + escapeHtml(m.provider || 'Google') + '</span> <b style="color:#ffd97d;">' + escapeHtml(m.account || '-') + '</b></td>',
-          '  <td style="white-space:nowrap;">방문 <b>' + (m.visitCount || 1) + '</b>회 · 인쇄 <b>' + (m.printCount || 0) + '</b>회</td>',
-          '  <td><div>' + (pagesHtml || '<span style="color:#888;">-</span>') + '</div>' + (m.lastAction ? '<div style="font-size:11px; color:#a89a78; margin-top:3px;">최근활동: ' + escapeHtml(m.lastAction) + '</div>' : '') + '</td>',
-          '  <td style="white-space:nowrap;"><button type="button" class="kkd-kb-btn" data-kb-name="' + escapeHtml(m.name) + '" data-kb-code="' + escapeHtml(kbCode) + '">🔑 ' + escapeHtml(kbCode) + ' 복사</button></td>',
+          '  <td style="white-space:nowrap; width:135px;"><div><b>' + escapeHtml(m.issuedAt || '-') + '</b></div><div style="font-size:11px; color:#9a8f7c;">최근: ' + escapeHtml((m.lastSeenAt || '').slice(5, 16)) + '</div></td>',
+          '  <td style="font-family:monospace; font-weight:800; color:#f3c969; white-space:nowrap; width:125px;">' + escapeHtml(m.cardNo) + '</td>',
+          '  <td style="font-weight:800; color:#fff; white-space:nowrap; font-size:13.5px;">' + escapeHtml(m.name) + '</td>',
+          '  <td style="white-space:nowrap; color:#e0d8ca;">' + escapeHtml(m.church || '꿈바온 가족') + '</td>',
+          '  <td style="white-space:nowrap;"><span class="kkd-pill ' + (m.provider === '카카오' ? '' : 'blue') + '">' + escapeHtml(m.provider || 'Google') + '</span> <b style="color:#ffd97d;">' + escapeHtml(m.account || '-') + '</b></td>',
+          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (m.visitCount || 1) + '회</span><div style="font-size:11px; color:#a89a78;">인쇄 ' + (m.printCount || 0) + '회</div></td>',
+          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '<span style="color:#888;">-</span>') + '</div>' + (m.lastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:3px;">최근활동: ' + escapeHtml(m.lastAction) + '</div>' : '') + '</td>',
+          '  <td style="white-space:nowrap; width:110px; text-align:center;"><button type="button" class="kkd-kb-btn" data-kb-name="' + escapeHtml(m.name) + '" data-kb-code="' + escapeHtml(kbCode) + '">🔑 ' + escapeHtml(kbCode) + ' 복사</button></td>',
           '</tr>'
         ].join('');
       }).join('');
       wrap.innerHTML = [
         '<table class="kkd-adm-table">',
         '  <thead><tr>',
-        '    <th>가입일 / 최근방문</th><th>이용증 번호</th><th>성함 · 직분</th><th>소속 교회</th><th>이메일 / 로그인 계정</th><th>이용 횟수</th><th>다녀간 스튜디오 · 사용 기록</th><th>1:1 정식판 코드(KB)</th>',
+        '    <th style="white-space:nowrap; width:135px;">가입일 / 최근방문</th><th style="white-space:nowrap; width:125px;">이용증 번호</th><th style="white-space:nowrap;">성함 · 직분</th><th style="white-space:nowrap;">소속 교회</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap; width:110px; text-align:center;">이용 횟수</th><th>다녀간 스튜디오 · 사용 기록</th><th style="white-space:nowrap; width:110px; text-align:center;">1:1 정식판 코드</th>',
         '  </tr></thead>',
         '  <tbody>' + rowsM + '</tbody>',
         '</table>'
@@ -1603,23 +1607,48 @@
         var pagesHtml = (v.pagesVisited || []).map(function (p) {
           return '<span class="kkd-pill">' + escapeHtml(p) + '</span>';
         }).join(' ');
+
+        // Clean lastAction if it duplicates page name
+        var cleanLastAction = v.lastAction || '';
+        if (cleanLastAction) {
+          cleanLastAction = cleanLastAction.replace(/^([^·]+)·\s*\1\s*/, '$1 ');
+        }
+
+        // Device Icon & Badge
+        var dev = v.device || '웹 브라우저';
+        var devIcon = '💻';
+        if (/Android/i.test(dev)) devIcon = '📱';
+        else if (/iPhone/i.test(dev)) devIcon = '🍎';
+        else if (/iPad|태블릿/i.test(dev)) devIcon = '📟';
+        else if (/Mac/i.test(dev)) devIcon = '🍏';
+        else if (/Windows/i.test(dev)) devIcon = '🪟';
+
+        // Visitor column: Member gets Name + Church/Account, Visitor gets Badge + ID
+        var identityHtml = '';
+        if (isMem) {
+          identityHtml = '<div style="font-weight:800; color:#fff; font-size:13.5px; white-space:nowrap;">' + escapeHtml(v.name) + '</div>' +
+            '<div style="font-size:11.5px; color:#ffd97d; margin-top:2px; white-space:nowrap;">' + escapeHtml(v.church || '소속 미지정') + ' · ' + escapeHtml(v.account || '-') + '</div>' +
+            '<div style="font-size:10.5px; color:#9a8f7c; font-family:monospace; margin-top:1px; white-space:nowrap;">' + escapeHtml(v.cardNo) + '</div>';
+        } else {
+          identityHtml = '<div style="font-weight:700; color:#e0d8ca; font-size:13px; white-space:nowrap;">비로그인 방문자</div>' +
+            '<div style="font-size:11px; color:#a89a78; font-family:monospace; margin-top:2px; white-space:nowrap;">' + escapeHtml(v.visitorId || '-') + '</div>';
+        }
+
         return [
           '<tr>',
-          '  <td style="white-space:nowrap;"><div><b>' + escapeHtml((v.lastSeenAt || '').slice(0, 16)) + '</b></div><div style="font-size:11px; color:#9a8f7c;">최초: ' + escapeHtml((v.firstSeenAt || '').slice(0, 16)) + '</div></td>',
-          '  <td>' + (isMem ? '<span class="kkd-pill green">🪪 이용증 회원</span>' : '<span class="kkd-pill">👣 일반 방문</span>') + '</td>',
-          '  <td style="font-weight:800; color:#fff;">' + escapeHtml(v.name || '비로그인 방문자') + '<div style="font-size:11px; color:#9a8f7c; font-family:monospace;">' + escapeHtml(v.cardNo || v.visitorId) + '</div></td>',
-          '  <td>' + escapeHtml(v.church || '-') + '</td>',
-          '  <td>' + escapeHtml(v.account || '-') + '</td>',
-          '  <td style="white-space:nowrap;">' + escapeHtml(v.device || '-') + '</td>',
-          '  <td style="white-space:nowrap;">방문 <b>' + (v.visitCount || 1) + '</b>회 · 인쇄 <b>' + (v.printCount || 0) + '</b>회</td>',
-          '  <td><div>' + (pagesHtml || '-') + '</div>' + (v.lastAction ? '<div style="font-size:11px; color:#a89a78; margin-top:3px;">최근: ' + escapeHtml(v.lastAction) + '</div>' : '') + '</td>',
+          '  <td style="white-space:nowrap; width:135px;"><div><b>' + escapeHtml((v.lastSeenAt || '').slice(0, 16)) + '</b></div><div style="font-size:11px; color:#9a8f7c;">최초: ' + escapeHtml((v.firstSeenAt || '').slice(0, 16)) + '</div></td>',
+          '  <td style="white-space:nowrap; width:95px; text-align:center;">' + (isMem ? '<span class="kkd-pill green">🪪 이용증 회원</span>' : '<span class="kkd-pill gray">👣 일반 방문</span>') + '</td>',
+          '  <td style="white-space:nowrap;">' + identityHtml + '</td>',
+          '  <td style="white-space:nowrap; width:130px;"><span class="kkd-pill gray">' + devIcon + ' ' + escapeHtml(dev) + '</span></td>',
+          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (v.visitCount || 1) + '회</span>' + (v.printCount ? '<div style="font-size:11px; color:#6ee7b7;">인쇄 ' + v.printCount + '회</div>' : '<div style="font-size:11px; color:#888;">인쇄 0회</div>') + '</td>',
+          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '-') + '</div>' + (cleanLastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:4px;">최근: ' + escapeHtml(cleanLastAction) + '</div>' : '') + '</td>',
           '</tr>'
         ].join('');
       }).join('');
       wrap.innerHTML = [
         '<table class="kkd-adm-table">',
         '  <thead><tr>',
-        '    <th>최근 방문 / 최초 방문</th><th>구분</th><th>성함 / 방문자ID</th><th>소속 교회</th><th>이메일 / 계정</th><th>접속 기기</th><th>누적 활동</th><th>다녀간 페이지 · 스튜디오 여정</th>',
+        '    <th style="white-space:nowrap; width:135px;">최근 방문 / 최초</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">방문자 정보 (성함·ID / 소속)</th><th style="white-space:nowrap; width:130px;">접속 기기</th><th style="white-space:nowrap; width:110px; text-align:center;">누적 활동</th><th>다녀간 페이지 · 스튜디오 여정</th>',
         '  </tr></thead>',
         '  <tbody>' + rowsV + '</tbody>',
         '</table>'
@@ -1638,27 +1667,26 @@
       return;
     }
     var rowsL = filteredL.map(function (l) {
-      var badge = '<span class="kkd-pill">👣 방문</span>';
+      var badge = '<span class="kkd-pill gray">👣 일반 방문</span>';
       if (l.type === 'signup') badge = '<span class="kkd-pill green">🪪 이용증 발급</span>';
       else if (l.type === 'studio') badge = '<span class="kkd-pill blue">🧰 스튜디오 사용</span>';
       else if (l.type === 'print') badge = '<span class="kkd-pill">🖨️ 인쇄 실행</span>';
       else if (l.type === 'pdf') badge = '<span class="kkd-pill">📕 PDF 열람</span>';
       return [
         '<tr>',
-        '  <td style="white-space:nowrap; font-family:monospace; color:#d8c390;">' + escapeHtml(l.ts || '-') + '</td>',
-        '  <td style="white-space:nowrap;">' + badge + '</td>',
-        '  <td style="font-weight:800; color:#fff;">' + escapeHtml(l.name || '비로그인 방문자') + '</td>',
-        '  <td>' + escapeHtml(l.church || '-') + '</td>',
-        '  <td>' + escapeHtml(l.account || '-') + '</td>',
-        '  <td><span class="kkd-pill">' + escapeHtml(l.pageTitle || '-') + '</span></td>',
-        '  <td>' + escapeHtml(l.detail || '-') + ' <span style="font-size:11px; color:#8c867a;">(' + escapeHtml(l.device || '') + ')</span></td>',
+        '  <td style="white-space:nowrap; font-family:monospace; color:#d8c390; width:135px;">' + escapeHtml(l.ts || '-') + '</td>',
+        '  <td style="white-space:nowrap; width:95px; text-align:center;">' + badge + '</td>',
+        '  <td style="font-weight:800; color:#fff; white-space:nowrap;">' + escapeHtml(l.name || '비로그인 방문자') + (l.church && l.church !== '-' ? '<div style="font-size:11px; color:#a89a78; font-weight:normal;">' + escapeHtml(l.church) + '</div>' : '') + '</td>',
+        '  <td style="white-space:nowrap; color:#ffd97d;">' + escapeHtml(l.account || '-') + '</td>',
+        '  <td style="white-space:nowrap;"><span class="kkd-pill">' + escapeHtml(l.pageTitle || '-') + '</span></td>',
+        '  <td>' + escapeHtml(l.detail || '-') + (l.device ? ' <span style="font-size:11px; color:#8c867a; white-space:nowrap;">(' + escapeHtml(l.device) + ')</span>' : '') + '</td>',
         '</tr>'
       ].join('');
     }).join('');
     wrap.innerHTML = [
       '<table class="kkd-adm-table">',
       '  <thead><tr>',
-      '    <th>일시</th><th>구분</th><th>성함 · 직분</th><th>소속 교회</th><th>이메일 / 계정</th><th>머문 공간(스튜디오)</th><th>상세 사용 내용</th>',
+      '    <th style="white-space:nowrap; width:135px;">일시</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">성함 · 직분 / 소속</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap;">머문 공간 (스튜디오)</th><th>상세 사용 내용</th>',
       '  </tr></thead>',
       '  <tbody>' + rowsL + '</tbody>',
       '</table>'

@@ -72,6 +72,7 @@
   }
 
   function ensureHeaderQuickSwitch() {
+    if (!detectIsMobileDevice()) return;
     if (document.getElementById('kkumdidoHeaderModeBtn')) return;
 
     // 1) 도서관 본관 (.entrance-nav)
