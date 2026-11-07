@@ -3591,12 +3591,15 @@ html, body {
   });
 
   const bootEl = document.getElementById('chapel-boot');
+  let hasEnteredChapel = false;
   function enterChapelWithAudio(withSound) {
     if (bootNameInput && bootNameInput.value.trim()) {
       applyMyCustomChange({ name: bootNameInput.value.trim() });
     }
+    hasEnteredChapel = true;
     bootEl.classList.add('is-hidden');
     startAudioSystem(withSound);
+    if (typeof broadcastMyState === 'function') broadcastMyState();
   }
   document.getElementById('btn-enter-sound').addEventListener('click', () => enterChapelWithAudio(true));
   document.getElementById('btn-enter-mute').addEventListener('click', () => enterChapelWithAudio(false));
@@ -4136,7 +4139,16 @@ html, body {
    * 12-B. 실시간 멀티플레이어 동기화 (MQTT WebSocket + BroadcastChannel)
    *       & 예배당 상주 지킴이(AI 동행 순례자) ON/OFF 제어
    * ============================================================== */
-  const mySessionId = 'user_' + Math.random().toString(36).slice(2, 10);
+  let mySessionId = sessionStorage.getItem('kkumbaon_saeoreum_sid');
+  if (!mySessionId) {
+    mySessionId = 'user_' + Math.random().toString(36).slice(2, 10);
+    try { sessionStorage.setItem('kkumbaon_saeoreum_sid', mySessionId); } catch (_) {}
+  }
+  let myDeviceId = localStorage.getItem('kkumbaon_chapel_device_id');
+  if (!myDeviceId) {
+    myDeviceId = 'dev_' + Math.random().toString(36).slice(2, 11);
+    try { localStorage.setItem('kkumbaon_chapel_device_id', myDeviceId); } catch (_) {}
+  }
   let currentRoom = '갈릴리 호숫가';
   let showNpcs = true;
   const MAX_VISIBLE_PEERS = 40; // 한 채플 채널당 최대 3D 렌더링 인원 제한 (대규모 동시접속 시 렉 0%)
@@ -4178,6 +4190,7 @@ html, body {
 
   function handleIncomingPacket(data) {
     if (!data || data.sid === mySessionId) return;
+    if (data.did && data.did === myDeviceId) return; // 동일 기기/브라우저 중복 탭 유령 아바타 차단
     let peer = remotePeers.get(data.sid);
 
     if (data.type === 'leave') {
@@ -4310,8 +4323,10 @@ html, body {
   }
 
   function broadcastMyState(action = null, extraMsg = null, prayerId = null) {
+    if (!hasEnteredChapel) return;
     const packet = {
       sid: mySessionId,
+      did: myDeviceId,
       name: myCustom.name,
       custom: myCustom,
       room: currentRoom,
