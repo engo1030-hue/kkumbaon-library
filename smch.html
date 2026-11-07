@@ -88,22 +88,56 @@
   #canvas-wrap {
     position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1;
     cursor: grab;
+    touch-action: none;
+    -webkit-user-drag: none;
   }
   #canvas-wrap:active { cursor: grabbing; }
+  #canvas-wrap canvas {
+    display: block; width: 100%; height: 100%;
+    touch-action: none;
+  }
+
+  /* 화면 좌·우 시점 빠른 회전 플로팅 버튼 */
+  .cam-pan-btn {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    z-index: 22; width: 38px; height: 68px; border-radius: 10px;
+    border: 1px solid rgba(212, 168, 83, 0.45);
+    background: rgba(18, 14, 11, 0.72); color: #ffe6a3;
+    font-size: 18px; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    transition: background 0.18s ease, transform 0.18s ease, border-color 0.18s ease;
+    touch-action: manipulation;
+  }
+  .cam-pan-btn:hover {
+    background: rgba(45, 35, 24, 0.92); border-color: #ffd875; color: #fff;
+  }
+  .cam-pan-btn:active { transform: translateY(-50%) scale(0.95); }
+  .cam-pan-left { left: 10px; }
+  .cam-pan-right { right: 10px; }
+  @media (max-width: 680px) {
+    .cam-pan-btn { width: 32px; height: 54px; font-size: 15px; }
+    .cam-pan-left { left: 6px; }
+    .cam-pan-right { right: 6px; }
+  }
 
   /* 3. 아바타 이름표 오버레이 */
   #labels-layer {
     position: fixed; inset: 0; pointer-events: none; z-index: 10; overflow: hidden;
+    touch-action: none;
   }
   .avatar-label {
     position: absolute; transform: translate(-50%, -100%);
     padding: 4px 10px; border-radius: 6px;
     background: rgba(24, 19, 15, 0.88); border: 1px solid rgba(212, 168, 83, 0.48);
     color: #fbf6ec; font-size: 13px; font-weight: 700; white-space: nowrap;
-    backdrop-filter: blur(6px); pointer-events: auto; cursor: pointer;
+    pointer-events: auto; cursor: pointer;
+    touch-action: none;
     transition: opacity 0.25s ease, transform 0.2s ease;
     display: flex; align-items: center; gap: 6px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    will-change: left, top;
   }
   .avatar-label:hover {
     background: rgba(45, 35, 25, 0.96); border-color: var(--gold);
@@ -124,23 +158,29 @@
     to { opacity: 1; transform: translate(-50%, 0) scale(1); }
   }
 
-  /* 4. 상단 홈페이지형 가로 헤더 바 (타원형 캡슐 배제 · 1줄 가로 스크롤 정렬 · 겹침 원천 차단) */
+  /* 4. 상단 홈페이지형 가로 헤더 바 (오직 핵심 5대 버튼만 깔끔하게 1줄 배치!) */
   .top-bar {
     position: fixed; top: 0; left: 0; right: 0;
-    min-height: 44px; padding: max(6px, env(safe-area-inset-top)) 14px 6px 14px;
+    min-height: 44px; padding: max(6px, env(safe-area-inset-top)) 12px 6px 12px;
     background: rgba(18, 14, 11, 0.94);
     border-bottom: 1px solid rgba(212, 168, 83, 0.42);
     z-index: 30; display: flex; align-items: center; justify-content: space-between;
-    gap: 8px; pointer-events: auto; flex-wrap: nowrap !important;
+    gap: 6px; pointer-events: auto; flex-wrap: nowrap !important;
     overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     box-shadow: 0 4px 18px rgba(0,0,0,0.45);
   }
   .top-bar::-webkit-scrollbar { display: none; }
   .top-left, .top-right {
     display: flex; align-items: center; gap: 6px; pointer-events: auto; flex-wrap: nowrap !important; flex-shrink: 0;
   }
+  /* 상단바에서 불필요한 자동 삽입 버튼(꿈디도 홈, PC버전 스위치) 원천 숨김 */
+  #btn-chapel-home-mobile,
+  #kkumdidoHeaderModeBtn {
+    display: none !important;
+  }
   .hud-pill {
-    display: inline-flex; align-items: center; gap: 6px;
+    display: inline-flex; align-items: center; gap: 5px;
     padding: 6px 11px; border-radius: 6px;
     background: rgba(36, 28, 21, 0.92); border: 1px solid rgba(212, 168, 83, 0.38);
     color: #f6efe2; font-size: 13px; font-weight: 700;
@@ -172,7 +212,7 @@
     z-index: 25; padding: 7px 16px; border-radius: 6px;
     background: rgba(20, 15, 11, 0.94); border: 1px solid rgba(212, 168, 83, 0.48);
     color: #fff6e5; font-family: var(--serif); font-size: 13.5px; font-weight: 700;
-    backdrop-filter: blur(10px); pointer-events: none;
+    pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease; text-align: center; max-width: 92vw;
     box-shadow: 0 8px 24px rgba(0,0,0,0.4);
   }
@@ -180,17 +220,41 @@
     opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(-6px);
   }
 
-  /* 5. 하단 컨트롤 독 (홈페이지 가로 툴바 스타일) */
+  /* 5-A. 하단 의자 착석 바로 위에 놓이는 보조 환경·시점 컨트롤 바 */
+  .bottom-sub-dock {
+    position: fixed; bottom: calc(max(10px, env(safe-area-inset-bottom)) + 52px); left: 50%;
+    transform: translateX(-50%); z-index: 30;
+    display: flex; align-items: center; gap: 5px; padding: 5px 8px;
+    border-radius: 8px; background: rgba(22, 17, 13, 0.92);
+    border: 1px solid rgba(212, 168, 83, 0.36);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+    max-width: 96vw; overflow-x: auto; overflow-y: hidden;
+    scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap !important;
+    transition: opacity 0.25s ease;
+  }
+  .bottom-sub-dock::-webkit-scrollbar { display: none; }
+  .bottom-sub-dock .hud-pill {
+    padding: 5px 10px; font-size: 12px; border-radius: 5px;
+    background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 168, 83, 0.26);
+  }
+  .bottom-sub-dock .hud-pill:hover {
+    background: rgba(212, 168, 83, 0.2); border-color: rgba(212, 168, 83, 0.55);
+  }
+
+  /* 5-B. 하단 메인 컨트롤 독 (의자 착석 · 무릎 기도 · 아바타 · 말씀 · 등불 · 설교찬양) */
   .bottom-dock {
     position: fixed; bottom: max(10px, env(safe-area-inset-bottom)); left: 50%;
     transform: translateX(-50%); z-index: 30;
     display: flex; align-items: center; gap: 6px; padding: 6px 8px;
-    border-radius: 8px; background: rgba(18, 14, 11, 0.94);
+    border-radius: 8px; background: rgba(18, 14, 11, 0.95);
     border: 1px solid rgba(212, 168, 83, 0.45);
-    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
-    max-width: 96vw; overflow-x: auto;
+    max-width: 96vw; overflow-x: auto; scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    transition: opacity 0.25s ease;
   }
+  .bottom-dock::-webkit-scrollbar { display: none; }
   .dock-btn {
     display: flex; align-items: center; gap: 6px;
     padding: 8px 14px; border-radius: 6px; border: 1px solid rgba(212, 168, 83, 0.2);
@@ -207,6 +271,24 @@
   .dock-btn .shortcut {
     font-size: 11px; font-weight: 700; color: #d8cbb8; padding: 1px 5px;
     border-radius: 4px; background: rgba(255,255,255,0.1);
+  }
+
+  /* 야외 정원 꿈디도(꿈바온 디지털 도서관) 출입문 3D 포털 배지 */
+  .garden-portal-badge {
+    position: absolute; transform: translate(-50%, -100%);
+    padding: 6px 13px; border-radius: 999px;
+    background: linear-gradient(135deg, rgba(28, 21, 14, 0.94) 0%, rgba(48, 35, 21, 0.96) 100%);
+    border: 1.5px solid #ffd269;
+    color: #fff3c4; font-size: 12.5px; font-weight: 800; white-space: nowrap;
+    pointer-events: auto; cursor: pointer;
+    touch-action: none;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6), 0 0 12px rgba(245, 207, 118, 0.35);
+    display: none; align-items: center; gap: 6px;
+    z-index: 12; will-change: left, top;
+  }
+  .garden-portal-badge:hover {
+    background: linear-gradient(135deg, #5c4222 0%, #3b2914 100%);
+    color: #ffffff; border-color: #ffe8a3;
   }
 
   /* 조작 힌트: 화면 가림 방지를 위해 기본 숨김 */
@@ -428,9 +510,9 @@
     box-shadow: 0 0 0 2px rgba(212, 168, 83, 0.65);
   }
 
-  /* 9. 좌측 하단 실시간 채팅 & 액션 바 (홈페이지 가로 게시판 탭 스타일 · 초기 접힘) */
+  /* 9. 좌측 하단 실시간 채팅 & 액션 바 (하단 2단 독 바로 위에 깔끔하게 위치 · 초기 접힘) */
   .chapel-chat-stack {
-    position: fixed; left: 16px; bottom: 72px;
+    position: fixed; left: 16px; bottom: 106px;
     width: 356px; max-width: calc(100vw - 32px);
     z-index: 32; display: flex; flex-direction: column; gap: 5px;
     pointer-events: none; transition: opacity 0.3s ease;
@@ -568,52 +650,59 @@
     .dock-btn span.label-text { font-size: 11px; }
     .dock-btn .shortcut { display: none; }
     .control-hint { display: none; }
-    .floating-panel { right: 10px; left: 10px; width: auto; bottom: 56px; border-radius: 8px; }
-    .chapel-chat-stack { left: 8px; right: 8px; width: auto; bottom: 50px; }
+    .floating-panel { right: 10px; left: 10px; width: auto; bottom: 88px; border-radius: 8px; }
+    .chapel-chat-stack { left: 8px; right: 8px; width: auto; bottom: 82px; }
   }
 
-
-
-  /* 전면 3D 설교 스크린 플로팅 터치 배지 */
+  /* 전면 3D 설교 스크린 플로팅 배지: 상단바 바로 아래 2줄째처럼 겹쳐 보이는 현상 원천 차단 (상단바 '📺 전면 설교화면 켜기' 버튼과 3D 스크린 직접 터치로 일원화) */
   .screen-3d-badge {
-    position: absolute; transform: translate(-50%, -50%);
-    padding: 6px 13px; border-radius: 6px;
-    background: linear-gradient(135deg, rgba(22, 38, 76, 0.94) 0%, rgba(14, 22, 44, 0.96) 100%);
-    border: 1.5px solid rgba(130, 175, 255, 0.85);
-    color: #ffffff; font-size: 12.5px; font-weight: 800; white-space: nowrap;
-    pointer-events: auto; cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.55), 0 0 14px rgba(88, 145, 255, 0.45);
-    display: flex; align-items: center; gap: 6px;
-    transition: transform 0.18s ease, border-color 0.18s ease;
-    z-index: 12;
-  }
-  .screen-3d-badge:hover {
-    transform: translate(-50%, -50%) scale(1.06);
-    border-color: #ffd875;
-  }
-  .screen-3d-badge .pulse-rec {
-    width: 8px; height: 8px; border-radius: 50%; background: #ff3b30;
-    box-shadow: 0 0 8px #ff3b30; animation: breathe 1.4s infinite;
+    display: none !important;
   }
 
-  /* 유튜브 설교 모달: 전체창 모드 & 예배당 상단 미니화면(PIP) 동시 지원 */
-  #modal-sermon-video.is-pip-mode {
+  /* 유튜브 설교 플레이어: 기본값 = 예배당이 그대로 보이는 상단 플로팅 모니터 (전체화면 가림 방지!) */
+  #modal-sermon-video {
     background: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     pointer-events: none !important;
     align-items: flex-start !important;
+    justify-content: center !important;
+    padding: 52px 12px 12px 12px !important;
+  }
+  #modal-sermon-video .sermon-player-card {
+    width: 520px !important;
+    max-width: calc(100vw - 20px) !important;
+    pointer-events: auto !important;
+    box-shadow: 0 18px 50px rgba(0,0,0,0.82) !important;
+    border: 2px solid rgba(245, 207, 118, 0.85) !important;
+    transition: width 0.22s ease, transform 0.22s ease;
+  }
+  /* 미니화면(우측 상단 고정) 모드 */
+  #modal-sermon-video.is-pip-mode {
     justify-content: flex-end !important;
-    padding: 54px 14px 14px 14px !important;
   }
   #modal-sermon-video.is-pip-mode .sermon-player-card {
-    width: 360px !important;
-    max-width: calc(100vw - 24px) !important;
-    pointer-events: auto !important;
-    box-shadow: 0 16px 42px rgba(0,0,0,0.75) !important;
-    border: 1.5px solid rgba(245, 207, 118, 0.75) !important;
+    width: 330px !important;
+    max-width: calc(100vw - 20px) !important;
   }
   #modal-sermon-video.is-pip-mode .sermon-playlist-bar {
+    display: none !important;
+  }
+  /* 소리만 듣기(영상 프레임 접기) 모드 */
+  #modal-sermon-video.is-audio-only-mode {
+    justify-content: center !important;
+  }
+  #modal-sermon-video.is-audio-only-mode .sermon-player-card {
+    width: 460px !important;
+    max-width: calc(100vw - 20px) !important;
+  }
+  #modal-sermon-video.is-audio-only-mode .sermon-video-frame-wrap {
+    height: 1px !important;
+    padding-top: 0 !important;
+    overflow: hidden !important;
+    opacity: 0.01 !important;
+  }
+  #modal-sermon-video.is-audio-only-mode .sermon-playlist-bar {
     display: none !important;
   }
   .sermon-chip-btn {
@@ -627,43 +716,68 @@
   }
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
 html, body {
-  min-width: 1440px !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100vw !important;
+  overflow: hidden !important;
 }
 .top-bar,
 .top-left,
 .top-right {
   flex-wrap: nowrap !important;
 }
-
-}
-
-@media (max-width: 1024px), (pointer: coarse) {
-  html, body, .header {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100vw !important;
-    overflow-x: hidden !important;
-  }
-  .hero-wrap, .theme-nav-wrap, .timeline-nav-wrap, .filter-bar-wrap, .compare-bar-wrap, .grid-wrap, .axis-tabs, .main-container, .header, .grid, .table-wrap, .container {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-    box-sizing: border-box !important;
-  }
-  .top-actions, .hero-banner, .filter-bar, .compare-banner, .axis-tabs {
-    flex-wrap: wrap !important;
-  }
-  .behinds-grid, .events-grid, .p-grid, .art-grid, .grid {
-    grid-template-columns: 1fr !important;
-  }
-}
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 </style>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <style id="smch-hud-override">
+    /* 상단바 자동 삽입 버튼(꿈디도 홈, PC모드 스위치) 완전 숨김 — 꿈디도 홈은 정원 출입문 포털로 유도 */
+    #btn-chapel-home-mobile,
+    #kkumdidoHeaderModeBtn,
+    .is-3d-chapel-page #btn-chapel-home-mobile,
+    html:not(.pc-override).is-3d-chapel-page #btn-chapel-home-mobile,
+    html:not(.pc-override) body.is-3d-chapel-page #btn-chapel-home-mobile {
+      display: none !important;
+    }
+    /* 하단 보조 컨트롤 바에서 확대/축소 버튼이 모바일에서도 항상 보이도록 보장 */
+    .bottom-sub-dock #btn-zoom-in,
+    .bottom-sub-dock #btn-zoom-out,
+    html:not(.pc-override) .bottom-sub-dock #btn-zoom-in,
+    html:not(.pc-override) .bottom-sub-dock #btn-zoom-out {
+      display: inline-flex !important;
+    }
+    @media (max-width: 1024px), (hover: none) and (pointer: coarse) {
+      html:not(.pc-override) .bottom-sub-dock,
+      .is-3d-chapel-page .bottom-sub-dock {
+        left: 6px !important;
+        right: 6px !important;
+        transform: none !important;
+        width: auto !important;
+        max-width: calc(100vw - 12px) !important;
+        bottom: calc(max(4px, env(safe-area-inset-bottom)) + 42px) !important;
+        height: 34px !important;
+        padding: 3px 5px !important;
+        gap: 4px !important;
+        justify-content: space-between !important;
+        z-index: 94 !important;
+      }
+      html:not(.pc-override) .bottom-sub-dock .hud-pill,
+      .is-3d-chapel-page .bottom-sub-dock .hud-pill {
+        height: 26px !important;
+        min-height: 26px !important;
+        padding: 3px 7px !important;
+        font-size: 10.5px !important;
+      }
+      html:not(.pc-override) .chapel-chat-stack,
+      .is-3d-chapel-page .chapel-chat-stack {
+        bottom: calc(max(4px, env(safe-area-inset-bottom)) + 80px) !important;
+      }
+      html:not(.pc-override) .floating-panel,
+      .is-3d-chapel-page .floating-panel {
+        bottom: calc(max(4px, env(safe-area-inset-bottom)) + 80px) !important;
+      }
+    }
+  </style>
 </head>
 <body class="is-3d-chapel-page">
 
@@ -699,12 +813,14 @@ html, body {
   <span class="boot-dot" aria-hidden="true"></span>
 </main>
 
-<!-- 2. 3D 캔버스 & 아바타 이름표 오버레이 -->
+<!-- 2. 3D 캔버스 & 아바타 이름표 오버레이 & 좌우 시점 회전 버튼 -->
 <div id="canvas-wrap"></div>
 <div id="labels-layer"></div>
+<button type="button" class="cam-pan-btn cam-pan-left" id="btn-cam-pan-left" title="시점 왼쪽으로 돌리기 (마우스 드래그 · 트랙패드 좌우 스크롤도 가능)" aria-label="시점 왼쪽 회전">◀</button>
+<button type="button" class="cam-pan-btn cam-pan-right" id="btn-cam-pan-right" title="시점 오른쪽으로 돌리기 (마우스 드래그 · 트랙패드 좌우 스크롤도 가능)" aria-label="시점 오른쪽 회전">▶</button>
 
-<!-- 3. 상단 HUD 바 -->
-<header class="top-bar">
+<!-- 3. 상단 HUD 바 (오직 핵심 5대 메뉴만 1줄 배치: 신촌 대성전 · 전면 설교화면 켜기 · 신촌교회 홈 · 공식 유튜브 · 감사헌금함) -->
+<header class="top-bar" id="top-hud-bar">
   <div class="top-left">
     <button class="hud-pill" id="btn-room-modal" title="예배당 서버 및 함께 기도하는 성도 보기">
       <span class="live-dot"></span>
@@ -714,41 +830,17 @@ html, body {
     <button class="hud-pill active-gold" id="btn-top-sermon-screen" title="성전 전면 설교 스크린 켜기 (신촌감리교회 유튜브 설교 영상·음성 재생)">
       <span>📺 전면 설교화면 켜기</span>
     </button>
-    <button class="hud-pill" id="btn-top-avatar" title="남·여 성별, 헤어스타일, 예배복, 성경책·등불 소품 꾸미기">
-      <span>👤 내 아바타 꾸미기</span>
-    </button>
-    <button class="hud-pill" id="btn-time-mode" title="예배당 시간대 빛 바꾸기">
-      <span id="time-mode-label">☀️ 따스한 주일 한낮</span>
-    </button>
-    <button class="hud-pill" id="btn-camera-view" title="카메라 시점 전환">
-      <span>🎥 시점: <strong id="camera-mode-label">3인칭 산책</strong></span>
-    </button>
-    <button class="hud-pill" id="btn-zoom-in" title="화면 더 크게 확대">
-      <span>🔍 +확대</span>
-    </button>
-    <button class="hud-pill" id="btn-zoom-out" title="공간 더 넓게 축소">
-      <span>🔎 -축소</span>
-    </button>
-    <button class="hud-pill" id="btn-walk-garden" title="예배당 밖 감람산 정원과 갈릴리 연못으로 산책 나가기">
-      <span>🌳 야외 정원·연못 산책</span>
-    </button>
-    <button class="hud-pill" id="btn-zen-mode" title="화면 메뉴를 숨기고 조용히 앉아 쉬기">
-      <span>🌙 가만히 쉬기</span>
-    </button>
   </div>
   <div class="top-right">
-    <button class="hud-pill" id="btn-Quick-Audio" title="전체 소리 켜기/끄기">
-      <span id="quick-audio-icon">🔊 소리 켜짐</span>
-    </button>
-    <button class="hud-pill" id="btn-offering-modal" title="온라인 헌금 및 사역 마음 보태기">
-      <span>💛 감사헌금함</span>
-    </button>
     <a class="hud-pill" href="http://www.smch.or.kr" target="_blank" rel="noopener" title="기독교대한감리회 신촌교회 공식 홈페이지">
       <span>⛪ 신촌교회 홈 ↗</span>
     </a>
     <a class="hud-pill" href="https://www.youtube.com/@%EC%8B%A0%EC%B4%8C%EA%B0%90%EB%A6%AC%EA%B5%90%ED%9A%8C" target="_blank" rel="noopener" title="신촌감리교회 공식 유튜브 채널">
       <span>▶️ 공식 유튜브 ↗</span>
     </a>
+    <button class="hud-pill" id="btn-offering-modal" title="온라인 헌금 및 사역 마음 보태기">
+      <span>💛 감사헌금함</span>
+    </button>
   </div>
 </header>
 
@@ -792,8 +884,34 @@ html, body {
   </form>
 </section>
 
-<!-- 4-B. 하단 6대 인터랙션 독(Dock) -->
-<nav class="bottom-dock" aria-label="예배당 도구">
+<!-- 4-B-1. 하단 의자 착석 바로 위 줄: 환경·시점·소리·정원산책 컨트롤 바 -->
+<nav class="bottom-sub-dock" id="bottom-sub-dock" aria-label="예배당 환경 및 시점 도구">
+  <button class="hud-pill" id="btn-Quick-Audio" title="전체 소리 켜기/끄기">
+    <span id="quick-audio-icon">🔊 소리 켜짐</span>
+  </button>
+  <button class="hud-pill" id="btn-time-mode" title="예배당 시간대 빛 바꾸기">
+    <span id="time-mode-label">☀️ 따스한 주일 한낮</span>
+  </button>
+  <button class="hud-pill" id="btn-camera-view" title="카메라 시점 전환">
+    <span>🎥 시점: <strong id="camera-mode-label">3인칭 산책</strong></span>
+  </button>
+  <button class="hud-pill" id="btn-zoom-in" title="화면 더 크게 확대">
+    <span>🔍 +확대</span>
+  </button>
+  <button class="hud-pill" id="btn-zoom-out" title="공간 더 넓게 축소">
+    <span>🔎 -축소</span>
+  </button>
+  <button class="hud-pill" id="btn-walk-garden" title="예배당 밖 감람산 정원과 갈릴리 연못, 꿈디도 도서관 문으로 산책 나가기">
+    <span>🌳 야외 정원·연못 산책</span>
+  </button>
+  <button class="hud-pill" id="btn-zen-mode" title="화면 메뉴를 숨기고 조용히 앉아 쉬기">
+    <span>🌙 가만히 쉬기</span>
+  </button>
+  <button class="hud-pill" id="btn-top-avatar" style="display:none;" aria-hidden="true"></button>
+</nav>
+
+<!-- 4-B-2. 하단 6대 인터랙션 독(Dock) -->
+<nav class="bottom-dock" id="bottom-main-dock" aria-label="예배당 도구">
   <button class="dock-btn" id="dock-sit">
     <span>🪑</span>
     <span class="label-text" id="dock-sit-label">의자 착석</span>
@@ -1138,24 +1256,25 @@ html, body {
   </div>
 </div>
 
-<!-- 6-D. [신촌감리교회 전면 설교 스크린] 유튜브 설교 영상·음성 플레이어 (전체창 & 예배당 상단 미니화면 동시 지원) -->
-<div class="modal-backdrop" id="modal-sermon-video" style="z-index:125; background:rgba(8,6,5,0.88);">
-  <div class="sermon-player-card" style="width:94vw; max-width:980px; border-radius:12px; background:#151821; border:1.5px solid rgba(212,168,83,0.65); overflow:hidden; box-shadow:0 28px 80px rgba(0,0,0,0.85);">
-    <div style="padding:10px 16px; display:flex; align-items:center; justify-content:space-between; gap:8px; border-bottom:1px solid rgba(212,168,83,0.25); background:#1c2130; flex-wrap:wrap;">
-      <div style="display:flex; align-items:center; gap:8px; min-width:0; flex:1;">
-        <span style="display:inline-block; width:9px; height:9px; border-radius:50%; background:#ff3b30; box-shadow:0 0 8px #ff3b30; flex-shrink:0;"></span>
-        <strong id="sermon-video-modal-title" style="font-family:var(--serif); font-size:15.5px; color:#ffe6a3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">📺 [신촌감리교회 주일예배] 예수님이 기뻐 춤추시는 교회 · 임재웅 목사</strong>
+<!-- 6-D. [신촌감리교회 전면 설교 스크린] 유튜브 설교 영상·음성 플레이어 (예배당 시야 유지형 플로팅 모니터) -->
+<div class="modal-backdrop" id="modal-sermon-video" style="z-index:125;">
+  <div class="sermon-player-card" style="border-radius:10px; background:rgba(21, 24, 33, 0.96); overflow:hidden;">
+    <div style="padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:6px; border-bottom:1px solid rgba(212,168,83,0.3); background:#1c2130; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:7px; min-width:0; flex:1;">
+        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b30; box-shadow:0 0 8px #ff3b30; flex-shrink:0;"></span>
+        <strong id="sermon-video-modal-title" style="font-family:var(--serif); font-size:13.5px; color:#ffe6a3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">📺 예수님이 기뻐 춤추시는 교회 · 임재웅 목사</strong>
       </div>
-      <div style="display:flex; align-items:center; gap:6px; flex-shrink:0;">
-        <button type="button" class="amen-mini-btn" id="btn-toggle-pip-mode" style="padding:5px 10px; font-size:12px; font-weight:800; background:rgba(70,115,210,0.35); border-color:#8ab4ff; color:#eaf2ff;" title="설교 영상·소리를 켜둔 채 예배당 의자에 앉거나 기도하기">🗗 미니화면으로 설교 들으며 기도하기</button>
-        <button class="panel-close" id="btn-close-sermon-video" style="font-size:20px; padding:2px 6px;" title="설교 화면 닫기">✕</button>
+      <div style="display:flex; align-items:center; gap:5px; flex-shrink:0; flex-wrap:wrap;">
+        <button type="button" class="amen-mini-btn" id="btn-toggle-audio-only" style="padding:5px 9px; font-size:11.5px; font-weight:800; background:rgba(46,125,90,0.4); border-color:#6ee7b7; color:#ecfdf5;" title="영상 창을 접고 설교 소리만 들으며 예배당 걷기">🎧 소리만 듣기</button>
+        <button type="button" class="amen-mini-btn" id="btn-toggle-pip-mode" style="padding:5px 9px; font-size:11.5px; font-weight:800; background:rgba(70,115,210,0.35); border-color:#8ab4ff; color:#eaf2ff;" title="우측 상단 작은 화면으로 축소">🗗 미니창</button>
+        <button type="button" id="btn-close-sermon-video" style="padding:5px 11px; border-radius:6px; border:1px solid #ffd875; background:linear-gradient(135deg, #e5c168 0%, #b3832d 100%); color:#1a1209; font-size:12px; font-weight:800; cursor:pointer; display:inline-flex; align-items:center; gap:4px;" title="설교를 끄고 예배당으로 돌아가기">⬅️ 예배당 돌아가기 ✕</button>
       </div>
     </div>
-    <div style="position:relative; width:100%; padding-top:56.25%; background:#000;">
+    <div class="sermon-video-frame-wrap" style="position:relative; width:100%; padding-top:56.25%; background:#000; transition:all 0.2s ease;">
       <iframe id="sermon-video-iframe" src="" title="신촌감리교회 유튜브 설교 영상" style="position:absolute; inset:0; width:100%; height:100%; border:none;" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
-    <!-- 설교 말씀 빠른 선택 바 & 유튜브 링크 직접 입력 -->
-    <div class="sermon-playlist-bar" style="padding:12px 16px; background:#181c28; border-top:1px solid rgba(212,168,83,0.22); display:flex; flex-direction:column; gap:8px;">
+    <!-- 설교 말씀 빠른 선택 바 & 하단 예배당 복귀 버튼 -->
+    <div class="sermon-playlist-bar" style="padding:10px 12px; background:#181c28; border-top:1px solid rgba(212,168,83,0.22); display:flex; flex-direction:column; gap:7px;">
       <div style="display:flex; align-items:center; gap:6px; overflow-x:auto; padding-bottom:2px;">
         <span style="font-size:12px; font-weight:800; color:#f5cf76; flex-shrink:0;">🎬 신촌감리교회 설교 선택:</span>
         <button type="button" class="sermon-chip-btn active" data-yt-vid="h9BEzqXz2l0" data-yt-title="[2026 표어 말씀] 예수님이 기뻐 춤추시는 교회 (스바냐 3:17) · 임재웅 목사">1. 예수님이 기뻐 춤추시는 교회 (2026 표어)</button>
@@ -1169,6 +1288,10 @@ html, body {
         <span style="font-size:12px; color:#b8c4dc; font-weight:600;">🔗 다른 유튜브 설교·찬양 링크 재생:</span>
         <input type="text" id="custom-yt-input" placeholder="유튜브 주소(URL) 또는 영상 ID 붙여넣기..." style="flex:1; min-width:180px; padding:6px 10px; border-radius:6px; border:1px solid rgba(212,168,83,0.35); background:rgba(10,12,18,0.8); color:#fff; font-size:12.5px; user-select:text; -webkit-user-select:text;">
         <button type="button" class="amen-mini-btn" id="btn-play-custom-yt" style="padding:6px 12px; font-size:12px; font-weight:800;">▶ 바로 상영</button>
+      </div>
+      <div style="display:flex; gap:6px; margin-top:2px;">
+        <button type="button" id="btn-bottom-audio-keep" style="flex:1; padding:8px 10px; border-radius:6px; border:1px solid rgba(138,180,255,0.6); background:rgba(40,72,140,0.45); color:#eaf2ff; font-size:12.5px; font-weight:800; cursor:pointer;">🎧 설교 소리 켜둔 채 예배당 걷기·기도하기</button>
+        <button type="button" id="btn-bottom-close-sermon" style="flex:1; padding:8px 10px; border-radius:6px; border:1px solid rgba(245,207,118,0.7); background:rgba(212,168,83,0.25); color:#ffe8a3; font-size:12.5px; font-weight:800; cursor:pointer;">⬅️ 설교 끄고 예배당으로 돌아가기</button>
       </div>
     </div>
   </div>
@@ -1239,8 +1362,8 @@ html, body {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
     audioCtx = new AudioContext();
 
-    // 자연음(핑크 노이즈 필터링 바람/빗소리) 생성
-    const bufferSize = audioCtx.sampleRate * 3;
+    // 자연음(핑크 노이즈 필터링 바람/빗소리) 생성 — 초기 진입 렉 방지를 위해 1.2초 루프 버퍼 사용
+    const bufferSize = Math.floor(audioCtx.sampleRate * 1.2);
     const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
     const output = noiseBuffer.getChannelData(0);
     let b0 = 0, b1 = 0, b2 = 0, b3 = 0, b4 = 0, b5 = 0, b6 = 0;
@@ -1367,7 +1490,7 @@ html, body {
   const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 120);
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   wrap.appendChild(renderer.domElement);
@@ -1379,8 +1502,8 @@ html, body {
   const sunLight = new THREE.DirectionalLight(0xffdf9e, 0.95);
   sunLight.position.set(12, 18, 8);
   sunLight.castShadow = true;
-  sunLight.shadow.mapSize.width = 2048;
-  sunLight.shadow.mapSize.height = 2048;
+  sunLight.shadow.mapSize.width = 1024;
+  sunLight.shadow.mapSize.height = 1024;
   sunLight.shadow.camera.near = 0.5;
   sunLight.shadow.camera.far = 50;
   const d = 16;
@@ -1788,6 +1911,114 @@ html, body {
     });
   });
 
+  // 야외 정원 바깥으로 통하는 '꿈디도 디지털도서관 나가는 문(아치형 정원 출입문)' 설치 (x=0, z=25.6)
+  const kkumdidoGateMeshes = [];
+  const kkumdidoGateGroup = new THREE.Group();
+  let kkumdidoPortalGlow = null;
+  {
+    const gateStoneMat = new THREE.MeshStandardMaterial({ color: 0x6b5d4d, roughness: 0.78 });
+    const gateWoodMat = new THREE.MeshStandardMaterial({ color: 0x4a311e, roughness: 0.55 });
+    const gateGoldMat = new THREE.MeshStandardMaterial({ color: 0xd4a853, metalness: 0.55, roughness: 0.3 });
+
+    // 양쪽 돌·원목 기둥
+    for (const sx of [-1.85, 1.85]) {
+      const colBase = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.55, 0.62), gateStoneMat);
+      colBase.position.set(sx, 0.275, 0);
+      const colPillar = new THREE.Mesh(new THREE.BoxGeometry(0.46, 3.2, 0.46), gateWoodMat);
+      colPillar.position.set(sx, 1.85, 0);
+      colPillar.castShadow = true;
+      const colCap = new THREE.Mesh(new THREE.BoxGeometry(0.58, 0.22, 0.58), gateGoldMat);
+      colCap.position.set(sx, 3.48, 0);
+
+      // 기둥 등불
+      const lanternBulb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.16, 10, 10),
+        new THREE.MeshBasicMaterial({ color: 0xffe49e })
+      );
+      lanternBulb.position.set(sx * 0.82, 2.65, -0.28);
+      kkumdidoGateGroup.add(colBase, colPillar, colCap, lanternBulb);
+      kkumdidoGateMeshes.push(colBase, colPillar, colCap);
+    }
+
+    // 상단 인방(Lintel) 및 박공 아치 지붕
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.32, 0.56), gateWoodMat);
+    lintel.position.set(0, 3.62, 0);
+    const roofL = new THREE.Mesh(new THREE.BoxGeometry(2.65, 0.18, 0.72), gateStoneMat);
+    roofL.position.set(-1.12, 4.18, 0);
+    roofL.rotation.z = 0.36;
+    const roofR = new THREE.Mesh(new THREE.BoxGeometry(2.65, 0.18, 0.72), gateStoneMat);
+    roofR.position.set(1.12, 4.18, 0);
+    roofR.rotation.z = -0.36;
+    const topCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.62, 0.12), gateGoldMat);
+    topCrossV.position.set(0, 4.82, 0);
+    const topCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.12, 0.12), gateGoldMat);
+    topCrossH.position.set(0, 4.92, 0);
+    kkumdidoGateGroup.add(lintel, roofL, roofR, topCrossV, topCrossH);
+    kkumdidoGateMeshes.push(lintel, roofL, roofR);
+
+    // 반쯤 열려 있는 양개 원목 문짝 (바깥 도서관 쪽으로 열려 있음)
+    const doorGeo = new THREE.BoxGeometry(1.48, 2.95, 0.12);
+    const doorL = new THREE.Mesh(doorGeo, gateWoodMat);
+    doorL.position.set(-1.32, 1.5, 0.42);
+    doorL.rotation.y = -0.58;
+    const doorR = new THREE.Mesh(doorGeo, gateWoodMat);
+    doorR.position.set(1.32, 1.5, 0.42);
+    doorR.rotation.y = 0.58;
+    kkumdidoGateGroup.add(doorL, doorR);
+    kkumdidoGateMeshes.push(doorL, doorR);
+
+    // 열린 문 사이로 은은하게 빛나는 꿈디도 포털 빛막
+    const portalMat = new THREE.MeshBasicMaterial({
+      color: 0xffe299,
+      transparent: true,
+      opacity: 0.32,
+      side: THREE.DoubleSide,
+      depthWrite: false
+    });
+    kkumdidoPortalGlow = new THREE.Mesh(new THREE.PlaneGeometry(3.15, 3.15), portalMat);
+    kkumdidoPortalGlow.position.set(0, 1.65, 0.08);
+    kkumdidoGateGroup.add(kkumdidoPortalGlow);
+    kkumdidoGateMeshes.push(kkumdidoPortalGlow);
+
+    // 상단 현판 (꿈바온 디지털도서관 나가는 문)
+    const signCanvas = document.createElement('canvas');
+    signCanvas.width = 512;
+    signCanvas.height = 128;
+    const gCtx = signCanvas.getContext('2d');
+    gCtx.fillStyle = '#1b140e';
+    gCtx.fillRect(0, 0, 512, 128);
+    gCtx.strokeStyle = '#e5be67';
+    gCtx.lineWidth = 6;
+    gCtx.strokeRect(6, 6, 500, 116);
+    gCtx.fillStyle = '#ffe8a3';
+    gCtx.font = 'bold 30px sans-serif';
+    gCtx.textAlign = 'center';
+    gCtx.fillText('🏛️ 꿈디도 홈 · 나가는 정원 문', 256, 54);
+    gCtx.fillStyle = '#d8c8b0';
+    gCtx.font = 'bold 20px sans-serif';
+    gCtx.fillText('문으로 걸어 나가거나 터치하면 도서관 본관으로 이동', 256, 95);
+
+    const signTex = new THREE.CanvasTexture(signCanvas);
+    signTex.generateMipmaps = false;
+    signTex.minFilter = THREE.LinearFilter;
+    const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+    const signBoard = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.86), signMat);
+    signBoard.position.set(0, 3.68, -0.31);
+    signBoard.rotation.y = Math.PI; // 본당/산책로(z<25)에서 바라볼 때 정면으로 보이도록 회전
+    const signBoardBack = new THREE.Mesh(new THREE.PlaneGeometry(3.6, 0.86), signMat);
+    signBoardBack.position.set(0, 3.68, 0.31);
+    kkumdidoGateGroup.add(signBoard, signBoardBack);
+    kkumdidoGateMeshes.push(signBoard, signBoardBack);
+
+    const gateLight = new THREE.PointLight(0xffd27d, 1.25, 14);
+    gateLight.position.set(0, 3.1, -1.2);
+    kkumdidoGateGroup.add(gateLight);
+
+    kkumdidoGateMeshes.forEach(m => { m.userData = { isKkumdidoGate: true }; });
+    kkumdidoGateGroup.position.set(0, 0, 25.6);
+    worldGroup.add(kkumdidoGateGroup);
+  }
+
   // 예배당 & 야외 성화 산책로 대형 성화 액자 6점 (클릭 시 풀스크린 초고해상도 확대!)
   const CHAPEL_ARTWORKS = [
     {
@@ -1899,17 +2130,21 @@ html, body {
   // 2) 성전 전면 좌측 대형 LED 설교 스크린 (터치/클릭하면 유튜브 설교 영상·음성 재생!)
   const sermonScreenMeshes = [];
   const screenCanvas = document.createElement('canvas');
-  screenCanvas.width = 1024;
-  screenCanvas.height = 576;
+  screenCanvas.width = 512;
+  screenCanvas.height = 288;
   const sCtx = screenCanvas.getContext('2d');
   const screenTex = new THREE.CanvasTexture(screenCanvas);
+  screenTex.generateMipmaps = false;
+  screenTex.minFilter = THREE.LinearFilter;
   const screenBgImg = new Image();
   screenBgImg.crossOrigin = 'anonymous';
-  screenBgImg.src = './assets/webp/smch_2026_motto.webp';
   let isSermonVideoPlaying = false;
   let currentSermonShortTitle = '예수님이 기뻐 춤추시는 교회 (스바냐 3:17)';
+  let lastScreenDrawTime = -999;
 
   function drawFrontSermonScreen(timeSec) {
+    sCtx.save();
+    sCtx.setTransform(0.5, 0, 0, 0.5, 0, 0);
     sCtx.fillStyle = '#0d1322';
     sCtx.fillRect(0, 0, 1024, 576);
 
@@ -1996,9 +2231,12 @@ html, body {
     sCtx.fillStyle = '#d8e4ff';
     sCtx.font = 'bold 24px serif';
     sCtx.fillText(`📖 ${currentSermonShortTitle} · 임재웅 목사`, 512, 520);
+    sCtx.restore();
 
     screenTex.needsUpdate = true;
   }
+  screenBgImg.onload = () => drawFrontSermonScreen(0);
+  screenBgImg.src = './assets/webp/smch_2026_motto.webp';
   drawFrontSermonScreen(0);
 
   const sermonScreenGroup = new THREE.Group();
@@ -2643,7 +2881,15 @@ html, body {
       bubbleTimer: null
     };
 
+    labelEl.addEventListener('pointerdown', (e) => {
+      isDragging = true;
+      dragMoved = false;
+      camYawVel = 0;
+      prevMouse = { x: e.clientX, y: e.clientY };
+    });
+
     labelEl.addEventListener('click', (e) => {
+      if (dragMoved) return;
       e.stopPropagation();
       if (isMe) {
         triggerAvatarEmote(av, 'wave', '평안을 빕니다 🕊️');
@@ -2891,9 +3137,11 @@ html, body {
   }
 
   /* ==============================================================
-   * 9. 카메라 컨트롤 (드래그 회전, 휠 줌, 시점 프리셋)
+   * 9. 카메라 컨트롤 (드래그 회전, 트랙패드 좌우 스크롤, 좌우 버튼, 휠 줌, 시점 프리셋)
    * ============================================================== */
   let camYaw = 0;
+  let camYawVel = 0;
+  let camPanDir = 0;
   let camPitch = 0.34;
   let camDist = 6.8;
   let cameraPresetIdx = 0; // 0: 3인칭 기본, 1: 강단 십자가 정면, 2: 예배당 전체 조망, 3: 1인칭 묵상
@@ -2904,6 +3152,44 @@ html, body {
     { name: '깊은 묵상', dist: 2.3, pitch: 0.12 }
   ];
 
+  // 야외 정원 바깥 '꿈디도 홈 나가는 문' 3D 배지 및 포털 이동 함수
+  const KKUMDIDO_HOME_URL = 'https://kkumbaon.com/kkumbaon-library/index.html';
+  let isEnteringKkumdidoPortal = false;
+  const gardenPortalBadge = document.createElement('div');
+  gardenPortalBadge.className = 'garden-portal-badge';
+  gardenPortalBadge.innerHTML = '<span>🚪</span><span>꿈디도 홈 (디지털도서관) 나가는 문 ↗</span>';
+  labelsLayer.appendChild(gardenPortalBadge);
+
+  function triggerKkumdidoGatePortal() {
+    if (isEnteringKkumdidoPortal) {
+      window.location.href = KKUMDIDO_HOME_URL;
+      return;
+    }
+    isEnteringKkumdidoPortal = true;
+    unseatAvatar(myAvatar);
+    myAvatar.targetPos.set(0, 0, 25.0);
+    myAvatar.state = 'walking_to_kkumdido';
+    camYaw = Math.PI;
+    playHarpBell(5, true);
+    showAvatarBubble(myAvatar, '🏛️ 꿈디도 디지털도서관으로 나아갑니다');
+    setStatusBanner('🚪 정원 바깥문을 통과하여 꿈바온 디지털 도서관(꿈디도) 홈으로 이동합니다...');
+    setTimeout(() => {
+      window.location.href = KKUMDIDO_HOME_URL;
+    }, 650);
+  }
+
+  gardenPortalBadge.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    dragMoved = false;
+    camYawVel = 0;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+  gardenPortalBadge.addEventListener('click', (e) => {
+    if (dragMoved) return;
+    e.stopPropagation();
+    triggerKkumdidoGatePortal();
+  });
+
   let isDragging = false;
   let dragMoved = false;
   let prevMouse = { x: 0, y: 0 };
@@ -2913,6 +3199,7 @@ html, body {
   wrap.addEventListener('pointerdown', (e) => {
     isDragging = true;
     dragMoved = false;
+    camYawVel = 0;
     prevMouse = { x: e.clientX, y: e.clientY };
   });
 
@@ -2920,8 +3207,10 @@ html, body {
     if (!isDragging) return;
     const dx = e.clientX - prevMouse.x;
     const dy = e.clientY - prevMouse.y;
-    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
-    camYaw -= dx * 0.0065;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) dragMoved = true;
+    const yawStep = -dx * 0.0082;
+    camYaw += yawStep;
+    camYawVel = yawStep * 0.65;
     camPitch = Math.max(0.08, Math.min(1.15, camPitch + dy * 0.0055));
     prevMouse = { x: e.clientX, y: e.clientY };
   });
@@ -2933,11 +3222,47 @@ html, body {
       handleSceneClick(e);
     }
   });
+  window.addEventListener('pointercancel', () => { isDragging = false; });
+  window.addEventListener('blur', () => { isDragging = false; camPanDir = 0; });
 
+  // 좌·우 화면 가장자리 회전 버튼 (클릭 및 길게 누르기 모두 지원)
+  const btnCamPanLeft = document.getElementById('btn-cam-pan-left');
+  const btnCamPanRight = document.getElementById('btn-cam-pan-right');
+  function bindCamPanButton(btn, dir) {
+    if (!btn) return;
+    btn.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      camPanDir = dir;
+      camYaw += dir * 0.22;
+    });
+    btn.addEventListener('pointerup', () => { camPanDir = 0; });
+    btn.addEventListener('pointerleave', () => { camPanDir = 0; });
+    btn.addEventListener('pointercancel', () => { camPanDir = 0; });
+  }
+  bindCamPanButton(btnCamPanLeft, 1);
+  bindCamPanButton(btnCamPanRight, -1);
+
+  // 트랙패드 두 손가락 좌우 스크롤(deltaX) 및 Shift+휠 시 카메라 좌우 회전, 상하 스크롤 시 확대/축소
   wrap.addEventListener('wheel', (e) => {
     e.preventDefault();
-    camDist = Math.max(1.4, Math.min(26.0, camDist + e.deltaY * 0.006));
+    if (Math.abs(e.deltaX) > Math.abs(e.deltaY) * 0.35 || e.shiftKey) {
+      const hDelta = (e.shiftKey && Math.abs(e.deltaX) < 1) ? e.deltaY : e.deltaX;
+      camYaw -= hDelta * 0.0068;
+      camYawVel = 0;
+    } else {
+      camDist = Math.max(1.4, Math.min(26.0, camDist + e.deltaY * 0.006));
+    }
   }, { passive: false });
+
+  // 상단·하단 바에서 마우스 휠로도 좌우 스크롤이 부드럽게 작동하도록 지원
+  document.querySelectorAll('.top-bar, .bottom-sub-dock, .bottom-dock').forEach((bar) => {
+    bar.addEventListener('wheel', (e) => {
+      if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && bar.scrollWidth > bar.clientWidth) {
+        e.preventDefault();
+        bar.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  });
 
   // 풀스크린 성화 확대(Zoom Lightbox) 제어
   let artZoomScale = 1.0;
@@ -3002,7 +3327,14 @@ html, body {
     mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
     raycaster.setFromCamera(mouseNDC, camera);
 
-    // 0) 성전 전면 대형 설교 스크린 클릭/터치 시 유튜브 설교 영상·음성 즉시 재생!
+    // 0-A) 야외 정원 바깥 '꿈디도 홈 나가는 문' 클릭/터치 시 즉시 포털 이동!
+    const gateHits = raycaster.intersectObjects(kkumdidoGateMeshes);
+    if (gateHits.length > 0) {
+      triggerKkumdidoGatePortal();
+      return;
+    }
+
+    // 0-B) 성전 전면 대형 설교 스크린 클릭/터치 시 유튜브 설교 영상·음성 즉시 재생!
     const screenHits = raycaster.intersectObjects(sermonScreenMeshes);
     if (screenHits.length > 0) {
       openSermonScreenPlayer(false);
@@ -3022,6 +3354,12 @@ html, body {
       const pt = hits[0].point;
       const cx = Math.max(-16.0, Math.min(16.0, pt.x));
       const cz = Math.max(-7.5, Math.min(26.0, pt.z));
+
+      // 정원 바깥 꿈디도 문턱(x: -2.0~2.0, z > 24.3)을 클릭한 경우 꿈디도 문으로 안내
+      if (Math.abs(cx) < 2.0 && cz > 24.3) {
+        triggerKkumdidoGatePortal();
+        return;
+      }
 
       // 갈릴리 연못 수면 중심부(x:-9.5, z:19.5, 반경 4.0)는 물 가장자리로 보정
       const pondCenter = new THREE.Vector2(-9.5, 19.5);
@@ -3242,12 +3580,16 @@ html, body {
   }
 
   function applyMyCustomChange(patch, bannerMsg = null) {
+    const rigKeys = ['gender', 'hairStyle', 'hairColor', 'outfitType', 'outfitColor', 'prop', 'accessory'];
+    const needRigRebuild = rigKeys.some(k => k in patch && patch[k] !== myCustom[k]);
     Object.assign(myCustom, patch);
     saveMyCustom();
     myAvatar.name = `${myCustom.name} (나)`;
     const nSpan = myAvatar.labelEl.querySelector('.name-span');
     if (nSpan) nSpan.textContent = myAvatar.name;
-    rebuildAvatarRig(myAvatar, myCustom);
+    if (needRigRebuild) {
+      rebuildAvatarRig(myAvatar, myCustom);
+    }
     syncCustomizerUI();
     broadcastMyState();
     if (bannerMsg) setStatusBanner(bannerMsg);
@@ -3750,13 +4092,41 @@ html, body {
     openSermonScreenPlayer(false);
   });
 
+  const btnToggleAudioOnly = document.getElementById('btn-toggle-audio-only');
   function updatePipButtonLabel() {
     const isPip = sermonVideoModal.classList.contains('is-pip-mode');
+    const isAudioOnly = sermonVideoModal.classList.contains('is-audio-only-mode');
     if (btnTogglePip) {
-      btnTogglePip.textContent = isPip
-        ? '⛶ 큰 화면으로 설교 보기'
-        : '🗗 미니화면으로 설교 들으며 기도하기';
+      btnTogglePip.textContent = isPip ? '⛶ 기본창' : '🗗 미니창';
     }
+    if (btnToggleAudioOnly) {
+      btnToggleAudioOnly.textContent = isAudioOnly ? '📺 영상 펼치기' : '🎧 소리만 듣기';
+    }
+  }
+  if (btnToggleAudioOnly) {
+    btnToggleAudioOnly.addEventListener('click', () => {
+      sermonVideoModal.classList.remove('is-pip-mode');
+      sermonVideoModal.classList.toggle('is-audio-only-mode');
+      updatePipButtonLabel();
+      if (sermonVideoModal.classList.contains('is-audio-only-mode')) {
+        setStatusBanner('🎧 영상 창을 접고 설교 소리만 재생합니다. 예배당을 자유롭게 걸으며 기도하실 수 있습니다.');
+      }
+    });
+  }
+  const btnBottomAudioKeep = document.getElementById('btn-bottom-audio-keep');
+  if (btnBottomAudioKeep) {
+    btnBottomAudioKeep.addEventListener('click', () => {
+      sermonVideoModal.classList.remove('is-pip-mode');
+      sermonVideoModal.classList.add('is-audio-only-mode');
+      updatePipButtonLabel();
+      setStatusBanner('🎧 설교 소리를 켜둔 채 예배당으로 돌아왔습니다. 상단 바에서 언제든 영상을 다시 펼치거나 끌 수 있습니다.');
+    });
+  }
+  const btnBottomCloseSermon = document.getElementById('btn-bottom-close-sermon');
+  if (btnBottomCloseSermon) {
+    btnBottomCloseSermon.addEventListener('click', () => {
+      document.getElementById('btn-close-sermon-video').click();
+    });
   }
 
   function loadAndPlayYoutubeSermon(vid, titleText, startInPip = false) {
@@ -3765,6 +4135,7 @@ html, body {
     audioVoiceEl.pause();
     audioPianoEl.pause();
     isSermonVideoPlaying = true;
+    drawFrontSermonScreen(0);
     document.getElementById('sermon-video-modal-title').textContent = `📺 ${titleText}`;
     const targetSrc = `https://www.youtube.com/embed/${activeYoutubeVid}?autoplay=1&rel=0&playsinline=1`;
     if (sermonVideoIframe.src !== targetSrc) {
@@ -3854,9 +4225,10 @@ html, body {
   }
 
   document.getElementById('btn-close-sermon-video').addEventListener('click', () => {
-    sermonVideoModal.classList.remove('is-open', 'is-pip-mode');
+    sermonVideoModal.classList.remove('is-open', 'is-pip-mode', 'is-audio-only-mode');
     sermonVideoIframe.src = '';
     isSermonVideoPlaying = false;
+    drawFrontSermonScreen(0);
     const badgeTxt = document.getElementById('front-screen-badge-txt');
     if (badgeTxt) badgeTxt.textContent = '📺 전면 설교스크린 (터치 시 설교 영상·소리 재생)';
     if (!masterMuted) audioPianoEl.play().catch(() => {});
@@ -3909,12 +4281,14 @@ html, body {
       myAvatar.targetPos.set(0, 0, 18.5);
       myAvatar.state = 'walking';
       camDist = 9.0;
+      camYaw = Math.PI; // 정원과 연못, 바깥 꿈디도 문이 한눈에 보이도록 카메라 시선 자동 회전
       document.getElementById('btn-walk-garden').innerHTML = '<span>⛪ 본당 들어가기</span>';
-      setStatusBanner('🌳 예배당 문을 나서 감람산 등불 정원과 갈릴리 연못가로 산책을 나갑니다.');
+      setStatusBanner('🌳 예배당 문을 나서 감람산 정원과 연못가로 산책을 나갑니다. 정원 끝 바깥문으로 나가면 꿈디도 홈으로 이동합니다.');
     } else {
       myAvatar.targetPos.set(0, 0, 2.5);
       myAvatar.state = 'walking';
       camDist = 6.8;
+      camYaw = 0; // 본당 십자가 정면을 바라보도록 시선 회전
       document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원·연못 산책</span>';
       setStatusBanner('⛪ 다시 예배당 본당 십자가 앞으로 걸어 들어갑니다.');
     }
@@ -3928,6 +4302,8 @@ html, body {
       toggleMySit();
     }
     document.querySelector('.bottom-dock').style.opacity = isZenMode ? '0.12' : '1';
+    const subDock = document.querySelector('.bottom-sub-dock');
+    if (subDock) subDock.style.opacity = isZenMode ? '0.22' : '1';
     document.querySelector('.chapel-chat-stack').style.opacity = isZenMode ? '0.08' : '1';
     document.querySelector('.control-hint').style.display = isZenMode ? 'none' : '';
     document.getElementById('btn-zen-mode').innerHTML = isZenMode ? '<span>✨ 메뉴 보이기</span>' : '<span>🌙 가만히 쉬기</span>';
@@ -4383,6 +4759,14 @@ html, body {
     const dt = Math.min(clock.getDelta(), 0.1);
     const elapsed = clock.getElapsedTime();
 
+    // 좌우 회전 버튼 홀드 및 드래그 관성(Inertia) 처리
+    if (camPanDir !== 0) {
+      camYaw += camPanDir * 1.85 * dt;
+    } else if (!isDragging && Math.abs(camYawVel) > 0.0002) {
+      camYaw += camYawVel;
+      camYawVel *= 0.88;
+    }
+
     // 키보드 이동 처리
     let moveX = 0, moveZ = 0;
     if (keysPressed['arrowup'] || keysPressed['w']) moveZ -= 1;
@@ -4403,13 +4787,16 @@ html, body {
       myAvatar.group.position.z = Math.max(-7.5, Math.min(26.0, myAvatar.group.position.z));
       myAvatar.targetPos.copy(myAvatar.group.position);
       myAvatar.group.rotation.y = Math.atan2(-moveX, -moveZ) + camYaw;
+      if (!isEnteringKkumdidoPortal && Math.abs(myAvatar.group.position.x) < 1.85 && myAvatar.group.position.z > 24.4) {
+        triggerKkumdidoGatePortal();
+      }
     }
 
     // 모든 아바타 이동 & 다관절 포즈 업데이트
     avatars.forEach(av => {
       let isMoving = (av === myAvatar && myKeyMoving);
 
-      if (av.state === 'walking' || av.state === 'walking_to_seat' || av.state === 'walking_to_candle') {
+      if (av.state === 'walking' || av.state === 'walking_to_seat' || av.state === 'walking_to_candle' || av.state === 'walking_to_kkumdido') {
         const diff = new THREE.Vector3().subVectors(av.targetPos, av.group.position);
         diff.y = 0;
         const dist = diff.length();
@@ -4418,9 +4805,15 @@ html, body {
           av.group.position.addScaledVector(diff, Math.min(dist, 2.9 * dt));
           av.group.rotation.y = Math.atan2(-diff.x, -diff.z);
           isMoving = true;
+          if (av.isMe && !isEnteringKkumdidoPortal && Math.abs(av.group.position.x) < 1.85 && av.group.position.z > 24.4) {
+            triggerKkumdidoGatePortal();
+          }
         } else {
           av.group.position.copy(av.targetPos);
-          if (av.state === 'walking_to_seat' && av.seat) {
+          if (av.state === 'walking_to_kkumdido') {
+            window.location.href = KKUMDIDO_HOME_URL;
+            return;
+          } else if (av.state === 'walking_to_seat' && av.seat) {
             av.state = av.seat.type === 'kneel' ? 'kneeling' : 'sitting';
             av.group.rotation.y = av.seat.lookAngle || 0;
             if (av.isMe) {
@@ -4476,19 +4869,31 @@ html, body {
       }
     }
 
-    // 전면 3D 설교 스크린 캔버스 실시간 업데이트 & 3D 배지 투영
-    drawFrontSermonScreen(elapsed);
-    if (typeof frontScreenBadge !== 'undefined' && frontScreenBadge) {
-      const scrPos = new THREE.Vector3(-4.85, 6.55, -11.15);
-      scrPos.project(camera);
-      if (scrPos.z < 1.0 && scrPos.z > -1.0) {
-        const sx = (scrPos.x * 0.5 + 0.5) * window.innerWidth;
-        const sy = (-scrPos.y * 0.5 + 0.5) * window.innerHeight;
-        frontScreenBadge.style.left = `${sx}px`;
-        frontScreenBadge.style.top = `${sy}px`;
-        frontScreenBadge.style.display = 'flex';
+    // 전면 3D 설교 스크린 캔버스: 설교 영상 재생 중일 때만 초당 8회로 제한 업데이트 (평소 0회 → 렉 완전 제거)
+    if (isSermonVideoPlaying && elapsed - lastScreenDrawTime > 0.12) {
+      lastScreenDrawTime = elapsed;
+      drawFrontSermonScreen(elapsed);
+    }
+
+    // 정원 바깥 '꿈디도 홈 나가는 문' 빛막 호흡 & 3D 배지 투영
+    if (kkumdidoPortalGlow) {
+      kkumdidoPortalGlow.material.opacity = 0.26 + Math.sin(elapsed * 2.6) * 0.08;
+    }
+    if (gardenPortalBadge) {
+      const gatePos = new THREE.Vector3(0, 4.55, 25.6);
+      gatePos.project(camera);
+      if (gatePos.z < 1.0 && gatePos.z > -1.0) {
+        const gx = (gatePos.x * 0.5 + 0.5) * window.innerWidth;
+        const gy = (-gatePos.y * 0.5 + 0.5) * window.innerHeight;
+        if (gx >= -60 && gx <= window.innerWidth + 60 && gy >= 40 && gy <= window.innerHeight - 60) {
+          gardenPortalBadge.style.left = `${gx}px`;
+          gardenPortalBadge.style.top = `${gy}px`;
+          gardenPortalBadge.style.display = 'flex';
+        } else {
+          gardenPortalBadge.style.display = 'none';
+        }
       } else {
-        frontScreenBadge.style.display = 'none';
+        gardenPortalBadge.style.display = 'none';
       }
     }
 
@@ -4508,18 +4913,18 @@ html, body {
       rippleMesh.material.opacity = Math.max(0, (1 - rippleAge) * 0.65);
     }
 
-    // 카메라가 부드럽게 내 아바타(또는 강단)를 추적
+    // 카메라가 내 아바타와 바라보는 시선 방향(본당/정원 360도)을 부드럽게 추적
     const lookTarget = new THREE.Vector3(
-      myAvatar.group.position.x * 0.65,
+      myAvatar.group.position.x * 0.72 - Math.sin(camYaw) * 1.1,
       1.35,
-      myAvatar.group.position.z - 1.6
+      myAvatar.group.position.z - Math.cos(camYaw) * 1.35
     );
     const desiredCamPos = new THREE.Vector3(
       lookTarget.x + Math.sin(camYaw) * Math.cos(camPitch) * camDist,
       lookTarget.y + Math.sin(camPitch) * camDist,
       lookTarget.z + Math.cos(camYaw) * Math.cos(camPitch) * camDist
     );
-    camera.position.lerp(desiredCamPos, 0.08);
+    camera.position.lerp(desiredCamPos, 0.12);
     camera.lookAt(lookTarget);
 
     // 3D 아바타 머리 위 2D 이름표 좌표 투영 (서기 / 의자착석 / 무릎기도 높이 자동 반영)
