@@ -1064,21 +1064,25 @@ html, body {
   <button class="step-btn" id="btn-step-word">✨ 한 구절씩 새기기 (클릭 / 스페이스바)</button>
 </aside>
 
-<!-- 5-B. [기도의 등불 켜기] 패널 (향 올리기 대체) -->
+<!-- 5-B. [기도의 등불 켜기 · 영구 중보기도 방명록] 패널 -->
 <aside class="floating-panel" id="panel-candle">
   <div class="panel-header">
-    <h2 class="panel-title">🕯️ 강단 앞 기도의 등불 올리기</h2>
+    <h2 class="panel-title">🕯️ 중보기도 등불 방명록</h2>
     <button class="panel-close" data-close="panel-candle">✕</button>
   </div>
-  <div style="font-size:12.5px; color:#cfc3b0; line-height:1.6;">
-    고요한 마음을 담아 강단 앞 등잔대에 작은 등불을 밝힙니다. 한 줄 기도제목을 남기시면 함께 있는 성도들이 소리 없이 ‘아멘’으로 중보합니다.
+  <div style="font-size:12px; color:#dff7e4; background:rgba(124,217,146,0.1); border:1px solid rgba(124,217,146,0.3); border-radius:8px; padding:7px 10px; line-height:1.5;">
+    🟢 <strong>영구 보존 방명록:</strong> 남기신 기도제목은 사라지지 않고 예배당 방명록에 계속 남아, 방문하는 성도들이 언제든 ‘아멘’으로 함께 중보합니다.
   </div>
   <div class="prayer-input-group">
-    <input type="text" class="prayer-input" id="prayer-input" maxlength="65" placeholder="한 줄 기도제목 (비워두면 침묵 기도로 등불만 켭니다)">
-    <button class="step-btn" id="btn-light-candle" style="margin-top:2px;">🕯️ 강단 앞으로 나아가 등불 밝히기</button>
+    <input type="text" class="prayer-input" id="prayer-input" maxlength="80" placeholder="기도제목을 남겨주세요 (Enter 또는 아래 버튼 클릭)">
+    <div style="display:flex; gap:6px; margin-top:2px;">
+      <button class="step-btn" id="btn-light-candle" style="flex:1.2; padding:9px 8px; font-size:12.5px;">🕯️ 강단 나아가 등불 켜기</button>
+      <button class="step-btn" id="btn-post-prayer-direct" style="flex:1; padding:9px 8px; font-size:12.5px; background:rgba(212,168,83,0.16); border-color:rgba(212,168,83,0.5); color:#ffe8a3;">✍️ 자리에서 바로 등록</button>
+    </div>
   </div>
-  <div style="font-size:12px; color:#d4a853; font-weight:600; margin-top:4px;">
-    현재 타오르고 있는 성도들의 등불 (<span id="candle-count-num">12</span>개)
+  <div style="display:flex; justify-content:space-between; align-items:center; font-size:12px; color:#d4a853; font-weight:600; margin-top:4px;">
+    <span>🕯️ 꺼지지 않는 성도들의 중보기도 방명록 (<span id="candle-count-num">15</span>개)</span>
+    <span style="font-size:11px; color:#a89b87; font-weight:400;">최신순 보존</span>
   </div>
   <div class="prayer-list" id="prayer-list"></div>
 </aside>
@@ -1335,15 +1339,97 @@ html, body {
   let completedRounds = 0;
 
   /* ==============================================================
-   * 2. 기도의 등불 초기 목록 (실시간 중보기도)
+   * 2. 기도의 등불 영구 방명록 (LocalStorage + MQTT Retained 클라우드 영구 동기화)
    * ============================================================== */
-  const PRAYER_CANDLES = [
-    { author: "온유한 양", text: "사랑하는 가족들의 건강과 마음의 평안을 지켜주소서.", amens: 14, time: "방금 전" },
-    { author: "갈릴리 어부", text: "삶의 거친 풍랑 속에서도 주님의 시선을 놓치지 않게 하소서.", amens: 19, time: "3분 전" },
-    { author: "작은 겨자씨", text: "지치고 상한 영혼들이 이 예배당에서 참된 쉼을 얻기를 기도합니다.", amens: 23, time: "7분 전" },
-    { author: "감람나무 가지", text: "수험생들과 청년들의 앞길에 하나님의 지혜와 담대함을 부어주소서.", amens: 17, time: "12분 전" },
-    { author: "은혜의 권사", text: "우리 신촌감리교회가 예수님이 기뻐 춤추시는 은혜와 축복의 공동체가 되게 하소서.", amens: 31, time: "18분 전" }
+  const PRAYER_STORAGE_KEY = 'smch_prayer_guestbook_v2';
+  const PRAYER_DELETED_KEY = 'smch_prayer_deleted_v2';
+  const PRAYER_AUTHOR_KEY_STORAGE = 'smch_prayer_author_key_v1';
+
+  const myAuthorKey = (() => {
+    try {
+      let k = localStorage.getItem(PRAYER_AUTHOR_KEY_STORAGE);
+      if (!k) {
+        k = 'ak_' + Math.random().toString(36).slice(2, 10) + '_' + Date.now().toString(36);
+        localStorage.setItem(PRAYER_AUTHOR_KEY_STORAGE, k);
+      }
+      return k;
+    } catch (_) {
+      return 'ak_guest';
+    }
+  })();
+
+  const deletedPrayerIds = new Set((() => {
+    try {
+      const arr = JSON.parse(localStorage.getItem(PRAYER_DELETED_KEY) || '[]');
+      return Array.isArray(arr) ? arr : [];
+    } catch (_) {
+      return [];
+    }
+  })());
+
+  const DEFAULT_PRAYER_SEEDS = [
+    { id: "seed_smch_5", author: "은혜의 권사", text: "우리 신촌감리교회가 예수님이 기뻐 춤추시는 은혜와 축복의 공동체가 되게 하소서.", amens: 31, createdAt: 1762473600000 },
+    { id: "seed_smch_4", author: "감람나무 가지", text: "수험생들과 청년들의 앞길에 하나님의 지혜와 담대함을 부어주소서.", amens: 17, createdAt: 1762472400000 },
+    { id: "seed_smch_3", author: "작은 겨자씨", text: "지치고 상한 영혼들이 이 예배당에서 참된 쉼을 얻기를 기도합니다.", amens: 23, createdAt: 1762471200000 },
+    { id: "seed_smch_2", author: "갈릴리 어부", text: "삶의 거친 풍랑 속에서도 주님의 시선을 놓치지 않게 하소서.", amens: 19, createdAt: 1762470000000 },
+    { id: "seed_smch_1", author: "온유한 양", text: "사랑하는 가족들의 건강과 마음의 평안을 지켜주소서.", amens: 14, createdAt: 1762468800000 }
   ];
+
+  function loadInitialPrayers() {
+    const map = new Map();
+    DEFAULT_PRAYER_SEEDS.forEach(s => {
+      if (!deletedPrayerIds.has(s.id)) map.set(s.id, { ...s });
+    });
+    try {
+      const saved = JSON.parse(localStorage.getItem(PRAYER_STORAGE_KEY) || '[]');
+      if (Array.isArray(saved)) {
+        saved.forEach(item => {
+          if (!item || !item.text) return;
+          const id = item.id || ('legacy_' + item.author + '_' + item.text.slice(0, 12));
+          if (deletedPrayerIds.has(id)) return;
+          const existing = map.get(id);
+          if (existing) {
+            existing.amens = Math.max(Number(existing.amens) || 1, Number(item.amens) || 1);
+          } else {
+            map.set(id, {
+              id,
+              author: String(item.author || '온라인 성도').slice(0, 20),
+              authorKey: item.authorKey || '',
+              text: String(item.text).slice(0, 120),
+              amens: Math.max(1, Number(item.amens) || 1),
+              createdAt: Number(item.createdAt) || Date.now()
+            });
+          }
+        });
+      }
+    } catch (_) {}
+    return Array.from(map.values()).sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0)).slice(0, 100);
+  }
+
+  const PRAYER_CANDLES = loadInitialPrayers();
+
+  function savePrayersToLocal() {
+    try {
+      localStorage.setItem(PRAYER_STORAGE_KEY, JSON.stringify(PRAYER_CANDLES.slice(0, 100)));
+      localStorage.setItem(PRAYER_DELETED_KEY, JSON.stringify(Array.from(deletedPrayerIds).slice(-120)));
+    } catch (_) {}
+  }
+
+  function formatPrayerTime(item) {
+    if (!item.createdAt) return item.time || '방금 전';
+    const diffSec = Math.max(0, Math.floor((Date.now() - item.createdAt) / 1000));
+    if (diffSec < 60) return '방금 전';
+    const diffMin = Math.floor(diffSec / 60);
+    if (diffMin < 60) return `${diffMin}분 전`;
+    const diffHr = Math.floor(diffMin / 60);
+    if (diffHr < 24) return `${diffHr}시간 전`;
+    const d = new Date(item.createdAt);
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const diffDay = Math.floor(diffHr / 24);
+    if (diffDay < 7) return `${diffDay}일 전 (${mm}.${dd})`;
+    return `${d.getFullYear()}.${mm}.${dd}`;
+  }
 
   /* ==============================================================
    * 3. 3채널 Web Audio 자연음 신디사이저 + MP3 하이브리드 오디오 엔진
@@ -3587,21 +3673,36 @@ html, body {
   renderVerseChars();
 
   /* ==============================================================
-   * 11. 기도의 등불(중보기도) 렌더링 및 등불 밝히기
+   * 11. 기도의 등불(영구 중보기도 방명록) 렌더링 · 등록 · 아멘 · 클라우드 동기화
    * ============================================================== */
+  function escapeHtmlText(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  let publishGuestbookFn = null; // MQTT & BroadcastChannel 연동 후 바인딩
+
   function renderPrayerList() {
     const container = document.getElementById('prayer-list');
+    if (!container) return;
     container.innerHTML = '';
     document.getElementById('candle-count-num').textContent = String(10 + PRAYER_CANDLES.length);
     PRAYER_CANDLES.forEach((item, idx) => {
       const div = document.createElement('div');
       div.className = 'prayer-item';
+      const isMine = item.authorKey && item.authorKey === myAuthorKey;
+      const delBtnHtml = isMine
+        ? `<button type="button" data-del-id="${escapeHtmlText(item.id)}" title="내가 남긴 기도제목 삭제" style="background:none;border:none;color:#9c8d7a;font-size:11px;cursor:pointer;padding:2px 4px;margin-left:4px;">✕</button>`
+        : '';
       div.innerHTML = `
         <div class="prayer-item-top">
-          <span>🕯️ <strong>${item.author}</strong> · ${item.time}</span>
-          <button class="amen-mini-btn" data-amen-idx="${idx}">🙏 아멘 ${item.amens}</button>
+          <span>🕯️ <strong>${escapeHtmlText(item.author)}</strong> · <span style="color:#a89b87;">${escapeHtmlText(formatPrayerTime(item))}</span>${delBtnHtml}</span>
+          <button class="amen-mini-btn" data-amen-idx="${idx}">🙏 아멘 ${Number(item.amens) || 1}</button>
         </div>
-        <div>${item.text}</div>
+        <div style="word-break:keep-all; line-height:1.5;">${escapeHtmlText(item.text)}</div>
       `;
       container.appendChild(div);
     });
@@ -3609,14 +3710,53 @@ html, body {
     container.querySelectorAll('[data-amen-idx]').forEach(btn => {
       btn.addEventListener('click', () => {
         const i = Number(btn.getAttribute('data-amen-idx'));
-        PRAYER_CANDLES[i].amens++;
+        if (!PRAYER_CANDLES[i]) return;
+        PRAYER_CANDLES[i].amens = (Number(PRAYER_CANDLES[i].amens) || 1) + 1;
+        savePrayersToLocal();
+        if (publishGuestbookFn) publishGuestbookFn();
         playHarpBell(3, true);
-        showAvatarBubble(myAvatar, '🙏 아멘으로 함께 기도합니다');
+        showAvatarBubble(myAvatar, '🙏 아멘으로 함께 중보합니다');
         renderPrayerList();
+      });
+    });
+
+    container.querySelectorAll('[data-del-id]').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const targetId = btn.getAttribute('data-del-id');
+        if (!targetId) return;
+        deletedPrayerIds.add(targetId);
+        const idx = PRAYER_CANDLES.findIndex(p => p.id === targetId);
+        if (idx !== -1) PRAYER_CANDLES.splice(idx, 1);
+        savePrayersToLocal();
+        if (publishGuestbookFn) publishGuestbookFn();
+        renderPrayerList();
+        setStatusBanner('🕯️ 작성하신 기도제목을 방명록에서 정리했습니다.');
       });
     });
   }
   renderPrayerList();
+
+  // 1분마다 방명록 상대시간('방금 전', '3분 전') 자동 갱신
+  setInterval(renderPrayerList, 60000);
+
+  function registerPermanentPrayer(prayerText, authorName = myCustom.name, isLocalAuthor = true) {
+    const cleanText = String(prayerText || '').trim().slice(0, 100) || '조용히 주님 앞에 침묵으로 기도의 등불을 올립니다.';
+    const newEntry = {
+      id: 'p_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7),
+      author: String(authorName || '온라인 성도').slice(0, 20),
+      authorKey: isLocalAuthor ? myAuthorKey : '',
+      text: cleanText,
+      amens: 1,
+      createdAt: Date.now()
+    };
+    PRAYER_CANDLES.unshift(newEntry);
+    if (PRAYER_CANDLES.length > 100) PRAYER_CANDLES.length = 100;
+    savePrayersToLocal();
+    renderPrayerList();
+    if (isLocalAuthor && publishGuestbookFn) publishGuestbookFn();
+    return newEntry;
+  }
 
   document.getElementById('btn-light-candle').addEventListener('click', () => {
     const input = document.getElementById('prayer-input');
@@ -3624,6 +3764,39 @@ html, body {
     input.value = '';
     startLightingCandleSequence(txt);
   });
+
+  const btnPostDirect = document.getElementById('btn-post-prayer-direct');
+  if (btnPostDirect) {
+    btnPostDirect.addEventListener('click', () => {
+      const input = document.getElementById('prayer-input');
+      const txt = input.value.trim();
+      if (!txt) {
+        setStatusBanner('✍️ 방명록에 남기실 한 줄 기도제목을 먼저 입력해 주세요.');
+        input.focus();
+        return;
+      }
+      input.value = '';
+      const entry = registerPermanentPrayer(txt, myCustom.name, true);
+      playHarpBell(5, true);
+      showAvatarBubble(myAvatar, '🕯️ 중보기도 방명록에 기도제목을 올렸습니다');
+      setStatusBanner('🕯️ 기도제목이 영구 방명록에 기록되었습니다. 성도들이 함께 아멘으로 중보합니다.');
+      broadcastMyState('candle', entry.text);
+    });
+  }
+
+  const prayerInputEl = document.getElementById('prayer-input');
+  if (prayerInputEl) {
+    prayerInputEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        if (btnPostDirect && prayerInputEl.value.trim()) {
+          btnPostDirect.click();
+        } else {
+          document.getElementById('btn-light-candle').click();
+        }
+      }
+    });
+  }
 
   /* ==============================================================
    * 12. UI 이벤트 연결 (부트 성별선택, 아바타 꾸미기, 채팅, 독 패널, 사운드)
@@ -4555,43 +4728,146 @@ html, body {
       }
 
       if (data.action === 'candle' && data.prayer) {
-        PRAYER_CANDLES.unshift({
-          author: data.name || '온라인 성도',
-          text: data.prayer,
-          amens: 1,
-          time: '실시간 방금'
-        });
-        renderPrayerList();
         showAvatarBubble(av, '🕯️ 기도의 등불을 밝혔습니다');
       }
     }
     updateOnlineCounters();
   }
 
+  // 영구 중보기도 방명록 병합 엔진 (로컬 장부 + 클라우드 MQTT Retained 장부 합집합 병합)
+  const MQTT_PRAYER_TOPIC = 'kkumbaon/chapel/smch/v1/prayer_guestbook';
+  let receivedRetainedGuestbook = false;
+
+  function mergeGuestbookPayload(data) {
+    if (!data || typeof data !== 'object') return false;
+    let changed = false;
+    let localHasExtra = false;
+
+    if (Array.isArray(data.deletedIds)) {
+      data.deletedIds.forEach(did => {
+        if (did && !deletedPrayerIds.has(did)) {
+          deletedPrayerIds.add(did);
+          changed = true;
+        }
+      });
+    }
+
+    const remoteItems = Array.isArray(data.items) ? data.items : [];
+    const remoteIds = new Set();
+    const map = new Map();
+
+    PRAYER_CANDLES.forEach(item => {
+      if (!deletedPrayerIds.has(item.id)) {
+        map.set(item.id, item);
+      } else {
+        changed = true;
+      }
+    });
+
+    remoteItems.forEach(r => {
+      if (!r || !r.id || !r.text) return;
+      remoteIds.add(r.id);
+      if (deletedPrayerIds.has(r.id)) return;
+      const cur = map.get(r.id);
+      if (!cur) {
+        map.set(r.id, {
+          id: String(r.id).slice(0, 40),
+          author: String(r.author || '온라인 성도').slice(0, 20),
+          authorKey: String(r.authorKey || ''),
+          text: String(r.text).slice(0, 120),
+          amens: Math.max(1, Number(r.amens) || 1),
+          createdAt: Number(r.createdAt) || Date.now()
+        });
+        changed = true;
+      } else {
+        const maxAmens = Math.max(Number(cur.amens) || 1, Number(r.amens) || 1);
+        if (maxAmens !== cur.amens) {
+          cur.amens = maxAmens;
+          changed = true;
+        }
+      }
+    });
+
+    // 내 로컬 장부에만 있는 신규 기도제목이 있다면 브로커에도 다시 올려주어 자동 복구(Self-Healing)
+    PRAYER_CANDLES.forEach(item => {
+      if (!item.id.startsWith('seed_') && !remoteIds.has(item.id) && !deletedPrayerIds.has(item.id)) {
+        localHasExtra = true;
+      }
+    });
+
+    if (changed) {
+      const merged = Array.from(map.values())
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+        .slice(0, 100);
+      PRAYER_CANDLES.length = 0;
+      merged.forEach(m => PRAYER_CANDLES.push(m));
+      savePrayersToLocal();
+      renderPrayerList();
+    }
+    return localHasExtra;
+  }
+
   // 1) 로컬 탭 간 실시간 연동 (BroadcastChannel)
   const bcChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumbaon_smch_chapel_v1') : null;
   if (bcChannel) {
-    bcChannel.onmessage = (ev) => handleIncomingPacket(ev.data);
+    bcChannel.onmessage = (ev) => {
+      if (ev.data && ev.data.type === 'guestbook_sync') {
+        mergeGuestbookPayload(ev.data);
+      } else {
+        handleIncomingPacket(ev.data);
+      }
+    };
   }
 
-  // 2) 글로벌 인터넷 성도 간 실시간 연동 (WebSocket MQTT Public Broker)
+  // 2) 글로벌 인터넷 성도 간 실시간 연동 + 영구 방명록 클라우드 Retained 동기화 (WebSocket MQTT)
   let mqttClient = null;
   const MQTT_TOPIC = 'kkumbaon/chapel/smch/v1/presence';
+
+  publishGuestbookFn = function publishGuestbookState() {
+    const payload = {
+      type: 'guestbook_sync',
+      sid: mySessionId,
+      updatedAt: Date.now(),
+      items: PRAYER_CANDLES.slice(0, 100),
+      deletedIds: Array.from(deletedPrayerIds).slice(-120)
+    };
+    if (bcChannel) bcChannel.postMessage(payload);
+    if (mqttClient && mqttClient.connected) {
+      mqttClient.publish(MQTT_PRAYER_TOPIC, JSON.stringify(payload), { qos: 1, retain: true });
+    }
+  };
+
   if (window.mqtt) {
     try {
       mqttClient = window.mqtt.connect('wss://broker.emqx.io:8084/mqtt', {
-        clientId: 'saeoreum_' + mySessionId,
+        clientId: 'smch_' + mySessionId,
         clean: true,
         connectTimeout: 4000,
         reconnectPeriod: 4000
       });
       mqttClient.on('connect', () => {
         mqttClient.subscribe(MQTT_TOPIC);
+        mqttClient.subscribe(MQTT_PRAYER_TOPIC, { qos: 1 });
         broadcastMyState();
+        // 브로커에 아직 Retained 방명록이 없거나 내 로컬 기도제목이 더 최신인 경우 1.5초 뒤 자동 업로드
+        setTimeout(() => {
+          if (!receivedRetainedGuestbook && publishGuestbookFn) {
+            publishGuestbookFn();
+          }
+        }, 1500);
       });
       mqttClient.on('message', (topic, payload) => {
         if (topic === MQTT_TOPIC) {
           try { handleIncomingPacket(JSON.parse(payload.toString())); } catch (_) {}
+        } else if (topic === MQTT_PRAYER_TOPIC) {
+          receivedRetainedGuestbook = true;
+          try {
+            const data = JSON.parse(payload.toString());
+            const needRepublish = mergeGuestbookPayload(data);
+            if (needRepublish && data.sid !== mySessionId && publishGuestbookFn) {
+              publishGuestbookFn();
+            }
+          } catch (_) {}
         }
       });
     } catch (_) {}
@@ -4936,15 +5212,9 @@ html, body {
             av.group.rotation.y = 0;
             playHarpBell(5, true);
             const prayerMsg = av.pendingPrayer || '조용히 주님 앞에 기도의 등불을 올립니다.';
-            PRAYER_CANDLES.unshift({
-              author: myCustom.name,
-              text: prayerMsg,
-              amens: 1,
-              time: '방금 전'
-            });
-            renderPrayerList();
+            registerPermanentPrayer(prayerMsg, myCustom.name, true);
             showAvatarBubble(av, '🕯️ 기도의 등불을 밝혔습니다');
-            setStatusBanner('🕯️ 강단 앞 등잔대에 내 기도의 등불이 조용히 타오릅니다.');
+            setStatusBanner('🕯️ 강단 앞 등잔대에 내 기도의 등불이 타오르며, 중보기도 방명록에 영구 기록되었습니다.');
             if (av.isMe) broadcastMyState('candle', prayerMsg);
           } else {
             av.state = 'standing';
