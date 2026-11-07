@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1e1914">
-<title>신촌감리교회 온라인 예배당 · 예수님이 기뻐 춤추시는 교회 (SMCH)</title>
-<meta name="description" content="기독교대한감리회 신촌감리교회(신촌교회) 온라인 예배당 · 2026년 표어: 예수님이 기뻐 춤추시는 교회 (스바냐 3:17)">
+<title>새오름교회 온라인 예배당 · 3D 메가처치 프리미엄 통합 캠퍼스 (212석)</title>
+<meta name="description" content="새오름교회 3D 메가처치 온라인 예배당 (212석 · 6대 복합성전: 1층 계단식 대성전·파이프오르간, 2층 발코니, 소예배실·골방기도실, 교회학교 비전홀, 장년부 친교홀, 갈릴리 호수정원)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://kkumbaon.com/kkumbaon-library/assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
@@ -783,17 +783,17 @@ html, body {
 <body class="is-3d-chapel-page">
 
 <!-- 1. 부트(입장) 화면 -->
-<main id="chapel-boot" class="chapel-boot" role="dialog" aria-label="신촌감리교회 온라인 예배당" style="overflow-y:auto;">
+<main id="chapel-boot" class="chapel-boot" role="dialog" aria-label="새오름교회 3D 메가처치 온라인 예배당" style="overflow-y:auto;">
   <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:999px; background:linear-gradient(135deg, #1b2845 0%, #2c3e6b 100%); border:1.5px solid #e5c168; box-shadow:0 6px 18px rgba(0,0,0,0.18); margin-bottom:10px;">
     <span style="font-size:12.5px; font-weight:800; color:#ffe6a3; letter-spacing:0.04em;">👑 PREMIUM MEGA-CAMPUS · 3D 온라인 예배당 프리미엄 통합형 (총 212석 · 6대 복합성전)</span>
   </div>
-  <h1 style="font-size:28px; letter-spacing:2px;">프리미엄 통합형 · 3D 메가처치 온라인 캠퍼스</h1>
+  <h1 style="font-size:28px; letter-spacing:2px;">새오름교회 · 3D 메가처치 온라인 예배당</h1>
   <p class="boot-sub" style="margin-top:6px; font-size:13.5px; color:#2d3b55; line-height:1.55;">
     <strong>① 1층 계단식 대성전(96석·파이프오르간·성가대)</strong> · <strong>② 2층 중층 발코니석(36석)</strong> · <strong>③ 좌측 별관 소예배실·골방기도실(22석)</strong><br>
     <strong>④ 우측 별관 다음세대 교회학교 비전홀(18석)</strong> · <strong>⑤ 장년부·셀모임 라운지(12석)</strong> · <strong>⑥ 야외 갈릴리 호수정원(16석)</strong>
   </p>
   <div style="margin: 12px 0 14px; max-width: 450px; width: 92vw; border-radius: 10px; overflow: hidden; border: 1.5px solid rgba(72, 95, 168, 0.35); box-shadow: 0 10px 28px rgba(25, 38, 75, 0.14); background:#fff;">
-    <img src="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" alt="2026년 표어 예수님이 기뻐 춤추시는 교회 스바냐 3:17" style="width:100%; height:auto; display:block;">
+    <img src="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="새오름교회 조금 긴 성경이야기 · 책을 들고 나온 사람들 (사도행전 19:1-20)" style="width:100%; height:auto; display:block;">
   </div>
 
   <!-- 입장 전 남/여 아바타 & 호칭 빠른 선택 -->
@@ -827,21 +827,21 @@ html, body {
   <div class="top-left">
     <button class="hud-pill" id="btn-room-modal" title="예배당 서버 및 함께 기도하는 성도 보기">
       <span class="live-dot"></span>
-      <span id="current-room-name">🏛️ 본당 대성전 (1·2층 계단식)</span>
+      <span id="current-room-name">🏛️ 새오름 대성전 (1·2층 계단식)</span>
       <span style="color:#6E4B12; font-weight:800;">· <strong id="current-room-count">26</strong>명 함께 예배 중</span>
     </button>
-    <button class="hud-pill active-gold" id="btn-top-sermon-screen" title="성전 전면 설교 스크린 켜기 (신촌감리교회 유튜브 설교 영상·음성 재생)">
+    <button class="hud-pill active-gold" id="btn-top-sermon-screen" title="새오름 대성전 전면 말씀 스크린 켜기 (조금 긴 성경이야기 · 매일말씀 영상·음성 재생)">
       <span>📺 전면 설교화면 켜기</span>
     </button>
   </div>
   <div class="top-right">
-    <a class="hud-pill" href="http://www.smch.or.kr" target="_blank" rel="noopener" title="기독교대한감리회 신촌교회 공식 홈페이지">
-      <span>⛪ 신촌교회 홈 ↗</span>
+    <a class="hud-pill active-gold" href="https://kkumbaon.com/kkumbaon-library/" target="_blank" rel="noopener" title="새오름교회 꿈디도 디지털도서관으로 이동">
+      <span>🏛️ 꿈디도 도서관 ↗</span>
     </a>
-    <a class="hud-pill" href="https://www.youtube.com/@%EC%8B%A0%EC%B4%8C%EA%B0%90%EB%A6%AC%EA%B5%90%ED%9A%8C" target="_blank" rel="noopener" title="신촌감리교회 공식 유튜브 채널">
-      <span>▶️ 공식 유튜브 ↗</span>
+    <a class="hud-pill" href="https://www.youtube.com/@kkumbaon" target="_blank" rel="noopener" title="새오름교회 · 꿈바온 공식 유튜브 채널">
+      <span>▶️ 꿈바온 유튜브 ↗</span>
     </a>
-    <button class="hud-pill" id="btn-offering-modal" title="온라인 헌금 및 사역 마음 보태기">
+    <button class="hud-pill" id="btn-offering-modal" title="새오름교회 온라인 헌금 및 사역 마음 보태기">
       <span>💛 감사헌금함</span>
     </button>
   </div>
@@ -1054,7 +1054,7 @@ html, body {
     <button class="panel-close" data-close="panel-word">✕</button>
   </div>
   <select class="verse-selector" id="verse-select">
-    <option value="0">스바냐 3:17 (2026년 표어 · 예수님이 기뻐 춤추시는 교회)</option>
+    <option value="0">사도행전 19:20 (새오름 말씀 · 주의 말씀이 힘이 있어 흥왕하여)</option>
     <option value="1">시편 23:1-3 (여호와는 나의 목자시니)</option>
     <option value="2">마태복음 11:28-29 (수고하고 무거운 짐 진 자들아)</option>
     <option value="3">빌립보서 4:6-7 (아무것도 염려하지 말고)</option>
@@ -1107,27 +1107,23 @@ html, body {
 <!-- 5-C. [말씀 · 찬양 · 소리] 3채널 사운드 믹서 패널 -->
 <aside class="floating-panel" id="panel-sound">
   <div class="panel-header">
-    <h2 class="panel-title">📺 신촌감리교회 설교영상 · 예배당 소리</h2>
+    <h2 class="panel-title">📺 새오름교회 말씀영상 · 예배당 소리</h2>
     <button class="panel-close" data-close="panel-sound">✕</button>
   </div>
 
-  <!-- 채널 1 (최상단): 신촌감리교회 전면 설교 스크린 & 유튜브 설교 말씀 -->
+  <!-- 채널 1 (최상단): 새오름교회 전면 말씀 스크린 & 조금 긴 성경이야기 -->
   <div class="sound-row" style="border:1.5px solid rgba(245,207,118,0.45); background:linear-gradient(180deg, rgba(46,35,24,0.88) 0%, rgba(28,21,15,0.92) 100%);">
     <div style="display:flex; gap:10px; align-items:center; margin-bottom:4px;">
-      <img id="sermon-cover-thumb" src="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" alt="신촌감리교회 설교" style="width:78px; height:46px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,168,83,0.5); flex-shrink:0;">
+      <img id="sermon-cover-thumb" src="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="새오름교회 말씀" style="width:78px; height:46px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,168,83,0.5); flex-shrink:0;">
       <div style="flex:1; min-width:0;">
-        <div style="font-size:11.5px; color:#f5cf76; font-weight:700;" id="sermon-badge-label">⛪ 신촌감리교회 주일예배 설교 (임재웅 목사)</div>
-        <div style="font-size:14px; color:#fff; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="sermon-title-label">예수님이 기뻐 춤추시는 교회 · 스바냐 3:17</div>
+        <div style="font-size:11.5px; color:#f5cf76; font-weight:700;" id="sermon-badge-label">📖 새오름교회 조금 긴 성경이야기 (주일말씀)</div>
+        <div style="font-size:14px; color:#fff; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="sermon-title-label">책을 들고 나온 사람들 · 사도행전 19:1–20</div>
       </div>
     </div>
 
     <select class="sub-select" id="sermon-track-select" style="width:100%; padding:7px 10px; font-size:13px; margin:2px 0;">
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 2026년 표어 주일예배 설교" data-title="예수님이 기뻐 춤추시는 교회 (스바냐 3:17) · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="h9BEzqXz2l0" selected>🎬 [2026 표어설교] 예수님이 기뻐 춤추시는 교회 · 임재웅 목사</option>
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 신촌감리교회 주일예배" data-title="값은 이미 지불되었다 · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="MsQoE4h3lmM">🎬 [주일예배] 값은 이미 지불되었다 · 임재웅 목사</option>
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 신촌감리교회 주일예배" data-title="무너질 돌담을 버리고 십자가 그늘 아래로 · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="kftckWnMAoE">🎬 [주일예배] 무너질 돌담을 버리고 십자가 그늘 아래로 · 임재웅 목사</option>
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 신촌감리교회 주일3부예배" data-title="포장된 경건, 탄식하시는 예수님 · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="bbkx9wyoK3s">🎬 [주일예배] 포장된 경건, 탄식하시는 예수님 · 임재웅 목사</option>
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 신촌감리교회 주일3부예배" data-title="천국은 확실히 있다 (Heaven is so real) · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="bv5FJAWhoW4">🎬 [주일예배] 천국은 확실히 있다 (Heaven is so real) · 임재웅 목사</option>
-      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="⛪ 신촌감리교회 주일예배" data-title="꼭 그렇게 하셔야 했습니까? · 임재웅 목사" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp" data-vid="YqEEsrSUgzg">🎬 [주일예배] 꼭 그렇게 하셔야 했습니까? · 임재웅 목사</option>
+      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="📖 새오름교회 조금 긴 성경이야기 (주일말씀)" data-title="책을 들고 나온 사람들 · 사도행전 19:1–20 (한범수 목사)" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" data-vid="Y9sNVVxkZj4" selected>📖 [조금 긴 성경이야기] 책을 들고 나온 사람들 · 행 19:1–20 (29:35)</option>
+      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/word_ko.mp3" data-badge="🌅 새오름교회 매일말씀 낭독" data-title="베들레헴 성문에서 · 룻기 4:1–22 (한범수 목사)" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp" data-vid="73mMWY2v-SA">🌅 [매일말씀] 베들레헴 성문에서 · 룻기 4:1–22 (02:30)</option>
     </select>
 
     <div style="display:flex; align-items:center; gap:6px; margin-top:4px; flex-wrap:wrap;">
@@ -1191,7 +1187,7 @@ html, body {
 <div class="modal-backdrop" id="modal-rooms">
   <div class="modal-card" style="max-width:460px;">
     <div class="panel-header">
-      <h2 class="panel-title">⛪ 신촌감리교회 예배당 서버 & 함께 있는 성도</h2>
+      <h2 class="panel-title">🏛️ 새오름교회 메가처치 캠퍼스 서버 & 함께 있는 성도</h2>
       <button class="panel-close" data-close-modal="modal-rooms">✕</button>
     </div>
     <div style="margin-top:10px; padding:10px 12px; border-radius:12px; background:rgba(124,217,146,0.1); border:1px solid rgba(124,217,146,0.32); font-size:12px; line-height:1.55; color:#dff7e4;">
@@ -1213,8 +1209,8 @@ html, body {
       아래 예배 공간을 클릭하면 해당 성전/별관으로 내 아바타가 즉시 이동합니다.
     </div>
     <div id="room-list-container">
-      <div class="room-item active" data-room="🏛️ 본당 대성전 (1·2층 계단식)" data-zone-jump="main1f" data-npc="25">
-        <div><strong>🏛️ 본당 대성전 (1층 계단식 + 2층 발코니)</strong> <span style="font-size:11.5px; color:#a89b87;">· 메가처치 본당 (144석)</span></div>
+      <div class="room-item active" data-room="🏛️ 새오름 대성전 (1·2층 계단식)" data-zone-jump="main1f" data-npc="25">
+        <div><strong>🏛️ 새오름 대성전 (1층 계단식 + 2층 발코니)</strong> <span style="font-size:11.5px; color:#a89b87;">· 메가처치 본당 (144석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">실시간 연결됨</div>
       </div>
       <div class="room-item" data-room="🙏 은혜 소예배실 · 겟세마네 골방기도실" data-zone-jump="smallchapel" data-npc="25">
@@ -1241,14 +1237,20 @@ html, body {
       <button class="panel-close" data-close-modal="modal-offering">✕</button>
     </div>
     <p style="font-size:13px; color:#d8cbb8; line-height:1.7; margin:14px 0 12px;">
-      기독교대한감리회 신촌감리교회 온라인 예배당을 찾아주신 성도님들을 주님의 이름으로 환영하고 축복합니다. “예수님이 기뻐 춤추시는 교회 (스바냐 3:17)”의 기쁨과 구원의 은혜가 성도님의 가정과 일터 위에 가득하기를 기도합니다.
+      새오름교회 3D 메가처치 온라인 예배당과 꿈디도 디지털도서관은 전 세계 성도님들이 언제 어디서나 조용히 머물며 말씀을 묵상하고 기도할 수 있도록 열려 있는 영적 쉼터입니다.
     </p>
     <div style="padding:16px 18px; border-radius:14px; background:rgba(212,168,83,0.12); border:1px solid rgba(212,168,83,0.35); text-align:center;">
-      <div style="font-size:12.5px; color:#ffe6a3; font-weight:700; letter-spacing:0.02em; margin-bottom:8px;">
-        ⛪ 기독교대한감리회 신촌감리교회 (신촌교회) 안내
+      <div style="font-size:12px; color:#e5d2b0; font-weight:600; letter-spacing:0.02em; margin-bottom:6px;">
+        온라인 감사·선교 헌금 계좌 안내
       </div>
-      <p style="font-size:12.5px; color:#e0d2bd; line-height:1.65; margin:4px 0 14px; font-weight:500;">
-        온라인 헌금 및 교회 소식·주보 안내는 신촌감리교회 공식 홈페이지(<a href="http://www.smch.or.kr" target="_blank" rel="noopener" style="color:#ffd875; font-weight:700;">www.smch.or.kr</a>)를 이용해 주시기 바랍니다.
+      <div style="display:flex; align-items:center; justify-content:center; gap:8px; flex-wrap:wrap; margin:8px 0 10px; padding:10px 12px; border-radius:10px; background:rgba(20,15,10,0.65); border:1px solid rgba(212,168,83,0.32);">
+        <span style="font-size:13.5px; color:#f5cf76; font-weight:700;">우리은행</span>
+        <strong id="offering-account-num" style="font-size:15.5px; color:#FFF8EB; letter-spacing:0.04em; font-family:monospace;">1005 604 133222</strong>
+        <span style="font-size:13.5px; color:#D8CBB8;">(새오름교회)</span>
+        <button type="button" class="btn-copy-account" onclick="navigator.clipboard.writeText('1005 604 133222 우리은행 새오름교회');this.textContent='복사완료 ✓';" style="background:linear-gradient(135deg,#e5c878,#b88b38); color:#140F09; border:none; border-radius:6px; font-size:11.5px; font-weight:800; padding:5px 10px; cursor:pointer; margin-left:4px;">계좌 복사</button>
+      </div>
+      <p style="font-size:12.5px; color:#e0d2bd; line-height:1.6; margin:4px 0 12px; font-weight:500;">
+        ※ 헌금은 새오름교회의 온라인 예배당 및 꿈디도 디지털도서관 사역을 위해 귀하게 사용됩니다.
       </p>
       <button class="step-btn" id="btn-offering-amen" style="width:100%;">🙏 감사와 축복의 기도로 마음 보태기</button>
     </div>
@@ -1284,7 +1286,7 @@ html, body {
     <div style="padding:8px 12px; display:flex; align-items:center; justify-content:space-between; gap:6px; border-bottom:1px solid rgba(212,168,83,0.3); background:#1c2130; flex-wrap:wrap;">
       <div style="display:flex; align-items:center; gap:7px; min-width:0; flex:1;">
         <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#ff3b30; box-shadow:0 0 8px #ff3b30; flex-shrink:0;"></span>
-        <strong id="sermon-video-modal-title" style="font-family:var(--serif); font-size:13.5px; color:#ffe6a3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">📺 예수님이 기뻐 춤추시는 교회 · 임재웅 목사</strong>
+        <strong id="sermon-video-modal-title" style="font-family:var(--serif); font-size:13.5px; color:#ffe6a3; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">📖 책을 들고 나온 사람들 · 사도행전 19:1–20 (새오름교회)</strong>
       </div>
       <div style="display:flex; align-items:center; gap:5px; flex-shrink:0; flex-wrap:wrap;">
         <button type="button" class="amen-mini-btn" id="btn-toggle-audio-only" style="padding:5px 9px; font-size:11.5px; font-weight:800; background:rgba(46,125,90,0.4); border-color:#6ee7b7; color:#ecfdf5;" title="영상 창을 접고 설교 소리만 들으며 예배당 걷기">🎧 소리만 듣기</button>
@@ -1877,7 +1879,7 @@ html, body {
   worldGroup.add(floorMesh);
 
   // 중앙 대복도 + 좌·우 보조 복도 (신촌교회 본당의 깔끔한 웜톤 카펫 러너 통로)
-  const runnerMat = new THREE.MeshStandardMaterial({ color: 0x9c856c, roughness: 0.85 });
+  const runnerMat = new THREE.MeshStandardMaterial({ color: 0x6b2626, roughness: 0.85 });
   const runnerMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 31), runnerMat);
   runnerMesh.rotation.x = -Math.PI / 2;
   runnerMesh.position.set(0, 0.01, 3.0);
@@ -1897,8 +1899,8 @@ html, body {
   worldGroup.add(runnerMeshR);
 
   // 강단(Chancel) 밝은 내추럴 메이플 원목 단상 + 전면 2단 계단 (신촌교회 강단 실사 반영)
-  const stageMapleMat = new THREE.MeshStandardMaterial({ color: 0xdfc294, roughness: 0.48 });
-  const stageStepEdgeMat = new THREE.MeshStandardMaterial({ color: 0xc8a673, roughness: 0.52 });
+  const stageMapleMat = new THREE.MeshStandardMaterial({ color: 0x5c3e26, roughness: 0.52 });
+  const stageStepEdgeMat = new THREE.MeshStandardMaterial({ color: 0x472e1b, roughness: 0.55 });
 
   // 1단 넓은 계단 (y: 0 ~ 0.22)
   const stageStep1 = new THREE.Mesh(new THREE.BoxGeometry(24.4, 0.22, 6.2), stageStepEdgeMat);
@@ -1931,9 +1933,9 @@ html, body {
 
   // 전면 중앙 화이트 알코브 벽면 (빛 번짐 없이 십자가와 강대상이 뚜렷하게 돋보이는 소프트 웜 아이보리 벽면)
   const whiteAlcoveMat = new THREE.MeshStandardMaterial({
-    color: 0xe5ddd0,
-    roughness: 0.88,
-    metalness: 0.02
+    color: 0x3b2718,
+    roughness: 0.65,
+    metalness: 0.05
   });
   const whiteAlcoveWall = new THREE.Mesh(new THREE.BoxGeometry(13.6, 10.2, 0.18), whiteAlcoveMat);
   whiteAlcoveWall.position.set(0, 5.2, -14.92);
@@ -2048,8 +2050,8 @@ html, body {
 
   // 신촌교회 중앙 밝은 허니메이플 사각 강대상 (사진 1의 노란빛 밝은 원목 사각 강대상 완벽 구현!)
   const pulpitGroup = new THREE.Group();
-  const pulpitMapleMat = new THREE.MeshStandardMaterial({ color: 0xd9a84e, roughness: 0.44 });
-  const pulpitTrimMat = new THREE.MeshStandardMaterial({ color: 0xb5832e, roughness: 0.48 });
+  const pulpitMapleMat = new THREE.MeshStandardMaterial({ color: 0x472e1b, roughness: 0.46 });
+  const pulpitTrimMat = new THREE.MeshStandardMaterial({ color: 0xd4a853, roughness: 0.35, metalness: 0.35 });
   // 하단 받침 몰딩
   const pulpitBase = new THREE.Mesh(new THREE.BoxGeometry(1.92, 0.10, 0.86), pulpitTrimMat);
   pulpitBase.position.y = 0.05;
@@ -2958,10 +2960,10 @@ html, body {
   // 예배당 & 야외 성화 산책로 대형 성화 액자 6점 (클릭 시 풀스크린 초고해상도 확대!)
   const CHAPEL_ARTWORKS = [
     {
-      title: "1. 2026년 신촌감리교회 표어 · 예수님이 기뻐 춤추시는 교회 (BLESSING)",
-      ref: "스바냐 3:17",
-      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp",
-      desc: "“너의 하나님 여호와가 너의 가운데에 계시니 그는 구원을 베푸실 전능자이시라 그가 너로 말미암아 기쁨을 이기지 못하시며 너를 잠잠히 사랑하시며 너로 말미암아 즐거이 부르며 기뻐하시리라 하리라” (스바냐 3:17) — 기독교대한감리회 신촌감리교회 2026년 표어입니다.",
+      title: "1. 책을 들고 나온 사람들 · 에베소 성도들의 결단 (새오름교회 조금 긴 성경이야기)",
+      ref: "사도행전 19:1–20",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp",
+      desc: "일꾼 바울의 땀 묻은 앞치마와 수건을 통해 일하신 하나님, 그리고 은 오만이나 되는 마술책을 스스로 들고 나와 불사르며 주의 이름을 높인 에베소 성도들의 결단입니다.",
       pos: new THREE.Vector3(-14.68, 2.6, -3.0),
       rotY: Math.PI / 2
     },
@@ -3048,7 +3050,7 @@ html, body {
   // 1) 전면 우측 날개 벽면 & 좌측 날개 벽면 2026년 표어 액자 (클릭 시 풀스크린 확대)
   {
     const mMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
-    texLoader.load('https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp', (tex) => {
+    texLoader.load('https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp', (tex) => {
       mMat.map = tex;
       mMat.needsUpdate = true;
     });
@@ -3091,67 +3093,58 @@ html, body {
   const screenBgImg = new Image();
   screenBgImg.crossOrigin = 'anonymous';
   let isSermonVideoPlaying = false;
-  let currentSermonShortTitle = '예수님이 기뻐 춤추시는 교회 (스바냐 3:17)';
+  let currentSermonShortTitle = '책을 들고 나온 사람들 · 사도행전 19:1–20';
   let lastScreenDrawTime = -999;
 
   function drawFrontSermonScreen(timeSec) {
     sCtx.save();
     sCtx.setTransform(0.5, 0, 0, 0.5, 0, 0);
 
-    // 신촌교회 실제 LED 스크린의 따뜻한 로즈·마젠타·보랏빛 예배 배경 그라데이션 (사진 1 완벽 재현!)
+    // 새오름교회 대성전 다크 미드나잇 & 샴페인 골드 시네마틱 설교 스크린
     const bgGrad = sCtx.createLinearGradient(0, 0, 1024, 576);
-    if (isSermonVideoPlaying) {
-      bgGrad.addColorStop(0, '#161f38');
-      bgGrad.addColorStop(0.5, '#2b3964');
-      bgGrad.addColorStop(1, '#12192e');
-    } else {
-      bgGrad.addColorStop(0, '#7c344a');
-      bgGrad.addColorStop(0.45, '#c65382');
-      bgGrad.addColorStop(0.8, '#dc699b');
-      bgGrad.addColorStop(1, '#9e3f68');
-    }
+    bgGrad.addColorStop(0, '#17120c');
+    bgGrad.addColorStop(0.5, '#2b2013');
+    bgGrad.addColorStop(1, '#120d08');
     sCtx.fillStyle = bgGrad;
     sCtx.fillRect(0, 0, 1024, 576);
 
-    // 은은한 빛 망울(Bokeh) 효과 (사진 1 LED 화면 배경 디테일)
-    sCtx.fillStyle = 'rgba(255, 215, 235, 0.10)';
-    sCtx.beginPath(); sCtx.arc(240, 420, 95, 0, Math.PI * 2); sCtx.fill();
-    sCtx.beginPath(); sCtx.arc(780, 160, 120, 0, Math.PI * 2); sCtx.fill();
-    sCtx.beginPath(); sCtx.arc(520, 90, 70, 0, Math.PI * 2); sCtx.fill();
-
-    if (screenBgImg.complete && screenBgImg.naturalWidth > 0 && isSermonVideoPlaying) {
+    if (screenBgImg.complete && screenBgImg.naturalWidth > 0) {
       sCtx.save();
-      sCtx.globalAlpha = 0.28;
+      sCtx.globalAlpha = 0.36;
       sCtx.drawImage(screenBgImg, 0, 0, 1024, 576);
       sCtx.restore();
     }
 
-    // 상단 좌측 찬양/예배 타이틀
-    sCtx.fillStyle = 'rgba(255, 255, 255, 0.92)';
+    // 골드 인라인 프레임
+    sCtx.strokeStyle = 'rgba(229, 193, 104, 0.55)';
+    sCtx.lineWidth = 4;
+    sCtx.strokeRect(18, 18, 988, 540);
+
+    // 좌측 상단 타이틀
+    sCtx.fillStyle = '#f5cf76';
     sCtx.font = 'bold 25px sans-serif';
     sCtx.textAlign = 'left';
     sCtx.fillText(
       isSermonVideoPlaying
-        ? '🔴 LIVE 설교 상영 중 · 기독교대한감리회 신촌감리교회'
-        : '나로부터 시작되리 · 신촌감리교회 대성전 중앙 설교화면',
-      42, 52
+        ? '🔴 LIVE 말씀 상영 중 · 새오름교회 대성전'
+        : '🏛️ 새오름교회 · 조금 긴 성경이야기 & 매일말씀 상영관',
+      42, 56
     );
 
-    // 중앙 찬양 가사 & 플레이 아이콘
     sCtx.textAlign = 'center';
     if (!isSermonVideoPlaying) {
-      sCtx.fillStyle = '#ffffff';
-      sCtx.font = 'bold 42px sans-serif';
-      sCtx.shadowColor = 'rgba(60, 10, 30, 0.45)';
-      sCtx.shadowBlur = 12;
-      sCtx.fillText('이 땅의 부흥과 회복은', 512, 195);
-      sCtx.fillText('바로 나로부터 시작되리', 512, 252);
+      sCtx.fillStyle = '#fff8e8';
+      sCtx.font = 'bold 44px serif';
+      sCtx.shadowColor = 'rgba(0, 0, 0, 0.75)';
+      sCtx.shadowBlur = 14;
+      sCtx.fillText('“주의 말씀이 힘이 있어 흥왕하여', 512, 190);
+      sCtx.fillText('세력을 얻으니라” (사도행전 19:20)', 512, 248);
       sCtx.shadowBlur = 0;
 
       // 재생 버튼 원형 아이콘
       sCtx.save();
-      sCtx.translate(512, 348);
-      sCtx.fillStyle = 'rgba(25, 18, 32, 0.62)';
+      sCtx.translate(512, 346);
+      sCtx.fillStyle = 'rgba(20, 14, 8, 0.72)';
       sCtx.beginPath();
       sCtx.arc(0, 0, 48, 0, Math.PI * 2);
       sCtx.fill();
@@ -3168,40 +3161,39 @@ html, body {
       sCtx.fill();
       sCtx.restore();
     } else {
-      // 설교 재생 중 오디오 파형 바 애니메이션
       sCtx.save();
       sCtx.translate(512, 265);
       for (let i = -6; i <= 6; i++) {
         const h = 24 + Math.abs(Math.sin(timeSec * 6.5 + i * 0.7)) * 68;
-        sCtx.fillStyle = '#75b0ff';
+        sCtx.fillStyle = '#f5cf76';
         sCtx.fillRect(i * 22 - 7, -h / 2, 14, h);
       }
       sCtx.restore();
     }
 
     // 하단 바 영역
-    sCtx.fillStyle = 'rgba(18, 10, 22, 0.52)';
+    sCtx.fillStyle = 'rgba(14, 10, 6, 0.76)';
     sCtx.fillRect(0, 438, 1024, 138);
 
     sCtx.textAlign = 'center';
     sCtx.fillStyle = '#ffe8a3';
-    sCtx.font = 'bold 28px sans-serif';
+    sCtx.font = 'bold 27px sans-serif';
     sCtx.fillText(
       isSermonVideoPlaying
-        ? '🔊 현재 설교 영상·음성이 재생되고 있습니다 (터치하면 화면 전환)'
-        : '👆 중앙 설교화면을 터치하면 유튜브 설교 영상·소리가 나옵니다',
+        ? '🔊 현재 새오름교회 말씀 영상·음성이 상영 중입니다 (터치 시 전환)'
+        : '👆 중앙 말씀화면을 터치하면 새오름교회 말씀 영상·소리가 나옵니다',
       512, 482
     );
 
     sCtx.fillStyle = '#ffffff';
     sCtx.font = 'bold 24px serif';
-    sCtx.fillText(`📖 ${currentSermonShortTitle} · 임재웅 목사`, 512, 532);
+    sCtx.fillText(`📖 ${currentSermonShortTitle} · 새오름교회 (한범수 목사)`, 512, 532);
     sCtx.restore();
 
     screenTex.needsUpdate = true;
   }
   screenBgImg.onload = () => drawFrontSermonScreen(0);
-  screenBgImg.src = 'https://kkumbaon.com/kkumbaon-library/assets/webp/smch_2026_motto.webp';
+  screenBgImg.src = 'https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp';
   drawFrontSermonScreen(0);
 
   const sermonScreenGroup = new THREE.Group();
@@ -3221,7 +3213,7 @@ html, body {
   worldGroup.add(sermonScreenGroup);
 
   // 중앙 스크린 은은한 후광 조명
-  const screenGlowLight = new THREE.PointLight(0xffb8d2, 0.35, 12);
+  const screenGlowLight = new THREE.PointLight(0xffd88a, 0.45, 12);
   screenGlowLight.position.set(0, 4.88, -13.2);
   scene.add(screenGlowLight);
 
@@ -3319,7 +3311,7 @@ html, body {
 
   function loadMyCustom() {
     try {
-      const raw = JSON.parse(localStorage.getItem('smch_chapel_avatar_v1') || 'null');
+      const raw = JSON.parse(localStorage.getItem('saeoreum_mega_avatar_v1') || 'null');
       if (raw && typeof raw === 'object') {
         return {
           name: (typeof raw.name === 'string' && raw.name.trim()) ? raw.name.trim().slice(0, 16) : DEFAULT_MY_CUSTOM.name,
@@ -3337,7 +3329,7 @@ html, body {
   }
 
   function saveMyCustom(cfg = myCustom) {
-    try { localStorage.setItem('smch_chapel_avatar_v1', JSON.stringify(cfg)); } catch (_) {}
+    try { localStorage.setItem('saeoreum_mega_avatar_v1', JSON.stringify(cfg)); } catch (_) {}
   }
 
   const myCustom = loadMyCustom();
@@ -4930,7 +4922,7 @@ html, body {
   // 초기 환영 교제 메시지
   appendChatMessage({
     name: '예배당 안내',
-    text: '샬롬! 기독교대한감리회 신촌감리교회 온라인 예배당에 오신 것을 환영합니다. 강단 정중앙의 [설교 스크린]을 터치하면 유튜브 설교 영상과 음성이 재생됩니다!',
+    text: '샬롬! 새오름교회 3D 메가처치 온라인 예배당(1·2층 대성전·소예배실·교회학교·장년부홀·호수정원)에 오신 것을 환영합니다. 강단 정중앙의 [말씀 스크린]을 터치하면 말씀 영상이 상영됩니다!',
     isSystem: true
   });
   appendChatMessage({
@@ -5239,7 +5231,7 @@ html, body {
     document.querySelectorAll('.sermon-chip-btn').forEach(btn => {
       btn.classList.toggle('active', btn.getAttribute('data-yt-vid') === activeYoutubeVid);
     });
-    setStatusBanner(`📺 신촌감리교회 「${currentSermonShortTitle}」 유튜브 설교 영상과 음성을 상영합니다.`);
+    setStatusBanner(`📺 새오름교회 「${currentSermonShortTitle}」 말씀 영상과 음성을 상영합니다.`);
   }
 
   function openSermonScreenPlayer(startInPip = false) {
@@ -5250,7 +5242,7 @@ html, body {
     }
     const opt = sermonTrackSelect.options[sermonTrackSelect.selectedIndex];
     const vid = (opt && opt.getAttribute('data-vid')) || activeYoutubeVid || 'h9BEzqXz2l0';
-    const title = (opt && opt.getAttribute('data-title')) || '예수님이 기뻐 춤추시는 교회 (스바냐 3:17) · 임재웅 목사';
+    const title = (opt && opt.getAttribute('data-title')) || '책을 들고 나온 사람들 · 사도행전 19:1–20 (한범수 목사)';
     loadAndPlayYoutubeSermon(vid, title, startInPip);
   }
 
@@ -5309,7 +5301,7 @@ html, body {
         setStatusBanner('⚠️ 올바른 유튜브 링크(URL) 또는 11자리 영상 ID를 입력해 주세요.');
         return;
       }
-      loadAndPlayYoutubeSermon(vid, '신촌감리교회 유튜브 설교·찬양 상영', sermonVideoModal.classList.contains('is-pip-mode'));
+      loadAndPlayYoutubeSermon(vid, '새오름교회 말씀 영상 상영', sermonVideoModal.classList.contains('is-pip-mode'));
       customYtInput.value = '';
     });
   }
@@ -5508,7 +5500,7 @@ html, body {
       camDist = 11.4;
       camYaw = 0; // 본당 십자가 정면을 바라보도록 시선 회전
       document.getElementById('btn-walk-garden').innerHTML = '<span>🌳 야외 정원·연못 산책</span>';
-      setStatusBanner('⛪ 다시 신촌 대성전(96석 장의자 · 12석 무릎기도석) 십자가 앞으로 걸어 들어갑니다.');
+      setStatusBanner('⛪ 다시 새오름 1층 계단식 대성전 십자가 앞으로 걸어 들어갑니다.');
     }
   });
 
@@ -5562,17 +5554,17 @@ html, body {
    * 12-B. 실시간 멀티플레이어 동기화 (MQTT WebSocket + BroadcastChannel)
    *       & 예배당 상주 지킴이(AI 동행 순례자) ON/OFF 제어
    * ============================================================== */
-  let mySessionId = sessionStorage.getItem('kkumbaon_smch_sid');
+  let mySessionId = sessionStorage.getItem('kkumbaon_saeoreum_sid');
   if (!mySessionId) {
     mySessionId = 'user_' + Math.random().toString(36).slice(2, 10);
-    try { sessionStorage.setItem('kkumbaon_smch_sid', mySessionId); } catch (_) {}
+    try { sessionStorage.setItem('kkumbaon_saeoreum_sid', mySessionId); } catch (_) {}
   }
   let myDeviceId = localStorage.getItem('kkumbaon_chapel_device_id');
   if (!myDeviceId) {
     myDeviceId = 'dev_' + Math.random().toString(36).slice(2, 11);
     try { localStorage.setItem('kkumbaon_chapel_device_id', myDeviceId); } catch (_) {}
   }
-  let currentRoom = '신촌 대성전';
+  let currentRoom = '새오름 대성전';
   let showNpcs = true;
   const remotePeers = new Map(); // sessionId -> { avatar, lastSeen, room, customSig }
 
@@ -5640,7 +5632,7 @@ html, body {
         x: data.x || 0,
         z: data.z || 10.5
       });
-      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '신촌 대성전', customSig };
+      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '새오름 대성전', customSig };
       remotePeers.set(data.sid, peer);
     } else if (data.custom && peer.customSig !== customSig) {
       peer.customSig = customSig;
@@ -5695,7 +5687,7 @@ html, body {
   }
 
   // 영구 중보기도 방명록 병합 엔진 (로컬 장부 + 클라우드 MQTT Retained 장부 합집합 병합)
-  const MQTT_PRAYER_TOPIC = 'kkumbaon/chapel/smch/v1/prayer_guestbook';
+  const MQTT_PRAYER_TOPIC = 'kkumbaon/chapel/saeoreum_mega/v1/prayer_guestbook';
   let receivedRetainedGuestbook = false;
 
   function mergeGuestbookPayload(data) {
@@ -5768,7 +5760,7 @@ html, body {
   }
 
   // 1) 로컬 탭 간 실시간 연동 (BroadcastChannel)
-  const bcChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumbaon_smch_chapel_v1') : null;
+  const bcChannel = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumbaon_saeoreum_mega_v1') : null;
   if (bcChannel) {
     bcChannel.onmessage = (ev) => {
       if (ev.data && ev.data.type === 'guestbook_sync') {
@@ -5781,7 +5773,7 @@ html, body {
 
   // 2) 글로벌 인터넷 성도 간 실시간 연동 + 영구 방명록 클라우드 Retained 동기화 (WebSocket MQTT)
   let mqttClient = null;
-  const MQTT_TOPIC = 'kkumbaon/chapel/smch/v1/presence';
+  const MQTT_TOPIC = 'kkumbaon/chapel/saeoreum_mega/v1/presence';
 
   publishGuestbookFn = function publishGuestbookState() {
     const payload = {
