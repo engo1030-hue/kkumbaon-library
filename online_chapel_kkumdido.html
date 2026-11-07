@@ -29,40 +29,47 @@
     background: var(--bg-midnight); color: var(--text-light); font-family: var(--sans);
   }
 
-  /* 1. 부트(입장) 화면 — 양피지 라이트 & 샴페인 골드 */
+  /* 1. 부트(입장) 화면 — 유럽 고전 수도원 신학 대도서관 & 성화 아트리움 */
   .sanctuary-boot {
     position: fixed; inset: 0; z-index: 1000;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
     padding: 28px;
-    background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #EFE8D9 100%);
-    color: var(--text-light); text-align: center;
+    background:
+      linear-gradient(180deg, rgba(14, 10, 7, 0.78) 0%, rgba(20, 14, 9, 0.88) 65%, rgba(10, 7, 5, 0.95) 100%),
+      url('assets/euro/euro_library_bookshelves.webp') center center / cover no-repeat;
+    color: #f6ede0; text-align: center;
     transition: opacity 0.9s ease, visibility 0.9s ease;
   }
   .sanctuary-boot.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
   .boot-emblem {
-    color: var(--gold); margin-bottom: 14px;
+    color: #e5c168; margin-bottom: 14px;
+    filter: drop-shadow(0 0 14px rgba(229, 193, 104, 0.55));
     animation: pulse-glow 3.5s ease-in-out infinite;
   }
-  .boot-emblem svg { width: 50px; height: 50px; stroke-width: 1.3; }
+  .boot-emblem svg { width: 52px; height: 52px; stroke-width: 1.4; }
   .sanctuary-boot h1 {
-    margin: 0; font-family: var(--serif); font-size: 34px; font-weight: 700;
-    letter-spacing: 5px; padding-left: 5px; color: #1F1A15;
+    margin: 0; font-family: var(--serif); font-size: 35px; font-weight: 700;
+    letter-spacing: 5px; padding-left: 5px; color: #fff8e7;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.85);
   }
   .boot-badge {
-    display: inline-block; margin-bottom: 10px; padding: 5px 14px; border-radius: 999px;
-    background: #FBF5E6; border: 1px solid #C8A45D;
-    color: #6E4B12; font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px;
+    display: inline-block; margin-bottom: 10px; padding: 5px 15px; border-radius: 999px;
+    background: rgba(34, 24, 15, 0.85); border: 1px solid #e5c168;
+    color: #ffe8a3; font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px;
   }
   .boot-sub {
-    margin: 12px 0 0; font-size: 16px; font-weight: 600; color: #4e4538; line-height: 1.75;
-    max-width: 460px; word-break: keep-all;
+    margin: 12px 0 0; font-size: 16px; font-weight: 600; color: #e5d7c3; line-height: 1.75;
+    max-width: 480px; word-break: keep-all;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
   }
   .boot-verse {
-    margin: 14px 0 16px; padding: 14px 22px;
-    border-top: 1px solid #D5C7B2;
-    border-bottom: 1px solid #D5C7B2;
-    font-family: var(--serif); font-size: 15px; font-weight: 600; color: #3B3228; line-height: 1.75;
-    max-width: 480px;
+    margin: 14px 0 16px; padding: 15px 24px;
+    background: rgba(18, 13, 9, 0.72);
+    border-top: 1px solid rgba(229, 193, 104, 0.55);
+    border-bottom: 1px solid rgba(229, 193, 104, 0.55);
+    backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+    font-family: var(--serif); font-size: 15px; font-weight: 600; color: #f8eed9; line-height: 1.75;
+    max-width: 490px;
   }
   .boot-avatar-box {
     width: 100%; max-width: 390px; margin: 0 0 16px; padding: 14px 16px;
@@ -1298,178 +1305,364 @@ html, body {
    * ============================================================== */
   const wrap = document.getElementById('canvas-wrap');
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x090d16);
-  scene.fog = new THREE.FogExp2(0x090d16, 0.024);
+  scene.background = new THREE.Color(0x16110c);
+  scene.fog = new THREE.FogExp2(0x16110c, 0.015);
 
-  const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 120);
-  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 130);
+  const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   renderer.setSize(window.innerWidth, window.innerHeight);
-  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.8));
   renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.98;
   wrap.appendChild(renderer.domElement);
 
-  const ambLight = new THREE.AmbientLight(0x8aa0d6, 0.52);
+  // 유럽 수도원 고전 도서관의 중후하고 따뜻한 앰버 촛불·천창 조명
+  const ambLight = new THREE.AmbientLight(0xffebd1, 0.66);
   scene.add(ambLight);
 
-  const moonLight = new THREE.DirectionalLight(0xc8daf7, 0.65);
-  moonLight.position.set(10, 22, 12);
+  const moonLight = new THREE.DirectionalLight(0xffe0b2, 0.76);
+  moonLight.position.set(10, 24, 12);
   moonLight.castShadow = true;
+  moonLight.shadow.mapSize.width = 1024;
+  moonLight.shadow.mapSize.height = 1024;
   scene.add(moonLight);
 
-  // 중앙 오래된 우물에서 피어오르는 황금·아쿠아 빛
-  const wellLight = new THREE.PointLight(0xffc966, 1.85, 16);
-  wellLight.position.set(0, 1.8, 0);
+  // 중앙 오래된 우물에서 피어오르는 황금·생명수 빛
+  const wellLight = new THREE.PointLight(0xffc966, 1.95, 18);
+  wellLight.position.set(0, 2.2, 0);
   scene.add(wellLight);
 
   const world = new THREE.Group();
   scene.add(world);
 
-  // 석조 대리석 타일 캔버스 텍스처
-  function createStoneTileTexture() {
-    const c = document.createElement('canvas');
-    c.width = 512; c.height = 512;
-    const ctx = c.getContext('2d');
-    ctx.fillStyle = '#182030';
-    ctx.fillRect(0, 0, 512, 512);
-    ctx.strokeStyle = '#26324a';
-    ctx.lineWidth = 3;
-    for (let i = 0; i <= 512; i += 64) {
-      ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 512); ctx.stroke();
-      ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(512, i); ctx.stroke();
-    }
-    // 중앙 원형 골드 상감 라인
-    ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(256, 256, 180, 0, Math.PI * 2);
-    ctx.stroke();
-
-    const tex = new THREE.CanvasTexture(c);
+  // 유럽 도서관 & 대성당 실사 PBR 텍스처 로더 (로컬 우선 + 원격 폴백)
+  const kkTexLoader = new THREE.TextureLoader();
+  kkTexLoader.setCrossOrigin('anonymous');
+  function loadEuroLibTex(fileName, repeatX = 1, repeatY = 1) {
+    const localUrl = 'assets/euro/' + fileName;
+    const remoteUrl = 'https://kkumbaon.com/kkumbaon-chapel/assets/euro/' + fileName;
+    const tex = kkTexLoader.load(
+      localUrl,
+      undefined,
+      undefined,
+      () => {
+        kkTexLoader.load(remoteUrl, (fallbackTex) => {
+          tex.image = fallbackTex.image;
+          tex.needsUpdate = true;
+        });
+      }
+    );
     tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
-    tex.repeat.set(4, 4);
+    tex.repeat.set(repeatX, repeatY);
+    tex.anisotropy = 4;
     return tex;
   }
 
+  const libFloorTex = loadEuroLibTex('euro_marble_floor.webp', 10, 10);
+  const libWalnutTex = loadEuroLibTex('euro_walnut_wood.webp', 2, 2);
+  const libWalnutBump = loadEuroLibTex('euro_walnut_bump.webp', 2, 2);
+  const libStoneTex = loadEuroLibTex('euro_cathedral_vault_stone.webp', 1, 3);
+  const libStoneBump = loadEuroLibTex('euro_cathedral_vault_stone_bump.webp', 1, 3);
+  const libVelvetTex = loadEuroLibTex('euro_crimson_velvet.webp', 1, 6);
+  const libCushionTex = loadEuroLibTex('euro_crimson_velvet.webp', 2, 1);
+  const libBookshelfTex = loadEuroLibTex('euro_library_bookshelves.webp', 2, 1);
+  const libRoseTex = loadEuroLibTex('euro_rose_window.webp', 1, 1);
+
+  const stoneMat = new THREE.MeshStandardMaterial({
+    map: libStoneTex,
+    bumpMap: libStoneBump,
+    bumpScale: 0.04,
+    color: 0xcab89e,
+    roughness: 0.72,
+    metalness: 0.06
+  });
+  const walnutMat = new THREE.MeshStandardMaterial({
+    map: libWalnutTex,
+    bumpMap: libWalnutBump,
+    bumpScale: 0.03,
+    color: 0x6b4423,
+    roughness: 0.42,
+    metalness: 0.08
+  });
+  const goldMat = new THREE.MeshStandardMaterial({
+    color: 0xd4a853,
+    metalness: 0.74,
+    roughness: 0.28
+  });
+
+  // 유럽 대성당·고전 도서관 트래버틴 & 다크 엠페라도르 대리석 상감 바닥 (42m x 42m)
   const floorMesh = new THREE.Mesh(
     new THREE.PlaneGeometry(42, 42),
-    new THREE.MeshStandardMaterial({ map: createStoneTileTexture(), roughness: 0.55, metalness: 0.15 })
+    new THREE.MeshStandardMaterial({
+      map: libFloorTex,
+      bumpMap: libFloorTex,
+      bumpScale: 0.015,
+      color: 0xd8cbb8,
+      roughness: 0.36,
+      metalness: 0.16
+    })
   );
   floorMesh.rotation.x = -Math.PI / 2;
   floorMesh.receiveShadow = true;
   world.add(floorMesh);
 
-  // 중정 중앙: 『오래된 우물 (생명수 돌우물)』
-  const wellGroup = new THREE.Group();
-  const stoneMat = new THREE.MeshStandardMaterial({ color: 0x3b4459, roughness: 0.8 });
-  const goldMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.65, roughness: 0.3 });
+  // 도서관 4대 회랑에서 중앙 우물로 이어지는 로열 크림슨 벨벳 십자가형 카펫 러너 & 황금 로제트 링
+  const runnerMat = new THREE.MeshStandardMaterial({
+    map: libVelvetTex,
+    bumpMap: libVelvetTex,
+    bumpScale: 0.02,
+    color: 0x92222a,
+    roughness: 0.78
+  });
+  const runnerNS = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 28.5), runnerMat);
+  runnerNS.rotation.x = -Math.PI / 2;
+  runnerNS.position.y = 0.01;
+  const runnerEW = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 28.5), runnerMat);
+  runnerEW.rotation.x = -Math.PI / 2;
+  runnerEW.rotation.z = Math.PI / 2;
+  runnerEW.position.y = 0.012;
+  const wellFloorRing = new THREE.Mesh(new THREE.RingGeometry(2.35, 3.45, 48), goldMat);
+  wellFloorRing.rotation.x = -Math.PI / 2;
+  wellFloorRing.position.y = 0.016;
+  world.add(runnerNS, runnerEW, wellFloorRing);
 
-  const wellOuter = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.25, 0.92, 32), stoneMat);
-  wellOuter.position.y = 0.46;
+  // 중정 중앙: 『오래된 우물 (유럽 수도원 중정 생명수 조각 돌우물)』
+  const wellGroup = new THREE.Group();
+
+  const wellBaseStep = new THREE.Mesh(new THREE.CylinderGeometry(2.55, 2.72, 0.18, 36), stoneMat);
+  wellBaseStep.position.y = 0.09;
+  wellBaseStep.receiveShadow = true;
+
+  const wellOuter = new THREE.Mesh(new THREE.CylinderGeometry(2.12, 2.28, 0.88, 36), stoneMat);
+  wellOuter.position.y = 0.48;
   wellOuter.castShadow = true; wellOuter.receiveShadow = true;
 
-  const wellRim = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.12, 16, 40), goldMat);
+  const wellRim = new THREE.Mesh(new THREE.TorusGeometry(2.12, 0.14, 16, 40), goldMat);
   wellRim.rotation.x = Math.PI / 2;
-  wellRim.position.y = 0.92;
+  wellRim.position.y = 0.95;
 
   const waterSurface = new THREE.Mesh(
-    new THREE.CircleGeometry(1.95, 32),
+    new THREE.CircleGeometry(2.04, 36),
     new THREE.MeshStandardMaterial({
-      color: 0x226688, emissive: 0x164c6e, emissiveIntensity: 0.75, roughness: 0.15, metalness: 0.3
+      color: 0x1a6b8c, emissive: 0x0f4766, emissiveIntensity: 0.85, roughness: 0.12, metalness: 0.42
     })
   );
   waterSurface.rotation.x = -Math.PI / 2;
-  waterSurface.position.y = 0.76;
+  waterSurface.position.y = 0.94;
 
-  // 우물 위 아치형 철제 두레박 구조물
-  const archPillarL = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.6, 12), goldMat);
-  archPillarL.position.set(-1.85, 2.1, 0);
-  const archPillarR = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.6, 12), goldMat);
-  archPillarR.position.set(1.85, 2.1, 0);
-  const archTopBar = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3.85, 12), goldMat);
+  // 우물 위 고풍스러운 유럽 황동 단조 아치형 두레박 구조물
+  const archPillarL = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.10, 2.75, 14), goldMat);
+  archPillarL.position.set(-1.85, 2.2, 0);
+  const archPillarR = new THREE.Mesh(new THREE.CylinderGeometry(0.085, 0.10, 2.75, 14), goldMat);
+  archPillarR.position.set(1.85, 2.2, 0);
+  const archTopBar = new THREE.Mesh(new THREE.CylinderGeometry(0.075, 0.075, 3.92, 14), goldMat);
   archTopBar.rotation.z = Math.PI / 2;
-  archTopBar.position.set(0, 3.35, 0);
+  archTopBar.position.set(0, 3.52, 0);
+  const archCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.07, 0.52, 0.07), goldMat);
+  archCrossV.position.set(0, 3.82, 0);
+  const archCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.07, 0.07), goldMat);
+  archCrossH.position.set(0, 3.90, 0);
 
-  wellGroup.add(wellOuter, wellRim, waterSurface, archPillarL, archPillarR, archTopBar);
+  wellGroup.add(wellBaseStep, wellOuter, wellRim, waterSurface, archPillarL, archPillarR, archTopBar, archCrossV, archCrossH);
 
   // 우물 난간 위 12개의 ‘등잔 밑 토기 등잔불’
   const lampFlames = [];
   for (let i = 0; i < 12; i++) {
     const ang = (i / 12) * Math.PI * 2;
-    const lx = Math.cos(ang) * 2.1;
-    const lz = Math.sin(ang) * 2.1;
+    const lx = Math.cos(ang) * 2.12;
+    const lz = Math.sin(ang) * 2.12;
     const clayLamp = new THREE.Mesh(
       new THREE.SphereGeometry(0.11, 12, 10),
-      new THREE.MeshStandardMaterial({ color: 0x9c623e, roughness: 0.75 })
+      new THREE.MeshStandardMaterial({ color: 0x9c623e, roughness: 0.72 })
     );
     clayLamp.scale.set(1.3, 0.65, 1.0);
-    clayLamp.position.set(lx, 0.98, lz);
+    clayLamp.position.set(lx, 1.04, lz);
 
     const flame = new THREE.Mesh(
       new THREE.SphereGeometry(0.055, 8, 8),
-      new THREE.MeshBasicMaterial({ color: 0xffc649 })
+      new THREE.MeshBasicMaterial({ color: 0xffcf58 })
     );
     flame.scale.set(0.8, 1.65, 0.8);
-    flame.position.set(lx, 1.08, lz);
-    lampFlames.push({ mesh: flame, baseY: 1.08, phase: i * 1.1 });
+    flame.position.set(lx, 1.14, lz);
+    lampFlames.push({ mesh: flame, baseY: 1.14, phase: i * 1.1 });
 
     wellGroup.add(clayLamp, flame);
   }
   world.add(wellGroup);
 
   // 우물에서 하늘로 떠오르는 황금빛 말씀 입자(Particles)
-  const particleCount = 90;
+  const particleCount = 110;
   const pGeo = new THREE.BufferGeometry();
   const pPositions = new Float32Array(particleCount * 3);
   for (let i = 0; i < particleCount; i++) {
-    const r = Math.random() * 1.75;
+    const r = Math.random() * 1.85;
     const a = Math.random() * Math.PI * 2;
     pPositions[i * 3] = Math.cos(a) * r;
-    pPositions[i * 3 + 1] = 0.8 + Math.random() * 6.5;
+    pPositions[i * 3 + 1] = 0.9 + Math.random() * 7.2;
     pPositions[i * 3 + 2] = Math.sin(a) * r;
   }
   pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
-  const pMat = new THREE.PointsMaterial({ color: 0xffe494, size: 0.09, transparent: true, opacity: 0.8 });
+  const pMat = new THREE.PointsMaterial({ color: 0xffe494, size: 0.095, transparent: true, opacity: 0.82 });
   const wellParticles = new THREE.Points(pGeo, pMat);
   world.add(wellParticles);
 
-  // 회랑 외벽 & 고대 기둥 + 8대 대형 성화 액자 배치 (대폭 확장: 30m x 30m 대아트리움 광장)
-  const wallMat = new THREE.MeshStandardMaterial({ color: 0x131a29, roughness: 0.85 });
-  const wallN = new THREE.Mesh(new THREE.BoxGeometry(30.4, 7.5, 0.5), wallMat);
-  wallN.position.set(0, 3.75, -14.8);
-  const wallS = new THREE.Mesh(new THREE.BoxGeometry(30.4, 7.5, 0.5), wallMat);
-  wallS.position.set(0, 3.75, 14.8);
-  const wallW = new THREE.Mesh(new THREE.BoxGeometry(0.5, 7.5, 30.4), wallMat);
-  wallW.position.set(-14.8, 3.75, 0);
-  const wallE = new THREE.Mesh(new THREE.BoxGeometry(0.5, 7.5, 30.4), wallMat);
-  wallE.position.set(14.8, 3.75, 0);
+  // 4면 회랑 외벽: 『유럽 고전 수도원 신학 대도서관 2층 아치형 고서적 대서가 (euro_library_bookshelves.webp)』
+  // 더블린 트리니티 칼리지 롱룸 & 스트라호프 수도원 도서관 스타일의 압도적 중후함!
+  const bookshelfWallMat = new THREE.MeshStandardMaterial({
+    map: libBookshelfTex,
+    bumpMap: libWalnutBump,
+    bumpScale: 0.025,
+    color: 0xffeed8,
+    roughness: 0.52,
+    metalness: 0.08
+  });
+  const wallN = new THREE.Mesh(new THREE.BoxGeometry(30.4, 9.2, 0.6), bookshelfWallMat);
+  wallN.position.set(0, 4.6, -14.9);
+  const wallS = new THREE.Mesh(new THREE.BoxGeometry(30.4, 9.2, 0.6), bookshelfWallMat);
+  wallS.position.set(0, 4.6, 14.9);
+  const wallW = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 30.4), bookshelfWallMat);
+  wallW.position.set(-14.9, 4.6, 0);
+  const wallE = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 30.4), bookshelfWallMat);
+  wallE.position.set(14.9, 4.6, 0);
   world.add(wallN, wallS, wallW, wallE);
 
-  // 회랑 석조 기둥 16개 & 달빛 감람나무 8그루
-  const pillarMat = new THREE.MeshStandardMaterial({ color: 0x263147, roughness: 0.65 });
+  // 4면 서가 중간(y=4.6m)을 두르는 유럽 도서관 2층 원목 갤러리 발코니 난간 & 상단 황금 크라운 몰딩
+  for (const zSide of [-14.35, 14.35]) {
+    const ledge = new THREE.Mesh(new THREE.BoxGeometry(29.6, 0.24, 0.65), walnutMat);
+    ledge.position.set(0, 4.65, zSide);
+    const goldRail = new THREE.Mesh(new THREE.BoxGeometry(29.6, 0.08, 0.72), goldMat);
+    goldRail.position.set(0, 5.25, zSide);
+    const topCornice = new THREE.Mesh(new THREE.BoxGeometry(30.2, 0.28, 0.75), goldMat);
+    topCornice.position.set(0, 9.15, zSide);
+    world.add(ledge, goldRail, topCornice);
+  }
+  for (const xSide of [-14.35, 14.35]) {
+    const ledge = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.24, 29.6), walnutMat);
+    ledge.position.set(xSide, 4.65, 0);
+    const goldRail = new THREE.Mesh(new THREE.BoxGeometry(0.72, 0.08, 29.6), goldMat);
+    goldRail.position.set(xSide, 5.25, 0);
+    const topCornice = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.28, 30.2), goldMat);
+    topCornice.position.set(xSide, 9.15, 0);
+    world.add(ledge, goldRail, topCornice);
+  }
+
+  // 유럽 수도원 대도서관 아치형 다크 월넛 서까래 천장 & 북·남측 고딕 장미창(Rose Windows)
+  const libRoofMat = new THREE.MeshStandardMaterial({
+    map: loadEuroLibTex('euro_walnut_wood.webp', 6, 8),
+    bumpMap: loadEuroLibTex('euro_walnut_bump.webp', 6, 8),
+    bumpScale: 0.04,
+    color: 0x3d2514,
+    roughness: 0.58,
+    side: THREE.DoubleSide
+  });
+  const roofSlopeW = new THREE.Mesh(new THREE.PlaneGeometry(16.2, 30.4), libRoofMat);
+  roofSlopeW.position.set(-7.4, 10.35, 0);
+  roofSlopeW.rotation.x = Math.PI / 2;
+  roofSlopeW.rotation.y = -0.20;
+  const roofSlopeE = new THREE.Mesh(new THREE.PlaneGeometry(16.2, 30.4), libRoofMat);
+  roofSlopeE.position.set(7.4, 10.35, 0);
+  roofSlopeE.rotation.x = Math.PI / 2;
+  roofSlopeE.rotation.y = 0.20;
+  const roofRidge = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.45, 30.4), goldMat);
+  roofRidge.position.set(0, 11.8, 0);
+  world.add(roofSlopeW, roofSlopeE, roofRidge);
+
+  // 북측·남측 천장 박공 중앙 유럽 고딕 장미창 (Rose Window, 직경 3.6m)
+  const roseMat = new THREE.MeshBasicMaterial({ map: libRoseTex });
+  for (const [rz, ryRot] of [[-14.52, 0], [14.52, Math.PI]]) {
+    const rose = new THREE.Mesh(new THREE.CircleGeometry(1.8, 48), roseMat);
+    rose.position.set(0, 8.65, rz);
+    rose.rotation.y = ryRot;
+    const roseRing = new THREE.Mesh(new THREE.RingGeometry(1.74, 1.96, 48), goldMat);
+    roseRing.position.set(0, 8.65, rz + (rz < 0 ? 0.02 : -0.02));
+    roseRing.rotation.y = ryRot;
+    world.add(rose, roseRing);
+  }
+
+  // 회랑 고딕 석조 기둥 16개(코린트식 황금 주두·주초) & 천장 횡단 석조 아치 리브 + 감람나무 4그루
   for (const px of [-9.5, -3.5, 3.5, 9.5]) {
     for (const pz of [-9.5, 9.5]) {
-      const pil = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.38, 7.2, 18), pillarMat);
-      pil.position.set(px, 3.6, pz);
-      pil.castShadow = true;
-      world.add(pil);
+      const pil = new THREE.Mesh(new THREE.CylinderGeometry(0.38, 0.44, 8.8, 20), stoneMat);
+      pil.position.set(px, 4.4, pz);
+      pil.castShadow = true; pil.receiveShadow = true;
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.58, 0.38, 0.42, 20), goldMat);
+      cap.position.set(px, 8.65, pz);
+      const base = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.42, 1.05), stoneMat);
+      base.position.set(px, 0.21, pz);
+      const baseRing = new THREE.Mesh(new THREE.BoxGeometry(1.12, 0.08, 1.12), goldMat);
+      baseRing.position.set(px, 0.44, pz);
+      world.add(pil, cap, base, baseRing);
     }
+    // 기둥 상단을 잇는 회랑 아치 보(Architrave Beam)
+    const archBeam = new THREE.Mesh(new THREE.BoxGeometry(0.45, 0.48, 29.6), stoneMat);
+    archBeam.position.set(px, 8.95, 0);
+    const archGoldTrim = new THREE.Mesh(new THREE.BoxGeometry(0.50, 0.09, 29.6), goldMat);
+    archGoldTrim.position.set(px, 8.70, 0);
+    world.add(archBeam, archGoldTrim);
   }
-  const oliveTrunkMat = new THREE.MeshStandardMaterial({ color: 0x3b2c1e, roughness: 0.9 });
-  const oliveLeafMat = new THREE.MeshStandardMaterial({ color: 0x2b4738, roughness: 0.85 });
-  for (const [ox, oz] of [[-11.5, -11.5], [11.5, -11.5], [-11.5, 11.5], [11.5, 11.5]]) {
+
+  // 유럽 고전 도서관 대형 2단 황동 촛대 샹들리에 (Grand Library Brass Candle Chandeliers) 4기
+  const candleFlameMat = new THREE.MeshBasicMaterial({ color: 0xffdf7a });
+  const waxCandleMat = new THREE.MeshStandardMaterial({ color: 0xfff8e6, roughness: 0.4 });
+  for (const [cx, cz] of [[-6.5, -6.5], [6.5, -6.5], [-6.5, 6.5], [6.5, 6.5]]) {
+    const chanGroup = new THREE.Group();
+    const rod = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 3.2, 10), goldMat);
+    rod.position.y = 8.6;
+    const ring1 = new THREE.Mesh(new THREE.TorusGeometry(1.25, 0.06, 14, 32), goldMat);
+    ring1.rotation.x = Math.PI / 2;
+    ring1.position.y = 7.0;
+    const ring2 = new THREE.Mesh(new THREE.TorusGeometry(0.75, 0.045, 12, 24), goldMat);
+    ring2.rotation.x = Math.PI / 2;
+    ring2.position.y = 7.6;
+    chanGroup.add(rod, ring1, ring2);
+    for (let i = 0; i < 12; i++) {
+      const ang = (i / 12) * Math.PI * 2;
+      const rx = Math.cos(ang) * 1.25;
+      const rz = Math.sin(ang) * 1.25;
+      const wax = new THREE.Mesh(new THREE.CylinderGeometry(0.032, 0.032, 0.22, 8), waxCandleMat);
+      wax.position.set(rx, 7.14, rz);
+      const flame = new THREE.Mesh(new THREE.SphereGeometry(0.05, 8, 8), candleFlameMat);
+      flame.scale.set(0.75, 1.65, 0.75);
+      flame.position.set(rx, 7.30, rz);
+      chanGroup.add(wax, flame);
+    }
+    const cLight = new THREE.PointLight(0xffbe5c, 0.68, 16);
+    cLight.position.set(0, 6.8, 0);
+    chanGroup.add(cLight);
+    chanGroup.position.set(cx, 0, cz);
+    world.add(chanGroup);
+  }
+
+  // 도서관 4대 코너: 유럽 고전 신학 도서관의 황동 천구의(Armillary Sphere & Antique Globe) & 촛대 석조 단상
+  for (const [ox, oz] of [[-11.2, -11.2], [11.2, -11.2], [-11.2, 11.2], [11.2, 11.2]]) {
     const tg = new THREE.Group();
-    const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.34, 2.2, 10), oliveTrunkMat);
-    tr.position.y = 1.1;
-    const cr = new THREE.Mesh(new THREE.SphereGeometry(1.4, 14, 12), oliveLeafMat);
-    cr.position.y = 2.65; cr.scale.y = 0.78;
-    tg.add(tr, cr);
+    const pedBase = new THREE.Mesh(new THREE.BoxGeometry(1.35, 0.32, 1.35), stoneMat);
+    pedBase.position.y = 0.16;
+    const pedCol = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.48, 1.15, 16), walnutMat);
+    pedCol.position.y = 0.88;
+    const pedCap = new THREE.Mesh(new THREE.CylinderGeometry(0.56, 0.44, 0.16, 16), goldMat);
+    pedCap.position.y = 1.52;
+    // 앤틱 천구의/지구본 구형 & 황동 경위도 링
+    const globeSphere = new THREE.Mesh(
+      new THREE.SphereGeometry(0.58, 24, 20),
+      new THREE.MeshStandardMaterial({ map: libStoneTex, color: 0xd4b483, roughness: 0.35, metalness: 0.25 })
+    );
+    globeSphere.position.y = 2.28;
+    const meridianRing = new THREE.Mesh(new THREE.TorusGeometry(0.68, 0.035, 12, 32), goldMat);
+    meridianRing.position.y = 2.28;
+    meridianRing.rotation.z = 0.41;
+    const horizonRing = new THREE.Mesh(new THREE.TorusGeometry(0.70, 0.035, 12, 32), goldMat);
+    horizonRing.rotation.x = Math.PI / 2;
+    horizonRing.position.y = 2.28;
+    tg.add(pedBase, pedCol, pedCap, globeSphere, meridianRing, horizonRing);
     tg.position.set(ox, 0, oz);
     world.add(tg);
   }
 
-  // 8대 특대형 성화 액자 생성 (가로 4.4m × 세로 2.75m 미술관 스케일 + 실제 WebP 성화 로드!)
+  // 8대 특대형 성화 액자 (유럽 국립미술관 스타일 다크 월넛 & 앤틱 골드 이중 액자 + 황동 픽처 라이트 바)
   const artFrameMeshes = [];
-  const kkTexLoader = new THREE.TextureLoader();
   function createArtCanvasTexture(idx, titleText) {
     const c = document.createElement('canvas');
     c.width = 512; c.height = 320;
@@ -1500,64 +1693,98 @@ html, body {
 
   GALLERY_ARTWORKS.forEach((art, idx) => {
     const frameGroup = new THREE.Group();
+    // 외곽 다크 월넛 우드 패널 + 내부 황금 바로크 액자 테두리
+    const woodBack = new THREE.Mesh(new THREE.BoxGeometry(4.72, 3.08, 0.12), walnutMat);
+    woodBack.position.z = -0.02;
     const outerFrame = new THREE.Mesh(
-      new THREE.BoxGeometry(4.45, 2.82, 0.14),
+      new THREE.BoxGeometry(4.48, 2.84, 0.16),
       goldMat
     );
+    // 상단 유럽 미술관 황동 픽처 라이트 바(Brass Picture Light)
+    const picLightBar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 2.2, 12), goldMat);
+    picLightBar.rotation.z = Math.PI / 2;
+    picLightBar.position.set(0, 1.58, 0.28);
+    const picLightGlow = new THREE.Mesh(
+      new THREE.BoxGeometry(2.1, 0.04, 0.08),
+      new THREE.MeshBasicMaterial({ color: 0xffe8a3 })
+    );
+    picLightGlow.position.set(0, 1.55, 0.28);
+
     const artMat = new THREE.MeshBasicMaterial({ map: createArtCanvasTexture(idx, art.title.split(' · ')[0]) });
-    kkTexLoader.load(art.img, (loadedTex) => {
-      artMat.map = loadedTex;
-      artMat.needsUpdate = true;
-    });
+    kkTexLoader.load(
+      art.img,
+      (loadedTex) => {
+        artMat.map = loadedTex;
+        artMat.needsUpdate = true;
+      },
+      undefined,
+      () => {
+        const remoteArtUrl = 'https://kkumbaon.com/kkumbaon-library/' + art.img.replace(/^\.\//, '');
+        kkTexLoader.load(remoteArtUrl, (fallbackTex) => {
+          artMat.map = fallbackTex;
+          artMat.needsUpdate = true;
+        });
+      }
+    );
     const canvasPlane = new THREE.Mesh(
       new THREE.PlaneGeometry(4.18, 2.56),
       artMat
     );
-    canvasPlane.position.z = 0.08;
+    canvasPlane.position.z = 0.09;
     canvasPlane.userData = { artIndex: idx };
     artFrameMeshes.push(canvasPlane);
 
-    frameGroup.add(outerFrame, canvasPlane);
+    frameGroup.add(woodBack, outerFrame, picLightBar, picLightGlow, canvasPlane);
     frameGroup.position.copy(art.pos);
     frameGroup.rotation.y = art.rotY;
     world.add(frameGroup);
   });
 
-  // 우물을 둘러싼 8개의 묵상 대리석 벤치 + 4개의 우물가 무릎기도 방석
+  // 우물을 둘러싼 8개의 유럽 다크 월넛 & 크림슨 벨벳 묵상 벤치 + 4개의 우물가 무릎기도 방석
   const benches = [];
+  const cushionMat = new THREE.MeshStandardMaterial({
+    map: libCushionTex,
+    bumpMap: libCushionTex,
+    bumpScale: 0.015,
+    color: 0x8f222a,
+    roughness: 0.76
+  });
   const benchRadius = 4.25;
   for (let i = 0; i < 8; i++) {
     const ang = (i / 8) * Math.PI * 2;
     const bx = Math.cos(ang) * benchRadius;
     const bz = Math.sin(ang) * benchRadius;
 
-    const bMesh = new THREE.Mesh(
-      new THREE.BoxGeometry(1.75, 0.46, 0.62),
-      new THREE.MeshStandardMaterial({ color: 0x2e3952, roughness: 0.6 })
-    );
-    bMesh.position.set(bx, 0.23, bz);
-    bMesh.rotation.y = -ang + Math.PI / 2;
+    const bGroup = new THREE.Group();
+    const bMesh = new THREE.Mesh(new THREE.BoxGeometry(1.78, 0.42, 0.64), walnutMat);
+    bMesh.position.y = 0.21;
     bMesh.castShadow = true; bMesh.receiveShadow = true;
-    world.add(bMesh);
+    const bPad = new THREE.Mesh(new THREE.BoxGeometry(1.66, 0.07, 0.54), cushionMat);
+    bPad.position.y = 0.45;
+    const bTrim = new THREE.Mesh(new THREE.BoxGeometry(1.82, 0.05, 0.68), goldMat);
+    bTrim.position.y = 0.025;
+    bGroup.add(bMesh, bPad, bTrim);
+    bGroup.position.set(bx, 0, bz);
+    bGroup.rotation.y = -ang + Math.PI / 2;
+    world.add(bGroup);
 
     benches.push({
       id: `bench_${i}`,
       type: 'pew',
       label: `우물가 제${i + 1}묵상석`,
       pos: new THREE.Vector3(bx, 0, bz),
-      lookAngle: Math.atan2(bx, bz), // 우물 중심(0,0)을 바라봄 (-Z 전방 기준)
+      lookAngle: Math.atan2(bx, bz),
       occupiedBy: null
     });
   }
 
   // 우물 바로 앞 4방향 무릎기도 방석 (type: 'kneel')
-  const cushionMat = new THREE.MeshStandardMaterial({ color: 0x6e2c35, roughness: 0.78 });
   for (let i = 0; i < 4; i++) {
     const ang = (i / 4) * Math.PI * 2 + Math.PI / 4;
     const kx = Math.cos(ang) * 2.85;
     const kz = Math.sin(ang) * 2.85;
-    const cush = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.09, 0.50), cushionMat);
-    cush.position.set(kx, 0.045, kz);
+    const cush = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.10, 0.52), cushionMat);
+    cush.position.set(kx, 0.05, kz);
     cush.rotation.y = -ang + Math.PI / 2;
     cush.receiveShadow = true;
     world.add(cush);
@@ -1572,23 +1799,27 @@ html, body {
     });
   }
 
-  // 확장된 대아트리움 외곽 회랑: 8대 성화 앞 감상용 벤치 8석 추가
+  // 확장된 대아트리움 외곽 회랑: 8대 성화 앞 감상용 유럽 미술관 벨벳 벤치 8석
   GALLERY_ARTWORKS.forEach((art, idx) => {
-    const sb = new THREE.Mesh(
-      new THREE.BoxGeometry(1.85, 0.44, 0.58),
-      new THREE.MeshStandardMaterial({ color: 0x3b2f26, roughness: 0.65 })
-    );
-    sb.position.set(art.standPos.x, 0.22, art.standPos.z);
-    sb.rotation.y = art.rotY;
+    const sbGroup = new THREE.Group();
+    const sb = new THREE.Mesh(new THREE.BoxGeometry(1.88, 0.42, 0.60), walnutMat);
+    sb.position.y = 0.21;
     sb.castShadow = true; sb.receiveShadow = true;
-    world.add(sb);
+    const sbPad = new THREE.Mesh(new THREE.BoxGeometry(1.76, 0.07, 0.50), cushionMat);
+    sbPad.position.y = 0.45;
+    const sbTrim = new THREE.Mesh(new THREE.BoxGeometry(1.92, 0.05, 0.64), goldMat);
+    sbTrim.position.y = 0.025;
+    sbGroup.add(sb, sbPad, sbTrim);
+    sbGroup.position.set(art.standPos.x, 0, art.standPos.z);
+    sbGroup.rotation.y = art.rotY;
+    world.add(sbGroup);
 
     benches.push({
       id: `art_bench_${idx}`,
       type: 'pew',
       label: `성화 제${idx + 1}감상석`,
       pos: art.standPos.clone(),
-      lookAngle: art.rotY, // 성화 액자를 정면으로 바라봄
+      lookAngle: art.rotY,
       occupiedBy: null
     });
   });
@@ -3264,13 +3495,13 @@ html, body {
   });
   updateCloisterCounts();
 
-  let camYaw = 0, camPitch = 0.38, camDist = 7.5;
+  let camYaw = 0, camPitch = 0.16, camDist = 8.4;
   let camPreset = 0;
   const presets = [
-    { name: '회랑 산책', dist: 7.5, pitch: 0.38 },
-    { name: '생명수 우물·성화 클로즈업', dist: 3.1, pitch: 0.2 },
-    { name: '대아트리움 전체 조망', dist: 16.5, pitch: 0.56 },
-    { name: '광각 파노라마', dist: 22.5, pitch: 0.66 }
+    { name: '회랑 산책', dist: 8.4, pitch: 0.16 },
+    { name: '생명수 우물·성화 클로즈업', dist: 3.6, pitch: 0.08 },
+    { name: '대아트리움 전체 조망', dist: 12.2, pitch: 0.28 },
+    { name: '광각 파노라마', dist: 16.5, pitch: 0.38 }
   ];
   document.getElementById('btn-cam-preset').addEventListener('click', () => {
     camPreset = (camPreset + 1) % presets.length;
@@ -3620,7 +3851,7 @@ html, body {
       rippleMesh.material.opacity = Math.max(0, (1 - rippleAge) * 0.65);
     }
 
-    const target = new THREE.Vector3(myAvatar.group.position.x * 0.5, 1.3, myAvatar.group.position.z * 0.5);
+    const target = new THREE.Vector3(myAvatar.group.position.x * 0.5, 2.35, myAvatar.group.position.z * 0.5);
     const desiredCam = new THREE.Vector3(
       target.x + Math.sin(camYaw) * Math.cos(camPitch) * camDist,
       target.y + Math.sin(camPitch) * camDist,
