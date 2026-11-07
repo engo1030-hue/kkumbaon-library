@@ -3641,32 +3641,54 @@ body.dark-theme .knb-card-link {
       <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">영상실</button>
       <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">웨슬리관</button>
       <button type="button" class="nav-search-btn" onclick="openQuickSearchModal()" title="성경 인물·사건·지명·원어·설교 통합 검색 (단축키: Cmd+K)">🔍 통합검색</button>
+      <a href="kkumdido_church_support_annex.html" class="nav-studio-trigger" style="text-decoration:none; background:linear-gradient(135deg,#241A10,#3E2C1B); color:#F7E29E; border:1px solid #C59B38;" title="꿈디도 교회지원센터 (설교AI·목회비서·원어설교 웹스튜디오 & 교적·헌금재정 로컬 다운로드 12종 통합 센터)">🏛️ 교회지원센터 ↗</a>
       <button type="button" class="nav-studio-trigger" id="studioDrawerBtn" onclick="toggleStudiosDrawer(event)" aria-expanded="false">👑 사역 스튜디오 ▾</button>
       <button type="button" class="nav-guide-btn" onclick="openBlueprintModal()">도서관 안내 ↗</button>
     </nav>
     <button class="entrance-theme" onclick="toggleDarkTheme()" id="themeBtn" aria-label="서가 화면 밝기 전환">🌙 밤의 서재</button>
   </header>
 
-  <!-- 사역 스튜디오 & 설교 곳간 (8종 무설치 웹서재) 메가 드로어 (클릭 시 펼침) -->
+  <!-- 사역 스튜디오 & 설교 곳간 (10종 무설치 웹서재 & 교회지원 별관) 메가 드로어 (클릭 시 펼침) -->
   <section id="kkumdidoStudiosDrawer" class="kkumdido-studios-drawer" aria-label="꿈바온 사역 프로그램 및 스튜디오 메가 서랍">
     <div class="kkd-drawer-inner">
       <div class="kkd-drawer-top">
         <div class="kkd-drawer-title">
-          <span>👑 꿈바온 목회·사역 스튜디오 &amp; 설교 곳간 (8종 무설치 웹서재)</span>
-          <span class="sub">설치 없이 브라우저에서 즉시 열리는 목회·설교·교육·번역 통합 연구실</span>
+          <span>👑 꿈디도 교회지원센터 &amp; 사역 스튜디오 (12종 — 웹 스튜디오 직결 + 민감정보 PC 다운로드)</span>
+          <span class="sub">설교AI·목회비서·원어설교는 웹에서 즉시! 민감한 교적(양떼수첩)·헌금재정(청지기장부)은 내 PC로 다운받아 100% 안전하게!</span>
         </div>
         <div class="kkd-drawer-actions">
+          <a href="kkumdido_church_support_annex.html" style="cursor:pointer;text-decoration:none;color:#F7E29E;background:linear-gradient(135deg,#241A10,#42301D);border:1.5px solid #C59B38;font-weight:900;font-size:13px;padding:6px 14px;border-radius:8px;">🏛️ 꿈디도 교회지원센터 전체 열기 (12종) ↗</a>
           <button type="button" onclick="enterMosesSanctuary(); toggleStudiosDrawer();" style="cursor:pointer;color:#241A10;background:#FBF5E6;border:1px solid #C8A45D;font-weight:800;font-size:13px;padding:6px 13px;border-radius:8px;">🏛️ 본관 내 모세의 지팡이 성소 열기</button>
           <button type="button" onclick="window.kkumdidoPass && window.kkumdidoPass.open()" style="cursor:pointer;color:#F5DF98;background:#241A10;border:1px solid #B89446;font-weight:800;font-size:13px;padding:6px 14px;border-radius:8px;">🪪 도서관 이용증 발급·로그인</button>
           <button type="button" onclick="toggleStudiosDrawer()" style="cursor:pointer;color:#5C5248;background:#FFFFFF;border:1px solid #D5C8B3;font-weight:700;font-size:13px;padding:6px 11px;border-radius:8px;">닫기 ✕</button>
         </div>
       </div>
       <div class="kkd-drawer-grid">
-        <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>👑 꿈바온 설교 프로그램</strong><small>원어·주석·강해·설교 빌더 스튜디오</small></div>
+        <a href="kkumdido_church_support_annex.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>🏛️ 꿈디도 교회지원센터 (별관)</strong><small>12종 교회 프로그램 전수조사 &amp; 통합 센터</small></div>
           <span class="arr">↗</span>
         </a>
-        <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+        <a href="kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>⚡ 꿈바온 설교AI (7종 변환)</strong><small>[웹 전용] 설교원고 1편→주보·나눔지·6일QT·쇼츠</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>🕊️ 꿈바온 목회 비서 (솔로몬 초월)</strong><small>[웹+PC] 설교개요·심방·주보·일정·AI 1초 연결</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>👑 꿈바온 설교준비 (로고스 원어)</strong><small>[웹 전용] 66권 원어·주석·강해·설교 빌더</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_gyojeok_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>🐑 무료 교적 (양떼 수첩)</strong><small>[내PC 다운로드] 교적·심방·출석·증명서 로컬보안</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_finance_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+          <div><strong>💰 무료 헌금·재정 (청지기 장부)</strong><small>[내PC 다운로드] 헌금·지출결의·기부금영수증·결산</small></div>
+          <span class="arr">↗</span>
+        </a>
+        <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
           <div><strong>🏺 내 설교 곳간 (개인 웹서재)</strong><small>서버 미전송 내 PC 단독보관 · 66권 자동정리</small></div>
           <span class="arr">↗</span>
         </a>
@@ -3786,15 +3808,15 @@ body.dark-theme .knb-card-link {
       <div class="knb-left">
         <span class="knb-label">📜 사서실 공지</span>
         <span id="knbNewBadge" class="knb-new-badge">NEW</span>
-        <span id="knbDate" class="knb-date">2026.11.04</span>
-        <span id="knbCat" class="knb-cat">[제6관 · 원어사전]</span>
-        <a id="knbHeadline" href="kkumdido_12archives_viewer.html?archive=6" class="knb-headline-link">히브리어·헬라어 원어사전 2단계 핵심어(1,359어 · v1.2) 뜻 갈래 712어 정밀 매핑 완료</a>
+        <span id="knbDate" class="knb-date">2026.11.08</span>
+        <span id="knbCat" class="knb-cat">[교회지원 별관 · 목회비서]</span>
+        <a id="knbHeadline" href="kkumdido_church_support_annex.html" class="knb-headline-link">『꿈디도 교회 지원 프로그램 별관』 및 『꿈바온 목회 비서 스튜디오 (v1.0)』 정식 개관</a>
       </div>
       <div class="knb-right">
         <button type="button" class="knb-toggle-btn" onclick="openKkumdidoGuestbookModal()" style="background:linear-gradient(135deg,#241A10,#3D2C1B); color:#F5DF98; border-color:#C8A45D; font-weight:800;" title="꿈디도 방문 인사와 한 줄 묵상을 영구 방명록에 남겨보세요">📖 영구 방명록 ✍️</button>
         <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(-1)" title="이전 업데이트 소식" aria-label="이전 소식">‹</button>
         <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(1)" title="다음 업데이트 소식" aria-label="다음 소식">›</button>
-        <button type="button" id="knbToggleBtn" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()" aria-expanded="false">최근 업데이트 내역 (<span id="knbTotalCount">6</span>) ▾</button>
+        <button type="button" id="knbToggleBtn" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()" aria-expanded="false">최근 업데이트 내역 (<span id="knbTotalCount">8</span>) ▾</button>
       </div>
     </div>
     <div id="knbDrawer" class="knb-drawer" hidden>
@@ -3808,7 +3830,7 @@ body.dark-theme .knb-card-link {
       <div id="knbGrid" class="knb-grid"></div>
     </div>
   </section>
-  <script src="kkumdido_updates.js?v=20261104"></script>
+  <script src="kkumdido_updates.js?v=20261108"></script>
   <script>
   (function(){
     var idx = 0;

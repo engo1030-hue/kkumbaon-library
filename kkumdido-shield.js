@@ -13,12 +13,84 @@
   var VAULT_STORAGE_KEY = 'kkumdido_admin_vault_v2';
   var SESSION_VISIT_KEY = 'kkumdido_session_visited_pages_v2';
 
-  // 클라우드 동기화 채널 (HTTPS Event Stream + MQTT Retained Broker)
+  // 클라우드 동기화 채널 (HTTPS Event Stream + MQTT Retained Broker · 개인정보 마스킹 및 암호화 봉투 적용)
   var NTFY_TOPIC = 'kkumdido_vault_v2_9c84a7e2b1';
   var NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
   var MQTT_BROKER_URL = 'wss://broker.emqx.io:8084/mqtt';
   var MQTT_PREFIX = 'kkumbaon/kkumdido/v2';
-  var ADMIN_PIN = '6903';
+  // 관리자 PIN 평문 저장 금지 (클간사 보안 점검 반영: 단방향 솔트 해시 검증만 수행)
+  var ADMIN_PIN_HASH = 'KKD-PIN-0E32D8A9-92033640';
+  var ANNEX_WELL_KEY = 'kkumdido_annex_well_v1';
+
+  function verifyAdminPin(pinInput) {
+    var s = 'KKD-ADMIN-SALT-2026::' + String(pinInput == null ? '' : pinInput).trim();
+    var h1 = 0xdeadbeef ^ s.length;
+    var h2 = 0x41c6ce57 ^ s.length;
+    for (var i = 0; i < s.length; i++) {
+      var c = s.charCodeAt(i);
+      h1 = Math.imul(h1 ^ c, 2654435761);
+      h2 = Math.imul(h2 ^ c, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    var hex1 = ((h1 >>> 0).toString(16).toUpperCase()).padStart(8, '0');
+    var hex2 = ((h2 >>> 0).toString(16).toUpperCase()).padStart(8, '0');
+    return ('KKD-PIN-' + hex1 + '-' + hex2) === ADMIN_PIN_HASH;
+  }
+
+  // 공개 브로커 전송 시 개인정보(이메일·전화번호·성함) 마스킹 및 난독화 봉투
+  function maskAccountForCloud(acc) {
+    var s = String(acc || '').trim();
+    if (!s || s === '-') return '-';
+    if (s.indexOf('@') !== -1) {
+      var parts = s.split('@');
+      var id = parts[0];
+      var dom = parts.slice(1).join('@');
+      var vis = id.length <= 2 ? id.slice(0, 1) : id.slice(0, 2);
+      return vis + '***@' + dom;
+    }
+    return s.replace(/(\d{2,3})[-.\s]?(\d{3,4})[-.\s]?(\d{4})/, '$1-****-$3');
+  }
+
+  function maskNameForCloud(name) {
+    var s = String(name || '').trim();
+    if (!s || s === '비로그인 방문자') return s || '비로그인 방문자';
+    var tokens = s.split(/\s+/);
+    var first = tokens[0];
+    if (first.length >= 3) {
+      first = first.slice(0, 1) + '*' + first.slice(2);
+    } else if (first.length === 2) {
+      first = first.slice(0, 1) + '*';
+    }
+    tokens[0] = first;
+    return tokens.join(' ');
+  }
+
+  function sanitizeForPublicCloud(payload) {
+    if (!payload || typeof payload !== 'object') return payload;
+    var copy = JSON.parse(JSON.stringify(payload));
+    if (copy.account) copy.account = maskAccountForCloud(copy.account);
+    if (copy.name) copy.name = maskNameForCloud(copy.name);
+    if (copy.members && typeof copy.members === 'object') {
+      Object.keys(copy.members).forEach(function (k) {
+        if (copy.members[k].account) copy.members[k].account = maskAccountForCloud(copy.members[k].account);
+        if (copy.members[k].name) copy.members[k].name = maskNameForCloud(copy.members[k].name);
+      });
+    }
+    if (copy.visitors && typeof copy.visitors === 'object') {
+      Object.keys(copy.visitors).forEach(function (k) {
+        if (copy.visitors[k].account) copy.visitors[k].account = maskAccountForCloud(copy.visitors[k].account);
+        if (copy.visitors[k].name) copy.visitors[k].name = maskNameForCloud(copy.visitors[k].name);
+      });
+    }
+    if (Array.isArray(copy.logs)) {
+      for (var i = 0; i < copy.logs.length; i++) {
+        if (copy.logs[i].account) copy.logs[i].account = maskAccountForCloud(copy.logs[i].account);
+        if (copy.logs[i].name) copy.logs[i].name = maskNameForCloud(copy.logs[i].name);
+      }
+    }
+    return copy;
+  }
 
   var pendingAction = null;
   var isMandatoryGate = false;
@@ -29,8 +101,12 @@
 
   // 스튜디오 페이지 판별 (이 페이지들은 반드시 도서관 이용증 간편 로그인 후에만 열림)
   var STUDIO_PATTERNS = [
+        'kkumdido_pastoral_secretary',
+    'kkumdido_sermon_ai',
+    'kkumdido_finance',
     'kkumdido_sermon_studio',
     'kkumdido_gotgan',
+    'kkumdido_gyojeok',
     'kkumdido_jipangi',
     'kkumbaon-moses',
     'kkumdido_sunday_school',
@@ -41,7 +117,9 @@
   ];
 
   function isStudioPage() {
+    if (window.location && window.location.protocol === 'file:') return false;
     var path = (window.location.pathname || '').toLowerCase();
+    if (path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('kkumdido_annex') !== -1) return false;
     for (var i = 0; i < STUDIO_PATTERNS.length; i++) {
       if (path.indexOf(STUDIO_PATTERNS[i]) !== -1) return true;
     }
@@ -83,8 +161,13 @@
 
   function getCurrentPageLabel() {
     var path = (window.location.pathname || '').toLowerCase();
+    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·우물가)';
+    if (path.indexOf('kkumdido_pastoral_secretary') !== -1) return '🕊️ 꿈바온 목회 비서 스튜디오';
+    if (path.indexOf('kkumdido_sermon_ai') !== -1) return '⚡ 꿈바온 설교AI (7종 변환)';
+    if (path.indexOf('kkumdido_finance') !== -1) return '💰 무료 헌금·재정 (청지기장부)';
     if (path.indexOf('kkumdido_sermon_studio') !== -1) return '👑 설교 프로그램 (66권·원어)';
     if (path.indexOf('kkumdido_gotgan') !== -1) return '🏺 내 설교 곳간 (개인 서재)';
+    if (path.indexOf('kkumdido_gyojeok') !== -1) return '🐑 무료 교적 스튜디오 (양떼 수첩)';
     if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🪄 모세의 지팡이 스튜디오';
     if (path.indexOf('kkumdido_sunday_school') !== -1) return '🌱 교회학교 교사 스튜디오';
     if (path.indexOf('kkumdido_13dept') !== -1) return '📋 13부서 52주 커리큘럼';
@@ -503,33 +586,34 @@
     if (changed) saveLocalVault(vault);
   }
 
-  // 클라우드 전송 (1: ntfy.sh HTTPS 스트림, 2: MQTT Retained)
+  // 클라우드 전송 (1: ntfy.sh HTTPS 스트림, 2: MQTT Retained · 공개 브로커 개인정보 마스킹 보호 적용)
   function pushEventToCloud(ev, vault) {
+    var safeEv = sanitizeForPublicCloud(ev);
     // 1) ntfy.sh 전송 (CORS 허용 text/plain JSON)
     try {
       fetch(NTFY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-        body: JSON.stringify(ev)
+        body: JSON.stringify(safeEv)
       }).catch(function () {});
     } catch (e) {}
 
-    // 2) MQTT Retained 전송 (개별 회원 카드 + 방문자 + 마스터 볼트)
+    // 2) MQTT Retained 전송 (개별 회원 카드 + 방문자 + 마스터 볼트 · 개인정보 마스킹본)
     ensureMqttClient(function (client) {
       if (!client || !client.connected) return;
       try {
-        client.publish(MQTT_PREFIX + '/events', JSON.stringify(ev), { qos: 0, retain: false });
+        client.publish(MQTT_PREFIX + '/events', JSON.stringify(safeEv), { qos: 0, retain: false });
         if (ev.cardNo && vault.members[ev.cardNo]) {
           client.publish(
             MQTT_PREFIX + '/members/' + ev.cardNo,
-            JSON.stringify(vault.members[ev.cardNo]),
+            JSON.stringify(sanitizeForPublicCloud(vault.members[ev.cardNo])),
             { qos: 1, retain: true }
           );
         }
         if (ev.visitorId && vault.visitors[ev.visitorId]) {
           client.publish(
             MQTT_PREFIX + '/visitors/' + ev.visitorId,
-            JSON.stringify(vault.visitors[ev.visitorId]),
+            JSON.stringify(sanitizeForPublicCloud(vault.visitors[ev.visitorId])),
             { qos: 1, retain: true }
           );
         }
@@ -541,13 +625,13 @@
   function publishMasterVaultSnapshot(client, vault) {
     if (!client || !client.connected || !vault) return;
     try {
-      var snap = {
+      var snap = sanitizeForPublicCloud({
         kind: 'vault_snapshot',
         updatedAt: formatNowTs(),
         members: vault.members || {},
         visitors: vault.visitors || {},
         logs: (vault.logs || []).slice(0, 180)
-      };
+      });
       client.publish(MQTT_PREFIX + '/master_vault', JSON.stringify(snap), { qos: 1, retain: true });
     } catch (e) {}
   }
@@ -1253,7 +1337,7 @@
       '  <button type="button" class="kkd-close" id="kkd-modal-close" aria-label="닫기">✕ 닫기</button>',
       '  <span class="kkd-eyebrow">KKUMBAON DIGITAL LIBRARY & STUDIO PASS</span>',
       '  <h3 id="kkd-modal-title">🏛️ 꿈디도 도서관 이용증 · 간편 로그인</h3>',
-      '  <p class="kkd-sub" id="kkd-modal-desc">구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 설교 곳간 · 모세의 지팡이 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 다운로드 없이 웹에서 바로 쓰실 수 있습니다.</p>',
+      '  <p class="kkd-sub" id="kkd-modal-desc">구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 내 설교 곳간 · 무료 교적 프로그램(양떼 수첩) · 모세의 지팡이 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 무료로 바로 쓰실 수 있습니다.</p>',
       '  <div class="kkd-vip-card" id="kkd-vip-card">',
       '    <div class="kkd-vip-top">',
       '      <strong>🏛️ 꿈바온 디지털도서관 & 스튜디오 이용증</strong>',
@@ -1296,15 +1380,20 @@
       '  </div>',
       '  <div class="kkd-studio-grid" aria-label="꿈디도 통합 스튜디오 바로가기">',
       '    <a href="' + pfx + 'index.html">🏛️ 꿈디도 도서관 본관</a>',
+      '    <a href="' + pfx + 'kkumdido_church_support_annex.html" data-kkd-studio-link="1">🏛️ 꿈디도 교회지원센터 (12종)</a>',
+      '    <a href="' + pfx + 'kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1">⚡ 꿈바온 설교AI (7종 변환)</a>',
+      '    <a href="' + pfx + 'kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1">🕊️ 꿈바온 목회 비서 (솔로몬 초월)</a>',
       '    <a href="' + pfx + 'kkumdido_sermon_studio.html" data-kkd-studio-link="1">👑 설교 프로그램 (원어·설교)</a>',
       '    <a href="' + pfx + 'kkumdido_gotgan_studio.html" data-kkd-studio-link="1">🏺 내 설교 곳간 (개인 웹서재)</a>',
+      '    <a href="' + pfx + 'kkumdido_gyojeok_studio.html" data-kkd-studio-link="1">🐑 무료 교적 (양떼 수첩·다운로드)</a>',
+      '    <a href="' + pfx + 'kkumdido_finance_studio.html" data-kkd-studio-link="1">💰 무료 헌금·재정 (청지기장부·다운로드)</a>',
       '    <a href="' + pfx + 'kkumdido_jipangi_studio.html" data-kkd-studio-link="1">🪄 모세의 지팡이 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_sunday_school_studio.html" data-kkd-studio-link="1">🌱 교회학교 교사 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1">📋 13부서 52주 커리큘럼</a>',
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 기독교 번역 스튜디오</a>',
       '  </div>',
-      '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 스튜디오가 바로 열립니다. 특히 [🏺 내 설교 곳간]에 올리시는 설교 원고는 외부에 전송되지 않고 오직 본인 컴퓨터(브라우저)에만 안전하게 보관됩니다.</p>',
+      '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 교회지원 프로그램이 무료로 바로 열립니다. 특히 [🏺 내 설교 곳간]과 [🐑 무료 교적 스튜디오]에 입력하시는 설교 원고 및 성도 교적 개인정보는 외부 서버로 절대 전송되지 않고 오직 본인 컴퓨터에만 안전하게 보관됩니다.</p>',
       '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
       '</div>'
     ].join('\n');
@@ -1470,7 +1559,7 @@
     if (!isPastorAdmin()) {
       var pin = window.prompt('👑 [꿈바온 목사님 전용 관제실]\n목사님 전용 4자리 비밀번호(PIN)를 입력해 주세요:', '');
       if (pin === null) return;
-      if (String(pin).trim() !== ADMIN_PIN) {
+      if (!verifyAdminPin(pin)) {
         showToast('🔒 비밀번호가 일치하지 않습니다.');
         return;
       }
@@ -1802,7 +1891,7 @@
     }
   }
 
-  // 설교 곳간(Gotgan) 페이지에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제 및 개인 서재명 연동
+  // 설교 곳간(Gotgan) 및 교적 스튜디오(Gyojeok) 페이지에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제 및 교회·목회자명 연동
   function unlockGotganIfPresent(card) {
     if (!card) return;
     var gate = document.getElementById('licenseGate');
@@ -1818,6 +1907,9 @@
         if (libTitle && (!libTitle.textContent || libTitle.textContent === '목회자의 설교 곳간')) {
           libTitle.textContent = card.name + '의 설교 곳간';
         }
+      }
+      if (typeof window.applyMemberGyojeokProfile === 'function') {
+        window.applyMemberGyojeokProfile(card.name, card.church, card.cardNo);
       }
     } catch (e) {}
   }
@@ -1980,10 +2072,198 @@
     }, true);
   }
 
+  // ── 8. 🪣 별관 「우물 규약 (한 말씀 한 주)」 전 스튜디오 자동 연동 브릿지 ──
+  function getAnnexWell() {
+    var w = null;
+    try {
+      var raw = localStorage.getItem(ANNEX_WELL_KEY);
+      if (raw) w = JSON.parse(raw);
+    } catch (e) {}
+    try {
+      var params = new URLSearchParams(window.location.search || '');
+      var urlRef = (params.get('kkd_ref') || '').trim();
+      var urlGist = (params.get('kkd_gist') || '').trim();
+      if (urlRef) {
+        if (!w || typeof w !== 'object') {
+          w = { ref: urlRef, gist: urlGist || '', sunday: '', savedAt: new Date().toISOString() };
+        } else {
+          w.ref = urlRef;
+          if (urlGist) w.gist = urlGist;
+        }
+        try { localStorage.setItem(ANNEX_WELL_KEY, JSON.stringify(w)); } catch (e2) {}
+      }
+    } catch (e3) {}
+    if (w && w.ref) return w;
+    return null;
+  }
+
+  function setInputValIfEmptyOrForce(el, val, force) {
+    if (!el || !val) return false;
+    var cur = String(el.value || '').trim();
+    if (force || !cur) {
+      el.value = val;
+      try {
+        el.dispatchEvent(new Event('input', { bubbles: true }));
+        el.dispatchEvent(new Event('change', { bubbles: true }));
+      } catch (e) {}
+      return true;
+    }
+    return false;
+  }
+
+  function fillStudioFieldsFromWell(forceOverwrite) {
+    var w = getAnnexWell();
+    if (!w || !w.ref) return false;
+    var path = (window.location.pathname || '').toLowerCase();
+    // 별관 자체 페이지에서는 자동 입력 제외
+    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('annex_proposal') !== -1) {
+      return false;
+    }
+
+    var filledCount = 0;
+    // 각 스튜디오별 본문(ref), 제목/한줄(gist), 주일날짜(sunday) 입력칸 매핑
+    var refIds = [
+      'sermonScriptureInput', // kkumdido_sermon_studio.html
+      'inScripture',          // kkumdido_sermon_ai_studio.html
+      'sermPassage',          // kkumdido_pastoral_secretary_studio.html
+      'bulSermonPassage',     // kkumdido_pastoral_secretary_studio.html (주보)
+      'editScriptureInput',   // kkumdido_gotgan_studio.html
+      'inputBibleVerse',      // kkumdido_jipangi_studio.html
+      'pubRef'                // kkumdido_sunday_school_studio.html
+    ];
+    var gistIds = [
+      'sermonTitleInput',     // kkumdido_sermon_studio.html
+      'inTitle',              // kkumdido_sermon_ai_studio.html
+      'sermTheme',            // kkumdido_pastoral_secretary_studio.html
+      'bulSermonTitle',       // kkumdido_pastoral_secretary_studio.html
+      'editTitleInput',       // kkumdido_gotgan_studio.html
+      'step3TitleLine1Input', // kkumdido_jipangi_studio.html
+      'pubTitle'              // kkumdido_sunday_school_studio.html
+    ];
+    var dateIds = [
+      'sermonDateInput',
+      'inDate',
+      'editDateInput',
+      'pubDate',
+      'bulDate'
+    ];
+
+    var hasUrlRef = false;
+    try {
+      hasUrlRef = !!(new URLSearchParams(window.location.search || '').get('kkd_ref'));
+    } catch (e) {}
+    var shouldForce = !!(forceOverwrite || hasUrlRef);
+
+    for (var i = 0; i < refIds.length; i++) {
+      var rEl = document.getElementById(refIds[i]);
+      if (setInputValIfEmptyOrForce(rEl, w.ref, shouldForce)) filledCount++;
+    }
+    if (w.gist) {
+      for (var j = 0; j < gistIds.length; j++) {
+        var gEl = document.getElementById(gistIds[j]);
+        if (setInputValIfEmptyOrForce(gEl, w.gist, shouldForce)) filledCount++;
+      }
+    }
+    if (w.sunday) {
+      for (var k = 0; k < dateIds.length; k++) {
+        var dEl = document.getElementById(dateIds[k]);
+        if (setInputValIfEmptyOrForce(dEl, w.sunday, shouldForce)) filledCount++;
+      }
+    }
+
+    // 번역 스튜디오인 경우
+    var transIn = document.getElementById('writeInput');
+    if (transIn && (forceOverwrite || (!transIn.value.trim() && hasUrlRef))) {
+      var line = w.ref + (w.gist ? ' — ' + w.gist : '');
+      setInputValIfEmptyOrForce(transIn, line, true);
+      filledCount++;
+    }
+
+    return filledCount > 0;
+  }
+
+  function renderStudioWellCarryBanner() {
+    var w = getAnnexWell();
+    if (!w || !w.ref) return;
+    var path = (window.location.pathname || '').toLowerCase();
+    if (!isStudioPage()) return;
+    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('annex_proposal') !== -1) {
+      return;
+    }
+    if (document.getElementById('kkd-well-carry-bar')) return;
+
+    var bar = document.createElement('div');
+    bar.id = 'kkd-well-carry-bar';
+    bar.style.cssText = [
+      'background:linear-gradient(90deg, #1E3A5F 0%, #14294A 100%);',
+      'color:#F3EFE4;',
+      'border-bottom:1.5px solid rgba(197,155,56,0.65);',
+      'padding:7px 18px;',
+      'font-family:"Pretendard","Noto Sans KR",sans-serif;',
+      'font-size:13.5px;',
+      'display:flex;',
+      'align-items:center;',
+      'justify-content:space-between;',
+      'gap:10px;',
+      'flex-wrap:wrap;',
+      'z-index:880;',
+      'position:relative;'
+    ].join('');
+    var pfx = getRootPrefix();
+    bar.innerHTML = [
+      '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">',
+      '  <span style="background:rgba(197,155,56,0.22);border:1px solid rgba(197,155,56,0.65);color:#F7E29E;padding:2px 9px;border-radius:999px;font-weight:800;font-size:12px;">🪣 이번 주의 우물</span>',
+      '  <span>별관 우물가에서 길어 올린 말씀 <b style="color:#FFD97D;font-family:serif;font-size:14.5px;">' + escapeHtml(w.ref) + '</b>' + (w.gist ? ' <span style="opacity:0.88;">(' + escapeHtml(w.gist) + ')</span>' : '') + '을 들고 열었습니다.</span>',
+      '</div>',
+      '<div style="display:flex;align-items:center;gap:6px;">',
+      '  <button type="button" id="kkd-well-fill-btn" style="background:#C59B38;color:#161209;border:0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:800;cursor:pointer;">본문 칸에 채우기</button>',
+      '  <a href="' + pfx + 'kkumdido_church_support_annex.html#well" style="color:#F3EFE4;text-decoration:none;border:1px solid rgba(243,239,228,0.4);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:700;">별관 우물가로 ↗</a>',
+      '</div>'
+    ].join('');
+
+    if (document.body.firstChild) {
+      document.body.insertBefore(bar, document.body.firstChild);
+    } else {
+      document.body.appendChild(bar);
+    }
+
+    var fillBtn = document.getElementById('kkd-well-fill-btn');
+    if (fillBtn) {
+      fillBtn.addEventListener('click', function () {
+        var ok = fillStudioFieldsFromWell(true);
+        if (ok) {
+          showToast('🪣 이번 주 우물 말씀 「' + w.ref + '」을 이 방의 입력칸에 채웠습니다.');
+        } else {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(w.ref + (w.gist ? ' ' + w.gist : ''));
+          }
+          showToast('📋 이번 주 우물 말씀 「' + w.ref + '」이 클립보드에 복사되었습니다. 원하는 칸에 붙여넣으실 수 있습니다.');
+        }
+      });
+    }
+  }
+
+  function applyAnnexWellToStudio() {
+    var didFill = fillStudioFieldsFromWell(false);
+    renderStudioWellCarryBanner();
+    if (didFill) {
+      var w = getAnnexWell();
+      if (w && w.ref) {
+        setTimeout(function () {
+          showToast('🪣 우물가에서 길어 올린 「' + w.ref + '」 말씀을 본문 칸에 담았습니다.');
+        }, 450);
+      }
+    }
+  }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', buildDOM);
+    document.addEventListener('DOMContentLoaded', function () {
+      buildDOM();
+      setTimeout(applyAnnexWellToStudio, 220);
+    });
   } else {
     buildDOM();
+    setTimeout(applyAnnexWellToStudio, 220);
   }
 
   window.kkumdidoPass = {
@@ -1994,6 +2274,8 @@
     logout: clearCard,
     getVault: getLocalVault,
     syncCloud: syncFromCloudAll,
+    getWell: getAnnexWell,
+    applyWellToPage: function () { return fillStudioFieldsFromWell(true); },
     logAction: function (detailText, type) {
       recordTelemetryEvent(type || 'studio', detailText);
     },

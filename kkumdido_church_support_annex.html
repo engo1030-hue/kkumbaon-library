@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꿈디도 교회 지원 프로그램 별관 — 목회비서·설교·교적·주보·교회학교 무료 지원 센터</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root, body[data-theme="beige"] {
+    --bg-deep: #F6F2E9;
+    --bg-warm: #EFE8D9;
+    --bg-card: #FFFFFF;
+    --bg-parchment: #FBF9F4;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(156,116,56,0.16) 0%, transparent 70%), linear-gradient(180deg, #F4EDE0 0%, #EAE0CC 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #FCF9F4 0%, #F1EAE0 80%);
+    --nav-bg: rgba(248, 244, 235, 0.96);
+    --card-grad: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%);
+    --gold-main: #8C621E;
+    --gold-bright: #6E4B12;
+    --gold-accent: #C59B38;
+    --gold-soft: rgba(140, 98, 30, 0.11);
+    --text-cream: #1F1A15;
+    --text-muted: #5C5248;
+    --text-ink: #1F1A15;
+    --input-bg: #FFFFFF;
+    --border-gold: rgba(140, 98, 30, 0.28);
+    --border-soft: rgba(140, 98, 30, 0.15);
+    --shadow-heavy: 0 18px 44px rgba(31, 26, 21, 0.11);
+    --shadow-card: 0 8px 24px rgba(60, 45, 20, 0.07);
+    --badge-green: #1B7A43;
+    --badge-green-bg: #E6F6EC;
+    --badge-blue: #1D5B9E;
+    --badge-blue-bg: #E7F1FC;
+    --badge-purple: #5B3E96;
+    --badge-purple-bg: #F1ECFA;
+    --badge-amber: #9E5814;
+    --badge-amber-bg: #FDF2E4;
+    --font-scale: 1;
+  }
+
+  body[data-theme="dark"] {
+    --bg-deep: #12100E;
+    --bg-warm: #1A1612;
+    --bg-card: #221D17;
+    --bg-parchment: #1D1813;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.18) 0%, transparent 68%), linear-gradient(180deg, #1E1813 0%, #14110E 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #241D16 0%, #12100E 78%);
+    --nav-bg: rgba(18, 16, 14, 0.95);
+    --card-grad: linear-gradient(145deg, #251F18 0%, #1B1611 100%);
+    --gold-main: #D8B26E;
+    --gold-bright: #F0D290;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 178, 110, 0.14);
+    --text-cream: #F4EEE1;
+    --text-muted: #B8AB96;
+    --text-ink: #F4EEE1;
+    --input-bg: #17130F;
+    --border-gold: rgba(216, 178, 110, 0.30);
+    --border-soft: rgba(216, 178, 110, 0.16);
+    --shadow-heavy: 0 20px 48px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 26px rgba(0, 0, 0, 0.38);
+    --badge-green: #6EE7A0;
+    --badge-green-bg: rgba(27, 122, 67, 0.28);
+    --badge-blue: #82B8F9;
+    --badge-blue-bg: rgba(29, 91, 158, 0.28);
+    --badge-purple: #C8B2F8;
+    --badge-purple-bg: rgba(91, 62, 150, 0.28);
+    --badge-amber: #F7B96C;
+    --badge-amber-bg: rgba(158, 88, 20, 0.28);
+  }
+
+  body[data-theme="green"] {
+    --bg-deep: #0D1914;
+    --bg-warm: #13241D;
+    --bg-card: #172B23;
+    --bg-parchment: #12221B;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #152920 0%, #0E1B15 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1A3328 0%, #0D1914 75%);
+    --nav-bg: rgba(13, 25, 20, 0.95);
+    --card-grad: linear-gradient(145deg, #193026 0%, #11211A 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF5F0;
+    --text-muted: #9EB5A8;
+    --text-ink: #EEF5F0;
+    --input-bg: #0F1E18;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  body[data-theme="navy"] {
+    --bg-deep: #0C1322;
+    --bg-warm: #121C31;
+    --bg-card: #17233D;
+    --bg-parchment: #131E35;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #16223B 0%, #0D1526 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1B2A47 0%, #0C1322 75%);
+    --nav-bg: rgba(12, 19, 34, 0.95);
+    --card-grad: linear-gradient(145deg, #1A2845 0%, #121C31 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF2F8;
+    --text-muted: #9AA9C2;
+    --text-ink: #EEF2F8;
+    --input-bg: #0E1729;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: calc(16px * var(--font-scale)); }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--body-grad);
+    color: var(--text-cream);
+    min-height: 100vh;
+    line-height: 1.6;
+    padding-bottom: 90px;
+    word-break: keep-all;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  /* 상단 GNB */
+  .top-gnb {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .gnb-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .gnb-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    color: var(--text-cream);
+  }
+  .gnb-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #241A10, #4A3520);
+    border: 1.5px solid #C59B38;
+    display: grid;
+    place-items: center;
+    font-size: 21px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.18);
+  }
+  .gnb-title strong {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .gnb-title small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gold-main);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .gnb-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .gnb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    transition: all 0.18s ease;
+  }
+  .gnb-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
+  }
+  .gnb-btn.pass-btn {
+    background: linear-gradient(135deg, #241A10, #3A2918);
+    color: #F5DF98;
+    border-color: #C59B38;
+  }
+  .gnb-btn.primary-btn {
+    background: linear-gradient(135deg, #8C621E, #6E4B12);
+    color: #FFFFFF;
+    border-color: #8C621E;
+  }
+
+  /* 히어로 섹션 */
+  .hero-sec {
+    background: var(--hero-grad);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 44px 24px 38px;
+  }
+  .wrap {
+    max-width: 1340px;
+    margin: 0 auto;
+  }
+  .hero-top-row {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 28px;
+    align-items: center;
+  }
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 15px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+    font-size: 0.88rem;
+    font-weight: 800;
+    margin-bottom: 14px;
+  }
+  .hero-sec h1 {
+    font-size: clamp(1.9rem, 3.4vw, 2.75rem);
+    line-height: 1.25;
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    margin-bottom: 14px;
+  }
+  .hero-sec h1 span {
+    color: var(--gold-main);
+    text-decoration: underline;
+    text-decoration-color: rgba(197, 155, 56, 0.45);
+    text-underline-offset: 6px;
+  }
+  .hero-lead {
+    font-size: 1.08rem;
+    color: var(--text-muted);
+    line-height: 1.68;
+    margin-bottom: 22px;
+  }
+  .hero-lead b {
+    color: var(--text-cream);
+  }
+  .hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .big-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 22px;
+    border-radius: 14px;
+    font-size: 1.02rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+  }
+  .big-cta.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1A);
+    color: #F7E29E;
+    border-color: #C59B38;
+    box-shadow: 0 10px 24px rgba(36, 26, 16, 0.22);
+  }
+  .big-cta.gold:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(36, 26, 16, 0.30);
+  }
+  .big-cta.light {
+    background: var(--bg-card);
+    color: var(--text-cream);
+    border-color: var(--border-gold);
+  }
+  .big-cta.light:hover {
+    background: var(--gold-soft);
+  }
+
+  /* 우측 로그인 이용증 상태 박스 */
+  .pass-status-card {
+    background: linear-gradient(145deg, #201811, #15100B);
+    color: #F6EFE2;
+    border: 2px solid #C59B38;
+    border-radius: 22px;
+    padding: 24px;
+    box-shadow: 0 18px 40px rgba(20, 15, 10, 0.28);
+    position: relative;
+    overflow: hidden;
+  }
+  .pass-status-card::before {
+    content: "DREAMBAON LIBRARY PASS";
+    position: absolute;
+    right: 18px;
+    top: 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: rgba(229, 200, 120, 0.45);
+    font-weight: 800;
+  }
+  .pass-badge-tag {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    background: rgba(197, 155, 56, 0.22);
+    color: #F5DF98;
+    border: 1px solid rgba(197, 155, 56, 0.5);
+    margin-bottom: 10px;
+  }
+  .pass-holder-name {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+  }
+  .pass-holder-meta {
+    font-size: 0.9rem;
+    color: #D2C5B0;
+    margin-bottom: 14px;
+  }
+  .pass-Step-list {
+    list-style: none;
+    display: grid;
+    gap: 7px;
+    font-size: 0.86rem;
+    color: #E5DAC8;
+    border-top: 1px solid rgba(197, 155, 56, 0.25);
+    padding-top: 12px;
+    margin-bottom: 16px;
+  }
+  .pass-action-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .pass-action-btn {
+    flex: 1;
+    text-align: center;
+    padding: 10px 14px;
+    border-radius: 11px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1px solid #C59B38;
+    background: linear-gradient(135deg, #D4AF37, #AA8020);
+    color: #1A130B;
+    text-decoration: none;
+  }
+  .pass-action-btn.sub {
+    background: rgba(255,255,255,0.08);
+    color: #F5DF98;
+    border-color: rgba(197, 155, 56, 0.45);
+  }
+
+  /* 3단계 쉬운 이용 안내 띠 */
+  .easy-steps-bar {
+    margin-top: 28px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  .easy-step-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 16px 18px;
+    display: flex;
+    align-items: flex-start;
+    gap: 13px;
+    box-shadow: var(--shadow-card);
+  }
+  .easy-step-num {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+    font-weight: 900;
+    font-size: 1rem;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+  .easy-step-item strong {
+    display: block;
+    font-size: 0.98rem;
+    margin-bottom: 3px;
+  }
+  .easy-step-item p {
+    font-size: 0.86rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  /* 대표 주력 프로그램 2종 대형 쇼케이스 */
+  .flagship-sec {
+    padding: 36px 24px 10px;
+  }
+  .sec-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .sec-head h2 {
+    font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .sec-head p {
+    color: var(--text-muted);
+    font-size: 0.96rem;
+  }
+  .flagship-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+  }
+  .flagship-card {
+    background: var(--card-grad);
+    border: 2.5px solid var(--gold-accent);
+    border-radius: 24px;
+    padding: 28px;
+    box-shadow: var(--shadow-heavy);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 18px;
+    position: relative;
+  }
+  .flagship-ribbon {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-size: 0.8rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #241A10, #42301D);
+    color: #F7E29E;
+    border: 1px solid #C59B38;
+  }
+  .flagship-title-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .flagship-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    background: var(--gold-soft);
+    border: 1.5px solid var(--border-gold);
+    display: grid;
+    place-items: center;
+    font-size: 32px;
+    flex-shrink: 0;
+  }
+  .flagship-title-row h3 {
+    font-size: 1.45rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+  .flagship-title-row small {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--gold-main);
+    font-weight: 700;
+    margin-top: 3px;
+  }
+  .flagship-desc {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+    line-height: 1.62;
+  }
+  .flagship-desc b {
+    color: var(--text-cream);
+  }
+  .flagship-points {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px 12px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-soft);
+    border-radius: 16px;
+    padding: 14px 16px;
+    font-size: 0.9rem;
+  }
+  .flagship-points li {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 600;
+  }
+  .flagship-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-top: 4px;
+  }
+  .btn-launch {
+    flex: 1.3;
+    min-width: 190px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 18px;
+    border-radius: 13px;
+    font-size: 1rem;
+    font-weight: 900;
+    text-decoration: none;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border: 1.5px solid #C59B38;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .btn-launch:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(36, 26, 16, 0.25);
+  }
+  .btn-dl-sub {
+    flex: 1;
+    min-width: 150px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 14px;
+    border-radius: 13px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: var(--bg-card);
+    color: var(--text-cream);
+    border: 1px solid var(--border-gold);
+    cursor: pointer;
+  }
+  .btn-dl-sub:hover {
+    background: var(--gold-soft);
+  }
+
+  /* 필터 및 검색 컨트롤 바 */
+  .filter-sec {
+    padding: 30px 24px 16px;
+  }
+  .filter-bar {
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-card);
+  }
+  .cat-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .cat-tab {
+    padding: 10px 16px;
+    border-radius: 12px;
+    font-size: 0.94rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1.5px solid var(--border-soft);
+    background: var(--bg-parchment);
+    color: var(--text-muted);
+    transition: all 0.16s ease;
+  }
+  .cat-tab.active, .cat-tab:hover {
+    background: linear-gradient(135deg, #241A10, #3D2B1A);
+    color: #F5DF98;
+    border-color: #C59B38;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--input-bg);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 8px 14px;
+    min-width: 280px;
+    flex: 1;
+    max-width: 390px;
+  }
+  .search-box input {
+    border: none;
+    background: transparent;
+    color: var(--text-cream);
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+  }
+
+  /* 전체 프로그램 그리드 */
+  .programs-sec {
+    padding: 12px 24px 40px;
+  }
+  .programs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .prog-card {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 14px;
+    transition: all 0.2s ease;
+  }
+  .prog-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-heavy);
+    border-color: var(--gold-accent);
+  }
+  .prog-top-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .prog-no {
+    font-size: 0.78rem;
+    font-weight: 900;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--gold-main);
+    border: 1px solid var(--border-gold);
+  }
+  .prog-cat-badge {
+    font-size: 0.76rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 999px;
+  }
+  .prog-cat-badge.ai { background: var(--badge-purple-bg); color: var(--badge-purple); }
+  .prog-cat-badge.admin { background: var(--badge-green-bg); color: var(--badge-green); }
+  .prog-cat-badge.edu { background: var(--badge-blue-bg); color: var(--badge-blue); }
+  .prog-cat-badge.bible { background: var(--badge-amber-bg); color: var(--badge-amber); }
+
+  .prog-head {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 8px;
+  }
+  .prog-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    display: grid;
+    place-items: center;
+    font-size: 25px;
+    flex-shrink: 0;
+  }
+  .prog-head h3 {
+    font-size: 1.18rem;
+    font-weight: 900;
+    line-height: 1.3;
+  }
+  .prog-head small {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--gold-main);
+    font-weight: 700;
+    margin-top: 2px;
+  }
+  .prog-summary {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.56;
+    margin-top: 6px;
+  }
+  .prog-features {
+    list-style: none;
+    display: grid;
+    gap: 5px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-soft);
+    border-radius: 13px;
+    padding: 11px 13px;
+    font-size: 0.85rem;
+  }
+  .prog-features li::before {
+    content: "✓ ";
+    color: var(--gold-main);
+    font-weight: 900;
+  }
+  .prog-foot {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .prog-open-btn {
+    width: 100%;
+    text-align: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+    font-size: 0.94rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: linear-gradient(135deg, #8C621E, #6E4B12);
+    color: #FFFFFF;
+    border: 1px solid #8C621E;
+    cursor: pointer;
+    transition: opacity 0.16s ease;
+  }
+  .prog-open-btn:hover {
+    opacity: 0.92;
+  }
+  .prog-dl-row {
+    display: flex;
+    gap: 6px;
+  }
+  .prog-dl-row a {
+    flex: 1;
+    text-align: center;
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-decoration: none;
+    background: var(--bg-card);
+    color: var(--text-cream);
+    border: 1px solid var(--border-gold);
+  }
+  .prog-dl-row a:hover {
+    background: var(--gold-soft);
+  }
+
+  /* 차기 추가 예정 로드맵 & 목회자 제안함 */
+  .roadmap-sec {
+    padding: 20px 24px 50px;
+  }
+  .roadmap-box {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: var(--shadow-card);
+  }
+  .roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-top: 18px;
+  }
+  .roadmap-item {
+    background: var(--bg-parchment);
+    border: 1px dashed var(--border-gold);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .roadmap-item span.tag {
+    align-self: flex-start;
+    font-size: 0.74rem;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    color: var(--gold-main);
+  }
+  .roadmap-item strong {
+    font-size: 1.02rem;
+  }
+  .roadmap-item p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.48;
+  }
+  .suggest-bar {
+    margin-top: 22px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .suggest-inputs {
+    display: flex;
+    gap: 8px;
+    flex: 1;
+    min-width: 280px;
+  }
+  .suggest-inputs input {
+    flex: 1;
+    padding: 11px 14px;
+    border-radius: 11px;
+    border: 1px solid var(--border-gold);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-size: 0.92rem;
+  }
+  .suggest-inputs button {
+    padding: 11px 18px;
+    border-radius: 11px;
+    border: 1px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F5DF98;
+    font-weight: 800;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 1080px) {
+    .hero-top-row, .flagship-grid { grid-template-columns: 1fr; }
+    .programs-grid { grid-template-columns: repeat(2, 1fr); }
+    .roadmap-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 680px) {
+    .easy-steps-bar, .programs-grid, .roadmap-grid, .flagship-points { grid-template-columns: 1fr; }
+    .top-gnb { padding: 10px 14px; }
+    .hero-sec, .flagship-sec, .filter-sec, .programs-sec, .roadmap-sec { padding-left: 14px; padding-right: 14px; }
+  }
+</style>
+</head>
+<body data-theme="beige" data-kkd-studio="true">
+
+<header class="top-gnb">
+  <div class="gnb-left">
+    <a href="index.html" class="gnb-brand" title="꿈바온 디지털 도서관 본관으로 이동">
+      <div class="gnb-logo">🏛️</div>
+      <div class="gnb-title">
+        <strong>꿈디도 교회 지원 프로그램 별관</strong>
+        <small>CHURCH &amp; PASTORAL SUPPORT ANNEX</small>
+      </div>
+    </a>
+    <a href="index.html" class="gnb-btn">🏛️ 도서관 본관으로</a>
+    <a href="kkumdido_12archives_viewer.html" class="gnb-btn">📚 12대 아카이브(3,650)</a>
+  </div>
+  <div class="gnb-right">
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(-0.08)" title="글자 작게">가-</button>
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(0.08)" title="글자 크게 (어르신·목회자 큰글씨 모드)">가+ 크게</button>
+    <select id="themeSelect" class="gnb-btn" onchange="changeTheme(this.value)" aria-label="화면 색상 테마 선택">
+      <option value="beige">📜 양피지 베이지 (기본)</option>
+      <option value="dark">🌙 밤의 서재 (다크)</option>
+      <option value="green">🌲 올리브 그린</option>
+      <option value="navy">🌌 로얄 네이비</option>
+    </select>
+    <button type="button" id="topPassBtn" class="gnb-btn pass-btn" onclick="openPassModal()">🪪 도서관 이용증 로그인</button>
+  </div>
+</header>
+
+<section class="hero-sec">
+  <div class="wrap">
+    <div class="hero-top-row">
+      <div>
+        <div class="eyebrow-pill">✨ 한국 교계를 이롭게 하는 꿈디도 교회지원센터 · 유료 구독/설치비 0원</div>
+        <h1 class="serif">교회 프로그램 전수조사 기반 올인원 허브<br><span>꿈디도 교회지원센터 (별관)</span></h1>
+        <p class="hero-lead">
+          <b>🌐 [웹 스튜디오 직결]</b> 설교AI(주간사역 7종 변환), 솔로몬AI를 뛰어넘는 목회 비서, 로고스급 성경 66권 원어·강해 설교준비 스튜디오는 <b>꿈디도 웹에서 설치 없이 즉시</b> 사용하시고,<br>
+          <b>🔒 [민감정보 내 PC 다운로드]</b> 성도 개인정보와 헌금 내역이 담긴 <b>교적부(양떼 수첩)와 헌금·재정(청지기 장부)</b>은 내 컴퓨터로 직접 내려받아 외부 유출 걱정 없이 100% 안전하게 쓰실 수 있습니다.
+        </p>
+        <div class="hero-ctas">
+          <a href="kkumdido_sermon_ai_studio.html" class="big-cta gold">⚡ [웹전용] 꿈바온 설교AI (7종 변환) ↗</a>
+          <a href="kkumdido_pastoral_secretary_studio.html" class="big-cta gold">🕊️ [웹+PC] 꿈바온 목회 비서 (솔로몬 초월) ↗</a>
+          <a href="kkumdido_gyojeok_studio.html" class="big-cta light">🐑 [다운로드] 무료 교적(양떼수첩) ↗</a>
+          <a href="kkumdido_finance_studio.html" class="big-cta light">💰 [다운로드] 무료 헌금·재정(청지기장부) ↗</a>
+        </div>
+      </div>
+
+      <!-- 우측 도서관 이용증 실시간 상태 박스 -->
+      <div class="pass-status-card">
+        <span class="pass-badge-tag" id="passStatusBadge">🪪 도서관 이용증 확인 중</span>
+        <div class="pass-holder-name" id="passHolderName">꿈디도 도서관 이용증</div>
+        <div class="pass-holder-meta" id="passHolderMeta">로그인하시면 별관의 모든 교회 지원 프로그램이 즉시 열립니다.</div>
+        <ul class="pass-Step-list">
+          <li>✔ <b>완전 무료:</b> 발급비·연회비·서버 이용료가 전혀 없습니다.</li>
+          <li>✔ <b>철저한 보안:</b> 작성하신 설교·교적·심방 기록은 외부 서버가 아닌 목사님 컴퓨터에만 남습니다.</li>
+          <li>✔ <b>계속 추가:</b> 앞으로 새로 만들어지는 교회 지원 도구도 이 이용증 하나로 모두 쓰십니다.</li>
+        </ul>
+        <div class="pass-action-row">
+          <button type="button" class="pass-action-btn" id="passMainActionBtn" onclick="openPassModal()">🪪 이용증 발급 · 간편 로그인</button>
+          <a href="kkumdido_pastoral_secretary_studio.html" class="pass-action-btn sub">🕊️ 목회 비서 입장</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3단계 쉬운 사용 안내 -->
+    <div class="easy-steps-bar">
+      <div class="easy-step-item">
+        <div class="easy-step-num">1</div>
+        <div>
+          <strong>도서관 이용증 간편 로그인</strong>
+          <p>최초 1회 Google·카카오 간편 확인으로 3초 만에 무료 도서관 이용증이 발급됩니다.</p>
+        </div>
+      </div>
+      <div class="easy-step-item">
+        <div class="easy-step-num">2</div>
+        <div>
+          <strong>필요한 교회 지원 프로그램 클릭</strong>
+          <p>목회 비서, 설교 준비, 교적부, 주보, 교회학교, 가정예배 중 필요한 도구를 바로 엽니다.</p>
+        </div>
+      </div>
+      <div class="easy-step-item">
+        <div class="easy-step-num">3</div>
+        <div>
+          <strong>웹에서 바로 쓰거나 내 PC에 저장</strong>
+          <p>설치 없이 인터넷 창에서 바로 쓰시거나, 무설치 파일(.html/.zip)로 내려받아 오프라인에서도 씁니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 대표 주력 프로그램 4종 대형 쇼케이스 (웹 전용 2종 + 민감정보 다운로드 2종) -->
+<section class="flagship-sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2 class="serif">🌟 교회지원센터 4대 핵심 주력 프로그램 (웹 스튜디오 2종 + 민감정보 다운로드 2종)</h2>
+        <p>설교AI·목회비서는 웹에서 바로 열고, 민감한 교적·헌금재정은 내 PC로 내려받아 100% 안전하게 사용합니다.</p>
+      </div>
+    </div>
+
+    <div class="flagship-grid">
+      <!-- 대표 1: 꿈바온 설교AI (웹 전용) -->
+      <article class="flagship-card">
+        <div>
+          <span class="flagship-ribbon">⚡ [웹 스튜디오 직결] 상용 『설교AI / 마이설교』 초월 · 원고 1편 → 주간 사역 7종</span>
+          <div class="flagship-title-row">
+            <div class="flagship-icon">⚡</div>
+            <div>
+              <h3>꿈바온 설교AI — 주간 사역 7종 변환 스튜디오</h3>
+              <small>주보 요약 · 소그룹(속회·구역·셀) 나눔지 · 월~토 6일 QT · 쇼츠 60초 대본 · 예배 PPT · 가정예배</small>
+            </div>
+          </div>
+          <p class="flagship-desc" style="margin-top:12px;">
+            월 3~5만 원 유료 구독형 <b>설교AI(마이설교)를 완벽히 뛰어넘는 웹 스튜디오</b>입니다. 주일 설교 원고 1편만 붙여넣으면 <b>주보 요약, 카톡 공지, 소그룹 나눔지(A4 인쇄), 성도용 6일 QT집, 유튜브 쇼츠 60초 대본·큐시트, 예배 PPT 슬라이드</b>까지 3초 만에 일괄 완성합니다.
+          </p>
+          <ul class="flagship-points" style="margin-top:14px;">
+            <li>📰 주보 요약 &amp; 전교인 카톡 말씀카드</li>
+            <li>👨‍👩‍👧‍👦 속회·구역·셀 나눔 질문지 A4 인쇄</li>
+            <li>🌅 성도용 월~토 6일 주중 큐티(QT)집</li>
+            <li>📱 유튜브 쇼츠 60초 입말 대본 &amp; 큐시트</li>
+            <li>🖥️ 주일예배 PPT 슬라이드 &amp; 자막 구조</li>
+            <li>🤖 클로드·GPT·제미나이 심화 프롬프트 연결</li>
+          </ul>
+        </div>
+        <div class="flagship-actions">
+          <a href="kkumdido_sermon_ai_studio.html" class="btn-launch">🚀 설교AI 스튜디오 웹에서 바로 열기 ↗</a>
+          <a href="downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_무설치단일파일.html" download class="btn-dl-sub">💾 오프라인 단일파일(.html)</a>
+        </div>
+      </article>
+
+      <!-- 대표 2: 꿈바온 목회 비서 (솔로몬AI 초월) -->
+      <article class="flagship-card">
+        <div>
+          <span class="flagship-ribbon">🕊️ [웹 + PC 겸용] 상용 『솔로몬AI (15만 원)』 초월 · 내 교회를 아는 AI 비서</span>
+          <div class="flagship-title-row">
+            <div class="flagship-icon">🕊️</div>
+            <div>
+              <h3>꿈바온 목회 비서 스튜디오 (v1.0)</h3>
+              <small>설교 개요 · 심방 돌봄 · 실시간 A4 주보 · 아침 브리핑 · 내 AI(클로드/GPT/제미나이) 1초 연결</small>
+            </div>
+          </div>
+          <p class="flagship-desc" style="margin-top:12px;">
+            우리 교회 프로필과 목회 일정을 기억하고, <b>"만들어줘" 한 번에 설교 7단계 개요, 상황별 심방 위로문·기도문, 인쇄 가능한 A4 주보와 회의록·공문</b>을 즉시 만들어 줍니다. 유료 래퍼 프로그램을 살 필요 없이 내가 쓰는 <b>클로드·ChatGPT·제미나이</b>와도 1초 만에 연동됩니다.
+          </p>
+          <ul class="flagship-points" style="margin-top:14px;">
+            <li>☀️ 아침 목회 브리핑 &amp; 설교 D-day</li>
+            <li>🗓️ 목사님 오늘 할 일 시간표 배정</li>
+            <li>📖 7단계 설교 준비 (가상예화 구분)</li>
+            <li>🏠 심방 위로 말씀 &amp; 위기상담 안전망</li>
+            <li>📰 실시간 A4 주보 편집 · 바로 인쇄</li>
+            <li>🤖 클로드·GPT·제미나이 맞춤 지시문</li>
+          </ul>
+        </div>
+        <div class="flagship-actions">
+          <a href="kkumdido_pastoral_secretary_studio.html" class="btn-launch">🚀 목회 비서 웹에서 바로 열기 ↗</a>
+          <a href="downloads/꿈바온_목회비서_v1.0_무설치단일파일.html" download class="btn-dl-sub">💾 무설치 파일(.html) 받기</a>
+          <a href="downloads/꿈바온_목회비서_v1.0_Mac_Windows_포터블.zip" download class="btn-dl-sub">📦 PC 데스크톱판(.zip)</a>
+        </div>
+      </article>
+
+      <!-- 대표 3: 무료 교적 프로그램 양떼 수첩 (민감정보 내 PC 다운로드) -->
+      <article class="flagship-card">
+        <div>
+          <span class="flagship-ribbon">🔒 [민감정보 내 PC 다운로드] 상용 『디모데 · 오직교적』 대체 · 성도 개인정보 100% 보호</span>
+          <div class="flagship-title-row">
+            <div class="flagship-icon">🐑</div>
+            <div>
+              <h3>무료 교적 프로그램 — 선한 목자의 양떼 수첩</h3>
+              <small>성도 교적부 · 가족 가계도 · 심방 일지 · 새가족 4주 정착 · 출석부 · 증명서 인쇄</small>
+            </div>
+          </div>
+          <p class="flagship-desc" style="margin-top:12px;">
+            비싼 연회비를 내는 행정 프로그램 대신, <b>목양과 돌봄에 꼭 필요한 8가지 핵심 기능</b>만 깔끔하게 담았습니다. 성도 개인정보는 외부 서버로 절대 전송되지 않으며, 내 PC로 내려받아 기존 <b>엑셀 명부(CSV)를 1초 만에 불러와</b> 바로 쓰실 수 있습니다.
+          </p>
+          <ul class="flagship-points" style="margin-top:14px;">
+            <li>👨‍👩‍👧‍👦 성도 카드를 누르면 가족 가계도 표시</li>
+            <li>🙏 심방 일지 &amp; 기도제목 타임라인</li>
+            <li>🌱 새가족 4주 정착 단계 보드</li>
+            <li>✅ 주일·수요·새벽 원클릭 출석 체크</li>
+            <li>📜 교인증명서 · 세례증서 A4 즉시 발급</li>
+            <li>💾 엑셀 1초 이사 &amp; USB 단일파일 저장</li>
+          </ul>
+        </div>
+        <div class="flagship-actions">
+          <a href="downloads/꿈바온_무료교적_양떼수첩_v1.0_무설치단일파일.html" download class="btn-launch">📥 내 PC로 무설치 파일(.html) 다운로드</a>
+          <a href="downloads/꿈바온_무료교적프로그램_양떼수첩_v1.0_Mac_Windows_포터블.zip" download class="btn-dl-sub">📦 PC 데스크톱판(.zip)</a>
+          <a href="kkumdido_gyojeok_studio.html" class="btn-dl-sub">🌐 웹에서 기능 체험 ↗</a>
+        </div>
+      </article>
+
+      <!-- 대표 4: 무료 헌금·재정 프로그램 청지기 장부 (민감정보 내 PC 다운로드) -->
+      <article class="flagship-card">
+        <div>
+          <span class="flagship-ribbon">🔒 [민감정보 내 PC 다운로드] 상용 『오직재정 · 디모데재정』 대체 · 헌금·기부금영수증 로컬 보안</span>
+          <div class="flagship-title-row">
+            <div class="flagship-icon">💰</div>
+            <div>
+              <h3>무료 헌금·재정 프로그램 — 선한 청지기 장부</h3>
+              <small>헌금봉투 초고속 입력 · 주보 명단 · 지출결의서 · 제직회 결산서 · 국세청 표준 기부금영수증</small>
+            </div>
+          </div>
+          <p class="flagship-desc" style="margin-top:12px;">
+            교회의 가장 민감한 <b>성도별 헌금 내역과 연말정산 주민등록번호, 재정 장부를 외부 클라우드에 올리지 않고 내 컴퓨터에만 100% 안전하게 저장</b>합니다. 주일 헌금 봉투 엔터 연속 입력부터 주보 헌금자 명단 복사, 결재란 포함 지출결의서, 연말 기부금영수증까지 완비했습니다.
+          </p>
+          <ul class="flagship-points" style="margin-top:14px;">
+            <li>🙏 헌금 봉투 초고속 입력 &amp; 권종별 계수기</li>
+            <li>📰 주보 삽입용 헌금자 명단 1초 복사</li>
+            <li>💸 3단 결재란 포함 공식 지출결의서 A4 인쇄</li>
+            <li>🧾 국세청 표준 연말정산 기부금영수증 발급</li>
+            <li>📋 제직회·당회·공동의회 재정 결산 보고서</li>
+            <li>💾 엑셀(CSV) 호환 &amp; USB 통째 보관</li>
+          </ul>
+        </div>
+        <div class="flagship-actions">
+          <a href="downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html" download class="btn-launch">📥 내 PC로 무설치 파일(.html) 다운로드</a>
+          <a href="downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip" download class="btn-dl-sub">📦 PC 데스크톱판(.zip)</a>
+          <a href="kkumdido_finance_studio.html" class="btn-dl-sub">🌐 웹에서 기능 체험 ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 상용 교회 프로그램 전수조사 & 꿈디도 교회지원센터 비교표 -->
+<section style="padding: 28px 24px 8px;">
+  <div class="wrap">
+    <div class="roadmap-box">
+      <div class="sec-head" style="margin-bottom:12px;">
+        <div>
+          <h2 class="serif">📊 한국·글로벌 교회 관련 프로그램 전수조사 &amp; 꿈디도 교회지원센터 완벽 대체 표</h2>
+          <p>민감한 교적·헌금 데이터는 내 PC로 다운받아 안전하게 쓰고, 방대한 성경 원어·주석·AI 변환 스튜디오는 꿈디도 웹에서 무료로 바로 씁니다.</p>
+        </div>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.88rem;">
+          <thead>
+            <tr style="background:var(--bg-parchment); border-bottom:2px solid var(--border-gold); text-align:left;">
+              <th style="padding:11px 12px;">사역 분야</th>
+              <th style="padding:11px 12px;">기존 상용 프로그램 (전수조사)</th>
+              <th style="padding:11px 12px;">기존 비용·한계</th>
+              <th style="padding:11px 12px;">꿈디도 교회지원센터 대응 프로그램</th>
+              <th style="padding:11px 12px;">운영 방식 (보안·편의 이원화)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px solid var(--border-soft);">
+              <td style="padding:10px 12px; font-weight:800;">① 설교 후속 2차 가공</td>
+              <td style="padding:10px 12px;">설교AI (seolgyo-ai), 마이설교</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">월 2.9~4.9만 원 정기구독</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">⚡ 꿈바온 설교AI (주간 사역 7종 변환 스튜디오)</td>
+              <td style="padding:10px 12px;">🌐 <b>꿈디도 웹 스튜디오 직결</b> (평생 무료)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-soft);">
+              <td style="padding:10px 12px; font-weight:800;">② AI 목회·행정 비서</td>
+              <td style="padding:10px 12px;">솔로몬AI (목회자용)</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">15만 원 유료 구매 · 설치 번거로움</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">🕊️ 꿈바온 목회 비서 스튜디오 (v1.0)</td>
+              <td style="padding:10px 12px;">🌐 <b>웹 즉시 사용 + 💻 PC 포터블 겸용</b> (무료)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-soft);">
+              <td style="padding:10px 12px; font-weight:800;">③ 성경 원어·강해·주석</td>
+              <td style="padding:10px 12px;">로고스(Logos), 바이블렉스, 빅바이블</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">수십~수백만 원 패키지 · 고사양 설치</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">👑 꿈바온 설교준비 스튜디오 &amp; 66권 원어 주석관</td>
+              <td style="padding:10px 12px;">🌐 <b>꿈디도 3,650 아카이브 웹 직결</b> (무료)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-soft);">
+              <td style="padding:10px 12px; font-weight:800;">④ 성도 교적·심방·요람</td>
+              <td style="padding:10px 12px;">디모데, 오직교적, 지저스온, 스마트요람</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">높은 도입비·월 유지비 / 클라우드 유출 우려</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">🐑 무료 교적 프로그램 — 선한 목자의 양떼 수첩</td>
+              <td style="padding:10px 12px;">🔒 <b>민감정보 내 PC/USB 다운로드 전용</b> (무료)</td>
+            </tr>
+            <tr style="border-bottom:1px solid var(--border-soft);">
+              <td style="padding:10px 12px; font-weight:800;">⑤ 교회 헌금·재정·연말정산</td>
+              <td style="padding:10px 12px;">오직재정, 디모데 재정회계, 시온</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">복잡한 복식부기 · 유료 모듈 추가 결제</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">💰 무료 헌금·재정 프로그램 — 선한 청지기 장부</td>
+              <td style="padding:10px 12px;">🔒 <b>민감정보 내 PC/USB 다운로드 전용</b> (무료)</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 12px; font-weight:800;">⑥ 주보·전도지·교회학교·번역</td>
+              <td style="padding:10px 12px;">유료 주보뱅크, 유료 공과, 범용 번역기</td>
+              <td style="padding:10px 12px; color:var(--text-muted);">기독교 전문용어 오역 · 매주 자료 구매 부담</td>
+              <td style="padding:10px 12px; font-weight:900; color:var(--gold-main);">🪄 모세의 지팡이 · 🌱 교회학교 · 🕯️ 가정예배 · 🌐 8개국어 번역기</td>
+              <td style="padding:10px 12px;">🌐 <b>꿈디도 웹 스튜디오 직결</b> (평생 무료)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 카테고리 탭 및 검색 -->
+<section class="filter-sec" id="allProgramsSec">
+  <div class="wrap">
+    <div class="filter-bar">
+      <div class="cat-tabs" role="tablist">
+        <button type="button" class="cat-tab active" data-filter="all" onclick="filterPrograms('all', this)">🌟 전체 프로그램 (12종)</button>
+        <button type="button" class="cat-tab" data-filter="download" onclick="filterPrograms('download', this)">🔒 민감정보 내 PC 다운로드 (교적·헌금 등)</button>
+        <button type="button" class="cat-tab" data-filter="ai" onclick="filterPrograms('ai', this)">🌐 웹 전용 설교AI · 목회비서 · 원어연구 (5종)</button>
+        <button type="button" class="cat-tab" data-filter="admin" onclick="filterPrograms('admin', this)">🐑 교적 · 헌금재정 · 주보행정 (3종)</button>
+        <button type="button" class="cat-tab" data-filter="edu" onclick="filterPrograms('edu', this)">🌱 교회학교 · 가정예배 · 8개국어 번역 (4종)</button>
+      </div>
+      <div class="search-box">
+        <span>🔍</span>
+        <input type="search" id="progSearchInput" placeholder="필요한 기능 검색 (예: 주보, 설교, 심방, 교적, 번역...)" oninput="searchPrograms(this.value)">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10종 프로그램 카드 그리드 -->
+<section class="programs-sec">
+  <div class="wrap">
+    <div class="programs-grid" id="programsGrid">
+
+      <!-- 1. 꿈바온 설교AI (주간 사역 7종 변환 스튜디오) -->
+      <article class="prog-card" data-cat="ai" data-keywords="설교AI 마이설교 소그룹나눔지 구역공과 속회 주보요약 큐티 QT 쇼츠대본 PPT 가정예배">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제1호 · NEW</span>
+            <span class="prog-cat-badge ai">🌐 웹 스튜디오 · 설교AI</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">⚡</div>
+            <div>
+              <h3>꿈바온 설교AI (7종 변환 스튜디오)</h3>
+              <small>설교 원고 1편 → 주보·나눔지·6일QT·쇼츠·PPT</small>
+            </div>
+          </div>
+          <p class="prog-summary">유료 설교AI(마이설교)를 대체하여, 주일 설교 원고 1편을 넣으면 한 주간의 2차 사역 자료 7종을 3초 만에 동시 생성합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>주보 요약 · 단톡방 말씀카드 · 소그룹(속회/구역) 나눔지</li>
+            <li>월~토 6일 성도용 QT집 · 유튜브 쇼츠 60초 대본·큐시트</li>
+            <li>예배 PPT 슬라이드 · 가정예배지 · 내 AI 심화 연결</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_sermon_ai_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+          <div class="prog-dl-row">
+            <a href="downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_무설치단일파일.html" download>💾 오프라인 단일파일(.html)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2. 꿈바온 목회 비서 -->
+      <article class="prog-card" data-cat="ai download" data-keywords="목회비서 솔로몬 설교개요 심방 주보 브리핑 할일 일정 클로드 제미나이 챗GPT AI">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제2호 · NEW</span>
+            <span class="prog-cat-badge ai">🌐 웹 + 💻 PC · 목회비서</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🕊️</div>
+            <div>
+              <h3>꿈바온 목회 비서 스튜디오</h3>
+              <small>솔로몬AI 초월 · 내 교회를 아는 AI 목회·사역 비서</small>
+            </div>
+          </div>
+          <p class="prog-summary">우리 교회 상황과 일정을 기억하여 아침 브리핑, 오늘 할 일 시간표, 설교 개요, 심방 말씀, 실시간 A4 주보, AI 프롬프트 연결을 한 화면에서 해결합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>목회 자리 6개 (전체·설교·심방·주보행정·새가족·AI연결)</li>
+            <li>설교 D-day &amp; 오늘 할 일 자동 시간표 · 3줄 사역일지</li>
+            <li>클로드·ChatGPT·제미나이 1초 맞춤 프롬프트 연결</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_pastoral_secretary_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+          <div class="prog-dl-row">
+            <a href="downloads/꿈바온_목회비서_v1.0_무설치단일파일.html" download>💾 단일파일(.html)</a>
+            <a href="downloads/꿈바온_목회비서_v1.0_Mac_Windows_포터블.zip" download>📦 PC 포터블(.zip)</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 3. 무료 교적 프로그램 양떼 수첩 -->
+      <article class="prog-card" data-cat="admin download" data-keywords="교적 양떼수첩 성도명부 심방일지 새가족 출석부 교인증명서 세례증서 엑셀 디모데 오직">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제3호 · 민감정보 보호</span>
+            <span class="prog-cat-badge admin">🔒 내 PC 다운로드 · 교적</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🐑</div>
+            <div>
+              <h3>무료 교적 프로그램 (양떼 수첩)</h3>
+              <small>교적 · 가계도 · 심방 · 새가족 · 출석 · 증명서</small>
+            </div>
+          </div>
+          <p class="prog-summary">성도 개인정보가 외부 서버로 나가지 않도록 내 컴퓨터에 다운받아 쓰는 안전한 교적부입니다. 가족 가계도 자동 연결과 엑셀 1초 이사를 지원합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>성도별 가족 가계도 &amp; 심방·기도제목 누적 기록</li>
+            <li>새가족 4주 정착 보드 &amp; 주일·수요 원클릭 출석부</li>
+            <li>교인증명서·세례증서 A4 발급 및 PC 로컬 DB 패키지</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="downloads/꿈바온_무료교적_양떼수첩_v1.0_무설치단일파일.html" download class="prog-open-btn">📥 내 PC로 무설치 파일(.html) 받기</a>
+          <div class="prog-dl-row">
+            <a href="downloads/꿈바온_무료교적프로그램_양떼수첩_v1.0_Mac_Windows_포터블.zip" download>📦 PC 포터블(.zip)</a>
+            <a href="kkumdido_gyojeok_studio.html">🌐 웹 체험판 열기 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4. 무료 헌금·재정 프로그램 청지기 장부 -->
+      <article class="prog-card" data-cat="admin download" data-keywords="헌금 재정 청지기장부 십일조 감사헌금 지출결의서 기부금영수증 연말정산 제직회 결산 보고서">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제4호 · 민감정보 보호</span>
+            <span class="prog-cat-badge admin">🔒 내 PC 다운로드 · 재정·헌금</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">💰</div>
+            <div>
+              <h3>무료 헌금·재정 (청지기 장부)</h3>
+              <small>헌금봉투 입력 · 주보명단 · 지출결의 · 기부금영수증</small>
+            </div>
+          </div>
+          <p class="prog-summary">민감한 성도별 헌금 내역과 연말정산 기부금영수증, 교회 재정 장부를 외부 클라우드가 아닌 내 PC에만 100% 안전하게 보관합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>주일 헌금 초고속 입력 · 현금 계수기 · 주보 명단 복사</li>
+            <li>3단 결재란 공식 지출결의서 &amp; 제직회 결산보고서 A4 인쇄</li>
+            <li>국세청 표준(코드 41) 연말정산 기부금영수증 즉시 발급</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html" download class="prog-open-btn">📥 내 PC로 무설치 파일(.html) 받기</a>
+          <div class="prog-dl-row">
+            <a href="downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip" download>📦 PC 포터블(.zip)</a>
+            <a href="kkumdido_finance_studio.html">🌐 웹 체험판 열기 ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5. 꿈바온 설교 프로그램 -->
+      <article class="prog-card" data-cat="ai" data-keywords="설교프로그램 원어 히브리어 헬라어 주석 강해 설교작성 성경66권 로고스 바이블렉스">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제5호</span>
+            <span class="prog-cat-badge ai">🌐 웹 스튜디오 · 원어설교</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">👑</div>
+            <div>
+              <h3>꿈바온 설교준비 스튜디오 (로고스 서재)</h3>
+              <small>성경 66권 원어 · 주석 · 강해 · 설교 빌더 스튜디오</small>
+            </div>
+          </div>
+          <p class="prog-summary">성경 66권 1,189장 본문과 히브리어·헬라어 원어 사전, 고고학·역사 배경, 고전 주석을 한 화면에 펼쳐 놓고 깊이 있는 설교문을 집필합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>성경 66권 장절별 원어 분해 및 핵심 단어 해설</li>
+            <li>웨슬리·종교개혁자 고전 주석 및 성경 배경 대조</li>
+            <li>설교 원고 에디터 및 강단용 큰글씨 원고 인쇄</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_sermon_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 6. 내 설교 곳간 -->
+      <article class="prog-card" data-cat="ai download" data-keywords="설교곳간 개인서재 설교보관함 원고정리 66권분류 백업">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제6호</span>
+            <span class="prog-cat-badge ai">🔒 내 PC 단독보관 · 설교아카이브</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🏺</div>
+            <div>
+              <h3>내 설교 곳간 (개인 웹서재)</h3>
+              <small>서버 미전송 내 PC 단독 보관 · 성경 66권 자동 정리</small>
+            </div>
+          </div>
+          <p class="prog-summary">수년간 쌓인 목사님의 설교 원고와 묵상 노트를 창세기부터 요한계시록까지 성경 66권 서가에 차곡차곡 꽂아 두고 1초 만에 검색합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>성경 66권·절기·주제별 내 설교 원고 자동 분류</li>
+            <li>100% 내 컴퓨터 브라우저 단독 보관 (유출 걱정 0%)</li>
+            <li>원클릭 전체 파일 백업(JSON) 및 강단 노트 인쇄</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_gotgan_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 7. 모세의 지팡이 스튜디오 -->
+      <article class="prog-card" data-cat="admin" data-keywords="모세의지팡이 전도지 주보 기도문 대표기도 심방 행정문서 축사">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제7호</span>
+            <span class="prog-cat-badge admin">🌐 웹 스튜디오 · 전도·주보·기도문</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🪄</div>
+            <div>
+              <h3>모세의 지팡이 스튜디오</h3>
+              <small>전도지 · 주보 · 대표기도문 · 행정 양식 올인원 도구</small>
+            </div>
+          </div>
+          <p class="prog-summary">계절·대상별 맞춤 전도지부터 예배 대표기도문, 절기/행사 축사·권면, 교회 행정 서식까지 목회 현장에 필요한 문서를 즉시 제작합니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>상황별 전도지 문안 및 인쇄용 레이아웃 자동 구성</li>
+            <li>주일·절기·심방·환우를 위한 은혜로운 기도문 예문</li>
+            <li>각종 교회 행정 서식 및 인사말·권면 말씀 생성</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_jipangi_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 8. 교회학교 교사 스튜디오 -->
+      <article class="prog-card" data-cat="edu" data-keywords="교회학교 주일학교 유치부 아동부 중고등부 청년부 공과 설교 활동지">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제8호</span>
+            <span class="prog-cat-badge edu">🌐 웹 스튜디오 · 주일학교</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🌱</div>
+            <div>
+              <h3>교회학교 교사 스튜디오</h3>
+              <small>부서별 주일학교 설교 · 분반공과 · 활동지 제작실</small>
+            </div>
+          </div>
+          <p class="prog-summary">교역자와 주일학교 교사들을 위해 영유아부·유치부·아동부·중고등부 눈높이에 맞춘 설교문과 분반공과 질문, 가정통신문을 만들어 줍니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>연령별 눈높이 맞춤 성경 이야기 &amp; 시청각 연출 팁</li>
+            <li>소그룹 분반공과 나눔 질문지 및 퀴즈·활동지</li>
+            <li>학부모님께 보내는 주간 신앙 교육 안내 문자</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_sunday_school_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 9. 13부서 52주 표준 커리큘럼 -->
+      <article class="prog-card" data-cat="edu" data-keywords="13부서 52주 커리큘럼 교육과정 영아부 장년부 제자훈련 연간계획">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제9호</span>
+            <span class="prog-cat-badge edu">🌐 웹 스튜디오 · 연간 교육과정</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">📋</div>
+            <div>
+              <h3>13부서 52주 표준 커리큘럼</h3>
+              <small>영아부~장년부·시니어 1년 52주 구속사 교육과정</small>
+            </div>
+          </div>
+          <p class="prog-summary">전 교인이 한 성경 본문으로 세대 통합 교육을 할 수 있도록 설계된 13개 부서 52주 연간 표준 커리큘럼과 주차별 교안 아카이브입니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>영아·유치·유년·초등·중등·고등·대학·청년·장년 13부서</li>
+            <li>52주 구속사 흐름에 맞춘 주차별 본문·핵심 진리</li>
+            <li>교사용 지도안 및 부서별 맞춤 적용 포인트 완비</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_13dept_52weeks_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 10. 52주 가정예배 스튜디오 -->
+      <article class="prog-card" data-cat="edu" data-keywords="가정예배 52주 부모 자녀 축복기도 식탁교제 순서지">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제10호</span>
+            <span class="prog-cat-badge edu">🌐 웹 스튜디오 · 가정예배</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🕯️</div>
+            <div>
+              <h3>52주 가정예배 스튜디오</h3>
+              <small>온 가족이 거실 식탁에서 드리는 15분 가정예배서</small>
+            </div>
+          </div>
+          <p class="prog-summary">가정이 작은 교회가 되도록 돕는 52주 가정예배 순서지입니다. 찬양, 짧은 말씀, 자녀 눈높이 질문, 부모님의 축복기도문이 한 장에 담겨 있습니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>1년 52주 매주 바로 펴서 드리는 깔끔한 예배 순서지</li>
+            <li>어린 자녀부터 청소년까지 함께 대답하는 식탁 질문</li>
+            <li>카톡 공유용 요약본 및 A4 한 장 인쇄 완벽 지원</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_family_worship_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 11. 기독교 번역 스튜디오 -->
+      <article class="prog-card" data-cat="edu" data-keywords="번역 8개국어 영어 중국어 일본어 스페인어 베트남어 다문화 선교 설교번역 자막">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제11호</span>
+            <span class="prog-cat-badge edu">🌐 웹 스튜디오 · 8개국어 번역</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">🌐</div>
+            <div>
+              <h3>8개국어 기독교 번역 스튜디오</h3>
+              <small>공인 성경 역본 &amp; 신학 용어집 기반 설교·주보 번역기</small>
+            </div>
+          </div>
+          <p class="prog-summary">일반 번역기가 자주 틀리는 기독교 전문 용어(기업 무를 자, 중보기도, 권사, 셀모임 등 391개 표본)를 정확히 잡아내는 교회 전용 8개국어 번역 스튜디오입니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>한·영(ESV)·중(화합본)·일·스페인·포르투갈·베트남·인니 8개국어</li>
+            <li>외국인 성도용 주보·설교 요약문·영상 자막(SRT) 번역</li>
+            <li>기독교 오역 자동 점검기 및 교회 용어 사전 내장</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="kkumdido_translation_studio.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+      <!-- 12. 성경 66권 원어 풀어읽기 주석 뷰어 -->
+      <article class="prog-card" data-cat="ai" data-keywords="원어풀어읽기 성경주석 66권 히브리어 헬라어 강해사전 성경연구">
+        <div>
+          <div class="prog-top-meta">
+            <span class="prog-no">지원 프로그램 제12호</span>
+            <span class="prog-cat-badge bible">🌐 웹 스튜디오 · 원어 주석 대사전</span>
+          </div>
+          <div class="prog-head">
+            <div class="prog-icon">📚</div>
+            <div>
+              <h3>성경 66권 원어 풀어읽기 주석관</h3>
+              <small>창세기~요한계시록 전권 원어 결을 살린 강해 주석</small>
+            </div>
+          </div>
+          <p class="prog-summary">성경 66권 각 장·절의 히브리어·헬라어 원어 뉘앙스를 따뜻한 한국어로 풀어 읽고, 역사·신학적 맥락을 한눈에 살펴보는 통합 주석 열람실입니다.</p>
+          <ul class="prog-features" style="margin-top:10px;">
+            <li>구약 39권 · 신약 27권 전권 빠른 장절 이동</li>
+            <li>원어 핵심 단어의 어원과 성경 당시 문화 배경 해설</li>
+            <li>설교 준비 및 성경 공부 교안 작성 시 즉시 인용 가능</li>
+          </ul>
+        </div>
+        <div class="prog-foot">
+          <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="prog-open-btn">🚀 웹에서 바로 열기 ↗</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- 앞으로 계속 추가될 차기 교회 지원 프로그램 로드맵 & 제안함 -->
+<section class="roadmap-sec">
+  <div class="wrap">
+    <div class="roadmap-box">
+      <div class="sec-head" style="margin-bottom:8px;">
+        <div>
+          <h2 class="serif">🛠️ 계속 자라나는 꿈디도 교회지원센터 — 차기 확장 로드맵</h2>
+          <p>하루이틀이면 새로운 교회 지원 도구가 하나씩 탄생합니다. 목회 현장에 필요한 모든 프로그램을 무료로 채워 나갑니다.</p>
+        </div>
+      </div>
+
+      <div class="roadmap-grid">
+        <div class="roadmap-item">
+          <span class="tag">제13호 · 차기 개발</span>
+          <strong>🌐 우리 교회 1분 홈페이지 &amp; QR 모바일 주보</strong>
+          <p>교회 이름, 예배 시간, 오시는 길만 넣으면 스마트폰에서도 깔끔하게 열리는 우리 교회 소개 웹페이지 &amp; QR 모바일 주보 생성기</p>
+        </div>
+        <div class="roadmap-item">
+          <span class="tag">제14호 · 차기 개발</span>
+          <strong>🎨 절기·행사 현수막 &amp; 포스터 배너 스튜디오</strong>
+          <p>부활절·맥추감사·추수감사·성탄절·수련회 현수막 문구와 교회 앞 배너·SNS 카드뉴스를 클릭 몇 번으로 만드는 디자인 도구</p>
+        </div>
+        <div class="roadmap-item">
+          <span class="tag">제15호 · 차기 개발</span>
+          <strong>📅 연간 목회력 &amp; 특새·전도축제 D-day 플래너</strong>
+          <p>교회력 절기와 우리 교회 학사·사역 일정을 한눈에 맞추고, 특별새벽기도회·전도축제 준비 점검표를 자동으로 짜주는 플래너</p>
+        </div>
+        <div class="roadmap-item">
+          <span class="tag">제16호 · 차기 개발</span>
+          <strong>🚌 교회 차량운행 노선표 &amp; 봉사자 순번 배정기</strong>
+          <p>주일 승합차 승하차 시간표, 식당 봉사·안내위원·헌금위원 월간 순번표를 클릭 한 번으로 자동 배정하고 인쇄하는 행정 도구</p>
+        </div>
+      </div>
+
+      <div class="suggest-bar">
+        <div>
+          <strong>💡 목회 현장에 이런 프로그램도 꼭 필요합니다!</strong>
+          <p style="font-size:0.86rem; color:var(--text-muted);">필요하신 목회·행정·교육 도구를 남겨 주시면 별관 차기 제작 순위에 반영합니다.</p>
+        </div>
+        <div class="suggest-inputs">
+          <input type="text" id="suggestInput" placeholder="예: 차량 운행 노선표 프로그램, 찬양 콘티 악보 정리함이 있으면 좋겠습니다..." onkeydown="if(event.key==='Enter')saveSuggestion()">
+          <button type="button" onclick="saveSuggestion()">🙏 제안 남기기</button>
+        </div>
+      </div>
+      <div id="suggestListArea" style="margin-top:12px; display:flex; flex-wrap:wrap; gap:8px;"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  var currentFontScale = parseFloat(localStorage.getItem('kkd_annex_font_scale') || '1') || 1;
+  document.documentElement.style.setProperty('--font-scale', currentFontScale);
+
+  function adjustFontScale(delta) {
+    currentFontScale = Math.min(1.3, Math.max(0.88, +(currentFontScale + delta).toFixed(2)));
+    document.documentElement.style.setProperty('--font-scale', currentFontScale);
+    localStorage.setItem('kkd_annex_font_scale', String(currentFontScale));
+  }
+
+  function changeTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('kkd_annex_theme', theme);
+  }
+
+  (function initTheme() {
+    var saved = localStorage.getItem('kkd_annex_theme');
+    if (saved) {
+      document.body.setAttribute('data-theme', saved);
+      var sel = document.getElementById('themeSelect');
+      if (sel) sel.value = saved;
+    }
+  })();
+
+  function openPassModal() {
+    if (window.kkumdidoPass && typeof window.kkumdidoPass.open === 'function') {
+      window.kkumdidoPass.open();
+    } else {
+      alert('도서관 이용증 모듈을 불러오는 중입니다. 잠시 후 다시 눌러 주세요.');
+    }
+  }
+
+  function refreshPassCardUI() {
+    try {
+      var raw = localStorage.getItem('kkumdido_library_card_v1');
+      var card = raw ? JSON.parse(raw) : null;
+      var badge = document.getElementById('passStatusBadge');
+      var nameEl = document.getElementById('passHolderName');
+      var metaEl = document.getElementById('passHolderMeta');
+      var mainBtn = document.getElementById('passMainActionBtn');
+      var topBtn = document.getElementById('topPassBtn');
+
+      if (card && card.cardNo && card.name) {
+        if (badge) {
+          badge.textContent = '🟢 도서관 정식 이용증 인증됨 (' + (card.provider || 'Google') + ')';
+          badge.style.background = 'rgba(27, 122, 67, 0.35)';
+          badge.style.color = '#8CF2B5';
+        }
+        if (nameEl) nameEl.textContent = card.name + ' 님의 목회 지원 별관';
+        if (metaEl) metaEl.textContent = '소속: ' + (card.church || '꿈바온 가족') + ' · 이용증 번호: ' + card.cardNo;
+        if (mainBtn) mainBtn.textContent = '🪪 내 도서관 이용증 확인 · 관리';
+        if (topBtn) topBtn.textContent = '🪪 ' + card.name + ' (' + card.cardNo + ')';
+      } else {
+        if (badge) {
+          badge.textContent = '🪪 도서관 이용증 미발급 (3초 무료 발급)';
+        }
+        if (nameEl) nameEl.textContent = '꿈디도 도서관 이용증으로 로그인하세요';
+        if (metaEl) metaEl.textContent = '한 번 로그인으로 별관의 10종 목회·교회 지원 프로그램을 평생 무료로 이용하십니다.';
+        if (mainBtn) mainBtn.textContent = '🪪 3초 무료 이용증 발급 · 로그인';
+        if (topBtn) topBtn.textContent = '🪪 도서관 이용증 로그인';
+      }
+    } catch (e) {}
+  }
+
+  var activeCategory = 'all';
+  function filterPrograms(cat, btn) {
+    activeCategory = cat;
+    document.querySelectorAll('.cat-tab').forEach(function(b) {
+      b.classList.toggle('active', b === btn);
+    });
+    applyProgramFilter();
+  }
+
+  function searchPrograms() {
+    applyProgramFilter();
+  }
+
+  function applyProgramFilter() {
+    var q = (document.getElementById('progSearchInput').value || '').trim().toLowerCase();
+    document.querySelectorAll('#programsGrid .prog-card').forEach(function(card) {
+      var cats = (card.getAttribute('data-cat') || '').split(/\s+/);
+      var kw = (card.getAttribute('data-keywords') || '') + ' ' + (card.innerText || '');
+      var catMatch = (activeCategory === 'all') || (cats.indexOf(activeCategory) !== -1);
+      var qMatch = !q || (kw.toLowerCase().indexOf(q) !== -1);
+      card.style.display = (catMatch && qMatch) ? 'flex' : 'none';
+    });
+  }
+
+  function loadSuggestions() {
+    var box = document.getElementById('suggestListArea');
+    if (!box) return;
+    var list = [];
+    try {
+      list = JSON.parse(localStorage.getItem('kkd_annex_suggestions_v1') || '[]');
+    } catch (e) { list = []; }
+    if (!list.length) {
+      list = [
+        '🙏 작은교회 주간 헌금·재정 출납부 기대합니다',
+        '🙏 구역장·속장님용 스마트폰 심방 보고 양식이 있으면 좋겠습니다'
+      ];
+    }
+    box.innerHTML = list.map(function(txt) {
+      var safe = String(txt).replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return '<span style="font-size:0.82rem; padding:5px 12px; border-radius:999px; background:var(--gold-soft); border:1px solid var(--border-gold); color:var(--text-cream);">' + safe + '</span>';
+    }).join('');
+  }
+
+  function saveSuggestion() {
+    var inp = document.getElementById('suggestInput');
+    if (!inp) return;
+    var val = inp.value.trim();
+    if (!val) return;
+    var list = [];
+    try {
+      list = JSON.parse(localStorage.getItem('kkd_annex_suggestions_v1') || '[]');
+    } catch (e) { list = []; }
+    list.unshift('💡 ' + val);
+    list = list.slice(0, 12);
+    localStorage.setItem('kkd_annex_suggestions_v1', JSON.stringify(list));
+    inp.value = '';
+    loadSuggestions();
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    refreshPassCardUI();
+    loadSuggestions();
+    setInterval(refreshPassCardUI, 1500);
+  });
+</script>
+<script src="kkumdido-shield.js"></script>
+<script src="kkumdido_mobile.js?v=20261107e"></script>
+</body>
+</html>

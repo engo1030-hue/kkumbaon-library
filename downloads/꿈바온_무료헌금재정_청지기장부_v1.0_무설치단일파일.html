@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꿈바온 무료 헌금·재정 프로그램 — 선한 청지기 재정·헌금 장부 (v1.0)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root, body[data-theme="beige"] {
+    --bg-deep: #F6F2E9;
+    --bg-warm: #EFE8D9;
+    --bg-card: #FFFFFF;
+    --bg-parchment: #FBF9F4;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(140,98,30,0.15) 0%, transparent 70%), linear-gradient(180deg, #F4EDE0 0%, #EAE0CC 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #FCF9F4 0%, #F1EAE0 80%);
+    --nav-bg: rgba(248, 244, 235, 0.96);
+    --card-grad: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%);
+    --gold-main: #8C621E;
+    --gold-bright: #6E4B12;
+    --gold-accent: #C59B38;
+    --gold-soft: rgba(140, 98, 30, 0.11);
+    --text-cream: #1F1A15;
+    --text-muted: #5C5248;
+    --input-bg: #FFFFFF;
+    --border-gold: rgba(140, 98, 30, 0.28);
+    --border-soft: rgba(140, 98, 30, 0.15);
+    --shadow-heavy: 0 18px 44px rgba(31, 26, 21, 0.11);
+    --shadow-card: 0 8px 24px rgba(60, 45, 20, 0.07);
+    --income-color: #166534;
+    --income-bg: #E6F6EC;
+    --expense-color: #991B1B;
+    --expense-bg: #FEE2E2;
+    --blue-color: #1D4ED8;
+    --blue-bg: #DBEAFE;
+    --font-scale: 1;
+  }
+
+  body[data-theme="dark"] {
+    --bg-deep: #12100E;
+    --bg-warm: #1A1612;
+    --bg-card: #221D17;
+    --bg-parchment: #1D1813;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.18) 0%, transparent 68%), linear-gradient(180deg, #1E1813 0%, #14110E 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #241D16 0%, #12100E 78%);
+    --nav-bg: rgba(18, 16, 14, 0.95);
+    --card-grad: linear-gradient(145deg, #251F18 0%, #1B1611 100%);
+    --gold-main: #D8B26E;
+    --gold-bright: #F0D290;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 178, 110, 0.14);
+    --text-cream: #F4EEE1;
+    --text-muted: #B8AB96;
+    --input-bg: #17130F;
+    --border-gold: rgba(216, 178, 110, 0.30);
+    --border-soft: rgba(216, 178, 110, 0.16);
+    --shadow-heavy: 0 20px 48px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 26px rgba(0, 0, 0, 0.38);
+    --income-color: #6EE7A0;
+    --income-bg: rgba(22, 101, 52, 0.32);
+    --expense-color: #FCA5A5;
+    --expense-bg: rgba(153, 27, 27, 0.32);
+    --blue-color: #93C5FD;
+    --blue-bg: rgba(29, 78, 216, 0.32);
+  }
+
+  body[data-theme="green"] {
+    --bg-deep: #0D1914;
+    --bg-warm: #13241D;
+    --bg-card: #172B23;
+    --bg-parchment: #12221B;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #152920 0%, #0E1B15 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1A3328 0%, #0D1914 75%);
+    --nav-bg: rgba(13, 25, 20, 0.95);
+    --card-grad: linear-gradient(145deg, #193026 0%, #11211A 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF5F0;
+    --text-muted: #9EB5A8;
+    --input-bg: #0F1E18;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --income-color: #6EE7A0;
+    --income-bg: rgba(22, 101, 52, 0.32);
+    --expense-color: #FCA5A5;
+    --expense-bg: rgba(153, 27, 27, 0.32);
+    --blue-color: #93C5FD;
+    --blue-bg: rgba(29, 78, 216, 0.32);
+  }
+
+  body[data-theme="navy"] {
+    --bg-deep: #0C1322;
+    --bg-warm: #121C31;
+    --bg-card: #17233D;
+    --bg-parchment: #131E35;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #16223B 0%, #0D1526 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1B2A47 0%, #0C1322 75%);
+    --nav-bg: rgba(12, 19, 34, 0.95);
+    --card-grad: linear-gradient(145deg, #1A2845 0%, #121C31 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF2F8;
+    --text-muted: #9AA9C2;
+    --input-bg: #0E1729;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --income-color: #6EE7A0;
+    --income-bg: rgba(22, 101, 52, 0.32);
+    --expense-color: #FCA5A5;
+    --expense-bg: rgba(153, 27, 27, 0.32);
+    --blue-color: #93C5FD;
+    --blue-bg: rgba(29, 78, 216, 0.32);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: calc(16px * var(--font-scale)); }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--body-grad);
+    color: var(--text-cream);
+    min-height: 100vh;
+    line-height: 1.58;
+    padding-bottom: 80px;
+    word-break: keep-all;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  /* 상단 보안 서약 띠 */
+  .security-banner {
+    background: linear-gradient(90deg, #1B140E, #2D2115, #1B140E);
+    color: #F5DF98;
+    padding: 9px 20px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    border-bottom: 1px solid #C59B38;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .security-banner .dl-pills {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .security-banner .dl-pill {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #D4AF37, #A8801C);
+    color: #18120B;
+    font-weight: 900;
+    font-size: 0.8rem;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+  }
+  .security-banner .dl-pill.secondary {
+    background: rgba(255,255,255,0.12);
+    color: #F7E29E;
+    border: 1px solid rgba(197,155,56,0.5);
+  }
+
+  /* GNB */
+  .top-gnb {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .gnb-left, .gnb-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .gnb-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    color: var(--text-cream);
+  }
+  .gnb-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #241A10, #4A3520);
+    border: 1.5px solid #C59B38;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+  }
+  .gnb-title strong {
+    display: block;
+    font-size: 1.15rem;
+    font-weight: 900;
+  }
+  .gnb-title small {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--gold-main);
+    font-weight: 700;
+  }
+  .gnb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 13px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+  }
+  .gnb-btn.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  .wrap {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* 히어로 & 교회 재정 기본 설정 바 */
+  .hero-bar {
+    background: var(--hero-grad);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 24px 0 20px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 20px;
+    align-items: center;
+  }
+  .hero-bar h1 {
+    font-size: clamp(1.55rem, 2.6vw, 2.15rem);
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .hero-bar p {
+    font-size: 0.96rem;
+    color: var(--text-muted);
+  }
+  .church-info-box {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 14px 16px;
+    box-shadow: var(--shadow-card);
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+  .church-info-box label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--gold-main);
+    display: block;
+    margin-bottom: 2px;
+  }
+  .church-info-box input {
+    width: 100%;
+    padding: 6px 9px;
+    border-radius: 8px;
+    border: 1px solid var(--border-soft);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  /* 메인 6대 탭 네비게이션 */
+  .main-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 18px;
+    background: var(--bg-card);
+    padding: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--border-gold);
+    box-shadow: var(--shadow-card);
+  }
+  .tab-btn {
+    flex: 1;
+    min-width: 165px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    text-align: center;
+  }
+  .tab-btn:hover {
+    background: var(--gold-soft);
+    color: var(--text-cream);
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+    box-shadow: 0 6px 16px rgba(36, 26, 16, 0.22);
+  }
+
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* KPI 카드 4종 */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .kpi-card {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-card);
+  }
+  .kpi-card .kpi-label {
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .kpi-card .kpi-val {
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: -0.02em;
+  }
+  .kpi-card .kpi-sub {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .val-income { color: var(--income-color); }
+  .val-expense { color: var(--expense-color); }
+  .val-balance { color: var(--gold-main); }
+
+  /* 공통 카드 & 그리드 */
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+  .grid-sidebar {
+    display: grid;
+    grid-template-columns: 410px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+    align-items: start;
+  }
+  .card {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+  }
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 900;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  /* 폼 컨트롤 */
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .form-group {
+    margin-bottom: 10px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--gold-main);
+    margin-bottom: 4px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-gold);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-size: 0.92rem;
+    font-family: inherit;
+  }
+  .quick-amt-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .quick-amt-btn {
+    padding: 5px 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-parchment);
+    color: var(--text-cream);
+    cursor: pointer;
+  }
+  .quick-amt-btn:hover {
+    background: var(--gold-soft);
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 11px 18px;
+    border-radius: 11px;
+    font-size: 0.94rem;
+    font-weight: 900;
+    border: 1.5px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 14px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-danger {
+    padding: 5px 9px;
+    border-radius: 7px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    border: 1px solid rgba(153,27,27,0.4);
+    background: var(--expense-bg);
+    color: var(--expense-color);
+    cursor: pointer;
+  }
+
+  /* 테이블 */
+  .table-wrap {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+  }
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+  table.data-table th {
+    background: var(--bg-parchment);
+    color: var(--gold-main);
+    font-weight: 800;
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1.5px solid var(--border-gold);
+    white-space: nowrap;
+  }
+  table.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border-soft);
+    vertical-align: middle;
+  }
+  table.data-table tr:hover td {
+    background: var(--gold-soft);
+  }
+
+  /* 바 차트 */
+  .bar-row {
+    margin-bottom: 11px;
+  }
+  .bar-head {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.86rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+  .bar-track {
+    height: 10px;
+    border-radius: 999px;
+    background: var(--bg-warm);
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #8C621E, #D4AF37);
+  }
+
+  /* A4 인쇄 미리보기 시트 (기부금영수증 / 지출결의서 / 결산보고서) */
+  .a4-preview-sheet {
+    background: #FFFFFF;
+    color: #111111;
+    border: 2px solid #222222;
+    border-radius: 8px;
+    padding: 32px 36px;
+    max-width: 820px;
+    margin: 0 auto;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+    font-family: 'Noto Serif KR', serif;
+  }
+  .a4-preview-sheet h2 {
+    text-align: center;
+    font-size: 1.6rem;
+    letter-spacing: 0.12em;
+    margin-bottom: 6px;
+    color: #000;
+  }
+  .a4-preview-sheet .doc-sub {
+    text-align: center;
+    font-size: 0.84rem;
+    color: #444;
+    margin-bottom: 18px;
+  }
+  .a4-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 14px;
+    font-size: 0.86rem;
+    color: #111;
+  }
+  .a4-table th, .a4-table td {
+    border: 1px solid #222;
+    padding: 7px 10px;
+  }
+  .a4-table th {
+    background: #F3F0E8;
+    font-weight: 800;
+    text-align: center;
+    width: 120px;
+  }
+  .stamp-circle {
+    display: inline-grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border: 2.5px solid #B91C1C;
+    border-radius: 50%;
+    color: #B91C1C;
+    font-weight: 900;
+    font-size: 0.72rem;
+    line-height: 1.15;
+    text-align: center;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  @media (max-width: 1040px) {
+    .hero-grid, .grid-2, .grid-sidebar { grid-template-columns: 1fr; }
+    .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .kpi-grid, .form-row, .church-info-box { grid-template-columns: 1fr; }
+  }
+
+  @media print {
+    body { background: #FFFFFF !important; color: #000000 !important; padding: 0 !important; }
+    .security-banner, .top-gnb, .hero-bar, .main-tabs, .no-print { display: none !important; }
+    .wrap { max-width: 100% !important; padding: 0 !important; }
+    .card { border: none !important; box-shadow: none !important; padding: 0 !important; background: #FFF !important; }
+    .a4-preview-sheet { border: 1.5px solid #000 !important; box-shadow: none !important; max-width: 100% !important; }
+  }
+</style>
+</head>
+<body data-theme="beige" data-kkd-studio="standalone">
+
+<!-- 상단 민감 데이터 로컬 보호 & 다운로드 안내 배너 -->
+<div class="security-banner">
+  <div>
+    🔒 <strong>[민감 재정정보 100% 내 PC 보호]</strong> 헌금 내역·기부금영수증·결산 장부는 외부 웹 서버로 절대 전송되지 않습니다. 웹에서 체험하신 뒤 내 컴퓨터로 내려받아 안전하게 쓰세요!
+  </div>
+  <div class="dl-pills">
+    <a href="downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html" download class="dl-pill">📥 무설치 단일파일(.html) 다운로드</a>
+    <a href="downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip" download class="dl-pill secondary">📦 Mac/Windows 데스크톱판(.zip)</a>
+    <button type="button" class="dl-pill secondary" onclick="exportStandaloneWithData()">💾 현재 장부 통째 단일파일(USB용) 저장</button>
+  </div>
+</div>
+
+<!-- GNB -->
+<header class="top-gnb">
+  <div class="gnb-left">
+    <a href="kkumdido_church_support_annex.html" class="gnb-brand">
+      <div class="gnb-logo">💰</div>
+      <div class="gnb-title">
+        <strong>선한 청지기 재정·헌금 장부 (v1.0)</strong>
+        <small>STEWARD CHURCH FINANCE &amp; OFFERING LEDGER</small>
+      </div>
+    </a>
+    <a href="kkumdido_church_support_annex.html" class="gnb-btn">🏛️ 교회지원센터(별관)</a>
+    <a href="kkumdido_gyojeok_studio.html" class="gnb-btn">🐑 무료 교적(양떼수첩)</a>
+    <a href="index.html" class="gnb-btn">📚 꿈디도 본관</a>
+  </div>
+  <div class="gnb-right">
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(-0.08)">가-</button>
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(0.08)">가+ 큰글씨</button>
+    <select id="themeSelect" class="gnb-btn" onchange="changeTheme(this.value)" aria-label="테마 선택">
+      <option value="beige">📜 양피지 베이지</option>
+      <option value="dark">🌙 밤의 서재 (다크)</option>
+      <option value="green">🌲 올리브 그린</option>
+      <option value="navy">🌌 로얄 네이비</option>
+    </select>
+    <button type="button" class="gnb-btn gold" onclick="exportStandaloneWithData()">💾 USB 단일파일 저장</button>
+  </div>
+</header>
+
+<!-- 히어로 & 우리 교회 재정 기본 정보 -->
+<section class="hero-bar">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <h1 class="serif">선한 청지기 재정·헌금 장부 <span style="font-size:0.9rem; color:var(--gold-main); font-weight:800;">(무료 다운로드 &amp; 로컬 전용)</span></h1>
+        <p>“맡은 자들에게 구할 것은 충성이니라 (고전 4:2)” — 주일 헌금 봉투 초고속 입력부터 주보 헌금자 명단, 지출결의서, 제직회 결산 보고서, 국세청 표준 연말정산 기부금영수증까지 한 번에 해결합니다.</p>
+      </div>
+      <div class="church-info-box">
+        <div>
+          <label>교회명 (영수증·결산서 표기)</label>
+          <input type="text" id="cfgChurchName" value="꿈바온 은혜교회" oninput="saveChurchConfig()">
+        </div>
+        <div>
+          <label>고유번호 (기부금영수증용)</label>
+          <input type="text" id="cfgTaxId" value="105-82-99123" oninput="saveChurchConfig()">
+        </div>
+        <div>
+          <label>담임목사(대표자) / 재정부장</label>
+          <input type="text" id="cfgPastorName" value="김은혜 목사 / 이충성 장로" oninput="saveChurchConfig()">
+        </div>
+        <div>
+          <label>교회 소재지 (영수증 표기)</label>
+          <input type="text" id="cfgAddress" value="서울특별시 마포구 성산로 123" oninput="saveChurchConfig()">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <!-- 6대 메인 탭 -->
+  <nav class="main-tabs" role="tablist">
+    <button type="button" class="tab-btn active" onclick="switchTab('tab-dashboard', this)">📊 1. 이번 주 총괄 대시보드</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-offering', this)">🙏 2. 헌금 봉투 입력 · 주보명단</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-expense', this)">💸 3. 지출결의서 · 금전출납부</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-tax', this)">🧾 4. 연말정산 기부금영수증</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-report', this)">📋 5. 제직회·당회 결산보고서</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-backup', this)">💾 6. 엑셀이사 · 내PC 다운로드</button>
+  </nav>
+
+  <!-- ==================== TAB 1: 총괄 대시보드 ==================== -->
+  <section id="tab-dashboard" class="tab-panel active">
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">🙏 최근 주일/주간 헌금 합계</div>
+        <div class="kpi-val val-income" id="kpiWeeklyIncome">0원</div>
+        <div class="kpi-sub" id="kpiWeeklyCount">헌금 봉투 0건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">📈 연간 총 헌금·수입 누계</div>
+        <div class="kpi-val val-income" id="kpiTotalIncome">0원</div>
+        <div class="kpi-sub">이월금 포함 총 수입</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">💸 연간 총 지출 집행액</div>
+        <div class="kpi-val val-expense" id="kpiTotalExpense">0원</div>
+        <div class="kpi-sub" id="kpiExpenseCount">지출결의 0건</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">🏦 현재 교회 재정 잔액 (시재)</div>
+        <div class="kpi-val val-balance" id="kpiCurrentBalance">0원</div>
+        <div class="kpi-sub" id="kpiCarryOverInfo">전기이월금 포함 실시간 잔액</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>🙏 헌금 항목별 수입 현황</span>
+          <button type="button" class="btn-secondary" onclick="switchTab('tab-offering', document.querySelectorAll('.tab-btn')[1])">+ 새 헌금 입력</button>
+        </div>
+        <div id="offeringChartArea"></div>
+      </div>
+      <div class="card">
+        <div class="card-title">
+          <span>💸 계정과목(관·항)별 지출 집행 현황</span>
+          <button type="button" class="btn-secondary" onclick="switchTab('tab-expense', document.querySelectorAll('.tab-btn')[2])">+ 지출결의 등록</button>
+        </div>
+        <div id="expenseChartArea"></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-title">
+        <span>🕒 최근 헌금 및 재정 입출금 통합 기록 (최근 12건)</span>
+        <span style="font-size:0.82rem; color:var(--text-muted);">모든 기록은 내 컴퓨터에만 안전하게 보관됩니다</span>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>일자</th>
+              <th>구분</th>
+              <th>항목 / 계정과목</th>
+              <th>성도명 / 지급처</th>
+              <th>적요 / 기도제목</th>
+              <th style="text-align:right;">금액</th>
+            </tr>
+          </thead>
+          <tbody id="recentLedgerBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: 헌금 봉투 초고속 입력 & 주보 명단 ==================== -->
+  <section id="tab-offering" class="tab-panel">
+    <div class="grid-sidebar">
+      <!-- 좌측: 헌금 봉투 초고속 입력기 -->
+      <div class="card">
+        <div class="card-title">
+          <span>🙏 헌금 봉투 초고속 입력</span>
+          <span style="font-size:0.78rem; color:var(--gold-main);">Enter 키로 연속 등록</span>
+        </div>
+        <form id="offeringForm" onsubmit="event.preventDefault(); addOfferingRecord();">
+          <div class="form-row">
+            <div class="form-group">
+              <label>헌금 일자</label>
+              <input type="date" id="offDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>예배 구분</label>
+              <select id="offService" class="form-control">
+                <option value="주일예배">주일예배</option>
+                <option value="수요예배">수요예배</option>
+                <option value="새벽기도회">새벽기도회</option>
+                <option value="금요기도회">금요기도회</option>
+                <option value="절기/특별예배">절기/특별예배</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>헌금 종류</label>
+              <select id="offCategory" class="form-control">
+                <option value="십일조">십일조</option>
+                <option value="감사헌금">감사헌금</option>
+                <option value="주일헌금">주일헌금</option>
+                <option value="선교헌금">선교헌금</option>
+                <option value="건축헌금">건축헌금</option>
+                <option value="구제/장학헌금">구제/장학헌금</option>
+                <option value="절기헌금(부활/맥추/추수/성탄)">절기헌금(부활/맥추/추수/성탄)</option>
+                <option value="일천번제/특별헌금">일천번제/특별헌금</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>납입 방식</label>
+              <select id="offMethod" class="form-control">
+                <option value="현금봉투">현금봉투</option>
+                <option value="계좌이체">계좌이체</option>
+                <option value="수표">수표</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>성도 성명 (무명 가능)</label>
+              <input type="text" id="offMemberName" class="form-control" placeholder="예: 김은혜 (또는 무명)" required>
+            </div>
+            <div class="form-group">
+              <label>직분 / 소속</label>
+              <input type="text" id="offMemberRole" class="form-control" placeholder="예: 권사 / 1교구">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>헌금 금액 (원)</label>
+            <input type="number" id="offAmount" class="form-control" placeholder="예: 100000" min="0" step="1000" required>
+            <div class="quick-amt-row">
+              <button type="button" class="quick-amt-btn" onclick="addQuickAmt('offAmount', 10000)">+1만</button>
+              <button type="button" class="quick-amt-btn" onclick="addQuickAmt('offAmount', 30000)">+3만</button>
+              <button type="button" class="quick-amt-btn" onclick="addQuickAmt('offAmount', 50000)">+5만</button>
+              <button type="button" class="quick-amt-btn" onclick="addQuickAmt('offAmount', 100000)">+10만</button>
+              <button type="button" class="quick-amt-btn" onclick="addQuickAmt('offAmount', 500000)">+50만</button>
+              <button type="button" class="quick-amt-btn" onclick="document.getElementById('offAmount').value=''">초기화</button>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>감사 기도제목 / 비고 (주보·목양실 전달용)</label>
+            <input type="text" id="offNote" class="form-control" placeholder="예: 가정의 평안과 자녀 건강 감사">
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%; margin-top:6px;">🙏 헌금 장부에 즉시 등록 (Enter)</button>
+        </form>
+
+        <!-- 주보 헌금자 명단 1초 생성 박스 -->
+        <div style="margin-top:20px; padding-top:16px; border-top:1px solid var(--border-soft);">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <strong style="font-size:0.94rem;">📰 주보 삽입용 헌금자 명단 자동 생성</strong>
+            <label style="font-size:0.78rem; cursor:pointer;"><input type="checkbox" id="chkIncludeAmtInBulletin" onchange="renderBulletinNames()"> 금액 함께 표기</label>
+          </div>
+          <textarea id="bulletinNamesOutput" class="form-control" rows="5" readonly style="font-size:0.84rem; line-height:1.5;"></textarea>
+          <button type="button" class="btn-secondary" style="width:100%; margin-top:8px;" onclick="copyBulletinNames()">📋 주보용 헌금자 명단 1초 복사하기</button>
+        </div>
+      </div>
+
+      <!-- 우측: 헌금 봉투 목록 & 현금 권종별 계수 검산기 -->
+      <div>
+        <div class="card" style="margin-bottom:18px;">
+          <div class="card-title">
+            <span>🧮 재정부 현금 봉투 권종별 계수 검산기</span>
+            <span id="cashCountTotalLabel" style="color:var(--income-color); font-weight:900;">계수 합계: 0원</span>
+          </div>
+          <div style="display:grid; grid-template-columns:repeat(6, 1fr); gap:8px;">
+            <div><label style="font-size:0.75rem; font-weight:800;">5만원권(장)</label><input type="number" id="cnt50k" class="form-control" value="0" min="0" oninput="calcCashCount()"></div>
+            <div><label style="font-size:0.75rem; font-weight:800;">1만원권(장)</label><input type="number" id="cnt10k" class="form-control" value="0" min="0" oninput="calcCashCount()"></div>
+            <div><label style="font-size:0.75rem; font-weight:800;">5천원권(장)</label><input type="number" id="cnt5k" class="form-control" value="0" min="0" oninput="calcCashCount()"></div>
+            <div><label style="font-size:0.75rem; font-weight:800;">1천원권(장)</label><input type="number" id="cnt1k" class="form-control" value="0" min="0" oninput="calcCashCount()"></div>
+            <div><label style="font-size:0.75rem; font-weight:800;">수표/동전(원)</label><input type="number" id="cntEtc" class="form-control" value="0" min="0" step="100" oninput="calcCashCount()"></div>
+            <div><label style="font-size:0.75rem; font-weight:800;">계좌이체(원)</label><input type="number" id="cntBank" class="form-control" value="0" min="0" step="1000" oninput="calcCashCount()"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">
+            <span>📋 헌금 원장 내역</span>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <input type="search" id="offSearchInput" class="form-control" style="width:210px; padding:6px 10px;" placeholder="성도명·헌금종류 검색..." oninput="renderOfferingTable()">
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>일자</th>
+                  <th>예배</th>
+                  <th>헌금종류</th>
+                  <th>성도명(직분)</th>
+                  <th>납입</th>
+                  <th>기도제목/비고</th>
+                  <th style="text-align:right;">금액</th>
+                  <th>관리</th>
+                </tr>
+              </thead>
+              <tbody id="offeringTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: 지출결의서 & 금전출납부 ==================== -->
+  <section id="tab-expense" class="tab-panel">
+    <div class="grid-sidebar">
+      <div class="card no-print">
+        <div class="card-title">
+          <span>💸 지출결의 등록 (한국교회 표준 계정과목)</span>
+        </div>
+        <form id="expenseForm" onsubmit="event.preventDefault(); addExpenseRecord();">
+          <div class="form-row">
+            <div class="form-group">
+              <label>지출 일자</label>
+              <input type="date" id="expDate" class="form-control" required>
+            </div>
+            <div class="form-group">
+              <label>계정과목 (관·항)</label>
+              <select id="expCategory" class="form-control">
+                <option value="예배비 (강단헌화·성찬·주보)">예배비 (강단헌화·성찬·주보)</option>
+                <option value="선교·전도비 (국내외선교·전도용품)">선교·전도비 (국내외선교·전도용품)</option>
+                <option value="교육비 (주일학교·수련회·교재)">교육비 (주일학교·수련회·교재)</option>
+                <option value="심방·구제·장학비 (성도돌봄·이웃사랑)">심방·구제·장학비 (성도돌봄·이웃사랑)</option>
+                <option value="교역자 사례·인건비">교역자 사례·인건비</option>
+                <option value="관리·운영비 (공과금·시설유지·차량)">관리·운영비 (공과금·시설유지·차량)</option>
+                <option value="친교·행사비 (애찬·다과·절기행사)">친교·행사비 (애찬·다과·절기행사)</option>
+                <option value="상회비·교단분담금·예비비">상회비·교단분담금·예비비</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label>지급처 / 영수인</label>
+              <input type="text" id="expPayee" class="form-control" placeholder="예: 한국전력공사 / 은혜인쇄소" required>
+            </div>
+            <div class="form-group">
+              <label>청구 부서 / 담당자</label>
+              <input type="text" id="expRequester" class="form-control" placeholder="예: 관리부 박충성 집사" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>지출 금액 (원)</label>
+            <input type="number" id="expAmount" class="form-control" placeholder="예: 150000" min="0" step="100" required>
+          </div>
+
+          <div class="form-group">
+            <label>지출 적요 (상세 내역)</label>
+            <input type="text" id="expMemo" class="form-control" placeholder="예: 본당 주일예배 주보 인쇄 및 복사 용지 구입" required>
+          </div>
+
+          <button type="submit" class="btn-primary" style="width:100%;">💸 지출결의 장부 등록 및 결의서 생성</button>
+        </form>
+      </div>
+
+      <div>
+        <div class="card no-print" style="margin-bottom:18px;">
+          <div class="card-title">
+            <span>📑 지출결의 내역 목록 (클릭 시 아래 A4 지출결의서 자동 세팅)</span>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>일자</th>
+                  <th>계정과목</th>
+                  <th>지출적요</th>
+                  <th>지급처(청구자)</th>
+                  <th style="text-align:right;">금액</th>
+                  <th>결의서 인쇄</th>
+                </tr>
+              </thead>
+              <tbody id="expenseTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- A4 지출결의서 미리보기 & 인쇄 -->
+        <div class="card">
+          <div class="card-title no-print">
+            <span>🖨️ A4 공식 지출결의서 미리보기 (담당 · 재정부장 · 당회장 결재란 포함)</span>
+            <button type="button" class="btn-primary" onclick="window.print()">🖨️ 이 지출결의서 A4 바로 인쇄</button>
+          </div>
+          <div id="expenseVoucherPreview" class="a4-preview-sheet"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: 국세청 표준 연말정산 기부금영수증 ==================== -->
+  <section id="tab-tax" class="tab-panel">
+    <div class="grid-sidebar">
+      <div class="card no-print">
+        <div class="card-title">
+          <span>🧾 연말정산 기부금영수증 자동 발급기</span>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+          헌금 원장에 등록된 성도님을 선택하면 연간 헌금 총액과 월별/건별 명세가 자동으로 계산되어 국세청 표준 양식(코드 41 종교단체 기부금)으로 즉시 만들어집니다.
+        </p>
+        <div class="form-group">
+          <label>귀속 연도 선택</label>
+          <select id="taxYearSelect" class="form-control" onchange="populateTaxDonorList()">
+            <option value="2026">2026년 귀속 (연말정산용)</option>
+            <option value="2025">2025년 귀속</option>
+            <option value="all">전체 연도 합산</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>발급 대상 성도 선택 (헌금 원장 자동 연동)</label>
+          <select id="taxDonorSelect" class="form-control" onchange="renderTaxReceiptPreview()"></select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>주민등록번호 (또는 생년월일)</label>
+            <input type="text" id="taxDonorSsn" class="form-control" value="680510-*******" oninput="renderTaxReceiptPreview()">
+          </div>
+          <div class="form-group">
+            <label>영수증 일련번호</label>
+            <input type="text" id="taxSerialNo" class="form-control" value="2026-0001" oninput="renderTaxReceiptPreview()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>성도 주소 (기부금영수증 기재용)</label>
+          <input type="text" id="taxDonorAddr" class="form-control" value="서울특별시 마포구 연희로 45" oninput="renderTaxReceiptPreview()">
+        </div>
+        <button type="button" class="btn-primary" style="width:100%; margin-top:8px;" onclick="window.print()">🖨️ 기부금영수증 A4 인쇄 / PDF 저장</button>
+      </div>
+
+      <div class="card">
+        <div class="card-title no-print">
+          <span>📜 소득세법 시행규칙 별지 제45호의2 기준 『기부금영수증』 및 『연간 헌금 명세서』</span>
+          <button type="button" class="btn-primary" onclick="window.print()">🖨️ A4 인쇄하기</button>
+        </div>
+        <div id="taxReceiptPreview" class="a4-preview-sheet"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 5: 제직회·당회·공동의회 재정 결산 보고서 ==================== -->
+  <section id="tab-report" class="tab-panel">
+    <div class="card no-print" style="margin-bottom:18px;">
+      <div class="card-title">
+        <span>📋 제직회 · 당회 · 공동의회 재정 결산 보고서 설정</span>
+        <button type="button" class="btn-primary" onclick="window.print()">🖨️ 결산 보고서 A4 인쇄하기</button>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:12px;">
+        <div>
+          <label style="font-size:0.8rem; font-weight:800; color:var(--gold-main);">보고서 제목</label>
+          <input type="text" id="repTitleInput" class="form-control" value="2026년도 정기 제직회 재정 결산 보고서" oninput="renderFinancialReport()">
+        </div>
+        <div>
+          <label style="font-size:0.8rem; font-weight:800; color:var(--gold-main);">전기(전월) 이월금 (원)</label>
+          <input type="number" id="repCarryOverInput" class="form-control" value="12500000" step="10000" oninput="saveCarryOverAndRender()">
+        </div>
+        <div>
+          <label style="font-size:0.8rem; font-weight:800; color:var(--gold-main);">재정 감사위원 성명</label>
+          <input type="text" id="repAuditorInput" class="form-control" value="박정직 장로, 최투명 안수집사" oninput="renderFinancialReport()">
+        </div>
+        <div>
+          <label style="font-size:0.8rem; font-weight:800; color:var(--gold-main);">보고 기준일</label>
+          <input type="date" id="repDateInput" class="form-control" oninput="renderFinancialReport()">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="financialReportPreview" class="a4-preview-sheet"></div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 6: 엑셀 이사 & 내 PC 다운로드 ==================== -->
+  <section id="tab-backup" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>💻 내 컴퓨터 다운로드 (100% 오프라인 · 민감정보 보호)</span>
+        </div>
+        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:16px;">
+          교적부와 헌금·재정 장부는 교회의 가장 민감한 정보이므로, 꿈디도 교회지원센터에서는 <b>내 컴퓨터로 직접 다운로드하여 인터넷 연결 없이도 평생 무료로 쓰실 수 있는 3가지 방식</b>을 모두 제공합니다.
+        </p>
+        <div style="display:grid; gap:10px;">
+          <a href="downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html" download class="btn-primary">📥 1. 무설치 단일파일(.html) 다운로드 — 더블클릭 즉시 실행</a>
+          <a href="downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip" download class="btn-secondary">📦 2. Mac &amp; Windows 로컬 DB(SQLite) 포터블 패키지(.zip) 다운로드</a>
+          <button type="button" class="btn-secondary" onclick="exportStandaloneWithData()">💾 3. 현재 입력된 장부 데이터까지 통째로 담긴 단일 HTML 저장 (USB 휴대용)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>📊 엑셀(CSV) 1초 내보내기 &amp; 전체 장부 JSON 백업</span>
+        </div>
+        <p style="font-size:0.92rem; color:var(--text-muted); margin-bottom:16px;">
+          언제든 헌금 원장과 지출 장부를 한글 엑셀에서 바로 열리는 CSV 파일로 내려받거나, 백업 파일(.json)로 보관·복원하실 수 있습니다.
+        </p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+          <button type="button" class="btn-secondary" onclick="exportOfferingsCSV()">📊 헌금 원장 엑셀(CSV) 다운로드</button>
+          <button type="button" class="btn-secondary" onclick="exportExpensesCSV()">📊 지출 장부 엑셀(CSV) 다운로드</button>
+          <button type="button" class="btn-secondary" onclick="exportFullJsonBackup()">💾 전체 재정장부 백업(.json) 저장</button>
+          <label class="btn-secondary" style="cursor:pointer;">
+            📂 백업 파일(.json) 불러오기
+            <input type="file" accept=".json" style="display:none;" onchange="importFullJsonBackup(event)">
+          </label>
+        </div>
+        <button type="button" class="btn-danger" style="width:100%; padding:10px;" onclick="resetToSampleData()">🔄 초기 샘플 데이터로 초기화</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script id="embeddedStateScript">
+  window.__EMBEDDED_FINANCE_STATE__ = null;
+</script>
+<script>
+  var STORAGE_KEY = 'kkd_finance_steward_v1';
+  var selectedExpenseId = null;
+
+  function getDefaultFinanceState() {
+    var today = new Date().toISOString().slice(0, 10);
+    return {
+      config: {
+        churchName: '꿈바온 은혜교회',
+        taxId: '105-82-99123',
+        pastorName: '김은혜 목사 / 이충성 장로',
+        address: '서울특별시 마포구 성산로 123',
+        carryOver: 12500000
+      },
+      offerings: [
+        { id: 'off_1', date: today, service: '주일예배', category: '십일조', method: '현금봉투', name: '김은혜', role: '권사 / 1교구', amount: 350000, note: '온 가족 건강과 범사에 감사드립니다' },
+        { id: 'off_2', date: today, service: '주일예배', category: '십일조', method: '계좌이체', name: '이충성', role: '장로 / 1교구', amount: 520000, note: '기업의 일터와 사역 위에 주님의 인도하심 감사' },
+        { id: 'off_3', date: today, service: '주일예배', category: '감사헌금', method: '현금봉투', name: '박사랑', role: '집사 / 2교구', amount: 100000, note: '자녀 대학 합격과 청년부 정착 감사' },
+        { id: 'off_4', date: today, service: '주일예배', category: '감사헌금', method: '현금봉투', name: '무명', role: '성도', amount: 50000, note: '조용히 주님께 올려드리는 감사의 예물' },
+        { id: 'off_5', date: today, service: '주일예배', category: '주일헌금', method: '현금봉투', name: '주일예배 성도일동', role: '전교인', amount: 480000, note: '주일 1·2부 예배 주일헌금 합계' },
+        { id: 'off_6', date: today, service: '주일예배', category: '선교헌금', method: '계좌이체', name: '최소망', role: '안수집사 / 2교구', amount: 200000, note: '해외 선교사님과 미자립교회 후원' },
+        { id: 'off_7', date: today, service: '수요예배', category: '구제/장학헌금', method: '현금봉투', name: '정온유', role: '권사 / 1교구', amount: 150000, note: '지역사회 독거어르신 반찬 나눔 헌금' }
+      ],
+      expenses: [
+        { id: 'exp_1', date: today, category: '예배비 (강단헌화·성찬·주보)', payee: '은혜문화인쇄사', requester: '예배부 김은혜 권사', amount: 145000, memo: '주일예배 컬러 주보 인쇄 및 강단 생화 헌화' },
+        { id: 'exp_2', date: today, category: '선교·전도비 (국내외선교·전도용품)', payee: '동남아 비전선교센터 외 2곳', requester: '선교부 최소망 안수집사', amount: 450000, memo: '해외 협력 선교사 및 농어촌 미자립교회 정기 후원금' },
+        { id: 'exp_3', date: today, category: '교육비 (주일학교·수련회·교재)', payee: '꿈바온 교회학교 부서', requester: '교육부 박요한 청년', amount: 180000, memo: '주일학교 부서별 성경공과 교재 및 간식비 지출' },
+        { id: 'exp_4', date: today, category: '심방·구제·장학비 (성도돌봄·이웃사랑)', payee: '마포 사랑나눔 푸드마켓', requester: '봉사부 정온유 권사', amount: 220000, memo: '환우 심방 과일 바구니 및 독거어르신 사랑의 쌀 전달' },
+        { id: 'exp_5', date: today, category: '관리·운영비 (공과금·시설유지·차량)', payee: '한국전력공사 / 도시가스', requester: '관리부 이충성 장로', amount: 310000, memo: '예배당 전기요금, 냉난방 가스요금 및 교회 승합차 주유비' }
+      ]
+    };
+  }
+
+  var state = getDefaultFinanceState();
+
+  function loadFinanceState() {
+    if (window.__EMBEDDED_FINANCE_STATE__ && window.__EMBEDDED_FINANCE_STATE__.offerings) {
+      state = window.__EMBEDDED_FINANCE_STATE__;
+      syncConfigInputs();
+      renderAll();
+      return;
+    }
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.offerings && parsed.expenses) {
+          state = parsed;
+        }
+      }
+    } catch (e) {}
+
+    // 로컬 데스크톱 서버(/api/state) 확인
+    fetch('/api/state', { method: 'GET' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(dbState) {
+        if (dbState && dbState.offerings && dbState.expenses) {
+          state = dbState;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+          syncConfigInputs();
+          renderAll();
+        }
+      })
+      .catch(function() {});
+
+    syncConfigInputs();
+    renderAll();
+  }
+
+  function saveFinanceState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    } catch (e) {}
+    fetch('/api/state', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(state)
+    }).catch(function() {});
+  }
+
+  function syncConfigInputs() {
+    var c = state.config || {};
+    var elName = document.getElementById('cfgChurchName');
+    var elTax = document.getElementById('cfgTaxId');
+    var elPastor = document.getElementById('cfgPastorName');
+    var elAddr = document.getElementById('cfgAddress');
+    var elCarry = document.getElementById('repCarryOverInput');
+    if (elName) elName.value = c.churchName || '꿈바온 은혜교회';
+    if (elTax) elTax.value = c.taxId || '105-82-99123';
+    if (elPastor) elPastor.value = c.pastorName || '김은혜 목사 / 이충성 장로';
+    if (elAddr) elAddr.value = c.address || '서울특별시 마포구 성산로 123';
+    if (elCarry) elCarry.value = (typeof c.carryOver === 'number') ? c.carryOver : 12500000;
+  }
+
+  function saveChurchConfig() {
+    state.config = state.config || {};
+    state.config.churchName = document.getElementById('cfgChurchName').value.trim() || '꿈바온 은혜교회';
+    state.config.taxId = document.getElementById('cfgTaxId').value.trim() || '105-82-99123';
+    state.config.pastorName = document.getElementById('cfgPastorName').value.trim() || '김은혜 목사';
+    state.config.address = document.getElementById('cfgAddress').value.trim() || '';
+    saveFinanceState();
+    renderExpenseVoucherPreview();
+    renderTaxReceiptPreview();
+    renderFinancialReport();
+  }
+
+  function saveCarryOverAndRender() {
+    state.config = state.config || {};
+    state.config.carryOver = parseInt(document.getElementById('repCarryOverInput').value || '0', 10) || 0;
+    saveFinanceState();
+    renderAll();
+  }
+
+  function fmtWon(n) {
+    var num = Number(n) || 0;
+    return num.toLocaleString('ko-KR') + '원';
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(function(p) {
+      p.classList.toggle('active', p.id === tabId);
+    });
+    document.querySelectorAll('.tab-btn').forEach(function(b) {
+      b.classList.toggle('active', b === btn);
+    });
+  }
+
+  function addQuickAmt(inputId, delta) {
+    var inp = document.getElementById(inputId);
+    if (!inp) return;
+    var cur = parseInt(inp.value || '0', 10) || 0;
+    inp.value = cur + delta;
+    inp.focus();
+  }
+
+  function addOfferingRecord() {
+    var date = document.getElementById('offDate').value || new Date().toISOString().slice(0, 10);
+    var service = document.getElementById('offService').value;
+    var category = document.getElementById('offCategory').value;
+    var method = document.getElementById('offMethod').value;
+    var name = document.getElementById('offMemberName').value.trim() || '무명';
+    var role = document.getElementById('offMemberRole').value.trim() || '성도';
+    var amount = parseInt(document.getElementById('offAmount').value || '0', 10) || 0;
+    var note = document.getElementById('offNote').value.trim();
+
+    if (amount <= 0) {
+      alert('헌금 금액을 입력해 주세요.');
+      return;
+    }
+
+    state.offerings.unshift({
+      id: 'off_' + Date.now(),
+      date: date,
+      service: service,
+      category: category,
+      method: method,
+      name: name,
+      role: role,
+      amount: amount,
+      note: note
+    });
+
+    document.getElementById('offMemberName').value = '';
+    document.getElementById('offAmount').value = '';
+    document.getElementById('offNote').value = '';
+    document.getElementById('offMemberName').focus();
+
+    saveFinanceState();
+    renderAll();
+  }
+
+  function deleteOfferingRecord(id) {
+    if (!confirm('이 헌금 기록을 삭제하시겠습니까?')) return;
+    state.offerings = state.offerings.filter(function(item) { return item.id !== id; });
+    saveFinanceState();
+    renderAll();
+  }
+
+  function addExpenseRecord() {
+    var date = document.getElementById('expDate').value || new Date().toISOString().slice(0, 10);
+    var category = document.getElementById('expCategory').value;
+    var payee = document.getElementById('expPayee').value.trim();
+    var requester = document.getElementById('expRequester').value.trim();
+    var amount = parseInt(document.getElementById('expAmount').value || '0', 10) || 0;
+    var memo = document.getElementById('expMemo').value.trim();
+
+    if (!payee || amount <= 0) {
+      alert('지급처와 지출 금액을 입력해 주세요.');
+      return;
+    }
+
+    var newId = 'exp_' + Date.now();
+    state.expenses.unshift({
+      id: newId,
+      date: date,
+      category: category,
+      payee: payee,
+      requester: requester,
+      amount: amount,
+      memo: memo
+    });
+
+    selectedExpenseId = newId;
+    document.getElementById('expPayee').value = '';
+    document.getElementById('expAmount').value = '';
+    document.getElementById('expMemo').value = '';
+
+    saveFinanceState();
+    renderAll();
+  }
+
+  function deleteExpenseRecord(id) {
+    if (!confirm('이 지출결의 기록을 삭제하시겠습니까?')) return;
+    state.expenses = state.expenses.filter(function(item) { return item.id !== id; });
+    if (selectedExpenseId === id) selectedExpenseId = null;
+    saveFinanceState();
+    renderAll();
+  }
+
+  function calcCashCount() {
+    var c50 = (parseInt(document.getElementById('cnt50k').value || '0', 10) || 0) * 50000;
+    var c10 = (parseInt(document.getElementById('cnt10k').value || '0', 10) || 0) * 10000;
+    var c5 = (parseInt(document.getElementById('cnt5k').value || '0', 10) || 0) * 5000;
+    var c1 = (parseInt(document.getElementById('cnt1k').value || '0', 10) || 0) * 1000;
+    var etc = parseInt(document.getElementById('cntEtc').value || '0', 10) || 0;
+    var bank = parseInt(document.getElementById('cntBank').value || '0', 10) || 0;
+    var sum = c50 + c10 + c5 + c1 + etc + bank;
+    var lbl = document.getElementById('cashCountTotalLabel');
+    if (lbl) lbl.textContent = '계수 합계: ' + fmtWon(sum);
+  }
+
+  function renderDashboard() {
+    var totalOff = state.offerings.reduce(function(acc, r) { return acc + (Number(r.amount) || 0); }, 0);
+    var totalExp = state.expenses.reduce(function(acc, r) { return acc + (Number(r.amount) || 0); }, 0);
+    var carry = Number((state.config && state.config.carryOver) || 0);
+    var balance = carry + totalOff - totalExp;
+
+    document.getElementById('kpiWeeklyIncome').textContent = fmtWon(totalOff);
+    document.getElementById('kpiWeeklyCount').textContent = '헌금 봉투 총 ' + state.offerings.length + '건';
+    document.getElementById('kpiTotalIncome').textContent = fmtWon(carry + totalOff);
+    document.getElementById('kpiTotalExpense').textContent = fmtWon(totalExp);
+    document.getElementById('kpiExpenseCount').textContent = '지출결의 총 ' + state.expenses.length + '건';
+    document.getElementById('kpiCurrentBalance').textContent = fmtWon(balance);
+    document.getElementById('kpiCarryOverInfo').textContent = '전기이월금 ' + fmtWon(carry) + ' 포함';
+
+    // 헌금 항목별 차트
+    var offByCat = {};
+    state.offerings.forEach(function(r) {
+      offByCat[r.category] = (offByCat[r.category] || 0) + (Number(r.amount) || 0);
+    });
+    var offChartEl = document.getElementById('offeringChartArea');
+    var offKeys = Object.keys(offByCat);
+    if (!offKeys.length) {
+      offChartEl.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">등록된 헌금 내역이 없습니다.</p>';
+    } else {
+      offChartEl.innerHTML = offKeys.map(function(cat) {
+        var val = offByCat[cat];
+        var pct = totalOff > 0 ? Math.round((val / totalOff) * 100) : 0;
+        return '<div class="bar-row">' +
+          '<div class="bar-head"><span>' + escapeHtml(cat) + '</span><span>' + fmtWon(val) + ' (' + pct + '%)</span></div>' +
+          '<div class="bar-track"><div class="bar-fill" style="width:' + Math.max(4, pct) + '%;"></div></div>' +
+          '</div>';
+      }).join('');
+    }
+
+    // 지출 항목별 차트
+    var expByCat = {};
+    state.expenses.forEach(function(r) {
+      expByCat[r.category] = (expByCat[r.category] || 0) + (Number(r.amount) || 0);
+    });
+    var expChartEl = document.getElementById('expenseChartArea');
+    var expKeys = Object.keys(expByCat);
+    if (!expKeys.length) {
+      expChartEl.innerHTML = '<p style="color:var(--text-muted); font-size:0.9rem;">등록된 지출 내역이 없습니다.</p>';
+    } else {
+      expChartEl.innerHTML = expKeys.map(function(cat) {
+        var val = expByCat[cat];
+        var pct = totalExp > 0 ? Math.round((val / totalExp) * 100) : 0;
+        return '<div class="bar-row">' +
+          '<div class="bar-head"><span>' + escapeHtml(cat) + '</span><span>' + fmtWon(val) + ' (' + pct + '%)</span></div>' +
+          '<div class="bar-track"><div class="bar-fill" style="width:' + Math.max(4, pct) + '%; background:linear-gradient(90deg, #991B1B, #DC2626);"></div></div>' +
+          '</div>';
+      }).join('');
+    }
+
+    // 통합 최근 12건
+    var combined = [];
+    state.offerings.forEach(function(o) {
+      combined.push({ date: o.date, type: '수입(헌금)', cat: o.category, who: o.name + ' (' + o.role + ')', memo: o.note || o.service, amount: o.amount, isIncome: true });
+    });
+    state.expenses.forEach(function(e) {
+      combined.push({ date: e.date, type: '지출(결의)', cat: e.category, who: e.payee, memo: e.memo, amount: e.amount, isIncome: false });
+    });
+    combined.sort(function(a, b) { return b.date.localeCompare(a.date); });
+
+    var recentBody = document.getElementById('recentLedgerBody');
+    recentBody.innerHTML = combined.slice(0, 12).map(function(item) {
+      var badgeStyle = item.isIncome
+        ? 'background:var(--income-bg); color:var(--income-color); padding:3px 8px; border-radius:999px; font-weight:800; font-size:0.76rem;'
+        : 'background:var(--expense-bg); color:var(--expense-color); padding:3px 8px; border-radius:999px; font-weight:800; font-size:0.76rem;';
+      var amtClass = item.isIncome ? 'val-income' : 'val-expense';
+      var sign = item.isIncome ? '+' : '-';
+      return '<tr>' +
+        '<td>' + escapeHtml(item.date) + '</td>' +
+        '<td><span style="' + badgeStyle + '">' + escapeHtml(item.type) + '</span></td>' +
+        '<td><b>' + escapeHtml(item.cat) + '</b></td>' +
+        '<td>' + escapeHtml(item.who) + '</td>' +
+        '<td>' + escapeHtml(item.memo) + '</td>' +
+        '<td style="text-align:right; font-weight:900;" class="' + amtClass + '">' + sign + fmtWon(item.amount) + '</td>' +
+        '</tr>';
+    }).join('');
+  }
+
+  function renderOfferingTable() {
+    var q = (document.getElementById('offSearchInput').value || '').trim().toLowerCase();
+    var filtered = state.offerings.filter(function(r) {
+      if (!q) return true;
+      var hay = (r.date + ' ' + r.service + ' ' + r.category + ' ' + r.name + ' ' + r.role + ' ' + r.note).toLowerCase();
+      return hay.indexOf(q) !== -1;
+    });
+
+    var tbody = document.getElementById('offeringTableBody');
+    tbody.innerHTML = filtered.map(function(r) {
+      return '<tr>' +
+        '<td>' + escapeHtml(r.date) + '</td>' +
+        '<td>' + escapeHtml(r.service) + '</td>' +
+        '<td><b>' + escapeHtml(r.category) + '</b></td>' +
+        '<td>' + escapeHtml(r.name) + ' <small style="color:var(--text-muted);">(' + escapeHtml(r.role) + ')</small></td>' +
+        '<td>' + escapeHtml(r.method) + '</td>' +
+        '<td>' + escapeHtml(r.note || '-') + '</td>' +
+        '<td style="text-align:right; font-weight:900;" class="val-income">' + fmtWon(r.amount) + '</td>' +
+        '<td><button type="button" class="btn-danger" onclick="deleteOfferingRecord(\'' + r.id + '\')">삭제</button></td>' +
+        '</tr>';
+    }).join('');
+
+    renderBulletinNames();
+  }
+
+  function renderBulletinNames() {
+    var showAmt = document.getElementById('chkIncludeAmtInBulletin') && document.getElementById('chkIncludeAmtInBulletin').checked;
+    var grouped = {};
+    state.offerings.forEach(function(r) {
+      if (!grouped[r.category]) grouped[r.category] = [];
+      grouped[r.category].push(showAmt ? (r.name + '(' + (r.amount / 10000) + '만)') : r.name);
+    });
+    var lines = Object.keys(grouped).map(function(cat) {
+      return '▪ ' + cat + ' : ' + grouped[cat].join(', ');
+    });
+    var out = document.getElementById('bulletinNamesOutput');
+    if (out) out.value = lines.join('\n');
+  }
+
+  function copyBulletinNames() {
+    var out = document.getElementById('bulletinNamesOutput');
+    if (!out) return;
+    navigator.clipboard.writeText(out.value).then(function() {
+      alert('주보용 헌금자 명단이 클립보드에 복사되었습니다! 주보 프로그램에 바로 붙여넣으세요.');
+    }).catch(function() {
+      out.select();
+      document.execCommand('copy');
+      alert('주보용 헌금자 명단이 복사되었습니다!');
+    });
+  }
+
+  function selectExpenseForVoucher(id) {
+    selectedExpenseId = id;
+    renderExpenseVoucherPreview();
+  }
+
+  function renderExpenseTable() {
+    var tbody = document.getElementById('expenseTableBody');
+    tbody.innerHTML = state.expenses.map(function(r) {
+      return '<tr>' +
+        '<td>' + escapeHtml(r.date) + '</td>' +
+        '<td><b>' + escapeHtml(r.category) + '</b></td>' +
+        '<td>' + escapeHtml(r.memo) + '</td>' +
+        '<td>' + escapeHtml(r.payee) + ' <small style="color:var(--text-muted);">(' + escapeHtml(r.requester) + ')</small></td>' +
+        '<td style="text-align:right; font-weight:900;" class="val-expense">' + fmtWon(r.amount) + '</td>' +
+        '<td style="display:flex; gap:4px;">' +
+          '<button type="button" class="btn-secondary" style="padding:4px 8px; font-size:0.75rem;" onclick="selectExpenseForVoucher(\'' + r.id + '\')">결의서 보기</button>' +
+          '<button type="button" class="btn-danger" onclick="deleteExpenseRecord(\'' + r.id + '\')">삭제</button>' +
+        '</td>' +
+        '</tr>';
+    }).join('');
+
+    renderExpenseVoucherPreview();
+  }
+
+  function renderExpenseVoucherPreview() {
+    var box = document.getElementById('expenseVoucherPreview');
+    if (!box) return;
+    var exp = state.expenses.find(function(r) { return r.id === selectedExpenseId; }) || state.expenses[0];
+    var c = state.config || {};
+    if (!exp) {
+      box.innerHTML = '<p style="text-align:center; padding:30px;">지출 내역을 등록하시면 A4 공식 지출결의서가 자동 생성됩니다.</p>';
+      return;
+    }
+    box.innerHTML =
+      '<h2>지 출 결 의 서</h2>' +
+      '<div class="doc-sub">' + escapeHtml(c.churchName || '꿈바온 은혜교회') + ' 재정부 · 문서번호: ' + escapeHtml(exp.id.toUpperCase()) + '</div>' +
+      '<table class="a4-table" style="width:320px; margin-left:auto; margin-bottom:16px;">' +
+        '<tr><th style="width:25%;">결<br>재</th><th style="width:25%;">담 당</th><th style="width:25%;">재정부장</th><th style="width:25%;">당회장(담임목사)</th></tr>' +
+        '<tr style="height:56px; text-align:center;"><td>인</td><td>(인)</td><td>(인)</td><td>(인)</td></tr>' +
+      '</table>' +
+      '<table class="a4-table">' +
+        '<tr><th>발의 일자</th><td>' + escapeHtml(exp.date) + '</td><th>청구 부서/담당</th><td>' + escapeHtml(exp.requester) + '</td></tr>' +
+        '<tr><th>계정 과목</th><td colspan="3"><b>' + escapeHtml(exp.category) + '</b></td></tr>' +
+        '<tr><th>지출 금액</th><td colspan="3" style="font-size:1.15rem; font-weight:900;">일금 ' + fmtWon(exp.amount) + ' 정 (₩' + Number(exp.amount).toLocaleString('ko-KR') + ')</td></tr>' +
+        '<tr><th>지급처(영수인)</th><td colspan="3">' + escapeHtml(exp.payee) + '</td></tr>' +
+        '<tr style="height:110px;"><th>지출 내역<br>(적요 및 사유)</th><td colspan="3" style="vertical-align:top; line-height:1.6;">' + escapeHtml(exp.memo) + '<br><br><small style="color:#555;">※ 영수증(세금계산서·카드전표·계좌이체확인증)을 뒷면에 첨부하여 보관합니다.</small></td></tr>' +
+      '</table>' +
+      '<div style="text-align:center; margin-top:22px; font-size:0.95rem;">위 금액을 정히 청구 및 지출 결의합니다.<br><br><b>' + escapeHtml(exp.date) + '</b><br><br><strong style="font-size:1.15rem;">' + escapeHtml(c.churchName || '꿈바온 은혜교회') + ' 재정부</strong></div>';
+  }
+
+  function populateTaxDonorList() {
+    var sel = document.getElementById('taxDonorSelect');
+    if (!sel) return;
+    var namesMap = {};
+    state.offerings.forEach(function(r) {
+      if (r.name && r.name !== '무명' && r.name.indexOf('일동') === -1) {
+        namesMap[r.name] = (namesMap[r.name] || 0) + (Number(r.amount) || 0);
+      }
+    });
+    var names = Object.keys(namesMap);
+    var prev = sel.value;
+    sel.innerHTML = names.map(function(n) {
+      return '<option value="' + escapeHtml(n) + '">' + escapeHtml(n) + ' 성도님 (연간 합계: ' + fmtWon(namesMap[n]) + ')</option>';
+    }).join('');
+    if (prev && namesMap[prev]) sel.value = prev;
+    renderTaxReceiptPreview();
+  }
+
+  function renderTaxReceiptPreview() {
+    var box = document.getElementById('taxReceiptPreview');
+    if (!box) return;
+    var donor = document.getElementById('taxDonorSelect') ? document.getElementById('taxDonorSelect').value : '';
+    var ssn = document.getElementById('taxDonorSsn') ? document.getElementById('taxDonorSsn').value : '';
+    var serial = document.getElementById('taxSerialNo') ? document.getElementById('taxSerialNo').value : '2026-0001';
+    var donorAddr = document.getElementById('taxDonorAddr') ? document.getElementById('taxDonorAddr').value : '';
+    var c = state.config || {};
+
+    var list = state.offerings.filter(function(r) { return r.name === donor; });
+    var total = list.reduce(function(acc, r) { return acc + (Number(r.amount) || 0); }, 0);
+    var today = new Date().toISOString().slice(0, 10);
+
+    var rowsHtml = list.map(function(r) {
+      return '<tr>' +
+        '<td style="text-align:center;">종교단체(코드 41)</td>' +
+        '<td style="text-align:center;">' + escapeHtml(r.date) + '</td>' +
+        '<td style="text-align:center;">' + escapeHtml(r.category) + ' (' + escapeHtml(r.service) + ')</td>' +
+        '<td style="text-align:right; font-weight:800;">' + fmtWon(r.amount) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    box.innerHTML =
+      '<div style="font-size:0.75rem; color:#444; margin-bottom:4px;">■ 소득세법 시행규칙 [별지 제45호의2서식] (연말정산 종교단체 기부금 세액공제용) · 일련번호: ' + escapeHtml(serial) + '</div>' +
+      '<h2>기 부 금 영 수 증</h2>' +
+      '<div class="doc-sub">100% 내 컴퓨터 단독 발급 · 외부 서버 미전송 보안 문서</div>' +
+      '<table class="a4-table">' +
+        '<tr><th colspan="4" style="background:#E8E2D5; text-align:left;">1. 기부자 (성도) 인적사항</th></tr>' +
+        '<tr><th>성 명</th><td><b>' + escapeHtml(donor || '김은혜') + '</b></td><th>주민등록번호<br>(생년월일)</th><td>' + escapeHtml(ssn) + '</td></tr>' +
+        '<tr><th>주 소</th><td colspan="3">' + escapeHtml(donorAddr) + '</td></tr>' +
+        '<tr><th colspan="4" style="background:#E8E2D5; text-align:left;">2. 기부금 단체 (교회) 현황</th></tr>' +
+        '<tr><th>단 체 명</th><td><b>' + escapeHtml(c.churchName || '꿈바온 은혜교회') + '</b></td><th>고유번호</th><td>' + escapeHtml(c.taxId || '105-82-99123') + '</td></tr>' +
+        '<tr><th>소 재 지</th><td>' + escapeHtml(c.address || '') + '</td><th>대표자(담임목사)</th><td>' + escapeHtml(c.pastorName || '') + '</td></tr>' +
+      '</table>' +
+      '<table class="a4-table">' +
+        '<tr><th colspan="4" style="background:#E8E2D5; text-align:left;">3. 기부 내용 (종교단체 기부금 — 코드 41)</th></tr>' +
+        '<tr><th style="width:24%;">구분(코드)</th><th style="width:24%;">연월일</th><th style="width:28%;">헌금 항목</th><th style="width:24%;">기부 금액</th></tr>' +
+        (rowsHtml || '<tr><td colspan="4" style="text-align:center;">헌금 내역 없음</td></tr>') +
+        '<tr style="background:#FAF6EE;"><th colspan="3">연간 기부금 총 합계</th><td style="text-align:right; font-size:1.08rem; font-weight:900;">' + fmtWon(total) + '</td></tr>' +
+      '</table>' +
+      '<div style="font-size:0.82rem; line-height:1.55; margin-top:12px;">' +
+        '「소득세법」 제34조, 「조세특례제한법」 제76조·제88조의4 및 「법인세법」 제24조에 따른 기부금을 위와 같이 기부하였음을 증명하여 주시기 바랍니다.<br>' +
+        '<div style="text-align:right; margin-top:6px;">신청인(기부자) : <b>' + escapeHtml(donor || '김은혜') + '</b> (서명 또는 인)</div>' +
+        '<hr style="margin:12px 0; border:0; border-top:1px dashed #666;">' +
+        '위와 같이 기부금을 기부받았음을 증명합니다.<br>' +
+        '<div style="text-align:center; margin-top:14px; font-size:1rem;"><b>' + today + '</b><br><br>' +
+        '<strong style="font-size:1.2rem;">' + escapeHtml(c.churchName || '꿈바온 은혜교회') + ' 당회장(대표자)</strong>' +
+        '<span class="stamp-circle">교회<br>직인</span></div>' +
+      '</div>';
+  }
+
+  function renderFinancialReport() {
+    var box = document.getElementById('financialReportPreview');
+    if (!box) return;
+    var title = (document.getElementById('repTitleInput') && document.getElementById('repTitleInput').value) || '2026년도 정기 제직회 재정 결산 보고서';
+    var auditor = (document.getElementById('repAuditorInput') && document.getElementById('repAuditorInput').value) || '박정직 장로';
+    var repDate = (document.getElementById('repDateInput') && document.getElementById('repDateInput').value) || new Date().toISOString().slice(0, 10);
+    var c = state.config || {};
+    var carry = Number(c.carryOver || 0);
+
+    var offByCat = {};
+    var totalOff = 0;
+    state.offerings.forEach(function(r) {
+      offByCat[r.category] = (offByCat[r.category] || 0) + (Number(r.amount) || 0);
+      totalOff += (Number(r.amount) || 0);
+    });
+
+    var expByCat = {};
+    var totalExp = 0;
+    state.expenses.forEach(function(r) {
+      expByCat[r.category] = (expByCat[r.category] || 0) + (Number(r.amount) || 0);
+      totalExp += (Number(r.amount) || 0);
+    });
+
+    var totalIncomeWithCarry = carry + totalOff;
+    var nextCarry = totalIncomeWithCarry - totalExp;
+
+    var incRows = '<tr><td>전기(전월) 이월금</td><td style="text-align:right; font-weight:700;">' + fmtWon(carry) + '</td><td>전 회기 이월 시재</td></tr>';
+    Object.keys(offByCat).forEach(function(cat) {
+      incRows += '<tr><td>' + escapeHtml(cat) + '</td><td style="text-align:right; font-weight:700;">' + fmtWon(offByCat[cat]) + '</td><td>성도 헌금 수입</td></tr>';
+    });
+
+    var expRows = '';
+    Object.keys(expByCat).forEach(function(cat) {
+      expRows += '<tr><td>' + escapeHtml(cat) + '</td><td style="text-align:right; font-weight:700;">' + fmtWon(expByCat[cat]) + '</td><td>결의서 집행 완료</td></tr>';
+    });
+
+    box.innerHTML =
+      '<h2>' + escapeHtml(title) + '</h2>' +
+      '<div class="doc-sub">' + escapeHtml(c.churchName || '꿈바온 은혜교회') + ' · 보고 기준일: ' + escapeHtml(repDate) + '</div>' +
+      '<table class="a4-table">' +
+        '<tr><th>전기 이월금</th><td style="text-align:right;">' + fmtWon(carry) + '</td><th>금기 헌금수입</th><td style="text-align:right; font-weight:800;">+' + fmtWon(totalOff) + '</td></tr>' +
+        '<tr><th>금기 지출합계</th><td style="text-align:right; color:#991B1B; font-weight:800;">-' + fmtWon(totalExp) + '</td><th>차기 이월잔액(시재)</th><td style="text-align:right; font-size:1.05rem; font-weight:900; color:#166534;">' + fmtWon(nextCarry) + '</td></tr>' +
+      '</table>' +
+      '<h3 style="font-size:1rem; margin:14px 0 6px;">[1] 수입부 결산 내역</h3>' +
+      '<table class="a4-table">' +
+        '<tr><th style="width:42%;">수입 계정과목 (관·항)</th><th style="width:28%;">결산 금액</th><th style="width:30%;">비 고</th></tr>' +
+        incRows +
+        '<tr style="background:#FAF6EE;"><th>수입 총계 (이월금 포함)</th><td style="text-align:right; font-weight:900;">' + fmtWon(totalIncomeWithCarry) + '</td><td></td></tr>' +
+      '</table>' +
+      '<h3 style="font-size:1rem; margin:14px 0 6px;">[2] 지출부 결산 내역</h3>' +
+      '<table class="a4-table">' +
+        '<tr><th style="width:42%;">지출 계정과목 (관·항)</th><th style="width:28%;">집행 금액</th><th style="width:30%;">비 고</th></tr>' +
+        expRows +
+        '<tr style="background:#FAF6EE;"><th>지출 총계 / 차기 이월금</th><td style="text-align:right; font-weight:900;">지출 ' + fmtWon(totalExp) + '</td><td>잔액 ' + fmtWon(nextCarry) + '</td></tr>' +
+      '</table>' +
+      '<div style="text-align:center; margin-top:18px; font-size:0.9rem;">' +
+        '위와 같이 재정 수입·지출 결산을 투명하게 감사 및 보고합니다.<br><br>' +
+        '보고자(재정부) : <b>' + escapeHtml(c.pastorName || '') + '</b> &nbsp;&nbsp;|&nbsp;&nbsp; 감사위원 : <b>' + escapeHtml(auditor) + '</b> (인)' +
+      '</div>';
+  }
+
+  function exportOfferingsCSV() {
+    var rows = ['\uFEFF일자,예배구분,헌금종류,성도명,직분소속,납입방식,금액,기도제목비고'];
+    state.offerings.forEach(function(r) {
+      rows.push([r.date, r.service, r.category, r.name, r.role, r.method, r.amount, '"' + String(r.note || '').replace(/"/g, '""') + '"'].join(','));
+    });
+    downloadBlob(rows.join('\n'), 'text/csv;charset=utf-8;', '꿈바온_청지기장부_헌금원장_' + new Date().toISOString().slice(0, 10) + '.csv');
+  }
+
+  function exportExpensesCSV() {
+    var rows = ['\uFEFF일자,계정과목,지급처,청구자,금액,지출적요'];
+    state.expenses.forEach(function(r) {
+      rows.push([r.date, '"' + r.category + '"', '"' + r.payee + '"', '"' + r.requester + '"', r.amount, '"' + String(r.memo || '').replace(/"/g, '""') + '"'].join(','));
+    });
+    downloadBlob(rows.join('\n'), 'text/csv;charset=utf-8;', '꿈바온_청지기장부_지출결의원장_' + new Date().toISOString().slice(0, 10) + '.csv');
+  }
+
+  function exportFullJsonBackup() {
+    var raw = JSON.stringify(state, null, 2);
+    downloadBlob(raw, 'application/json;charset=utf-8;', '꿈바온_청지기재정장부_전체백업_' + new Date().toISOString().slice(0, 10) + '.json');
+  }
+
+  function importFullJsonBackup(ev) {
+    var file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var parsed = JSON.parse(e.target.result);
+        if (parsed && parsed.offerings && parsed.expenses) {
+          state = parsed;
+          saveFinanceState();
+          syncConfigInputs();
+          renderAll();
+          alert('재정 장부 백업 파일이 성공적으로 복원되었습니다!');
+        } else {
+          alert('올바른 청지기 재정장부 백업 파일이 아닙니다.');
+        }
+      } catch (err) {
+        alert('파일을 읽는 중 오류가 발생했습니다.');
+      }
+    };
+    reader.readAsText(file, 'utf-8');
+  }
+
+  function exportStandaloneWithData() {
+    var cloneDoc = document.documentElement.cloneNode(true);
+    var emb = cloneDoc.querySelector('#embeddedStateScript');
+    if (emb) {
+      emb.textContent = '\n  window.__EMBEDDED_FINANCE_STATE__ = ' + JSON.stringify(state) + ';\n';
+    }
+    var htmlStr = '<!DOCTYPE html>\n' + cloneDoc.outerHTML;
+    var church = (state.config && state.config.churchName) ? state.config.churchName.replace(/\s+/g, '_') : '우리교회';
+    downloadBlob(htmlStr, 'text/html;charset=utf-8;', church + '_청지기재정장부_통째보관본_' + new Date().toISOString().slice(0, 10) + '.html');
+  }
+
+  function resetToSampleData() {
+    if (!confirm('현재 장부를 초기 샘플 데이터로 되돌리시겠습니까?')) return;
+    state = getDefaultFinanceState();
+    saveFinanceState();
+    syncConfigInputs();
+    renderAll();
+  }
+
+  function downloadBlob(content, mime, filename) {
+    var blob = new Blob([content], { type: mime });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 200);
+  }
+
+  var currentFontScale = parseFloat(localStorage.getItem('kkd_finance_font_scale') || '1') || 1;
+  document.documentElement.style.setProperty('--font-scale', currentFontScale);
+  function adjustFontScale(delta) {
+    currentFontScale = Math.min(1.3, Math.max(0.88, +(currentFontScale + delta).toFixed(2)));
+    document.documentElement.style.setProperty('--font-scale', currentFontScale);
+    localStorage.setItem('kkd_finance_font_scale', String(currentFontScale));
+  }
+
+  function changeTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('kkd_finance_theme', theme);
+  }
+
+  function renderAll() {
+    renderDashboard();
+    renderOfferingTable();
+    renderExpenseTable();
+    populateTaxDonorList();
+    renderFinancialReport();
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    var savedTheme = localStorage.getItem('kkd_finance_theme');
+    if (savedTheme) {
+      document.body.setAttribute('data-theme', savedTheme);
+      var sel = document.getElementById('themeSelect');
+      if (sel) sel.value = savedTheme;
+    }
+    var today = new Date().toISOString().slice(0, 10);
+    if (document.getElementById('offDate')) document.getElementById('offDate').value = today;
+    if (document.getElementById('expDate')) document.getElementById('expDate').value = today;
+    if (document.getElementById('repDateInput')) document.getElementById('repDateInput').value = today;
+    loadFinanceState();
+  });
+</script>
+</body>
+</html>
