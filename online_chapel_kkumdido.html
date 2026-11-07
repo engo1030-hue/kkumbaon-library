@@ -2864,10 +2864,17 @@ html, body {
 
   btnChatToggle.addEventListener('click', () => {
     const collapsed = chatlogBox.classList.toggle('is-collapsed');
-    if (chatStackBox) chatStackBox.classList.toggle('is-collapsed', collapsed);
+    chatlogBox.classList.toggle('is-folded', collapsed);
+    if (chatStackBox) {
+      chatStackBox.classList.toggle('is-collapsed', collapsed);
+      chatStackBox.classList.toggle('chat-is-collapsed', collapsed);
+    }
     chatToggleLabel.textContent = collapsed
       ? '💬 실시간 말씀·기도 나눔 & 포즈 (열기 ▲)'
       : '💬 실시간 말씀·기도 나눔 & 포즈 (접기 ▼)';
+    if (!collapsed && chatListEl) {
+      setTimeout(() => { chatListEl.scrollTop = chatListEl.scrollHeight; }, 30);
+    }
   });
 
   btnBlockPanel.addEventListener('click', () => {
@@ -3699,6 +3706,6 @@ html, body {
 </div>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="kkumdido_mobile.js?v=20261107f"></script>
 </body>
 </html>

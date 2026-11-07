@@ -171,7 +171,7 @@
       if (btnChatToggle) {
         btnChatToggle.addEventListener('click', function () {
           setTimeout(function () {
-            const nowCollapsed = chatlogBox.classList.contains('is-collapsed') || chatlogBox.classList.contains('is-folded');
+            const nowCollapsed = chatlogBox.classList.contains('is-collapsed');
             syncChapelChatFoldState(nowCollapsed);
           }, 0);
         });
