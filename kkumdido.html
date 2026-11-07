@@ -1,0 +1,3711 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0f19">
+<title>꿈디도 아트리움 묵상원 · 말씀의 우물 곁에 머무는 성소</title>
+<meta name="description" content="오래된 우물 곁에서 성화와 원어 말씀을 묵상하며 말없이 함께 머무는 꿈바온 디지털도서관(꿈디도) 온라인 묵상원.">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="./assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
+<script src="./assets/mqtt.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js'"></script>
+<style>
+  :root {
+    --bg-midnight: #F9F6F0;
+    --panel-bg: rgba(251, 248, 241, 0.94);
+    --panel-border: rgba(184, 142, 60, 0.45);
+    --gold: #8C621E;
+    --gold-bright: #9A6B1F;
+    --text-light: #1F1A15;
+    --text-dim: #5C5248;
+    --serif: 'Noto Serif KR', 'KoPubWorldBatang', Georgia, serif;
+    --sans: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+  html, body {
+    margin: 0; padding: 0; width: 100%; height: 100%; overflow: hidden;
+    background: var(--bg-midnight); color: var(--text-light); font-family: var(--sans);
+  }
+
+  /* 1. 부트(입장) 화면 — 양피지 라이트 & 샴페인 골드 */
+  .sanctuary-boot {
+    position: fixed; inset: 0; z-index: 1000;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 28px;
+    background: radial-gradient(circle at 50% 35%, #FFFFFF 0%, #EFE8D9 100%);
+    color: var(--text-light); text-align: center;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+  .sanctuary-boot.is-hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .boot-emblem {
+    color: var(--gold); margin-bottom: 14px;
+    animation: pulse-glow 3.5s ease-in-out infinite;
+  }
+  .boot-emblem svg { width: 50px; height: 50px; stroke-width: 1.3; }
+  .sanctuary-boot h1 {
+    margin: 0; font-family: var(--serif); font-size: 34px; font-weight: 700;
+    letter-spacing: 5px; padding-left: 5px; color: #1F1A15;
+  }
+  .boot-badge {
+    display: inline-block; margin-bottom: 10px; padding: 5px 14px; border-radius: 999px;
+    background: #FBF5E6; border: 1px solid #C8A45D;
+    color: #6E4B12; font-size: 12.5px; font-weight: 800; letter-spacing: 1.5px;
+  }
+  .boot-sub {
+    margin: 12px 0 0; font-size: 16px; font-weight: 600; color: #4e4538; line-height: 1.75;
+    max-width: 460px; word-break: keep-all;
+  }
+  .boot-verse {
+    margin: 14px 0 16px; padding: 14px 22px;
+    border-top: 1px solid #D5C7B2;
+    border-bottom: 1px solid #D5C7B2;
+    font-family: var(--serif); font-size: 15px; font-weight: 600; color: #3B3228; line-height: 1.75;
+    max-width: 480px;
+  }
+  .boot-avatar-box {
+    width: 100%; max-width: 390px; margin: 0 0 16px; padding: 14px 16px;
+    border-radius: 18px; background: rgba(255, 252, 246, 0.92);
+    border: 1.5px solid rgba(184, 142, 60, 0.45);
+    box-shadow: 0 8px 24px rgba(80, 56, 20, 0.08);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .boot-gender-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+  }
+  .boot-gender-btn {
+    padding: 10px 12px; border-radius: 12px;
+    border: 1.5px solid rgba(184, 142, 60, 0.35);
+    background: #f5efe3; color: #4e4538;
+    font-size: 14.5px; font-weight: 700; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+    transition: all 0.2s ease;
+  }
+  .boot-gender-btn.active {
+    background: linear-gradient(135deg, #3b2b18 0%, #241a0f 100%);
+    border-color: #d4a853; color: #ffe8a3;
+    box-shadow: 0 4px 12px rgba(59, 43, 24, 0.22);
+  }
+  .boot-name-row {
+    display: flex; align-items: center; gap: 8px;
+  }
+  .boot-name-row input {
+    flex: 1; padding: 9px 12px; border-radius: 10px;
+    border: 1px solid rgba(154, 107, 31, 0.4);
+    background: #fff; color: #1f1a15; font-size: 14px; font-weight: 600;
+    user-select: text; -webkit-user-select: text;
+  }
+  .boot-actions {
+    display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 310px;
+  }
+  .boot-btn-primary {
+    padding: 15px 26px; border-radius: 999px;
+    border: 1px solid #9A6B1F;
+    background: linear-gradient(135deg, #9A6B1F 0%, #7A5214 100%);
+    color: #fffaf0; font-size: 16px; font-weight: 700;
+    cursor: pointer; transition: all 0.25s ease;
+    box-shadow: 0 10px 26px rgba(140, 98, 30, 0.22);
+  }
+  .boot-btn-primary:hover { transform: translateY(-1px); filter: brightness(1.08); }
+  .boot-btn-secondary {
+    padding: 10px 18px; border-radius: 999px; border: none;
+    background: transparent; color: #5C5248; font-size: 14.5px; font-weight: 600;
+    cursor: pointer; text-decoration: underline; text-underline-offset: 4px;
+  }
+  .boot-btn-secondary:hover { color: #1F1A15; }
+
+  @keyframes pulse-glow {
+    50% { transform: translateY(-4px); filter: drop-shadow(0 0 10px rgba(212,175,55,0.45)); }
+  }
+
+  /* 2. 3D 캔버스 & 아바타 이름표 레이어 */
+  #canvas-wrap {
+    position: fixed; inset: 0; width: 100%; height: 100%; z-index: 1; cursor: grab;
+  }
+  #canvas-wrap:active { cursor: grabbing; }
+  #labels-layer {
+    position: fixed; inset: 0; pointer-events: none; z-index: 10; overflow: hidden;
+  }
+  .avatar-label {
+    position: absolute; transform: translate(-50%, -100%);
+    padding: 4px 10px; border-radius: 6px;
+    background: rgba(11, 16, 28, 0.88); border: 1px solid rgba(212, 175, 55, 0.48);
+    color: #faf5e8; font-size: 13px; font-weight: 700; white-space: nowrap;
+    backdrop-filter: blur(6px); pointer-events: auto; cursor: pointer;
+    display: flex; align-items: center; gap: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  }
+  .avatar-label.is-me {
+    border-color: #f5d78e; color: #ffeaad;
+  }
+  .avatar-bubble {
+    position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
+    padding: 5px 12px; border-radius: 6px;
+    background: rgba(251, 246, 234, 0.98); color: #171e2e;
+    font-family: var(--serif); font-size: 13.5px; font-weight: 700;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4); white-space: nowrap;
+  }
+
+  /* 3. 상단 홈페이지형 가로 헤더 바 (타원형 캡슐 배제 · 1줄 가로 스크롤 정렬 · 겹침 원천 차단) */
+  .top-bar {
+    position: fixed; top: 0; left: 0; right: 0;
+    min-height: 44px; padding: max(6px, env(safe-area-inset-top)) 14px 6px 14px;
+    background: rgba(10, 14, 24, 0.94);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.42);
+    z-index: 30; display: flex; align-items: center; justify-content: space-between;
+    gap: 8px; pointer-events: auto; flex-wrap: nowrap !important;
+    overflow-x: auto; overflow-y: hidden; scrollbar-width: none;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5);
+  }
+  .top-bar::-webkit-scrollbar { display: none; }
+  .top-left, .top-right {
+    display: flex; align-items: center; gap: 6px; pointer-events: auto; flex-wrap: nowrap !important; flex-shrink: 0;
+  }
+  .hud-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 11px; border-radius: 6px;
+    background: rgba(20, 27, 45, 0.92); border: 1px solid rgba(212, 175, 55, 0.38);
+    color: #f0f4fa; font-size: 13px; font-weight: 700;
+    white-space: nowrap !important; flex-shrink: 0 !important;
+    cursor: pointer; transition: all 0.18s ease;
+    text-decoration: none; letter-spacing: -0.01em;
+  }
+  .hud-pill span { color: inherit !important; }
+  .hud-pill strong { color: #ffe8a3 !important; }
+  .hud-pill:hover {
+    border-color: #d4a853; background: rgba(34, 46, 74, 0.96); color: #fff6e0;
+  }
+  .hud-pill.gold-link {
+    background: linear-gradient(135deg, #4A351C 0%, #2C1F10 100%);
+    border-color: #D4A853; color: #FFE8A3; font-weight: 800;
+  }
+  .hud-pill.gold-link:hover {
+    background: linear-gradient(135deg, #5C4324 0%, #382815 100%);
+    color: #FFF4CC;
+  }
+  .live-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
+    box-shadow: 0 0 8px rgba(34, 197, 94, 0.75); flex-shrink: 0;
+  }
+
+  .status-banner {
+    position: fixed; top: 52px; left: 50%; transform: translateX(-50%);
+    z-index: 25; padding: 7px 16px; border-radius: 6px;
+    background: rgba(11, 16, 28, 0.94); border: 1px solid rgba(212, 175, 55, 0.48);
+    color: #fff6e5; font-family: var(--serif); font-size: 13.5px; font-weight: 700;
+    backdrop-filter: blur(10px); pointer-events: none; text-align: center; max-width: 92vw;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .status-banner.is-faded {
+    opacity: 0 !important; pointer-events: none !important; transform: translateX(-50%) translateY(-6px);
+  }
+
+  /* 4. 하단 인터랙션 독 (홈페이지 가로 툴바 스타일) */
+  .bottom-dock {
+    position: fixed; bottom: max(10px, env(safe-area-inset-bottom)); left: 50%;
+    transform: translateX(-50%); z-index: 30;
+    display: flex; align-items: center; gap: 5px; padding: 6px 8px;
+    border-radius: 8px; background: rgba(10, 14, 24, 0.94);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    backdrop-filter: blur(16px); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    max-width: 96vw; overflow-x: auto;
+  }
+  .dock-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 8px 13px; border-radius: 6px; border: 1px solid rgba(212, 175, 55, 0.22);
+    background: rgba(255, 255, 255, 0.04); color: #f0f4fa; font-size: 13px; font-weight: 700;
+    cursor: pointer; white-space: nowrap; transition: all 0.18s ease;
+  }
+  .dock-btn:hover { background: rgba(212, 175, 55, 0.18); border-color: rgba(212, 175, 55, 0.5); color: #fff; }
+  .dock-btn.is-active {
+    background: rgba(212, 175, 55, 0.28); border-color: #f5d78e;
+    color: #ffeaad;
+  }
+  .dock-btn .shortcut {
+    font-size: 11px; font-weight: 700; color: #c9d2e3; padding: 1px 5px;
+    border-radius: 4px; background: rgba(255,255,255,0.1);
+  }
+
+  .control-hint {
+    display: none !important;
+  }
+
+  /* 도서관 이용증 플로팅 배지: 3D 예배당에서는 하단 독(찬양 버튼)과 성화 확대 모달 버튼을 가리지 않도록 숨김 처리 */
+  #kkumdido-pass-fab {
+    display: none !important;
+  }
+
+  /* 4-B. 좌측 하단 실시간 교제 채팅 & 빠른 액션 바 (홈페이지 가로 게시판 탭 스타일 · 초기 접힘) */
+  .chapel-chat-stack {
+    position: fixed; left: 16px; bottom: 72px; width: 356px; max-width: calc(100vw - 32px);
+    z-index: 32; display: flex; flex-direction: column; gap: 5px;
+    pointer-events: auto;
+  }
+  .chapel-chatlog {
+    position: relative; border-radius: 6px;
+    background: rgba(10, 14, 24, 0.94);
+    border: 1px solid rgba(212, 175, 55, 0.45);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55);
+    overflow: hidden; transition: all 0.22s ease;
+  }
+  .chatlog-tab-toggle, .chatlog-tab-block {
+    border: none; background: rgba(20, 27, 45, 0.96);
+    color: #ffe8a3; font-size: 12.5px; font-weight: 800;
+    padding: 0 12px; height: 34px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.24);
+  }
+  .chatlog-tab-toggle { width: 100%; justify-content: space-between; }
+  .chapel-chatlog.is-collapsed .chatlog-tab-toggle,
+  .chapel-chat-stack.is-collapsed .chatlog-tab-toggle {
+    border-bottom: none;
+  }
+  .chatlog-tab-block {
+    position: absolute; top: 6px; right: 10px; height: 22px; padding: 0 8px;
+    border: 1px solid rgba(212, 175, 55, 0.4); border-radius: 4px;
+    background: rgba(11, 16, 28, 0.95); color: #d5deed; font-size: 11px;
+  }
+  .chatlog-tab-toggle:hover, .chatlog-tab-block:hover {
+    background: rgba(32, 43, 68, 0.98); color: #fff4cc;
+  }
+  .chapel-chat-list {
+    list-style: none; margin: 0; padding: 8px 12px;
+    max-height: 132px; overflow-y: auto;
+    display: flex; flex-direction: column; gap: 5px;
+    font-size: 13px; line-height: 1.45; color: #f0f4fa;
+  }
+  /* 접힌 상태일 때 채팅 목록, 차단 버튼, 포즈 버튼 줄, 채팅 입력바 모두 숨김 */
+  .chapel-chat-stack.is-collapsed .chapel-chat-list,
+  .chapel-chat-stack.is-collapsed .chatlog-tab-block,
+  .chapel-chat-stack.is-collapsed .blocked-users-box,
+  .chapel-chat-stack.is-collapsed .quick-action-row,
+  .chapel-chat-stack.is-collapsed .chapel-chatbar,
+  .chapel-chatlog.is-collapsed .chapel-chat-list,
+  .chapel-chatlog.is-collapsed .chatlog-tab-block,
+  .chapel-chatlog.is-collapsed .blocked-users-box,
+  .chapel-chatlog.is-collapsed ~ .quick-action-row,
+  .chapel-chatlog.is-collapsed ~ .chapel-chatbar {
+    display: none !important;
+  }
+  .chapel-chat-item {
+    display: flex; align-items: baseline; gap: 6px; word-break: break-word;
+  }
+  .chapel-chat-item .chat-time {
+    font-size: 11px; color: #8b9bb8; flex-shrink: 0;
+  }
+  .chapel-chat-item .chat-sender {
+    font-weight: 700; color: #ffe69c; flex-shrink: 0;
+  }
+  .chapel-chat-item .chat-sender.is-me {
+    color: #64e3a1;
+  }
+  .chapel-chat-item .chat-block-btn {
+    margin-left: auto; background: none; border: none; color: #8b9bb8;
+    font-size: 11px; cursor: pointer; padding: 0 4px; flex-shrink: 0;
+  }
+  .chapel-chat-item .chat-block-btn:hover { color: #ff8e8e; }
+  .chapel-chat-item.is-system {
+    color: #f5d78e; font-size: 12px;
+  }
+  .blocked-users-box {
+    padding: 8px 12px; border-top: 1px solid rgba(212, 175, 55, 0.22);
+    background: rgba(8, 12, 22, 0.95); font-size: 12px; color: #d5deed;
+    display: none; flex-direction: column; gap: 4px;
+  }
+  .blocked-users-box.is-open { display: flex; }
+  .blocked-item {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .blocked-item button {
+    background: rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.4);
+    color: #ffe69c; border-radius: 4px; font-size: 11px; padding: 2px 8px; cursor: pointer;
+  }
+
+  /* 빠른 액션(이모트·기도자세) 바 (직사각 보드형) */
+  .quick-action-row {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+    padding: 5px; border-radius: 6px;
+    background: rgba(10, 14, 24, 0.94);
+    border: 1px solid rgba(212, 175, 55, 0.38);
+    backdrop-filter: blur(12px);
+  }
+  .emote-pill-btn {
+    padding: 6px 8px; border-radius: 5px;
+    background: rgba(18, 25, 43, 0.92); border: 1px solid rgba(212, 175, 55, 0.32);
+    color: #f0f4fa; font-size: 12px; font-weight: 700;
+    cursor: pointer; white-space: nowrap; transition: all 0.18s ease;
+    display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+  }
+  .emote-pill-btn:hover, .emote-pill-btn.active {
+    background: rgba(212, 175, 55, 0.3); border-color: #f5d78e; color: #fff;
+  }
+
+  /* 채팅 입력창 (직사각 보드형) */
+  .chapel-chatbar {
+    display: flex; align-items: center; gap: 6px;
+    padding: 4px 6px 4px 12px; border-radius: 6px;
+    background: rgba(10, 14, 24, 0.96);
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.48);
+  }
+  .chapel-chatbar input {
+    flex: 1; border: none; background: transparent; color: #fff;
+    font-size: 13.5px; outline: none;
+    user-select: text; -webkit-user-select: text;
+  }
+  .chapel-chatbar input::placeholder { color: #8b9bb8; }
+  .chapel-chatbar button {
+    height: 32px; padding: 0 12px; border-radius: 5px;
+    border: 1px solid rgba(212, 175, 55, 0.55);
+    background: linear-gradient(135deg, #d4af37 0%, #9a741c 100%);
+    color: #12192b; font-size: 13px; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* 아바타 꾸미기(커스터마이저) 전용 컨트롤 */
+  .cust-section {
+    display: flex; flex-direction: column; gap: 6px;
+    padding: 10px 12px; border-radius: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+  }
+  .cust-label {
+    font-size: 12.5px; font-weight: 700; color: #dce4f2;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .cust-seg {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px;
+  }
+  .cust-chip {
+    padding: 8px 8px; border-radius: 9px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    background: rgba(10, 14, 24, 0.78); color: #dce4f2;
+    font-size: 12.5px; font-weight: 700; cursor: pointer; text-align: center;
+    transition: all 0.18s ease;
+  }
+  .cust-chip:hover { border-color: #f5d78e; color: #fff; }
+  .cust-chip.active {
+    background: rgba(212, 175, 55, 0.32); border-color: #f5d78e; color: #ffeaad;
+  }
+  .swatch-row {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  }
+  .color-swatch {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.35); cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .color-swatch.active {
+    transform: scale(1.16); border-color: #ffe69c;
+    box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.55);
+  }
+
+  /* 5. 플로팅 사이드 패널 공통 */
+  .floating-panel {
+    position: fixed; right: 20px; bottom: 92px; width: 410px; max-width: calc(100vw - 32px);
+    max-height: calc(100vh - 165px); overflow-y: auto;
+    z-index: 40; padding: 22px; border-radius: 22px;
+    background: rgba(13, 18, 31, 0.96); border: 1.5px solid rgba(212, 175, 55, 0.48);
+    backdrop-filter: blur(18px); box-shadow: 0 20px 52px rgba(0, 0, 0, 0.68);
+    display: none; flex-direction: column; gap: 14px;
+  }
+  .floating-panel.is-open { display: flex; }
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.25); padding-bottom: 10px;
+  }
+  .panel-title {
+    margin: 0; font-family: var(--serif); font-size: 18.5px; font-weight: 700; color: #f7e6be;
+  }
+  .panel-close {
+    background: none; border: none; color: #c2cadb; font-size: 20px; cursor: pointer;
+  }
+
+  /* 원어 두루마리 휠 묵상 */
+  .scroll-card {
+    padding: 16px; border-radius: 16px;
+    background: linear-gradient(180deg, #192238 0%, #101726 100%);
+    border: 1px solid rgba(212, 175, 55, 0.35); text-align: center;
+    cursor: ns-resize; touch-action: none;
+  }
+  .orig-word-big {
+    font-family: var(--serif); font-size: 36px; color: #ffe69c;
+    letter-spacing: 2px; margin-bottom: 4px;
+    text-shadow: 0 0 16px rgba(212, 175, 55, 0.35);
+  }
+  .orig-pron {
+    font-size: 14.5px; color: #e2e8f0; font-weight: 700; margin-bottom: 10px;
+  }
+  .verse-char {
+    color: rgba(180, 190, 210, 0.3); transition: color 0.18s ease;
+    font-family: var(--serif); font-size: 17px; line-height: 1.85;
+  }
+  .verse-char.lit {
+    color: #ffe69c; text-shadow: 0 0 10px rgba(247, 220, 129, 0.5); font-weight: 700;
+  }
+  .gold-btn {
+    padding: 11px 14px; border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+    background: rgba(212, 175, 55, 0.22); color: #ffe7a8;
+    font-size: 14.5px; font-weight: 700; cursor: pointer; width: 100%;
+  }
+  .gold-btn:hover { background: rgba(212, 175, 55, 0.35); }
+
+  /* 8대 성화 도슨트 뷰어 */
+  .art-preview-img {
+    width: 100%; height: 195px; object-fit: cover; border-radius: 12px;
+    border: 1px solid rgba(212, 175, 55, 0.4); background: #090d16;
+  }
+  .art-title {
+    font-family: var(--serif); font-size: 17px; font-weight: 700; color: #ffe7a3; margin: 4px 0 2px;
+  }
+  .art-desc {
+    font-size: 14.5px; color: #dce3f0; line-height: 1.7; word-break: keep-all;
+  }
+
+  /* 8개국어 버튼 그리드 */
+  .lang-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px;
+  }
+  .lang-btn {
+    padding: 9px 11px; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(212,175,55,0.25);
+    color: #e2e8f0; font-size: 13.5px; font-weight: 600; cursor: pointer; text-align: left;
+  }
+  .lang-btn.active, .lang-btn:hover {
+    background: rgba(212, 175, 55, 0.28); border-color: #f5d78e; color: #fff;
+  }
+
+  .prayer-input {
+    width: 100%; padding: 11px 13px; border-radius: 10px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    background: rgba(255, 255, 255, 0.08); color: #f5efe2; font-size: 14.5px;
+    user-select: text; -webkit-user-select: text;
+  }
+  .lamp-item {
+    padding: 11px 13px; border-radius: 12px;
+    background: rgba(255,255,255,0.05); border: 1px solid rgba(212,175,55,0.22);
+    font-size: 14px; line-height: 1.65; margin-top: 6px;
+  }
+
+  .modal-backdrop {
+    position: fixed; inset: 0; z-index: 80;
+    background: rgba(6, 9, 16, 0.76); backdrop-filter: blur(8px);
+    display: none; align-items: center; justify-content: center; padding: 20px;
+  }
+  .modal-backdrop.is-open { display: flex; }
+  .modal-card {
+    width: 100%; max-width: 460px; padding: 24px; border-radius: 22px;
+    background: #12192b; border: 1px solid rgba(212, 175, 55, 0.42);
+    color: #f3ecdf; box-shadow: 0 22px 60px rgba(0,0,0,0.7);
+  }
+  .room-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 14px; border-radius: 12px; margin-top: 8px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(212,175,55,0.22);
+    cursor: pointer; transition: all 0.2s;
+  }
+  .room-item:hover, .room-item.active {
+    background: rgba(212, 175, 55, 0.2); border-color: var(--gold-bright);
+  }
+
+  @media (max-width: 680px) {
+    .dock-btn .shortcut { display: none; }
+    .control-hint { display: none; }
+    .floating-panel { right: 10px; left: 10px; width: auto; bottom: 56px; border-radius: 8px; }
+    .chapel-chat-stack { left: 8px; right: 8px; width: auto; bottom: 50px; }
+  }
+
+
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
+html, body {
+  min-width: 1440px !important;
+}
+.top-bar,
+.top-left,
+.top-right {
+  flex-wrap: nowrap !important;
+}
+
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  html, body, .header {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100vw !important;
+    overflow-x: hidden !important;
+  }
+  .hero-wrap, .theme-nav-wrap, .timeline-nav-wrap, .filter-bar-wrap, .compare-bar-wrap, .grid-wrap, .axis-tabs, .main-container, .header, .grid, .table-wrap, .container {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+    box-sizing: border-box !important;
+  }
+  .top-actions, .hero-banner, .filter-bar, .compare-banner, .axis-tabs {
+    flex-wrap: wrap !important;
+  }
+  .behinds-grid, .events-grid, .p-grid, .art-grid, .grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+/* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+</style>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+</head>
+<body class="is-3d-chapel-page">
+
+<!-- 1. 부트(입장) 화면 -->
+<main id="sanctuary-boot" class="sanctuary-boot" role="dialog" aria-label="꿈디도 아트리움 묵상원">
+  <div class="boot-emblem" aria-hidden="true">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="20" cy="20" r="16" stroke-opacity="0.35"/>
+      <path d="M12 25c2-4 14-4 16 0"/>
+      <path d="M10 28h20"/>
+      <path d="M20 9c2.5 3.5 2.5 6.5 0 9-2.5-2.5-2.5-5.5 0-9z"/>
+      <path d="M14 14v11M26 14v11"/>
+    </svg>
+  </div>
+  <span class="boot-badge">KKUMDIDO ATRIUM SANCTUARY</span>
+  <h1>꿈디도 · 아트리움 묵상원</h1>
+  <p class="boot-sub">
+    오래된 우물 곁에서 성화와 원어 말씀을 묵상하며,<br>말없이 함께 머무는 디지털 성경 수도원입니다.
+  </p>
+  <div class="boot-verse">
+    “주의 말씀은 내 발에 등이요 내 길에 빛이니이다”<br>
+    <span style="font-size:13.5px; color:#6b5c47; font-weight:700;">— 시편 119편 105절 · נֵר־לְרַגְלִי דְבָרֶךָ</span>
+  </div>
+
+  <!-- 입장 전 남/여 아바타 및 순례자 호칭 선택 -->
+  <div class="boot-avatar-box" aria-label="내 아바타 성별 및 이름 선택">
+    <div style="font-size:12.5px; font-weight:800; color:#5c4522; display:flex; justify-content:space-between; align-items:center;">
+      <span>👤 나의 순례자 아바타 선택</span>
+      <span style="font-size:11.5px; color:#8c621e; font-weight:600;">입장 후 헤어·예배복·소품 꾸미기 가능</span>
+    </div>
+    <div class="boot-gender-row">
+      <button type="button" class="boot-gender-btn active" data-boot-gender="M" id="boot-gender-m">👨 남성 (형제)</button>
+      <button type="button" class="boot-gender-btn" data-boot-gender="F" id="boot-gender-f">👩 여성 (자매)</button>
+    </div>
+    <div class="boot-name-row">
+      <span style="font-size:12.5px; font-weight:700; color:#5c5248; white-space:nowrap;">순례자 호칭</span>
+      <input type="text" id="boot-name-input" maxlength="16" value="말씀 순례자" placeholder="묵상원 호칭 입력">
+    </div>
+  </div>
+
+  <div class="boot-actions">
+    <button class="boot-btn-primary" id="btn-enter-sound">🏺 소리 켜고 묵상원 들어가기</button>
+    <button class="boot-btn-secondary" id="btn-enter-mute">조용히 들어가기 (소리 끔)</button>
+  </div>
+</main>
+
+<!-- 2. 3D 캔버스 & 아바타 이름표 레이어 -->
+<div id="canvas-wrap"></div>
+<div id="labels-layer"></div>
+
+<!-- 3. 상단 HUD 바 -->
+<header class="top-bar">
+  <div class="top-left">
+    <a class="hud-pill" href="./index.html" title="꿈바온 디지털도서관 메인 아트리움으로 이동">
+      <span>🏛️ 꿈디도 본관</span>
+    </a>
+    <button class="hud-pill" id="btn-cloister-room" title="꿈디도 묵상원 회랑 서버 및 함께 있는 순례자 보기">
+      <span class="live-dot"></span>
+      <span id="cloister-room-name">제1회랑 · 베들레헴 우물</span>
+      <span style="color:#6E4B12; font-weight:800;">· <strong id="cloister-room-count">5</strong>명 묵상 중</span>
+    </button>
+    <button class="hud-pill" id="btn-top-avatar" title="남·여 성별, 헤어스타일, 예배복, 성경책·등불 소품 꾸미기">
+      <span>👤 내 아바타 꾸미기</span>
+    </button>
+    <button class="hud-pill" id="btn-cam-preset">
+      <span>🎥 시점: <strong id="cam-preset-label">회랑 산책</strong></span>
+    </button>
+    <button class="hud-pill" id="btn-kk-zoom-in" title="화면 더 크게 확대">
+      <span>🔍 +확대</span>
+    </button>
+    <button class="hud-pill" id="btn-kk-zoom-out" title="공간 더 넓게 축소">
+      <span>🔎 -축소</span>
+    </button>
+    <button class="hud-pill" id="btn-kk-zen" title="화면 메뉴를 낮추고 우물가에 가만히 앉아 쉬기">
+      <span>🌙 가만히 쉬기</span>
+    </button>
+  </div>
+  <div class="top-right">
+    <button class="hud-pill" id="btn-mute-toggle">
+      <span id="mute-toggle-label">🔊 소리 켜짐</span>
+    </button>
+    <button class="hud-pill" id="btn-offering-modal" title="꿈디도 운영발전기금 기부 및 사역 후원">
+      <span>💛 발전기금 기부</span>
+    </button>
+    <a class="hud-pill" href="./kkumdido_12archives_viewer.html" title="꿈디도 12대 아카이브 3,650 모듈 열람">
+      <span>📚 12대 아카이브</span>
+    </a>
+    <a class="hud-pill gold-link" href="./online_chapel_church.html" title="새오름 온라인 예배당(교회 버전)으로 이동">
+      <span>🕊️ 새오름 예배당 가기 →</span>
+    </a>
+  </div>
+</header>
+
+<div class="status-banner is-faded" id="status-banner">
+  바닥을 누르면 사람처럼 걸어가고, 우물가 벤치에 앉거나 방석 위에서 무릎 꿇고 기도할 수 있습니다.
+</div>
+
+<div class="control-hint">
+  바닥 클릭·방향키(WASD) 걷기 · 벤치 클릭 착석 · 기도방석 클릭 무릎기도 · Enter 채팅 · 성화 클릭 도슨트
+</div>
+
+<!-- 4-A. 좌측 하단 실시간 순례자 교제·기도 채팅 & 빠른 액션 바 (초기 접힘 상태 시작) -->
+<section class="chapel-chat-stack is-collapsed" id="chapel-chat-stack" aria-label="실시간 순례자 교제 채팅 및 액션">
+  <div class="chapel-chatlog is-collapsed" id="chapel-chatlog">
+    <button type="button" class="chatlog-tab-toggle" id="btn-chatlog-toggle" title="대화창 및 포즈 바 열기/접기">
+      <span id="chatlog-toggle-label">💬 실시간 말씀·기도 나눔 &amp; 포즈 (열기 ▲)</span>
+    </button>
+    <button type="button" class="chatlog-tab-block" id="btn-chatlog-block-panel" hidden>
+      차단 <span id="blocked-count-num">0</span>
+    </button>
+    <ul class="chapel-chat-list" id="chapel-chat-list"></ul>
+    <div class="blocked-users-box" id="blocked-users-box"></div>
+  </div>
+
+  <!-- 빠른 액션·포즈 버튼 바 -->
+  <div class="quick-action-row" role="toolbar" aria-label="아바타 액션 및 기도 자세">
+    <button type="button" class="emote-pill-btn" data-emote-btn="sit" title="가장 가까운 벤치에 진짜 앉듯이 착석">🪑 벤치착석</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="kneel" title="두 무릎을 꿇고 두 손 모아 간절히 기도">🧎 무릎기도</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="praise" title="두 팔을 높이 들고 아멘 할렐루야 찬양">🙌 할렐루야</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="wave" title="손을 흔들며 평안의 샬롬 인사">🕊️ 손인사</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="amen" title="두 손 모아 고개 숙여 아멘 화답">🙏 아멘목례</button>
+    <button type="button" class="emote-pill-btn" data-emote-btn="read" title="성경책을 펴 들고 말씀 읽기">📖 말씀읽기</button>
+  </div>
+
+  <!-- 채팅 입력 폼 -->
+  <form class="chapel-chatbar" id="chapel-chat-form" autocomplete="off">
+    <input type="text" id="chapel-chat-input" maxlength="45" placeholder="묵상 나눔이나 평안의 인사를 건네세요 (Enter)...">
+    <button type="submit" id="chapel-chat-send" title="보내기">🕊️</button>
+  </form>
+</section>
+
+<!-- 4-B. 하단 7대 인터랙션 독 -->
+<nav class="bottom-dock" aria-label="꿈디도 묵상원 도구">
+  <button class="dock-btn" id="dock-sit">
+    <span>🪑</span>
+    <span id="dock-sit-text">벤치 착석</span>
+    <span class="shortcut">1</span>
+  </button>
+  <button class="dock-btn" id="dock-kneel">
+    <span>🧎</span>
+    <span id="dock-kneel-text">무릎 기도</span>
+    <span class="shortcut">2</span>
+  </button>
+  <button class="dock-btn" id="dock-avatar">
+    <span>👤</span>
+    <span>아바타 꾸미기</span>
+    <span class="shortcut">3</span>
+  </button>
+  <button class="dock-btn" id="dock-scroll">
+    <span>📜</span>
+    <span>원어 두루마리 휠</span>
+    <span class="shortcut">4</span>
+  </button>
+  <button class="dock-btn" id="dock-lamp">
+    <span>🏺</span>
+    <span>영구 방명록·등잔</span>
+    <span class="shortcut">5</span>
+  </button>
+  <button class="dock-btn" id="dock-gallery">
+    <span>🖼️</span>
+    <span>8대 성화 도슨트</span>
+    <span class="shortcut">6</span>
+  </button>
+  <button class="dock-btn" id="dock-audio">
+    <span>🌍</span>
+    <span>8개국어 말씀·소리</span>
+    <span class="shortcut">7</span>
+  </button>
+</nav>
+
+<!-- 5-0. [내 아바타 꾸미기] 패널 (남/여 성별, 헤어, 의상, 소품, 안경/모자) -->
+<aside class="floating-panel" id="panel-avatar">
+  <div class="panel-header">
+    <h2 class="panel-title">👤 내 순례자 아바타 꾸미기</h2>
+    <button class="panel-close" data-close="panel-avatar">✕</button>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>성별 선택</span><span style="color:#ffe69c; font-size:11.5px;">체형과 헤어스타일이 바뀝니다</span></div>
+    <div class="cust-seg" style="grid-template-columns: 1fr 1fr;">
+      <button type="button" class="cust-chip active" data-cust-gender="M">👨 남성 (형제)</button>
+      <button type="button" class="cust-chip" data-cust-gender="F">👩 여성 (자매)</button>
+    </div>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>헤어스타일 & 머리색</span></div>
+    <div class="cust-seg" id="cust-hair-styles">
+      <button type="button" class="cust-chip active" data-cust-hair="0" id="hair-btn-0">단정 숏컷</button>
+      <button type="button" class="cust-chip" data-cust-hair="1" id="hair-btn-1">부드러운 가르마</button>
+      <button type="button" class="cust-chip" data-cust-hair="2" id="hair-btn-2">깔끔 댄디컷</button>
+    </div>
+    <div class="swatch-row" id="cust-hair-colors" style="margin-top:4px;">
+      <button type="button" class="color-swatch active" data-hair-color="#221a15" style="background:#221a15;" title="자연 흑갈색"></button>
+      <button type="button" class="color-swatch" data-hair-color="#4a3222" style="background:#4a3222;" title="따뜻한 밤색"></button>
+      <button type="button" class="color-swatch" data-hair-color="#111113" style="background:#111113;" title="차분한 검정"></button>
+      <button type="button" class="color-swatch" data-hair-color="#7a5638" style="background:#7a5638;" title="골든 브라운"></button>
+      <button type="button" class="color-swatch" data-hair-color="#c8ccd0" style="background:#c8ccd0;" title="은백색(실버 그레이)"></button>
+    </div>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>예배·묵상 복장 & 색상</span></div>
+    <div class="cust-seg" id="cust-outfit-types">
+      <button type="button" class="cust-chip active" data-cust-outfit="suit">👔 정장·원피스</button>
+      <button type="button" class="cust-chip" data-cust-outfit="robe">⛪ 순례자 가운</button>
+      <button type="button" class="cust-chip" data-cust-outfit="casual">🧶 니트 가디건</button>
+    </div>
+    <div class="swatch-row" id="cust-outfit-colors" style="margin-top:4px;">
+      <button type="button" class="color-swatch active" data-outfit-color="#2c3e58" style="background:#2c3e58;" title="네이비 블루"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#f0e7d8" style="background:#f0e7d8;" title="아이보리 화이트"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#36393f" style="background:#36393f;" title="차콜 그레이"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#8c6d53" style="background:#8c6d53;" title="베이지 브라운"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#4b6048" style="background:#4b6048;" title="올리브 그린"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#6e2c35" style="background:#6e2c35;" title="버건디 와인"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#7c6d94" style="background:#7c6d94;" title="라벤더 퍼플"></button>
+      <button type="button" class="color-swatch" data-outfit-color="#c99e93" style="background:#c99e93;" title="로즈 베이지"></button>
+    </div>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>손 소품</span><span style="color:#9da9bf; font-size:11px;">채팅창에 /성경책 /등불 /가방 입력 가능</span></div>
+    <div class="cust-seg" id="cust-props" style="grid-template-columns: repeat(3, 1fr);">
+      <button type="button" class="cust-chip" data-cust-prop="none">🤲 빈손(기도)</button>
+      <button type="button" class="cust-chip active" data-cust-prop="bible">📖 성경책</button>
+      <button type="button" class="cust-chip" data-cust-prop="candle">🕯️ 기도등불</button>
+      <button type="button" class="cust-chip" data-cust-prop="palm">🌿 종려가지</button>
+      <button type="button" class="cust-chip" data-cust-prop="bag">👜 성경가방</button>
+    </div>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>안경 · 머리 장식</span></div>
+    <div class="cust-seg" id="cust-accessories" style="grid-template-columns: repeat(4, 1fr);">
+      <button type="button" class="cust-chip active" data-cust-acc="none">없음</button>
+      <button type="button" class="cust-chip" data-cust-acc="glasses">👓 안경</button>
+      <button type="button" class="cust-chip" data-cust-acc="beret">🎩 베레모</button>
+      <button type="button" class="cust-chip" data-cust-acc="crown">✨ 은혜화관</button>
+    </div>
+  </div>
+
+  <div class="cust-section">
+    <div class="cust-label"><span>나의 순례자 호칭</span></div>
+    <div style="display:flex; gap:6px;">
+      <input type="text" class="prayer-input" id="cust-name-input" maxlength="16" value="말씀 순례자" style="padding:8px 11px; font-size:13.5px;">
+      <button type="button" class="gold-btn" id="btn-cust-save-name" style="width:auto; padding:0 14px; white-space:nowrap;">이름 적용</button>
+    </div>
+  </div>
+</aside>
+
+<!-- 5-A. [원어 두루마리 휠 묵상] 패널 -->
+<aside class="floating-panel" id="panel-scroll">
+  <div class="panel-header">
+    <h2 class="panel-title">📜 히브리어·헬라어 원어 두루마리 휠</h2>
+    <button class="panel-close" data-close="panel-scroll">✕</button>
+  </div>
+  <select class="prayer-input" id="orig-select" style="padding:8px 10px;"></select>
+  <div class="scroll-card" id="scroll-wheel-card" title="마우스 휠을 굴리거나 위아래로 쓸어 넘기세요">
+    <div class="orig-word-big" id="orig-hebrew">חֶסֶד</div>
+    <div class="orig-pron" id="orig-title">헤세드 (Hesed) · 끝까지 포기하지 않는 언약적 인애</div>
+    <div id="orig-verse-box" style="min-height:84px; padding:6px 2px;"></div>
+    <div style="margin-top:10px; font-size:11.5px; color:#9aa6bd;">
+      마우스 휠이나 손끝으로 두루마리를 굴려 원어 말씀을 한 글자씩 밝혀보세요.
+    </div>
+    <div style="margin-top:6px; font-size:12px; color:var(--gold-bright);" id="orig-progress">
+      묵상 진행 0% · 오늘 새긴 원어 0회
+    </div>
+  </div>
+  <button class="gold-btn" id="btn-step-orig">✨ 한 음절씩 빛으로 새기기 (클릭)</button>
+</aside>
+
+<!-- 5-B. [등잔 밑 불 밝히기 · 꿈디도 영구 방명록] 패널 -->
+<aside class="floating-panel" id="panel-lamp">
+  <div class="panel-header">
+    <h2 class="panel-title">🏺 꿈디도 등잔 밑 영구 방명록</h2>
+    <button class="panel-close" data-close="panel-lamp">✕</button>
+  </div>
+  <div style="font-size:12.5px; color:#c2cadb; line-height:1.55;">
+    순례자님들이 남겨주신 말씀 묵상과 방문 인사는 <strong>창을 닫거나 다시 찾아오셔도 사라지지 않고 꿈디도 도서관 본관 및 3D 아트리움 방명록에 영구 보존</strong>됩니다.
+  </div>
+  <input type="text" class="prayer-input" id="lamp-input" maxlength="90" placeholder="마음에 남은 말씀 한 구절, 방문 인사, 또는 기도제목을 남겨주세요">
+  <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:6px; margin-top:4px;">
+    <button type="button" class="gold-btn" id="btn-light-lamp" style="padding:10px 8px; font-size:12.5px;">🏺 우물가 나아가 등잔 켜기</button>
+    <button type="button" class="gold-btn" id="btn-direct-lamp" style="padding:10px 8px; font-size:12.5px; background:linear-gradient(135deg,#1d2842,#111829); color:#f5d78e; border:1px solid rgba(212,175,55,0.55);">✍️ 자리에서 바로 남기기</button>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; color:var(--gold-bright); font-weight:600; margin-top:6px;">
+    <span>🏺 꺼지지 않는 우물가 등잔 방명록 (<span id="lamp-count-num">16</span>개)</span>
+    <span id="lamp-sync-badge" style="color:#64e3a1;">🟢 본관·아트리움 영구 보존됨</span>
+  </div>
+  <div id="lamp-list" style="max-height:220px; overflow-y:auto; margin-top:4px;"></div>
+</aside>
+
+<!-- 5-C. [8대 성화 도슨트] 패널 -->
+<aside class="floating-panel" id="panel-gallery">
+  <div class="panel-header">
+    <h2 class="panel-title">🖼️ 작은 미술전시회 · 성화 도슨트</h2>
+    <button class="panel-close" data-close="panel-gallery">✕</button>
+  </div>
+  <img id="art-img" class="art-preview-img" src="./assets/webp/feast_wide_01_sabbath_lamps.webp" alt="성화" style="cursor:zoom-in;" title="클릭하면 전체화면으로 크게 확대됩니다">
+  <button class="gold-btn" id="btn-open-art-zoom" style="padding:7px 12px; font-size:12px;">🔍 성화 전체화면 크게 확대보기 (100%~350% 돋보기)</button>
+  <div class="art-title" id="art-title">1. 안식일의 등불 · 거룩한 쉼의 초대</div>
+  <div style="font-size:11.5px; color:var(--gold); margin-bottom:4px;" id="art-ref">창세기 2:2-3 · 출애굽기 20:8</div>
+  <div class="art-desc" id="art-desc"></div>
+  <div style="display:flex; gap:8px; margin-top:4px;">
+    <button class="gold-btn" id="btn-prev-art" style="flex:1;">← 이전 성화</button>
+    <button class="gold-btn" id="btn-walk-art" style="flex:1.4;">🚶 이 성화 앞으로 걸어가기</button>
+    <button class="gold-btn" id="btn-next-art" style="flex:1;">다음 성화 →</button>
+  </div>
+</aside>
+
+<!-- 5-D. [조금 긴 성경이야기 & 8개국어 매일말씀 & 사운드스케이프] 패널 -->
+<aside class="floating-panel" id="panel-audio">
+  <div class="panel-header">
+    <h2 class="panel-title">🌍 조금 긴 성경이야기 · 8개국어 말씀</h2>
+    <button class="panel-close" data-close="panel-audio">✕</button>
+  </div>
+
+  <!-- 지난 주 조금 긴 성경이야기 (주일말씀) -->
+  <div style="padding:11px 12px; border-radius:14px; border:1.5px solid rgba(245,215,142,0.45); background:linear-gradient(180deg, rgba(28,36,56,0.9) 0%, rgba(16,22,38,0.95) 100%); display:flex; flex-direction:column; gap:7px;">
+    <div style="display:flex; gap:10px; align-items:center;">
+      <img src="./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="책을 들고 나온 사람들" style="width:74px; height:44px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,175,55,0.5); flex-shrink:0;">
+      <div style="flex:1; min-width:0;">
+        <div style="font-size:11.5px; color:#f5d78e; font-weight:700;">📖 지난 주 조금 긴 성경이야기 (29:35)</div>
+        <div style="font-size:13.5px; color:#fff; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">책을 들고 나온 사람들 · 사도행전 19:1–20</div>
+      </div>
+    </div>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <button class="gold-btn" id="btn-kk-rew" style="width:auto; padding:5px 9px; font-size:12px;">↺ -15초</button>
+      <button class="gold-btn lang-btn active" id="btn-kk-long-story" data-lang="ko-long" data-src="./assets/chapel_audio/sermon_20261101_ko.mp3" style="flex:1; padding:7px 10px; font-size:13px; text-align:center;">▶ 조금 긴 성경이야기 듣기</button>
+      <button class="gold-btn" id="btn-kk-fwd" style="width:auto; padding:5px 9px; font-size:12px;">+15초 ↻</button>
+    </div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <span id="kk-cur-time" style="font-size:11.5px; color:#d5deed; font-variant-numeric:tabular-nums; min-width:36px;">00:00</span>
+      <input type="range" id="kk-word-seek" min="0" max="1000" value="0" style="flex:1; accent-color:#d4af37;">
+      <span id="kk-dur-time" style="font-size:11.5px; color:#9da9bf; font-variant-numeric:tabular-nums; min-width:36px; text-align:right;">29:35</span>
+    </div>
+  </div>
+
+  <div style="font-size:12px; color:#c2cadb; margin-top:2px;">
+    <strong>[8개국어 매일말씀] 베들레헴 성문에서 (룻기 4장)</strong>
+  </div>
+  <div class="lang-grid" id="lang-grid">
+    <button class="lang-btn" data-lang="ko" data-src="./assets/chapel_audio/word_ko.mp3">🇰🇷 한국어 (목사님 육성)</button>
+    <button class="lang-btn" data-lang="en" data-src="./assets/chapel_audio/word_en.mp3">🇺🇸 English (ESV)</button>
+    <button class="lang-btn" data-lang="zh" data-src="./assets/chapel_audio/word_zh.mp3">🇨🇳 中文简体 (和合本)</button>
+    <button class="lang-btn" data-lang="ja" data-src="./assets/chapel_audio/word_ja.mp3">🇯🇵 日本語 (新改訳)</button>
+    <button class="lang-btn" data-lang="es" data-src="./assets/chapel_audio/word_es.mp3">🇪🇸 Español (RVR1960)</button>
+    <button class="lang-btn" data-lang="pt" data-src="./assets/chapel_audio/word_pt.mp3">🇧🇷 Português (ARA)</button>
+    <button class="lang-btn" data-lang="vi" data-src="./assets/chapel_audio/word_vi.mp3">🇻🇳 Tiếng Việt</button>
+    <button class="lang-btn" data-lang="id" data-src="./assets/chapel_audio/word_id.mp3">🇮🇩 Bahasa Indonesia</button>
+  </div>
+  <button class="gold-btn" id="btn-play-word">▶ 선택한 말씀 듣기 / 일시정지</button>
+
+  <div style="border-top:1px solid rgba(212,175,55,0.2); padding-top:10px; display:flex; flex-direction:column; gap:8px;">
+    <div style="display:flex; justify-content:space-between; font-size:12.5px;">
+      <span>💧 우물 물소리 & 감람산 밤바람</span>
+      <input type="range" id="vol-nature" min="0" max="100" value="55" style="accent-color:#d4af37;">
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:12.5px;">
+      <span>🎹 묵상 피아노 (손경민 · 은혜)</span>
+      <input type="range" id="vol-piano" min="0" max="100" value="60" style="accent-color:#d4af37;">
+    </div>
+    <div style="display:flex; justify-content:space-between; font-size:12.5px;">
+      <span>🎙️ 말씀 음성 볼륨</span>
+      <input type="range" id="vol-word" min="0" max="100" value="90" style="accent-color:#d4af37;">
+    </div>
+  </div>
+</aside>
+
+<!-- 6. 꿈디도 묵상원 회랑 서버 & 순례자 모달 -->
+<div class="modal-backdrop" id="modal-cloister-rooms">
+  <div class="modal-card">
+    <div class="panel-header">
+      <h2 class="panel-title">🏛️ 꿈디도 묵상원 회랑 서버 & 함께 있는 순례자</h2>
+      <button class="panel-close" id="btn-close-cloister-modal">✕</button>
+    </div>
+    <div style="margin-top:10px; padding:10px 12px; border-radius:12px; background:rgba(100,227,161,0.1); border:1px solid rgba(100,227,161,0.32); font-size:12px; line-height:1.55; color:#d8faea;">
+      🟢 <strong>실시간 네트워크 연동 중:</strong> 현재 이 회랑에 실제 접속한 순례자 <strong id="kk-real-count">1</strong>명 (나 포함) · 상주 묵상원 지킴이(AI 학자·순례자) <strong id="kk-npc-count">4</strong>명
+    </div>
+    <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#d5deed; padding:6px 4px;">
+      <span>🏺 혼자일 때도 외롭지 않게 ‘묵상원 지킴이(AI 순례자)’ 함께 보기</span>
+      <input type="checkbox" id="chk-kk-npc" checked style="accent-color:#d4af37; width:17px; height:17px; cursor:pointer;">
+    </div>
+    <div style="margin-top:8px; font-size:12.5px; color:#b6c1d6;">
+      나의 순례자 호칭 (묵상원 안에서 표시되는 이름)
+    </div>
+    <div style="display:flex; gap:8px; margin-top:6px;">
+      <input type="text" class="prayer-input" id="kk-name-input" maxlength="16" value="말씀 순례자">
+      <button class="gold-btn" id="btn-kk-save-name" style="width:auto; padding:0 16px; white-space:nowrap;">변경</button>
+    </div>
+    <div style="margin-top:14px; font-size:12.5px; color:#b6c1d6;">
+      어느 회랑에서도 오래된 우물과 8대 성화를 함께 묵상할 수 있습니다.
+    </div>
+    <div>
+      <div class="room-item active" data-room="제1회랑 · 베들레헴 우물">
+        <div><strong>제1회랑 · 베들레헴 우물</strong> <span style="font-size:11.5px; color:#9da9bf;">· 구속사 묵상실</span></div>
+        <div style="font-size:12px; color:#64e3a1;">실시간 연결됨</div>
+      </div>
+      <div class="room-item" data-room="제2회랑 · 감람산 등불">
+        <div><strong>제2회랑 · 감람산 등불</strong> <span style="font-size:11.5px; color:#9da9bf;">· 원어·성화 묵상실</span></div>
+        <div style="font-size:12px; color:#64e3a1;">입장 가능</div>
+      </div>
+      <div class="room-item" data-room="제3회랑 · 갈릴리 새벽">
+        <div><strong>제3회랑 · 갈릴리 새벽</strong> <span style="font-size:11.5px; color:#9da9bf;">· 매일말씀 경청실</span></div>
+        <div style="font-size:12px; color:#64e3a1;">입장 가능</div>
+      </div>
+      <div class="room-item" data-room="제4회랑 · 밧모섬의 빛">
+        <div><strong>제4회랑 · 밧모섬의 빛</strong> <span style="font-size:11.5px; color:#9da9bf;">· 고요한 침묵 서재</span></div>
+        <div style="font-size:12px; color:#64e3a1;">입장 가능</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6-C. 꿈디도 운영발전기금 기부 모달 -->
+<div class="modal-backdrop" id="modal-offering">
+  <div class="modal-card">
+    <div class="panel-header">
+      <h2 class="panel-title">💛 꿈디도 운영발전기금 기부 안내</h2>
+      <button class="panel-close" data-close-modal="modal-offering">✕</button>
+    </div>
+    <p style="font-size:13px; color:#d8cbb8; line-height:1.7; margin:14px 0 12px;">
+      꿈바온 디지털도서관(꿈디도)의 무료 개방과 성경 대백과 아카이브 연구, 차세대 복음 콘텐츠 제작을 위해 마음과 정성을 보태어 주시는 모든 분들께 깊이 감사드립니다.
+    </p>
+    <div style="padding:16px 18px; border-radius:14px; background:rgba(212,168,83,0.12); border:1px solid rgba(212,168,83,0.35); text-align:center;">
+      <div style="font-size:12px; color:#e2d4bd; font-weight:600; letter-spacing:0.04em; margin-bottom:6px;">
+        🏛️ 꿈디도 운영발전기금 후원 계좌
+      </div>
+      <div style="display:inline-flex; align-items:center; justify-content:center; gap:8px; background:rgba(18,14,10,0.72); border:1px solid rgba(229,200,120,0.45); border-radius:10px; padding:10px 14px; margin:6px 0 10px; flex-wrap:wrap;">
+        <span style="font-size:16px; font-weight:700; color:#FFE494; letter-spacing:0.03em;">1005 604 133222 우리은행</span>
+        <span style="font-size:13.5px; color:#D8CBB8;">(새오름교회)</span>
+        <button type="button" class="btn-copy-account" onclick="copyOfferingAccount('1005 604 133222 우리은행 새오름교회', this)" style="background:linear-gradient(135deg,#e5c878,#b88b38); color:#140F09; border:none; border-radius:6px; font-size:11.5px; font-weight:800; padding:5px 10px; cursor:pointer; margin-left:4px; transition:all 0.2s;">계좌 복사</button>
+      </div>
+      <p style="font-size:12.5px; color:#e0d2bd; line-height:1.6; margin:4px 0 12px; font-weight:500;">
+        ※ 헌금은 새오름교회의 꿈디도 운영 발전 기금을 위해 사용됩니다.
+      </p>
+      <button class="gold-btn" id="btn-offering-amen" style="width:100%; padding:11px; font-size:13.5px;">🙏 감사와 축복의 기도로 마음 보태기</button>
+    </div>
+  </div>
+</div>
+
+<!-- 6-B. 풀스크린 성화 초고해상도 확대(Zoom Lightbox) 모달 -->
+<div class="modal-backdrop" id="modal-kk-art-zoom" style="z-index:120; background:rgba(5,8,15,0.94);">
+  <div style="width:94vw; max-width:1200px; height:88vh; display:flex; flex-direction:column; border-radius:22px; background:#0e1526; border:1px solid rgba(212,175,55,0.5); overflow:hidden; box-shadow:0 28px 80px rgba(0,0,0,0.85);">
+    <div style="padding:14px 20px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(212,175,55,0.25); background:#131c31; flex-wrap:wrap; gap:10px;">
+      <div>
+        <strong id="kk-zoom-title" style="font-family:var(--serif); font-size:18px; color:var(--gold-bright);">성화 크게 보기</strong>
+        <span id="kk-zoom-ref" style="margin-left:10px; font-size:12.5px; color:#b8c4db;"></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="lang-btn" id="btn-kk-scale-down" style="padding:6px 12px;">🔎 - 축소</button>
+        <span id="kk-scale-label" style="font-size:12.5px; color:var(--gold-bright); min-width:48px; text-align:center;">100%</span>
+        <button class="lang-btn" id="btn-kk-scale-up" style="padding:6px 12px;">🔍 + 더 크게 확대</button>
+        <button class="lang-btn" id="btn-kk-scale-reset" style="padding:6px 12px;">1:1 원본</button>
+        <button class="panel-close" id="btn-close-kk-zoom" style="margin-left:8px; font-size:22px;">✕</button>
+      </div>
+    </div>
+    <div id="kk-zoom-viewport" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:grab; background:#070a12;">
+      <img id="kk-zoom-img" src="./assets/webp/feast_wide_01_sabbath_lamps.webp" alt="성화 확대" style="max-width:92%; max-height:92%; object-fit:contain; transition:transform 0.12s ease-out; transform-origin:center center; border-radius:8px; box-shadow:0 12px 44px rgba(0,0,0,0.8);">
+    </div>
+    <div id="kk-zoom-desc" style="padding:14px 22px; font-size:13.5px; color:#dce4f2; line-height:1.65; background:#131c31; border-top:1px solid rgba(212,175,55,0.2);"></div>
+  </div>
+</div>
+
+<audio id="bgm-piano" loop preload="auto" src="./assets/chapel_audio/piano_grace.mp3"></audio>
+<audio id="voice-word" preload="metadata" src="./assets/chapel_audio/sermon_20261101_ko.mp3"></audio>
+
+<script>
+(() => {
+  /* ==============================================================
+   * 1. 꿈디도 7대 성경 원어 두루마리 데이터
+   * ============================================================== */
+  const ORIG_WORDS = [
+    {
+      hebrew: "חֶסֶד",
+      title: "헤세드 (Hesed) · 끝까지 포기하지 않는 언약적 사랑과 인애",
+      verse: "여호와의 인자와 긍휼이 무궁하시므로 우리가 진멸되지 아니함이니이다 이것들이 아침마다 새로우니 주의 성실하심이 크시도소이다 (예레미야애가 3:22-23)"
+    },
+    {
+      hebrew: "גֹּאֵל",
+      title: "고엘 (Go'el) · 잃어버린 기업과 생명을 값을 치르고 무르는 구속자",
+      verse: "나오미에게 이르되 찬송할지로다 여호와께서 오늘 네게 기업 무를 자가 없게 하지 아니하셨도다 (룻기 4:14)"
+    },
+    {
+      hebrew: "שָׁלוֹם",
+      title: "샬롬 (Shalom) · 하나님과의 관계가 온전히 회복된 하늘의 평강",
+      verse: "평안을 너희에게 끼치노니 곧 나의 평안을 너희에게 주노라 내가 너희에게 주는 것은 세상이 주는 것과 같지 아니하니라 (요한복음 14:27)"
+    },
+    {
+      hebrew: "כָּבוֹד",
+      title: "카보드 (Kavod) · 가벼운 세상에 내려앉는 하나님의 묵직한 임재와 영광",
+      verse: "구름이 회막에 덮이고 여호와의 영광이 성막에 충만하매 (출애굽기 40:34)"
+    },
+    {
+      hebrew: "λόγος",
+      title: "로고스 (Logos) · 태초부터 계셨고 육신이 되어 우리 가운데 거하신 말씀",
+      verse: "말씀이 육신이 되어 우리 가운데 거하시매 우리가 그의 영광을 보니 아버지의 독생자의 영광이요 은혜와 진리가 충만하더라 (요한복음 1:14)"
+    },
+    {
+      hebrew: "ἀγάπη",
+      title: "아가페 (Agape) · 우리가 아직 죄인 되었을 때에 먼저 내어주신 사랑",
+      verse: "우리가 아직 죄인 되었을 때에 그리스도께서 우리를 위하여 죽으심으로 하나님께서 우리에 대한 자기의 사랑을 확증하셨느니라 (로마서 5:8)"
+    },
+    {
+      hebrew: "κοινωνία",
+      title: "코이노니아 (Koinonia) · 그리스도의 피와 말씀 안에서 한 가족으로 나누는 사귐",
+      verse: "우리가 보고 들은 바를 너희에게도 전함은 너희로 우리와 사귐이 있게 하려 함이니 우리의 사귐은 아버지와 그의 아들 예수 그리스도와 더불어 누림이라 (요한일서 1:3)"
+    }
+  ];
+
+  /* ==============================================================
+   * 2. 회랑 8대 성화 갤러리 데이터 (실제 WebP 에셋 연동)
+   * ============================================================== */
+  const GALLERY_ARTWORKS = [
+    {
+      title: "1. 책을 들고 나온 사람들 · 에베소 성도들의 결단 (지난 주 조금 긴 성경이야기)",
+      ref: "사도행전 19:1–20",
+      img: "./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp",
+      desc: "일꾼 바울의 땀 묻은 앞치마와 수건을 통해 일하신 하나님, 그리고 은 오만이나 되는 마술책을 스스로 들고 나와 불사르며 주의 이름을 높인 에베소 성도들의 이야기입니다. (하단 [5] 말씀·소리 메뉴에서 29분 35초 전체 말씀을 경청하실 수 있습니다.)",
+      pos: new THREE.Vector3(-14.2, 2.75, -7.2),
+      standPos: new THREE.Vector3(-10.8, 0, -7.2),
+      rotY: Math.PI / 2
+    },
+    {
+      title: "2. 유월절 우슬초 · 문설주에 발라진 구속의 피",
+      ref: "출애굽기 12:22 · 시편 51:7",
+      img: "./assets/webp/feast_wide_02_passover_hyssop.webp",
+      desc: "화려한 백향목이 아니라 돌담 틈에 자라는 가장 보잘것없는 풀 ‘우슬초’가 어린양의 피를 머금고 생명을 살리는 도구가 되었습니다. 우리의 자격이 아닌 오직 어린양의 피로 구원받는 은혜를 보여줍니다.",
+      pos: new THREE.Vector3(-14.2, 2.75, 7.2),
+      standPos: new THREE.Vector3(-10.8, 0, 7.2),
+      rotY: Math.PI / 2
+    },
+    {
+      title: "3. 베들레헴 성문에서 건네받은 신발 · 기업 무름(고엘)",
+      ref: "룻기 4:7-17",
+      img: "./assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp",
+      desc: "자기 계산을 따지던 아무개는 신발을 벗어 던지고 떠났지만, 보아스는 성문 장로들 앞에서 룻과 나오미의 모든 짐을 기꺼이 떠안았습니다. 우리를 위해 모든 대가를 치르신 참된 고엘, 예수 그리스도의 그림자입니다.",
+      pos: new THREE.Vector3(-6.8, 2.75, -14.2),
+      standPos: new THREE.Vector3(-6.8, 0, -10.8),
+      rotY: 0
+    },
+    {
+      title: "4. 에벤에셀 · 여기까지 우리를 도우신 하나님",
+      ref: "사무엘상 7:12",
+      img: "./assets/webp/2026-09-21-소소한-성경이야기-에벤에셀-i-사무엘상-712.webp",
+      desc: "미스바의 눈물 어린 회개 뒤에 세워진 도움의 돌 ‘에벤에셀’. 패배의 기억이 있던 바로 그 자리가 하나님의 도우심을 증거하는 은혜의 기념비가 되었습니다.",
+      pos: new THREE.Vector3(6.8, 2.75, -14.2),
+      standPos: new THREE.Vector3(6.8, 0, -10.8),
+      rotY: 0
+    },
+    {
+      title: "5. 돌아와 발아래 엎드린 사마리아 나병환자",
+      ref: "누가복음 17:15-16",
+      img: "./assets/webp/fig_wide_03_samaritan_leper.webp",
+      desc: "열 명이 고침을 받았으나 아홉은 자기 길로 가고, 오직 이방인이었던 사마리아 사람 한 명만 큰 소리로 하나님께 영광을 돌리며 예수님의 발아래 엎드려 감사를 드렸습니다.",
+      pos: new THREE.Vector3(14.2, 2.75, -7.2),
+      standPos: new THREE.Vector3(10.8, 0, -7.2),
+      rotY: -Math.PI / 2
+    },
+    {
+      title: "6. 요단강의 세례 요한 · 주의 길을 예비하는 소리",
+      ref: "요한복음 1:23 · 1:29",
+      img: "./assets/webp/fig_wide_06_john_baptist_jordan.webp",
+      desc: "스스로 빛이라 하지 않고 오직 광야에서 외치는 ‘소리’로 살았던 세례 요한. 세상 죄를 지고 가는 하나님의 어린양을 가리킨 손끝의 겸손을 묵상합니다.",
+      pos: new THREE.Vector3(14.2, 2.75, 7.2),
+      standPos: new THREE.Vector3(10.8, 0, 7.2),
+      rotY: -Math.PI / 2
+    },
+    {
+      title: "7. 나단 선지자와 다윗의 눈물 · 상한 심령의 회복",
+      ref: "사무엘하 12:13 · 시편 51:17",
+      img: "./assets/webp/fig_wide_08_nathan_and_david.webp",
+      desc: "“당신이 그 사람이라.” 하나님의 말씀 앞에 왕관을 내려놓고 “내가 여호와께 죄를 범하였노라” 고백할 때, 정죄를 넘어선 회복의 은혜가 시작되었습니다.",
+      pos: new THREE.Vector3(-6.8, 2.75, 14.2),
+      standPos: new THREE.Vector3(-6.8, 0, 10.8),
+      rotY: Math.PI
+    },
+    {
+      title: "8. 다른 길로 고국에 돌아간 동방박사들",
+      ref: "마태복음 2:11-12",
+      img: "./assets/webp/fig_wide_09_magi_another_way.webp",
+      desc: "아기 예수께 경배하고 보배합을 열어 예물을 드린 박사들은 헤롯의 궁전으로 돌아가지 않고 ‘다른 길’로 돌아갔습니다. 주님을 진짜 만난 사람은 이전의 길로 돌아가지 않습니다.",
+      pos: new THREE.Vector3(6.8, 2.75, 14.2),
+      standPos: new THREE.Vector3(6.8, 0, 10.8),
+      rotY: Math.PI
+    }
+  ];
+
+  /* ==============================================================
+   * 2-B. 꿈디도 등잔 밑 영구 방명록 시스템 (localStorage + MQTT Retained 클라우드 영구 동기화)
+   *      - 본관(index.html)과 3D 아트리움(online_chapel_kkumdido.html)이 동일 키·토픽으로 100% 공유!
+   * ============================================================== */
+  const LAMP_STORAGE_KEY = 'kkumdido_guestbook_v2';
+  const LAMP_DELETED_KEY = 'kkumdido_guestbook_deleted_v2';
+  const LAMP_AUTHOR_KEY_STORAGE = 'kkumdido_guestbook_author_key_v1';
+  const KK_GUESTBOOK_TOPIC = 'kkumbaon/chapel/kkumdido/v1/guestbook';
+
+  let myLampAuthorKey = '';
+  try {
+    myLampAuthorKey = localStorage.getItem(LAMP_AUTHOR_KEY_STORAGE) || '';
+    if (!myLampAuthorKey) {
+      myLampAuthorKey = 'kkak_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem(LAMP_AUTHOR_KEY_STORAGE, myLampAuthorKey);
+    }
+  } catch (_) {
+    myLampAuthorKey = 'kkak_local';
+  }
+
+  let deletedLampIds = new Set();
+  try {
+    const savedDel = JSON.parse(localStorage.getItem(LAMP_DELETED_KEY) || '[]');
+    if (Array.isArray(savedDel)) savedDel.forEach(id => deletedLampIds.add(id));
+  } catch (_) {}
+
+  const DEFAULT_LAMP_SEEDS = [
+    { id: "seed_kk_1", author: "베들레헴 순례자", text: "룻기 4장의 보아스처럼 누군가의 그늘이 되어주는 하루가 되게 하소서.", amens: 18, createdAt: Date.now() - 1000 * 60 * 15 },
+    { id: "seed_kk_2", author: "오래된 우물지기", text: "주의 말씀이 내 발에 등이요 내 길에 빛이심을 믿습니다. 꿈디도 도서관이 참 귀합니다.", amens: 24, createdAt: Date.now() - 1000 * 60 * 48 },
+    { id: "seed_kk_3", author: "갈릴리 새벽별", text: "헤세드의 사랑이 우리 가정과 교회 위에 아침마다 새로우시기를 기도합니다.", amens: 19, createdAt: Date.now() - 1000 * 60 * 110 },
+    { id: "seed_kk_4", author: "밧모섬의 서기관", text: "꿈디도를 찾아오는 모든 영혼이 말씀의 깊은 우물을 길어 올리게 하소서.", amens: 32, createdAt: Date.now() - 1000 * 60 * 240 }
+  ];
+
+  let WELL_LAMPS = [];
+  function loadLocalLampGuestbook() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(LAMP_STORAGE_KEY) || 'null');
+      if (Array.isArray(raw) && raw.length > 0) {
+        WELL_LAMPS = raw.filter(it => it && it.id && !deletedLampIds.has(it.id));
+        return;
+      }
+    } catch (_) {}
+    WELL_LAMPS = DEFAULT_LAMP_SEEDS.filter(it => !deletedLampIds.has(it.id));
+    saveLocalLampGuestbook();
+  }
+
+  function saveLocalLampGuestbook() {
+    try {
+      localStorage.setItem(LAMP_STORAGE_KEY, JSON.stringify(WELL_LAMPS.slice(0, 100)));
+      localStorage.setItem(LAMP_DELETED_KEY, JSON.stringify(Array.from(deletedLampIds).slice(-200)));
+    } catch (_) {}
+  }
+
+  function formatLampTimestamp(ts, fallbackTime) {
+    if (!ts || !isFinite(ts)) return fallbackTime || '방금 전';
+    const diffSec = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+    const d = new Date(ts);
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mi = String(d.getMinutes()).padStart(2, '0');
+    if (diffSec < 60) return `방금 전 (${mm}.${dd} ${hh}:${mi})`;
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)}분 전 (${mm}.${dd} ${hh}:${mi})`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}시간 전 (${mm}.${dd} ${hh}:${mi})`;
+    return `${d.getFullYear()}.${mm}.${dd} ${hh}:${mi}`;
+  }
+
+  loadLocalLampGuestbook();
+
+  /* ==============================================================
+   * 3. 사운드 시스템 (Web Audio 우물 물소리·밤바람 + 피아노 + 8개국어 말씀)
+   * ============================================================== */
+  let audioCtx = null;
+  let isMuted = false;
+  let waterGain = null;
+  const bgmPiano = document.getElementById('bgm-piano');
+  const voiceWord = document.getElementById('voice-word');
+
+  function initAudio() {
+    if (audioCtx) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AC();
+
+    // 우물 물결 & 밤바람 브라운/핑크 노이즈
+    const bufSize = audioCtx.sampleRate * 3;
+    const buf = audioCtx.createBuffer(1, bufSize, audioCtx.sampleRate);
+    const data = buf.getChannelData(0);
+    let lastOut = 0;
+    for (let i = 0; i < bufSize; i++) {
+      const white = Math.random() * 2 - 1;
+      data[i] = (lastOut + (0.02 * white)) / 1.02;
+      lastOut = data[i];
+      data[i] *= 0.22;
+    }
+    const noise = audioCtx.createBufferSource();
+    noise.buffer = buf;
+    noise.loop = true;
+
+    const filter = audioCtx.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 380;
+
+    waterGain = audioCtx.createGain();
+    waterGain.gain.value = 0.25;
+
+    noise.connect(filter);
+    filter.connect(waterGain);
+    waterGain.connect(audioCtx.destination);
+    noise.start(0);
+  }
+
+  function playScrollChime(stepIdx = 0, isComplete = false) {
+    if (!audioCtx || isMuted) return;
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    const notes = [440, 493.88, 554.37, 659.25, 739.99, 880]; // A major pentatonic
+    const freq = isComplete ? 880 : notes[stepIdx % notes.length];
+    const now = audioCtx.currentTime;
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(freq, now);
+    const dur = isComplete ? 1.3 : 0.38;
+    g.gain.setValueAtTime(0.001, now);
+    g.gain.linearRampToValueAtTime(isComplete ? 0.065 : 0.03, now + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+    osc.connect(g);
+    g.connect(audioCtx.destination);
+    osc.start(now);
+    osc.stop(now + dur + 0.02);
+  }
+
+  function setAudioActive(active) {
+    initAudio();
+    isMuted = !active;
+    if (active) {
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+      if (waterGain) waterGain.gain.value = Number(document.getElementById('vol-nature').value) / 300;
+      bgmPiano.volume = Number(document.getElementById('vol-piano').value) / 100;
+      bgmPiano.play().catch(() => {});
+      document.getElementById('mute-toggle-label').textContent = '🔊 소리 켜짐';
+    } else {
+      if (waterGain) waterGain.gain.value = 0;
+      bgmPiano.pause();
+      voiceWord.pause();
+      document.getElementById('mute-toggle-label').textContent = '🔇 소리 꺼짐';
+    }
+  }
+
+  /* ==============================================================
+   * 4. Three.js 『꿈디도 아트리움 묵상원』 3D 공간 구축
+   * ============================================================== */
+  const wrap = document.getElementById('canvas-wrap');
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x090d16);
+  scene.fog = new THREE.FogExp2(0x090d16, 0.024);
+
+  const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 120);
+  const renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  wrap.appendChild(renderer.domElement);
+
+  const ambLight = new THREE.AmbientLight(0x8aa0d6, 0.52);
+  scene.add(ambLight);
+
+  const moonLight = new THREE.DirectionalLight(0xc8daf7, 0.65);
+  moonLight.position.set(10, 22, 12);
+  moonLight.castShadow = true;
+  scene.add(moonLight);
+
+  // 중앙 오래된 우물에서 피어오르는 황금·아쿠아 빛
+  const wellLight = new THREE.PointLight(0xffc966, 1.85, 16);
+  wellLight.position.set(0, 1.8, 0);
+  scene.add(wellLight);
+
+  const world = new THREE.Group();
+  scene.add(world);
+
+  // 석조 대리석 타일 캔버스 텍스처
+  function createStoneTileTexture() {
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 512;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#182030';
+    ctx.fillRect(0, 0, 512, 512);
+    ctx.strokeStyle = '#26324a';
+    ctx.lineWidth = 3;
+    for (let i = 0; i <= 512; i += 64) {
+      ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, 512); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, i); ctx.lineTo(512, i); ctx.stroke();
+    }
+    // 중앙 원형 골드 상감 라인
+    ctx.strokeStyle = 'rgba(212, 175, 55, 0.35)';
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.arc(256, 256, 180, 0, Math.PI * 2);
+    ctx.stroke();
+
+    const tex = new THREE.CanvasTexture(c);
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(4, 4);
+    return tex;
+  }
+
+  const floorMesh = new THREE.Mesh(
+    new THREE.PlaneGeometry(42, 42),
+    new THREE.MeshStandardMaterial({ map: createStoneTileTexture(), roughness: 0.55, metalness: 0.15 })
+  );
+  floorMesh.rotation.x = -Math.PI / 2;
+  floorMesh.receiveShadow = true;
+  world.add(floorMesh);
+
+  // 중정 중앙: 『오래된 우물 (생명수 돌우물)』
+  const wellGroup = new THREE.Group();
+  const stoneMat = new THREE.MeshStandardMaterial({ color: 0x3b4459, roughness: 0.8 });
+  const goldMat = new THREE.MeshStandardMaterial({ color: 0xd4af37, metalness: 0.65, roughness: 0.3 });
+
+  const wellOuter = new THREE.Mesh(new THREE.CylinderGeometry(2.1, 2.25, 0.92, 32), stoneMat);
+  wellOuter.position.y = 0.46;
+  wellOuter.castShadow = true; wellOuter.receiveShadow = true;
+
+  const wellRim = new THREE.Mesh(new THREE.TorusGeometry(2.1, 0.12, 16, 40), goldMat);
+  wellRim.rotation.x = Math.PI / 2;
+  wellRim.position.y = 0.92;
+
+  const waterSurface = new THREE.Mesh(
+    new THREE.CircleGeometry(1.95, 32),
+    new THREE.MeshStandardMaterial({
+      color: 0x226688, emissive: 0x164c6e, emissiveIntensity: 0.75, roughness: 0.15, metalness: 0.3
+    })
+  );
+  waterSurface.rotation.x = -Math.PI / 2;
+  waterSurface.position.y = 0.76;
+
+  // 우물 위 아치형 철제 두레박 구조물
+  const archPillarL = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.6, 12), goldMat);
+  archPillarL.position.set(-1.85, 2.1, 0);
+  const archPillarR = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 2.6, 12), goldMat);
+  archPillarR.position.set(1.85, 2.1, 0);
+  const archTopBar = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.07, 3.85, 12), goldMat);
+  archTopBar.rotation.z = Math.PI / 2;
+  archTopBar.position.set(0, 3.35, 0);
+
+  wellGroup.add(wellOuter, wellRim, waterSurface, archPillarL, archPillarR, archTopBar);
+
+  // 우물 난간 위 12개의 ‘등잔 밑 토기 등잔불’
+  const lampFlames = [];
+  for (let i = 0; i < 12; i++) {
+    const ang = (i / 12) * Math.PI * 2;
+    const lx = Math.cos(ang) * 2.1;
+    const lz = Math.sin(ang) * 2.1;
+    const clayLamp = new THREE.Mesh(
+      new THREE.SphereGeometry(0.11, 12, 10),
+      new THREE.MeshStandardMaterial({ color: 0x9c623e, roughness: 0.75 })
+    );
+    clayLamp.scale.set(1.3, 0.65, 1.0);
+    clayLamp.position.set(lx, 0.98, lz);
+
+    const flame = new THREE.Mesh(
+      new THREE.SphereGeometry(0.055, 8, 8),
+      new THREE.MeshBasicMaterial({ color: 0xffc649 })
+    );
+    flame.scale.set(0.8, 1.65, 0.8);
+    flame.position.set(lx, 1.08, lz);
+    lampFlames.push({ mesh: flame, baseY: 1.08, phase: i * 1.1 });
+
+    wellGroup.add(clayLamp, flame);
+  }
+  world.add(wellGroup);
+
+  // 우물에서 하늘로 떠오르는 황금빛 말씀 입자(Particles)
+  const particleCount = 90;
+  const pGeo = new THREE.BufferGeometry();
+  const pPositions = new Float32Array(particleCount * 3);
+  for (let i = 0; i < particleCount; i++) {
+    const r = Math.random() * 1.75;
+    const a = Math.random() * Math.PI * 2;
+    pPositions[i * 3] = Math.cos(a) * r;
+    pPositions[i * 3 + 1] = 0.8 + Math.random() * 6.5;
+    pPositions[i * 3 + 2] = Math.sin(a) * r;
+  }
+  pGeo.setAttribute('position', new THREE.BufferAttribute(pPositions, 3));
+  const pMat = new THREE.PointsMaterial({ color: 0xffe494, size: 0.09, transparent: true, opacity: 0.8 });
+  const wellParticles = new THREE.Points(pGeo, pMat);
+  world.add(wellParticles);
+
+  // 회랑 외벽 & 고대 기둥 + 8대 대형 성화 액자 배치 (대폭 확장: 30m x 30m 대아트리움 광장)
+  const wallMat = new THREE.MeshStandardMaterial({ color: 0x131a29, roughness: 0.85 });
+  const wallN = new THREE.Mesh(new THREE.BoxGeometry(30.4, 7.5, 0.5), wallMat);
+  wallN.position.set(0, 3.75, -14.8);
+  const wallS = new THREE.Mesh(new THREE.BoxGeometry(30.4, 7.5, 0.5), wallMat);
+  wallS.position.set(0, 3.75, 14.8);
+  const wallW = new THREE.Mesh(new THREE.BoxGeometry(0.5, 7.5, 30.4), wallMat);
+  wallW.position.set(-14.8, 3.75, 0);
+  const wallE = new THREE.Mesh(new THREE.BoxGeometry(0.5, 7.5, 30.4), wallMat);
+  wallE.position.set(14.8, 3.75, 0);
+  world.add(wallN, wallS, wallW, wallE);
+
+  // 회랑 석조 기둥 16개 & 달빛 감람나무 8그루
+  const pillarMat = new THREE.MeshStandardMaterial({ color: 0x263147, roughness: 0.65 });
+  for (const px of [-9.5, -3.5, 3.5, 9.5]) {
+    for (const pz of [-9.5, 9.5]) {
+      const pil = new THREE.Mesh(new THREE.CylinderGeometry(0.34, 0.38, 7.2, 18), pillarMat);
+      pil.position.set(px, 3.6, pz);
+      pil.castShadow = true;
+      world.add(pil);
+    }
+  }
+  const oliveTrunkMat = new THREE.MeshStandardMaterial({ color: 0x3b2c1e, roughness: 0.9 });
+  const oliveLeafMat = new THREE.MeshStandardMaterial({ color: 0x2b4738, roughness: 0.85 });
+  for (const [ox, oz] of [[-11.5, -11.5], [11.5, -11.5], [-11.5, 11.5], [11.5, 11.5]]) {
+    const tg = new THREE.Group();
+    const tr = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.34, 2.2, 10), oliveTrunkMat);
+    tr.position.y = 1.1;
+    const cr = new THREE.Mesh(new THREE.SphereGeometry(1.4, 14, 12), oliveLeafMat);
+    cr.position.y = 2.65; cr.scale.y = 0.78;
+    tg.add(tr, cr);
+    tg.position.set(ox, 0, oz);
+    world.add(tg);
+  }
+
+  // 8대 특대형 성화 액자 생성 (가로 4.4m × 세로 2.75m 미술관 스케일 + 실제 WebP 성화 로드!)
+  const artFrameMeshes = [];
+  const kkTexLoader = new THREE.TextureLoader();
+  function createArtCanvasTexture(idx, titleText) {
+    const c = document.createElement('canvas');
+    c.width = 512; c.height = 320;
+    const ctx = c.getContext('2d');
+    const palettes = [
+      ['#2b1d12', '#d49b38'], ['#1d263b', '#c95b42'], ['#2e2418', '#e0b354'], ['#1a2e2b', '#88c498'],
+      ['#261c2e', '#d9a762'], ['#182936', '#7ab8d9'], ['#2b1919', '#d68a59'], ['#192138', '#f0cf7a']
+    ];
+    const [c1, c2] = palettes[idx % palettes.length];
+    const g = ctx.createRadialGradient(256, 140, 20, 256, 160, 260);
+    g.addColorStop(0, c2);
+    g.addColorStop(1, c1);
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, 512, 320);
+
+    ctx.strokeStyle = '#d4af37';
+    ctx.lineWidth = 10;
+    ctx.strokeRect(12, 12, 488, 296);
+
+    ctx.fillStyle = 'rgba(255, 248, 225, 0.92)';
+    ctx.font = 'bold 24px serif';
+    ctx.textAlign = 'center';
+    ctx.fillText(titleText, 256, 185);
+    ctx.font = '16px sans-serif';
+    ctx.fillText('🔍 클릭하면 고해상도 성화가 크게 열립니다', 256, 235);
+    return new THREE.CanvasTexture(c);
+  }
+
+  GALLERY_ARTWORKS.forEach((art, idx) => {
+    const frameGroup = new THREE.Group();
+    const outerFrame = new THREE.Mesh(
+      new THREE.BoxGeometry(4.45, 2.82, 0.14),
+      goldMat
+    );
+    const artMat = new THREE.MeshBasicMaterial({ map: createArtCanvasTexture(idx, art.title.split(' · ')[0]) });
+    kkTexLoader.load(art.img, (loadedTex) => {
+      artMat.map = loadedTex;
+      artMat.needsUpdate = true;
+    });
+    const canvasPlane = new THREE.Mesh(
+      new THREE.PlaneGeometry(4.18, 2.56),
+      artMat
+    );
+    canvasPlane.position.z = 0.08;
+    canvasPlane.userData = { artIndex: idx };
+    artFrameMeshes.push(canvasPlane);
+
+    frameGroup.add(outerFrame, canvasPlane);
+    frameGroup.position.copy(art.pos);
+    frameGroup.rotation.y = art.rotY;
+    world.add(frameGroup);
+  });
+
+  // 우물을 둘러싼 8개의 묵상 대리석 벤치 + 4개의 우물가 무릎기도 방석
+  const benches = [];
+  const benchRadius = 4.25;
+  for (let i = 0; i < 8; i++) {
+    const ang = (i / 8) * Math.PI * 2;
+    const bx = Math.cos(ang) * benchRadius;
+    const bz = Math.sin(ang) * benchRadius;
+
+    const bMesh = new THREE.Mesh(
+      new THREE.BoxGeometry(1.75, 0.46, 0.62),
+      new THREE.MeshStandardMaterial({ color: 0x2e3952, roughness: 0.6 })
+    );
+    bMesh.position.set(bx, 0.23, bz);
+    bMesh.rotation.y = -ang + Math.PI / 2;
+    bMesh.castShadow = true; bMesh.receiveShadow = true;
+    world.add(bMesh);
+
+    benches.push({
+      id: `bench_${i}`,
+      type: 'pew',
+      label: `우물가 제${i + 1}묵상석`,
+      pos: new THREE.Vector3(bx, 0, bz),
+      lookAngle: Math.atan2(bx, bz), // 우물 중심(0,0)을 바라봄 (-Z 전방 기준)
+      occupiedBy: null
+    });
+  }
+
+  // 우물 바로 앞 4방향 무릎기도 방석 (type: 'kneel')
+  const cushionMat = new THREE.MeshStandardMaterial({ color: 0x6e2c35, roughness: 0.78 });
+  for (let i = 0; i < 4; i++) {
+    const ang = (i / 4) * Math.PI * 2 + Math.PI / 4;
+    const kx = Math.cos(ang) * 2.85;
+    const kz = Math.sin(ang) * 2.85;
+    const cush = new THREE.Mesh(new THREE.BoxGeometry(0.66, 0.09, 0.50), cushionMat);
+    cush.position.set(kx, 0.045, kz);
+    cush.rotation.y = -ang + Math.PI / 2;
+    cush.receiveShadow = true;
+    world.add(cush);
+
+    benches.push({
+      id: `kneel_${i}`,
+      type: 'kneel',
+      label: `우물가 제${i + 1}무릎기도석`,
+      pos: new THREE.Vector3(kx, 0, kz),
+      lookAngle: Math.atan2(kx, kz),
+      occupiedBy: null
+    });
+  }
+
+  // 확장된 대아트리움 외곽 회랑: 8대 성화 앞 감상용 벤치 8석 추가
+  GALLERY_ARTWORKS.forEach((art, idx) => {
+    const sb = new THREE.Mesh(
+      new THREE.BoxGeometry(1.85, 0.44, 0.58),
+      new THREE.MeshStandardMaterial({ color: 0x3b2f26, roughness: 0.65 })
+    );
+    sb.position.set(art.standPos.x, 0.22, art.standPos.z);
+    sb.rotation.y = art.rotY;
+    sb.castShadow = true; sb.receiveShadow = true;
+    world.add(sb);
+
+    benches.push({
+      id: `art_bench_${idx}`,
+      type: 'pew',
+      label: `성화 제${idx + 1}감상석`,
+      pos: art.standPos.clone(),
+      lookAngle: art.rotY, // 성화 액자를 정면으로 바라봄
+      occupiedBy: null
+    });
+  });
+
+  // 바닥 클릭 파동 링
+  const rippleMesh = new THREE.Mesh(
+    new THREE.RingGeometry(0.15, 0.28, 28),
+    new THREE.MeshBasicMaterial({ color: 0xf7dc81, side: THREE.DoubleSide, transparent: true, opacity: 0 })
+  );
+  rippleMesh.rotation.x = -Math.PI / 2;
+  rippleMesh.position.y = 0.03;
+  world.add(rippleMesh);
+  let rippleAge = 99;
+
+  /* ==============================================================
+   * 5. 다관절 사람 아바타(남성 형제 / 여성 자매) 생성 & 커스터마이징 시스템
+   * ============================================================== */
+  const labelsLayer = document.getElementById('labels-layer');
+  const avatars = [];
+
+  const AVATAR_STORAGE_KEY = 'kkumbaon_chapel_avatar_v2';
+  const defaultMyCustom = {
+    name: '말씀 순례자',
+    gender: 'M',
+    hairStyle: 0,
+    hairColor: '#221a15',
+    outfitType: 'suit',
+    outfitColor: '#2c3e58',
+    prop: 'bible',
+    accessory: 'none'
+  };
+  let myCustom = { ...defaultMyCustom };
+  try {
+    const saved = JSON.parse(localStorage.getItem(AVATAR_STORAGE_KEY) || 'null');
+    if (saved && typeof saved === 'object') {
+      myCustom = { ...defaultMyCustom, ...saved };
+    }
+  } catch (_) {}
+
+  function saveMyCustom() {
+    try { localStorage.setItem(AVATAR_STORAGE_KEY, JSON.stringify(myCustom)); } catch (_) {}
+  }
+
+  function createPropMesh(propType) {
+    const g = new THREE.Group();
+    if (propType === 'bible') {
+      const cover = new THREE.Mesh(
+        new THREE.BoxGeometry(0.19, 0.24, 0.048),
+        new THREE.MeshStandardMaterial({ color: 0x541e24, roughness: 0.65 })
+      );
+      const pages = new THREE.Mesh(
+        new THREE.BoxGeometry(0.175, 0.228, 0.038),
+        new THREE.MeshStandardMaterial({ color: 0xf6eedc, roughness: 0.5 })
+      );
+      pages.position.x = 0.006;
+      const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.016, 0.095, 0.052), goldMat);
+      const crossH = new THREE.Mesh(new THREE.BoxGeometry(0.062, 0.016, 0.052), goldMat);
+      crossH.position.y = 0.016;
+      g.add(cover, pages, crossV, crossH);
+    } else if (propType === 'candle') {
+      const holder = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.055, 0.07, 0.035, 14),
+        goldMat
+      );
+      const wax = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.028, 0.03, 0.14, 12),
+        new THREE.MeshStandardMaterial({ color: 0xfff8e8, roughness: 0.4 })
+      );
+      wax.position.y = 0.08;
+      const flame = new THREE.Mesh(
+        new THREE.SphereGeometry(0.028, 10, 10),
+        new THREE.MeshBasicMaterial({ color: 0xffcb52 })
+      );
+      flame.scale.set(0.75, 1.65, 0.75);
+      flame.position.y = 0.17;
+      g.add(holder, wax, flame);
+    } else if (propType === 'palm') {
+      const stem = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.01, 0.014, 0.34, 8),
+        new THREE.MeshStandardMaterial({ color: 0x3b6e38, roughness: 0.7 })
+      );
+      stem.position.y = 0.12;
+      g.add(stem);
+      const leafMat = new THREE.MeshStandardMaterial({ color: 0x4f8c49, roughness: 0.6 });
+      for (let i = -3; i <= 3; i++) {
+        if (i === 0) continue;
+        const leaf = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.012, 0.028), leafMat);
+        leaf.position.set((i > 0 ? 1 : -1) * 0.045, 0.10 + Math.abs(i) * 0.042, 0);
+        leaf.rotation.z = (i > 0 ? -0.45 : 0.45);
+        g.add(leaf);
+      }
+    } else if (propType === 'bag') {
+      const bagBody = new THREE.Mesh(
+        new THREE.BoxGeometry(0.09, 0.20, 0.24),
+        new THREE.MeshStandardMaterial({ color: 0x6b442a, roughness: 0.75 })
+      );
+      bagBody.position.y = -0.10;
+      const strap = new THREE.Mesh(
+        new THREE.TorusGeometry(0.055, 0.01, 8, 16, Math.PI),
+        new THREE.MeshStandardMaterial({ color: 0x4a2e1b, roughness: 0.7 })
+      );
+      strap.rotation.y = Math.PI / 2;
+      g.add(bagBody, strap);
+    }
+    return g;
+  }
+
+  function buildHumanRig(custom, isMe = false) {
+    const gender = custom.gender === 'F' ? 'F' : 'M';
+    const hairStyle = Number(custom.hairStyle) || 0;
+    const hairColorHex = custom.hairColor || '#221a15';
+    const outfitType = custom.outfitType || 'suit';
+    const outfitColorHex = custom.outfitColor || (gender === 'F' ? '#f0e7d8' : '#2c3e58');
+    const propType = custom.prop || 'none';
+    const accType = custom.accessory || 'none';
+
+    const root = new THREE.Group();
+    const pelvis = new THREE.Group();
+    root.add(pelvis);
+
+    const skinMat = new THREE.MeshStandardMaterial({ color: 0xf6d8c0, roughness: 0.58 });
+    const hairMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(hairColorHex), roughness: 0.72 });
+    const mainClothMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(outfitColorHex), roughness: 0.68 });
+    const pantsColor = gender === 'M'
+      ? (outfitType === 'casual' ? 0x3b424c : 0x1e242d)
+      : 0x2b2623;
+    const pantsMat = new THREE.MeshStandardMaterial({ color: pantsColor, roughness: 0.75 });
+    const shoeMat = new THREE.MeshStandardMaterial({ color: gender === 'F' ? 0x3a241b : 0x1c1815, roughness: 0.55 });
+    const whiteShirtMat = new THREE.MeshStandardMaterial({ color: 0xfbf8f1, roughness: 0.55 });
+
+    function makeLeg(side) {
+      const hipGroup = new THREE.Group();
+      hipGroup.position.set(side * 0.095, 0.55, 0);
+      const thigh = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.068, 0.058, 0.28, 12),
+        (gender === 'F' && outfitType !== 'casual') ? skinMat : pantsMat
+      );
+      thigh.position.y = -0.14;
+      thigh.castShadow = true;
+      hipGroup.add(thigh);
+
+      const kneeBall = new THREE.Mesh(
+        new THREE.SphereGeometry(0.056, 10, 10),
+        (gender === 'F' && outfitType !== 'casual') ? skinMat : pantsMat
+      );
+      kneeBall.position.y = -0.28;
+      hipGroup.add(kneeBall);
+
+      const shinGroup = new THREE.Group();
+      shinGroup.position.set(0, -0.28, 0);
+      const shin = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.055, 0.045, 0.25, 12),
+        (gender === 'F' && outfitType === 'suit') ? skinMat : pantsMat
+      );
+      shin.position.y = -0.125;
+      shin.castShadow = true;
+      shinGroup.add(shin);
+
+      const shoe = new THREE.Mesh(new THREE.BoxGeometry(0.095, 0.065, 0.17), shoeMat);
+      shoe.position.set(0, -0.25, -0.035);
+      shoe.castShadow = true;
+      shinGroup.add(shoe);
+
+      hipGroup.add(shinGroup);
+      pelvis.add(hipGroup);
+      return { hip: hipGroup, shin: shinGroup };
+    }
+
+    const leftLeg = makeLeg(-1);
+    const rightLeg = makeLeg(1);
+
+    const torso = new THREE.Group();
+    torso.position.set(0, 0.56, 0);
+    pelvis.add(torso);
+
+    const hipBox = new THREE.Mesh(
+      new THREE.CylinderGeometry(gender === 'F' ? 0.155 : 0.165, gender === 'F' ? 0.165 : 0.16, 0.12, 16),
+      (gender === 'F' || outfitType === 'robe') ? mainClothMat : pantsMat
+    );
+    hipBox.position.y = 0.02;
+    torso.add(hipBox);
+
+    let skirtMesh = null;
+    if (outfitType === 'robe' || (gender === 'F' && outfitType === 'suit')) {
+      const skirtLen = outfitType === 'robe' ? 0.36 : 0.24;
+      const skirtTop = gender === 'F' ? 0.145 : 0.165;
+      const skirtBot = outfitType === 'robe' ? 0.25 : 0.22;
+      skirtMesh = new THREE.Mesh(new THREE.CylinderGeometry(skirtTop, skirtBot, skirtLen, 18), mainClothMat);
+      skirtMesh.position.y = -skirtLen / 2 + 0.04;
+      skirtMesh.castShadow = true;
+      torso.add(skirtMesh);
+    }
+
+    const topR = gender === 'M' ? 0.205 : 0.172;
+    const botR = gender === 'M' ? 0.162 : 0.142;
+    const chest = new THREE.Mesh(new THREE.CylinderGeometry(topR, botR, 0.42, 18), mainClothMat);
+    chest.position.y = 0.24;
+    chest.scale.z = 0.78;
+    chest.castShadow = true;
+    torso.add(chest);
+
+    if (outfitType === 'suit') {
+      const shirtV = new THREE.Mesh(new THREE.BoxGeometry(0.11, 0.16, 0.04), whiteShirtMat);
+      shirtV.position.set(0, 0.36, -0.135);
+      torso.add(shirtV);
+      if (gender === 'M') {
+        const tie = new THREE.Mesh(
+          new THREE.BoxGeometry(0.036, 0.18, 0.045),
+          new THREE.MeshStandardMaterial({ color: 0x8c262e, roughness: 0.5 })
+        );
+        tie.position.set(0, 0.31, -0.142);
+        torso.add(tie);
+      } else {
+        const brooch = new THREE.Mesh(new THREE.SphereGeometry(0.025, 10, 10), goldMat);
+        brooch.position.set(0, 0.36, -0.155);
+        torso.add(brooch);
+      }
+    } else if (outfitType === 'robe') {
+      const stoleCollar = new THREE.Mesh(new THREE.CylinderGeometry(topR + 0.008, topR + 0.015, 0.08, 18), goldMat);
+      stoleCollar.scale.z = 0.8;
+      stoleCollar.position.y = 0.41;
+      const stoleL = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.36, 0.02), goldMat);
+      stoleL.position.set(-0.065, 0.24, -0.15);
+      const stoleR = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.36, 0.02), goldMat);
+      stoleR.position.set(0.065, 0.24, -0.15);
+      torso.add(stoleCollar, stoleL, stoleR);
+    } else if (outfitType === 'casual') {
+      const innerTee = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.38, 0.03), whiteShirtMat);
+      innerTee.position.set(0, 0.24, -0.135);
+      torso.add(innerTee);
+    }
+
+    const lapBible = createPropMesh('bible');
+    lapBible.position.set(0, 0.06, -0.22);
+    lapBible.rotation.x = Math.PI / 2 - 0.25;
+    lapBible.visible = false;
+    torso.add(lapBible);
+
+    const shoulderX = gender === 'M' ? 0.235 : 0.20;
+    function makeArm(side) {
+      const shoulderGroup = new THREE.Group();
+      shoulderGroup.position.set(side * shoulderX, 0.41, 0);
+      const shoulderCap = new THREE.Mesh(new THREE.SphereGeometry(0.056, 12, 12), mainClothMat);
+      shoulderGroup.add(shoulderCap);
+      const upperArm = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.044, 0.20, 12), mainClothMat);
+      upperArm.position.y = -0.10;
+      upperArm.castShadow = true;
+      shoulderGroup.add(upperArm);
+
+      const forearmGroup = new THREE.Group();
+      forearmGroup.position.set(0, -0.20, 0);
+      const elbowBall = new THREE.Mesh(new THREE.SphereGeometry(0.044, 10, 10), mainClothMat);
+      forearmGroup.add(elbowBall);
+      const forearm = new THREE.Mesh(new THREE.CylinderGeometry(0.043, 0.038, 0.17, 12), mainClothMat);
+      forearm.position.y = -0.085;
+      forearm.castShadow = true;
+      forearmGroup.add(forearm);
+      const hand = new THREE.Mesh(new THREE.SphereGeometry(0.046, 12, 12), skinMat);
+      hand.position.set(0, -0.185, 0);
+      forearmGroup.add(hand);
+
+      shoulderGroup.add(forearmGroup);
+      torso.add(shoulderGroup);
+      return { arm: shoulderGroup, forearm: forearmGroup, hand };
+    }
+
+    const leftArm = makeArm(-1);
+    const rightArm = makeArm(1);
+
+    let handPropMesh = null;
+    if (propType !== 'none') {
+      handPropMesh = createPropMesh(propType);
+      if (propType === 'bible') {
+        handPropMesh.position.set(-0.04, -0.19, -0.06);
+        handPropMesh.rotation.set(0.3, 0.4, 0);
+      } else if (propType === 'candle') {
+        handPropMesh.position.set(-0.02, -0.19, -0.08);
+        handPropMesh.rotation.x = -0.65;
+      } else if (propType === 'palm') {
+        handPropMesh.position.set(0, -0.19, -0.06);
+        handPropMesh.rotation.x = -0.45;
+      } else if (propType === 'bag') {
+        handPropMesh.position.set(0.03, -0.19, 0);
+      }
+      rightArm.forearm.add(handPropMesh);
+    }
+
+    const readBibleMesh = createPropMesh('bible');
+    readBibleMesh.position.set(-0.08, -0.18, -0.08);
+    readBibleMesh.rotation.set(0.5, 0.2, 0);
+    readBibleMesh.visible = false;
+    rightArm.forearm.add(readBibleMesh);
+
+    const headGroup = new THREE.Group();
+    headGroup.position.set(0, 0.45, 0);
+    torso.add(headGroup);
+
+    const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.058, 0.065, 0.09, 12), skinMat);
+    neck.position.y = 0.04;
+    headGroup.add(neck);
+
+    const headBall = new THREE.Mesh(new THREE.SphereGeometry(0.195, 22, 20), skinMat);
+    headBall.position.y = 0.21;
+    headBall.scale.set(0.96, 1.04, 0.95);
+    headBall.castShadow = true;
+    headGroup.add(headBall);
+
+    for (const s of [-1, 1]) {
+      const ear = new THREE.Mesh(new THREE.SphereGeometry(0.038, 10, 10), skinMat);
+      ear.position.set(s * 0.185, 0.20, 0);
+      ear.scale.set(0.55, 0.9, 0.7);
+      headGroup.add(ear);
+    }
+
+    const eyeDarkMat = new THREE.MeshStandardMaterial({ color: 0x1a1410, roughness: 0.25 });
+    const blushMat = new THREE.MeshBasicMaterial({ color: 0xeb9888, transparent: true, opacity: 0.42 });
+    const eyes = [];
+    for (const s of [-1, 1]) {
+      const eye = new THREE.Mesh(new THREE.SphereGeometry(0.022, 12, 12), eyeDarkMat);
+      eye.position.set(s * 0.068, 0.22, -0.175);
+      eye.scale.set(1.0, 1.15, 0.5);
+      headGroup.add(eye);
+      eyes.push(eye);
+
+      const blush = new THREE.Mesh(new THREE.CircleGeometry(0.032, 12), blushMat);
+      blush.position.set(s * 0.105, 0.175, -0.172);
+      blush.rotation.y = Math.PI + s * 0.35;
+      headGroup.add(blush);
+    }
+
+    const hairGroup = new THREE.Group();
+    headGroup.add(hairGroup);
+    const cap = new THREE.Mesh(
+      new THREE.SphereGeometry(0.206, 20, 16, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      hairMat
+    );
+    cap.position.y = 0.22;
+    cap.rotation.x = 0.18;
+    hairGroup.add(cap);
+
+    if (gender === 'M') {
+      if (hairStyle === 0) {
+        const fringe = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.075, 0.09), hairMat);
+        fringe.position.set(0.02, 0.34, -0.145);
+        fringe.rotation.z = -0.08;
+        hairGroup.add(fringe);
+      } else if (hairStyle === 1) {
+        const partL = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), hairMat);
+        partL.position.set(-0.075, 0.33, -0.12);
+        partL.scale.set(1.1, 0.65, 0.9);
+        const partR = new THREE.Mesh(new THREE.SphereGeometry(0.11, 12, 10), hairMat);
+        partR.position.set(0.075, 0.33, -0.12);
+        partR.scale.set(1.1, 0.65, 0.9);
+        hairGroup.add(partL, partR);
+      } else {
+        const topVol = new THREE.Mesh(new THREE.SphereGeometry(0.16, 14, 12), hairMat);
+        topVol.position.set(0, 0.34, -0.04);
+        topVol.scale.set(1.05, 0.6, 1.12);
+        hairGroup.add(topVol);
+      }
+    } else {
+      const bangs = new THREE.Mesh(new THREE.SphereGeometry(0.15, 16, 10), hairMat);
+      bangs.position.set(0, 0.33, -0.105);
+      bangs.scale.set(1.18, 0.52, 0.75);
+      hairGroup.add(bangs);
+
+      if (hairStyle === 0) {
+        const backLong = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.34, 0.12), hairMat);
+        backLong.position.set(0, 0.09, 0.13);
+        backLong.rotation.x = 0.08;
+        const sideL = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.035, 0.28, 10), hairMat);
+        sideL.position.set(-0.165, 0.11, -0.02);
+        const sideR = new THREE.Mesh(new THREE.CylinderGeometry(0.045, 0.035, 0.28, 10), hairMat);
+        sideR.position.set(0.165, 0.11, -0.02);
+        hairGroup.add(backLong, sideL, sideR);
+      } else if (hairStyle === 1) {
+        for (const s of [-1, 1]) {
+          const bobSide = new THREE.Mesh(new THREE.SphereGeometry(0.12, 14, 12), hairMat);
+          bobSide.position.set(s * 0.135, 0.16, 0.02);
+          bobSide.scale.set(0.68, 1.25, 1.15);
+          hairGroup.add(bobSide);
+        }
+        const bobBack = new THREE.Mesh(new THREE.SphereGeometry(0.18, 16, 12), hairMat);
+        bobBack.position.set(0, 0.16, 0.08);
+        bobBack.scale.set(1.08, 1.0, 0.75);
+        const pin = new THREE.Mesh(new THREE.BoxGeometry(0.055, 0.018, 0.02), goldMat);
+        pin.position.set(-0.145, 0.27, -0.11);
+        pin.rotation.y = 0.5;
+        hairGroup.add(bobBack, pin);
+      } else {
+        const bun = new THREE.Mesh(new THREE.SphereGeometry(0.095, 14, 14), hairMat);
+        bun.position.set(0, 0.14, 0.21);
+        const bunRing = new THREE.Mesh(new THREE.TorusGeometry(0.078, 0.016, 8, 18), goldMat);
+        bunRing.position.set(0, 0.14, 0.18);
+        hairGroup.add(bun, bunRing);
+      }
+    }
+
+    if (accType === 'glasses') {
+      const glassMat = new THREE.MeshStandardMaterial({ color: 0xc89d48, metalness: 0.65, roughness: 0.25 });
+      for (const s of [-1, 1]) {
+        const rim = new THREE.Mesh(new THREE.TorusGeometry(0.042, 0.006, 8, 18), glassMat);
+        rim.position.set(s * 0.068, 0.22, -0.186);
+        headGroup.add(rim);
+      }
+      const bridge = new THREE.Mesh(new THREE.BoxGeometry(0.05, 0.008, 0.008), glassMat);
+      bridge.position.set(0, 0.225, -0.186);
+      headGroup.add(bridge);
+    } else if (accType === 'beret') {
+      const beretMat = new THREE.MeshStandardMaterial({ color: 0x7a2b32, roughness: 0.8 });
+      const beret = new THREE.Mesh(new THREE.SphereGeometry(0.21, 18, 12), beretMat);
+      beret.position.set(0.02, 0.39, 0.01);
+      beret.scale.set(1.08, 0.36, 1.05);
+      beret.rotation.z = -0.14;
+      headGroup.add(beret);
+    } else if (accType === 'crown') {
+      const wreath = new THREE.Mesh(new THREE.TorusGeometry(0.195, 0.018, 8, 24), goldMat);
+      wreath.rotation.x = Math.PI / 2 - 0.12;
+      wreath.position.set(0, 0.35, 0);
+      headGroup.add(wreath);
+    }
+
+    return {
+      root, pelvis, torso, headGroup, eyes,
+      legL: leftLeg.hip, shinL: leftLeg.shin,
+      legR: rightLeg.hip, shinR: rightLeg.shin,
+      armL: leftArm.arm, forearmL: leftArm.forearm,
+      armR: rightArm.arm, forearmR: rightArm.forearm,
+      skirtMesh, lapBible, handPropMesh, readBibleMesh
+    };
+  }
+
+  function createAvatar({ id, name, custom = {}, isMe = false, x = 0, z = 6.5 }) {
+    const group = new THREE.Group();
+    group.position.set(x, 0, z);
+    world.add(group);
+
+    const cfg = {
+      gender: custom.gender || 'M',
+      hairStyle: custom.hairStyle ?? 0,
+      hairColor: custom.hairColor || '#221a15',
+      outfitType: custom.outfitType || 'suit',
+      outfitColor: custom.outfitColor || '#2c3e58',
+      prop: custom.prop || 'none',
+      accessory: custom.accessory || 'none'
+    };
+    const rig = buildHumanRig(cfg, isMe);
+    group.add(rig.root);
+
+    const labelEl = document.createElement('div');
+    labelEl.className = 'avatar-label' + (isMe ? ' is-me' : '');
+    const genderBadge = cfg.gender === 'F' ? '👩' : '👨';
+    labelEl.innerHTML = `<span class="gender-span">${genderBadge}</span><span class="name-span">${name}</span>`;
+    labelsLayer.appendChild(labelEl);
+
+    const av = {
+      id, name, isMe, custom: cfg, group, rig, labelEl,
+      targetPos: new THREE.Vector3(x, 0, z),
+      state: 'standing',
+      bench: null,
+      emote: null,
+      emoteTimer: 0,
+      walkPhase: Math.random() * 10,
+      bubbleTimer: null
+    };
+
+    labelEl.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (isMe) {
+        triggerAvatarEmote(av, 'wave', '📜 말씀 앞에 머뭅니다');
+      } else {
+        showBubble(av, '🕊️ 샬롬, 말씀의 은혜를 나눕니다');
+        triggerAvatarEmote(myAvatar, 'wave', `${av.name.replace('🟢 ', '')} 님께 샬롬 🕊️`);
+        playScrollChime(3, true);
+      }
+    });
+
+    avatars.push(av);
+    return av;
+  }
+
+  function rebuildAvatarRig(av, newCustom) {
+    av.custom = { ...av.custom, ...newCustom };
+    if (av.rig && av.rig.root) av.group.remove(av.rig.root);
+    av.rig = buildHumanRig(av.custom, av.isMe);
+    av.group.add(av.rig.root);
+    const gSpan = av.labelEl.querySelector('.gender-span');
+    if (gSpan) gSpan.textContent = av.custom.gender === 'F' ? '👩' : '👨';
+  }
+
+  function showBubble(av, text, duration = 4000) {
+    const old = av.labelEl.querySelector('.avatar-bubble');
+    if (old) old.remove();
+    const b = document.createElement('div');
+    b.className = 'avatar-bubble';
+    b.textContent = text;
+    av.labelEl.appendChild(b);
+    if (av.bubbleTimer) clearTimeout(av.bubbleTimer);
+    av.bubbleTimer = setTimeout(() => b.remove(), duration);
+  }
+
+  const myAvatar = createAvatar({
+    id: 'me',
+    name: `${myCustom.name} (나)`,
+    custom: myCustom,
+    isMe: true,
+    x: 0,
+    z: 6.2
+  });
+
+  const scholars = [
+    { name: '베들레헴 순례자', benchIdx: 0, custom: { gender: 'F', hairStyle: 0, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#f0e7d8', prop: 'bible', accessory: 'none' } },
+    { name: '오래된 우물지기', benchIdx: 2, custom: { gender: 'M', hairStyle: 1, hairColor: '#c8ccd0', outfitType: 'robe', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
+    { name: '갈릴리 새벽별', benchIdx: 8, custom: { gender: 'F', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 우물 앞 무릎기도석
+    { name: '밧모섬의 서기관', benchIdx: 6, custom: { gender: 'M', hairStyle: 0, hairColor: '#111113', outfitType: 'suit', outfitColor: '#36393f', prop: 'candle', accessory: 'beret' } }
+  ];
+  scholars.forEach((sc, idx) => {
+    const b = benches[sc.benchIdx];
+    const npc = createAvatar({
+      id: `scholar_${idx}`,
+      name: sc.name,
+      custom: sc.custom,
+      isMe: false,
+      x: b.pos.x,
+      z: b.pos.z
+    });
+    b.occupiedBy = npc;
+    npc.bench = b;
+    npc.state = b.type === 'kneel' ? 'kneeling' : 'sitting';
+    npc.group.rotation.y = b.lookAngle;
+  });
+
+  /* ==============================================================
+   * 6. 벤치 착석(진짜 앉기), 무릎기도(진짜 무릎 꿇기), 액션 제어
+   * ============================================================== */
+  function syncDockPostureButtons() {
+    const isSit = myAvatar.state === 'sitting' || (myAvatar.state === 'walking_to_bench' && myAvatar.bench && myAvatar.bench.type === 'pew');
+    const isKneel = myAvatar.state === 'kneeling' || (myAvatar.state === 'walking_to_bench' && myAvatar.bench && myAvatar.bench.type === 'kneel');
+    const sitBtn = document.getElementById('dock-sit');
+    const kneelBtn = document.getElementById('dock-kneel');
+    if (sitBtn) {
+      sitBtn.classList.toggle('is-active', isSit);
+      document.getElementById('dock-sit-text').textContent = isSit ? '일어나기' : '벤치 착석';
+    }
+    if (kneelBtn) {
+      kneelBtn.classList.toggle('is-active', isKneel);
+      document.getElementById('dock-kneel-text').textContent = isKneel ? '일어나기' : '무릎 기도';
+    }
+  }
+
+  function unseat(av) {
+    if (av.bench) {
+      av.bench.occupiedBy = null;
+      av.bench = null;
+    }
+    av.state = 'standing';
+    av.emote = null;
+    if (av.isMe) syncDockPostureButtons();
+  }
+
+  function sitAtBench(av, bench) {
+    unseat(av);
+    av.bench = bench;
+    bench.occupiedBy = av;
+    av.targetPos.copy(bench.pos);
+    av.state = 'walking_to_bench';
+    if (av.isMe) {
+      syncDockPostureButtons();
+      document.getElementById('status-banner').textContent = bench.type === 'kneel'
+        ? `🧎 ${bench.label}로 나아가 두 무릎을 꿇고 기도합니다...`
+        : `🪑 ${bench.label}로 걸어가 벤치에 착석합니다...`;
+      broadcastPilgrimState();
+    }
+  }
+
+  function toggleMyBench() {
+    if (myAvatar.state === 'sitting' || (myAvatar.state === 'walking_to_bench' && myAvatar.bench && myAvatar.bench.type === 'pew')) {
+      unseat(myAvatar);
+      document.getElementById('status-banner').textContent = '벤치에서 일어났습니다. 회랑의 성화나 우물가를 자유롭게 걸어보세요.';
+      broadcastPilgrimState();
+      return;
+    }
+    let best = null, minD = Infinity;
+    for (const b of benches) {
+      if (b.type !== 'pew') continue;
+      if (b.occupiedBy && b.occupiedBy !== myAvatar) continue;
+      const d = myAvatar.group.position.distanceTo(b.pos);
+      if (d < minD) { minD = d; best = b; }
+    }
+    if (best) sitAtBench(myAvatar, best);
+  }
+
+  function toggleMyKneel() {
+    if (myAvatar.state === 'kneeling' || (myAvatar.state === 'walking_to_bench' && myAvatar.bench && myAvatar.bench.type === 'kneel')) {
+      unseat(myAvatar);
+      document.getElementById('status-banner').textContent = '무릎 기도를 마치고 자리에서 일어났습니다.';
+      broadcastPilgrimState();
+      return;
+    }
+    let bestK = null, minD = Infinity;
+    for (const b of benches) {
+      if (b.type !== 'kneel') continue;
+      if (b.occupiedBy && b.occupiedBy !== myAvatar) continue;
+      const d = myAvatar.group.position.distanceTo(b.pos);
+      if (d < minD) { minD = d; bestK = b; }
+    }
+    if (bestK && minD <= 5.0) {
+      sitAtBench(myAvatar, bestK);
+    } else {
+      unseat(myAvatar);
+      myAvatar.state = 'kneeling';
+      myAvatar.group.rotation.y = Math.atan2(myAvatar.group.position.x, myAvatar.group.position.z);
+      syncDockPostureButtons();
+      playScrollChime(3, false);
+      showBubble(myAvatar, '🧎 주님 앞에 무릎 꿇고 기도합니다');
+      document.getElementById('status-banner').textContent = '🧎 오래된 우물 앞에서 두 무릎을 꿇고 두 손을 모아 간절히 기도합니다.';
+      broadcastPilgrimState('kneel', '🧎 주님 앞에 무릎 꿇고 기도합니다');
+    }
+  }
+
+  const EMOTE_META = {
+    praise: { dur: 3.6, defaultMsg: '🙌 아멘! 할렐루야 찬양합니다!', banner: '🙌 두 손을 높이 들고 하나님을 찬양합니다.' },
+    wave:   { dur: 3.0, defaultMsg: '🕊️ 샬롬! 주님의 평안을 빕니다', banner: '🕊️ 함께 있는 순례자들에게 손을 흔들며 인사를 건넵니다.' },
+    amen:   { dur: 2.8, defaultMsg: '🙏 아멘, 마음 모아 함께 기도합니다', banner: '🙏 두 손을 가슴에 모으고 경건히 고개 숙여 아멘으로 화답합니다.' },
+    read:   { dur: 4.2, defaultMsg: '📖 주의 말씀은 내 발에 등이요 내 길에 빛이니이다', banner: '📖 성경책을 펴 들고 말씀을 깊이 묵상합니다.' }
+  };
+
+  function triggerAvatarEmote(av, emoteKey, customMsg = null) {
+    const meta = EMOTE_META[emoteKey] || EMOTE_META.wave;
+    const msg = customMsg || meta.defaultMsg;
+    av.emote = emoteKey;
+    av.emoteTimer = meta.dur;
+    showBubble(av, msg, meta.dur * 1000);
+    if (av.isMe) {
+      playScrollChime(emoteKey === 'praise' ? 5 : 4, emoteKey === 'praise');
+      document.getElementById('status-banner').textContent = meta.banner;
+      broadcastPilgrimState(emoteKey, msg);
+    }
+  }
+
+  /* ==============================================================
+   * 7. 원어 두루마리 휠 & 성화 도슨트 & 등잔 밑 UI 제어
+   * ============================================================== */
+  let currentOrigIdx = 0;
+  let origLitCount = 0;
+  let origCompleted = 0;
+
+  const origSelect = document.getElementById('orig-select');
+  ORIG_WORDS.forEach((w, i) => {
+    const opt = document.createElement('option');
+    opt.value = String(i);
+    opt.textContent = `${w.hebrew} · ${w.title.split(' · ')[0]}`;
+    origSelect.appendChild(opt);
+  });
+
+  function renderOrigScroll() {
+    const w = ORIG_WORDS[currentOrigIdx];
+    document.getElementById('orig-hebrew').textContent = w.hebrew;
+    document.getElementById('orig-title').textContent = w.title;
+    const box = document.getElementById('orig-verse-box');
+    box.innerHTML = '';
+    for (let i = 0; i < w.verse.length; i++) {
+      const sp = document.createElement('span');
+      sp.className = 'verse-char' + (i < origLitCount ? ' lit' : '');
+      sp.textContent = w.verse[i];
+      box.appendChild(sp);
+    }
+    const pct = Math.min(100, Math.round((origLitCount / w.verse.length) * 100));
+    document.getElementById('orig-progress').textContent = `묵상 진행 ${pct}% · 오늘 새긴 원어 ${origCompleted}회`;
+  }
+
+  function stepOrigScroll(step = 2) {
+    const w = ORIG_WORDS[currentOrigIdx];
+    origLitCount += step;
+    playScrollChime(origLitCount, false);
+    if (origLitCount >= w.verse.length) {
+      origCompleted++;
+      origLitCount = 0;
+      playScrollChime(5, true);
+      showBubble(myAvatar, `📜 ${w.hebrew} 원어 묵상 완료`);
+    }
+    renderOrigScroll();
+  }
+
+  origSelect.addEventListener('change', (e) => {
+    currentOrigIdx = Number(e.target.value);
+    origLitCount = 0;
+    renderOrigScroll();
+  });
+  document.getElementById('btn-step-orig').addEventListener('click', () => stepOrigScroll(2));
+  document.getElementById('scroll-wheel-card').addEventListener('wheel', (e) => {
+    e.preventDefault(); e.stopPropagation();
+    stepOrigScroll(2);
+  }, { passive: false });
+  renderOrigScroll();
+
+  // 등잔 밑 불 밝히기 (꿈디도 영구 방명록) 렌더링, 등록, 아멘 공감 및 클라우드 Retained 동기화
+  function escapeLampHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+  }
+
+  function publishLampGuestbookSnapshot() {
+    saveLocalLampGuestbook();
+    const payload = {
+      type: 'kk_guestbook_sync',
+      updatedAt: Date.now(),
+      items: WELL_LAMPS.slice(0, 80),
+      deletedIds: Array.from(deletedLampIds).slice(-120)
+    };
+    if (typeof kkBC !== 'undefined' && kkBC) {
+      kkBC.postMessage(payload);
+    }
+    if (typeof kkMqtt !== 'undefined' && kkMqtt && kkMqtt.connected) {
+      try {
+        kkMqtt.publish(KK_GUESTBOOK_TOPIC, JSON.stringify(payload), { qos: 1, retain: true });
+      } catch (_) {}
+    }
+  }
+
+  function mergeLampGuestbookPayload(remotePayload) {
+    if (!remotePayload || !Array.isArray(remotePayload.items)) return;
+    let changed = false;
+    if (Array.isArray(remotePayload.deletedIds)) {
+      remotePayload.deletedIds.forEach(id => {
+        if (id && !deletedLampIds.has(id)) {
+          deletedLampIds.add(id);
+          changed = true;
+        }
+      });
+    }
+    const map = new Map();
+    WELL_LAMPS.forEach(it => {
+      if (it && it.id && !deletedLampIds.has(it.id)) map.set(it.id, it);
+    });
+    remotePayload.items.forEach(rem => {
+      if (!rem || !rem.id || deletedLampIds.has(rem.id)) return;
+      const existing = map.get(rem.id);
+      if (!existing) {
+        map.set(rem.id, {
+          id: rem.id,
+          author: rem.author || '말씀 순례자',
+          authorKey: rem.authorKey || '',
+          text: rem.text || '',
+          amens: Number(rem.amens) || 1,
+          createdAt: Number(rem.createdAt) || Date.now()
+        });
+        changed = true;
+      } else {
+        const maxAmens = Math.max(Number(existing.amens) || 1, Number(rem.amens) || 1);
+        if (maxAmens !== existing.amens) {
+          existing.amens = maxAmens;
+          changed = true;
+        }
+      }
+    });
+    if (changed) {
+      WELL_LAMPS = Array.from(map.values())
+        .filter(it => !deletedLampIds.has(it.id))
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+        .slice(0, 100);
+      saveLocalLampGuestbook();
+      renderLampList();
+    }
+  }
+
+  function addLampEntryToGuestbook(lampText, authorName, isMine = true, customId = null) {
+    const cleanText = (lampText || '').trim() || '오래된 우물가에 조용히 말씀의 등잔불을 밝힙니다.';
+    const entryId = customId || ('lamp_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7));
+    if (deletedLampIds.has(entryId)) return null;
+    if (WELL_LAMPS.some(it => it.id === entryId)) return null;
+
+    const newItem = {
+      id: entryId,
+      author: authorName || myCustom.name || '말씀 순례자',
+      authorKey: isMine ? myLampAuthorKey : '',
+      text: cleanText,
+      amens: 1,
+      createdAt: Date.now()
+    };
+    WELL_LAMPS.unshift(newItem);
+    if (WELL_LAMPS.length > 100) WELL_LAMPS.length = 100;
+    renderLampList();
+    if (isMine) publishLampGuestbookSnapshot();
+    else saveLocalLampGuestbook();
+    return newItem;
+  }
+
+  function renderLampList() {
+    const list = document.getElementById('lamp-list');
+    if (!list) return;
+    list.innerHTML = '';
+    const cntEl = document.getElementById('lamp-count-num');
+    if (cntEl) cntEl.textContent = String(12 + WELL_LAMPS.length);
+
+    WELL_LAMPS.forEach(item => {
+      const d = document.createElement('div');
+      d.className = 'lamp-item';
+      const timeLabel = formatLampTimestamp(item.createdAt, item.time);
+      const isMine = (item.authorKey && item.authorKey === myLampAuthorKey);
+      d.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px; color:var(--gold-bright); margin-bottom:4px;">
+          <span>🏺 <strong>${escapeLampHtml(item.author)}</strong> · <span style="opacity:0.85;">${escapeLampHtml(timeLabel)}</span></span>
+          <span style="display:inline-flex; align-items:center; gap:4px;">
+            <button type="button" data-lamp-amen="${escapeLampHtml(item.id)}" style="background:rgba(212,175,55,0.16); border:1px solid rgba(212,175,55,0.45); color:#ffe69c; border-radius:999px; padding:2px 8px; font-size:11px; font-weight:700; cursor:pointer;">🙏 아멘 ${Number(item.amens) || 1}</button>
+            ${isMine ? `<button type="button" data-lamp-del="${escapeLampHtml(item.id)}" title="내 방명록 지우기" style="background:rgba(120,30,30,0.3); border:1px solid rgba(255,140,140,0.35); color:#ffb3b3; border-radius:999px; padding:2px 6px; font-size:10.5px; cursor:pointer;">✕</button>` : ''}
+          </span>
+        </div>
+        <div class="prayer-item-body" style="color:#FFF8EC; font-weight:500; word-break:keep-all; line-height:1.55;">${escapeLampHtml(item.text)}</div>
+      `;
+      list.appendChild(d);
+    });
+
+    list.querySelectorAll('[data-lamp-amen]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-lamp-amen');
+        const found = WELL_LAMPS.find(it => it.id === targetId);
+        if (!found) return;
+        found.amens = (Number(found.amens) || 1) + 1;
+        playScrollChime(3, true);
+        showBubble(myAvatar, '🙏 아멘으로 함께 공감합니다');
+        renderLampList();
+        publishLampGuestbookSnapshot();
+        broadcastPilgrimState('amen', `🙏 ${found.author} 님의 묵상에 아멘!`);
+      });
+    });
+
+    list.querySelectorAll('[data-lamp-del]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-lamp-del');
+        deletedLampIds.add(targetId);
+        WELL_LAMPS = WELL_LAMPS.filter(it => it.id !== targetId);
+        renderLampList();
+        publishLampGuestbookSnapshot();
+        document.getElementById('status-banner').textContent = '🏺 내가 남긴 방명록 글을 정리했습니다.';
+      });
+    });
+  }
+  renderLampList();
+  setInterval(renderLampList, 30000);
+
+  document.getElementById('btn-light-lamp').addEventListener('click', () => {
+    const inp = document.getElementById('lamp-input');
+    const txt = inp.value.trim() || '오래된 우물가에 조용히 말씀의 등잔불을 밝힙니다.';
+    inp.value = '';
+    unseat(myAvatar);
+    myAvatar.targetPos.set(0, 0, 2.55);
+    myAvatar.state = 'walking_to_well';
+    myAvatar.pendingLampText = txt;
+    document.getElementById('status-banner').textContent = '🏺 중앙 ‘오래된 우물’ 난간으로 걸어가 토기 등잔에 불을 밝힙니다...';
+  });
+
+  const btnDirectLamp = document.getElementById('btn-direct-lamp');
+  if (btnDirectLamp) {
+    btnDirectLamp.addEventListener('click', () => {
+      const inp = document.getElementById('lamp-input');
+      const txt = inp.value.trim() || '오래된 우물가에 조용히 말씀의 등잔불을 밝힙니다.';
+      inp.value = '';
+      playScrollChime(5, true);
+      const created = addLampEntryToGuestbook(txt, myCustom.name, true);
+      showBubble(myAvatar, '🏺 등잔 밑 영구 방명록에 글을 남겼습니다');
+      document.getElementById('status-banner').textContent = '🏺 내 묵상과 방문 인사가 꿈디도 영구 방명록에 기록되었습니다.';
+      if (created) broadcastPilgrimState('lamp', created.text, created.id);
+    });
+  }
+
+  document.getElementById('lamp-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (btnDirectLamp) btnDirectLamp.click();
+    }
+  });
+
+  // 8대 성화 도슨트 전환
+  let currentArtIdx = 0;
+  function updateArtModal(idx) {
+    currentArtIdx = (idx + GALLERY_ARTWORKS.length) % GALLERY_ARTWORKS.length;
+    const art = GALLERY_ARTWORKS[currentArtIdx];
+    document.getElementById('art-img').src = art.img;
+    document.getElementById('art-title').textContent = art.title;
+    document.getElementById('art-ref').textContent = art.ref;
+    document.getElementById('art-desc').textContent = art.desc;
+  }
+  updateArtModal(0);
+
+  document.getElementById('btn-prev-art').addEventListener('click', () => updateArtModal(currentArtIdx - 1));
+  document.getElementById('btn-next-art').addEventListener('click', () => updateArtModal(currentArtIdx + 1));
+  document.getElementById('btn-walk-art').addEventListener('click', () => {
+    const art = GALLERY_ARTWORKS[currentArtIdx];
+    unseat(myAvatar);
+    myAvatar.targetPos.copy(art.standPos);
+    myAvatar.state = 'walking';
+    document.getElementById('status-banner').textContent = `🖼️ 「${art.title}」 성화 앞으로 걸어가 감상합니다.`;
+  });
+
+  // 성화 초고해상도 전체화면 줌(Zoom Lightbox) 제어
+  let kkZoomScale = 1.0, kkPanX = 0, kkPanY = 0;
+  const kkZoomImg = document.getElementById('kk-zoom-img');
+  const kkScaleLabel = document.getElementById('kk-scale-label');
+  function applyKkZoomTransform() {
+    kkZoomImg.style.transform = `translate(${kkPanX}px, ${kkPanY}px) scale(${kkZoomScale})`;
+    kkScaleLabel.textContent = `${Math.round(kkZoomScale * 100)}%`;
+  }
+  function openKkArtZoom(idx) {
+    const art = GALLERY_ARTWORKS[(idx + GALLERY_ARTWORKS.length) % GALLERY_ARTWORKS.length];
+    document.getElementById('kk-zoom-title').textContent = art.title;
+    document.getElementById('kk-zoom-ref').textContent = `(${art.ref})`;
+    document.getElementById('kk-zoom-desc').textContent = art.desc;
+    kkZoomImg.src = art.img;
+    kkZoomScale = 1.18; kkPanX = 0; kkPanY = 0;
+    applyKkZoomTransform();
+    document.getElementById('modal-kk-art-zoom').classList.add('is-open');
+  }
+  document.getElementById('btn-open-art-zoom').addEventListener('click', () => openKkArtZoom(currentArtIdx));
+  document.getElementById('art-img').addEventListener('click', () => openKkArtZoom(currentArtIdx));
+  document.getElementById('btn-close-kk-zoom').addEventListener('click', () => {
+    document.getElementById('modal-kk-art-zoom').classList.remove('is-open');
+  });
+  document.getElementById('btn-kk-scale-up').addEventListener('click', () => {
+    kkZoomScale = Math.min(3.5, kkZoomScale + 0.35);
+    applyKkZoomTransform();
+  });
+  document.getElementById('btn-kk-scale-down').addEventListener('click', () => {
+    kkZoomScale = Math.max(0.6, kkZoomScale - 0.35);
+    if (kkZoomScale <= 1.0) { kkPanX = 0; kkPanY = 0; }
+    applyKkZoomTransform();
+  });
+  document.getElementById('btn-kk-scale-reset').addEventListener('click', () => {
+    kkZoomScale = 1.0; kkPanX = 0; kkPanY = 0;
+    applyKkZoomTransform();
+  });
+  const kkZoomViewport = document.getElementById('kk-zoom-viewport');
+  let kkZoomDragging = false, kkZoomPrev = { x: 0, y: 0 };
+  kkZoomViewport.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    kkZoomScale = Math.max(0.6, Math.min(3.5, kkZoomScale - e.deltaY * 0.0018));
+    applyKkZoomTransform();
+  }, { passive: false });
+  kkZoomViewport.addEventListener('pointerdown', (e) => {
+    kkZoomDragging = true;
+    kkZoomPrev = { x: e.clientX - kkPanX, y: e.clientY - kkPanY };
+    kkZoomViewport.style.cursor = 'grabbing';
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!kkZoomDragging) return;
+    kkPanX = e.clientX - kkZoomPrev.x;
+    kkPanY = e.clientY - kkZoomPrev.y;
+    applyKkZoomTransform();
+  });
+  window.addEventListener('pointerup', () => {
+    if (kkZoomDragging) {
+      kkZoomDragging = false;
+      kkZoomViewport.style.cursor = 'grab';
+    }
+  });
+
+  // 조금 긴 성경이야기 & 8개국어 매일말씀 오디오 스위치 및 구간 이동(Seek)
+  const kkSeek = document.getElementById('kk-word-seek');
+  const kkCurTime = document.getElementById('kk-cur-time');
+  const kkDurTime = document.getElementById('kk-dur-time');
+  const btnKkLongStory = document.getElementById('btn-kk-long-story');
+
+  function fmtKkTime(sec) {
+    if (!isFinite(sec) || sec < 0) return '00:00';
+    const m = Math.floor(sec / 60);
+    const s = Math.floor(sec % 60);
+    return String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetSrc = btn.getAttribute('data-src');
+      if (!targetSrc) return;
+      const isSameTrack = voiceWord.getAttribute('src') === targetSrc;
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      if (isSameTrack && !voiceWord.paused) {
+        voiceWord.pause();
+        bgmPiano.volume = Number(document.getElementById('vol-piano').value) / 100;
+        document.getElementById('btn-play-word').textContent = '▶ 선택한 말씀 듣기';
+        if (btn === btnKkLongStory) btnKkLongStory.textContent = '▶ 조금 긴 성경이야기 듣기';
+        return;
+      }
+
+      if (!isSameTrack) {
+        voiceWord.setAttribute('src', targetSrc);
+        voiceWord.src = targetSrc;
+        kkSeek.value = 0;
+        kkCurTime.textContent = '00:00';
+        kkDurTime.textContent = targetSrc.includes('sermon_20261101') ? '29:35' : '02:30';
+      }
+      isMuted = false;
+      bgmPiano.volume = 0.22;
+      voiceWord.volume = Number(document.getElementById('vol-word').value) / 100;
+      voiceWord.play().catch(() => {});
+      document.getElementById('btn-play-word').textContent = '⏸ 말씀 일시정지';
+      if (btn === btnKkLongStory) {
+        btnKkLongStory.textContent = '⏸ 조금 긴 성경이야기 일시정지';
+        document.getElementById('status-banner').textContent = '📖 [조금 긴 성경이야기] 「책을 들고 나온 사람들 · 사도행전 19:1–20」 말씀을 우물가에서 경청하고 있습니다.';
+      } else {
+        btnKkLongStory.textContent = '▶ 조금 긴 성경이야기 듣기';
+        document.getElementById('status-banner').textContent = `🌍 ${btn.textContent} 매일말씀을 우물가에서 경청하고 있습니다.`;
+      }
+    });
+  });
+
+  document.getElementById('btn-play-word').addEventListener('click', () => {
+    if (voiceWord.paused) {
+      isMuted = false;
+      bgmPiano.volume = 0.22;
+      voiceWord.play().catch(() => {});
+      document.getElementById('btn-play-word').textContent = '⏸ 말씀 일시정지';
+      if ((voiceWord.getAttribute('src') || '').includes('sermon_20261101')) {
+        btnKkLongStory.textContent = '⏸ 조금 긴 성경이야기 일시정지';
+      }
+    } else {
+      voiceWord.pause();
+      bgmPiano.volume = Number(document.getElementById('vol-piano').value) / 100;
+      document.getElementById('btn-play-word').textContent = '▶ 선택한 말씀 듣기';
+      btnKkLongStory.textContent = '▶ 조금 긴 성경이야기 듣기';
+    }
+  });
+
+  let isKkSeeking = false;
+  kkSeek.addEventListener('mousedown', () => { isKkSeeking = true; });
+  kkSeek.addEventListener('touchstart', () => { isKkSeeking = true; }, { passive: true });
+  kkSeek.addEventListener('input', () => {
+    const dur = (isFinite(voiceWord.duration) && voiceWord.duration > 0)
+      ? voiceWord.duration
+      : ((voiceWord.getAttribute('src') || '').includes('sermon_20261101') ? 1775 : 150);
+    kkCurTime.textContent = fmtKkTime((Number(kkSeek.value) / 1000) * dur);
+  });
+  kkSeek.addEventListener('change', () => {
+    const dur = (isFinite(voiceWord.duration) && voiceWord.duration > 0)
+      ? voiceWord.duration
+      : ((voiceWord.getAttribute('src') || '').includes('sermon_20261101') ? 1775 : 150);
+    voiceWord.currentTime = (Number(kkSeek.value) / 1000) * dur;
+    isKkSeeking = false;
+  });
+
+  voiceWord.addEventListener('timeupdate', () => {
+    if (isKkSeeking) return;
+    const dur = (isFinite(voiceWord.duration) && voiceWord.duration > 0)
+      ? voiceWord.duration
+      : ((voiceWord.getAttribute('src') || '').includes('sermon_20261101') ? 1775 : 150);
+    kkCurTime.textContent = fmtKkTime(voiceWord.currentTime);
+    kkDurTime.textContent = fmtKkTime(dur);
+    kkSeek.value = Math.min(1000, Math.round((voiceWord.currentTime / dur) * 1000));
+  });
+
+  document.getElementById('btn-kk-rew').addEventListener('click', () => {
+    voiceWord.currentTime = Math.max(0, (voiceWord.currentTime || 0) - 15);
+  });
+  document.getElementById('btn-kk-fwd').addEventListener('click', () => {
+    const dur = (isFinite(voiceWord.duration) && voiceWord.duration > 0) ? voiceWord.duration : 1775;
+    voiceWord.currentTime = Math.min(dur, (voiceWord.currentTime || 0) + 15);
+  });
+
+  document.getElementById('vol-nature').addEventListener('input', (e) => {
+    if (waterGain && !isMuted) waterGain.gain.value = Number(e.target.value) / 300;
+  });
+  document.getElementById('vol-piano').addEventListener('input', (e) => {
+    bgmPiano.volume = Number(e.target.value) / 100;
+  });
+  document.getElementById('vol-word').addEventListener('input', (e) => {
+    voiceWord.volume = Number(e.target.value) / 100;
+  });
+
+  /* ==============================================================
+   * 8. 독(Dock) 패널, 아바타 꾸미기, 실시간 채팅 & 마우스/카메라 조작
+   * ============================================================== */
+  function syncCustomizerUI() {
+    const g = myCustom.gender || 'M';
+    const bootM = document.getElementById('boot-gender-m');
+    const bootF = document.getElementById('boot-gender-f');
+    if (bootM) bootM.classList.toggle('active', g === 'M');
+    if (bootF) bootF.classList.toggle('active', g === 'F');
+
+    const bootName = document.getElementById('boot-name-input');
+    if (bootName && document.activeElement !== bootName) bootName.value = myCustom.name;
+    const custName = document.getElementById('cust-name-input');
+    if (custName && document.activeElement !== custName) custName.value = myCustom.name;
+    const roomNameInput = document.getElementById('kk-name-input');
+    if (roomNameInput && document.activeElement !== roomNameInput) roomNameInput.value = myCustom.name;
+
+    const hairLabels = g === 'F'
+      ? ['단정한 긴머리', '우아한 단발컷', '정갈한 올림머리']
+      : ['단정 숏컷', '부드러운 가르마', '깔끔 댄디컷'];
+    hairLabels.forEach((lbl, idx) => {
+      const el = document.getElementById(`hair-btn-${idx}`);
+      if (el) el.textContent = lbl;
+    });
+
+    document.querySelectorAll('[data-cust-gender]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-gender') === g);
+    });
+    document.querySelectorAll('[data-cust-hair]').forEach(btn => {
+      btn.classList.toggle('active', Number(btn.getAttribute('data-cust-hair')) === Number(myCustom.hairStyle));
+    });
+    document.querySelectorAll('[data-hair-color]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-hair-color').toLowerCase() === (myCustom.hairColor || '').toLowerCase());
+    });
+    document.querySelectorAll('[data-cust-outfit]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-outfit') === myCustom.outfitType);
+    });
+    document.querySelectorAll('[data-outfit-color]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-outfit-color').toLowerCase() === (myCustom.outfitColor || '').toLowerCase());
+    });
+    document.querySelectorAll('[data-cust-prop]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-prop') === myCustom.prop);
+    });
+    document.querySelectorAll('[data-cust-acc]').forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-cust-acc') === myCustom.accessory);
+    });
+  }
+
+  function applyMyCustomChange(patch, bannerMsg = null) {
+    Object.assign(myCustom, patch);
+    saveMyCustom();
+    myAvatar.name = `${myCustom.name} (나)`;
+    const nSpan = myAvatar.labelEl.querySelector('.name-span');
+    if (nSpan) nSpan.textContent = myAvatar.name;
+    rebuildAvatarRig(myAvatar, myCustom);
+    syncCustomizerUI();
+    broadcastPilgrimState();
+    if (bannerMsg) document.getElementById('status-banner').textContent = bannerMsg;
+  }
+
+  syncCustomizerUI();
+
+  document.querySelectorAll('[data-boot-gender]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.getAttribute('data-boot-gender');
+      const nextColor = (g === 'F' && myCustom.outfitColor === '#2c3e58')
+        ? '#f0e7d8'
+        : (g === 'M' && myCustom.outfitColor === '#f0e7d8' ? '#2c3e58' : myCustom.outfitColor);
+      applyMyCustomChange({ gender: g, outfitColor: nextColor });
+    });
+  });
+
+  const bootNameInput = document.getElementById('boot-name-input');
+  if (bootNameInput) {
+    bootNameInput.addEventListener('change', () => {
+      const v = bootNameInput.value.trim();
+      if (v) applyMyCustomChange({ name: v });
+    });
+  }
+
+  document.querySelectorAll('[data-cust-gender]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const g = btn.getAttribute('data-cust-gender');
+      applyMyCustomChange(
+        { gender: g },
+        g === 'F' ? '👩 여성(자매) 아바타 체형과 헤어스타일로 변경했습니다.' : '👨 남성(형제) 아바타 체형과 헤어스타일로 변경했습니다.'
+      );
+      playScrollChime(2, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-hair]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ hairStyle: Number(btn.getAttribute('data-cust-hair')) }, '💇 헤어스타일을 단정하게 정돈했습니다.');
+      playScrollChime(1, false);
+    });
+  });
+  document.querySelectorAll('[data-hair-color]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ hairColor: btn.getAttribute('data-hair-color') });
+      playScrollChime(1, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-outfit]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ outfitType: btn.getAttribute('data-cust-outfit') }, '👔 묵상 복장 스타일을 변경했습니다.');
+      playScrollChime(3, false);
+    });
+  });
+  document.querySelectorAll('[data-outfit-color]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ outfitColor: btn.getAttribute('data-outfit-color') });
+      playScrollChime(2, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-prop]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ prop: btn.getAttribute('data-cust-prop') }, '🤲 손에 드는 소품을 변경했습니다.');
+      playScrollChime(4, false);
+    });
+  });
+  document.querySelectorAll('[data-cust-acc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      applyMyCustomChange({ accessory: btn.getAttribute('data-cust-acc') }, '✨ 안경·머리 장식을 변경했습니다.');
+      playScrollChime(4, false);
+    });
+  });
+  document.getElementById('btn-cust-save-name').addEventListener('click', () => {
+    const val = document.getElementById('cust-name-input').value.trim();
+    if (val) {
+      applyMyCustomChange({ name: val }, `🕊️ 순례자 호칭을 「${val}」(으)로 변경했습니다.`);
+      showBubble(myAvatar, `🕊️ ${val}`);
+    }
+  });
+
+  function togglePanel(panelId, dockId) {
+    const panels = ['panel-avatar', 'panel-scroll', 'panel-lamp', 'panel-gallery', 'panel-audio'];
+    const docks = ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio'];
+    const target = document.getElementById(panelId);
+    if (!target) return;
+    const isOpen = target.classList.contains('is-open');
+    panels.forEach(p => {
+      const el = document.getElementById(p);
+      if (el) el.classList.remove('is-open');
+    });
+    docks.forEach(d => {
+      const el = document.getElementById(d);
+      if (el) el.classList.remove('is-active');
+    });
+    if (!isOpen) {
+      target.classList.add('is-open');
+      if (dockId && document.getElementById(dockId)) document.getElementById(dockId).classList.add('is-active');
+    }
+  }
+
+  document.getElementById('dock-sit').addEventListener('click', toggleMyBench);
+  document.getElementById('dock-kneel').addEventListener('click', toggleMyKneel);
+  document.getElementById('dock-avatar').addEventListener('click', () => togglePanel('panel-avatar', 'dock-avatar'));
+  document.getElementById('btn-top-avatar').addEventListener('click', () => togglePanel('panel-avatar', 'dock-avatar'));
+  document.getElementById('dock-scroll').addEventListener('click', () => togglePanel('panel-scroll', 'dock-scroll'));
+  document.getElementById('dock-lamp').addEventListener('click', () => togglePanel('panel-lamp', 'dock-lamp'));
+  document.getElementById('dock-gallery').addEventListener('click', () => togglePanel('panel-gallery', 'dock-gallery'));
+  document.getElementById('dock-audio').addEventListener('click', () => togglePanel('panel-audio', 'dock-audio'));
+
+  document.querySelectorAll('[data-close]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.getAttribute('data-close'));
+      if (el) el.classList.remove('is-open');
+      ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio'].forEach(d => {
+        const dEl = document.getElementById(d);
+        if (dEl) dEl.classList.remove('is-active');
+      });
+    });
+  });
+
+  const bootEl = document.getElementById('sanctuary-boot');
+  function enterSanctuary(withAudio) {
+    if (bootNameInput && bootNameInput.value.trim()) {
+      applyMyCustomChange({ name: bootNameInput.value.trim() });
+    }
+    bootEl.classList.add('is-hidden');
+    setAudioActive(withAudio);
+  }
+  document.getElementById('btn-enter-sound').addEventListener('click', () => enterSanctuary(true));
+  document.getElementById('btn-enter-mute').addEventListener('click', () => enterSanctuary(false));
+  document.getElementById('btn-mute-toggle').addEventListener('click', () => {
+    setAudioActive(isMuted);
+  });
+
+  /* ==============================================================
+   * 8-A. 좌측 하단 코루라이브 스타일 실시간 말씀·기도 나눔 채팅 & 액션 바
+   * ============================================================== */
+  const chatStackBox = document.getElementById('chapel-chat-stack');
+  const chatlogBox = document.getElementById('chapel-chatlog');
+  const chatListEl = document.getElementById('chapel-chat-list');
+  const chatFormEl = document.getElementById('chapel-chat-form');
+  const chatInputEl = document.getElementById('chapel-chat-input');
+  const btnChatToggle = document.getElementById('btn-chatlog-toggle');
+  const chatToggleLabel = document.getElementById('chatlog-toggle-label');
+  const btnBlockPanel = document.getElementById('btn-chatlog-block-panel');
+  const blockedCountNum = document.getElementById('blocked-count-num');
+  const blockedUsersBox = document.getElementById('blocked-users-box');
+  const blockedUsers = new Map();
+
+  btnChatToggle.addEventListener('click', () => {
+    const collapsed = chatlogBox.classList.toggle('is-collapsed');
+    chatlogBox.classList.toggle('is-folded', collapsed);
+    if (chatStackBox) {
+      chatStackBox.classList.toggle('is-collapsed', collapsed);
+      chatStackBox.classList.toggle('chat-is-collapsed', collapsed);
+    }
+    chatToggleLabel.textContent = collapsed
+      ? '💬 실시간 말씀·기도 나눔 & 포즈 (열기 ▲)'
+      : '💬 실시간 말씀·기도 나눔 & 포즈 (접기 ▼)';
+    if (!collapsed && chatListEl) {
+      setTimeout(() => { chatListEl.scrollTop = chatListEl.scrollHeight; }, 30);
+    }
+  });
+
+  btnBlockPanel.addEventListener('click', () => {
+    blockedUsersBox.classList.toggle('is-open');
+  });
+
+  function renderBlockedUsers() {
+    blockedCountNum.textContent = String(blockedUsers.size);
+    btnBlockPanel.hidden = blockedUsers.size === 0;
+    if (blockedUsers.size === 0) {
+      blockedUsersBox.classList.remove('is-open');
+      blockedUsersBox.innerHTML = '';
+      return;
+    }
+    blockedUsersBox.innerHTML = '';
+    blockedUsers.forEach((uName, sid) => {
+      const row = document.createElement('div');
+      row.className = 'blocked-item';
+      row.innerHTML = `<span>🚫 ${uName}</span><button type="button" data-unblock="${sid}">차단 해제</button>`;
+      blockedUsersBox.appendChild(row);
+    });
+    blockedUsersBox.querySelectorAll('[data-unblock]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        blockedUsers.delete(btn.getAttribute('data-unblock'));
+        renderBlockedUsers();
+      });
+    });
+  }
+
+  function appendChatMessage({ sid = null, name, text, isSystem = false, isMe = false }) {
+    if (sid && blockedUsers.has(sid)) return;
+    const now = new Date();
+    const hh = String(now.getHours()).padStart(2, '0');
+    const mm = String(now.getMinutes()).padStart(2, '0');
+
+    const li = document.createElement('li');
+    li.className = 'chapel-chat-item' + (isSystem ? ' is-system' : '');
+    if (sid) li.setAttribute('data-chat-sid', sid);
+
+    const timeSpan = document.createElement('span');
+    timeSpan.className = 'chat-time';
+    timeSpan.textContent = `${hh}:${mm}`;
+    li.appendChild(timeSpan);
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'chat-sender' + (isMe ? ' is-me' : '');
+    nameSpan.textContent = `${name}:`;
+    li.appendChild(nameSpan);
+
+    const textSpan = document.createElement('span');
+    textSpan.textContent = text;
+    li.appendChild(textSpan);
+
+    if (!isMe && !isSystem && sid) {
+      const blkBtn = document.createElement('button');
+      blkBtn.type = 'button';
+      blkBtn.className = 'chat-block-btn';
+      blkBtn.textContent = '차단';
+      blkBtn.addEventListener('click', () => {
+        blockedUsers.set(sid, name);
+        chatListEl.querySelectorAll(`[data-chat-sid="${sid}"]`).forEach(el => el.remove());
+        renderBlockedUsers();
+      });
+      li.appendChild(blkBtn);
+    }
+
+    chatListEl.appendChild(li);
+    while (chatListEl.children.length > 50) chatListEl.removeChild(chatListEl.firstChild);
+    chatListEl.scrollTop = chatListEl.scrollHeight;
+  }
+
+  appendChatMessage({
+    name: '묵상원 안내',
+    text: '우물가 벤치를 누르면 앉고, 우물 앞 붉은 기도방석이나 [무릎기도]를 누르면 무릎 꿇고 기도합니다. (/성경책 /등불 /가방 입력 가능)',
+    isSystem: true
+  });
+  appendChatMessage({
+    sid: 'scholar_0',
+    name: '베들레헴 순례자',
+    text: '평안을 빕니다 🕊️ 오래된 우물 곁에서 말씀의 깊은 은혜를 함께 나누어요.'
+  });
+  appendChatMessage({
+    sid: 'scholar_2',
+    name: '갈릴리 새벽별',
+    text: '우물 앞 방석에 두 무릎을 꿇고 함께 중보하며 기도하고 있습니다 🙏'
+  });
+
+  document.querySelectorAll('[data-emote-btn]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const act = btn.getAttribute('data-emote-btn');
+      if (act === 'sit') toggleMyBench();
+      else if (act === 'kneel') toggleMyKneel();
+      else triggerAvatarEmote(myAvatar, act);
+    });
+  });
+
+  /* ==============================================================
+   * 8-B. 꿈디도 묵상원 회랑 서버 모달 & 실시간 멀티플레이 동기화
+   * ============================================================== */
+  const mySid = 'kk_' + Math.random().toString(36).slice(2, 10);
+  let currentCloisterRoom = '제1회랑 · 베들레헴 우물';
+  let showScholars = true;
+  const remotePilgrims = new Map();
+
+  chatFormEl.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const raw = chatInputEl.value.trim();
+    if (!raw) return;
+    chatInputEl.value = '';
+
+    if (raw === '/성경책') { applyMyCustomChange({ prop: 'bible' }, '📖 손에 성경책을 들었습니다.'); return; }
+    if (raw === '/등불' || raw === '/촛불') { applyMyCustomChange({ prop: 'candle' }, '🕯️ 손에 기도의 등불을 들었습니다.'); return; }
+    if (raw === '/종려가지') { applyMyCustomChange({ prop: 'palm' }, '🌿 손에 종려가지를 들었습니다.'); return; }
+    if (raw === '/가방') { applyMyCustomChange({ prop: 'bag' }, '👜 손에 성경가방을 들었습니다.'); return; }
+    if (raw === '/빈손') { applyMyCustomChange({ prop: 'none' }, '🤲 손 소품을 내려놓았습니다.'); return; }
+    if (raw === '/무릎기도') { toggleMyKneel(); return; }
+    if (raw === '/착석') { toggleMyBench(); return; }
+
+    showBubble(myAvatar, raw, 5200);
+    appendChatMessage({ sid: mySid, name: myCustom.name, text: raw, isMe: true });
+    playScrollChime(2, false);
+    broadcastPilgrimState('chat', raw);
+
+    if (showScholars) {
+      const npcs = avatars.filter(a => a.id.startsWith('scholar_') && a.group.visible);
+      if (npcs.length > 0 && /샬롬|평안|아멘|기도|감사|할렐루야|은혜|축복|말씀|반갑/.test(raw)) {
+        setTimeout(() => {
+          const responder = npcs[Math.floor(Math.random() * npcs.length)];
+          const reply = /샬롬|평안|반갑/.test(raw)
+            ? `🕊️ ${myCustom.name} 님, 말씀의 우물 곁에 오신 것을 환영합니다!`
+            : '🙏 아멘, 말씀 안에서 마음 모아 함께 기도합니다.';
+          showBubble(responder, reply, 4800);
+          responder.emote = /샬롬|평안|반갑/.test(raw) ? 'wave' : 'amen';
+          responder.emoteTimer = 3.0;
+          appendChatMessage({ sid: responder.id, name: responder.name, text: reply });
+        }, 1100);
+      }
+    }
+  });
+
+  function updateCloisterCounts() {
+    let realCnt = 1;
+    remotePilgrims.forEach(p => { if (p.room === currentCloisterRoom) realCnt++; });
+    const npcCnt = showScholars ? scholars.length : 0;
+    document.getElementById('cloister-room-count').textContent = String(realCnt + npcCnt);
+    document.getElementById('kk-real-count').textContent = String(realCnt);
+    document.getElementById('kk-npc-count').textContent = String(npcCnt);
+  }
+
+  document.getElementById('btn-cloister-room').addEventListener('click', () => {
+    document.getElementById('modal-cloister-rooms').classList.add('is-open');
+  });
+  document.getElementById('btn-close-cloister-modal').addEventListener('click', () => {
+    document.getElementById('modal-cloister-rooms').classList.remove('is-open');
+  });
+
+  // 발전기금 기부 모달 열기/닫기
+  const offBtn = document.getElementById('btn-offering-modal');
+  if (offBtn) {
+    offBtn.addEventListener('click', () => {
+      document.getElementById('modal-offering').classList.add('is-open');
+    });
+  }
+  document.querySelectorAll('[data-close-modal]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetId = btn.getAttribute('data-close-modal');
+      const targetModal = document.getElementById(targetId);
+      if (targetModal) targetModal.classList.remove('is-open');
+    });
+  });
+  const offAmen = document.getElementById('btn-offering-amen');
+  if (offAmen) {
+    offAmen.addEventListener('click', () => {
+      document.getElementById('modal-offering').classList.remove('is-open');
+      showBubble(myAvatar, '💛 주님께 감사의 마음을 드립니다');
+      document.getElementById('status-banner').textContent = '💛 드려진 기도와 감사의 마음을 하나님께서 기쁘게 받으십니다.';
+    });
+  }
+
+  window.copyOfferingAccount = function(text, btn) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = '✅ 복사됨!';
+        btn.style.background = '#64E3A1';
+        btn.style.color = '#0B1D12';
+        setTimeout(() => {
+          btn.textContent = orig;
+          btn.style.background = 'linear-gradient(135deg,#e5c878,#b88b38)';
+          btn.style.color = '#140F09';
+        }, 2000);
+      });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      const orig = btn.textContent;
+      btn.textContent = '✅ 복사됨!';
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    }
+  };
+
+  document.getElementById('chk-kk-npc').addEventListener('change', (e) => {
+    showScholars = e.target.checked;
+    avatars.forEach(av => {
+      if (av.id.startsWith('scholar_')) {
+        av.group.visible = showScholars;
+        av.labelEl.style.visibility = showScholars ? 'visible' : 'hidden';
+      }
+    });
+    updateCloisterCounts();
+    document.getElementById('status-banner').textContent = showScholars
+      ? '🏺 묵상원 지킴이(AI 순례자)들과 함께 오래된 우물 곁에 머뭅니다.'
+      : '🟢 오직 실제 실시간 접속 순례자만 화면에 표시합니다.';
+  });
+
+  document.getElementById('btn-kk-save-name').addEventListener('click', () => {
+    const val = document.getElementById('kk-name-input').value.trim();
+    if (val) {
+      applyMyCustomChange({ name: val });
+      showBubble(myAvatar, `🕊️ ${val}`);
+      broadcastPilgrimState('wave', `🕊️ ${val}`);
+    }
+  });
+
+  document.querySelectorAll('#modal-cloister-rooms .room-item').forEach(item => {
+    item.addEventListener('click', () => {
+      document.querySelectorAll('#modal-cloister-rooms .room-item').forEach(r => r.classList.remove('active'));
+      item.classList.add('active');
+      currentCloisterRoom = item.getAttribute('data-room');
+      document.getElementById('cloister-room-name').textContent = currentCloisterRoom;
+      document.getElementById('modal-cloister-rooms').classList.remove('is-open');
+      broadcastPilgrimState();
+      updateCloisterCounts();
+      document.getElementById('status-banner').textContent = `🏛️ 「${currentCloisterRoom}」로 조용히 자리를 옮겼습니다.`;
+    });
+  });
+
+  function handlePilgrimPacket(data) {
+    if (!data || data.sid === mySid) return;
+    let peer = remotePilgrims.get(data.sid);
+    if (data.type === 'leave') {
+      if (peer) {
+        unseat(peer.avatar);
+        world.remove(peer.avatar.group);
+        peer.avatar.labelEl.remove();
+        const idx = avatars.indexOf(peer.avatar);
+        if (idx !== -1) avatars.splice(idx, 1);
+        remotePilgrims.delete(data.sid);
+        updateCloisterCounts();
+      }
+      return;
+    }
+    const customSig = data.custom ? JSON.stringify(data.custom) : '';
+    if (!peer) {
+      const av = createAvatar({
+        id: data.sid,
+        name: `🟢 ${data.name || '온라인 순례자'}`,
+        custom: data.custom || {},
+        isMe: false,
+        x: data.x || 0,
+        z: data.z || 6.0
+      });
+      peer = { avatar: av, lastSeen: Date.now(), room: data.room || '제1회랑 · 베들레헴 우물', customSig };
+      remotePilgrims.set(data.sid, peer);
+    } else if (data.custom && peer.customSig !== customSig) {
+      peer.customSig = customSig;
+      rebuildAvatarRig(peer.avatar, data.custom);
+    }
+    peer.lastSeen = Date.now();
+    peer.room = data.room || '제1회랑 · 베들레헴 우물';
+    const av = peer.avatar;
+    av.name = `🟢 ${data.name || '온라인 순례자'}`;
+    av.labelEl.querySelector('.name-span').textContent = av.name;
+
+    const sameRoom = (peer.room === currentCloisterRoom);
+    av.group.visible = sameRoom;
+    av.labelEl.style.visibility = sameRoom ? 'visible' : 'hidden';
+    if (sameRoom) {
+      if (data.benchId) {
+        const bObj = benches.find(b => b.id === data.benchId);
+        if (bObj && av.bench !== bObj) sitAtBench(av, bObj);
+      } else {
+        if (av.bench) unseat(av);
+        av.targetPos.set(data.x || 0, 0, data.z || 6.0);
+        if (av.group.position.distanceTo(av.targetPos) > 0.12) av.state = 'walking';
+        else if (data.state === 'kneeling') av.state = 'kneeling';
+      }
+
+      if (data.action === 'chat' && data.msg) {
+        if (!blockedUsers.has(data.sid)) {
+          showBubble(av, data.msg, 5200);
+          appendChatMessage({ sid: data.sid, name: data.name || '온라인 순례자', text: data.msg });
+        }
+      } else if (['praise', 'wave', 'amen', 'read'].includes(data.action)) {
+        av.emote = data.action;
+        av.emoteTimer = 3.2;
+        if (data.msg) showBubble(av, data.msg, 3600);
+      } else if (data.action === 'kneel') {
+        av.state = 'kneeling';
+        if (data.msg) showBubble(av, data.msg, 3600);
+      } else if (data.action === 'lamp' && data.msg) {
+        addLampEntryToGuestbook(data.msg, data.name || '온라인 순례자', false, data.lampId || null);
+        showBubble(av, '🏺 등잔 밑에 말씀의 불을 밝혔습니다');
+      }
+    }
+    updateCloisterCounts();
+  }
+
+  const kkBC = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumdido_atrium_sanctuary_v1') : null;
+  if (kkBC) {
+    kkBC.onmessage = (ev) => {
+      if (ev.data && ev.data.type === 'kk_guestbook_sync') {
+        mergeLampGuestbookPayload(ev.data);
+        return;
+      }
+      handlePilgrimPacket(ev.data);
+    };
+  }
+  window.addEventListener('storage', (ev) => {
+    if (ev.key === LAMP_STORAGE_KEY || ev.key === LAMP_DELETED_KEY) {
+      loadLocalLampGuestbook();
+      renderLampList();
+    }
+  });
+
+  let kkMqtt = null;
+  const KK_TOPIC = 'kkumbaon/kkumdido/sanctuary/v1/presence';
+  if (window.mqtt) {
+    try {
+      kkMqtt = window.mqtt.connect('wss://broker.emqx.io:8084/mqtt', {
+        clientId: 'kkumdido_' + mySid,
+        clean: true,
+        connectTimeout: 4000,
+        reconnectPeriod: 4000
+      });
+      kkMqtt.on('connect', () => {
+        kkMqtt.subscribe(KK_TOPIC);
+        kkMqtt.subscribe(KK_GUESTBOOK_TOPIC, { qos: 1 });
+        broadcastPilgrimState();
+        const syncEl = document.getElementById('lamp-sync-badge');
+        if (syncEl) syncEl.textContent = '🟢 도서관 방명록 클라우드 동기화됨';
+      });
+      kkMqtt.on('message', (topic, payload) => {
+        if (topic === KK_TOPIC) {
+          try { handlePilgrimPacket(JSON.parse(payload.toString())); } catch (_) {}
+        } else if (topic === KK_GUESTBOOK_TOPIC) {
+          try { mergeLampGuestbookPayload(JSON.parse(payload.toString())); } catch (_) {}
+        }
+      });
+    } catch (_) {}
+  }
+
+  function broadcastPilgrimState(action = null, extraMsg = null, lampId = null) {
+    const pkt = {
+      sid: mySid,
+      name: myCustom.name,
+      custom: myCustom,
+      room: currentCloisterRoom,
+      x: Number(myAvatar.targetPos.x.toFixed(2)),
+      z: Number(myAvatar.targetPos.z.toFixed(2)),
+      state: myAvatar.state,
+      benchId: myAvatar.bench ? myAvatar.bench.id : null,
+      action,
+      msg: extraMsg,
+      lampId: action === 'lamp' ? lampId : null
+    };
+    if (kkBC) kkBC.postMessage(pkt);
+    if (kkMqtt && kkMqtt.connected) kkMqtt.publish(KK_TOPIC, JSON.stringify(pkt));
+  }
+
+  setInterval(() => {
+    broadcastPilgrimState();
+    const now = Date.now();
+    remotePilgrims.forEach((peer, sid) => {
+      if (now - peer.lastSeen > 8000) handlePilgrimPacket({ sid, type: 'leave' });
+    });
+  }, 2000);
+
+  window.addEventListener('beforeunload', () => {
+    const lv = { sid: mySid, type: 'leave' };
+    if (kkBC) kkBC.postMessage(lv);
+    if (kkMqtt && kkMqtt.connected) kkMqtt.publish(KK_TOPIC, JSON.stringify(lv));
+  });
+  updateCloisterCounts();
+
+  let camYaw = 0, camPitch = 0.38, camDist = 7.5;
+  let camPreset = 0;
+  const presets = [
+    { name: '회랑 산책', dist: 7.5, pitch: 0.38 },
+    { name: '생명수 우물·성화 클로즈업', dist: 3.1, pitch: 0.2 },
+    { name: '대아트리움 전체 조망', dist: 16.5, pitch: 0.56 },
+    { name: '광각 파노라마', dist: 22.5, pitch: 0.66 }
+  ];
+  document.getElementById('btn-cam-preset').addEventListener('click', () => {
+    camPreset = (camPreset + 1) % presets.length;
+    camDist = presets[camPreset].dist;
+    camPitch = presets[camPreset].pitch;
+    document.getElementById('cam-preset-label').textContent = presets[camPreset].name;
+  });
+
+  // 상단 HUD +확대 / -축소 버튼 연결
+  document.getElementById('btn-kk-zoom-in').addEventListener('click', () => {
+    camDist = Math.max(1.4, camDist - 1.6);
+  });
+  document.getElementById('btn-kk-zoom-out').addEventListener('click', () => {
+    camDist = Math.min(26.0, camDist + 1.8);
+  });
+
+  let kkZen = false;
+  document.getElementById('btn-kk-zen').addEventListener('click', () => {
+    kkZen = !kkZen;
+    if (kkZen && myAvatar.state !== 'sitting' && myAvatar.state !== 'kneeling' && myAvatar.state !== 'walking_to_bench') {
+      toggleMyBench();
+    }
+    document.querySelector('.bottom-dock').style.opacity = kkZen ? '0.12' : '1';
+    document.querySelector('.chapel-chat-stack').style.opacity = kkZen ? '0.08' : '1';
+    document.querySelector('.control-hint').style.display = kkZen ? 'none' : '';
+    document.getElementById('btn-kk-zen').innerHTML = kkZen ? '<span>✨ 메뉴 보이기</span>' : '<span>🌙 가만히 쉬기</span>';
+    if (kkZen) {
+      camDist = 4.5;
+      camPitch = 0.22;
+      document.getElementById('status-banner').textContent = '🌙 오래된 우물 곁에 가만히 앉아 물소리와 말씀을 들으며 쉬어갑니다.';
+    } else {
+      camDist = 7.5;
+      camPitch = 0.38;
+    }
+  });
+
+  let isDragging = false, dragMoved = false, prevM = { x: 0, y: 0 };
+  const raycaster = new THREE.Raycaster();
+  const mouse = new THREE.Vector2();
+
+  wrap.addEventListener('pointerdown', (e) => {
+    isDragging = true; dragMoved = false; prevM = { x: e.clientX, y: e.clientY };
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevM.x, dy = e.clientY - prevM.y;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
+    camYaw -= dx * 0.0065;
+    camPitch = Math.max(0.1, Math.min(1.15, camPitch + dy * 0.0055));
+    prevM = { x: e.clientX, y: e.clientY };
+  });
+  window.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (!dragMoved && e.target === renderer.domElement) {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      // 1) 성화 액자 클릭 확인
+      const artHits = raycaster.intersectObjects(artFrameMeshes);
+      if (artHits.length > 0) {
+        const idx = artHits[0].object.userData.artIndex;
+        updateArtModal(idx);
+        document.getElementById('panel-gallery').classList.add('is-open');
+        document.getElementById('dock-gallery').classList.add('is-active');
+        return;
+      }
+
+      // 2) 바닥 클릭 이동 (대폭 확장된 30m x 30m 대아트리움 전체 회랑 산책 가능!)
+      const floorHits = raycaster.intersectObject(floorMesh);
+      if (floorHits.length > 0) {
+        const pt = floorHits[0].point;
+        if (pt.length() < 2.35) return; // 중앙 우물 내부 진입 방지
+        const cx = Math.max(-13.6, Math.min(13.6, pt.x));
+        const cz = Math.max(-13.6, Math.min(13.6, pt.z));
+
+        for (const b of benches) {
+          if (!b.occupiedBy && b.pos.distanceTo(new THREE.Vector3(cx, 0, cz)) < 0.95) {
+            sitAtBench(myAvatar, b);
+            return;
+          }
+        }
+        unseat(myAvatar);
+        myAvatar.targetPos.set(cx, 0, cz);
+        myAvatar.state = 'walking';
+        rippleMesh.position.set(cx, 0.03, cz);
+        rippleAge = 0;
+      }
+    }
+  });
+
+  wrap.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    camDist = Math.max(1.4, Math.min(26.0, camDist + e.deltaY * 0.0075));
+  }, { passive: false });
+
+  // 키보드 방향키(WASD) 이동 & 단축키
+  window.addEventListener('keydown', (e) => {
+    const activeTag = document.activeElement ? document.activeElement.tagName : '';
+    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(activeTag)) {
+      if (e.key === 'Escape') document.activeElement.blur();
+      return;
+    }
+    if (e.key === 'Enter') {
+      if (chatInputEl && bootEl.classList.contains('is-hidden')) {
+        e.preventDefault();
+        chatInputEl.focus();
+      }
+      return;
+    }
+    if (e.key === '1') toggleMyBench();
+    else if (e.key === '2') toggleMyKneel();
+    else if (e.key === '3') togglePanel('panel-avatar', 'dock-avatar');
+    else if (e.key === '4') togglePanel('panel-scroll', 'dock-scroll');
+    else if (e.key === '5') togglePanel('panel-lamp', 'dock-lamp');
+    else if (e.key === '6') togglePanel('panel-gallery', 'dock-gallery');
+    else if (e.key === '7') togglePanel('panel-audio', 'dock-audio');
+
+    const step = 1.05;
+    let dx = 0, dz = 0;
+    if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') dz = -step;
+    if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') dz = step;
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') dx = -step;
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') dx = step;
+    if (dx !== 0 || dz !== 0) {
+      unseat(myAvatar);
+      const nx = Math.max(-13.6, Math.min(13.6, myAvatar.group.position.x + dx));
+      const nz = Math.max(-13.6, Math.min(13.6, myAvatar.group.position.z + dz));
+      if (Math.hypot(nx, nz) > 2.4) {
+        myAvatar.targetPos.set(nx, 0, nz);
+        myAvatar.state = 'walking';
+      }
+    }
+  });
+
+  /* ==============================================================
+   * 9. 다관절 사람 아바타 포즈 엔진 & 애니메이션 루프
+   * ============================================================== */
+  function updateAvatarPose(av, dt, elapsed, isMoving) {
+    const rig = av.rig;
+    if (!rig) return;
+
+    rig.eyes.forEach(e => { e.scale.y = 1.15; });
+    if (rig.lapBible) rig.lapBible.visible = false;
+    if (rig.readBibleMesh) rig.readBibleMesh.visible = false;
+    if (rig.handPropMesh) rig.handPropMesh.visible = true;
+    if (rig.skirtMesh) {
+      rig.skirtMesh.scale.set(1, 1, 1);
+      rig.skirtMesh.rotation.set(0, 0, 0);
+    }
+
+    if (isMoving) {
+      av.walkPhase += dt * 9.5;
+      const p = av.walkPhase;
+      const swing = Math.sin(p);
+      const bob = Math.abs(Math.cos(p * 2)) * 0.032;
+
+      rig.pelvis.position.set(0, bob, 0);
+      rig.legL.rotation.set(swing * 0.58, 0, 0);
+      rig.legR.rotation.set(-swing * 0.58, 0, 0);
+      rig.shinL.rotation.set(-Math.max(0, -Math.cos(p)) * 0.62 - 0.06, 0, 0);
+      rig.shinR.rotation.set(-Math.max(0, Math.cos(p)) * 0.62 - 0.06, 0, 0);
+
+      rig.torso.rotation.set(-0.04, -swing * 0.08, swing * 0.025);
+      rig.headGroup.rotation.set(Math.sin(p * 2) * 0.025, swing * 0.05, 0);
+
+      rig.armL.rotation.set(-swing * 0.46, 0, 0.06);
+      rig.forearmL.rotation.set(0.32 + Math.max(0, -swing) * 0.25, 0, 0);
+
+      if (av.custom.prop && av.custom.prop !== 'none') {
+        rig.armR.rotation.set(0.36 + swing * 0.14, -0.15, -0.08);
+        rig.forearmR.rotation.set(0.68, -0.1, 0);
+      } else {
+        rig.armR.rotation.set(swing * 0.46, 0, -0.06);
+        rig.forearmR.rotation.set(0.32 + Math.max(0, swing) * 0.25, 0, 0);
+      }
+      if (rig.skirtMesh) rig.skirtMesh.scale.set(1, 1, 1.12);
+    } else if (av.state === 'sitting') {
+      const breath = Math.sin(elapsed * 1.8 + av.walkPhase) * 0.015;
+      rig.pelvis.position.set(0, -0.09, 0.04);
+      rig.legL.rotation.set(1.48, 0.06, 0);
+      rig.legR.rotation.set(1.48, -0.06, 0);
+      rig.shinL.rotation.set(-1.48, 0, 0);
+      rig.shinR.rotation.set(-1.48, 0, 0);
+
+      if (rig.skirtMesh) {
+        rig.skirtMesh.scale.set(1.06, 0.78, 1.36);
+        rig.skirtMesh.rotation.x = 0.36;
+      }
+
+      rig.torso.rotation.set(-0.04 + breath * 0.5, 0, 0);
+      rig.headGroup.rotation.set(-0.14 + breath, 0, 0);
+
+      rig.armL.rotation.set(0.42, 0.22, 0.08);
+      rig.forearmL.rotation.set(0.88, 0.28, 0);
+      rig.armR.rotation.set(0.42, -0.22, -0.08);
+      rig.forearmR.rotation.set(0.88, -0.28, 0);
+
+      if (av.custom.prop === 'bible') {
+        if (rig.lapBible) rig.lapBible.visible = true;
+        if (rig.handPropMesh) rig.handPropMesh.visible = false;
+      }
+    } else if (av.state === 'kneeling') {
+      const breath = Math.sin(elapsed * 1.6 + av.walkPhase) * 0.018;
+      rig.pelvis.position.set(0, -0.24 + breath * 0.3, -0.04);
+      rig.legL.rotation.set(0.18, 0.05, 0);
+      rig.legR.rotation.set(0.18, -0.05, 0);
+      rig.shinL.rotation.set(-1.62, 0, 0);
+      rig.shinR.rotation.set(-1.62, 0, 0);
+
+      if (rig.skirtMesh) {
+        rig.skirtMesh.scale.set(1.08, 0.75, 1.22);
+      }
+
+      rig.torso.rotation.set(-0.22 + breath * 0.6, 0, 0);
+      rig.headGroup.rotation.set(-0.34 + breath, 0, 0);
+      rig.eyes.forEach(e => { e.scale.y = 0.14; });
+
+      rig.armL.rotation.set(0.78, 0.42, 0.18);
+      rig.forearmL.rotation.set(1.28, 0.38, 0.22);
+      rig.armR.rotation.set(0.78, -0.42, -0.18);
+      rig.forearmR.rotation.set(1.28, -0.38, -0.22);
+      if (rig.handPropMesh) rig.handPropMesh.visible = false;
+    } else {
+      const breath = Math.sin(elapsed * 1.8 + av.walkPhase);
+      rig.pelvis.position.set(0, breath * 0.008, 0);
+      rig.legL.rotation.set(0, 0, 0);
+      rig.legR.rotation.set(0, 0, 0);
+      rig.shinL.rotation.set(0, 0, 0);
+      rig.shinR.rotation.set(0, 0, 0);
+
+      rig.torso.rotation.set(breath * 0.012, 0, 0);
+      rig.headGroup.rotation.set(breath * 0.018, Math.sin(elapsed * 0.6 + av.walkPhase) * 0.05, 0);
+
+      rig.armL.rotation.set(0.06, 0, 0.07);
+      rig.forearmL.rotation.set(0.22, 0.08, 0);
+      if (av.custom.prop && av.custom.prop !== 'none') {
+        rig.armR.rotation.set(0.38, -0.18, -0.08);
+        rig.forearmR.rotation.set(0.72, -0.15, 0);
+      } else {
+        rig.armR.rotation.set(0.06, 0, -0.07);
+        rig.forearmR.rotation.set(0.22, -0.08, 0);
+      }
+    }
+
+    if (av.emote) {
+      av.emoteTimer -= dt;
+      if (av.emoteTimer <= 0) {
+        av.emote = null;
+      } else if (av.emote === 'praise') {
+        const w = Math.sin(elapsed * 7.5) * 0.14;
+        rig.armL.rotation.set(2.65, 0, -0.25 + w);
+        rig.forearmL.rotation.set(0.25, 0, 0);
+        rig.armR.rotation.set(2.65, 0, 0.25 + w);
+        rig.forearmR.rotation.set(0.25, 0, 0);
+        rig.headGroup.rotation.set(0.16, w * 0.4, 0);
+      } else if (av.emote === 'wave') {
+        const w = Math.sin(elapsed * 11.0) * 0.32;
+        rig.armR.rotation.set(2.25, -0.2, 0.28 + w * 0.5);
+        rig.forearmR.rotation.set(0.45, 0, w);
+        rig.headGroup.rotation.set(0.04, 0, w * 0.12);
+      } else if (av.emote === 'amen') {
+        rig.torso.rotation.x -= 0.20;
+        rig.headGroup.rotation.x = -0.38;
+        rig.eyes.forEach(e => { e.scale.y = 0.14; });
+        rig.armL.rotation.set(0.75, 0.42, 0.16);
+        rig.forearmL.rotation.set(1.25, 0.35, 0.2);
+        rig.armR.rotation.set(0.75, -0.42, -0.16);
+        rig.forearmR.rotation.set(1.25, -0.35, -0.2);
+      } else if (av.emote === 'read') {
+        if (rig.readBibleMesh) rig.readBibleMesh.visible = true;
+        if (rig.handPropMesh) rig.handPropMesh.visible = false;
+        rig.armL.rotation.set(0.62, 0.32, 0.1);
+        rig.forearmL.rotation.set(0.95, 0.25, 0);
+        rig.armR.rotation.set(0.62, -0.32, -0.1);
+        rig.forearmR.rotation.set(0.95, -0.25, 0);
+        rig.headGroup.rotation.set(-0.24, Math.sin(elapsed * 2.5) * 0.12, 0);
+      }
+    }
+  }
+
+  const clock = new THREE.Clock();
+  function animate() {
+    requestAnimationFrame(animate);
+    const dt = Math.min(clock.getDelta(), 0.1);
+    const elapsed = clock.getElapsedTime();
+
+    // 우물 말씀 빛 입자 상승 애니메이션
+    const posArr = wellParticles.geometry.attributes.position.array;
+    for (let i = 0; i < particleCount; i++) {
+      posArr[i * 3 + 1] += dt * 0.45;
+      if (posArr[i * 3 + 1] > 7.2) posArr[i * 3 + 1] = 0.85;
+    }
+    wellParticles.geometry.attributes.position.needsUpdate = true;
+
+    // 토기 등잔불 흔들림
+    lampFlames.forEach(lf => {
+      lf.mesh.position.y = lf.baseY + Math.sin(elapsed * 7.5 + lf.phase) * 0.012;
+    });
+
+    // 아바타 이동 & 착석/무릎기도 포즈 업데이트
+    avatars.forEach(av => {
+      let isMoving = false;
+      if (av.state === 'walking' || av.state === 'walking_to_bench' || av.state === 'walking_to_well') {
+        const diff = new THREE.Vector3().subVectors(av.targetPos, av.group.position);
+        diff.y = 0;
+        const dist = diff.length();
+        if (dist > 0.08) {
+          diff.normalize();
+          av.group.position.addScaledVector(diff, Math.min(dist, 2.9 * dt));
+          av.group.rotation.y = Math.atan2(-diff.x, -diff.z);
+          isMoving = true;
+        } else {
+          av.group.position.copy(av.targetPos);
+          if (av.state === 'walking_to_bench' && av.bench) {
+            av.state = av.bench.type === 'kneel' ? 'kneeling' : 'sitting';
+            av.group.rotation.y = av.bench.lookAngle;
+            if (av.isMe) {
+              syncDockPostureButtons();
+              playScrollChime(3, false);
+              document.getElementById('status-banner').textContent = av.state === 'kneeling'
+                ? `🧎 ${av.bench.label}에서 두 무릎을 꿇고 오래된 우물 곁에서 기도합니다.`
+                : `🪑 ${av.bench.label}에 앉아 오래된 우물을 바라보며 말씀을 묵상합니다.`;
+              broadcastPilgrimState();
+            }
+          } else if (av.state === 'walking_to_well') {
+            av.state = 'standing';
+            av.group.rotation.y = 0;
+            playScrollChime(5, true);
+            const created = addLampEntryToGuestbook(av.pendingLampText, myCustom.name, true);
+            showBubble(av, '🏺 등잔 밑에 말씀의 불을 밝혔습니다');
+            document.getElementById('status-banner').textContent = '🏺 오래된 우물 난간과 꿈디도 영구 방명록에 내 토기 등잔불이 기록되었습니다.';
+            if (av.isMe && created) broadcastPilgrimState('lamp', created.text, created.id);
+          } else {
+            av.state = 'standing';
+          }
+        }
+      }
+      updateAvatarPose(av, dt, elapsed, isMoving);
+    });
+
+    if (rippleAge < 1.0) {
+      rippleAge += dt * 1.6;
+      const s = 1 + rippleAge * 3.2;
+      rippleMesh.scale.set(s, s, 1);
+      rippleMesh.material.opacity = Math.max(0, (1 - rippleAge) * 0.65);
+    }
+
+    const target = new THREE.Vector3(myAvatar.group.position.x * 0.5, 1.3, myAvatar.group.position.z * 0.5);
+    const desiredCam = new THREE.Vector3(
+      target.x + Math.sin(camYaw) * Math.cos(camPitch) * camDist,
+      target.y + Math.sin(camPitch) * camDist,
+      target.z + Math.cos(camYaw) * Math.cos(camPitch) * camDist
+    );
+    camera.position.lerp(desiredCam, 0.08);
+    camera.lookAt(target);
+
+    avatars.forEach(av => {
+      const labelY = av.state === 'kneeling' ? 1.22 : (av.state === 'sitting' ? 1.38 : 1.62);
+      const p = new THREE.Vector3(av.group.position.x, labelY, av.group.position.z);
+      p.project(camera);
+      if (p.z > 1) {
+        av.labelEl.style.display = 'none';
+      } else {
+        av.labelEl.style.display = 'flex';
+        av.labelEl.style.left = `${(p.x * 0.5 + 0.5) * window.innerWidth}px`;
+        av.labelEl.style.top = `${(-p.y * 0.5 + 0.5) * window.innerHeight}px`;
+      }
+    });
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  // PC·모바일 초기 쾌적 모드: 모든 배너와 채팅창·포즈바를 접힌 상태로 시작
+  const initMobileChapelUI = () => {
+    const chatStackEl = document.getElementById('chapel-chat-stack');
+    const chatlogBoxEl = document.getElementById('chapel-chatlog');
+    const chatToggleLabelEl = document.getElementById('chatlog-toggle-label');
+    if (chatStackEl) chatStackEl.classList.add('is-collapsed');
+    if (chatlogBoxEl) chatlogBoxEl.classList.add('is-collapsed');
+    if (chatToggleLabelEl) {
+      chatToggleLabelEl.textContent = '💬 실시간 말씀·기도 나눔 & 포즈 (열기 ▲)';
+    }
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.classList.add('is-faded');
+      statusEl.addEventListener('click', () => statusEl.classList.add('is-faded'));
+    }
+  };
+  initMobileChapelUI();
+
+  window.addEventListener('resize', () => {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+  });
+})();
+</script>
+
+<!-- 꿈바온 편찬·출처 기준 (제1판) 소개·출처 모달 & 원어사전 v0.1 카드 -->
+<div id="kkumbaonInfoModalOverlay" style="display:none; position:fixed; inset:0; background:rgba(10,14,24,0.78); z-index:9999; align-items:center; justify-content:center; padding:20px;">
+  <div style="max-width:760px; width:100%; max-height:86vh; overflow-y:auto; background:var(--bg-pane, #1e293b); color:var(--text-primary, #f8fafc); border:1px solid var(--border-strong, #334155); border-radius:14px; padding:26px 28px; box-shadow:0 20px 45px rgba(0,0,0,0.65); line-height:1.75; font-size:14px;">
+    <div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border-color, #334155); padding-bottom:12px; margin-bottom:16px;">
+      <h2 style="margin:0; font-size:18px; color:var(--accent-gold, #f59e0b);">📖 꿈바온 소개 · 출처 기준 (제1판)</h2>
+      <button onclick="document.getElementById('kkumbaonInfoModalOverlay').style.display='none'" style="background:transparent; border:1px solid var(--border-strong, #475569); color:var(--text-primary, #f8fafc); border-radius:8px; padding:4px 12px; cursor:pointer;">닫기 ✕</button>
+    </div>
+    <h3 style="margin:0 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">1. 꿈바온은 누구인가</h3>
+    <p style="margin:0 0 8px;">꿈바온은 성경을 깊이 읽도록 돕는 자료와 영상을 만드는 사역입니다. 기독교대한감리회 정회원 목사인 꿈바온 목사가 이끌고, 모든 자료는 무료로 엽니다.</p>
+    <p style="margin:0 0 8px;">꿈바온 사역팀은 자료를 모으고 정리하고 번역하는 데 AI 도구를 함께 씁니다. 성경 본문과 원어, 역사 자료는 아래에 밝힌 출처로 확인하고, 신학 내용은 꿈바온 목사가 책임집니다. 그림 가운데 성경 시대를 재구성한 것은 이해를 돕기 위한 상상도입니다.</p>
+    <p style="margin:0 0 12px;">잘못된 내용을 발견하시면 알려 주십시오. 확인하는 대로 바로잡겠습니다.</p>
+    <div style="padding:10px 14px; border-radius:8px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); margin-bottom:18px; font-size:13px;">
+      <strong>편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong><br>
+      <span style="font-size:12px; opacity:0.85;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+    </div>
+    <h3 style="margin:14px 0 8px; font-size:15.5px; color:var(--accent-gold, #f59e0b);">2. 무엇을 근거로 하는가 (출처 목록)</h3>
+    <ul style="margin:0 0 0 18px; padding:0; line-height:1.8;">
+      <li><strong>성경 본문:</strong> 개역개정판(© 대한성서공회 1998, 장절을 밝히고 한 번에 두세 절까지만 인용) · World English Bible(WEB, 퍼블릭 도메인) · King James Version(1611)</li>
+      <li><strong>원어 본문·사전·문법:</strong> STEPBible.org (Tyndale House, Cambridge · CC BY 4.0 — TAHOT·TAGNT·TBESH(짧은 뜻만)·TBESG·TEHMC·TEGMC·TIPNR) · Open Scriptures Hebrew Bible (WLC 본문 퍼블릭 도메인, 형태소 CC BY 4.0) · SBL Greek New Testament (© 2010 Society of Biblical Literature and Logos Bible Software, CC BY 4.0) · G. Abbott-Smith, <em>A Manual Greek Lexicon of the New Testament</em> (1922, 퍼블릭 도메인) · 한국어 번역·다듬기: 꿈바온 사역팀</li>
+      <li><strong>고전 원전 (저작권이 끝난 판에서 꿈바온 사역팀이 직접 옮김):</strong> 요세푸스 『유대 고대사』·『유대 전쟁사』(W. Whiston 영역, 1737) · 필론(C. D. Yonge 영역, 1854~1855) · 칼빈 『기독교 강요』와 주석(19세기 영역본) · 존 웨슬리 설교(T. Jackson 판, 1872), 『신약 주해』(1755), 『감리교 종교강령』(1784) · 찰스 스펄전 설교, 매튜 헨리 『성경 주석』(18세기 초) · 사도신경·니케아 신경 등 고대 신조, 벨직 신앙고백(1561), 웨스트민스터 신앙고백(1647) · 외경(KJV 외경 1611, L. Brenton 70인역 영역 1844) · 탈무드·미쉬나(책 이름과 장절만 밝히고 풀어 씀)</li>
+      <li><strong>역사·고고학·지도·그림:</strong> 공개 학계 자료 사실 확인 후 꿈바온 문장으로 작성 · 지형 바탕 지도: Natural Earth (퍼블릭 도메인) · 유적·풍경 사진: 저작자와 라이선스 표시(Wikimedia Commons 등) · 성경 시대 재구성 그림: 꿈바온의 AI 상상도</li>
+      <li><strong>찬송가:</strong> 장 번호, 곡명, 작사·작곡자, 연도만 적으며, 가사는 저작권이 끝난 원문만 짧게 인용합니다.</li>
+    </ul>
+  </div>
+</div>
+
+
+<div id="kkumbaonOfficialFooterBar" style="display:none; padding:10px 18px; text-align:center; font-size:12px; color:#5C5248; background:#F1ECE1; border-top:1px solid #DFD5C5; line-height:1.5;">
+  <strong style="color:#1F1A15;">편찬: 꿈바온 사역팀 · 책임: 꿈바온 목사(기독교대한감리회 정회원 목사)</strong>
+  &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:#FFFFFF; color:#8C621E; border:1px solid #C8A45D; border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
+  <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
+</div>
+
+  <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261107f"></script>
+</body>
+</html>

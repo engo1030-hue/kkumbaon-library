@@ -381,8 +381,9 @@
   .prayer-item {
     padding: 11px 13px; border-radius: 12px;
     background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 168, 83, 0.22);
-    font-size: 14px; line-height: 1.65;
+    font-size: 14px; line-height: 1.65; color: #FFF8EC !important;
   }
+  .prayer-item div { color: #FFF8EC !important; }
   .prayer-item-top {
     display: flex; justify-content: space-between; align-items: center;
     font-size: 12.5px; color: #cbbba2; margin-bottom: 4px;
@@ -3389,7 +3390,7 @@ html, body {
             ${isMine ? `<button type="button" class="amen-mini-btn" data-del-id="${escapePrayerHtml(item.id)}" title="내가 올린 기도제목 지우기" style="padding:3px 7px; color:#ffb3b3; border-color:rgba(255,140,140,0.35); background:rgba(120,30,30,0.28);">✕</button>` : ''}
           </span>
         </div>
-        <div style="word-break:keep-all; line-height:1.55;">${escapePrayerHtml(item.text)}</div>
+        <div class="prayer-item-body" style="color:#FFF8EC; font-weight:500; word-break:keep-all; line-height:1.55;">${escapePrayerHtml(item.text)}</div>
       `;
       container.appendChild(div);
     });

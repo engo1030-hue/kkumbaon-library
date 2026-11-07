@@ -2398,7 +2398,7 @@ html, body {
             ${isMine ? `<button type="button" data-lamp-del="${escapeLampHtml(item.id)}" title="내 방명록 지우기" style="background:rgba(120,30,30,0.3); border:1px solid rgba(255,140,140,0.35); color:#ffb3b3; border-radius:999px; padding:2px 6px; font-size:10.5px; cursor:pointer;">✕</button>` : ''}
           </span>
         </div>
-        <div style="word-break:keep-all; line-height:1.55;">${escapeLampHtml(item.text)}</div>
+        <div class="prayer-item-body" style="color:#FFF8EC; font-weight:500; word-break:keep-all; line-height:1.55;">${escapeLampHtml(item.text)}</div>
       `;
       list.appendChild(d);
     });

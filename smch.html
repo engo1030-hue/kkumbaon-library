@@ -394,8 +394,9 @@
   .prayer-item {
     padding: 11px 13px; border-radius: 12px;
     background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(212, 168, 83, 0.22);
-    font-size: 14px; line-height: 1.65;
+    font-size: 14px; line-height: 1.65; color: #FFF8EC !important;
   }
+  .prayer-item div { color: #FFF8EC !important; }
   .prayer-item-top {
     display: flex; justify-content: space-between; align-items: center;
     font-size: 12.5px; color: #cbbba2; margin-bottom: 4px;
@@ -4045,7 +4046,7 @@ html, body {
           <span>🕯️ <strong>${escapeHtmlText(item.author)}</strong> · <span style="color:#a89b87;">${escapeHtmlText(formatPrayerTime(item))}</span>${delBtnHtml}</span>
           <button class="amen-mini-btn" data-amen-idx="${idx}">🙏 아멘 ${Number(item.amens) || 1}</button>
         </div>
-        <div style="word-break:keep-all; line-height:1.5;">${escapeHtmlText(item.text)}</div>
+        <div class="prayer-item-body" style="color:#FFF8EC; font-weight:500; word-break:keep-all; line-height:1.5;">${escapeHtmlText(item.text)}</div>
       `;
       container.appendChild(div);
     });
