@@ -8,8 +8,8 @@
 <meta name="description" content="말없이 함께 앉아 기도하고 쉬어가는 온라인 예배당, 새오름.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script src="./assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
-<script src="./assets/mqtt.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js'"></script>
+<script src="https://kkumbaon.com/kkumbaon-library/assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
+<script src="https://kkumbaon.com/kkumbaon-library/assets/mqtt.min.js" onerror="this.onerror=null;this.src='https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js'"></script>
 <style>
   :root {
     --bg-warm: #f9f6f0;
@@ -1024,7 +1024,7 @@ html, body {
   <!-- 채널 1 (최상단): 지난 주 조금 긴 성경이야기 & 매일말씀 경청 -->
   <div class="sound-row" style="border:1.5px solid rgba(245,207,118,0.45); background:linear-gradient(180deg, rgba(46,35,24,0.88) 0%, rgba(28,21,15,0.92) 100%);">
     <div style="display:flex; gap:10px; align-items:center; margin-bottom:4px;">
-      <img id="sermon-cover-thumb" src="./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="조금 긴 성경이야기" style="width:78px; height:46px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,168,83,0.5); flex-shrink:0;">
+      <img id="sermon-cover-thumb" src="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" alt="조금 긴 성경이야기" style="width:78px; height:46px; object-fit:cover; border-radius:7px; border:1px solid rgba(212,168,83,0.5); flex-shrink:0;">
       <div style="flex:1; min-width:0;">
         <div style="font-size:11.5px; color:#f5cf76; font-weight:700;" id="sermon-badge-label">📖 지난 주 조금 긴 성경이야기 (주일말씀)</div>
         <div style="font-size:14px; color:#fff; font-weight:700; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" id="sermon-title-label">책을 들고 나온 사람들 · 사도행전 19:1–20</div>
@@ -1032,8 +1032,8 @@ html, body {
     </div>
 
     <select class="sub-select" id="sermon-track-select" style="width:100%; padding:7px 10px; font-size:13px; margin:2px 0;">
-      <option value="./assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="📖 지난 주 조금 긴 성경이야기 (주일말씀)" data-title="책을 들고 나온 사람들 · 사도행전 19:1–20" data-thumb="./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" data-vid="Y9sNVVxkZj4" selected>📖 [조금 긴 성경이야기] 책을 들고 나온 사람들 · 행 19:1–20 (29:35)</option>
-      <option value="./assets/chapel_audio/word_ko.mp3" data-badge="🌅 오늘의 매일말씀 낭독" data-title="베들레헴 성문에서 · 룻기 4:1–22" data-thumb="./assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp" data-vid="73mMWY2v-SA">🌅 [매일말씀] 베들레헴 성문에서 · 룻기 4:1–22 (02:30)</option>
+      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3" data-badge="📖 지난 주 조금 긴 성경이야기 (주일말씀)" data-title="책을 들고 나온 사람들 · 사도행전 19:1–20" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp" data-vid="Y9sNVVxkZj4" selected>📖 [조금 긴 성경이야기] 책을 들고 나온 사람들 · 행 19:1–20 (29:35)</option>
+      <option value="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/word_ko.mp3" data-badge="🌅 오늘의 매일말씀 낭독" data-title="베들레헴 성문에서 · 룻기 4:1–22" data-thumb="https://kkumbaon.com/kkumbaon-library/assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp" data-vid="73mMWY2v-SA">🌅 [매일말씀] 베들레헴 성문에서 · 룻기 4:1–22 (02:30)</option>
     </select>
 
     <div style="display:flex; align-items:center; gap:6px; margin-top:4px;">
@@ -1098,7 +1098,7 @@ html, body {
       <button class="panel-close" data-close-modal="modal-rooms">✕</button>
     </div>
     <div style="margin-top:10px; padding:10px 12px; border-radius:12px; background:rgba(124,217,146,0.1); border:1px solid rgba(124,217,146,0.32); font-size:12px; line-height:1.55; color:#dff7e4;">
-      🟢 <strong>실시간 네트워크 연동 중 (대확장 총 86석: 본당 64석·무릎기도 10석·야외정원 12석):</strong><br>
+      🟢 <strong>실시간 네트워크 연동 중 (대확장 총 124석 (4열 대성전 96석 + 무릎방석 12석 + 정원벤치 16석): 본당 64석·무릎기도 10석·야외정원 12석):</strong><br>
       현재 이 방 실제 성도 <strong id="real-online-count">1</strong>명 (나 포함) · 상주 예배당 지킴이 <strong id="npc-online-count">11</strong>명
     </div>
     <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; font-size:12.5px; color:#dfd2be; padding:6px 4px;">
@@ -1117,23 +1117,23 @@ html, body {
     </div>
     <div id="room-list-container">
       <div class="room-item active" data-room="갈릴리 호숫가" data-npc="11">
-        <div><strong>갈릴리 호숫가</strong> <span style="font-size:11.5px; color:#a89b87;">· 제1예배당 (본당·정원 86석)</span></div>
+        <div><strong>갈릴리 호숫가</strong> <span style="font-size:11.5px; color:#a89b87;">· 제1예배당 (본당·정원 124석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">실시간 연결됨</div>
       </div>
       <div class="room-item" data-room="감람산 새벽길" data-npc="9">
-        <div><strong>감람산 새벽길</strong> <span style="font-size:11.5px; color:#a89b87;">· 제2예배당 (본당·정원 86석)</span></div>
+        <div><strong>감람산 새벽길</strong> <span style="font-size:11.5px; color:#a89b87;">· 제2예배당 (본당·정원 124석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
       </div>
       <div class="room-item" data-room="마가의 다락방" data-npc="11">
-        <div><strong>마가의 다락방</strong> <span style="font-size:11.5px; color:#a89b87;">· 중보기도실 (본당·정원 86석)</span></div>
+        <div><strong>마가의 다락방</strong> <span style="font-size:11.5px; color:#a89b87;">· 중보기도실 (본당·정원 124석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
       </div>
       <div class="room-item" data-room="베들레헴 들녘" data-npc="8">
-        <div><strong>베들레헴 들녘</strong> <span style="font-size:11.5px; color:#a89b87;">· 고요한 쉼터 (본당·정원 86석)</span></div>
+        <div><strong>베들레헴 들녘</strong> <span style="font-size:11.5px; color:#a89b87;">· 고요한 쉼터 (본당·정원 124석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
       </div>
       <div class="room-item" data-room="실로암 연못가" data-npc="7">
-        <div><strong>실로암 연못가</strong> <span style="font-size:11.5px; color:#a89b87;">· 치유와 회복 (본당·정원 86석)</span></div>
+        <div><strong>실로암 연못가</strong> <span style="font-size:11.5px; color:#a89b87;">· 치유와 회복 (본당·정원 124석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">입장 가능</div>
       </div>
     </div>
@@ -1184,7 +1184,7 @@ html, body {
       </div>
     </div>
     <div id="zoom-art-viewport" style="flex:1; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; cursor:grab; background:#0d0a08;">
-      <img id="zoom-art-img" src="./assets/webp/feast_wide_01_sabbath_lamps.webp" alt="성화 확대" style="max-width:92%; max-height:92%; object-fit:contain; transition:transform 0.12s ease-out; transform-origin:center center; border-radius:8px; box-shadow:0 12px 40px rgba(0,0,0,0.7);">
+      <img id="zoom-art-img" src="https://kkumbaon.com/kkumbaon-library/assets/webp/feast_wide_01_sabbath_lamps.webp" alt="성화 확대" style="max-width:92%; max-height:92%; object-fit:contain; transition:transform 0.12s ease-out; transform-origin:center center; border-radius:8px; box-shadow:0 12px 40px rgba(0,0,0,0.7);">
     </div>
     <div id="zoom-art-desc" style="padding:14px 22px; font-size:13.5px; color:#e6dac6; line-height:1.65; background:#211a14; border-top:1px solid rgba(212,168,83,0.2);"></div>
   </div>
@@ -1206,8 +1206,8 @@ html, body {
 </div>
 
 <!-- 실제 오디오 엘리먼트 -->
-<audio id="audio-piano" loop preload="auto" src="./assets/chapel_audio/piano_grace.mp3"></audio>
-<audio id="audio-voice" preload="metadata" src="./assets/chapel_audio/sermon_20261101_ko.mp3"></audio>
+<audio id="audio-piano" loop preload="auto" src="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/piano_grace.mp3"></audio>
+<audio id="audio-voice" preload="metadata" src="https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/sermon_20261101_ko.mp3"></audio>
 
 <script>
 (() => {
@@ -1388,7 +1388,7 @@ html, body {
   }
 
   /* ==============================================================
-   * 4. Three.js 3D 예배당 장면(Scene) 구축 (본당 64석 + 무릎기도 10석 + 대정원 12석 = 총 86석 대확장!)
+   * 4. Three.js 3D 예배당 장면(Scene) 구축 (본당 64석 + 무릎기도 10석 + 대정원 12석 = 총 124석 (4열 대성전 96석 + 무릎방석 12석 + 정원벤치 16석) 대확장!)
    * ============================================================== */
   const wrap = document.getElementById('canvas-wrap');
   const scene = new THREE.Scene();
@@ -1493,17 +1493,17 @@ html, body {
   const worldGroup = new THREE.Group();
   scene.add(worldGroup);
 
-  // 바깥 잔디 마당 (대확장: 150m x 150m 광활한 감람산·갈릴리 정원)
-  const gardenGeo = new THREE.PlaneGeometry(150, 150);
+  // 바깥 잔디 마당 (대확장: 180m x 180m 광활한 감람산·갈릴리 대정원)
+  const gardenGeo = new THREE.PlaneGeometry(180, 180);
   const gardenMat = new THREE.MeshStandardMaterial({ color: 0x22301f, roughness: 0.95 });
   const gardenMesh = new THREE.Mesh(gardenGeo, gardenMat);
   gardenMesh.rotation.x = -Math.PI / 2;
-  gardenMesh.position.set(0, -0.05, 12);
+  gardenMesh.position.set(0, -0.05, 14);
   gardenMesh.receiveShadow = true;
   worldGroup.add(gardenMesh);
 
-  // 야외 감람산 중앙 돌길 산책로 (예배당 입구 z=18.5 부터 정원 끝 꿈디도 게이트 z=44.5 까지 26m 연장)
-  const pathGeo = new THREE.PlaneGeometry(4.4, 26);
+  // 야외 감람산 중앙 돌길 산책로 (예배당 입구 z=18.5 부터 정원 끝 꿈디도 게이트 z=44.5 까지 26m 연장, 폭 5.2m)
+  const pathGeo = new THREE.PlaneGeometry(5.2, 26);
   const pathMat = new THREE.MeshStandardMaterial({ color: 0x6e6353, roughness: 0.88 });
   const pathMesh = new THREE.Mesh(pathGeo, pathMat);
   pathMesh.rotation.x = -Math.PI / 2;
@@ -1511,44 +1511,79 @@ html, body {
   pathMesh.receiveShadow = true;
   worldGroup.add(pathMesh);
 
-  // 야외 좌우 횡단 산책 돌길 (좌측 갈릴리 호숫가 연못 ~ 우측 감람산 묵상숲 연결, 폭 34m)
-  const crossPathGeo = new THREE.PlaneGeometry(34, 3.2);
+  // 야외 좌우 횡단 산책 돌길 (좌측 갈릴리 호숫가 연못 ~ 우측 감람산 묵상정자 연결, 폭 42m)
+  const crossPathGeo = new THREE.PlaneGeometry(42, 3.6);
   const crossPathMesh = new THREE.Mesh(crossPathGeo, pathMat);
   crossPathMesh.rotation.x = -Math.PI / 2;
   crossPathMesh.position.set(0, -0.022, 29.0);
   crossPathMesh.receiveShadow = true;
   worldGroup.add(crossPathMesh);
 
-  // 갈릴리 호숫가 잔물결 대연못 (좌측 야외 정원 x=-14.0, z=29.0, 반경 6.25m로 대폭 확장!)
+  // 갈릴리 호숫가 잔물결 대연못 + 중앙 3단 생수의 분수대 (좌측 야외 정원 x=-15.5, z=29.0, 반경 7.2m로 대폭 확장!)
   const pondGroup = new THREE.Group();
   const pondRim = new THREE.Mesh(
-    new THREE.RingGeometry(6.15, 6.95, 48),
+    new THREE.RingGeometry(7.05, 7.95, 48),
     new THREE.MeshStandardMaterial({ color: 0x5c5346, roughness: 0.9, side: THREE.DoubleSide })
   );
   pondRim.rotation.x = -Math.PI / 2;
   pondRim.position.y = -0.01;
   const pondWater = new THREE.Mesh(
-    new THREE.CircleGeometry(6.25, 48),
+    new THREE.CircleGeometry(7.2, 48),
     new THREE.MeshStandardMaterial({
       color: 0x1d5670, emissive: 0x0e3347, emissiveIntensity: 0.58, roughness: 0.16, metalness: 0.38
     })
   );
   pondWater.rotation.x = -Math.PI / 2;
   pondWater.position.y = -0.02;
-  const pondLight = new THREE.PointLight(0x78c8f0, 1.15, 18);
-  pondLight.position.set(0, 1.8, 0);
-  pondGroup.add(pondRim, pondWater, pondLight);
-  pondGroup.position.set(-14.0, 0, 29.0);
+  // 연못 중앙 돌섬 & 3단 분수대
+  const fountainStoneMat = new THREE.MeshStandardMaterial({ color: 0xd8cfc0, roughness: 0.7 });
+  const fountainWaterMat = new THREE.MeshBasicMaterial({ color: 0x9ce3ff, transparent: true, opacity: 0.75 });
+  const fBase = new THREE.Mesh(new THREE.CylinderGeometry(1.35, 1.55, 0.38, 24), fountainStoneMat);
+  fBase.position.y = 0.18;
+  const fMid = new THREE.Mesh(new THREE.CylinderGeometry(0.75, 0.92, 0.55, 20), fountainStoneMat);
+  fMid.position.y = 0.62;
+  const fTop = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.45, 0.65, 16), fountainStoneMat);
+  fTop.position.y = 1.15;
+  const fSpout = new THREE.Mesh(new THREE.ConeGeometry(0.55, 0.95, 16), fountainWaterMat);
+  fSpout.position.y = 1.72;
+  const pondLight = new THREE.PointLight(0x78c8f0, 1.35, 22);
+  pondLight.position.set(0, 2.2, 0);
+  pondGroup.add(pondRim, pondWater, fBase, fMid, fTop, fSpout, pondLight);
+  pondGroup.position.set(-15.5, 0, 29.0);
   worldGroup.add(pondGroup);
 
-  // 야외 감람나무(올리브 나무) 24그루 & 등불 가로등 12개 배치 (확장된 정원 전체를 풍성하게 감쌈)
+  // 우측 야외 감람산 묵상 정자 (Wooden Pergola, x=15.5, z=29.0)
+  const pergolaGroup = new THREE.Group();
+  const pergolaWoodMat = new THREE.MeshStandardMaterial({ color: 0x5c3e26, roughness: 0.65 });
+  const pergolaFloor = new THREE.Mesh(
+    new THREE.CylinderGeometry(4.6, 4.8, 0.16, 24),
+    new THREE.MeshStandardMaterial({ color: 0x7a6b58, roughness: 0.85 })
+  );
+  pergolaFloor.position.y = 0.06;
+  pergolaGroup.add(pergolaFloor);
+  for (const [px, pz] of [[-2.6, -2.6], [2.6, -2.6], [-2.6, 2.6], [2.6, 2.6]]) {
+    const pCol = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.2, 3.2, 12), pergolaWoodMat);
+    pCol.position.set(px, 1.6, pz);
+    pCol.castShadow = true;
+    pergolaGroup.add(pCol);
+  }
+  const pergolaRoof = new THREE.Mesh(new THREE.ConeGeometry(4.2, 1.35, 8), pergolaWoodMat);
+  pergolaRoof.position.y = 3.85;
+  pergolaRoof.castShadow = true;
+  const pergolaLight = new THREE.PointLight(0xffd479, 1.1, 14);
+  pergolaLight.position.set(0, 2.8, 0);
+  pergolaGroup.add(pergolaRoof, pergolaLight);
+  pergolaGroup.position.set(15.5, 0, 29.0);
+  worldGroup.add(pergolaGroup);
+
+  // 야외 감람나무(올리브 나무) 28그루 & 등불 가로등 14개 배치 (확장된 정원 전체를 풍성하게 감쌈)
   const trunkMat = new THREE.MeshStandardMaterial({ color: 0x4a3421, roughness: 0.9 });
   const leafMat = new THREE.MeshStandardMaterial({ color: 0x3b5936, roughness: 0.85 });
   const treeCoords = [
-    [-14, -8], [14, -8], [-14, 0], [14, 0], [-14, 8], [14, 8], [-14, 16], [14, 16],
-    [-9, 20], [-21, 21], [-24, 29], [-21, 37], [-9, 38], [-6, 42],
-    [9, 20], [15, 21], [21, 23], [23, 29], [21, 35], [15, 37], [9, 38], [6, 42],
-    [-13, 44], [13, 44]
+    [-18, -10], [18, -10], [-18, -2], [18, -2], [-18, 6], [18, 6], [-18, 14], [18, 14],
+    [-10, 20], [-24, 20], [-27, 29], [-24, 38], [-10, 39], [-7, 43],
+    [10, 20], [18, 20], [24, 22], [27, 29], [24, 36], [18, 38], [10, 39], [7, 43],
+    [-15, 45], [15, 45], [-22, 44], [22, 44], [-6, 23], [6, 23]
   ];
   treeCoords.forEach(([tx, tz], i) => {
     const tGroup = new THREE.Group();
@@ -1564,11 +1599,12 @@ html, body {
     worldGroup.add(tGroup);
   });
 
-  // 중앙 산책길 & 횡단 산책길 석등(가로등) 12개
+  // 중앙 산책길 & 횡단 산책길 석등(가로등) 14개
   const lampCoords = [
-    [-2.8, 21], [2.8, 21], [-2.8, 26], [2.8, 26],
-    [-2.8, 32], [2.8, 32], [-2.8, 38], [2.8, 38],
-    [-8.5, 26.8], [8.5, 26.8], [-8.5, 31.2], [8.5, 31.2]
+    [-3.1, 21], [3.1, 21], [-3.1, 26], [3.1, 26],
+    [-3.1, 32], [3.1, 32], [-3.1, 38], [3.1, 38],
+    [-8.5, 26.8], [8.5, 26.8], [-8.5, 31.2], [8.5, 31.2],
+    [-14.5, 20.5], [14.5, 20.5]
   ];
   lampCoords.forEach(([lx, lz]) => {
     const lampPost = new THREE.Group();
@@ -1622,8 +1658,8 @@ html, body {
   const gardenGateClickMeshes = [gatePortalMesh, gatePillarL, gatePillarR, gateLintel];
   gardenGateClickMeshes.forEach(m => { m.userData = { isGardenExitGate: true }; });
 
-  // 예배당 원목 마룻바닥 (대확장: 가로 22m × 세로 34m, z = -15 ~ +19)
-  const floorGeo = new THREE.PlaneGeometry(22, 34);
+  // 예배당 원목 마룻바닥 (대성전 확장: 가로 30m × 세로 36m, 4열 장의자 + 3개 레드카펫 복도 수용!)
+  const floorGeo = new THREE.PlaneGeometry(30, 36);
   const floorMat = new THREE.MeshStandardMaterial({
     map: createWoodFloorTexture(),
     roughness: 0.65,
@@ -1635,8 +1671,8 @@ html, body {
   floorMesh.receiveShadow = true;
   worldGroup.add(floorMesh);
 
-  // 중앙 버건디·골드 예배당 카펫 러너 (Aisle Runner — 30m 길이로 연장)
-  const runnerGeo = new THREE.PlaneGeometry(2.4, 30);
+  // 중앙 대복도 + 좌·우 보조 복도 3줄 버건디·골드 예배당 카펫 러너 (3-Aisle Runners)
+  const runnerGeo = new THREE.PlaneGeometry(2.2, 31);
   const runnerMat = new THREE.MeshStandardMaterial({ color: 0x6b2626, roughness: 0.85 });
   const runnerMesh = new THREE.Mesh(runnerGeo, runnerMat);
   runnerMesh.rotation.x = -Math.PI / 2;
@@ -1644,39 +1680,50 @@ html, body {
   runnerMesh.receiveShadow = true;
   worldGroup.add(runnerMesh);
 
-  // 강단(Chancel) 2단 원목 단상 (넓어진 본당 폭에 맞춰 확장)
+  const sideRunnerGeo = new THREE.PlaneGeometry(1.35, 28);
+  const runnerMeshL = new THREE.Mesh(sideRunnerGeo, runnerMat);
+  runnerMeshL.rotation.x = -Math.PI / 2;
+  runnerMeshL.position.set(-5.35, 0.01, 3.0);
+  runnerMeshL.receiveShadow = true;
+  const runnerMeshR = new THREE.Mesh(sideRunnerGeo, runnerMat);
+  runnerMeshR.rotation.x = -Math.PI / 2;
+  runnerMeshR.position.set(5.35, 0.01, 3.0);
+  runnerMeshR.receiveShadow = true;
+  worldGroup.add(runnerMeshL, runnerMeshR);
+
+  // 강단(Chancel) 2단 원목 단상 (30m 광폭 본당에 맞춰 24m 폭으로 대폭 확장)
   const stageMat = new THREE.MeshStandardMaterial({ color: 0x5c3e26, roughness: 0.55 });
-  const stage1 = new THREE.Mesh(new THREE.BoxGeometry(18.0, 0.35, 5.6), stageMat);
-  stage1.position.set(0, 0.175, -12.0);
+  const stage1 = new THREE.Mesh(new THREE.BoxGeometry(24.0, 0.35, 5.8), stageMat);
+  stage1.position.set(0, 0.175, -12.2);
   stage1.receiveShadow = true; stage1.castShadow = true;
   worldGroup.add(stage1);
 
-  const stage2 = new THREE.Mesh(new THREE.BoxGeometry(10.6, 0.35, 3.8), stageMat);
-  stage2.position.set(0, 0.525, -12.6);
+  const stage2 = new THREE.Mesh(new THREE.BoxGeometry(13.6, 0.35, 4.0), stageMat);
+  stage2.position.set(0, 0.525, -12.8);
   stage2.receiveShadow = true; stage2.castShadow = true;
   worldGroup.add(stage2);
 
-  // 예배당 벽체 (전면 강단 벽 + 좌우 벽, 폭 22m × 길이 34m)
+  // 예배당 벽체 (전면 강단 벽 + 좌우 벽, 폭 30m × 길이 36m)
   const wallMat = new THREE.MeshStandardMaterial({ color: 0xdfd5c3, roughness: 0.88 });
-  const frontWall = new THREE.Mesh(new THREE.BoxGeometry(22.4, 10.2, 0.5), wallMat);
-  frontWall.position.set(0, 5.1, -14.8);
+  const frontWall = new THREE.Mesh(new THREE.BoxGeometry(30.4, 10.6, 0.5), wallMat);
+  frontWall.position.set(0, 5.3, -15.2);
   frontWall.receiveShadow = true;
   worldGroup.add(frontWall);
 
   // 전면 강단 중앙 원목 패널
   const altarPanelMat = new THREE.MeshStandardMaterial({ color: 0x3b2718, roughness: 0.6 });
-  const altarPanel = new THREE.Mesh(new THREE.BoxGeometry(5.2, 9.4, 0.18), altarPanelMat);
-  altarPanel.position.set(0, 4.8, -14.5);
+  const altarPanel = new THREE.Mesh(new THREE.BoxGeometry(6.2, 9.8, 0.18), altarPanelMat);
+  altarPanel.position.set(0, 5.0, -14.9);
   worldGroup.add(altarPanel);
 
   // 전면 빛나는 십자가 (Cross)
   const crossMat = new THREE.MeshStandardMaterial({
     color: 0xffdf91, emissive: 0xd4942a, emissiveIntensity: 0.78, roughness: 0.3
   });
-  const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.34, 3.4, 0.22), crossMat);
-  crossV.position.set(0, 5.8, -14.3);
-  const crossH = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.34, 0.22), crossMat);
-  crossH.position.set(0, 6.4, -14.3);
+  const crossV = new THREE.Mesh(new THREE.BoxGeometry(0.36, 3.6, 0.22), crossMat);
+  crossV.position.set(0, 6.0, -14.7);
+  const crossH = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.36, 0.22), crossMat);
+  crossH.position.set(0, 6.6, -14.7);
   worldGroup.add(crossV, crossH);
 
   // 강대상 (Pulpit) & 펼쳐진 성경책
@@ -1701,7 +1748,7 @@ html, body {
   bibleMesh.position.set(0, 1.36, 0.05);
   bibleMesh.rotation.x = 0.18;
   pulpitGroup.add(pulpitBody, pulpitTop, bibleMesh);
-  pulpitGroup.position.set(0, 0.7, -12.0);
+  pulpitGroup.position.set(0, 0.7, -12.2);
   worldGroup.add(pulpitGroup);
 
   // 강단 좌측 그랜드 피아노
@@ -1721,26 +1768,26 @@ html, body {
     leg.position.set(lx, 0.35, lz);
     pianoGroup.add(leg);
   }
-  pianoGroup.position.set(-6.2, 0.35, -12.1);
+  pianoGroup.position.set(-8.2, 0.35, -12.3);
   pianoGroup.rotation.y = 0.35;
   worldGroup.add(pianoGroup);
 
-  // 좌우 벽과 스테인드글라스 창문 + 햇살 기둥(God Rays) (34m 길이로 확장)
-  const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 9.2, 34), wallMat);
-  leftWall.position.set(-11.0, 4.6, 2.0);
-  const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 9.2, 34), wallMat);
-  rightWall.position.set(11.0, 4.6, 2.0);
+  // 좌우 벽과 스테인드글라스 창문 + 햇살 기둥(God Rays) (폭 30m × 길이 36m 대성전)
+  const leftWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 9.6, 36), wallMat);
+  leftWall.position.set(-15.0, 4.8, 2.0);
+  const rightWall = new THREE.Mesh(new THREE.BoxGeometry(0.5, 9.6, 36), wallMat);
+  rightWall.position.set(15.0, 4.8, 2.0);
   worldGroup.add(leftWall, rightWall);
 
-  // 원목 서까래 기둥 & 지붕 보 (7개 스팬으로 확장)
+  // 원목 서까래 기둥 & 지붕 보 (7개 스팬, 30m 폭)
   const beamMat = new THREE.MeshStandardMaterial({ color: 0x3d2817, roughness: 0.7 });
   for (let z = -13; z <= 17; z += 5) {
-    const colL = new THREE.Mesh(new THREE.BoxGeometry(0.48, 9.2, 0.48), beamMat);
-    colL.position.set(-10.65, 4.6, z);
-    const colR = new THREE.Mesh(new THREE.BoxGeometry(0.48, 9.2, 0.48), beamMat);
-    colR.position.set(10.65, 4.6, z);
-    const roofBeam = new THREE.Mesh(new THREE.BoxGeometry(21.8, 0.42, 0.42), beamMat);
-    roofBeam.position.set(0, 8.9, z);
+    const colL = new THREE.Mesh(new THREE.BoxGeometry(0.48, 9.6, 0.48), beamMat);
+    colL.position.set(-14.65, 4.8, z);
+    const colR = new THREE.Mesh(new THREE.BoxGeometry(0.48, 9.6, 0.48), beamMat);
+    colR.position.set(14.65, 4.8, z);
+    const roofBeam = new THREE.Mesh(new THREE.BoxGeometry(29.8, 0.44, 0.44), beamMat);
+    roofBeam.position.set(0, 9.3, z);
     worldGroup.add(colL, colR, roofBeam);
   }
 
@@ -1750,60 +1797,66 @@ html, body {
   windowZPositions.forEach((wz, idx) => {
     const glassTex = createStainedGlassTexture(idx * 22);
     const glassMat = new THREE.MeshBasicMaterial({ map: glassTex });
-    const winGeo = new THREE.PlaneGeometry(1.8, 3.8);
+    const winGeo = new THREE.PlaneGeometry(1.9, 4.0);
 
     const winL = new THREE.Mesh(winGeo, glassMat);
-    winL.position.set(-10.72, 4.6, wz);
+    winL.position.set(-14.72, 4.8, wz);
     winL.rotation.y = Math.PI / 2;
 
     const winR = new THREE.Mesh(winGeo, glassMat);
-    winR.position.set(10.72, 4.6, wz);
+    winR.position.set(14.72, 4.8, wz);
     winR.rotation.y = -Math.PI / 2;
 
     worldGroup.add(winL, winR);
 
     // 창문에서 실내로 쏟아지는 햇살 기둥(God Ray)
-    const rayGeo = new THREE.CylinderGeometry(0.65, 1.5, 8.2, 16, 1, true);
+    const rayGeo = new THREE.CylinderGeometry(0.65, 1.5, 8.6, 16, 1, true);
     const rayMat = new THREE.MeshBasicMaterial({
       color: 0xffe49e, transparent: true, opacity: 0.085,
       side: THREE.DoubleSide, depthWrite: false, blending: THREE.AdditiveBlending
     });
     const rayL = new THREE.Mesh(rayGeo, rayMat);
-    rayL.position.set(-7.6, 2.8, wz);
+    rayL.position.set(-11.4, 3.0, wz);
     rayL.rotation.z = -0.62;
     worldGroup.add(rayL);
     godRayMeshes.push(rayL);
   });
 
   /* ==============================================================
-   * 5. 원목 장의자(Pew) 16개(64석) & 강단 앞 무릎 기도석 10석 & 야외 정원 벤치 12석 (총 86석!)
+   * 5. 4열 대성전 원목 장의자(Pew) 32개(96석) & 강단 앞 무릎 기도석 12석 & 야외 정원 벤치 16석 (총 124석!)
    * ============================================================== */
   const seats = []; // { id, pos: THREE.Vector3, type: 'pew'|'kneel', occupiedBy: null }
   const pewMat = new THREE.MeshStandardMaterial({ color: 0x593a22, roughness: 0.55 });
   const cushionMat = new THREE.MeshStandardMaterial({ color: 0x7a2e2e, roughness: 0.85 });
 
-  // 8열 × 좌우 2개 = 16개 대형 원목 장의자 (각 장의자당 4명 착석 = 본당 장의자 64석!)
-  const rowZList = [-6.0, -3.4, -0.8, 1.8, 4.4, 7.0, 9.6, 12.2];
-  const seatOffsets = [-2.0, -0.68, 0.68, 2.0];
+  // 8열 × 4블록(좌외열·좌내열·우내열·우외열) = 32개 원목 장의자 (각 장의자당 3명 착석 = 본당 장의자 96석!)
+  const rowZList = [-6.2, -3.6, -1.0, 1.6, 4.2, 6.8, 9.4, 12.0];
+  const pewColumns = [
+    { colIdx: 0, px: -8.2, label: '좌외열' },
+    { colIdx: 1, px: -2.9, label: '좌내열' },
+    { colIdx: 2, px: 2.9,  label: '우내열' },
+    { colIdx: 3, px: 8.2,  label: '우외열' }
+  ];
+  const seatOffsets = [-1.15, 0, 1.15];
   rowZList.forEach((rz, rIdx) => {
-    for (const side of [-1, 1]) {
-      const px = side * 4.8;
+    pewColumns.forEach((col) => {
+      const px = col.px;
       const pewGroup = new THREE.Group();
 
-      // 좌판 (5.8m 광폭 4인용 장의자)
-      const seatBench = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.12, 0.68), pewMat);
+      // 좌판 (3.5m 3인용 장의자)
+      const seatBench = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.12, 0.68), pewMat);
       seatBench.position.y = 0.48;
       seatBench.castShadow = true; seatBench.receiveShadow = true;
       // 붉은 방석 패드
-      const pad = new THREE.Mesh(new THREE.BoxGeometry(5.56, 0.06, 0.56), cushionMat);
+      const pad = new THREE.Mesh(new THREE.BoxGeometry(3.28, 0.06, 0.56), cushionMat);
       pad.position.set(0, 0.56, 0.02);
       // 등받이
-      const backRest = new THREE.Mesh(new THREE.BoxGeometry(5.8, 0.68, 0.12), pewMat);
+      const backRest = new THREE.Mesh(new THREE.BoxGeometry(3.5, 0.68, 0.12), pewMat);
       backRest.position.set(0, 0.84, 0.3);
       backRest.rotation.x = -0.1;
       backRest.castShadow = true;
       // 양끝 팔걸이 기둥
-      for (const ex of [-2.84, 2.84]) {
+      for (const ex of [-1.69, 1.69]) {
         const arm = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.95, 0.76), pewMat);
         arm.position.set(ex, 0.475, 0.02);
         arm.castShadow = true;
@@ -1814,55 +1867,59 @@ html, body {
       pewGroup.position.set(px, 0, rz);
       worldGroup.add(pewGroup);
 
-      // 각 장의자마다 4개의 착석 포인트 등록
+      // 각 장의자마다 3개의 착석 포인트 등록
       seatOffsets.forEach((offset, sIdx) => {
         seats.push({
-          id: `pew_${rIdx}_${side}_${sIdx}`,
-          label: `${rIdx + 1}열 ${side < 0 ? '좌측' : '우측'} 장의자 (${sIdx + 1}번석)`,
+          id: `pew_${rIdx}_${col.colIdx}_${sIdx}`,
+          label: `${rIdx + 1}열 ${col.label} 장의자 (${sIdx + 1}번석)`,
           pos: new THREE.Vector3(px + offset, 0, rz - 0.08),
           type: 'pew',
           lookAngle: 0,
           occupiedBy: null
         });
       });
-    }
+    });
   });
 
-  // 강단 앞 무릎 기도 방석 10개 (기존 6개 → 10개로 확장!)
-  const kneelXList = [-5.4, -4.2, -3.0, -1.8, -0.6, 0.6, 1.8, 3.0, 4.2, 5.4];
+  // 강단 앞 무릎 기도 방석 12개 (넓어진 강단 전면 폭에 맞춰 12석 배치!)
+  const kneelXList = [-6.6, -5.4, -4.2, -3.0, -1.8, -0.6, 0.6, 1.8, 3.0, 4.2, 5.4, 6.6];
   kneelXList.forEach((kx, kIdx) => {
     const kMesh = new THREE.Mesh(
       new THREE.BoxGeometry(0.75, 0.14, 0.55),
       new THREE.MeshStandardMaterial({ color: 0x8a332b, roughness: 0.8 })
     );
-    kMesh.position.set(kx, 0.07, -8.6);
+    kMesh.position.set(kx, 0.07, -8.8);
     kMesh.castShadow = true; kMesh.receiveShadow = true;
     worldGroup.add(kMesh);
 
     seats.push({
       id: `kneel_${kIdx}`,
       label: `강단 앞 제${kIdx + 1}무릎기도석`,
-      pos: new THREE.Vector3(kx, 0, -8.6),
+      pos: new THREE.Vector3(kx, 0, -8.8),
       type: 'kneel',
       lookAngle: 0,
       occupiedBy: null
     });
   });
 
-  // 야외 갈릴리 호숫가 연못 둘레(6석) & 감람산 묵상 정원(6석) 산책 벤치 총 12석 (기존 4석 → 12석 대확장!)
+  // 야외 갈릴리 호숫가 연못 둘레(8석) & 감람산 묵상 정자·정원(8석) 산책 벤치 총 16석!
   const gardenBenchCoords = [
-    { x: -6.2, z: 25.5, rot: -Math.PI / 2, label: '갈릴리 호숫가 제1벤치' },
-    { x: -6.2, z: 32.5, rot: -Math.PI / 2, label: '갈릴리 호숫가 제2벤치' },
-    { x: -14.0, z: 21.0, rot: 0, label: '갈릴리 호숫가 북쪽 제3벤치' },
-    { x: -14.0, z: 37.0, rot: Math.PI, label: '갈릴리 호숫가 남쪽 제4벤치' },
-    { x: -22.0, z: 26.5, rot: Math.PI / 2, label: '갈릴리 호숫가 서쪽 제5벤치' },
-    { x: -22.0, z: 31.5, rot: Math.PI / 2, label: '갈릴리 호숫가 서쪽 제6벤치' },
-    { x: 5.5, z: 23.5, rot: Math.PI / 2, label: '감람산 정원 제1벤치' },
-    { x: 5.5, z: 34.5, rot: Math.PI / 2, label: '감람산 정원 제2벤치' },
-    { x: 11.5, z: 25.5, rot: 0, label: '감람산 묵상숲 제3벤치' },
-    { x: 16.5, z: 25.5, rot: 0, label: '감람산 묵상숲 제4벤치' },
-    { x: 11.5, z: 32.5, rot: Math.PI, label: '감람산 묵상숲 제5벤치' },
-    { x: 16.5, z: 32.5, rot: Math.PI, label: '감람산 묵상숲 제6벤치' }
+    { x: -6.8, z: 25.0, rot: -Math.PI / 2, label: '갈릴리 호숫가 동쪽 제1벤치' },
+    { x: -6.8, z: 33.0, rot: -Math.PI / 2, label: '갈릴리 호숫가 동쪽 제2벤치' },
+    { x: -12.5, z: 20.2, rot: 0, label: '갈릴리 호숫가 북동 제3벤치' },
+    { x: -18.5, z: 20.2, rot: 0, label: '갈릴리 호숫가 북서 제4벤치' },
+    { x: -12.5, z: 37.8, rot: Math.PI, label: '갈릴리 호숫가 남동 제5벤치' },
+    { x: -18.5, z: 37.8, rot: Math.PI, label: '갈릴리 호숫가 남서 제6벤치' },
+    { x: -24.2, z: 26.0, rot: Math.PI / 2, label: '갈릴리 호숫가 서쪽 제7벤치' },
+    { x: -24.2, z: 32.0, rot: Math.PI / 2, label: '갈릴리 호숫가 서쪽 제8벤치' },
+    { x: 6.2, z: 23.5, rot: Math.PI / 2, label: '감람산 정원 산책로 제1벤치' },
+    { x: 6.2, z: 34.5, rot: Math.PI / 2, label: '감람산 정원 산책로 제2벤치' },
+    { x: 13.5, z: 27.2, rot: 0, label: '감람산 묵상정자 안 제3벤치' },
+    { x: 17.5, z: 27.2, rot: 0, label: '감람산 묵상정자 안 제4벤치' },
+    { x: 13.5, z: 30.8, rot: Math.PI, label: '감람산 묵상정자 안 제5벤치' },
+    { x: 17.5, z: 30.8, rot: Math.PI, label: '감람산 묵상정자 안 제6벤치' },
+    { x: 15.5, z: 22.0, rot: 0, label: '감람산 올리브숲 제7벤치' },
+    { x: 15.5, z: 36.0, rot: Math.PI, label: '감람산 올리브숲 제8벤치' }
   ];
   gardenBenchCoords.forEach((gb, idx) => {
     const bMesh = new THREE.Mesh(new THREE.BoxGeometry(2.1, 0.45, 0.65), pewMat);
@@ -1885,49 +1942,49 @@ html, body {
     {
       title: "1. 책을 들고 나온 사람들 · 에베소 성도들의 결단 (지난 주 조금 긴 성경이야기)",
       ref: "사도행전 19:1–20",
-      img: "./assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp",
       desc: "일꾼 바울의 땀 묻은 앞치마와 수건을 통해 일하신 하나님, 그리고 은 오만이나 되는 마술책을 스스로 들고 나와 불사르며 주의 이름을 높인 에베소 성도들의 이야기입니다. (하단 [6] 말씀·소리 메뉴에서 전체 말씀을 경청하실 수 있습니다.)",
-      pos: new THREE.Vector3(-10.68, 2.6, -3.0),
+      pos: new THREE.Vector3(-14.68, 2.6, -3.0),
       rotY: Math.PI / 2
     },
     {
       title: "2. 유월절 우슬초 · 생명을 살리는 어린양의 피",
       ref: "출애굽기 12:22",
-      img: "./assets/webp/feast_wide_02_passover_hyssop.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/feast_wide_02_passover_hyssop.webp",
       desc: "가장 작고 낮은 풀 우슬초에 묻은 어린양의 보혈이 죽음의 재앙을 넘어가게 한 구속의 은혜를 담았습니다.",
-      pos: new THREE.Vector3(-10.68, 2.6, 4.5),
+      pos: new THREE.Vector3(-14.68, 2.6, 4.5),
       rotY: Math.PI / 2
     },
     {
       title: "3. 베들레헴 성문에서 건네받은 신발 · 참된 고엘",
       ref: "룻기 4:7-17",
-      img: "./assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp",
       desc: "룻과 나오미의 모든 짐을 기꺼이 대신 짊어진 보아스처럼, 우리 삶의 기업 무를 자가 되신 주님을 묵상합니다.",
-      pos: new THREE.Vector3(10.68, 2.6, -3.0),
+      pos: new THREE.Vector3(14.68, 2.6, -3.0),
       rotY: -Math.PI / 2
     },
     {
       title: "4. 돌아와 엎드린 사마리아 나병환자의 감사",
       ref: "누가복음 17:15-16",
-      img: "./assets/webp/fig_wide_03_samaritan_leper.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/fig_wide_03_samaritan_leper.webp",
       desc: "고침 받은 열 사람 중 오직 주님 발아래 돌아와 엎드려 영광을 돌린 한 사람의 깊은 감사를 그렸습니다.",
-      pos: new THREE.Vector3(10.68, 2.6, 4.5),
+      pos: new THREE.Vector3(14.68, 2.6, 4.5),
       rotY: -Math.PI / 2
     },
     {
       title: "5. 에벤에셀 · 여기까지 우리를 도우신 하나님 (야외 정원 성화)",
       ref: "사무엘상 7:12",
-      img: "./assets/webp/2026-09-21-소소한-성경이야기-에벤에셀-i-사무엘상-712.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/2026-09-21-소소한-성경이야기-에벤에셀-i-사무엘상-712.webp",
       desc: "야외 감람산 정원에 전시된 성화입니다. 지나온 모든 걸음이 하나님의 도우심이었음을 고백하는 도움의 돌입니다.",
-      pos: new THREE.Vector3(8.8, 2.1, 23.0),
+      pos: new THREE.Vector3(10.2, 2.1, 22.5),
       rotY: -Math.PI / 3
     },
     {
       title: "6. 다른 길로 돌아간 동방박사들 (야외 정원 성화)",
       ref: "마태복음 2:11-12",
-      img: "./assets/webp/fig_wide_09_magi_another_way.webp",
+      img: "https://kkumbaon.com/kkumbaon-library/assets/webp/fig_wide_09_magi_another_way.webp",
       desc: "주님을 만나 경배한 뒤 세상의 옛길로 돌아가지 않고 ‘다른 길’로 걸어간 순례자들의 발걸음입니다.",
-      pos: new THREE.Vector3(8.8, 2.1, 34.5),
+      pos: new THREE.Vector3(10.2, 2.1, 35.5),
       rotY: -Math.PI / 3
     }
   ];
@@ -2653,19 +2710,21 @@ html, body {
     z: 10.5
   });
 
-  // 함께 기도하는 동행 성도들 배치 (총 86석으로 확장된 본당 장의자, 강단 앞 무릎기도석, 갈릴리 호숫가 및 감람산 정원 벤치에 골고루 배치!)
+  // 함께 기도하는 동행 성도들 배치 (총 124석으로 확장된 4열 본당 장의자, 강단 앞 무릎기도석, 갈릴리 호숫가 및 감람산 정원 벤치에 골고루 배치!)
   const npcConfigs = [
-    { name: '온유한 양', seatId: 'pew_0_-1_1', custom: { gender: 'F', hairStyle: 0, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#f0e7d8', prop: 'bible', accessory: 'none' } },
-    { name: '갈릴리 어부', seatId: 'pew_1_1_1', custom: { gender: 'M', hairStyle: 0, hairColor: '#111113', outfitType: 'suit', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
-    { name: '작은 겨자씨', seatId: 'pew_2_-1_2', custom: { gender: 'F', hairStyle: 1, hairColor: '#4a3222', outfitType: 'casual', outfitColor: '#4b6048', prop: 'none', accessory: 'beret' } },
-    { name: '감람나무 가지', seatId: 'pew_3_1_2', custom: { gender: 'M', hairStyle: 1, hairColor: '#c8ccd0', outfitType: 'suit', outfitColor: '#8c6d53', prop: 'bag', accessory: 'glasses' } },
-    { name: '김 사모', seatId: 'kneel_3', custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 강단 앞 무릎기도석
-    { name: '한 목사', seatId: 'kneel_6', custom: { gender: 'M', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#36393f', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
-    { name: '마가의 다락방', seatId: 'pew_4_-1_1', custom: { gender: 'F', hairStyle: 0, hairColor: '#7a5638', outfitType: 'suit', outfitColor: '#6e2c35', prop: 'candle', accessory: 'none' } },
-    { name: '베들레헴 목자', seatId: 'pew_5_1_1', custom: { gender: 'M', hairStyle: 0, hairColor: '#221a15', outfitType: 'casual', outfitColor: '#3d5245', prop: 'bible', accessory: 'none' } },
-    { name: '샤론의 꽃', seatId: 'kneel_1', custom: { gender: 'F', hairStyle: 1, hairColor: '#2c1e16', outfitType: 'suit', outfitColor: '#dfd3c3', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
+    { name: '온유한 양', seatId: 'pew_0_1_1', custom: { gender: 'F', hairStyle: 0, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#f0e7d8', prop: 'bible', accessory: 'none' } },
+    { name: '갈릴리 어부', seatId: 'pew_1_2_1', custom: { gender: 'M', hairStyle: 0, hairColor: '#111113', outfitType: 'suit', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
+    { name: '작은 겨자씨', seatId: 'pew_1_0_1', custom: { gender: 'F', hairStyle: 1, hairColor: '#4a3222', outfitType: 'casual', outfitColor: '#4b6048', prop: 'none', accessory: 'beret' } },
+    { name: '감람나무 가지', seatId: 'pew_2_3_1', custom: { gender: 'M', hairStyle: 1, hairColor: '#c8ccd0', outfitType: 'suit', outfitColor: '#8c6d53', prop: 'bag', accessory: 'glasses' } },
+    { name: '김 사모', seatId: 'kneel_4', custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'robe', outfitColor: '#c99e93', prop: 'none', accessory: 'crown' } }, // 강단 앞 무릎기도석
+    { name: '한 목사', seatId: 'kneel_7', custom: { gender: 'M', hairStyle: 2, hairColor: '#4a3222', outfitType: 'robe', outfitColor: '#36393f', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
+    { name: '마가의 다락방', seatId: 'pew_3_1_2', custom: { gender: 'F', hairStyle: 0, hairColor: '#7a5638', outfitType: 'suit', outfitColor: '#6e2c35', prop: 'candle', accessory: 'none' } },
+    { name: '베들레헴 목자', seatId: 'pew_4_2_0', custom: { gender: 'M', hairStyle: 0, hairColor: '#221a15', outfitType: 'casual', outfitColor: '#3d5245', prop: 'bible', accessory: 'none' } },
+    { name: '샤론의 꽃', seatId: 'kneel_2', custom: { gender: 'F', hairStyle: 1, hairColor: '#2c1e16', outfitType: 'suit', outfitColor: '#dfd3c3', prop: 'none', accessory: 'none' } }, // 강단 앞 무릎기도석
+    { name: '디모데 청년', seatId: 'pew_3_0_2', custom: { gender: 'M', hairStyle: 2, hairColor: '#1f1814', outfitType: 'casual', outfitColor: '#2c3e58', prop: 'bible', accessory: 'glasses' } },
+    { name: '루디아 집사', seatId: 'pew_4_3_1', custom: { gender: 'F', hairStyle: 2, hairColor: '#3d271d', outfitType: 'suit', outfitColor: '#6e2c35', prop: 'bag', accessory: 'none' } },
     { name: '엠마오 순례자', seatId: 'garden_bench_0', custom: { gender: 'M', hairStyle: 1, hairColor: '#3b2b20', outfitType: 'casual', outfitColor: '#5c4938', prop: 'palm', accessory: 'glasses' } }, // 야외 갈릴리 호숫가 벤치
-    { name: '기도하는 권사', seatId: 'garden_bench_6', custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#593847', prop: 'bible', accessory: 'glasses' } } // 야외 감람산 정원 벤치
+    { name: '기도하는 권사', seatId: 'garden_bench_10', custom: { gender: 'F', hairStyle: 2, hairColor: '#221a15', outfitType: 'suit', outfitColor: '#593847', prop: 'bible', accessory: 'glasses' } } // 야외 감람산 묵상정자 벤치
   ];
 
   npcConfigs.forEach((cfg, idx) => {
@@ -2862,15 +2921,15 @@ html, body {
    * ============================================================== */
   let camYaw = 0;
   let camYawVel = 0;
-  let camPitch = 0.34;
-  let camDist = 7.6;
+  let camPitch = 0.40;
+  let camDist = 11.4;
   let camPanDir = 0; // -1: 왼쪽 회전, +1: 오른쪽 회전
   let cameraPresetIdx = 0; // 0: 3인칭 기본, 1: 강단 십자가 정면, 2: 예배당·정원 전체 조망, 3: 1인칭 묵상
   const cameraPresets = [
-    { name: '3인칭 산책', dist: 7.6, pitch: 0.34 },
-    { name: '강단 정면', dist: 4.5, pitch: 0.16 },
-    { name: '예배당 조망', dist: 17.5, pitch: 0.52 },
-    { name: '깊은 묵상', dist: 2.5, pitch: 0.12 }
+    { name: '3인칭 산책', dist: 11.4, pitch: 0.40 },
+    { name: '강단 정면', dist: 5.5, pitch: 0.18 },
+    { name: '예배당 조망', dist: 22.0, pitch: 0.56 },
+    { name: '깊은 묵상', dist: 2.8, pitch: 0.12 }
   ];
 
   let isDragging = false;
@@ -3014,18 +3073,18 @@ html, body {
       return;
     }
 
-    // 2) 바닥 및 야외 정원 산책로 클릭 이동 (대확장: x -26~26, z -10~43)
-    const hits = raycaster.intersectObjects([floorMesh, gardenMesh, runnerMesh, pathMesh, crossPathMesh]);
+    // 2) 바닥 및 야외 정원 산책로 클릭 이동 (대확장: x -28~28, z -10~43)
+    const hits = raycaster.intersectObjects([floorMesh, gardenMesh, runnerMesh, runnerMeshL, runnerMeshR, pathMesh, crossPathMesh, pergolaFloor]);
     if (hits.length > 0) {
       const pt = hits[0].point;
-      const cx = Math.max(-26.0, Math.min(26.0, pt.x));
+      const cx = Math.max(-28.0, Math.min(28.0, pt.x));
       const cz = Math.max(-10.0, Math.min(43.0, pt.z));
 
-      // 확장된 갈릴리 대연못 수면 중심부(x:-14.0, z:29.0, 반경 6.2m)는 물 가장자리로 보정
-      const pondCenter = new THREE.Vector2(-14.0, 29.0);
+      // 확장된 갈릴리 대연못 수면 중심부(x:-15.5, z:29.0, 반경 7.3m)는 물 가장자리로 보정
+      const pondCenter = new THREE.Vector2(-15.5, 29.0);
       const click2D = new THREE.Vector2(cx, cz);
-      if (click2D.distanceTo(pondCenter) < 6.3) {
-        const dir = click2D.sub(pondCenter).normalize().multiplyScalar(6.6);
+      if (click2D.distanceTo(pondCenter) < 7.3) {
+        const dir = click2D.sub(pondCenter).normalize().multiplyScalar(7.6);
         click2D.copy(pondCenter).add(dir);
       }
 
@@ -3628,8 +3687,8 @@ html, body {
   });
   document.getElementById('piano-track-select').addEventListener('change', (e) => {
     const val = e.target.value;
-    if (val === 'grace') audioPianoEl.src = './assets/chapel_audio/piano_grace.mp3';
-    else if (val === 'worship') audioPianoEl.src = './assets/chapel_audio/piano_worship.mp3';
+    if (val === 'grace') audioPianoEl.src = 'https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/piano_grace.mp3';
+    else if (val === 'worship') audioPianoEl.src = 'https://kkumbaon.com/kkumbaon-library/assets/chapel_audio/piano_worship.mp3';
     if (!masterMuted && val !== 'pad') audioPianoEl.play().catch(() => {});
   });
 
@@ -4314,15 +4373,15 @@ html, body {
       const right = new THREE.Vector3(Math.cos(camYaw), 0, -Math.sin(camYaw));
       myAvatar.group.position.addScaledVector(forward, moveZ * speed);
       myAvatar.group.position.addScaledVector(right, moveX * speed);
-      myAvatar.group.position.x = Math.max(-26.0, Math.min(26.0, myAvatar.group.position.x));
+      myAvatar.group.position.x = Math.max(-28.0, Math.min(28.0, myAvatar.group.position.x));
       myAvatar.group.position.z = Math.max(-10.0, Math.min(43.0, myAvatar.group.position.z));
-      // 갈릴리 연못 수면 내부(반경 6.3m) 충돌 회피
-      const pdx = myAvatar.group.position.x - (-14.0);
+      // 갈릴리 연못 수면 내부(반경 7.3m) 충돌 회피
+      const pdx = myAvatar.group.position.x - (-15.5);
       const pdz = myAvatar.group.position.z - 29.0;
       const pdist = Math.hypot(pdx, pdz);
-      if (pdist < 6.3 && pdist > 0.001) {
-        myAvatar.group.position.x = -14.0 + (pdx / pdist) * 6.4;
-        myAvatar.group.position.z = 29.0 + (pdz / pdist) * 6.4;
+      if (pdist < 7.3 && pdist > 0.001) {
+        myAvatar.group.position.x = -15.5 + (pdx / pdist) * 7.4;
+        myAvatar.group.position.z = 29.0 + (pdz / pdist) * 7.4;
       }
       myAvatar.targetPos.copy(myAvatar.group.position);
       myAvatar.group.rotation.y = Math.atan2(-moveX, -moveZ) + camYaw;
@@ -4377,6 +4436,10 @@ html, body {
             if (av.isMe) broadcastMyState('candle', prayerMsg);
           } else {
             av.state = 'standing';
+            if (av.isMe && isWalkingToGardenExit) {
+              isWalkingToGardenExit = false;
+              window.location.href = 'https://kkumbaon.com/kkumbaon-library/index.html';
+            }
           }
         }
       } else if (av.state === 'bowing') {
@@ -4422,7 +4485,7 @@ html, body {
     // 카메라 좌우 버튼 회전 및 드래그 관성 반영
     if (camPanDir !== 0) {
       camYaw += camPanDir * 1.35 * dt;
-    } else if (!isCamDrag && Math.abs(camYawVel) > 0.0001) {
+    } else if (!isDragging && Math.abs(camYawVel) > 0.0001) {
       camYaw += camYawVel;
       camYawVel *= 0.88;
     }
@@ -4520,7 +4583,7 @@ html, body {
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
-  <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="https://kkumbaon.com/kkumbaon-library/kkumdido-shield.js"></script>
+  <script src="https://kkumbaon.com/kkumbaon-library/kkumdido_mobile.js?v=20261107e"></script>
 </body>
 </html>
