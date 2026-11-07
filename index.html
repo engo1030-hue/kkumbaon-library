@@ -3775,6 +3775,7 @@ body.dark-theme .knb-card-link {
       <div><strong id="statTotalDocs"></strong><span>성경 문헌</span></div>
       <div><strong id="statTotalImgs"></strong><span>성화와 도판</span></div>
       <div><strong id="statVisitorCount" title="꿈디도 누적 방문객 수">1,320+</strong><span>도서관 방문</span></div>
+      <div style="cursor:pointer;" onclick="openKkumdidoGuestbookModal()" title="꿈디도 도서관 영구 방명록 열기 · 방문 인사와 말씀 묵상 남기기"><strong id="statGuestbookCount" style="color:#C59B38;">방명록 ✍️</strong><span>영구 방명록 (<span id="statGuestbookNum">4</span>)</span></div>
     </div>
     <span id="statTotalMB" hidden></span><span id="storageBadge" hidden></span>
   </section>
@@ -3790,6 +3791,7 @@ body.dark-theme .knb-card-link {
         <a id="knbHeadline" href="kkumdido_12archives_viewer.html?archive=6" class="knb-headline-link">히브리어·헬라어 원어사전 2단계 핵심어(1,359어 · v1.2) 뜻 갈래 712어 정밀 매핑 완료</a>
       </div>
       <div class="knb-right">
+        <button type="button" class="knb-toggle-btn" onclick="openKkumdidoGuestbookModal()" style="background:linear-gradient(135deg,#241A10,#3D2C1B); color:#F5DF98; border-color:#C8A45D; font-weight:800;" title="꿈디도 방문 인사와 한 줄 묵상을 영구 방명록에 남겨보세요">📖 영구 방명록 ✍️</button>
         <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(-1)" title="이전 업데이트 소식" aria-label="이전 소식">‹</button>
         <button type="button" class="knb-nav-btn" onclick="stepKkumdidoNotice(1)" title="다음 업데이트 소식" aria-label="다음 소식">›</button>
         <button type="button" id="knbToggleBtn" class="knb-toggle-btn" onclick="toggleKkumdidoNoticeDrawer()" aria-expanded="false">최근 업데이트 내역 (<span id="knbTotalCount">6</span>) ▾</button>
@@ -6506,6 +6508,334 @@ body.dark-theme .knb-card-link {
       <span>빠른검색</span>
     </button>
   </nav>
+
+  <!-- 📖 꿈바온 디지털 도서관 순례자 영구 방명록 모달 (3D 아트리움 등잔 밑 방명록과 100% 실시간·영구 연동) -->
+  <div id="kkumdidoGuestbookModal" style="display:none; position:fixed; inset:0; background:rgba(12,10,8,0.76); backdrop-filter:blur(6px); z-index:9600; align-items:center; justify-content:center; padding:18px;" onclick="if(event.target===this)closeKkumdidoGuestbookModal()">
+    <div style="width:min(680px, 100%); max-height:88vh; display:flex; flex-direction:column; background:linear-gradient(165deg, #211A14 0%, #15100C 100%); color:#F6F0E4; border:1.5px solid #C8A45D; border-radius:20px; box-shadow:0 28px 80px rgba(0,0,0,0.75); overflow:hidden;">
+      <div style="padding:18px 22px; background:rgba(36,26,16,0.92); border-bottom:1px solid rgba(200,164,93,0.35); display:flex; justify-content:space-between; align-items:center; gap:12px;">
+        <div>
+          <div style="font-size:11.5px; color:#E5C878; font-weight:800; letter-spacing:0.06em;">KKUMDIDO PILGRIM GUESTBOOK · 등잔 밑 영구 방명록</div>
+          <h2 class="serif" style="margin:3px 0 0; font-size:20px; color:#FFFDF8;">📖 꿈바온 디지털 도서관 순례자 영구 방명록</h2>
+        </div>
+        <button type="button" onclick="closeKkumdidoGuestbookModal()" style="background:rgba(255,255,255,0.08); border:1px solid rgba(212,175,55,0.4); color:#F5EFE6; border-radius:10px; padding:6px 13px; font-size:13px; font-weight:700; cursor:pointer;">닫기 ✕</button>
+      </div>
+      <div style="padding:16px 22px 14px; border-bottom:1px solid rgba(200,164,93,0.22); background:rgba(255,255,255,0.02);">
+        <p style="font-size:13px; color:#D8CBB8; line-height:1.6; margin:0 0 12px;">
+          도서관을 찾아주신 순례자님들의 따뜻한 발자취와 말씀 묵상, 기도 제목을 남겨주세요. 이곳에 남기신 글은 <strong>사라지지 않고 도서관 본관 및 3D 아트리움 묵상원(‘등잔 밑’)에 영구 보존</strong>됩니다.
+        </p>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <input type="text" id="kkGbAuthorInput" maxlength="16" placeholder="순례자 호칭 (예: 베들레헴 순례자)" style="width:185px; flex-shrink:0; padding:10px 12px; border-radius:10px; border:1px solid rgba(212,175,55,0.42); background:rgba(12,9,7,0.85); color:#FFE6A3; font-size:13.5px; font-weight:700; outline:none;">
+          <input type="text" id="kkGbTextInput" maxlength="95" placeholder="마음에 남은 말씀 한 구절, 방문 인사, 또는 기도제목을 남겨주세요" style="flex:1; min-width:210px; padding:10px 13px; border-radius:10px; border:1px solid rgba(212,175,55,0.42); background:rgba(12,9,7,0.85); color:#FFF; font-size:13.5px; outline:none;">
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span id="kkGbSyncStatus" style="font-size:11.5px; color:#7CD992; font-weight:600;">🟢 도서관 본관 · 3D 아트리움 영구 동기화 중</span>
+          <div style="display:flex; gap:8px;">
+            <a href="online_chapel_kkumdido.html" style="text-decoration:none; padding:9px 13px; border-radius:10px; background:rgba(212,175,55,0.14); border:1px solid rgba(212,175,55,0.45); color:#F5DF98; font-size:12.5px; font-weight:700;">🏛️ 3D 묵상원 우물가 가기 ↗</a>
+            <button type="button" id="kkGbSubmitBtn" style="padding:9px 18px; border-radius:10px; border:none; background:linear-gradient(135deg,#E5C878 0%,#B88933 100%); color:#17110B; font-size:13.5px; font-weight:800; cursor:pointer; box-shadow:0 4px 14px rgba(212,175,55,0.3);">✍️ 영구 방명록 남기기</button>
+          </div>
+        </div>
+      </div>
+      <div id="kkGbListContainer" style="flex:1; overflow-y:auto; padding:14px 22px 20px; display:flex; flex-direction:column; gap:10px; max-height:46vh;"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/mqtt@5.3.5/dist/mqtt.min.js"></script>
+  <script>
+  (function initKkumdidoPermanentGuestbook() {
+    var STORAGE_KEY = 'kkumdido_guestbook_v2';
+    var DELETED_KEY = 'kkumdido_guestbook_deleted_v2';
+    var AUTHOR_KEY_STORAGE = 'kkumdido_guestbook_author_key_v1';
+    var AVATAR_STORAGE_KEY = 'kkumbaon_chapel_avatar_v2';
+    var TOPIC = 'kkumbaon/chapel/kkumdido/v1/guestbook';
+
+    var myAuthorKey = '';
+    try {
+      myAuthorKey = localStorage.getItem(AUTHOR_KEY_STORAGE) || '';
+      if (!myAuthorKey) {
+        myAuthorKey = 'kkak_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+        localStorage.setItem(AUTHOR_KEY_STORAGE, myAuthorKey);
+      }
+    } catch (_) {
+      myAuthorKey = 'kkak_local';
+    }
+
+    var deletedIds = new Set();
+    try {
+      var savedDel = JSON.parse(localStorage.getItem(DELETED_KEY) || '[]');
+      if (Array.isArray(savedDel)) savedDel.forEach(function(id) { deletedIds.add(id); });
+    } catch (_) {}
+
+    var DEFAULT_SEEDS = [
+      { id: "seed_kk_1", author: "베들레헴 순례자", text: "룻기 4장의 보아스처럼 누군가의 그늘이 되어주는 하루가 되게 하소서.", amens: 18, createdAt: Date.now() - 1000 * 60 * 15 },
+      { id: "seed_kk_2", author: "오래된 우물지기", text: "주의 말씀이 내 발에 등이요 내 길에 빛이심을 믿습니다. 꿈디도 도서관이 참 귀합니다.", amens: 24, createdAt: Date.now() - 1000 * 60 * 48 },
+      { id: "seed_kk_3", author: "갈릴리 새벽별", text: "헤세드의 사랑이 우리 가정과 교회 위에 아침마다 새로우시기를 기도합니다.", amens: 19, createdAt: Date.now() - 1000 * 60 * 110 },
+      { id: "seed_kk_4", author: "밧모섬의 서기관", text: "꿈디도를 찾아오는 모든 영혼이 말씀의 깊은 우물을 길어 올리게 하소서.", amens: 32, createdAt: Date.now() - 1000 * 60 * 240 }
+    ];
+
+    var entries = [];
+    function loadEntries() {
+      try {
+        var raw = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+        if (Array.isArray(raw) && raw.length > 0) {
+          entries = raw.filter(function(it) { return it && it.id && !deletedIds.has(it.id); });
+          updateHeaderCount();
+          return;
+        }
+      } catch (_) {}
+      entries = DEFAULT_SEEDS.filter(function(it) { return !deletedIds.has(it.id); });
+      saveEntries();
+      updateHeaderCount();
+    }
+
+    function saveEntries() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries.slice(0, 100)));
+        localStorage.setItem(DELETED_KEY, JSON.stringify(Array.from(deletedIds).slice(-200)));
+      } catch (_) {}
+      updateHeaderCount();
+    }
+
+    function updateHeaderCount() {
+      var el = document.getElementById('statGuestbookNum');
+      if (el) el.textContent = String(entries.length);
+    }
+
+    function esc(str) {
+      return String(str || '').replace(/[&<>"']/g, function(ch) {
+        return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch];
+      });
+    }
+
+    function fmtTime(ts) {
+      if (!ts || !isFinite(ts)) return '방금 전';
+      var diff = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+      var d = new Date(ts);
+      var mm = String(d.getMonth() + 1).padStart(2, '0');
+      var dd = String(d.getDate()).padStart(2, '0');
+      var hh = String(d.getHours()).padStart(2, '0');
+      var mi = String(d.getMinutes()).padStart(2, '0');
+      if (diff < 60) return '방금 전 (' + mm + '.' + dd + ' ' + hh + ':' + mi + ')';
+      if (diff < 3600) return Math.floor(diff / 60) + '분 전 (' + mm + '.' + dd + ' ' + hh + ':' + mi + ')';
+      if (diff < 86400) return Math.floor(diff / 3600) + '시간 전 (' + mm + '.' + dd + ' ' + hh + ':' + mi + ')';
+      return d.getFullYear() + '.' + mm + '.' + dd + ' ' + hh + ':' + mi;
+    }
+
+    var bc = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumdido_atrium_sanctuary_v1') : null;
+    var mqttClient = null;
+
+    function publishSnapshot() {
+      saveEntries();
+      var payload = {
+        type: 'kk_guestbook_sync',
+        updatedAt: Date.now(),
+        items: entries.slice(0, 80),
+        deletedIds: Array.from(deletedIds).slice(-120)
+      };
+      if (bc) bc.postMessage(payload);
+      if (mqttClient && mqttClient.connected) {
+        try {
+          mqttClient.publish(TOPIC, JSON.stringify(payload), { qos: 1, retain: true });
+        } catch (_) {}
+      }
+    }
+
+    function mergePayload(remote) {
+      if (!remote || !Array.isArray(remote.items)) return;
+      var changed = false;
+      if (Array.isArray(remote.deletedIds)) {
+        remote.deletedIds.forEach(function(id) {
+          if (id && !deletedIds.has(id)) {
+            deletedIds.add(id);
+            changed = true;
+          }
+        });
+      }
+      var map = new Map();
+      entries.forEach(function(it) {
+        if (it && it.id && !deletedIds.has(it.id)) map.set(it.id, it);
+      });
+      remote.items.forEach(function(rem) {
+        if (!rem || !rem.id || deletedIds.has(rem.id)) return;
+        var ex = map.get(rem.id);
+        if (!ex) {
+          map.set(rem.id, {
+            id: rem.id,
+            author: rem.author || '말씀 순례자',
+            authorKey: rem.authorKey || '',
+            text: rem.text || '',
+            amens: Number(rem.amens) || 1,
+            createdAt: Number(rem.createdAt) || Date.now()
+          });
+          changed = true;
+        } else {
+          var maxA = Math.max(Number(ex.amens) || 1, Number(rem.amens) || 1);
+          if (maxA !== ex.amens) {
+            ex.amens = maxA;
+            changed = true;
+          }
+        }
+      });
+      if (changed) {
+        entries = Array.from(map.values())
+          .filter(function(it) { return !deletedIds.has(it.id); })
+          .sort(function(a, b) { return (b.createdAt || 0) - (a.createdAt || 0); })
+          .slice(0, 100);
+        saveEntries();
+        renderGuestbookList();
+      }
+    }
+
+    function renderGuestbookList() {
+      var box = document.getElementById('kkGbListContainer');
+      if (!box) return;
+      box.innerHTML = '';
+      entries.forEach(function(item) {
+        var row = document.createElement('div');
+        row.style.cssText = 'padding:12px 15px; border-radius:12px; background:rgba(255,255,255,0.045); border:1px solid rgba(212,175,55,0.26); display:flex; flex-direction:column; gap:5px;';
+        var isMine = (item.authorKey && item.authorKey === myAuthorKey);
+        row.innerHTML =
+          '<div style="display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:12px; color:#E5C878;">' +
+            '<span>🏺 <strong>' + esc(item.author) + '</strong> · <span style="opacity:0.82; color:#C8BDAE;">' + esc(fmtTime(item.createdAt)) + '</span></span>' +
+            '<span style="display:inline-flex; align-items:center; gap:5px;">' +
+              '<button type="button" data-gb-amen="' + esc(item.id) + '" style="background:rgba(212,175,55,0.16); border:1px solid rgba(212,175,55,0.45); color:#FFE6A3; border-radius:999px; padding:3px 10px; font-size:11.5px; font-weight:700; cursor:pointer;">🙏 아멘 ' + (Number(item.amens) || 1) + '</button>' +
+              (isMine ? '<button type="button" data-gb-del="' + esc(item.id) + '" title="내 방명록 지우기" style="background:rgba(120,30,30,0.3); border:1px solid rgba(255,140,140,0.38); color:#FFB3B3; border-radius:999px; padding:3px 8px; font-size:11px; cursor:pointer;">✕</button>' : '') +
+            '</span>' +
+          '</div>' +
+          '<div style="font-size:14px; color:#FAF6EE; line-height:1.58; word-break:keep-all;">' + esc(item.text) + '</div>';
+        box.appendChild(row);
+      });
+
+      box.querySelectorAll('[data-gb-amen]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-gb-amen');
+          var found = entries.find(function(it) { return it.id === id; });
+          if (!found) return;
+          found.amens = (Number(found.amens) || 1) + 1;
+          renderGuestbookList();
+          publishSnapshot();
+        });
+      });
+
+      box.querySelectorAll('[data-gb-del]').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var id = btn.getAttribute('data-gb-del');
+          deletedIds.add(id);
+          entries = entries.filter(function(it) { return it.id !== id; });
+          renderGuestbookList();
+          publishSnapshot();
+        });
+      });
+    }
+
+    loadEntries();
+
+    window.openKkumdidoGuestbookModal = function() {
+      var modal = document.getElementById('kkumdidoGuestbookModal');
+      if (!modal) return;
+      var authorInp = document.getElementById('kkGbAuthorInput');
+      if (authorInp && !authorInp.value) {
+        try {
+          var av = JSON.parse(localStorage.getItem(AVATAR_STORAGE_KEY) || 'null');
+          authorInp.value = (av && av.name) ? av.name : '말씀 순례자';
+        } catch (_) {
+          authorInp.value = '말씀 순례자';
+        }
+      }
+      renderGuestbookList();
+      modal.style.display = 'flex';
+      setTimeout(function() {
+        var txtInp = document.getElementById('kkGbTextInput');
+        if (txtInp) txtInp.focus();
+      }, 60);
+    };
+
+    window.closeKkumdidoGuestbookModal = function() {
+      var modal = document.getElementById('kkumdidoGuestbookModal');
+      if (modal) modal.style.display = 'none';
+    };
+
+    var submitBtn = document.getElementById('kkGbSubmitBtn');
+    var textInp = document.getElementById('kkGbTextInput');
+    var authorInp = document.getElementById('kkGbAuthorInput');
+
+    function submitEntry() {
+      var txt = (textInp ? textInp.value : '').trim();
+      if (!txt) {
+        if (textInp) textInp.focus();
+        return;
+      }
+      var author = (authorInp ? authorInp.value : '').trim() || '말씀 순례자';
+      try {
+        var av = JSON.parse(localStorage.getItem(AVATAR_STORAGE_KEY) || '{}');
+        av.name = author;
+        localStorage.setItem(AVATAR_STORAGE_KEY, JSON.stringify(av));
+      } catch (_) {}
+
+      var newItem = {
+        id: 'lamp_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7),
+        author: author,
+        authorKey: myAuthorKey,
+        text: txt,
+        amens: 1,
+        createdAt: Date.now()
+      };
+      entries.unshift(newItem);
+      if (entries.length > 100) entries.length = 100;
+      if (textInp) textInp.value = '';
+      renderGuestbookList();
+      publishSnapshot();
+    }
+
+    if (submitBtn) submitBtn.addEventListener('click', submitEntry);
+    if (textInp) {
+      textInp.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          submitEntry();
+        }
+      });
+    }
+
+    if (bc) {
+      bc.onmessage = function(ev) {
+        if (ev.data && ev.data.type === 'kk_guestbook_sync') {
+          mergePayload(ev.data);
+        } else if (ev.data && ev.data.action === 'lamp' && ev.data.msg) {
+          loadEntries();
+          renderGuestbookList();
+        }
+      };
+    }
+
+    window.addEventListener('storage', function(ev) {
+      if (ev.key === STORAGE_KEY || ev.key === DELETED_KEY) {
+        loadEntries();
+        renderGuestbookList();
+      }
+    });
+
+    if (window.mqtt) {
+      try {
+        mqttClient = window.mqtt.connect('wss://broker.emqx.io:8084/mqtt', {
+          clientId: 'kkumdido_main_' + Math.random().toString(36).slice(2, 10),
+          clean: true,
+          connectTimeout: 4000,
+          reconnectPeriod: 5000
+        });
+        mqttClient.on('connect', function() {
+          mqttClient.subscribe(TOPIC, { qos: 1 });
+          var st = document.getElementById('kkGbSyncStatus');
+          if (st) st.textContent = '🟢 도서관 본관 · 3D 아트리움 클라우드 영구 동기화됨';
+        });
+        mqttClient.on('message', function(topic, payload) {
+          if (topic === TOPIC) {
+            try { mergePayload(JSON.parse(payload.toString())); } catch (_) {}
+          }
+        });
+      } catch (_) {}
+    }
+  })();
+  </script>
 
   <script src="kkumdido-shield.js"></script>
   <script src="kkumdido_mobile.js?v=20261107e"></script>

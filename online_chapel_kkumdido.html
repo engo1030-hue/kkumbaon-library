@@ -712,7 +712,7 @@ html, body {
   </button>
   <button class="dock-btn" id="dock-lamp">
     <span>🏺</span>
-    <span>등잔 밑 불 밝히기</span>
+    <span>영구 방명록·등잔</span>
     <span class="shortcut">5</span>
   </button>
   <button class="dock-btn" id="dock-gallery">
@@ -828,18 +828,25 @@ html, body {
   <button class="gold-btn" id="btn-step-orig">✨ 한 음절씩 빛으로 새기기 (클릭)</button>
 </aside>
 
-<!-- 5-B. [등잔 밑 불 밝히기] 패널 -->
+<!-- 5-B. [등잔 밑 불 밝히기 · 꿈디도 영구 방명록] 패널 -->
 <aside class="floating-panel" id="panel-lamp">
   <div class="panel-header">
-    <h2 class="panel-title">🏺 오래된 우물가 ‘등잔 밑’ 불 밝히기</h2>
+    <h2 class="panel-title">🏺 꿈디도 등잔 밑 영구 방명록</h2>
     <button class="panel-close" data-close="panel-lamp">✕</button>
   </div>
-  <div style="font-size:12.5px; color:#c2cadb; line-height:1.6;">
-    중정 한가운데의 ‘오래된 우물’ 난간에 고대 토기 등잔불을 밝히고, 오늘 마음에 남은 한 줄 묵상이나 기도를 남깁니다.
+  <div style="font-size:12.5px; color:#c2cadb; line-height:1.55;">
+    순례자님들이 남겨주신 말씀 묵상과 방문 인사는 <strong>창을 닫거나 다시 찾아오셔도 사라지지 않고 꿈디도 도서관 본관 및 3D 아트리움 방명록에 영구 보존</strong>됩니다.
   </div>
-  <input type="text" class="prayer-input" id="lamp-input" maxlength="65" placeholder="내 마음에 남은 말씀 한 구절 또는 기도제목">
-  <button class="gold-btn" id="btn-light-lamp">🏺 우물가로 나아가 토기 등잔 밝히기</button>
-  <div id="lamp-list" style="max-height:200px; overflow-y:auto;"></div>
+  <input type="text" class="prayer-input" id="lamp-input" maxlength="90" placeholder="마음에 남은 말씀 한 구절, 방문 인사, 또는 기도제목을 남겨주세요">
+  <div style="display:grid; grid-template-columns:1.2fr 1fr; gap:6px; margin-top:4px;">
+    <button type="button" class="gold-btn" id="btn-light-lamp" style="padding:10px 8px; font-size:12.5px;">🏺 우물가 나아가 등잔 켜기</button>
+    <button type="button" class="gold-btn" id="btn-direct-lamp" style="padding:10px 8px; font-size:12.5px; background:linear-gradient(135deg,#1d2842,#111829); color:#f5d78e; border:1px solid rgba(212,175,55,0.55);">✍️ 자리에서 바로 남기기</button>
+  </div>
+  <div style="display:flex; justify-content:space-between; align-items:center; font-size:11.5px; color:var(--gold-bright); font-weight:600; margin-top:6px;">
+    <span>🏺 꺼지지 않는 우물가 등잔 방명록 (<span id="lamp-count-num">16</span>개)</span>
+    <span id="lamp-sync-badge" style="color:#64e3a1;">🟢 본관·아트리움 영구 보존됨</span>
+  </div>
+  <div id="lamp-list" style="max-height:220px; overflow-y:auto; margin-top:4px;"></div>
 </aside>
 
 <!-- 5-C. [8대 성화 도슨트] 패널 -->
@@ -1138,12 +1145,74 @@ html, body {
     }
   ];
 
-  const WELL_LAMPS = [
-    { author: "베들레헴 순례자", text: "룻기 4장의 보아스처럼 누군가의 그늘이 되어주는 하루가 되게 하소서.", time: "방금 전" },
-    { author: "오래된 우물지기", text: "주의 말씀이 내 발에 등이요 내 길에 빛이심을 믿습니다.", time: "5분 전" },
-    { author: "갈릴리 새벽별", text: "헤세드의 사랑이 우리 가정과 교회 위에 아침마다 새로우시기를.", time: "11분 전" },
-    { author: "밧모섬의 서기관", text: "꿈디도를 찾아오는 모든 영혼이 말씀의 깊은 우물을 길어 올리게 하소서.", time: "19분 전" }
+  /* ==============================================================
+   * 2-B. 꿈디도 등잔 밑 영구 방명록 시스템 (localStorage + MQTT Retained 클라우드 영구 동기화)
+   *      - 본관(index.html)과 3D 아트리움(online_chapel_kkumdido.html)이 동일 키·토픽으로 100% 공유!
+   * ============================================================== */
+  const LAMP_STORAGE_KEY = 'kkumdido_guestbook_v2';
+  const LAMP_DELETED_KEY = 'kkumdido_guestbook_deleted_v2';
+  const LAMP_AUTHOR_KEY_STORAGE = 'kkumdido_guestbook_author_key_v1';
+  const KK_GUESTBOOK_TOPIC = 'kkumbaon/chapel/kkumdido/v1/guestbook';
+
+  let myLampAuthorKey = '';
+  try {
+    myLampAuthorKey = localStorage.getItem(LAMP_AUTHOR_KEY_STORAGE) || '';
+    if (!myLampAuthorKey) {
+      myLampAuthorKey = 'kkak_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+      localStorage.setItem(LAMP_AUTHOR_KEY_STORAGE, myLampAuthorKey);
+    }
+  } catch (_) {
+    myLampAuthorKey = 'kkak_local';
+  }
+
+  let deletedLampIds = new Set();
+  try {
+    const savedDel = JSON.parse(localStorage.getItem(LAMP_DELETED_KEY) || '[]');
+    if (Array.isArray(savedDel)) savedDel.forEach(id => deletedLampIds.add(id));
+  } catch (_) {}
+
+  const DEFAULT_LAMP_SEEDS = [
+    { id: "seed_kk_1", author: "베들레헴 순례자", text: "룻기 4장의 보아스처럼 누군가의 그늘이 되어주는 하루가 되게 하소서.", amens: 18, createdAt: Date.now() - 1000 * 60 * 15 },
+    { id: "seed_kk_2", author: "오래된 우물지기", text: "주의 말씀이 내 발에 등이요 내 길에 빛이심을 믿습니다. 꿈디도 도서관이 참 귀합니다.", amens: 24, createdAt: Date.now() - 1000 * 60 * 48 },
+    { id: "seed_kk_3", author: "갈릴리 새벽별", text: "헤세드의 사랑이 우리 가정과 교회 위에 아침마다 새로우시기를 기도합니다.", amens: 19, createdAt: Date.now() - 1000 * 60 * 110 },
+    { id: "seed_kk_4", author: "밧모섬의 서기관", text: "꿈디도를 찾아오는 모든 영혼이 말씀의 깊은 우물을 길어 올리게 하소서.", amens: 32, createdAt: Date.now() - 1000 * 60 * 240 }
   ];
+
+  let WELL_LAMPS = [];
+  function loadLocalLampGuestbook() {
+    try {
+      const raw = JSON.parse(localStorage.getItem(LAMP_STORAGE_KEY) || 'null');
+      if (Array.isArray(raw) && raw.length > 0) {
+        WELL_LAMPS = raw.filter(it => it && it.id && !deletedLampIds.has(it.id));
+        return;
+      }
+    } catch (_) {}
+    WELL_LAMPS = DEFAULT_LAMP_SEEDS.filter(it => !deletedLampIds.has(it.id));
+    saveLocalLampGuestbook();
+  }
+
+  function saveLocalLampGuestbook() {
+    try {
+      localStorage.setItem(LAMP_STORAGE_KEY, JSON.stringify(WELL_LAMPS.slice(0, 100)));
+      localStorage.setItem(LAMP_DELETED_KEY, JSON.stringify(Array.from(deletedLampIds).slice(-200)));
+    } catch (_) {}
+  }
+
+  function formatLampTimestamp(ts, fallbackTime) {
+    if (!ts || !isFinite(ts)) return fallbackTime || '방금 전';
+    const diffSec = Math.max(0, Math.floor((Date.now() - ts) / 1000));
+    const d = new Date(ts);
+    const mm = String(d.getMonth() + 1).padStart(2, '0');
+    const dd = String(d.getDate()).padStart(2, '0');
+    const hh = String(d.getHours()).padStart(2, '0');
+    const mi = String(d.getMinutes()).padStart(2, '0');
+    if (diffSec < 60) return `방금 전 (${mm}.${dd} ${hh}:${mi})`;
+    if (diffSec < 3600) return `${Math.floor(diffSec / 60)}분 전 (${mm}.${dd} ${hh}:${mi})`;
+    if (diffSec < 86400) return `${Math.floor(diffSec / 3600)}시간 전 (${mm}.${dd} ${hh}:${mi})`;
+    return `${d.getFullYear()}.${mm}.${dd} ${hh}:${mi}`;
+  }
+
+  loadLocalLampGuestbook();
 
   /* ==============================================================
    * 3. 사운드 시스템 (Web Audio 우물 물소리·밤바람 + 피아노 + 8개국어 말씀)
@@ -2216,18 +2285,151 @@ html, body {
   }, { passive: false });
   renderOrigScroll();
 
-  // 등잔 밑 불 밝히기 목록
+  // 등잔 밑 불 밝히기 (꿈디도 영구 방명록) 렌더링, 등록, 아멘 공감 및 클라우드 Retained 동기화
+  function escapeLampHtml(str) {
+    return String(str || '').replace(/[&<>"']/g, ch => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    }[ch]));
+  }
+
+  function publishLampGuestbookSnapshot() {
+    saveLocalLampGuestbook();
+    const payload = {
+      type: 'kk_guestbook_sync',
+      updatedAt: Date.now(),
+      items: WELL_LAMPS.slice(0, 80),
+      deletedIds: Array.from(deletedLampIds).slice(-120)
+    };
+    if (typeof kkBC !== 'undefined' && kkBC) {
+      kkBC.postMessage(payload);
+    }
+    if (typeof kkMqtt !== 'undefined' && kkMqtt && kkMqtt.connected) {
+      try {
+        kkMqtt.publish(KK_GUESTBOOK_TOPIC, JSON.stringify(payload), { qos: 1, retain: true });
+      } catch (_) {}
+    }
+  }
+
+  function mergeLampGuestbookPayload(remotePayload) {
+    if (!remotePayload || !Array.isArray(remotePayload.items)) return;
+    let changed = false;
+    if (Array.isArray(remotePayload.deletedIds)) {
+      remotePayload.deletedIds.forEach(id => {
+        if (id && !deletedLampIds.has(id)) {
+          deletedLampIds.add(id);
+          changed = true;
+        }
+      });
+    }
+    const map = new Map();
+    WELL_LAMPS.forEach(it => {
+      if (it && it.id && !deletedLampIds.has(it.id)) map.set(it.id, it);
+    });
+    remotePayload.items.forEach(rem => {
+      if (!rem || !rem.id || deletedLampIds.has(rem.id)) return;
+      const existing = map.get(rem.id);
+      if (!existing) {
+        map.set(rem.id, {
+          id: rem.id,
+          author: rem.author || '말씀 순례자',
+          authorKey: rem.authorKey || '',
+          text: rem.text || '',
+          amens: Number(rem.amens) || 1,
+          createdAt: Number(rem.createdAt) || Date.now()
+        });
+        changed = true;
+      } else {
+        const maxAmens = Math.max(Number(existing.amens) || 1, Number(rem.amens) || 1);
+        if (maxAmens !== existing.amens) {
+          existing.amens = maxAmens;
+          changed = true;
+        }
+      }
+    });
+    if (changed) {
+      WELL_LAMPS = Array.from(map.values())
+        .filter(it => !deletedLampIds.has(it.id))
+        .sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0))
+        .slice(0, 100);
+      saveLocalLampGuestbook();
+      renderLampList();
+    }
+  }
+
+  function addLampEntryToGuestbook(lampText, authorName, isMine = true, customId = null) {
+    const cleanText = (lampText || '').trim() || '오래된 우물가에 조용히 말씀의 등잔불을 밝힙니다.';
+    const entryId = customId || ('lamp_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7));
+    if (deletedLampIds.has(entryId)) return null;
+    if (WELL_LAMPS.some(it => it.id === entryId)) return null;
+
+    const newItem = {
+      id: entryId,
+      author: authorName || myCustom.name || '말씀 순례자',
+      authorKey: isMine ? myLampAuthorKey : '',
+      text: cleanText,
+      amens: 1,
+      createdAt: Date.now()
+    };
+    WELL_LAMPS.unshift(newItem);
+    if (WELL_LAMPS.length > 100) WELL_LAMPS.length = 100;
+    renderLampList();
+    if (isMine) publishLampGuestbookSnapshot();
+    else saveLocalLampGuestbook();
+    return newItem;
+  }
+
   function renderLampList() {
     const list = document.getElementById('lamp-list');
+    if (!list) return;
     list.innerHTML = '';
+    const cntEl = document.getElementById('lamp-count-num');
+    if (cntEl) cntEl.textContent = String(12 + WELL_LAMPS.length);
+
     WELL_LAMPS.forEach(item => {
       const d = document.createElement('div');
       d.className = 'lamp-item';
-      d.innerHTML = `<div style="font-size:11px; color:var(--gold-bright); margin-bottom:3px;">🏺 <strong>${item.author}</strong> · ${item.time}</div><div>${item.text}</div>`;
+      const timeLabel = formatLampTimestamp(item.createdAt, item.time);
+      const isMine = (item.authorKey && item.authorKey === myLampAuthorKey);
+      d.innerHTML = `
+        <div style="display:flex; justify-content:space-between; align-items:center; gap:6px; font-size:11px; color:var(--gold-bright); margin-bottom:4px;">
+          <span>🏺 <strong>${escapeLampHtml(item.author)}</strong> · <span style="opacity:0.85;">${escapeLampHtml(timeLabel)}</span></span>
+          <span style="display:inline-flex; align-items:center; gap:4px;">
+            <button type="button" data-lamp-amen="${escapeLampHtml(item.id)}" style="background:rgba(212,175,55,0.16); border:1px solid rgba(212,175,55,0.45); color:#ffe69c; border-radius:999px; padding:2px 8px; font-size:11px; font-weight:700; cursor:pointer;">🙏 아멘 ${Number(item.amens) || 1}</button>
+            ${isMine ? `<button type="button" data-lamp-del="${escapeLampHtml(item.id)}" title="내 방명록 지우기" style="background:rgba(120,30,30,0.3); border:1px solid rgba(255,140,140,0.35); color:#ffb3b3; border-radius:999px; padding:2px 6px; font-size:10.5px; cursor:pointer;">✕</button>` : ''}
+          </span>
+        </div>
+        <div style="word-break:keep-all; line-height:1.55;">${escapeLampHtml(item.text)}</div>
+      `;
       list.appendChild(d);
+    });
+
+    list.querySelectorAll('[data-lamp-amen]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-lamp-amen');
+        const found = WELL_LAMPS.find(it => it.id === targetId);
+        if (!found) return;
+        found.amens = (Number(found.amens) || 1) + 1;
+        playScrollChime(3, true);
+        showBubble(myAvatar, '🙏 아멘으로 함께 공감합니다');
+        renderLampList();
+        publishLampGuestbookSnapshot();
+        broadcastPilgrimState('amen', `🙏 ${found.author} 님의 묵상에 아멘!`);
+      });
+    });
+
+    list.querySelectorAll('[data-lamp-del]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-lamp-del');
+        deletedLampIds.add(targetId);
+        WELL_LAMPS = WELL_LAMPS.filter(it => it.id !== targetId);
+        renderLampList();
+        publishLampGuestbookSnapshot();
+        document.getElementById('status-banner').textContent = '🏺 내가 남긴 방명록 글을 정리했습니다.';
+      });
     });
   }
   renderLampList();
+  setInterval(renderLampList, 30000);
 
   document.getElementById('btn-light-lamp').addEventListener('click', () => {
     const inp = document.getElementById('lamp-input');
@@ -2238,6 +2440,27 @@ html, body {
     myAvatar.state = 'walking_to_well';
     myAvatar.pendingLampText = txt;
     document.getElementById('status-banner').textContent = '🏺 중앙 ‘오래된 우물’ 난간으로 걸어가 토기 등잔에 불을 밝힙니다...';
+  });
+
+  const btnDirectLamp = document.getElementById('btn-direct-lamp');
+  if (btnDirectLamp) {
+    btnDirectLamp.addEventListener('click', () => {
+      const inp = document.getElementById('lamp-input');
+      const txt = inp.value.trim() || '오래된 우물가에 조용히 말씀의 등잔불을 밝힙니다.';
+      inp.value = '';
+      playScrollChime(5, true);
+      const created = addLampEntryToGuestbook(txt, myCustom.name, true);
+      showBubble(myAvatar, '🏺 등잔 밑 영구 방명록에 글을 남겼습니다');
+      document.getElementById('status-banner').textContent = '🏺 내 묵상과 방문 인사가 꿈디도 영구 방명록에 기록되었습니다.';
+      if (created) broadcastPilgrimState('lamp', created.text, created.id);
+    });
+  }
+
+  document.getElementById('lamp-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (btnDirectLamp) btnDirectLamp.click();
+    }
   });
 
   // 8대 성화 도슨트 전환
@@ -2949,13 +3172,30 @@ html, body {
       } else if (data.action === 'kneel') {
         av.state = 'kneeling';
         if (data.msg) showBubble(av, data.msg, 3600);
+      } else if (data.action === 'lamp' && data.msg) {
+        addLampEntryToGuestbook(data.msg, data.name || '온라인 순례자', false, data.lampId || null);
+        showBubble(av, '🏺 등잔 밑에 말씀의 불을 밝혔습니다');
       }
     }
     updateCloisterCounts();
   }
 
   const kkBC = ('BroadcastChannel' in window) ? new BroadcastChannel('kkumdido_atrium_sanctuary_v1') : null;
-  if (kkBC) kkBC.onmessage = (ev) => handlePilgrimPacket(ev.data);
+  if (kkBC) {
+    kkBC.onmessage = (ev) => {
+      if (ev.data && ev.data.type === 'kk_guestbook_sync') {
+        mergeLampGuestbookPayload(ev.data);
+        return;
+      }
+      handlePilgrimPacket(ev.data);
+    };
+  }
+  window.addEventListener('storage', (ev) => {
+    if (ev.key === LAMP_STORAGE_KEY || ev.key === LAMP_DELETED_KEY) {
+      loadLocalLampGuestbook();
+      renderLampList();
+    }
+  });
 
   let kkMqtt = null;
   const KK_TOPIC = 'kkumbaon/kkumdido/sanctuary/v1/presence';
@@ -2969,17 +3209,22 @@ html, body {
       });
       kkMqtt.on('connect', () => {
         kkMqtt.subscribe(KK_TOPIC);
+        kkMqtt.subscribe(KK_GUESTBOOK_TOPIC, { qos: 1 });
         broadcastPilgrimState();
+        const syncEl = document.getElementById('lamp-sync-badge');
+        if (syncEl) syncEl.textContent = '🟢 도서관 방명록 클라우드 동기화됨';
       });
       kkMqtt.on('message', (topic, payload) => {
         if (topic === KK_TOPIC) {
           try { handlePilgrimPacket(JSON.parse(payload.toString())); } catch (_) {}
+        } else if (topic === KK_GUESTBOOK_TOPIC) {
+          try { mergeLampGuestbookPayload(JSON.parse(payload.toString())); } catch (_) {}
         }
       });
     } catch (_) {}
   }
 
-  function broadcastPilgrimState(action = null, extraMsg = null) {
+  function broadcastPilgrimState(action = null, extraMsg = null, lampId = null) {
     const pkt = {
       sid: mySid,
       name: myCustom.name,
@@ -2990,7 +3235,8 @@ html, body {
       state: myAvatar.state,
       benchId: myAvatar.bench ? myAvatar.bench.id : null,
       action,
-      msg: extraMsg
+      msg: extraMsg,
+      lampId: action === 'lamp' ? lampId : null
     };
     if (kkBC) kkBC.postMessage(pkt);
     if (kkMqtt && kkMqtt.connected) kkMqtt.publish(KK_TOPIC, JSON.stringify(pkt));
@@ -3348,14 +3594,10 @@ html, body {
             av.state = 'standing';
             av.group.rotation.y = 0;
             playScrollChime(5, true);
-            WELL_LAMPS.unshift({
-              author: myCustom.name,
-              text: av.pendingLampText,
-              time: '방금 전'
-            });
-            renderLampList();
+            const created = addLampEntryToGuestbook(av.pendingLampText, myCustom.name, true);
             showBubble(av, '🏺 등잔 밑에 말씀의 불을 밝혔습니다');
-            document.getElementById('status-banner').textContent = '🏺 오래된 우물 난간에 내 토기 등잔불이 조용히 타오릅니다.';
+            document.getElementById('status-banner').textContent = '🏺 오래된 우물 난간과 꿈디도 영구 방명록에 내 토기 등잔불이 기록되었습니다.';
+            if (av.isMe && created) broadcastPilgrimState('lamp', created.text, created.id);
           } else {
             av.state = 'standing';
           }
