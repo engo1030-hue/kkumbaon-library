@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#1e1914">
-<title>새오름교회 온라인 예배당 · 3D 메가처치 프리미엄 통합 캠퍼스 (212석)</title>
-<meta name="description" content="새오름교회 3D 메가처치 온라인 예배당 (212석 · 6대 복합성전: 1층 계단식 대성전·파이프오르간, 2층 발코니, 소예배실·골방기도실, 교회학교 비전홀, 장년부 친교홀, 갈릴리 호수정원)">
+<title>새오름교회 · 온라인 예배당 (통합형 212석)</title>
+<meta name="description" content="새오름교회 3D 온라인 예배당 통합형 (212석 · 6대 복합성전: 1층 계단식 대성전·파이프오르간, 2층 발코니, 소예배실·골방기도실, 교회학교 비전홀, 장년부 친교홀, 갈릴리 호수정원)">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://kkumbaon.com/kkumbaon-library/assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
@@ -783,11 +783,11 @@ html, body {
 <body class="is-3d-chapel-page">
 
 <!-- 1. 부트(입장) 화면 -->
-<main id="chapel-boot" class="chapel-boot" role="dialog" aria-label="새오름교회 3D 메가처치 온라인 예배당" style="overflow-y:auto;">
+<main id="chapel-boot" class="chapel-boot" role="dialog" aria-label="새오름교회 온라인 예배당" style="overflow-y:auto;">
   <div style="display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border-radius:999px; background:linear-gradient(135deg, #1b2845 0%, #2c3e6b 100%); border:1.5px solid #e5c168; box-shadow:0 6px 18px rgba(0,0,0,0.18); margin-bottom:10px;">
-    <span style="font-size:12.5px; font-weight:800; color:#ffe6a3; letter-spacing:0.04em;">👑 PREMIUM MEGA-CAMPUS · 3D 온라인 예배당 프리미엄 통합형 (총 212석 · 6대 복합성전)</span>
+    <span style="font-size:12.5px; font-weight:800; color:#ffe6a3; letter-spacing:0.04em;">⛪ 3D 온라인 예배당 · 통합형 (총 212석 · 6대 복합성전)</span>
   </div>
-  <h1 style="font-size:28px; letter-spacing:2px;">새오름교회 · 3D 메가처치 온라인 예배당</h1>
+  <h1 style="font-size:28px; letter-spacing:2px;">새오름교회 · 온라인 예배당</h1>
   <p class="boot-sub" style="margin-top:6px; font-size:13.5px; color:#2d3b55; line-height:1.55;">
     <strong>① 1층 계단식 대성전(96석·파이프오르간·성가대)</strong> · <strong>② 2층 중층 발코니석(36석)</strong> · <strong>③ 좌측 별관 소예배실·골방기도실(22석)</strong><br>
     <strong>④ 우측 별관 다음세대 교회학교 비전홀(18석)</strong> · <strong>⑤ 장년부·셀모임 라운지(12석)</strong> · <strong>⑥ 야외 갈릴리 호수정원(16석)</strong>
@@ -852,8 +852,8 @@ html, body {
   바닥을 누르면 사람처럼 걸어가고, 빈 장의자에 앉거나 강단 앞에서 무릎 꿇고 기도할 수 있습니다.
 </div>
 
-<!-- 👑 프리미엄 메가처치 캠퍼스 6대 공간 원터치 이동 바 -->
-<nav id="campus-zone-bar" aria-label="메가처치 캠퍼스 공간 빠른 이동" style="position:fixed; top:52px; left:50%; transform:translateX(-50%); z-index:25; display:flex; align-items:center; gap:5px; padding:5px 9px; border-radius:999px; background:rgba(18, 22, 32, 0.88); border:1px solid rgba(229, 193, 104, 0.5); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 24px rgba(0,0,0,0.42); max-width:calc(100vw - 16px); overflow-x:auto; white-space:nowrap;">
+<!-- 🏛️ 통합형 예배당 6대 공간 원터치 이동 바 -->
+<nav id="campus-zone-bar" aria-label="통합형 예배당 공간 빠른 이동" style="position:fixed; top:52px; left:50%; transform:translateX(-50%); z-index:25; display:flex; align-items:center; gap:5px; padding:5px 9px; border-radius:999px; background:rgba(18, 22, 32, 0.88); border:1px solid rgba(229, 193, 104, 0.5); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 24px rgba(0,0,0,0.42); max-width:calc(100vw - 16px); overflow-x:auto; white-space:nowrap;">
   <span style="font-size:11px; font-weight:800; color:#f5cf76; padding:0 5px;">🏛️ 캠퍼스 이동:</span>
   <button type="button" class="campus-zone-btn active" data-zone="main1f" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.65); background:linear-gradient(135deg,#e5c168,#b88728); color:#1a1208; font-size:11.5px; font-weight:800; cursor:pointer;">⛪ 1층 계단식 본당</button>
   <button type="button" class="campus-zone-btn" data-zone="balcony2f" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.35); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🏛️ 2층 발코니석</button>
@@ -1187,7 +1187,7 @@ html, body {
 <div class="modal-backdrop" id="modal-rooms">
   <div class="modal-card" style="max-width:460px;">
     <div class="panel-header">
-      <h2 class="panel-title">🏛️ 새오름교회 메가처치 캠퍼스 서버 & 함께 있는 성도</h2>
+      <h2 class="panel-title">🏛️ 새오름교회 온라인 예배당 서버 & 함께 있는 성도</h2>
       <button class="panel-close" data-close-modal="modal-rooms">✕</button>
     </div>
     <div style="margin-top:10px; padding:10px 12px; border-radius:12px; background:rgba(124,217,146,0.1); border:1px solid rgba(124,217,146,0.32); font-size:12px; line-height:1.55; color:#dff7e4;">
@@ -1210,7 +1210,7 @@ html, body {
     </div>
     <div id="room-list-container">
       <div class="room-item active" data-room="🏛️ 새오름 대성전 (1·2층 계단식)" data-zone-jump="main1f" data-npc="25">
-        <div><strong>🏛️ 새오름 대성전 (1층 계단식 + 2층 발코니)</strong> <span style="font-size:11.5px; color:#a89b87;">· 메가처치 본당 (144석)</span></div>
+        <div><strong>🏛️ 새오름 대성전 (1층 계단식 + 2층 발코니)</strong> <span style="font-size:11.5px; color:#a89b87;">· 통합형 본당 (144석)</span></div>
         <div style="font-size:12px; color:#7cd992;" class="room-status-txt">실시간 연결됨</div>
       </div>
       <div class="room-item" data-room="🙏 은혜 소예배실 · 겟세마네 골방기도실" data-zone-jump="smallchapel" data-npc="25">
@@ -1237,7 +1237,7 @@ html, body {
       <button class="panel-close" data-close-modal="modal-offering">✕</button>
     </div>
     <p style="font-size:13px; color:#d8cbb8; line-height:1.7; margin:14px 0 12px;">
-      새오름교회 3D 메가처치 온라인 예배당과 꿈디도 디지털도서관은 전 세계 성도님들이 언제 어디서나 조용히 머물며 말씀을 묵상하고 기도할 수 있도록 열려 있는 영적 쉼터입니다.
+      새오름교회 온라인 예배당과 꿈디도 디지털도서관은 전 세계 성도님들이 언제 어디서나 조용히 머물며 말씀을 묵상하고 기도할 수 있도록 열려 있는 영적 쉼터입니다.
     </p>
     <div style="padding:16px 18px; border-radius:14px; background:rgba(212,168,83,0.12); border:1px solid rgba(212,168,83,0.35); text-align:center;">
       <div style="font-size:12px; color:#e5d2b0; font-weight:600; letter-spacing:0.02em; margin-bottom:6px;">
@@ -1865,7 +1865,7 @@ html, body {
     worldGroup.add(lampPost);
   }
 
-  // 예배당 원목 마룻바닥 (메가처치 본당 + 좌측 소예배실 별관 + 우측 교회학교·장년부 별관 통합: 가로 64m x 세로 36m)
+  // 예배당 원목 마룻바닥 (통합형 본당 + 좌측 소예배실 별관 + 우측 교회학교·장년부 별관 통합: 가로 64m x 세로 36m)
   const floorGeo = new THREE.PlaneGeometry(64, 36);
   const floorMat = new THREE.MeshStandardMaterial({
     map: createWoodFloorTexture(),
@@ -2341,7 +2341,7 @@ html, body {
     worldGroup.add(frontScreenGroup);
   }
 
-  // [메가처치 강단] 좌·우 황금 파이프오르간 22관 & 2단 성가대석 (Choir Loft & Golden Pipe Organ)
+  // [통합형 강단] 좌·우 황금 파이프오르간 22관 & 2단 성가대석 (Choir Loft & Golden Pipe Organ)
   const organPipeMat = new THREE.MeshStandardMaterial({ color: 0xe8c468, roughness: 0.24, metalness: 0.76 });
   const organCaseMat = new THREE.MeshStandardMaterial({ color: 0x7a5628, roughness: 0.48 });
   const goldAccentMat = new THREE.MeshStandardMaterial({ color: 0xe6b84c, roughness: 0.25, metalness: 0.72 });
@@ -2509,7 +2509,7 @@ html, body {
   const balconySign = new THREE.Mesh(
     new THREE.PlaneGeometry(7.2, 0.68),
     new THREE.MeshBasicMaterial({
-      map: makeBannerTex('🏛️ 2층 중층 발코니 예배석 (36석)', '대성전 전체와 대형 설교스크린을 한눈에 조망하는 프리미엄 좌석', '#1c2438', '#e5c168', '#ffe6a3', '#d6e4ff')
+      map: makeBannerTex('🏛️ 2층 중층 발코니 예배석 (36석)', '대성전 전체와 대형 설교스크린을 한눈에 조망하는 예배 좌석', '#1c2438', '#e5c168', '#ffe6a3', '#d6e4ff')
     })
   );
   balconySign.position.set(0, BALCONY_Y - 0.02, 10.36);
@@ -4922,7 +4922,7 @@ html, body {
   // 초기 환영 교제 메시지
   appendChatMessage({
     name: '예배당 안내',
-    text: '샬롬! 새오름교회 3D 메가처치 온라인 예배당(1·2층 대성전·소예배실·교회학교·장년부홀·호수정원)에 오신 것을 환영합니다. 강단 정중앙의 [말씀 스크린]을 터치하면 말씀 영상이 상영됩니다!',
+    text: '샬롬! 새오름교회 온라인 예배당 통합형(1·2층 대성전·소예배실·교회학교·장년부홀·호수정원)에 오신 것을 환영합니다. 강단 정중앙의 [말씀 스크린]을 터치하면 말씀 영상이 상영됩니다!',
     isSystem: true
   });
   appendChatMessage({
