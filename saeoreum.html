@@ -2983,14 +2983,14 @@ html, body {
    * ============================================================== */
   let camYaw = 0;
   let camYawVel = 0;
-  let camPitch = 0.40;
+  let camPitch = 0.25;
   let camDist = 11.4;
   let camPanDir = 0; // -1: 왼쪽 회전, +1: 오른쪽 회전
   let cameraPresetIdx = 0; // 0: 3인칭 기본, 1: 강단 십자가 정면, 2: 예배당·정원 전체 조망, 3: 1인칭 묵상
   const cameraPresets = [
-    { name: '3인칭 산책', dist: 11.4, pitch: 0.40 },
-    { name: '강단 정면', dist: 5.5, pitch: 0.18 },
-    { name: '예배당 조망', dist: 22.0, pitch: 0.56 },
+    { name: '3인칭 산책', dist: 11.4, pitch: 0.25 },
+    { name: '강단 정면', dist: 5.5, pitch: 0.16 },
+    { name: '예배당 조망', dist: 22.0, pitch: 0.44 },
     { name: '깊은 묵상', dist: 2.8, pitch: 0.12 }
   ];
 
@@ -4715,7 +4715,7 @@ html, body {
     // 카메라가 부드럽게 내 아바타(또는 강단)를 추적
     const lookTarget = new THREE.Vector3(
       myAvatar.group.position.x * 0.65,
-      1.35,
+      1.95,
       myAvatar.group.position.z - 1.6
     );
     const desiredCamPos = new THREE.Vector3(
