@@ -2390,6 +2390,22 @@
       }
     }
 
+    // 설교 AI 스튜디오 (모세의 지팡이 & 주간 사역 7종) 연동
+    if (shouldForce && typeof window.summonKkumdidoCards === 'function' && typeof window.applyAllSummonedCardsToSermon === 'function') {
+      var mqEl = document.getElementById('mosesQueryInput');
+      if (mqEl) mqEl.value = w.ref;
+      window.summonKkumdidoCards(w.ref, false);
+      window.applyAllSummonedCardsToSermon(false);
+      if (w.gist) {
+        var inTitleEl = document.getElementById('inTitle');
+        if (inTitleEl) inTitleEl.value = w.gist;
+      }
+      if (typeof window.generateAll7Materials === 'function') {
+        window.generateAll7Materials(false);
+      }
+      filledCount++;
+    }
+
     // 번역 스튜디오인 경우
     var transIn = document.getElementById('writeInput');
     if (transIn && (forceOverwrite || (!transIn.value.trim() && hasUrlRef))) {

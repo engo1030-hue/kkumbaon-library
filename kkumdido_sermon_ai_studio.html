@@ -731,6 +731,39 @@
     border-color: #C59B38;
   }
 
+  @keyframes kkdGoldFlash {
+    0% { box-shadow: 0 0 0 0 rgba(197, 155, 56, 0.85), 0 0 28px rgba(197, 155, 56, 0.55); border-color: #C59B38; }
+    60% { box-shadow: 0 0 0 6px rgba(197, 155, 56, 0.22), 0 0 22px rgba(197, 155, 56, 0.35); border-color: #C59B38; }
+    100% { box-shadow: var(--shadow-card); }
+  }
+  .kkd-flash-highlight {
+    animation: kkdGoldFlash 1.25s ease-out;
+  }
+  #mosesActionToast {
+    position: fixed;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%) translateY(20px);
+    z-index: 99999;
+    background: linear-gradient(135deg, #1E160E 0%, #332414 100%);
+    color: #F7E29E;
+    border: 1.5px solid #C59B38;
+    border-radius: 14px;
+    padding: 13px 22px;
+    font-size: 0.92rem;
+    font-weight: 800;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.22s ease, transform 0.22s ease;
+    max-width: 92vw;
+    text-align: center;
+  }
+  #mosesActionToast.on {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
   @media print {
     body { background: #FFF !important; color: #000 !important; padding: 0 !important; }
     .top-gnb, .hero-bar, .no-print, .output-tabs, .action-toolbar, .screen-emoji, .moses-summoner-card { display: none !important; }
@@ -740,7 +773,7 @@
   }
 </style>
 <link rel="manifest" href="manifest.json">
-<script src="kkumdido_moses_archive_db.js"></script>
+<script src="kkumdido_moses_archive_db.js?v=20261108"></script>
 <script src="kkumdido_grand_encyclopedia_db.js"></script>
 </head>
 <body data-theme="beige" data-kkd-studio="true">
@@ -807,9 +840,9 @@
     </div>
 
     <div class="moses-search-bar">
-      <input type="text" id="mosesQueryInput" class="moses-search-input" value="룻기 2:12" placeholder="성경 본문 장절 또는 설교 주제를 입력하십시오 (예: 룻기 2:12, 빌립보서 4:6-7, 시편 23편, 로마서 8장, 헤세드, 평강...)" onkeydown="if(event.key==='Enter') summonKkumdidoCards()">
-      <button type="button" class="moses-search-btn" onclick="summonKkumdidoCards()">🪄 꿈디도 자료·주제 카드 대령하기</button>
-      <button type="button" class="moses-apply-all-btn" onclick="applyAllSummonedCardsToSermon()">✨ 대령된 카드로 설교초안 + 7종 자료 한 번에 빚기</button>
+      <input type="text" id="mosesQueryInput" class="moses-search-input" value="룻기 2:12" placeholder="성경 본문 장절 또는 설교 주제를 입력하십시오 (예: 룻기 2:12, 빌립보서 4:6-7, 시편 23편, 로마서 8장, 헤세드, 평강...)" onkeydown="if(event.key==='Enter'){ event.preventDefault(); summonKkumdidoCards(null, true); }">
+      <button type="button" class="moses-search-btn" onclick="summonKkumdidoCards(null, true, this)">🪄 꿈디도 자료·주제 카드 대령하기</button>
+      <button type="button" class="moses-apply-all-btn" onclick="applyAllSummonedCardsToSermon(true, this)">✨ 대령된 카드로 설교초안 + 7종 자료 한 번에 빚기</button>
     </div>
 
     <div class="sample-pills" style="margin-bottom:8px;">
@@ -834,7 +867,7 @@
   </section>
   <div class="studio-grid">
     <!-- 좌측: 설교 원고 입력 패널 -->
-    <div class="card no-print">
+    <div class="card no-print" id="leftInputCard">
       <div class="card-title">
         <span>2단계: 주일 설교 원고와 요지 세 줄 다듬기</span>
         <span style="font-size:0.78rem; color:var(--gold-main);">이 컴퓨터 안에서만 처리됩니다</span>
@@ -842,31 +875,34 @@
 
       <div style="font-size:0.8rem; font-weight:800; color:var(--text-muted); margin-bottom:6px;">체험용 샘플 설교 불러오기</div>
       <div class="sample-pills">
-        <button type="button" class="sample-pill" onclick="loadSampleSermon(0)">샘플 1: 빌립보서 4:6–7</button>
-        <button type="button" class="sample-pill" onclick="loadSampleSermon(1)">샘플 2: 시편 23:1–4</button>
-        <button type="button" class="sample-pill" onclick="loadSampleSermon(2)">샘플 3: 누가복음 5:1–11</button>
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(0, true)">샘플 1: 빌립보서 4:6–7</button>
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(1, true)">샘플 2: 시편 23:1–4</button>
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(2, true)">샘플 3: 누가복음 5:1–11</button>
       </div>
 
       <div class="form-row">
         <div class="form-group">
           <label for="inChurch">교회 이름</label>
-          <input type="text" id="inChurch" class="form-control" value="꿈바온 은혜교회">
+          <input type="text" id="inChurch" class="form-control" value="꿈바온 은혜교회" oninput="generateAll7Materials()">
         </div>
         <div class="form-group">
           <label for="inDate">예배 날짜</label>
-          <input type="date" id="inDate" class="form-control">
+          <input type="date" id="inDate" class="form-control" onchange="generateAll7Materials()">
         </div>
       </div>
 
       <div class="form-group">
         <label for="inTitle">설교 제목</label>
-        <input type="text" id="inTitle" class="form-control" placeholder="예: 염려를 내려놓고 기도의 자리로">
+        <input type="text" id="inTitle" class="form-control" placeholder="예: 염려를 내려놓고 기도의 자리로" oninput="generateAll7Materials()">
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="inScripture">성경 본문 장절 (입력 시 위 카드 자동 대령)</label>
-          <input type="text" id="inScripture" class="form-control" placeholder="예: 룻기 2:12, 빌립보서 4:6-7" oninput="onScriptureFieldInput(this.value)">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:4px; margin-bottom:4px;">
+            <label for="inScripture" style="margin-bottom:0;">성경 본문 장절</label>
+            <button type="button" class="btn-mini" style="padding:2px 7px; font-size:0.72rem;" onclick="fillStep2FromScriptureInput(this)">📖 이 장절로 채우기</button>
+          </div>
+          <input type="text" id="inScripture" class="form-control" placeholder="예: 룻기 2:12, 빌립보서 4:6-7" oninput="onScriptureFieldInput(this.value)" onkeydown="if(event.key==='Enter'){ event.preventDefault(); fillStep2FromScriptureInput(); }">
         </div>
         <div class="form-group">
           <label for="inGroupSelect">소그룹 모임 이름</label>
@@ -903,7 +939,7 @@
 
       <div class="form-group">
         <label for="inBibleText">성경 본문 말씀 (개역개정)</label>
-        <textarea id="inBibleText" class="form-control" rows="3" placeholder="개역개정 본문 구절을 붙여넣으십시오..."></textarea>
+        <textarea id="inBibleText" class="form-control" rows="3" placeholder="개역개정 본문 구절을 붙여넣으십시오..." oninput="generateAll7Materials()"></textarea>
       </div>
 
       <div class="form-group">
@@ -915,27 +951,27 @@
       <div class="summary-confirm-box">
         <div class="summary-confirm-head">
           <strong>설교 요지 세 줄 확인·다듬기 (마침표로 끝나는 한 문장)</strong>
-          <button type="button" class="btn-mini" onclick="extractPointsToInputs(true)">원고에서 다시 뽑기</button>
+          <button type="button" class="btn-mini" onclick="extractPointsToInputs(true, this)">원고에서 다시 뽑기</button>
         </div>
         <div class="point-input-row">
           <span>요지 1</span>
-          <input type="text" id="inPoint1" class="form-control" placeholder="첫째 요지 한 문장..." oninput="generateAll7Materials()">
+          <input type="text" id="inPoint1" class="form-control" placeholder="첫째 요지 한 문장..." oninput="onManualPointInput()">
         </div>
         <div class="point-input-row">
           <span>요지 2</span>
-          <input type="text" id="inPoint2" class="form-control" placeholder="둘째 요지 한 문장..." oninput="generateAll7Materials()">
+          <input type="text" id="inPoint2" class="form-control" placeholder="둘째 요지 한 문장..." oninput="onManualPointInput()">
         </div>
         <div class="point-input-row">
           <span>요지 3</span>
-          <input type="text" id="inPoint3" class="form-control" placeholder="셋째 요지 한 문장..." oninput="generateAll7Materials()">
+          <input type="text" id="inPoint3" class="form-control" placeholder="셋째 요지 한 문장..." oninput="onManualPointInput()">
         </div>
       </div>
 
-      <button type="button" class="btn-generate" onclick="generateAll7Materials()">주간 사역 7종 자료 일괄 생성하기</button>
+      <button type="button" class="btn-generate" id="btnGenerateAll7" onclick="generateAll7Materials(true, this)">주간 사역 7종 자료 일괄 생성하기</button>
     </div>
 
     <!-- 우측: 7종 사역 문서 출력 패널 -->
-    <div class="card">
+    <div class="card" id="rightOutputCard">
       <div class="output-tabs" role="tablist">
         <button type="button" class="out-tab active" onclick="switchOutTab('out-bulletin', this)">1. 주보 요약·공지</button>
         <button type="button" class="out-tab" onclick="switchOutTab('out-smallgroup', this)">2. 소그룹 나눔지</button>
@@ -1147,13 +1183,73 @@
     };
   }
 
-  function extractPointsToInputs(triggerGenerate) {
+  var LAST_APPLIED_REF = '';
+  var USER_EDITED_POINTS = false;
+  var mosesToastTimer = null;
+
+  function showMosesToast(msg) {
+    var t = document.getElementById('mosesActionToast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'mosesActionToast';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.classList.add('on');
+    clearTimeout(mosesToastTimer);
+    mosesToastTimer = setTimeout(function() {
+      t.classList.remove('on');
+    }, 3000);
+  }
+
+  function flashCardElement(elId) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    el.classList.remove('kkd-flash-highlight');
+    void el.offsetWidth;
+    el.classList.add('kkd-flash-highlight');
+  }
+
+  function giveButtonFeedback(btn, doneLabel) {
+    if (!btn || btn.dataset.busy === '1') return;
+    var orig = btn.innerHTML;
+    btn.dataset.busy = '1';
+    btn.innerHTML = doneLabel;
+    setTimeout(function() {
+      btn.innerHTML = orig;
+      btn.dataset.busy = '0';
+    }, 1500);
+  }
+
+  function buildPointLineFromPair(ptPair, fallbackStr) {
+    if (Array.isArray(ptPair) && ptPair.length >= 2) {
+      var head = String(ptPair[0] || '').replace(/^제\d대지:\s*/, '').replace(/\([^)]*\)\s*$/, '').trim();
+      var body = String(ptPair[1] || '').trim();
+      if (body && body.length >= 12) {
+        return shortLine(body, 105);
+      }
+      if (head) return ensurePeriod(head);
+    }
+    return shortLine(fallbackStr || '', 105);
+  }
+
+  function extractPointsToInputs(triggerGenerate, btnEl) {
     var manuscript = document.getElementById('inManuscript').value.trim();
     var ex = extractPointsFromManuscript(manuscript);
     document.getElementById('inPoint1').value = shortLine(ex.p1, 105);
     document.getElementById('inPoint2').value = shortLine(ex.p2, 105);
     document.getElementById('inPoint3').value = shortLine(ex.p3, 105);
+    USER_EDITED_POINTS = false;
+    if (btnEl) {
+      giveButtonFeedback(btnEl, '✓ 요지 3줄 추출 완료!');
+      showMosesToast('✅ 설교 원고에서 핵심 요지 세 줄을 새로 뽑아 7종 사역 자료에 반영했습니다.');
+    }
     if (triggerGenerate) generateAll7Materials();
+  }
+
+  function onManualPointInput() {
+    USER_EDITED_POINTS = true;
+    generateAll7Materials();
   }
 
   var msTimer = null;
@@ -1161,7 +1257,7 @@
     clearTimeout(msTimer);
     msTimer = setTimeout(function() {
       extractPointsToInputs(true);
-    }, 250);
+    }, 220);
   }
 
   function onGroupSelectChange() {
@@ -1171,7 +1267,7 @@
     generateAll7Materials();
   }
 
-  function loadSampleSermon(idx) {
+  function loadSampleSermon(idx, isUserClick) {
     var s = SAMPLE_SERMONS[idx] || SAMPLE_SERMONS[0];
     document.getElementById('inTitle').value = s.title;
     document.getElementById('inScripture').value = s.scripture;
@@ -1179,9 +1275,16 @@
     if (mq) mq.value = s.scripture;
     document.getElementById('inBibleText').value = s.bibleText;
     document.getElementById('inManuscript').value = s.manuscript;
+    LAST_APPLIED_REF = s.scripture;
+    USER_EDITED_POINTS = false;
     extractPointsToInputs(false);
-    summonKkumdidoCards(s.scripture);
+    summonKkumdidoCards(s.scripture, false);
     generateAll7Materials();
+    if (isUserClick) {
+      flashCardElement('leftInputCard');
+      flashCardElement('rightOutputCard');
+      showMosesToast('📖 샘플 설교 「' + s.title + '」(' + s.scripture + ')와 주간 사역 7종 문서가 준비되었습니다.');
+    }
   }
 
   function getGroupInfo() {
@@ -1203,7 +1306,29 @@
     };
   }
 
-  function generateAll7Materials() {
+  function generateAll7Materials(isManualClick, btnEl) {
+    // 사용자가 [주간 사역 7종 자료 일괄 생성하기]를 직접 눌렀는데
+    // 본문 장절(inScripture)이나 1단계 검색창(mosesQueryInput)에 새로운 본문을 적어두고 아직 채우기를 안 한 경우 자동 동기화
+    if (isManualClick) {
+      var curScrip = (document.getElementById('inScripture').value || '').trim();
+      var curMq = (document.getElementById('mosesQueryInput') ? document.getElementById('mosesQueryInput').value : '').trim();
+      if (curScrip && curScrip !== LAST_APPLIED_REF) {
+        summonKkumdidoCards(curScrip, false);
+        applyAllSummonedCardsToSermon(false);
+      } else if (curMq && CURRENT_SUMMONED && curMq !== CURRENT_SUMMONED.query && curScrip === LAST_APPLIED_REF) {
+        summonKkumdidoCards(curMq, false);
+        applyAllSummonedCardsToSermon(false);
+      } else if (!USER_EDITED_POINTS) {
+        var msNow = document.getElementById('inManuscript').value.trim();
+        if (msNow) {
+          var exNow = extractPointsFromManuscript(msNow);
+          document.getElementById('inPoint1').value = shortLine(exNow.p1, 105);
+          document.getElementById('inPoint2').value = shortLine(exNow.p2, 105);
+          document.getElementById('inPoint3').value = shortLine(exNow.p3, 105);
+        }
+      }
+    }
+
     var church = document.getElementById('inChurch').value.trim() || '우리교회';
     var date = document.getElementById('inDate').value || new Date().toISOString().slice(0, 10);
     var title = document.getElementById('inTitle').value.trim() || '오늘의 주일 말씀';
@@ -1492,6 +1617,21 @@
         '<button type="button" class="btn-tool primary" onclick="copyAiPromptAndOpen(\'https://gemini.google.com\')">복사 후 Gemini(제미나이) 열기 ↗</button>' +
         '<a href="kkumdido_sermon_studio.html" class="btn-tool">설교 준비실(66권·원어)로 이동 ↗</a>' +
       '</div>';
+
+    var statusBanner = document.getElementById('statusBannerText');
+    if (statusBanner) {
+      statusBanner.innerHTML = '✅ 현재 <b style="color:var(--gold-main);">「' + escapeHtml(title) + '」(' + escapeHtml(scripture) + ')</b> 기준 주간 사역 7종 문서가 준비되어 있습니다.';
+    }
+
+    if (isManualClick) {
+      if (btnEl) giveButtonFeedback(btnEl, '✨ 주간 사역 7종 생성 완료!');
+      flashCardElement('rightOutputCard');
+      showMosesToast('🎉 「' + title + '」(' + scripture + ') 주간 사역 7종 자료가 생성되었습니다!');
+      var outCard = document.getElementById('rightOutputCard');
+      if (outCard && window.innerWidth <= 1080) {
+        outCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
   }
 
   function switchOutTab(panelId, btn) {
@@ -1552,15 +1692,36 @@
     if (mq && val) mq.value = val;
     clearTimeout(scripTimer);
     scripTimer = setTimeout(function() {
-      if (val && val.trim().length >= 2) summonKkumdidoCards(val.trim());
+      if (val && val.trim().length >= 2) {
+        summonKkumdidoCards(val.trim(), false);
+        if (CURRENT_SUMMONED && CURRENT_SUMMONED.ch) {
+          document.getElementById('inBibleText').value = CURRENT_SUMMONED.ch.kv || CURRENT_SUMMONED.book.key_verse || '';
+        }
+        generateAll7Materials(false);
+      }
     }, 320);
+  }
+
+  function fillStep2FromScriptureInput(btnEl) {
+    var sInput = document.getElementById('inScripture');
+    var mq = document.getElementById('mosesQueryInput');
+    var q = (sInput && sInput.value.trim()) || (mq && mq.value.trim()) || '룻기 2:12';
+    summonKkumdidoCards(q, false);
+    applyAllSummonedCardsToSermon(false);
+    if (btnEl) giveButtonFeedback(btnEl, '✓ 채우기 완료!');
+    flashCardElement('leftInputCard');
+    flashCardElement('rightOutputCard');
+    showMosesToast('📖 「' + q + '」 본문 말씀과 설교 초안·요지 3줄이 채워졌습니다!');
   }
 
   function quickSummonPassage(q) {
     var mq = document.getElementById('mosesQueryInput');
     if (mq) mq.value = q;
-    summonKkumdidoCards(q);
-    applyAllSummonedCardsToSermon();
+    summonKkumdidoCards(q, false);
+    applyAllSummonedCardsToSermon(false);
+    flashCardElement('leftInputCard');
+    flashCardElement('rightOutputCard');
+    showMosesToast('🪄 「' + q + '」 아카이브 카드 대령 및 설교 초안·7종 자료가 준비되었습니다!');
   }
 
   function parseQueryToBookChapter(rawQuery) {
@@ -1624,7 +1785,7 @@
     return { mode: 'passage', book: defaultBook, chNo: 2, rawRef: q || '룻기 2:12' };
   }
 
-  function summonKkumdidoCards(optionalQuery) {
+  function summonKkumdidoCards(optionalQuery, syncToStep2, btnEl) {
     var mq = document.getElementById('mosesQueryInput');
     var q = (optionalQuery != null ? optionalQuery : (mq ? mq.value : '')).trim() || '룻기 2:12';
     if (mq && optionalQuery != null) mq.value = q;
@@ -1701,7 +1862,7 @@
       ? matchedMods.map(function(m, idx) {
           return '<div style="margin-bottom:6px; padding-bottom:5px; border-bottom:1px dotted var(--border-soft); display:flex; justify-content:space-between; gap:6px; align-items:flex-start;">' +
             '<div><span style="font-size:0.72rem; font-weight:800; color:var(--gold-main);">[' + escapeHtml(m.an.split('·')[1] || m.an) + ']</span> <b>' + escapeHtml(m.t) + '</b><br><span style="font-size:0.79rem; color:var(--text-muted);">' + escapeHtml(m.s) + '</span></div>' +
-            '<button type="button" class="summon-btn" style="flex-shrink:0; padding:3px 7px; font-size:0.72rem;" onclick="appendArchiveModToManuscript(' + idx + ')">+담기</button>' +
+            '<button type="button" class="summon-btn" style="flex-shrink:0; padding:3px 7px; font-size:0.72rem;" onclick="appendArchiveModToManuscript(' + idx + ', this)">+담기</button>' +
           '</div>';
         }).join('')
       : '<div>연결된 12대 아카이브 모듈이 준비되어 있습니다.</div>';
@@ -1718,8 +1879,8 @@
           '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="applySummonedCard(\'VERSE\')">본문 칸에 바로 채우기</button>' +
-          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'PARA\')">+ 풀어읽기 원고에 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="applySummonedCard(\'VERSE\', this)">본문 칸에 바로 채우기</button>' +
+          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'PARA\', this)">+ 풀어읽기 원고에 담기</button>' +
         '</div>' +
       '</article>' +
 
@@ -1731,7 +1892,7 @@
           '<div class="summon-card-body">' + wordsHtml + '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'WORDS\')">+ 원어 보석을 설교 원고에 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'WORDS\', this)">+ 원어 보석을 설교 원고에 담기</button>' +
         '</div>' +
       '</article>' +
 
@@ -1746,7 +1907,7 @@
           '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'CTX\')">+ 서론·배경으로 원고에 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'CTX\', this)">+ 서론·배경으로 원고에 담기</button>' +
         '</div>' +
       '</article>' +
 
@@ -1758,7 +1919,7 @@
           '<div class="summon-card-body">' + escapeHtml(ch.theo || '') + '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'THEO\')">+ 신학·주해를 원고에 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'THEO\', this)">+ 신학·주해를 원고에 담기</button>' +
         '</div>' +
       '</article>' +
 
@@ -1770,8 +1931,8 @@
           '<div class="summon-card-body">' + ptsHtml + '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="applyAllSummonedCardsToSermon()">🪄 이 카드로 설교초안+7종 바로 빚기</button>' +
-          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'SERMON\')">+ 3대지 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="applyAllSummonedCardsToSermon(true, this)">🪄 이 카드로 설교초안+7종 바로 빚기</button>' +
+          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'SERMON\', this)">+ 3대지 담기</button>' +
         '</div>' +
       '</article>' +
 
@@ -1783,69 +1944,130 @@
           '<div class="summon-card-body">' + modsHtml + '</div>' +
         '</div>' +
         '<div class="summon-card-foot">' +
-          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'MODS\')">+ 연관 백과 모듈 전체 원고에 담기</button>' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'MODS\', this)">+ 연관 백과 모듈 전체 원고에 담기</button>' +
         '</div>' +
       '</article>';
-  }
 
-  function applySummonedCard(type) {
-    if (!CURRENT_SUMMONED) return;
-    var cs = CURRENT_SUMMONED;
-    if (type === 'VERSE') {
-      document.getElementById('inScripture').value = cs.displayRef;
-      document.getElementById('inBibleText').value = cs.ch.kv || cs.book.key_verse || '';
-      if (!document.getElementById('inTitle').value.trim()) {
-        document.getElementById('inTitle').value = cs.ch.st || cs.ch.t || (cs.book.name + ' ' + cs.chNo + '장 말씀');
-      }
-      generateAll7Materials();
+    if (syncToStep2) {
+      applyAllSummonedCardsToSermon(false);
+      if (btnEl) giveButtonFeedback(btnEl, '✓ 6종 카드 대령 완료!');
+      flashCardElement('summonedCardsGrid');
+      flashCardElement('leftInputCard');
+      flashCardElement('rightOutputCard');
+      showMosesToast('🪄 [' + b.name + ' ' + chNo + '장] 6종 카드 대령 및 아래 설교 초안·7종 사역 자료가 함께 준비되었습니다!');
     }
   }
 
-  function appendArchiveModToManuscript(modIdx) {
+  function applySummonedCard(type, btnEl) {
+    if (!CURRENT_SUMMONED) summonKkumdidoCards(null, false);
+    if (!CURRENT_SUMMONED) return;
+    var cs = CURRENT_SUMMONED;
+    if (type === 'VERSE') {
+      applyAllSummonedCardsToSermon(false);
+      if (btnEl) giveButtonFeedback(btnEl, '✓ 채우기 완료!');
+      flashCardElement('leftInputCard');
+      flashCardElement('rightOutputCard');
+      showMosesToast('📖 「' + cs.displayRef + '」 본문 말씀과 설교 초안·요지 3줄이 2단계 입력칸과 7종 자료에 채워졌습니다!');
+      var leftCard = document.getElementById('leftInputCard');
+      if (leftCard) leftCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }
+
+  function ensureStep2MatchesSummonedBase() {
+    if (!CURRENT_SUMMONED) return;
+    var cs = CURRENT_SUMMONED;
+    var ch = cs.ch;
+    var b = cs.book;
+    if (LAST_APPLIED_REF !== cs.displayRef) {
+      var cleanTitle = (ch.st || ch.t || (b.name + ' ' + cs.chNo + '장 강해')).replace(/^\[[^\]]+\]\s*/, '');
+      document.getElementById('inTitle').value = cleanTitle;
+      document.getElementById('inScripture').value = cs.displayRef;
+      document.getElementById('inBibleText').value = ch.kv || b.key_verse || '';
+      document.getElementById('inManuscript').value =
+        '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀은 ' + (ch.ctx || ch.th || b.christ_profile) + '의 현장을 우리에게 생생히 열어 보여 줍니다.';
+      document.getElementById('inPoint1').value = buildPointLineFromPair(cs.pts && cs.pts[0], ch.th || '');
+      document.getElementById('inPoint2').value = buildPointLineFromPair(cs.pts && cs.pts[1], ch.theo || '');
+      document.getElementById('inPoint3').value = buildPointLineFromPair(cs.pts && cs.pts[2], ch.pr || '');
+      LAST_APPLIED_REF = cs.displayRef;
+      USER_EDITED_POINTS = false;
+    }
+  }
+
+  function appendArchiveModToManuscript(modIdx, btnEl) {
     if (!CURRENT_SUMMONED || !CURRENT_SUMMONED.mods[modIdx]) return;
+    ensureStep2MatchesSummonedBase();
     var m = CURRENT_SUMMONED.mods[modIdx];
     var ms = document.getElementById('inManuscript');
     var block = '[꿈디도 ' + m.an + '] ' + m.t + ' — ' + m.s;
-    ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + block;
-    onManuscriptInput();
+    if (ms.value.indexOf(block) === -1) {
+      ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + block;
+    }
+    if (btnEl) giveButtonFeedback(btnEl, '✓ 담김!');
+    flashCardElement('leftInputCard');
+    flashCardElement('rightOutputCard');
+    showMosesToast('📥 아카이브 모듈 「' + m.t + '」 내용이 설교 원고와 7종 자료에 담겼습니다!');
+    generateAll7Materials(false);
   }
 
-  function appendSummonedCardToManuscript(cardType) {
+  function appendSummonedCardToManuscript(cardType, btnEl) {
+    if (!CURRENT_SUMMONED) summonKkumdidoCards(null, false);
     if (!CURRENT_SUMMONED) return;
+    ensureStep2MatchesSummonedBase();
     var cs = CURRENT_SUMMONED;
     var ch = cs.ch;
     var ms = document.getElementById('inManuscript');
     var addText = '';
+    var labelName = '';
 
     if (cardType === 'PARA') {
+      labelName = '꿈바온 원어 풀어읽기';
       addText = '[꿈바온 원어 직역·풀어읽기 | ' + cs.displayRef + ']\n' + (ch.kp || ch.kv || '');
     } else if (cardType === 'WORDS') {
+      labelName = '히브리어·헬라어 원어 보석';
       addText = '[히브리어·헬라어 원어 심층 해설]\n' + (cs.words || []).map(function(w) {
         return '• ' + w[0] + ' (' + w[1] + ', ' + w[2] + '): ' + (w[4] || w[3] || '');
       }).join('\n');
     } else if (cardType === 'CTX') {
+      labelName = '역사·지리·구속사 배경';
       addText = '[본문 구속사·역사적 배경]\n' + (ch.ctx || ch.th || '');
     } else if (cardType === 'THEO') {
+      labelName = '교부·종교개혁·웨슬리 주해';
       addText = '[교부·종교개혁·존 웨슬리 주해]\n' + (ch.theo || '');
     } else if (cardType === 'SERMON') {
+      labelName = '강단 3대지 설교 골격';
       addText = (cs.pts || []).map(function(p, i) {
         var prefix = i === 0 ? '첫째, ' : (i === 1 ? '둘째, ' : '셋째, ');
         return prefix + p[0].replace(/^제\d대지:\s*/, '') + '. ' + p[1];
       }).join('\n\n') + (ch.pr ? '\n\n' + ch.pr : '');
+      document.getElementById('inPoint1').value = buildPointLineFromPair(cs.pts && cs.pts[0], ch.th || '');
+      document.getElementById('inPoint2').value = buildPointLineFromPair(cs.pts && cs.pts[1], ch.theo || '');
+      document.getElementById('inPoint3').value = buildPointLineFromPair(cs.pts && cs.pts[2], ch.pr || '');
+      USER_EDITED_POINTS = false;
     } else if (cardType === 'MODS') {
+      labelName = '연관 백과 모듈';
       addText = '[꿈디도 12대 아카이브 연결 자료]\n' + (cs.mods || []).map(function(m) {
         return '• ' + m.t + ': ' + m.s;
       }).join('\n');
     }
 
     if (addText) {
-      ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + addText;
-      onManuscriptInput();
+      if (ms.value.indexOf(addText) === -1) {
+        ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + addText;
+      }
+      if (btnEl) giveButtonFeedback(btnEl, '✓ 원고에 담김!');
+      flashCardElement('leftInputCard');
+      flashCardElement('rightOutputCard');
+      showMosesToast('📥 [' + labelName + '] 카드가 설교 원고와 주간 사역 7종 자료에 반영되었습니다!');
+      generateAll7Materials(false);
     }
   }
 
-  function applyAllSummonedCardsToSermon() {
-    if (!CURRENT_SUMMONED) summonKkumdidoCards();
+  function applyAllSummonedCardsToSermon(isUserClick, btnEl) {
+    var mq = document.getElementById('mosesQueryInput');
+    var mqVal = mq ? mq.value.trim() : '';
+    if (!CURRENT_SUMMONED || (mqVal && mqVal !== CURRENT_SUMMONED.query)) {
+      summonKkumdidoCards(mqVal || '룻기 2:12', false);
+    }
     if (!CURRENT_SUMMONED) return;
     var cs = CURRENT_SUMMONED;
     var ch = cs.ch;
@@ -1873,10 +2095,21 @@
     ].join('\n\n');
 
     document.getElementById('inManuscript').value = fullDraft;
-    document.getElementById('inPoint1').value = shortLine(p1Text, 102);
-    document.getElementById('inPoint2').value = shortLine(p2Text, 102);
-    document.getElementById('inPoint3').value = shortLine(p3Text, 102);
-    generateAll7Materials();
+    document.getElementById('inPoint1').value = buildPointLineFromPair(cs.pts && cs.pts[0], p1Text);
+    document.getElementById('inPoint2').value = buildPointLineFromPair(cs.pts && cs.pts[1], p2Text);
+    document.getElementById('inPoint3').value = buildPointLineFromPair(cs.pts && cs.pts[2], p3Text);
+    LAST_APPLIED_REF = cs.displayRef;
+    USER_EDITED_POINTS = false;
+    generateAll7Materials(false);
+
+    if (isUserClick) {
+      if (btnEl) giveButtonFeedback(btnEl, '✨ 설교초안+7종 완성!');
+      flashCardElement('leftInputCard');
+      flashCardElement('rightOutputCard');
+      showMosesToast('✨ 「' + cleanTitle + '」(' + cs.displayRef + ') 설교 초안과 주간 사역 7종 자료가 한 번에 완성되었습니다!');
+      var leftCard = document.getElementById('leftInputCard');
+      if (leftCard) leftCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
 
   /* 🏺 내 설교 곳간 (IndexedDB 'KkumbaonPastorGotganDB') 원클릭 직결 저장 */
@@ -1976,11 +2209,11 @@
         document.getElementById('inScripture').value = ref;
         var mq = document.getElementById('mosesQueryInput');
         if (mq) mq.value = ref;
-        summonKkumdidoCards(ref);
-        applyAllSummonedCardsToSermon();
+        summonKkumdidoCards(ref, false);
+        applyAllSummonedCardsToSermon(false);
         if (well && well.gist) {
           document.getElementById('inTitle').value = well.gist;
-          generateAll7Materials();
+          generateAll7Materials(false);
         }
         return true;
       }
@@ -2001,7 +2234,7 @@
     }
   });
 </script>
-  <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido-shield.js?v=20261108"></script>
   <script src="kkumdido_mobile.js?v=20261107e"></script>
 </body>
 </html>
