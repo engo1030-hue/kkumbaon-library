@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>모세의 지팡이 — 꿈디도 본문·주제 카드 대령 &amp; 주간 사역 7종 변환 스튜디오</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root, body[data-theme="beige"] {
+    --bg-deep: #F6F2E9;
+    --bg-warm: #EFE8D9;
+    --bg-card: #FFFFFF;
+    --bg-parchment: #FBF9F4;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(140,98,30,0.16) 0%, transparent 70%), linear-gradient(180deg, #F4EDE0 0%, #EAE0CC 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #FCF9F4 0%, #F1EAE0 80%);
+    --nav-bg: rgba(248, 244, 235, 0.96);
+    --card-grad: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%);
+    --gold-main: #8C621E;
+    --gold-bright: #6E4B12;
+    --gold-accent: #C59B38;
+    --gold-soft: rgba(140, 98, 30, 0.11);
+    --text-cream: #1F1A15;
+    --text-muted: #5C5248;
+    --input-bg: #FFFFFF;
+    --border-gold: rgba(140, 98, 30, 0.28);
+    --border-soft: rgba(140, 98, 30, 0.15);
+    --shadow-heavy: 0 18px 44px rgba(31, 26, 21, 0.11);
+    --shadow-card: 0 8px 24px rgba(60, 45, 20, 0.07);
+    --accent-purple: #5B3E96;
+    --accent-purple-bg: #F1ECFA;
+    --accent-green: #166534;
+    --accent-green-bg: #E6F6EC;
+    --font-scale: 1;
+  }
+
+  body[data-theme="dark"] {
+    --bg-deep: #12100E;
+    --bg-warm: #1A1612;
+    --bg-card: #221D17;
+    --bg-parchment: #1D1813;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.18) 0%, transparent 68%), linear-gradient(180deg, #1E1813 0%, #14110E 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #241D16 0%, #12100E 78%);
+    --nav-bg: rgba(18, 16, 14, 0.95);
+    --card-grad: linear-gradient(145deg, #251F18 0%, #1B1611 100%);
+    --gold-main: #D8B26E;
+    --gold-bright: #F0D290;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 178, 110, 0.14);
+    --text-cream: #F4EEE1;
+    --text-muted: #B8AB96;
+    --input-bg: #17130F;
+    --border-gold: rgba(216, 178, 110, 0.30);
+    --border-soft: rgba(216, 178, 110, 0.16);
+    --shadow-heavy: 0 20px 48px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 26px rgba(0, 0, 0, 0.38);
+    --accent-purple: #C8B2F8;
+    --accent-purple-bg: rgba(91, 62, 150, 0.28);
+    --accent-green: #6EE7A0;
+    --accent-green-bg: rgba(22, 101, 52, 0.28);
+  }
+
+  body[data-theme="green"] {
+    --bg-deep: #0D1914;
+    --bg-warm: #13241D;
+    --bg-card: #172B23;
+    --bg-parchment: #12221B;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #152920 0%, #0E1B15 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1A3328 0%, #0D1914 75%);
+    --nav-bg: rgba(13, 25, 20, 0.95);
+    --card-grad: linear-gradient(145deg, #193026 0%, #11211A 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF5F0;
+    --text-muted: #9EB5A8;
+    --input-bg: #0F1E18;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+  }
+
+  body[data-theme="navy"] {
+    --bg-deep: #0C1322;
+    --bg-warm: #121C31;
+    --bg-card: #17233D;
+    --bg-parchment: #131E35;
+    --hero-grad: radial-gradient(ellipse at 50% 0%, rgba(216,178,110,0.16) 0%, transparent 65%), linear-gradient(180deg, #16223B 0%, #0D1526 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1B2A47 0%, #0C1322 75%);
+    --nav-bg: rgba(12, 19, 34, 0.95);
+    --card-grad: linear-gradient(145deg, #1A2845 0%, #121C31 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF2F8;
+    --text-muted: #9AA9C2;
+    --input-bg: #0E1729;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: calc(16px * var(--font-scale)); }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--body-grad);
+    color: var(--text-cream);
+    min-height: 100vh;
+    line-height: 1.62;
+    padding-bottom: 80px;
+    word-break: keep-all;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  .top-gnb {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .gnb-left, .gnb-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .gnb-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    text-decoration: none;
+    color: var(--text-cream);
+  }
+  .gnb-logo {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #241A10, #4A3520);
+    border: 1.5px solid #C59B38;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: #F7E29E;
+    font-family: 'Noto Serif KR', serif;
+    font-weight: 900;
+  }
+  .gnb-title strong { display: block; font-size: 1.15rem; font-weight: 900; }
+  .gnb-title small { display: block; font-size: 0.75rem; color: var(--gold-main); font-weight: 700; }
+
+  .gnb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 13px;
+    border-radius: 10px;
+    font-size: 0.86rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+  }
+  .gnb-btn.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  .wrap { max-width: 1380px; margin: 0 auto; padding: 0 22px; }
+
+  .hero-bar {
+    background: var(--hero-grad);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 26px 0 22px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.32fr 0.68fr;
+    gap: 24px;
+    align-items: center;
+  }
+  .eyebrow-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .hero-bar h1 {
+    font-size: clamp(1.55rem, 2.5vw, 2.15rem);
+    font-weight: 900;
+    margin-bottom: 8px;
+    line-height: 1.32;
+  }
+  .hero-bar p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 820px;
+  }
+  .hero-art-card {
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1.5px solid var(--border-gold);
+    box-shadow: var(--shadow-heavy);
+    background: #1A140E;
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+  .hero-art-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-art-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px 14px;
+    background: linear-gradient(180deg, transparent, rgba(18, 14, 10, 0.86));
+    color: #F7E29E;
+    font-size: 0.78rem;
+    font-weight: 700;
+  }
+
+  /* 메인 레이아웃: 좌측 설교원고 입력 / 우측 7종 사역 문서 출력 */
+  .studio-grid {
+    display: grid;
+    grid-template-columns: 460px 1fr;
+    gap: 22px;
+    margin-top: 22px;
+    align-items: start;
+  }
+  .card {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 22px;
+    box-shadow: var(--shadow-card);
+  }
+  .card-title {
+    font-size: 1.12rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-soft);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .form-group { margin-bottom: 11px; }
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--gold-main);
+    margin-bottom: 4px;
+  }
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 9px 12px;
+    border-radius: 10px;
+    border: 1.5px solid var(--border-gold);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-size: 0.91rem;
+    font-family: inherit;
+  }
+  textarea.form-control {
+    line-height: 1.62;
+    resize: vertical;
+  }
+
+  .sample-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 12px;
+  }
+  .sample-pill {
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-parchment);
+    color: var(--text-cream);
+    cursor: pointer;
+  }
+  .sample-pill:hover { background: var(--gold-soft); }
+
+  .summary-confirm-box {
+    background: var(--bg-parchment);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 14px;
+    padding: 13px 14px;
+    margin: 12px 0 14px;
+  }
+  .summary-confirm-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 8px;
+    flex-wrap: wrap;
+  }
+  .summary-confirm-head strong {
+    font-size: 0.86rem;
+    color: var(--gold-main);
+  }
+  .btn-mini {
+    padding: 4px 9px;
+    border-radius: 7px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    cursor: pointer;
+  }
+  .btn-mini:hover { background: var(--gold-soft); }
+  .point-input-row {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+  .point-input-row:last-child { margin-bottom: 0; }
+  .point-input-row span {
+    font-size: 0.78rem;
+    font-weight: 800;
+    color: var(--text-muted);
+  }
+
+  .btn-generate {
+    width: 100%;
+    padding: 14px 18px;
+    border-radius: 13px;
+    font-size: 1.02rem;
+    font-weight: 900;
+    border: 1.5px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    cursor: pointer;
+    box-shadow: 0 10px 22px rgba(36, 26, 16, 0.22);
+    transition: transform 0.16s ease;
+  }
+  .btn-generate:hover { transform: translateY(-2px); }
+
+  /* 7종 출력 탭 */
+  .output-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+    background: var(--bg-parchment);
+    padding: 8px;
+    border-radius: 14px;
+    border: 1px solid var(--border-gold);
+  }
+  .out-tab {
+    flex: 1;
+    min-width: 120px;
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    font-size: 0.84rem;
+    font-weight: 800;
+    cursor: pointer;
+    text-align: center;
+  }
+  .out-tab:hover { background: var(--gold-soft); color: var(--text-cream); }
+  .out-tab.active {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  .out-panel { display: none; }
+  .out-panel.active { display: block; }
+
+  .action-toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 14px;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-tool {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .btn-tool.primary {
+    background: linear-gradient(135deg, #8C621E, #6E4B12);
+    color: #FFFFFF;
+    border-color: #8C621E;
+  }
+
+  /* A4 출력 시트 스타일 */
+  .a4-sheet {
+    background: #FFFFFF;
+    color: #151515;
+    border: 1.5px solid #2A241D;
+    border-radius: 12px;
+    padding: 30px 34px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+    line-height: 1.7;
+  }
+  .a4-sheet h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.42rem;
+    color: #1A140E;
+    border-bottom: 2px solid #8C621E;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+  }
+  .a4-sheet h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.06rem;
+    color: #6E4B12;
+    margin: 16px 0 6px;
+  }
+  .a4-sheet .meta-strip {
+    background: #F7F3EA;
+    border: 1px solid #D8C7A8;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+    margin-bottom: 16px;
+    color: #3A3024;
+  }
+  .a4-sheet .leader-guide-box {
+    background: #F6F4EE;
+    border: 1.5px solid #B8A686;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 16px;
+    font-size: 0.89rem;
+    color: #2B241B;
+  }
+  .a4-sheet .leader-guide-box strong.guide-head {
+    display: block;
+    font-family: 'Noto Serif KR', serif;
+    color: #5E4114;
+    font-size: 0.96rem;
+    margin-bottom: 6px;
+  }
+  .a4-sheet .box-block {
+    background: #FBF9F5;
+    border-left: 4px solid #8C621E;
+    padding: 12px 16px;
+    border-radius: 0 8px 8px 0;
+    margin-bottom: 12px;
+    font-size: 0.93rem;
+  }
+  .a4-sheet table.cue-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 8px;
+    font-size: 0.88rem;
+  }
+  .a4-sheet table.cue-table th,
+  .a4-sheet table.cue-table td {
+    border: 1px solid #D5C6AA;
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+  }
+  .a4-sheet table.cue-table th {
+    background: #F4EFE4;
+    color: #5E4114;
+    font-weight: 800;
+  }
+  .qt-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .qt-day-card {
+    border: 1px solid #D5C6AA;
+    border-radius: 10px;
+    padding: 13px 15px;
+    background: #FCFBF8;
+  }
+  .qt-day-card strong.qt-day-title {
+    display: block;
+    font-family: 'Noto Serif KR', serif;
+    color: #6E4B12;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    border-bottom: 1px dotted #D5C6AA;
+    padding-bottom: 4px;
+  }
+  .qt-day-card .qt-reading {
+    font-size: 0.87rem;
+    margin-bottom: 8px;
+    color: #222;
+  }
+  .qt-day-card .qt-q {
+    font-size: 0.84rem;
+    background: #F5EFE2;
+    padding: 7px 10px;
+    border-radius: 6px;
+    color: #4A3718;
+    margin-bottom: 6px;
+  }
+  .qt-day-card .qt-pray {
+    font-size: 0.82rem;
+    color: #5C5248;
+    font-style: italic;
+  }
+
+  @media (max-width: 1080px) {
+    .hero-grid, .studio-grid { grid-template-columns: 1fr; }
+    .qt-grid { grid-template-columns: 1fr; }
+    .summon-cards-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* === 🪄 모세의 지팡이: 꿈디도 본문·주제 카드 대령대 스타일 === */
+  .moses-summoner-card {
+    background: var(--card-grad);
+    border: 2px solid var(--gold-accent);
+    border-radius: 22px;
+    padding: 22px 24px;
+    margin-top: 22px;
+    box-shadow: var(--shadow-heavy);
+  }
+  .moses-summoner-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--border-gold);
+  }
+  .moses-summoner-title strong {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.24rem;
+    font-weight: 900;
+    color: var(--text-cream);
+    margin-bottom: 3px;
+  }
+  .moses-summoner-title p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+  }
+  .moses-search-bar {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  @media (max-width: 780px) {
+    .moses-search-bar { grid-template-columns: 1fr; }
+  }
+  .moses-search-input {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--gold-main);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: inherit;
+  }
+  .moses-search-btn {
+    padding: 12px 20px;
+    border-radius: 12px;
+    border: 1.5px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    font-size: 0.95rem;
+    font-weight: 900;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .moses-apply-all-btn {
+    padding: 12px 18px;
+    border-radius: 12px;
+    border: 1.5px solid #8C621E;
+    background: linear-gradient(135deg, #8C621E, #6E4B12);
+    color: #FFFFFF;
+    font-size: 0.92rem;
+    font-weight: 900;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .summon-status-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    border-radius: 11px;
+    padding: 9px 14px;
+    margin: 10px 0 14px;
+    font-size: 0.87rem;
+  }
+  .summon-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .summon-card {
+    background: var(--bg-parchment);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 15px;
+    padding: 15px 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    transition: transform 0.14s ease, box-shadow 0.14s ease;
+  }
+  .summon-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--gold-main);
+  }
+  .summon-card-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    border-bottom: 1px dashed var(--border-gold);
+    padding-bottom: 7px;
+    margin-bottom: 6px;
+  }
+  .summon-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 0.74rem;
+    font-weight: 800;
+    background: var(--gold-soft);
+    color: var(--gold-main);
+    border: 1px solid var(--border-gold);
+  }
+  .summon-card h4 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 0.98rem;
+    font-weight: 900;
+    color: var(--text-cream);
+    margin-bottom: 6px;
+    line-height: 1.4;
+  }
+  .summon-card-body {
+    font-size: 0.85rem;
+    color: var(--text-cream);
+    line-height: 1.62;
+  }
+  .summon-card-foot {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 8px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .summon-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .summon-btn:hover { background: var(--gold-soft); }
+  .summon-btn.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  @media print {
+    body { background: #FFF !important; color: #000 !important; padding: 0 !important; }
+    .top-gnb, .hero-bar, .no-print, .output-tabs, .action-toolbar, .screen-emoji, .moses-summoner-card { display: none !important; }
+    .studio-grid { display: block !important; margin: 0 !important; }
+    .card { border: none !important; box-shadow: none !important; padding: 0 !important; background: #FFF !important; }
+    .a4-sheet { border: none !important; box-shadow: none !important; padding: 8px !important; }
+  }
+</style>
+<link rel="manifest" href="manifest.json">
+<script src="kkumdido_moses_archive_db.js"></script>
+<script src="kkumdido_grand_encyclopedia_db.js"></script>
+</head>
+<body data-theme="beige" data-kkd-studio="true">
+
+<header class="top-gnb">
+  <div class="gnb-left">
+    <a href="kkumdido_church_support_annex.html" class="gnb-brand">
+      <div class="gnb-logo">🪄</div>
+      <div class="gnb-title">
+        <strong>모세의 지팡이 — 본문 카드 대령 &amp; 주간 사역 변환</strong>
+        <small>MOSES' STAFF · KKUMDIDO ARCHIVE CARD SUMMONER &amp; 7-IN-1 STUDIO</small>
+      </div>
+    </a>
+    <a href="kkumdido_encyclopedia.html" class="gnb-btn gold">📚 설교 자료 대백과 사전</a>
+    <a href="kkumdido_church_support_annex.html" class="gnb-btn">🏛️ 교회지원 별관</a>
+    <a href="kkumdido_sermon_studio.html" class="gnb-btn">👑 66권 원어 설교준비실</a>
+    <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="gnb-btn">📖 66권 주석 서고</a>
+    <a href="kkumdido_gotgan_studio.html" class="gnb-btn">🏺 내 설교 곳간</a>
+    <a href="kkumdido_pastoral_secretary_studio.html" class="gnb-btn">🌿 아론의 지팡이</a>
+    <a href="index.html" class="gnb-btn">📚 꿈디도 본관</a>
+  </div>
+  <div class="gnb-right">
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(-0.08)">가-</button>
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(0.08)">가+ 큰글씨</button>
+    <select id="themeSelect" class="gnb-btn" onchange="changeTheme(this.value)" aria-label="테마 선택">
+      <option value="beige">📜 양피지 베이지</option>
+      <option value="dark">🌙 밤의 서재 (다크)</option>
+      <option value="green">🌲 올리브 그린</option>
+      <option value="navy">🌌 로얄 네이비</option>
+    </select>
+    <a href="downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_무설치단일파일.html" download="꿈바온_모세의지팡이_본문카드대령_주간사역7종_무설치단일파일.html" class="gnb-btn gold">📥 무설치 파일(.html) 받기</a>
+  </div>
+</header>
+
+<section class="hero-bar">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow-badge">🪄 설교 본문을 치면 꿈디도 아카이브가 카드를 대령하고, 주간 사역 자료 7종까지 한 호흡에 빚어냅니다</div>
+        <h1 class="serif">설교 본문이나 주제를 입력하시면,<br>꿈디도에서 자료 카드를 대령하고 주간 사역 7종을 완성합니다</h1>
+        <p>성경 66권(1,189장) 원어·풀어읽기 주석과 꿈디도 12대 아카이브(3,650모듈)에서 <b>본문 풀어읽기 · 히브리어/헬라어 원어 보석 · 역사/지리 배경 · 웨슬리/개혁주의 주해 · 강단 3대지 골격 · 연관 백과 카드</b>를 즉시 대령합니다. 대령된 카드로 설교 원고를 세우거나 목사님의 원고를 넣어 <b>주보 요약 · 소그룹 나눔지 · 엿새 묵상(QT) · 쇼츠 대본 · PPT · 가정예배지 · 심화 AI 지시문</b>을 한 번에 준비하십시오.</p>
+      </div>
+      <div class="hero-art-card" data-visual-card>
+        <img src="assets/church_support/hero_sermon_ai_scribe_16x9.png" alt="펼쳐진 성경에서 일곱 갈래 빛이 뻗어 나가는 서재 성화" onerror="this.closest('.hero-art-card').style.display='none'">
+        <div class="hero-art-caption">모세의 지팡이 — 꿈디도 본문 카드 대령에서 한 주간 사역 나눔까지</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <!-- 🪄 1단계: 꿈디도 본문·주제 카드 대령대 (Archive Card Summoner) -->
+  <section class="moses-summoner-card no-print" aria-label="꿈디도 본문 및 주제 카드 대령대">
+    <div class="moses-summoner-top">
+      <div class="moses-summoner-title">
+        <strong class="serif">🪄 1단계 · 설교 본문·주제 입력 → 꿈디도 아카이브 카드 대령</strong>
+        <p>설교하실 성경 장절(예: <b>룻기 2:12</b>, <b>빌립보서 4:6-7</b>, <b>시편 23편</b>, <b>로마서 8:28</b>)이나 주제어(예: <b>헤세드</b>, <b>고엘</b>, <b>평강</b>, <b>부활</b>)를 치시면 꿈디도 서고에서 6종 카드를 즉시 대령합니다.</p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button type="button" class="summon-btn gold" onclick="saveCurrentSermonToGotgan()">🏺 현재 설교를 '내 설교 곳간'에 저장</button>
+        <a id="linkOpenSermonStudio" href="kkumdido_sermon_studio.html" class="summon-btn">👑 66권 원어 설교준비실 열기 ↗</a>
+        <a id="linkOpenCommentary66" href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="summon-btn">📖 66권 주석 서고 열기 ↗</a>
+      </div>
+    </div>
+
+    <div class="moses-search-bar">
+      <input type="text" id="mosesQueryInput" class="moses-search-input" value="룻기 2:12" placeholder="성경 본문 장절 또는 설교 주제를 입력하십시오 (예: 룻기 2:12, 빌립보서 4:6-7, 시편 23편, 로마서 8장, 헤세드, 평강...)" onkeydown="if(event.key==='Enter') summonKkumdidoCards()">
+      <button type="button" class="moses-search-btn" onclick="summonKkumdidoCards()">🪄 꿈디도 자료·주제 카드 대령하기</button>
+      <button type="button" class="moses-apply-all-btn" onclick="applyAllSummonedCardsToSermon()">✨ 대령된 카드로 설교초안 + 7종 자료 한 번에 빚기</button>
+    </div>
+
+    <div class="sample-pills" style="margin-bottom:8px;">
+      <span style="font-size:0.78rem; font-weight:800; color:var(--gold-main); align-self:center; margin-right:4px;">빠른 본문·주제 대령:</span>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('룻기 2:12')">📖 룻기 2:12 (보아스·날개 아래)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('빌립보서 4:6-7')">📖 빌립보서 4:6–7 (기도와 평강)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('시편 23:1-4')">📖 시편 23:1–4 (선한 목자)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('누가복음 5:1-11')">📖 누가복음 5:1–11 (깊은 데로)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('로마서 8:28-39')">📖 로마서 8:28–39 (하나님의 사랑)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('창세기 1:1-5')">📖 창세기 1:1–5 (빛이 있으라)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('요한복음 3:16')">📖 요한복음 3:16 (독생자의 사랑)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('헤세드')">🔍 주제: 헤세드(인자)</button>
+      <button type="button" class="sample-pill" onclick="quickSummonPassage('광야')">🔍 주제: 광야와 은혜</button>
+    </div>
+
+    <div class="summon-status-strip" id="summonStatusStrip">
+      <div id="summonStatusText"><b>📜 대령 완료:</b> 성경 66권(1,189장) 원어 주석 및 12대 아카이브(3,650모듈)에서 본문 카드를 대령했습니다.</div>
+      <div style="font-size:0.8rem; color:var(--text-muted);">각 카드의 <b>[+ 설교 원고에 담기]</b>를 누르시거나 우측 상단 <b>[✨ 대령된 카드로 설교초안 + 7종 자료 한 번에 빚기]</b>를 누르십시오.</div>
+    </div>
+
+    <div class="summon-cards-grid" id="summonedCardsGrid"></div>
+  </section>
+  <div class="studio-grid">
+    <!-- 좌측: 설교 원고 입력 패널 -->
+    <div class="card no-print">
+      <div class="card-title">
+        <span>2단계: 주일 설교 원고와 요지 세 줄 다듬기</span>
+        <span style="font-size:0.78rem; color:var(--gold-main);">이 컴퓨터 안에서만 처리됩니다</span>
+      </div>
+
+      <div style="font-size:0.8rem; font-weight:800; color:var(--text-muted); margin-bottom:6px;">체험용 샘플 설교 불러오기</div>
+      <div class="sample-pills">
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(0)">샘플 1: 빌립보서 4:6–7</button>
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(1)">샘플 2: 시편 23:1–4</button>
+        <button type="button" class="sample-pill" onclick="loadSampleSermon(2)">샘플 3: 누가복음 5:1–11</button>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="inChurch">교회 이름</label>
+          <input type="text" id="inChurch" class="form-control" value="꿈바온 은혜교회">
+        </div>
+        <div class="form-group">
+          <label for="inDate">예배 날짜</label>
+          <input type="date" id="inDate" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inTitle">설교 제목</label>
+        <input type="text" id="inTitle" class="form-control" placeholder="예: 염려를 내려놓고 기도의 자리로">
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="inScripture">성경 본문 장절 (입력 시 위 카드 자동 대령)</label>
+          <input type="text" id="inScripture" class="form-control" placeholder="예: 룻기 2:12, 빌립보서 4:6-7" oninput="onScriptureFieldInput(this.value)">
+        </div>
+        <div class="form-group">
+          <label for="inGroupSelect">소그룹 모임 이름</label>
+          <select id="inGroupSelect" class="form-control" onchange="onGroupSelectChange()">
+            <option value="구역">구역 (구역장 · 권찰)</option>
+            <option value="속회">속회 (속장 · 인도자)</option>
+            <option value="셀">셀 (셀리더)</option>
+            <option value="목장">목장 (목자 · 목녀)</option>
+            <option value="custom">직접 적기 (다락방·순 등)</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="customGroupRow" class="form-row" style="display:none; margin-bottom:10px;">
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="inCustomGroup">모임 호칭 직접 적기</label>
+          <input type="text" id="inCustomGroup" class="form-control" placeholder="예: 다락방, 순모임" oninput="generateAll7Materials()">
+        </div>
+        <div class="form-group" style="margin-bottom:0;">
+          <label for="inCustomLeader">인도자 호칭 직접 적기</label>
+          <input type="text" id="inCustomLeader" class="form-control" placeholder="예: 순장, 다락방장" oninput="generateAll7Materials()">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="inOpenQIndex">소그룹 마음 열기 질문 선택 (매주 돌려 쓰기)</label>
+        <select id="inOpenQIndex" class="form-control" onchange="generateAll7Materials()">
+          <option value="all">세 가지 물음 모두 싣기 (인도자가 현장에서 선택)</option>
+          <option value="0">① 지난 한 주 감사한 일과 기도 제목 나누기</option>
+          <option value="1">② 이번 주 가장 오래 머문 곳과 그곳에서 있었던 일</option>
+          <option value="2">③ 주일 말씀을 들은 뒤 다시 떠오른 장면</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="inBibleText">성경 본문 말씀 (개역개정)</label>
+        <textarea id="inBibleText" class="form-control" rows="3" placeholder="개역개정 본문 구절을 붙여넣으십시오..."></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="inManuscript">설교 원고 본문</label>
+        <textarea id="inManuscript" class="form-control" rows="8" placeholder="설교 원고를 붙여넣으신 뒤 아래 [원고에서 요지 세 줄 뽑기]를 누르거나 바로 생성하십시오..." oninput="onManuscriptInput()"></textarea>
+      </div>
+
+      <!-- 클간사 감수 반영: 요지 세 줄 확인 및 목사님 직접 다듬기 칸 -->
+      <div class="summary-confirm-box">
+        <div class="summary-confirm-head">
+          <strong>설교 요지 세 줄 확인·다듬기 (마침표로 끝나는 한 문장)</strong>
+          <button type="button" class="btn-mini" onclick="extractPointsToInputs(true)">원고에서 다시 뽑기</button>
+        </div>
+        <div class="point-input-row">
+          <span>요지 1</span>
+          <input type="text" id="inPoint1" class="form-control" placeholder="첫째 요지 한 문장..." oninput="generateAll7Materials()">
+        </div>
+        <div class="point-input-row">
+          <span>요지 2</span>
+          <input type="text" id="inPoint2" class="form-control" placeholder="둘째 요지 한 문장..." oninput="generateAll7Materials()">
+        </div>
+        <div class="point-input-row">
+          <span>요지 3</span>
+          <input type="text" id="inPoint3" class="form-control" placeholder="셋째 요지 한 문장..." oninput="generateAll7Materials()">
+        </div>
+      </div>
+
+      <button type="button" class="btn-generate" onclick="generateAll7Materials()">주간 사역 7종 자료 일괄 생성하기</button>
+    </div>
+
+    <!-- 우측: 7종 사역 문서 출력 패널 -->
+    <div class="card">
+      <div class="output-tabs" role="tablist">
+        <button type="button" class="out-tab active" onclick="switchOutTab('out-bulletin', this)">1. 주보 요약·공지</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-smallgroup', this)">2. 소그룹 나눔지</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-qt', this)">3. 엿새 묵상(QT)</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-shorts', this)">4. 쇼츠 60초 대본</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-ppt', this)">5. 예배 PPT·자막</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-family', this)">6. 가정예배·다음세대</button>
+        <button type="button" class="out-tab" onclick="switchOutTab('out-aichain', this)">7. 심화 AI 지시문</button>
+      </div>
+
+      <div class="action-toolbar no-print">
+        <div style="font-size:0.86rem; color:var(--text-muted); font-weight:700;" id="statusBannerText">
+          원하시는 탭을 눌러 내용을 복사하거나 A4 용지에 바로 인쇄하실 수 있습니다.
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button type="button" class="btn-tool" onclick="saveCurrentSermonToGotgan()">🏺 내 설교 곳간에 저장</button>
+          <button type="button" class="btn-tool" onclick="copyCurrentPanelText()">현재 탭 내용 복사</button>
+          <button type="button" class="btn-tool" onclick="downloadAll7AsText()">7종 통합 텍스트(.txt) 저장</button>
+          <button type="button" class="btn-tool primary" onclick="window.print()">현재 문서 A4 인쇄</button>
+        </div>
+      </div>
+
+      <!-- 패널 1: 주보 요약 & 카톡 공지 -->
+      <div id="out-bulletin" class="out-panel active">
+        <div id="renderBulletinArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 2: 소그룹 나눔지 -->
+      <div id="out-smallgroup" class="out-panel">
+        <div id="renderSmallGroupArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 3: 월~토 6일 QT -->
+      <div id="out-qt" class="out-panel">
+        <div id="renderQtArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 4: 유튜브 쇼츠 60초 대본 & 큐시트 -->
+      <div id="out-shorts" class="out-panel">
+        <div id="renderShortsArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 5: 예배 PPT & 방송실 자막 큐시트 -->
+      <div id="out-ppt" class="out-panel">
+        <div id="renderPptArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 6: 가정예배 & 교회학교 눈높이 요약 -->
+      <div id="out-family" class="out-panel">
+        <div id="renderFamilyArea" class="a4-sheet"></div>
+      </div>
+
+      <!-- 패널 7: 클로드 / ChatGPT / 제미나이 1초 심화 프롬프트 연결 -->
+      <div id="out-aichain" class="out-panel">
+        <div id="renderAiChainArea" class="a4-sheet"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  var SAMPLE_SERMONS = [
+    {
+      title: '염려를 내려놓고 기도의 자리로',
+      scripture: '빌립보서 4:6–7',
+      bibleText: '아무 것도 염려하지 말고 다만 모든 일에 기도와 간구로, 너희 구할 것을 감사함으로 하나님께 아뢰라 그리하면 모든 지각에 뛰어난 하나님의 평강이 그리스도 예수 안에서 너희 마음과 생각을 지키시리라',
+      manuscript: '사랑하는 성도 여러분, 지난 한 주간 여러분의 마음을 가장 무겁게 짓누른 걱정은 무엇이었습니까? 건강의 문제, 자녀의 진로, 일터의 무거운 짐 앞에서 우리는 밤잠을 설치며 염려하곤 합니다.\n\n첫째, 염려는 내 힘으로 모든 것을 통제하려는 마음에서 시작됩니다. 헬라어로 염려를 뜻하는 메림나오(μεριμνάω)는 마음이 여러 갈래로 찢어지고 나뉜다는 뜻입니다. 바울 사도는 지금 로마의 감옥에 갇혀 있으면서도 오히려 감옥 밖의 빌립보 성도들에게 아무것도 염려하지 말라고 권면합니다.\n\n둘째, 염려를 이기는 길은 문제를 손에서 내려놓고 기도와 간구로 하나님께 자리를 옮기는 겁니다. 감사함으로 하나님께 아뢴다는 것은 아직 문제가 해결되기 전이라도 이미 일하실 하나님의 선하심을 신뢰하며 감사의 고백을 먼저 올려드리는 믿음의 결단입니다.\n\n셋째, 기도의 자리로 나아갈 때 세상이 줄 수 없는 하나님의 평강이 우리의 마음과 생각을 파수꾼처럼 지켜 주십니다. 여기서 지키시리라(프루레오)는 군대가 성문을 든든히 보초 서며 지킨다는 뜻입니다. 이번 한 주간, 염려가 찾아올 때마다 한숨 대신 기도로 바꾸어 주님의 평강을 누리시기를 기도합니다.'
+    },
+    {
+      title: '푸른 풀밭과 사망의 음침한 골짜기 사이에서',
+      scripture: '시편 23:1–4',
+      bibleText: '여호와는 나의 목자시니 내게 부족함이 없으리로다 그가 나를 푸른 풀밭에 누이시며 쉴 만한 물 가로 인도하시는도다 내 영혼을 소생시키시고 자기 이름을 위하여 의의 길로 인도하시는도다 내가 사망의 음침한 골짜기로 다닐지라도 해를 두려워하지 않을 것은 주께서 나와 함께 하심이라 주의 지팡이와 막대기가 나를 안위하시나이다',
+      manuscript: '우리는 흔히 푸른 풀밭과 쉴 만한 물가만을 하나님의 복이라고 생각합니다. 그러나 유대 광야의 목자들은 계절이 바뀌어 골짜기 아래의 풀이 마르면, 양 떼를 더 높은 고원의 새 초장으로 데려가기 위해 반드시 좁고 어두운 골짜기(찰마웨트)를 통과해야만 했습니다.\n\n첫째, 사망의 음침한 골짜기는 길을 잃어서 들어간 곳이 아니라 선한 목자의 인도하심 안에 있는 정상적인 통과 경로입니다. 골짜기 안에는 그늘이 있어 뜨거운 광야의 해를 피할 수 있고, 바위틈에 시원한 물이 고여 있습니다.\n\n둘째, 시편 23편의 가장 놀라운 변화는 1~3절에서 목자를 그(3인칭)라고 부르던 다윗이, 4절의 어두운 골짜기 한복판으로 들어가자 비로소 주께서 나와 함께 하심이라(2인칭 당신)고 고백한다는 점입니다. 푸른 풀밭에서는 목자의 등만 보였지만, 어두운 골짜기에서는 목자가 양 바로 옆에 바짝 붙어 걸으십니다.\n\n셋째, 목자의 지팡이와 막대기가 우리를 안위하십니다. 한 주간 인생의 어두운 골짜기를 지나고 계신다면 두려워하지 마십시오. 지금이 바로 선한 목자 주님과 가장 가까워지는 은혜의 시간입니다.'
+    },
+    {
+      title: '빈 배에 찾아오신 주님, 깊은 데로 가서 그물을 내리라',
+      scripture: '누가복음 5:1–11',
+      bibleText: '시몬이 대답하여 이르되 선생님 우리들이 밤이 새도록 수고하였으되 잡은 것이 없지마는 말씀에 의지하여 내가 그물을 내리리이다 하고 그렇게 하니 고기를 잡은 것이 심히 많아 그물이 찢어지는지라',
+      manuscript: '갈릴리 호수에서 잔뼈가 굵은 어부 시몬 베드로에게 그날 밤은 참으로 길고 허무한 밤이었습니다. 밤이 새도록 그물을 던졌지만 손에 남은 것은 빈 그물과 물에 젖은 그물을 씻어야 하는 피곤함뿐이었습니다.\n\n첫째, 예수님께서는 우리의 삶이 가장 비어 있을 때, 바로 그 빈 배에 찾아오십니다. 주님께서는 만선으로 가득 찬 배가 아니라, 밤새 수고하고도 비어 있던 시몬의 빈 배에 오르셔서 그 배를 하나님 나라 말씀의 강단으로 삼으셨습니다.\n\n둘째, 내 경험과 상식의 한계를 넘어 말씀에 의지하여 순종할 때 새 일이 시작됩니다. 갈릴리의 어부에게 한낮에 깊은 물가로 가서 그물을 내리라는 말씀은 상식에 맞지 않았습니다. 그러나 베드로는 내 경험보다 주님의 말씀을 앞세워 말씀에 의지하여 그물을 내렸습니다.\n\n셋째, 참된 복은 만선의 물고기가 아니라 주님과 함께 걷는 사명의 길입니다. 베드로는 배에 가득 찬 물고기보다 주님의 거룩하심 앞에 엎드렸고, 사람을 낚는 어부로 부름받았습니다. 오늘 우리의 빈손과 빈 배 위에 찾아오신 주님의 말씀에 순종하며 다시 깊은 은혜의 자리로 나아갑시다.'
+    }
+  ];
+
+  /* 클간사 감수: 모임별 리더 가이드 (구역 / 속회 / 셀 / 목장) */
+  var GROUP_GUIDES = {
+    '구역': {
+      groupName: '구역',
+      leaderName: '구역장',
+      subTitle: '구역장 (권찰과 함께)',
+      preface: '구역예배는 가정에서 드리는 작은 예배입니다. 찬송과 기도, 말씀 읽기의 순서를 지키되 서두르지 않습니다. 나눔 시간은 구역장이 가르치는 시간이 아니라 구역 식구들의 이야기를 듣는 시간입니다. 모임을 마치면 권찰과 함께 오늘 오지 못한 가정을 떠올리고, 그 주 안에 안부를 묻습니다.',
+      opening: '한 주 동안 각자의 자리에서 수고 많으셨습니다. 오늘도 주님께서 이 집에 함께하신다는 믿음으로 예배를 시작하겠습니다.',
+      closingPrayer: function(scripture) {
+        return '은혜로우신 하나님, 오늘 이 가정에 구역 식구들을 불러 모아 주셔서 감사합니다. 주일에 들은 ' + scripture + '의 말씀을 함께 읽고 나누었습니다. 나눈 말씀이 이 자리에서 끝나지 않고 한 주의 걸음이 되게 하시옵소서. 오늘 오지 못한 가정도 기억하여 주시고, 아픈 이와 지친 이에게 주님께서 먼저 찾아가 주시옵소서. 이 가정의 문을 열어 준 손길에 복을 더하여 주시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.';
+      }
+    },
+    '속회': {
+      groupName: '속회',
+      leaderName: '속장',
+      subTitle: '속장 (인도자)',
+      preface: '속회는 감리교회가 처음부터 지켜 온 돌봄의 모임입니다. 존 웨슬리의 속회는 한 주에 한 번 모여 서로의 영혼이 어떠한지 묻는 데서 시작했습니다. 그래서 속회는 공부하는 모임이기 전에 안부를 묻는 모임입니다. 속장은 말씀 나눔에 앞서 속도들의 형편을 한 분씩 묻고, 들은 이야기를 기도 제목으로 받아 적습니다.',
+      opening: '한 주 동안 우리 영혼은 어떠했는지 한 분씩 나누겠습니다. 길지 않아도 됩니다. 있는 그대로 말씀해 주시면 그 이야기를 들고 함께 기도하겠습니다.',
+      closingPrayer: function(scripture) {
+        return '우리를 한 속으로 묶어 주신 하나님, 오늘도 서로의 안부를 묻고 말씀 앞에 함께 앉게 하시니 감사합니다. 나눈 이야기마다 주님께서 귀 기울여 들어 주시옵소서. 주일에 받은 말씀이 우리 안에서 자라 사랑의 열매를 맺게 하시고, 거룩한 삶을 향해 날마다 한 걸음씩 나아가게 하시옵소서. 다음 속회 때까지 속도 한 사람 한 사람을 지켜 주시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.';
+      }
+    },
+    '셀': {
+      groupName: '셀',
+      leaderName: '셀리더',
+      subTitle: '셀리더',
+      preface: '셀은 작게 모여 서로를 세우고, 자라서 나뉘는 모임입니다. 흔히 환영과 찬양, 말씀, 나아감의 흐름으로 모입니다. 셀리더는 말씀을 풀어 주는 사람이기보다 모두가 입을 열도록 자리를 내어 주는 사람입니다. 아직 교회에 오지 않은 이웃의 이름을 셀의 기도 제목에 늘 올려 둡니다.',
+      opening: '오늘 처음 오신 분이 계시면 먼저 반갑게 맞이하겠습니다. 이번 주 내 마음의 날씨를 한 낱말로 말해 보겠습니다. 맑음도 흐림도 다 괜찮습니다.',
+      closingPrayer: function(scripture) {
+        return '우리를 한 몸으로 부르신 주님, 오늘 셀 식구들이 함께 찬양하고 말씀을 나누게 하시니 감사합니다. 나눈 말씀을 붙들고 각자의 집과 일터로 돌아가게 하시옵소서. 우리가 기도 제목에 올린 이웃들의 이름을 주님께서도 기억하여 주시고, 그 마음의 문을 열어 주시옵소서. 이 작은 모임이 자라서 또 하나의 셀을 낳게 하시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.';
+      }
+    },
+    '목장': {
+      groupName: '목장',
+      leaderName: '목자',
+      subTitle: '목자 (목녀와 함께)',
+      preface: '목장은 밥상에서 시작하는 작은 교회입니다. 함께 밥을 먹고, 한 주의 삶을 나누고, 말씀으로 기도하는 순서로 모입니다. 목자의 몫은 말을 많이 하는 데 있지 않고 끝까지 들어 주는 데 있습니다. 삶 나눔에서 나온 이야기에 곧바로 답을 주려 하지 말고 그 이야기를 붙들고 함께 기도합니다. 목장에 초대할 이웃을 위해 늘 빈자리 하나를 남겨 둡니다.',
+      opening: '오늘도 한 상에 둘러앉게 해 주신 하나님께 감사하며 시작하겠습니다. 식사하면서 이번 주에 있었던 일을 편하게 나누겠습니다.',
+      closingPrayer: function(scripture) {
+        return '우리의 목자 되신 주님, 오늘 한 상에 둘러앉아 밥을 나누고 삶을 나누게 하시니 감사합니다. 웃으며 나눈 이야기도, 눈물로 꺼낸 이야기도 주님께서 다 들으셨습니다. 주일에 받은 ' + scripture + '의 말씀으로 우리를 먹이시고, 다음 목장까지 각 가정을 푸른 풀밭으로 인도하여 주시옵소서. 오늘 비워 둔 자리에 앉을 이웃을 우리에게 보내 주시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.';
+      }
+    }
+  };
+
+  /* 클간사 감수: 한국어 받침 및 숫자 장절 조사 함수 */
+  function josa(word, pair) {
+    var w = String(word || '').replace(/[\s.!?)\]」』"”’]+$/, '');
+    var ch = w.charAt(w.length - 1), code = ch.charCodeAt(0), jong = -1;
+    var DIGIT = { '0': 21, '1': 8, '2': 0, '3': 16, '4': 0, '5': 0, '6': 1, '7': 8, '8': 8, '9': 0 };
+    if (code >= 0xAC00 && code <= 0xD7A3) jong = (code - 0xAC00) % 28;
+    else if (ch in DIGIT) jong = DIGIT[ch];
+    var p = pair.split('/');
+    if (jong < 0) return word + p[0] + '(' + p[1] + ')';
+    if (pair === '으로/로') return word + (jong === 0 || jong === 8 ? '로' : '으로');
+    return word + (jong > 0 ? p[0] : p[1]);
+  }
+
+  function escapeHtml(s) {
+    return String(s == null ? '' : s)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function ensurePeriod(s) {
+    var clean = String(s || '').trim();
+    if (!clean) return '';
+    return /[.!?…]$/.test(clean) ? clean : clean + '.';
+  }
+
+  function shortLine(s, maxLen) {
+    var clean = String(s || '').replace(/^(첫째|둘째|셋째|넷째|1\.|2\.|3\.|일,|이,|삼,)\s*,?\s*/, '').trim();
+    var firstSent = clean.split(/[.!?]\s+/)[0] || clean;
+    firstSent = firstSent.replace(/[.!?]+$/, '').trim();
+    var limit = maxLen || 95;
+    if (firstSent.length > limit) {
+      return firstSent.slice(0, limit).trim() + '…';
+    }
+    return firstSent ? (firstSent + '.') : '';
+  }
+
+  function clipParagraph(s, maxLen) {
+    var clean = String(s || '').replace(/\s+/g, ' ').trim();
+    var limit = maxLen || 150;
+    if (clean.length <= limit) return clean;
+    var cut = clean.slice(0, limit);
+    var lastDot = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('다.'), cut.lastIndexOf('요.'));
+    if (lastDot > 55) {
+      return cut.slice(0, lastDot + 1).trim() + ' …';
+    }
+    return cut.trim() + '…';
+  }
+
+  function pickShortestVerse(bibleText) {
+    var clean = String(bibleText || '').trim();
+    if (!clean) return '';
+    var parts = clean.split(/(?<=[.!?다라])\s+/).map(function(p) { return p.trim(); }).filter(Boolean);
+    if (parts.length <= 1) return clipParagraph(clean, 110);
+    parts.sort(function(a, b) { return a.length - b.length; });
+    return parts[0];
+  }
+
+  function extractPointsFromManuscript(text) {
+    var paras = String(text || '').split(/\n+/).map(function(p) { return p.trim(); }).filter(Boolean);
+    var points = [];
+    paras.forEach(function(p) {
+      if (/^(첫째|둘째|셋째|넷째|1\.|2\.|3\.|일,|이,|삼,)/.test(p)) {
+        points.push(p);
+      }
+    });
+    if (points.length < 3) {
+      var startIdx = paras.length > 3 ? 1 : 0;
+      for (var i = startIdx; i < paras.length && points.length < 3; i++) {
+        if (points.indexOf(paras[i]) === -1) points.push(paras[i]);
+      }
+    }
+    while (points.length < 3) {
+      points.push('주일에 주신 말씀을 마음에 새기고 한 주간 가정과 일터에서 믿음으로 걸어갑니다.');
+    }
+    return {
+      intro: paras[0] || '',
+      p1: points[0],
+      p2: points[1],
+      p3: points[2],
+      outro: paras[paras.length - 1] || points[2]
+    };
+  }
+
+  function extractPointsToInputs(triggerGenerate) {
+    var manuscript = document.getElementById('inManuscript').value.trim();
+    var ex = extractPointsFromManuscript(manuscript);
+    document.getElementById('inPoint1').value = shortLine(ex.p1, 105);
+    document.getElementById('inPoint2').value = shortLine(ex.p2, 105);
+    document.getElementById('inPoint3').value = shortLine(ex.p3, 105);
+    if (triggerGenerate) generateAll7Materials();
+  }
+
+  var msTimer = null;
+  function onManuscriptInput() {
+    clearTimeout(msTimer);
+    msTimer = setTimeout(function() {
+      extractPointsToInputs(true);
+    }, 250);
+  }
+
+  function onGroupSelectChange() {
+    var sel = document.getElementById('inGroupSelect').value;
+    var row = document.getElementById('customGroupRow');
+    if (row) row.style.display = (sel === 'custom') ? 'grid' : 'none';
+    generateAll7Materials();
+  }
+
+  function loadSampleSermon(idx) {
+    var s = SAMPLE_SERMONS[idx] || SAMPLE_SERMONS[0];
+    document.getElementById('inTitle').value = s.title;
+    document.getElementById('inScripture').value = s.scripture;
+    var mq = document.getElementById('mosesQueryInput');
+    if (mq) mq.value = s.scripture;
+    document.getElementById('inBibleText').value = s.bibleText;
+    document.getElementById('inManuscript').value = s.manuscript;
+    extractPointsToInputs(false);
+    summonKkumdidoCards(s.scripture);
+    generateAll7Materials();
+  }
+
+  function getGroupInfo() {
+    var sel = document.getElementById('inGroupSelect').value;
+    if (sel !== 'custom' && GROUP_GUIDES[sel]) {
+      return GROUP_GUIDES[sel];
+    }
+    var customGroup = (document.getElementById('inCustomGroup').value || '').trim() || '소그룹';
+    var customLeader = (document.getElementById('inCustomLeader').value || '').trim() || '인도자';
+    return {
+      groupName: customGroup,
+      leaderName: customLeader,
+      subTitle: customLeader + ' (' + customGroup + ' 인도자)',
+      preface: customGroup + ' 모임은 한 주간 말씀대로 살아 본 이야기를 나누고 서로의 짐을 함께 지는 자리입니다. ' + customLeader + '께서 먼저 답을 말하기보다 식구들이 골고루 마음을 열도록 자리를 내어 주십시오.',
+      opening: '한 주 동안 각자의 자리에서 수고 많으셨습니다. 오늘도 주님께서 우리 가운데 함께하심을 믿으며 모임을 시작하겠습니다.',
+      closingPrayer: function(scripture) {
+        return '은혜로우신 하나님, 오늘 ' + customGroup + ' 식구들을 한자리에 불러 모아 주셔서 감사합니다. 주일에 들은 ' + scripture + '의 말씀을 함께 읽고 나누었습니다. 나눈 말씀이 이 자리에서 끝나지 않고 한 주의 걸음이 되게 하시옵소서. 다음 모임까지 한 사람 한 사람의 가정과 일터를 지켜 주시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.';
+      }
+    };
+  }
+
+  function generateAll7Materials() {
+    var church = document.getElementById('inChurch').value.trim() || '우리교회';
+    var date = document.getElementById('inDate').value || new Date().toISOString().slice(0, 10);
+    var title = document.getElementById('inTitle').value.trim() || '오늘의 주일 말씀';
+    var scripture = document.getElementById('inScripture').value.trim() || '본문 말씀';
+    var bibleText = document.getElementById('inBibleText').value.trim() || '';
+    var manuscript = document.getElementById('inManuscript').value.trim();
+
+    var ex = extractPointsFromManuscript(manuscript);
+    var sum1 = ensurePeriod(document.getElementById('inPoint1').value.trim() || shortLine(ex.p1, 105));
+    var sum2 = ensurePeriod(document.getElementById('inPoint2').value.trim() || shortLine(ex.p2, 105));
+    var sum3 = ensurePeriod(document.getElementById('inPoint3').value.trim() || shortLine(ex.p3, 105));
+
+    var firstParaClip = clipParagraph(ex.intro, 150);
+    var lastParaClip = clipParagraph(ex.outro, 150);
+    var gInfo = getGroupInfo();
+
+    // 1. 주보 요약 & 카톡 공지
+    document.getElementById('renderBulletinArea').innerHTML =
+      '<h2>[1] 주보 설교 요약 및 전교인 말씀 안내문</h2>' +
+      '<div class="meta-strip"><b>' + escapeHtml(church) + '</b> · ' + escapeHtml(date) + ' · 설교 제목: <b>' + escapeHtml(title) + '</b> (' + escapeHtml(scripture) + ')</div>' +
+      '<h3>1. 주보 지면용 설교 요약</h3>' +
+      '<div class="box-block">' +
+        '<b>[' + escapeHtml(title) + ' | ' + escapeHtml(scripture) + ']</b><br>' +
+        escapeHtml(firstParaClip) + '<br><br>' +
+        '<b>하나.</b> ' + escapeHtml(sum1) + '<br>' +
+        '<b>둘.</b> ' + escapeHtml(sum2) + '<br>' +
+        '<b>셋.</b> ' + escapeHtml(sum3) +
+      '</div>' +
+      '<h3>2. 전교인 카카오톡·문자 발송용 주간 말씀 카드</h3>' +
+      '<div class="box-block">' +
+        '<b>[' + escapeHtml(church) + ' 금주의 말씀 편지]</b><br>' +
+        '<b>제목:</b> ' + escapeHtml(title) + ' (' + escapeHtml(scripture) + ')<br>' +
+        '❝ ' + escapeHtml(bibleText) + ' ❞<br><br>' +
+        '<b>이번 주 마음에 새길 세 가지 말씀:</b><br>' +
+        '하나. ' + escapeHtml(sum1) + '<br>' +
+        '둘. ' + escapeHtml(sum2) + '<br>' +
+        '셋. ' + escapeHtml(sum3) + '<br><br>' +
+        '주신 말씀 붙들고 한 주를 걸어가시기를 기도합니다.' +
+      '</div>';
+
+    // 2. 소그룹 나눔지 (클간사 감수본 + 모임별 리더 가이드)
+    var openQList = [
+      '① 지난 한 주 가운데 감사했던 일 한 가지를 나누어 보겠습니다. 마음을 무겁게 한 일이 있었다면 함께 기도할 수 있도록 짧게 꺼내 놓으셔도 됩니다.',
+      '② 이번 주에 가장 오래 머문 곳은 어디였습니까? 그곳에서 있었던 일 하나를 들려주시면 됩니다.',
+      '③ 주일 말씀을 들은 뒤로 한 주 동안 다시 떠오른 장면이 있었습니까?'
+    ];
+    var openQSel = document.getElementById('inOpenQIndex').value;
+    var openQHtml = '';
+    if (openQSel === 'all') {
+      openQHtml = '<div style="font-size:0.84rem; color:#5C5248; margin-bottom:6px;">세 가지를 주마다 돌려 씁니다 (같은 물음이 매주 나오지 않게 한 가지를 골라 여십시오).</div>' +
+        openQList.map(function(q) { return '<div style="margin-bottom:4px;">' + escapeHtml(q) + '</div>'; }).join('');
+    } else {
+      var qIdx = parseInt(openQSel, 10) || 0;
+      openQHtml = '<div>' + escapeHtml(openQList[qIdx] || openQList[0]) + '</div>';
+    }
+
+    document.getElementById('renderSmallGroupArea').innerHTML =
+      '<h2>' + escapeHtml(church) + ' ' + escapeHtml(gInfo.groupName) + ' 말씀 나눔</h2>' +
+      '<div class="meta-strip">날짜: <b>' + escapeHtml(date) + '</b> · 본문: <b>' + escapeHtml(scripture) + '</b> · 설교 제목: <b>' + escapeHtml(title) + '</b></div>' +
+      '<div class="leader-guide-box">' +
+        '<strong class="guide-head">[' + escapeHtml(gInfo.subTitle) + ' 가이드 — 모임을 열기 전에]</strong>' +
+        '<p style="margin-bottom:8px;">' + escapeHtml(gInfo.preface) + '</p>' +
+        '<div style="background:#FFFFFF; border:1px solid #D8C7A8; border-radius:7px; padding:8px 11px; margin-bottom:8px;">' +
+          '<b>여는 말:</b> “' + escapeHtml(gInfo.opening) + '”' +
+        '</div>' +
+        '<div style="font-size:0.83rem; color:#4A3F32; line-height:1.65;">' +
+          '<b>모든 리더에게 — 다섯 가지:</b><br>' +
+          '1. 리더가 답을 먼저 말하지 않습니다. 물음을 던진 뒤에는 열을 셀 만큼 기다립니다.<br>' +
+          '2. 모두가 한마디씩 할 수 있게, 말이 많은 분과 적은 분 사이를 고르게 잇습니다.<br>' +
+          '3. 모임에서 나온 이야기는 모임 밖으로 가져가지 않습니다.<br>' +
+          '4. 상담이나 치료가 필요해 보이는 이야기는 혼자 붙들지 않고 담임목사님께 이어 드립니다.<br>' +
+          '5. 정한 시간 안에 마칩니다. 짧게 끝난 모임이 다음 모임을 부릅니다.' +
+        '</div>' +
+      '</div>' +
+      '<h3>1. 마음 열기 (5분)</h3>' +
+      '<div class="box-block">' + openQHtml + '</div>' +
+      '<h3>2. 말씀 함께 읽기 (' + escapeHtml(scripture) + ')</h3>' +
+      '<div class="box-block">' +
+        '<div style="font-size:0.85rem; color:#5C5248; margin-bottom:4px;">한 분이 한 절씩 돌아가며 소리 내어 읽겠습니다.</div>' +
+        '❝ ' + escapeHtml(bibleText) + ' ❞' +
+      '</div>' +
+      '<h3>3. 주일 말씀 되새기기</h3>' +
+      '<div class="box-block">' +
+        '• <b>하나.</b> ' + escapeHtml(sum1) + '<br>' +
+        '• <b>둘.</b> ' + escapeHtml(sum2) + '<br>' +
+        '• <b>셋.</b> ' + escapeHtml(sum3) +
+      '</div>' +
+      '<h3>4. 나눔 질문</h3>' +
+      '<div class="box-block">' +
+        '<b>• 관찰</b> — 본문을 한 번 더 천천히 읽습니다. 본문 속에서 하나님께서는 무엇을 하고 계십니까? 사람들은 거기에 어떻게 응답합니까?<br><br>' +
+        '<b>• 묵상</b> — 주일 말씀은 이렇게 짚었습니다. 「' + escapeHtml(sum1) + '」 이 말씀에 비추어 볼 때 요즘 내가 손에서 놓지 못하고 있는 것은 무엇입니까?<br><br>' +
+        '<b>• 실천</b> — 「' + escapeHtml(sum3) + '」 이 말씀을 이번 주 집과 일터에서 살아 낼 한 가지를 정해 보겠습니다. 작고 구체적일수록 좋습니다. 다음 모임에서 어떻게 되었는지 서로 묻겠습니다.<br><br>' +
+        '<b>• 더 나눌 질문 (시간이 넉넉할 때)</b> — 「' + escapeHtml(sum2) + '」 이 말씀을 듣고 떠오른 사람이 있습니까? 그 사람을 위해 이번 주에 할 수 있는 일은 무엇입니까?' +
+      '</div>' +
+      '<h3>5. 서로를 위한 기도</h3>' +
+      '<div class="box-block">' +
+        '• 나눈 실천 한 가지와 가정의 기도 제목을 한 분씩 이야기합니다. 오른쪽에 앉은 분을 위해 짧게 기도하고, 마지막에 ' + escapeHtml(josa(gInfo.leaderName, '이/가')) + ' 마무리 기도를 드립니다.<br><br>' +
+        '<b>[' + escapeHtml(gInfo.leaderName) + ' 마무리 기도 예문]</b><br>' +
+        '“' + escapeHtml(gInfo.closingPrayer(scripture)) + '”' +
+      '</div>';
+
+    // 3. 성도용 6일 QT (클간사 감수본)
+    var qtDays = [
+      {
+        day: '월요일 첫째 날',
+        sub: '다시 듣기',
+        reading: firstParaClip,
+        q: '주일에 들은 말씀 가운데 한 문장만 남긴다면 무엇입니까? 그 문장을 오늘 수첩 첫 장에 적어 둡니다.',
+        pray: '주일에 주신 말씀을 오늘도 잊지 않게 하시옵소서.'
+      },
+      {
+        day: '화요일 둘째 날',
+        sub: '첫째 말씀 붙들기',
+        reading: sum1,
+        q: '이 말씀이 오늘 내 하루의 어느 장면에 닿습니까? 한 장면을 떠올려 적어 봅니다.',
+        pray: '그 장면 한가운데 주님께서 계심을 알게 하시옵소서.'
+      },
+      {
+        day: '수요일 셋째 날',
+        sub: '둘째 말씀 곱씹기',
+        reading: sum2,
+        q: '이 말씀 앞에서 내려놓을 것 하나와 붙들 것 하나를 적어 봅니다.',
+        pray: '내려놓을 것은 놓게 하시고, 붙들 것은 끝까지 붙들게 하시옵소서.'
+      },
+      {
+        day: '목요일 넷째 날',
+        sub: '셋째 말씀으로 살기',
+        reading: sum3,
+        q: '오늘 만날 사람 한 분을 떠올립니다. 이 말씀대로라면 그분을 어떻게 대하겠습니까?',
+        pray: '오늘 만나는 사람에게 주님의 마음으로 다가가게 하시옵소서.'
+      },
+      {
+        day: '금요일 다섯째 날',
+        sub: '본문을 기도로',
+        reading: bibleText,
+        q: '본문을 천천히 세 번 소리 내어 읽습니다. 세 번째 읽을 때 마음에 걸린 낱말 하나에 동그라미를 치고, 그 낱말로 기도합니다.',
+        pray: '오늘 붙든 이 낱말이 제 기도가 되게 하시옵소서.'
+      },
+      {
+        day: '토요일 여섯째 날',
+        sub: '한 주를 거두고 주일로',
+        reading: lastParaClip,
+        q: '이번 주 말씀대로 살아 보려 한 날을 돌아봅니다. 된 것과 안 된 것을 그대로 적고 내일 예배에 가지고 갑니다.',
+        pray: '한 주의 삶을 들고 주님 앞에 나아가게 하시옵소서.'
+      }
+    ];
+    document.getElementById('renderQtArea').innerHTML =
+      '<h2>' + escapeHtml(title) + ' (' + escapeHtml(scripture) + ') — 주일 말씀을 월요일부터 토요일까지 삶으로 이어 가는 엿새 묵상</h2>' +
+      '<table class="cue-table" style="margin-bottom:16px;">' +
+        '<thead><tr><th style="width:14%;">요일</th><th style="width:16%;">제목</th><th style="width:28%;">읽을 글</th><th style="width:24%;">오늘의 물음</th><th style="width:18%;">한 줄 기도</th></tr></thead>' +
+        '<tbody>' +
+        qtDays.map(function(d) {
+          return '<tr>' +
+            '<td><b>' + escapeHtml(d.day) + '</b></td>' +
+            '<td>' + escapeHtml(d.sub) + '</td>' +
+            '<td>' + escapeHtml(d.reading) + '</td>' +
+            '<td>' + escapeHtml(d.q) + '</td>' +
+            '<td>' + escapeHtml(d.pray) + '</td>' +
+          '</tr>';
+        }).join('') +
+        '</tbody>' +
+      '</table>' +
+      '<div class="qt-grid">' +
+      qtDays.map(function(d) {
+        return '<div class="qt-day-card">' +
+          '<strong class="qt-day-title">' + escapeHtml(d.day) + ' · ' + escapeHtml(d.sub) + '</strong>' +
+          '<p class="qt-reading"><b>읽을 글:</b> ' + escapeHtml(d.reading) + '</p>' +
+          '<div class="qt-q"><b>오늘의 물음:</b> ' + escapeHtml(d.q) + '</div>' +
+          '<div class="qt-pray"><b>한 줄 기도:</b> “' + escapeHtml(d.pray) + '”</div>' +
+        '</div>';
+      }).join('') +
+      '</div>';
+
+    // 4. 쇼츠 60초 대본 & 여섯 컷 연출 큐시트 (클간사 감수본)
+    var firstSent = (String(ex.intro || '').split(/(?<=[.!?])\s+/)[0] || '').trim();
+    var isQuestionOpening = /\?$|까\?$|까요\?$/.test(firstSent);
+    var openingHtml = '';
+    if (isQuestionOpening && firstSent.length <= 90) {
+      openingHtml = '“' + escapeHtml(firstSent) + '”';
+    } else {
+      openingHtml =
+        '<div style="font-size:0.84rem; color:#5C5248; margin-bottom:4px;">아래 세 가지 여는 말 가운데 하나를 골라 읽습니다.</div>' +
+        '① “요즘 마음이 어디에 머물러 계십니까?”<br>' +
+        '② “오늘은 ' + escapeHtml(scripture) + '의 한 장면으로 가 보겠습니다.”<br>' +
+        '③ “주일에 나눈 말씀 한 줄을 들려 드리겠습니다.”';
+    }
+    var shortVerse = pickShortestVerse(bibleText);
+    var bodyCombined = sum1 + ' ' + sum2;
+    var bodyScript = bodyCombined.length > 165 ? sum1 : bodyCombined;
+
+    document.getElementById('renderShortsArea').innerHTML =
+      '<h2>[4] 쇼츠 60초 대본 및 여섯 컷 연출 큐시트</h2>' +
+      '<div class="meta-strip"><b>제목:</b> ' + escapeHtml(title) + ' (' + escapeHtml(scripture) + ') · <b>분량:</b> 공백 포함 280~320자 안팎 (보통 빠르기로 약 60초)</div>' +
+      '<h3>1. 60초 내레이션 대본</h3>' +
+      '<div class="box-block">' +
+        '<b>[여는 말 · 0~8초]</b><br>' +
+        openingHtml + '<br><br>' +
+        '<b>[본문 · 8~20초]</b><br>' +
+        '“오늘 본문은 ' + escapeHtml(scripture) + '입니다. ❝' + escapeHtml(shortVerse) + '❞”<br><br>' +
+        '<b>[말씀 · 20~45초]</b><br>' +
+        '“' + escapeHtml(bodyScript) + '”<br><br>' +
+        '<b>[여운 · 45~58초]</b><br>' +
+        '“이 말씀 한 줄을 들고 이번 한 주를 걸어가 보겠습니다. 이 말씀이 여러분의 한 주를 붙들어 주기를 기도합니다.”' +
+      '</div>' +
+      '<h3>2. 여섯 컷 연출 큐시트</h3>' +
+      '<table class="cue-table">' +
+        '<thead><tr><th style="width:10%;">컷</th><th style="width:16%;">시간</th><th style="width:24%;">연출</th><th>장면</th></tr></thead>' +
+        '<tbody>' +
+          '<tr><td>1</td><td>0~8초</td><td>무빙 (천천히 다가감)</td><td>새벽 창가나 길 위. 사람은 중경·원경으로 작게 둡니다.</td></tr>' +
+          '<tr><td>2</td><td>8~20초</td><td>영상</td><td>본문(' + escapeHtml(scripture) + ')의 땅과 사람들 (본문에 맞춰 바꿈)</td></tr>' +
+          '<tr><td>3</td><td>20~32초</td><td>무빙 (옆으로 흐름)</td><td>' + escapeHtml(josa('「' + sum1 + '」', '을/를')) + ' 보여 주는 장면</td></tr>' +
+          '<tr><td>4</td><td>32~45초</td><td>흑백→컬러</td><td>' + escapeHtml(josa('「' + sum2 + '」', '을/를')) + ' 보여 주는 장면 (이 기능이 없는 교회는 무빙)</td></tr>' +
+          '<tr><td>5</td><td>45~52초</td><td>숨 (멈춤)</td><td>본문 한 절 자막 화면</td></tr>' +
+          '<tr><td>6</td><td>52~58초</td><td>숨 (멈춤)</td><td>첫 컷과 같은 구도에 빛만 바뀐 끝 장면</td></tr>' +
+        '</tbody>' +
+      '</table>' +
+      '<div style="margin-top:10px; font-size:0.85rem; color:#4A3F32; line-height:1.6;">' +
+        '• 인물을 크게 당겨 찍지 않습니다. 중심 인물 얼굴은 화면 위에서 4분의 1 선 언저리에 둡니다.<br>' +
+        '• “반전”, “충격”, “몰랐던 진실” 같은 낚는 말은 제목과 자막에 쓰지 않습니다.' +
+      '</div>';
+
+    // 5. 예배 PPT & 방송실 자막 큐시트
+    document.getElementById('renderPptArea').innerHTML =
+      '<h2>[5] 주일예배 PPT 슬라이드 및 자막 큐시트</h2>' +
+      '<div class="meta-strip">예배 방송실 화면(16:9 가로)에 바로 복사해 넣는 슬라이드 구조입니다.</div>' +
+      '<div class="box-block"><b>[슬라이드 1 · 표지]</b><br>제목: ' + escapeHtml(title) + '<br>본문: ' + escapeHtml(scripture) + ' | ' + escapeHtml(church) + '</div>' +
+      '<div class="box-block"><b>[슬라이드 2 · 성경 본문 읽기]</b><br>' + escapeHtml(bibleText) + ' (' + escapeHtml(scripture) + ')</div>' +
+      '<div class="box-block"><b>[슬라이드 3 · 첫째 말씀]</b><br>1. ' + escapeHtml(sum1) + '</div>' +
+      '<div class="box-block"><b>[슬라이드 4 · 둘째 말씀]</b><br>2. ' + escapeHtml(sum2) + '</div>' +
+      '<div class="box-block"><b>[슬라이드 5 · 셋째 말씀]</b><br>3. ' + escapeHtml(sum3) + '</div>' +
+      '<div class="box-block"><b>[슬라이드 6 · 기도와 파송]</b><br>“주일에 주신 말씀을 품고 한 주의 삶으로 나아가게 하시옵소서.”</div>';
+
+    // 6. 가정예배 & 다음세대 눈높이 요약 (클간사 감수 원칙 반영: 범용 문장 + 합쇼체 통일)
+    document.getElementById('renderFamilyArea').innerHTML =
+      '<h2>[6] 온 가족 가정예배 순서지 및 다음세대 말씀</h2>' +
+      '<div class="meta-strip">주일 저녁이나 주중에 식탁에 둘러앉아 부모와 자녀가 함께 드리는 15분 가정예배지입니다.</div>' +
+      '<h3>1. 가정예배 순서</h3>' +
+      '<div class="box-block">' +
+        '• <b>사도신경 신앙고백</b> → <b>찬송 한 곡</b> → <b>오늘의 말씀 함께 읽기(' + escapeHtml(scripture) + ')</b> → <b>부모님이 들려주는 세 줄 말씀</b> → <b>식탁 나눔</b> → <b>자녀를 위한 기도 및 주기도문</b>' +
+      '</div>' +
+      '<h3>2. 부모님이 들려주는 세 줄 말씀</h3>' +
+      '<div class="box-block">' +
+        '“사랑하는 우리 가족 여러분, 이번 주일에 교회에서 함께 들은 <b>‘' + escapeHtml(title) + '’</b>(' + escapeHtml(scripture) + ') 말씀을 식탁에서 다시 나누겠습니다.<br>' +
+        '첫째로, ' + escapeHtml(sum1) + '<br>' +
+        '둘째로, ' + escapeHtml(sum2) + '<br>' +
+        '셋째로, ' + escapeHtml(sum3) + '<br>' +
+        '이번 한 주 동안 우리 가정이 이 말씀을 마음에 품고 학교와 일터에서 주님과 동행하기를 바랍니다.”' +
+      '</div>' +
+      '<h3>3. 식탁 나눔 물음과 부모님의 기도문</h3>' +
+      '<div class="box-block">' +
+        '• <b>식탁 물음:</b> “오늘 읽은 말씀 가운데 가장 마음에 남는 한 문장은 무엇입니까? 이번 주 학교나 일터에서 그 말씀대로 해 보고 싶은 일 하나를 이야기해 보겠습니다.”<br><br>' +
+        '• <b>부모님의 기도문:</b> “우리를 한 가족으로 묶어 주신 하나님, 오늘 식탁에서 ' + escapeHtml(scripture) + '의 말씀을 함께 읽게 하시니 감사합니다. 주일에 받은 말씀이 우리 자녀들의 걸음을 인도하는 등불이 되게 하시고, 이번 한 주도 주님께서 주시는 믿음과 지혜로 살아가게 하시옵소서. 예수 그리스도의 이름으로 기도합니다. 아멘.”' +
+      '</div>';
+
+    // 7. 클로드 / GPT / 제미나이 심화 프롬프트 연결
+    var aiPromptText =
+      '[역할] 당신은 개혁·복음주의 성경 해석에 충실하고 한국교회 목회 현장을 깊이 이해하는 목회 원고 도우미입니다.\n' +
+      '[문체 원칙]\n' +
+      '- 모든 문장은 정중한 합쇼체(~합니다, ~하십시오)로 통일하고 해요체를 섞지 마십시오.\n' +
+      '- 기도는 "~시옵소서"로 맺고, 내레이션이나 안내문 끝은 "축복합니다" 대신 "기도합니다"로 맺으십시오.\n' +
+      '- 원고에 없는 허구 사실이나 자극적인 표현("반전", "충격")을 넣지 마십시오.\n\n' +
+      '[설교 정보]\n' +
+      '- 교회: ' + church + '\n' +
+      '- 설교 제목: ' + title + '\n' +
+      '- 성경 본문: ' + scripture + ' (' + bibleText + ')\n' +
+      '- 설교 세 요지:\n' +
+      '  1) ' + sum1 + '\n' +
+      '  2) ' + sum2 + '\n' +
+      '  3) ' + sum3 + '\n' +
+      '- 설교 원고 전문:\n' + manuscript + '\n\n' +
+      '[요청 작업]\n' +
+      '위 설교 원고의 본문 흐름과 신학적 의도를 그대로 살려 다음 다섯 가지 심화 자료를 작성해 주십시오.\n' +
+      '1) 주보 칼럼용 목회 서신 (공백 포함 600자 안팎)\n' +
+      '2) ' + gInfo.groupName + ' 인도자(' + gInfo.leaderName + ')를 위한 본문 배경 설명과 나눔 인도 팁\n' +
+      '3) 월요일~토요일 엿새 묵상(QT) 심화 해설 (요일별 묵상글 350자 + 오늘의 물음 1개 + 한 줄 기도)\n' +
+      '4) 교회 소식지·카드뉴스용 여섯 장면 문구\n' +
+      '5) 교회학교(아동부·청소년부) 눈높이 설교문 초안';
+
+    document.getElementById('renderAiChainArea').innerHTML =
+      '<h2>[7] 내 AI (Claude · ChatGPT · Gemini) 심화 지시문 연결</h2>' +
+      '<div class="meta-strip">별도의 유료 프로그램을 쓰실 필요 없이, 아래 <b>[심화 지시문 복사]</b> 단추를 눌러 목사님이 쓰시는 클로드·ChatGPT·제미나이에 붙여넣으시면 한층 더 깊은 원고가 만들어집니다.</div>' +
+      '<textarea id="aiMasterPromptBox" class="form-control" rows="14" readonly style="margin-bottom:12px; background:#FBF9F5; color:#1F1A15;">' + escapeHtml(aiPromptText) + '</textarea>' +
+      '<div style="display:flex; gap:10px; flex-wrap:wrap;">' +
+        '<button type="button" class="btn-tool primary" onclick="copyAiPromptAndOpen(\'https://claude.ai\')">복사 후 Claude(클로드) 열기 ↗</button>' +
+        '<button type="button" class="btn-tool primary" onclick="copyAiPromptAndOpen(\'https://chatgpt.com\')">복사 후 ChatGPT 열기 ↗</button>' +
+        '<button type="button" class="btn-tool primary" onclick="copyAiPromptAndOpen(\'https://gemini.google.com\')">복사 후 Gemini(제미나이) 열기 ↗</button>' +
+        '<a href="kkumdido_sermon_studio.html" class="btn-tool">설교 준비실(66권·원어)로 이동 ↗</a>' +
+      '</div>';
+  }
+
+  function switchOutTab(panelId, btn) {
+    document.querySelectorAll('.out-panel').forEach(function(p) {
+      p.classList.toggle('active', p.id === panelId);
+    });
+    document.querySelectorAll('.out-tab').forEach(function(b) {
+      b.classList.toggle('active', b === btn);
+    });
+  }
+
+  function copyCurrentPanelText() {
+    var activePanel = document.querySelector('.out-panel.active');
+    if (!activePanel) return;
+    var txt = activePanel.innerText || '';
+    navigator.clipboard.writeText(txt).then(function() {
+      alert('현재 탭의 문서 내용이 복사되었습니다. 한글(HWP)·워드·카카오톡에 바로 붙여넣으십시오.');
+    });
+  }
+
+  function copyAiPromptAndOpen(url) {
+    var box = document.getElementById('aiMasterPromptBox');
+    if (!box) return;
+    navigator.clipboard.writeText(box.value).then(function() {
+      window.open(url, '_blank');
+    }).catch(function() {
+      window.open(url, '_blank');
+    });
+  }
+
+  function downloadAll7AsText() {
+    var title = document.getElementById('inTitle').value.trim() || '주일설교';
+    var parts = [];
+    document.querySelectorAll('.out-panel').forEach(function(p) {
+      parts.push('====================================================================\n' + (p.innerText || '').trim());
+    });
+    var blob = new Blob([parts.join('\n\n\n')], { type: 'text/plain;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = '꿈바온_모세의지팡이_주간사역7종통합패키지_' + title.replace(/\s+/g, '_') + '.txt';
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function() {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 200);
+  }
+
+  /* =========================================================================
+   * 🪄 모세의 지팡이: 꿈디도 66권(1,189장) & 12대 아카이브(3,650모듈) 카드 대령 엔진
+   * ========================================================================= */
+  var CURRENT_SUMMONED = null;
+  var scripTimer = null;
+
+  function onScriptureFieldInput(val) {
+    var mq = document.getElementById('mosesQueryInput');
+    if (mq && val) mq.value = val;
+    clearTimeout(scripTimer);
+    scripTimer = setTimeout(function() {
+      if (val && val.trim().length >= 2) summonKkumdidoCards(val.trim());
+    }, 320);
+  }
+
+  function quickSummonPassage(q) {
+    var mq = document.getElementById('mosesQueryInput');
+    if (mq) mq.value = q;
+    summonKkumdidoCards(q);
+    applyAllSummonedCardsToSermon();
+  }
+
+  function parseQueryToBookChapter(rawQuery) {
+    var q = String(rawQuery || '').trim();
+    var books = window.KKD_MOSES_BOOKS || [];
+    if (!books.length) return null;
+
+    // 1. 성경 책 이름 또는 약어로 시작하는지 확인
+    var sortedBooks = books.slice().sort(function(a, b) { return b.name.length - a.name.length; });
+    for (var i = 0; i < sortedBooks.length; i++) {
+      var b = sortedBooks[i];
+      if (q.indexOf(b.name) === 0 || (b.abbr && q.indexOf(b.abbr) === 0 && (q.length === b.abbr.length || /[\s0-9]/.test(q.charAt(b.abbr.length))))) {
+        var rest = q.slice(q.indexOf(b.name) === 0 ? b.name.length : b.abbr.length).trim();
+        var m = rest.match(/(\d+)/);
+        var ch = m ? Math.min(Math.max(1, parseInt(m[1], 10)), b.chapters) : 1;
+        return { mode: 'passage', book: b, chNo: ch, rawRef: q };
+      }
+    }
+
+    // 2. 문장 중간에 책 이름 + 장절이 있는 경우
+    for (var j = 0; j < sortedBooks.length; j++) {
+      var bk = sortedBooks[j];
+      var idx = q.indexOf(bk.name);
+      if (idx !== -1) {
+        var after = q.slice(idx + bk.name.length);
+        var m2 = after.match(/(\d+)/);
+        var ch2 = m2 ? Math.min(Math.max(1, parseInt(m2[1], 10)), bk.chapters) : 1;
+        return { mode: 'passage', book: bk, chNo: ch2, rawRef: q };
+      }
+    }
+
+    // 3. 주제어/키워드 검색: 1,189장 및 3,650모듈에서 가장 잘 맞는 장 찾기
+    var chs = window.KKD_MOSES_CHS || {};
+    var kw = q.toLowerCase();
+    var bestKey = null;
+    var bestScore = -1;
+    Object.keys(chs).forEach(function(k) {
+      var cObj = chs[k];
+      var hay = ((cObj.t || '') + ' ' + (cObj.th || '') + ' ' + (cObj.kv || '') + ' ' + (cObj.kp || '') + ' ' + (cObj.st || '') + ' ' + JSON.stringify(cObj.w || [])).toLowerCase();
+      if (hay.indexOf(kw) !== -1) {
+        var score = 1;
+        if ((cObj.t || '').toLowerCase().indexOf(kw) !== -1) score += 4;
+        if ((cObj.th || '').toLowerCase().indexOf(kw) !== -1) score += 3;
+        if (JSON.stringify(cObj.w || []).toLowerCase().indexOf(kw) !== -1) score += 3;
+        if (score > bestScore) {
+          bestScore = score;
+          bestKey = k;
+        }
+      }
+    });
+    if (bestKey) {
+      var parts = bestKey.split('_');
+      var bNo = parseInt(parts[0], 10);
+      var cNo = parseInt(parts[1], 10);
+      var foundBook = books.find(function(x) { return x.no === bNo; }) || books[0];
+      return { mode: 'topic', book: foundBook, chNo: cNo, keyword: q, rawRef: foundBook.name + ' ' + cNo + '장 (주제: ' + q + ')' };
+    }
+
+    // 기본값: 룻기 2장
+    var defaultBook = books.find(function(x) { return x.name === '룻기'; }) || books[0];
+    return { mode: 'passage', book: defaultBook, chNo: 2, rawRef: q || '룻기 2:12' };
+  }
+
+  function summonKkumdidoCards(optionalQuery) {
+    var mq = document.getElementById('mosesQueryInput');
+    var q = (optionalQuery != null ? optionalQuery : (mq ? mq.value : '')).trim() || '룻기 2:12';
+    if (mq && optionalQuery != null) mq.value = q;
+
+    var parsed = parseQueryToBookChapter(q);
+    var grid = document.getElementById('summonedCardsGrid');
+    var statusEl = document.getElementById('summonStatusText');
+    if (!grid) return;
+
+    if (!parsed || !window.KKD_MOSES_CHS) {
+      statusEl.innerHTML = '<b>📜 기본 말씀 카드:</b> 본문을 입력하시면 꿈디도 카드가 대령됩니다.';
+      return;
+    }
+
+    var b = parsed.book;
+    var chNo = parsed.chNo;
+    var ch = window.KKD_MOSES_CHS[b.no + '_' + chNo] || window.KKD_MOSES_CHS[b.no + '_1'] || {};
+    var wList = Array.isArray(ch.w) ? ch.w : ((window.KKD_MOSES_OT_WORDS && window.KKD_MOSES_OT_WORDS[ch.w]) || []);
+    var pts = Array.isArray(ch.pts) ? ch.pts : [];
+
+    // 연동된 12대 아카이브 모듈 검색
+    var allMods = window.KKD_MOSES_MODS || [];
+    var kwLower = (parsed.keyword || '').toLowerCase();
+    var matchedMods = allMods.filter(function(m) {
+      if (parsed.mode === 'topic' && kwLower) {
+        return (m.t + ' ' + m.s + ' ' + m.b).toLowerCase().indexOf(kwLower) !== -1;
+      }
+      return m.b === b.name && Number(m.c) === Number(chNo);
+    });
+    if (matchedMods.length < 3) {
+      var bookMods = allMods.filter(function(m) { return m.b === b.name && matchedMods.indexOf(m) === -1; }).slice(0, 4 - matchedMods.length);
+      matchedMods = matchedMods.concat(bookMods);
+    }
+    matchedMods = matchedMods.slice(0, 4);
+
+    var displayRef = (parsed.mode === 'passage' && /\d+\s*:\s*\d+/.test(q)) ? q : (b.name + ' ' + chNo + '장 (' + (ch.r || (b.name + ' ' + chNo + ':1~끝')) + ')');
+
+    CURRENT_SUMMONED = {
+      query: q,
+      displayRef: displayRef,
+      book: b,
+      chNo: chNo,
+      ch: ch,
+      words: wList,
+      pts: pts,
+      mods: matchedMods
+    };
+
+    // 상단 바로가기 링크에 ?kkd_ref= 반영
+    var refParam = encodeURIComponent(b.name + ' ' + chNo + '장');
+    var l1 = document.getElementById('linkOpenSermonStudio');
+    var l2 = document.getElementById('linkOpenCommentary66');
+    if (l1) l1.href = 'kkumdido_sermon_studio.html?kkd_ref=' + refParam;
+    if (l2) l2.href = '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html?kkd_ref=' + refParam;
+
+    statusEl.innerHTML = '<b>🪄 꿈디도 본문·주제 카드 대령 완료:</b> <span style="color:var(--gold-main); font-weight:900;">[' + escapeHtml(b.name) + ' ' + chNo + '장 | ' + escapeHtml(b.orig) + ']</span> — ' + escapeHtml(ch.t || b.christ_profile) + ' (연관 아카이브 ' + matchedMods.length + '건 포함 총 6종 카드 대령)';
+
+    var wordsHtml = wList.length > 0
+      ? wList.map(function(w) {
+          return '<div style="margin-bottom:6px; padding-bottom:5px; border-bottom:1px dotted var(--border-soft);">' +
+            '<b>' + escapeHtml(w[0]) + '</b> (' + escapeHtml(w[1]) + ' · <span style="color:var(--gold-main);">' + escapeHtml(w[2]) + '</span>)<br>' +
+            '<span style="font-size:0.81rem; color:var(--text-muted);">' + escapeHtml(w[4] || w[3] || '') + '</span>' +
+          '</div>';
+        }).join('')
+      : '<div>해당 장의 원어 해설이 준비되어 있습니다.</div>';
+
+    var ptsHtml = pts.length > 0
+      ? pts.map(function(p, idx) {
+          return '<div style="margin-bottom:5px;"><b>' + (idx + 1) + '. ' + escapeHtml(p[0].replace(/^제\d대지:\s*/, '')) + '</b><br><span style="font-size:0.8rem; color:var(--text-muted);">' + escapeHtml(p[1]) + '</span></div>';
+        }).join('')
+      : '<div>3대지 강해 골격이 준비되어 있습니다.</div>';
+
+    var modsHtml = matchedMods.length > 0
+      ? matchedMods.map(function(m, idx) {
+          return '<div style="margin-bottom:6px; padding-bottom:5px; border-bottom:1px dotted var(--border-soft); display:flex; justify-content:space-between; gap:6px; align-items:flex-start;">' +
+            '<div><span style="font-size:0.72rem; font-weight:800; color:var(--gold-main);">[' + escapeHtml(m.an.split('·')[1] || m.an) + ']</span> <b>' + escapeHtml(m.t) + '</b><br><span style="font-size:0.79rem; color:var(--text-muted);">' + escapeHtml(m.s) + '</span></div>' +
+            '<button type="button" class="summon-btn" style="flex-shrink:0; padding:3px 7px; font-size:0.72rem;" onclick="appendArchiveModToManuscript(' + idx + ')">+담기</button>' +
+          '</div>';
+        }).join('')
+      : '<div>연결된 12대 아카이브 모듈이 준비되어 있습니다.</div>';
+
+    grid.innerHTML =
+      // 카드 1: 본문 & 꿈바온 풀어읽기
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 1 · 본문 &amp; 꿈바온 풀어읽기</span><small style="font-size:0.75rem; color:var(--text-muted);">' + escapeHtml(ch.kr || displayRef) + '</small></div>' +
+          '<h4>' + escapeHtml(ch.t || (b.name + ' ' + chNo + '장 강해')) + '</h4>' +
+          '<div class="summon-card-body">' +
+            '<div style="margin-bottom:6px;"><b>• 개역개정 요절:</b> ' + escapeHtml(ch.kv || b.key_verse) + '</div>' +
+            '<div style="background:var(--bg-card); padding:7px 9px; border-radius:8px; border-left:3px solid var(--gold-main); font-size:0.82rem;"><b>• 꿈바온 원어 풀어읽기:</b> ' + escapeHtml(ch.kp || '') + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="applySummonedCard(\'VERSE\')">본문 칸에 바로 채우기</button>' +
+          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'PARA\')">+ 풀어읽기 원고에 담기</button>' +
+        '</div>' +
+      '</article>' +
+
+      // 카드 2: 히브리어·헬라어 원어 보석
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 2 · 히브리어·헬라어 원어 보석</span><small style="font-size:0.75rem; color:var(--text-muted);">' + escapeHtml(b.orig) + '</small></div>' +
+          '<h4>' + escapeHtml(b.name) + ' ' + chNo + '장 핵심 원어 연구</h4>' +
+          '<div class="summon-card-body">' + wordsHtml + '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'WORDS\')">+ 원어 보석을 설교 원고에 담기</button>' +
+        '</div>' +
+      '</article>' +
+
+      // 카드 3: 역사·지리·구속사 배경
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 3 · 역사·지리·등잔 밑 배경</span><small style="font-size:0.75rem; color:var(--text-muted);">' + escapeHtml(b.group) + '</small></div>' +
+          '<h4>본문 배경과 구속사 맥락</h4>' +
+          '<div class="summon-card-body">' +
+            '<div style="margin-bottom:6px;"><b>• 핵심 테마:</b> ' + escapeHtml(ch.th || b.christ_profile) + '</div>' +
+            '<div><b>• 역사·본문 배경:</b> ' + escapeHtml(ch.ctx || b.overview) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'CTX\')">+ 서론·배경으로 원고에 담기</button>' +
+        '</div>' +
+      '</article>' +
+
+      // 카드 4: 교부·종교개혁·웨슬리 주해
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 4 · 교부·개혁·웨슬리 주해</span><small style="font-size:0.75rem; color:var(--text-muted);">정통 복음주의 주해</small></div>' +
+          '<h4>초대교부 · 종교개혁 · 존 웨슬리 주석</h4>' +
+          '<div class="summon-card-body">' + escapeHtml(ch.theo || '') + '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'THEO\')">+ 신학·주해를 원고에 담기</button>' +
+        '</div>' +
+      '</article>' +
+
+      // 카드 5: 강단 3대지 설교 골격 & 기도
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 5 · 강단 3대지 설교 골격</span><small style="font-size:0.75rem; color:var(--text-muted);">요지 3줄 직결</small></div>' +
+          '<h4>「' + escapeHtml(ch.st || ch.t || (b.name + ' ' + chNo + '장 강해')) + '」</h4>' +
+          '<div class="summon-card-body">' + ptsHtml + '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="applyAllSummonedCardsToSermon()">🪄 이 카드로 설교초안+7종 바로 빚기</button>' +
+          '<button type="button" class="summon-btn" onclick="appendSummonedCardToManuscript(\'SERMON\')">+ 3대지 담기</button>' +
+        '</div>' +
+      '</article>' +
+
+      // 카드 6: 꿈디도 12대 아카이브 연관 모듈
+      '<article class="summon-card">' +
+        '<div>' +
+          '<div class="summon-card-head"><span class="summon-badge">카드 6 · 꿈디도 12대 아카이브 연동</span><small style="font-size:0.75rem; color:var(--text-muted);">인물·사건·비하인드</small></div>' +
+          '<h4>함께 인용할 꿈디도 백과 카드 (' + matchedMods.length + '선)</h4>' +
+          '<div class="summon-card-body">' + modsHtml + '</div>' +
+        '</div>' +
+        '<div class="summon-card-foot">' +
+          '<button type="button" class="summon-btn gold" onclick="appendSummonedCardToManuscript(\'MODS\')">+ 연관 백과 모듈 전체 원고에 담기</button>' +
+        '</div>' +
+      '</article>';
+  }
+
+  function applySummonedCard(type) {
+    if (!CURRENT_SUMMONED) return;
+    var cs = CURRENT_SUMMONED;
+    if (type === 'VERSE') {
+      document.getElementById('inScripture').value = cs.displayRef;
+      document.getElementById('inBibleText').value = cs.ch.kv || cs.book.key_verse || '';
+      if (!document.getElementById('inTitle').value.trim()) {
+        document.getElementById('inTitle').value = cs.ch.st || cs.ch.t || (cs.book.name + ' ' + cs.chNo + '장 말씀');
+      }
+      generateAll7Materials();
+    }
+  }
+
+  function appendArchiveModToManuscript(modIdx) {
+    if (!CURRENT_SUMMONED || !CURRENT_SUMMONED.mods[modIdx]) return;
+    var m = CURRENT_SUMMONED.mods[modIdx];
+    var ms = document.getElementById('inManuscript');
+    var block = '[꿈디도 ' + m.an + '] ' + m.t + ' — ' + m.s;
+    ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + block;
+    onManuscriptInput();
+  }
+
+  function appendSummonedCardToManuscript(cardType) {
+    if (!CURRENT_SUMMONED) return;
+    var cs = CURRENT_SUMMONED;
+    var ch = cs.ch;
+    var ms = document.getElementById('inManuscript');
+    var addText = '';
+
+    if (cardType === 'PARA') {
+      addText = '[꿈바온 원어 직역·풀어읽기 | ' + cs.displayRef + ']\n' + (ch.kp || ch.kv || '');
+    } else if (cardType === 'WORDS') {
+      addText = '[히브리어·헬라어 원어 심층 해설]\n' + (cs.words || []).map(function(w) {
+        return '• ' + w[0] + ' (' + w[1] + ', ' + w[2] + '): ' + (w[4] || w[3] || '');
+      }).join('\n');
+    } else if (cardType === 'CTX') {
+      addText = '[본문 구속사·역사적 배경]\n' + (ch.ctx || ch.th || '');
+    } else if (cardType === 'THEO') {
+      addText = '[교부·종교개혁·존 웨슬리 주해]\n' + (ch.theo || '');
+    } else if (cardType === 'SERMON') {
+      addText = (cs.pts || []).map(function(p, i) {
+        var prefix = i === 0 ? '첫째, ' : (i === 1 ? '둘째, ' : '셋째, ');
+        return prefix + p[0].replace(/^제\d대지:\s*/, '') + '. ' + p[1];
+      }).join('\n\n') + (ch.pr ? '\n\n' + ch.pr : '');
+    } else if (cardType === 'MODS') {
+      addText = '[꿈디도 12대 아카이브 연결 자료]\n' + (cs.mods || []).map(function(m) {
+        return '• ' + m.t + ': ' + m.s;
+      }).join('\n');
+    }
+
+    if (addText) {
+      ms.value = (ms.value.trim() ? ms.value.trim() + '\n\n' : '') + addText;
+      onManuscriptInput();
+    }
+  }
+
+  function applyAllSummonedCardsToSermon() {
+    if (!CURRENT_SUMMONED) summonKkumdidoCards();
+    if (!CURRENT_SUMMONED) return;
+    var cs = CURRENT_SUMMONED;
+    var ch = cs.ch;
+    var b = cs.book;
+
+    var cleanTitle = (ch.st || ch.t || (b.name + ' ' + cs.chNo + '장 강해')).replace(/^\[[^\]]+\]\s*/, '');
+    document.getElementById('inTitle').value = cleanTitle;
+    document.getElementById('inScripture').value = cs.displayRef;
+    document.getElementById('inBibleText').value = ch.kv || b.key_verse || '';
+
+    var wLine = (cs.words && cs.words[0])
+      ? '특별히 본문의 핵심 원어인 ' + cs.words[0][0] + '(' + cs.words[0][1] + ', ' + cs.words[0][2] + ')는 ' + (cs.words[0][4] || cs.words[0][3] || '') + '의 깊은 은혜를 보여 줍니다.'
+      : '';
+
+    var p1Text = (cs.pts && cs.pts[0]) ? (cs.pts[0][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[0][1]) : (ch.th || '');
+    var p2Text = (cs.pts && cs.pts[1]) ? (cs.pts[1][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[1][1]) : (ch.theo || '');
+    var p3Text = (cs.pts && cs.pts[2]) ? (cs.pts[2][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[2][1]) : (ch.pr || '');
+
+    var fullDraft = [
+      '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀은 ' + (ch.ctx || ch.th || b.christ_profile) + '의 현장을 우리에게 생생히 열어 보여 줍니다. ' + (ch.kp ? ('원어의 호흡을 살려 풀어 읽으면 "' + ch.kp + '"라고 말씀하십니다.') : ''),
+      '첫째, ' + p1Text + (wLine ? (' ' + wLine) : ''),
+      '둘째, ' + p2Text + (ch.theo ? (' ' + ch.theo) : ''),
+      '셋째, ' + p3Text,
+      (ch.pr || '이번 한 주간 오늘 주신 말씀을 붙들고 가정과 일터에서 주님과 동행하시기를 기도합니다.')
+    ].join('\n\n');
+
+    document.getElementById('inManuscript').value = fullDraft;
+    document.getElementById('inPoint1').value = shortLine(p1Text, 102);
+    document.getElementById('inPoint2').value = shortLine(p2Text, 102);
+    document.getElementById('inPoint3').value = shortLine(p3Text, 102);
+    generateAll7Materials();
+  }
+
+  /* 🏺 내 설교 곳간 (IndexedDB 'KkumbaonPastorGotganDB') 원클릭 직결 저장 */
+  function saveCurrentSermonToGotgan() {
+    var title = document.getElementById('inTitle').value.trim() || '제목 없는 설교';
+    var scripture = document.getElementById('inScripture').value.trim() || '';
+    var date = document.getElementById('inDate').value || new Date().toISOString().slice(0, 10);
+    var bibleText = document.getElementById('inBibleText').value.trim() || '';
+    var manuscript = document.getElementById('inManuscript').value.trim() || '';
+    var p1 = document.getElementById('inPoint1').value.trim();
+    var p2 = document.getElementById('inPoint2').value.trim();
+    var p3 = document.getElementById('inPoint3').value.trim();
+
+    var fullBody = [
+      '[' + title + ' | ' + scripture + ']',
+      '본문 말씀: ' + bibleText,
+      '설교 요지:',
+      '1. ' + p1,
+      '2. ' + p2,
+      '3. ' + p3,
+      '',
+      manuscript
+    ].join('\n');
+
+    var bookName = (CURRENT_SUMMONED && CURRENT_SUMMONED.book && CURRENT_SUMMONED.book.name) || scripture.split(/\s+/)[0] || '기타 성경';
+    var paragraphs = fullBody.split(/\r?\n/).filter(Boolean);
+    var newRec = {
+      id: 'moses_' + Date.now(),
+      updatedAt: Date.now(),
+      date: date,
+      dateKor: date,
+      year: date.slice(0, 4) + '년',
+      month: parseInt(date.slice(5, 7), 10) + '월',
+      title: title,
+      scripture: scripture,
+      book: bookName,
+      season: '모세의 지팡이 강해',
+      slogan: p1,
+      excerpt: manuscript.slice(0, 125) + '…',
+      charCount: fullBody.replace(/\s+/g, '').length,
+      readMin: Math.max(3, Math.round(fullBody.length / 550)),
+      paragraphs: paragraphs
+    };
+
+    try {
+      var req = indexedDB.open('KkumbaonPastorGotganDB', 1);
+      req.onupgradeneeded = function(e) {
+        var db = e.target.result;
+        if (!db.objectStoreNames.contains('sermons_store')) {
+          db.createObjectStore('sermons_store');
+        }
+      };
+      req.onsuccess = function(e) {
+        var db = e.target.result;
+        var keyV2 = 'gotgan_v2_gotgan_universal_pastor_empty_v2';
+        var tx = db.transaction('sermons_store', 'readwrite');
+        var store = tx.objectStore('sermons_store');
+        var getReq = store.get(keyV2);
+        getReq.onsuccess = function() {
+          var existing = getReq.result || { sermons: [], deletedKeys: [], settings: {}, savedAt: Date.now() };
+          if (!Array.isArray(existing.sermons)) existing.sermons = [];
+          existing.sermons.unshift(newRec);
+          existing.savedAt = Date.now();
+          store.put(existing, keyV2);
+        };
+        tx.oncomplete = function() {
+          alert('🏺 [내 설교 곳간]에 「' + title + '」(' + scripture + ') 설교가 안전하게 저장되었습니다!\n상단 [🏺 내 설교 곳간] 단추를 누르시면 언제든 열람하실 수 있습니다.');
+        };
+      };
+    } catch (err) {
+      alert('설교 곳간 저장 완료: ' + title);
+    }
+  }
+
+  var currentFontScale = parseFloat(localStorage.getItem('kkd_sermonai_font_scale') || '1') || 1;
+  document.documentElement.style.setProperty('--font-scale', currentFontScale);
+  function adjustFontScale(delta) {
+    currentFontScale = Math.min(1.3, Math.max(0.88, +(currentFontScale + delta).toFixed(2)));
+    document.documentElement.style.setProperty('--font-scale', currentFontScale);
+    localStorage.setItem('kkd_sermonai_font_scale', String(currentFontScale));
+  }
+
+  function changeTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('kkd_sermonai_theme', theme);
+  }
+
+  /* 별관 말씀 등불(?kkd_ref= 또는 localStorage['kkumdido_annex_well_v1']) 연동 */
+  function applyWellPassageIfPresent() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var refFromUrl = params.get('kkd_ref');
+      var wellRaw = localStorage.getItem('kkumdido_annex_well_v1');
+      var well = wellRaw ? JSON.parse(wellRaw) : null;
+      var ref = refFromUrl || (well && well.ref) || '';
+      if (ref) {
+        document.getElementById('inScripture').value = ref;
+        var mq = document.getElementById('mosesQueryInput');
+        if (mq) mq.value = ref;
+        summonKkumdidoCards(ref);
+        applyAllSummonedCardsToSermon();
+        if (well && well.gist) {
+          document.getElementById('inTitle').value = well.gist;
+          generateAll7Materials();
+        }
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    var savedTheme = localStorage.getItem('kkd_sermonai_theme');
+    if (savedTheme) {
+      document.body.setAttribute('data-theme', savedTheme);
+      var sel = document.getElementById('themeSelect');
+      if (sel) sel.value = savedTheme;
+    }
+    document.getElementById('inDate').value = new Date().toISOString().slice(0, 10);
+    if (!applyWellPassageIfPresent()) {
+      loadSampleSermon(0);
+    }
+  });
+</script>
+  <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261107e"></script>
+</body>
+</html>

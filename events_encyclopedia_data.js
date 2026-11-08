@@ -1,6 +1,6 @@
 window.KKUMDIDO_EVENTS_DATA = {
   "meta": {
-    "updatedAt": "2026-11-06",
+    "updatedAt": "2026-11-08",
     "totalEvents": 300,
     "pillarCount": 30,
     "oldTestamentCount": 191,
@@ -249,7 +249,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "창세기 1장 1절 정중앙과 스가랴 12장 10절('그들이 찌른 바 나')에 놓인 히브리어 첫 글자·끝 글자 '알렙-타우(אֵת)'는 어떻게 요한계시록의 '알파와 오메가'로 이어질까?, 히브리어 첫 글자 알렙(א)과 끝 글자 타우(ת)"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E002",
@@ -300,7 +301,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경 어디에도 선악과가 사과라는 말이 없는데 왜 서양 미술과 동화에서는 선악과가 빨간 사과로 굳어졌을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E003",
@@ -372,7 +374,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "만약 정결한 짐승도 암수 두 마리만 방주에 탔다면 노아가 방주에서 나오자마자 정결한 짐승으로 번제를 드렸을 때(창 8:20) 왜 그 동물이 멸종되지 않았을까?, 방주 승선 경사로를 따라 부정한 짐승은 1쌍씩"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E004",
@@ -430,7 +433,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 바벨탑 사람들은 돌 대신 구운 벽돌과 역청을 썼으며 히브리어 원문에 어떤 자음 뒤집기 유머가 숨어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E005",
@@ -470,7 +474,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "아브라함이 고향 갈대아 우르를 떠난 것은 낙후된 시골을 떠난 것이었을까 아니면 당대 세계 최고 문명도시의 기득권을 내려놓은 결단이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E006",
@@ -528,7 +533,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 고대 근동 언약법과 달리 아브라함은 잠들고 하나님(타는 횃불)만 홀로 피 묻은 고기 사이를 지나가셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E007",
@@ -580,7 +586,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "롯의 아내가 뒤를 돌아보았다는 히브리어 동사 '나바트'에는 어떤 마음의 상태가 담겨 있으며 왜 하필 소금 기둥이 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E008",
@@ -626,7 +633,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "딱딱한 바위를 정말 베개처럼 머리에 베고 잤을까 아니면 히브리어 '메르아쇼트(머리맡 둘레)'는 어떤 광야 야영 방식이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E009",
@@ -689,7 +697,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 아브라함이 이삭을 바친 산과 다윗이 전염병을 멈춘 타작마당과 솔로몬 성전 터가 정확히 같은 한 바위산 능선 위였을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E010",
@@ -735,7 +744,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고관절이 빠져 절뚝거리게 된 야곱에게 왜 하나님은 '네가 하나님과 겨루어 이겼다'고 선언하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E011",
@@ -807,7 +817,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 이집트 공주는 히브리 아기에게 투트모세·라모세에 쓰이는 이집트 왕실 작명어이자 히브리어 '건져내다'와 소리가 같은 '모세'라는 이름을 주었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E012",
@@ -873,7 +884,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 천국 유리바다 가에 선 구원받은 성도들은 구약 출애굽의 '모세의 노래'와 신약 구속의 '어린양의 노래'를 한 노래로 합창할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E013",
@@ -945,7 +957,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "다른 새들은 새끼를 발톱으로 움켜쥐는데 왜 독수리는 추락하는 새끼 밑으로 급강하해 자신의 넓은 날개 등 위에 새끼를 업고 날아오를까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E014",
@@ -1043,7 +1056,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하나님은 대제사장에게 이스라엘 12지파의 이름을 어깨에도 메고 동시에 가슴(심장) 위에도 품고 지성소에 들어가라고 하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E015",
@@ -1094,7 +1108,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "구약성경에서 은으로 만든 '은나팔'과 숫양의 뿔로 만든 '양각나팔(쇼파르)'은 모양과 쓰임새가 어떻게 달랐을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E016",
@@ -1140,7 +1155,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하롯 샘가에서 손으로 물을 움켜 핥아 마신 300명은 정말 특전사라서 뽑힌 것일까 아니면 인간의 자랑을 막으려는 최소 인원이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E017",
@@ -1192,7 +1208,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "손익을 계산하며 신발을 벗어 던진 1순위 친족은 왜 '아무개'로 기록되고 보아스는 메시아 족보에 올랐을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E018",
@@ -1249,7 +1266,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "시냇가에서 고른 매끄러운 돌 다섯 개와 양치기 가죽 물매가 실제로는 얼마나 무서운 관통력과 탄속을 가진 무기였을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E019",
@@ -1316,7 +1334,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "히브리서 9장 4절과 열왕기상 8장 9절의 언약궤 내용물 차이는 모순일까 아니면 세월의 흐름 속에 오직 '영원한 하나님의 말씀(두 돌판)'만 남았음을 보여주는 역사적 기록일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E020",
@@ -1368,7 +1387,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "3년 반 동안 비 한 방울 안 온 가뭄 끝자락에 엘리야는 그 귀한 물 열두 통을 어디서 구해 왜 제단에 쏟아부었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E021",
@@ -1426,7 +1446,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "나침반도 없던 기원전 701년 유다 석공들은 어떻게 지하 암반 533m를 양쪽 끝에서 동시에 파 들어와 정중앙에서 만났을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E022",
@@ -1502,7 +1523,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 7배나 뜨거운 풀무불이 세 청년의 겉옷 빛도 그슬리지 못하고 오직 그들을 묶고 있던 밧줄만 태워 자유케 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E023",
@@ -1571,7 +1593,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "페르시아 제국에서 왕의 부름 없이 어전에 들어간 사람이 목숨을 건질 수 있는 유일한 신호였던 '금 규'는 어떻게 생겼을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E024",
@@ -1637,7 +1660,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고린도전서 11장 14절('남자가 긴 머리를 하면 부끄러움이 되는 줄 알지 못하느냐')과 1세기 유대인 고증을 통해 본 예수님의 실제 모습은 어떠했을까?, 따뜻하고 강건한 중동 갈릴리 장인의 황갈색 피부와 단정한 머리·수염"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E025",
@@ -1701,7 +1725,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 예수님은 마당 구석에 놓인 '정결 예식용 석회암 돌항아리 여섯 개'에 아구까지 물을 채우라고 하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E026",
@@ -1764,7 +1789,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 복음서 기자들은 오병이어(유대인 5천 명)와 칠병이어(이방인 4천 명)에서 남은 조각을 거둔 바구니의 헬라어 단어를 철저히 구분해 썼을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E027",
@@ -1894,7 +1920,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 십자가에 달리신 메시아는 시편 22편 6절에서 일반 지렁이('림마')가 아니라 성막의 홍색 염료를 만드는 '톨라아트(진홍빛 케르메스 벌레)'로 자신을 부르셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E028",
@@ -1957,7 +1984,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 구약의 봄 절기 네 개는 예수님의 십자가 죽음(유월절)·장사(무교절)·주일 부활(초실절)·성령 강림(오순절)의 정확한 날짜와 요일에 성취되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E029",
@@ -2033,7 +2061,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 바울과 실라는 불법 태형을 당할 때는 로마 시민권을 말하지 않고 참았다가 다음 날 아침 나가라 할 때 당당히 사과를 요구했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E030",
@@ -2111,7 +2140,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "광물성 보석과 달리 오직 살아있는 조개가 자기 살을 파고든 상처를 생명의 진액으로 감싸 안아 만드는 유일한 보석 '진주'가 왜 천국에 들어가는 열두 대문이 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E031",
@@ -2168,7 +2198,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "새가족과 청년들이 가장 많이 묻는 질문 1순위 — 아담과 하와가 가인과 아벨만 낳았다면 가인의 아내는 도대체 누구였을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E032",
@@ -2214,7 +2245,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 므두셀라는 성경에서 가장 긴 969세를 살았으며 그가 숨을 거둔 바로 그 해에 정확히 무슨 일이 일어났을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E033",
@@ -2266,7 +2298,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 멜기세덱은 전승을 거두고 돌아오는 아브라함에게 동물 제물이 아닌 '떡과 포도주'를 가지고 나와 축복했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E034",
@@ -2324,7 +2357,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "불임인 본처가 자기 여종을 남편에게 주고 임신한 여종이 교만해졌을 때 강등시키는 행동은 고대 근동 어떤 법에 따른 것이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E035",
@@ -2370,7 +2404,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E036",
@@ -2434,7 +2469,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 아브라함은 동굴만 사려 했는데 에브론은 인심 쓰는 척 밭 전체를 통째로 사게 유도하고 은 400세겔 거금을 다 받았을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E037",
@@ -2508,7 +2544,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "99세에 '자기 몸이 죽은 것 같았던'(롬 4:19) 아브라함이 어떻게 137세 이후에 후처 그두라에게서 아들을 여섯 명이나 더 낳을 수 있었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E038",
@@ -2566,7 +2603,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 에서는 사냥에서 돌아와 렌틸콩 죽의 이름도 잊어버린 채 '그 붉은 것, 그 붉은 것을 내게 삼키게 하라!'고 소리쳤을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E039",
@@ -2642,7 +2680,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "라헬은 왜 친정을 떠나면서 아버지 라반의 드라빔을 훔쳤으며 라반은 왜 일주일 길을 추격해 그 작은 신상을 되찾으려 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E040",
@@ -2706,7 +2745,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E041",
@@ -2769,7 +2809,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 요셉의 형들은 아버지가 요셉에게 '채색옷(케토네트 파심)'을 입혔다는 이유 하나로 동생을 죽이려 할 만큼 증오했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E042",
@@ -2815,7 +2856,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "이집트 귀족 부인을 범하려 한 노예는 즉결 처형감인데 왜 보디발은 화만 내고 요셉을 왕의 정치범 감옥에 넣어 총무가 되게 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E043",
@@ -2884,7 +2926,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고대 족장 시대에 가장 엄숙한 맹세를 할 때 왜 손을 성경책 대신 주인의 '허벅지 밑'에 넣고 선서하게 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E044",
@@ -2936,7 +2979,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E045",
@@ -2988,7 +3032,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "40년 동안 매일 아침 먹은 하늘 양식의 이름이 왜 '이게 뭐야?(만 후)'라는 질문 그 자체로 붙여졌을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E046",
@@ -3046,7 +3091,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E047",
@@ -3103,7 +3149,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "사해 사본보다 400년이나 앞선 기원전 600년경의 작은 은판 두루마리를 펼쳤을 때 어떤 성경 구절이 새겨져 있었으며 히브리어 원문 글자 수는 어떻게 배열되어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E048",
@@ -3155,7 +3202,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 팔레스타인 야생 아몬드나무(살구나무)는 히브리어로 '깨어 있는 나무(샤케드)'라 불리며 부활과 말씀 성취의 상징이 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E049",
@@ -3213,7 +3261,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E050",
@@ -3299,7 +3348,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 유대인들은 말씀 상자를 오른팔이 아닌 '심장과 가까운 왼팔'과 '미간'에 감았으며 예수님은 왜 바리새인들의 넓은 경문 띠를 책망하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E051",
@@ -3345,7 +3395,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "자기가 타던 나귀가 사람 말로 항변하는데 왜 발람은 놀라지도 않고 나귀와 말다툼을 벌였을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E052",
@@ -3396,7 +3447,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하나님은 요단강이 얕은 건기가 아니라 강둑에 물이 철철 넘치는 보리 추수 범람기에 건너게 하셨으며 왜 상류 '아담' 성읍에서 물이 끊어졌을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E053",
@@ -3441,7 +3493,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "동쪽 기브온 하늘에는 태양이 떠 있고 서쪽 아얄론 골짜기 위에는 아직 달이 떠 있는 시간대는 하루 중 언제이며 왜 두 천체를 동시에 불렀을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E054",
@@ -3505,7 +3558,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "이름 뜻이 '오른손의 아들'인 베냐민 지파 에훗의 오른손 장애(왼손잡이)가 어떻게 모압 왕궁 경호원들의 몸수색을 뚫는 비밀병기가 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E055",
@@ -3575,7 +3629,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "철 병거 900대를 호령하던 시스라 장군이 왜 야엘이 준 우유 한 그릇을 마시고 깊은 잠에 빠져 장막 말뚝에 머리가 깨졌을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E056",
@@ -3615,7 +3670,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "한 바위 위에서 형제 70명을 죽인 아비멜렉이 왜 마지막에 한 여인이 던진 가정용 맷돌 위짝 하나에 두개골이 깨져 죽었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E057",
@@ -3666,7 +3722,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 입다의 딸은 산에 올라가 두 달 동안 '죽음'이 아니라 '처녀로 죽을 것(무자녀 독신)'을 애곡했으며 정통 주석은 이 난제를 어떻게 해석할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E058",
@@ -3728,7 +3785,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "만약 삼손이 겉보기에도 우락부락한 거인 근육맨이었다면 블레셋 사람들이 왜 은 1100개씩 써가며 '도대체 저 힘이 어디서 나오는지 알아내라'고 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E059",
@@ -3786,7 +3844,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 성경은 사무엘이 부름 받던 밤을 묘사하며 엘리 제사장의 어두워진 눈과 '하나님의 등불은 아직 꺼지지 아니하였으며'를 나란히 대비시켰을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E060",
@@ -3838,7 +3897,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 다곤 신상은 첫날엔 엎드러지기만 하더니 둘째 날엔 정확히 '머리와 양 손목'만 잘려 문지방 위에 놓여 있었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E061",
@@ -3884,7 +3944,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E062",
@@ -3930,7 +3991,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 히브리어에서는 자기의 공적을 자랑하려고 세운 '기념비'를 '손(야드)'이라는 단어로 부를까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E063",
@@ -3982,7 +4044,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 성경은 초대 왕 사울에게 기름 부을 때는 질그릇 '기름병(팍)'을 쓰고 다윗과 솔로몬에게는 '기름 뿔병(케렌)'을 썼을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E064",
@@ -4045,7 +4108,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "만약 엔돌의 무당이 평소 자기 속임수로 귀신을 불러낸 것이었다면 왜 사무엘이 나타나자 무당 자신이 깜짝 놀라 비명을 질렀을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E065",
@@ -4115,7 +4179,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 성경은 요압 형제를 아버지 이름으로 부르지 않고 늘 '스루야의 아들들'이라 부르며 다윗과 요압은 어떤 혈연관계였을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E066",
@@ -4172,7 +4237,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "좋은 의도로 언약궤를 붙잡은 웃사가 죽은 사건 뒤에 다윗과 웃사가 어긴 하나님의 율법 규례는 무엇이었으며 훗날 다윗은 어떻게 고쳐 메었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E067",
@@ -4236,7 +4302,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 다윗의 일등 공신 책사 아히도벨은 하루아침에 다윗을 배신하고 왕궁 옥상에서 복수하려 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E068",
@@ -4327,7 +4394,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경 원문에는 '머리카락(세아르)'이 아니라 '머리(로쇼)'가 상수리나무에 걸렸다고 되어 있는데 그가 자랑하던 무거운 머리숱은 어떤 역할을 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E069",
@@ -4373,7 +4441,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E070",
@@ -4448,7 +4517,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "민수기에서도 두 번이나 인구조사를 했는데 왜 다윗이 말년에 한 인구조사는 하나님 보시기에 그토록 큰 범죄가 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E071",
@@ -4511,7 +4581,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "가장 높고 웅장한 백향목 조각과 가장 낮고 작은 우슬초 줄기를 왜 나병 환자 정결 예식에서는 홍색 실로 한 묶음으로 묶어 피를 뿌렸을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E072",
@@ -4574,7 +4645,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "우상 숭배로 나라가 쪼개지는 징계를 받은 솔로몬에 대해 하나님은 다윗 언약에서 무엇을 약속하셨으며 전도서는 언제 쓰인 책일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E073",
@@ -4632,7 +4704,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E074",
@@ -4701,7 +4774,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하나님은 가장 탐욕스럽고 부정하다고 여겨지던 날짐승 '까마귀'를 택하셔서 아침저녁으로 고기를 삼키지 않고 선지자에게 배달하게 하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E075",
@@ -4753,7 +4827,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "산을 가르는 크고 강한 바람과 지진과 불 뒤에 들려온 '세미한 소리'를 히브리어 원문 그대로 직역하면 어떤 뜻일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E076",
@@ -4817,7 +4892,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E077",
@@ -4863,7 +4939,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왕복을 벗고 완벽하게 변장한 아합 왕이 어떻게 아람 병사가 우연히 쏜 화살 한 발에 갑옷 이음매 틈을 맞아 죽었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E078",
@@ -4914,7 +4991,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 성경 번역의 '어린아이들'이라는 단어 때문에 선지자가 순진한 꼬마들을 저주했다는 오해가 생겼으며 히브리어 '나아림'과 '올라가라(알레)'의 진짜 뜻은 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E079",
@@ -4966,7 +5044,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E080",
@@ -5018,7 +5097,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 나아만은 아람 수도 다메섹으로 돌아가면서 굳이 이스라엘 땅의 흙을 노새 두 마리에 가득 실어 달라고 요청했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E081",
@@ -5088,7 +5168,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경에 등장하는 이스라엘 왕들 중 생전의 실제 얼굴과 옷차림이 동시대 바위 조각으로 남아 있는 유일한 왕은 누구일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E082",
@@ -5157,7 +5238,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "요나의 물고기 사건을 우화라고 의심하는 사람들에게 마태복음 12장 40절의 예수님 친설 말씀은 어떤 결정적 확증을 주시는가?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E083",
@@ -5220,7 +5302,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 돌무화과 열매는 수확 전에 농부가 철침으로 열매 하나하나에 상처(칼집)를 내주어야만 쓴맛이 빠지고 달콤하게 익을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E084",
@@ -5287,7 +5370,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 성경 원문에는 '루시퍼'라는 영어/라틴어 단어가 없는데 이사야 14장 12절에서 루시퍼라는 이름이 유래했으며 진짜 광명한 새벽별은 누구이실까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E085",
@@ -5333,7 +5417,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "역대하 33장 11절에 기록된 '가시로 잡고 놋사슬로 결박하여 끌고 갔다'는 형벌이 고대 앗수르 전승 비석에는 어떻게 조각되어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E086",
@@ -5402,7 +5487,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "유대 광야의 야생 산양·암사슴은 어떻게 수직에 가까운 깎아지른 바위 절벽을 한 번도 미끄러지지 않고 뛰어오를 수 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E087",
@@ -5465,7 +5551,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "내일모레 적군에게 점령당할 땅의 부동산을 예레미야는 왜 제값 주고 사서 이중 매매 증서를 토기 항아리에 봉인해 두었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E088",
@@ -5545,7 +5632,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "사랑과 용서를 가르치는 성경 안에 왜 원수에 대한 무서운 심판을 호소하는 저주 시편들이 수록되어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E089",
@@ -5615,7 +5703,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E090",
@@ -5697,7 +5786,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E091",
@@ -5719,7 +5809,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E091] 가인 계열(라멕) vs 셋 계열(에노스)의 두 계보 분기 (창 4:16-26)\n• P201 / P203\n• 하나님 앞을 떠나 놋 땅에 성을 쌓고 폭력을 노래한 가인-라멕 계열과 여호와의 이름을 부른 셋-에노스 언약 계보의 분기",
+      "dossierMd": "■ [E091] 가인의 아벨 살해 후 에덴 동편 놋 땅 추방과 가인 계열(라멕의 칼의 노래) vs 셋 계열(에노스 예배)의 두 계보 분기\n• 본문: 창 4:16-26\n• 핵심 요약: 가인이 여호와 앞을 떠나 놋 땅에 성을 쌓고 그 후손이 폭력의 노래를 부르는 동안, 아담의 가정에서는 셋과 에노스를 통해 여호와의 이름을 부르는 계보가 시작됩니다. 창세기는 이 두 갈래를 나란히 놓아 인류가 어디로 흘러가는지, 그리고 약속의 씨가 어느 길로 이어지는지를 보여 줍니다.\n\n아벨을 죽인 가인은 여호와 앞을 떠나 에덴 동쪽 놋 땅에 머물렀습니다. 놋은 '방랑'을 뜻하는 말과 소리가 닿아 있어, 정착하지 못하는 삶을 지명 속에 담았다고 볼 수 있습니다. 그런데도 가인은 성을 쌓아 아들의 이름을 따 에녹이라 불렀고, 그 후손에게서 목축과 음악과 금속 기술이 나옵니다(창 4:17-22). 문명 자체를 정죄하는 대목은 아니며, 하나님 없이 스스로 안전을 세우려는 방향이 문제로 드러납니다.\n\n일곱 대째 라멕은 두 아내에게 칼의 노래를 들려줍니다(창 4:23-24). 상처 하나에 사람 하나를 죽이겠다는 선언이며, 가인에게 주어진 보호의 표를 자기 폭력의 보증으로 바꿔 쓴 셈입니다. 같은 장 끝에서는 셋이 아들을 낳아 에노스라 이름 짓습니다. 에노스는 연약한 사람을 가리키는 말이고, 그 시대에 사람들이 여호와의 이름을 부르기 시작했다고 기록합니다(창 4:26). '부르다'에 해당하는 카라는 예배와 기도의 자리를 가리키는 말입니다.\n\n아벨을 대신하여 하나님이 주신 셋(창 4:25)은 약속의 씨가 이어지는 통로가 되고, 이 흐름은 창세기 5장의 족보를 거쳐 그리스도에게 닿습니다. 억울한 피가 땅에서 호소하던 아벨의 자리에, 더 나은 것을 말하는 뿌려진 피의 주님이 서게 됩니다(히 12:24).\n\n• 설교·삶의 적용: 성도의 정체성은 얼마나 잘 쌓았는가보다 누구의 이름을 부르는가로 가려진다고 전할 수 있습니다. 힘과 기술이 늘어날수록 라멕의 노래에 가까워질 수 있다는 경계와, 연약함을 인정하며 무릎 꿇는 에노스의 자리를 함께 짚어 주십시오.",
       "heroImg": "assets/events/E091_hero.webp",
       "thumbImg": "assets/events/E091_thumb.webp",
       "relatedPersons": [
@@ -5737,7 +5827,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "가인이 여호와 앞을 떠나 놋 땅에 성을 쌓고 그 후손이 폭력의 노래를 부르는 동안, 아담의 가정에서는 셋과 에노스를 통해 여호와의 이름을 부르는 계보가 시작됩니다. 창세기는 이 두 갈래를 나란히 놓아 인류가 어디로 흘러가는지, 그리고 약속의 씨가 어느 길로 이어지는지를 보여 줍니다."
     },
     {
       "id": "E092",
@@ -5759,7 +5851,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E092] 아브람의 애굽·그랄 사라 누이 속임과 하나님의 보호 (창 12:10-20; 20장)\n• P004 / P005\n• 아브라함의 인간적 두려움과 실수에도 불구하고 약속의 씨(이삭)의 순결을 지키시기 위해 바로와 아비멜렉을 직접 막아서신 하나님의 신실하심",
+      "dossierMd": "■ [E092] 아브람의 기근 애굽 행과 그랄 체류 중 사라 누이 속임 사건 및 여호와의 초자연적 개입·보호\n• 본문: 창 12:10-20; 20:1-18\n• 핵심 요약: 기근을 피해 애굽으로 내려간 아브람이 아내를 누이라 속였고, 훗날 그랄에서도 같은 일을 되풀이합니다. 두 사건 모두 믿음의 조상의 약함이 드러나지만, 약속의 씨를 지키시는 분은 끝까지 하나님이십니다.\n\n창세기 12장의 아브람은 약속의 땅에 들어선 직후 기근을 만나 애굽으로 내려갑니다. 사래의 아름다움 때문에 자신이 죽임당할까 두려워한 그는 아내를 누이라고 말하게 하고, 사래는 바로의 궁으로 들어갑니다. 이때 하나님은 아브람의 말 한마디 없이 바로와 그 집에 큰 재앙을 내려 사래를 지키셨습니다(창 12:17). 아브람이 재물을 얻어 애굽을 떠나는 모습은 훗날 출애굽의 그림자처럼 볼 수 있습니다.\n\n창세기 20장에서는 같은 일이 그랄에서 벌어집니다. 그랄은 가사 남쪽 네게브 가까이에 있던 성읍으로, 왕 아비멜렉이 사라를 데려가자 하나님이 꿈에 나타나 경고하십니다. 흥미롭게도 하나님은 이때 아브라함을 선지자, 곧 나비라 부르시며 중보 기도를 맡기십니다(창 20:7). 사라가 이삭을 낳기 바로 전 해에 일어난 일로 보는 것이 본문의 흐름에 맞습니다.\n\n두 사건에서 약속은 아브라함의 정직함이 아니라 하나님의 신실하심이 지켜 냈습니다. 허물 많은 사람을 통해서도 열방에 복이 되리라는 약속(창 12:3)을 이루시는 이 은혜는, 의인이 아닌 죄인을 위해 오신 그리스도의 복음과 같은 결을 가집니다.\n\n• 설교·삶의 적용: 믿음의 사람도 두려움 앞에서는 같은 실수를 되풀이할 수 있음을 숨기지 않고 나누십시오. 우리의 성실함이 아니라 약속을 붙드시는 하나님의 손이 우리의 안전이라는 점이 설교의 중심이 될 수 있습니다.",
       "heroImg": "assets/events/E092_hero.webp",
       "thumbImg": "assets/events/E092_thumb.webp",
       "relatedPersons": [
@@ -5777,7 +5869,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "기근을 피해 애굽으로 내려간 아브람이 아내를 누이라 속였고, 훗날 그랄에서도 같은 일을 되풀이합니다. 두 사건 모두 믿음의 조상의 약함이 드러나지만, 약속의 씨를 지키시는 분은 끝까지 하나님이십니다."
     },
     {
       "id": "E093",
@@ -5799,7 +5893,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E093] 모세·아론의 바로 1차 대면(벽돌 짚 중단)과 지팡이 뱀 삼킴 (출 4:27~7:13)\n• P009 / P010\n• 바로의 노역 가중으로 백성이 낙심할 때 여호와께서 4대 구원 동사(\"빼내며·건지며·속량하며·내 백성으로 삼으리라\", 출 6:6-7)를 재확증하시고 아론의 지팡이가 애굽 술객들의 지팡이를 삼킨 사건",
+      "dossierMd": "■ [E093] 출애굽 직전 모세의 아론 상봉·장로들 앞 이적과 바로의 1차 거절(벽돌 짚 공급 중단) 및 애굽 술객들의 지팡이 뱀 삼킴\n• 본문: 출 4:27-7:13\n• 핵심 요약: 모세와 아론은 장로들 앞에서 이적을 보여 백성의 믿음을 얻었으나, 바로는 오히려 벽돌 노역을 더 무겁게 합니다. 낙심한 백성에게 하나님은 구원의 약속을 거듭 확증하시고, 아론의 지팡이로 애굽 술객들과의 영적 싸움을 시작하십니다.\n\n호렙산 근처 광야에서 만난 모세와 아론은 함께 애굽으로 가서 이스라엘 장로들을 모았고, 백성은 이적을 보고 하나님이 그들을 돌보신다는 말을 믿어 머리 숙여 경배했습니다(출 4:27-31). 그러나 바로 앞에 선 순간 분위기가 바뀝니다. 바로는 여호와를 알지 못한다며 이스라엘을 보내지 않았고, 벽돌에 섞는 짚을 더는 주지 않으면서 수량은 그대로 채우라고 명했습니다(출 5장). 백성의 원망은 모세에게로 돌아갑니다.\n\n절망한 모세에게 하나님은 출애굽기 6장 6-7절에서 네 가지 동사로 구원을 거듭 약속하십니다. 빼내고, 건지고, 구속하고, 내 백성으로 삼겠다는 선언입니다. 이 가운데 '구속하다'의 가알은 가까운 친족이 대신 값을 치러 되찾아 주는 구속자의 이미지를 담은 말입니다. 이어 7장에서 아론이 던진 지팡이는 술객들이 흉내 낸 뱀들을 삼키는데, 여기서 쓰인 말은 타닌으로, 큰 뱀이나 괴물을 가리키는 낱말입니다(출 7:10-12).\n\n노역이 심해질수록 구원의 약속이 더 또렷해지는 이 구조는 십자가를 앞둔 구속사의 전형이라고 볼 수 있습니다. 백성을 대신하여 값을 치르시는 참된 구속자는 훗날 그리스도로 오셨습니다.\n\n• 설교·삶의 적용: 순종했는데 상황이 더 나빠지는 경험이 성도에게 낯설지 않음을 먼저 인정해 주십시오. 하나님의 약속은 고난이 지나간 뒤가 아니라 고난 한복판에서 다시 선포된다는 점을 위로로 전할 수 있습니다.",
       "heroImg": "assets/events/E093_hero.webp",
       "thumbImg": "assets/events/E093_thumb.webp",
       "relatedPersons": [
@@ -5817,7 +5911,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "모세와 아론은 장로들 앞에서 이적을 보여 백성의 믿음을 얻었으나, 바로는 오히려 벽돌 노역을 더 무겁게 합니다. 낙심한 백성에게 하나님은 구원의 약속을 거듭 확증하시고, 아론의 지팡이로 애굽 술객들과의 영적 싸움을 시작하십니다."
     },
     {
       "id": "E094",
@@ -5839,7 +5935,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E094] 시내산 70장로 언약 식사와 백성의 성막 자원 예물 헌신 (출 24:9-18; 35~36장)\n• P009 / P010 / P230\n• 70장로가 시내산에서 청옥을 편 듯한 하나님 발아래를 뵙고 먹고 마신 언약 잔치와, 성막 예물을 너무 많이 가져와 \"그만 가져오라\"(출 36:5-7) 공포한 기쁨의 헌신",
+      "dossierMd": "■ [E094] 시내산 70장로 언약 식사(청옥 같은 하나님 발아래)와 모세의 40주야 금식 등산 및 브살렐·오홀리압의 자원 예물 성막 제작\n• 본문: 출 24:9-18; 35:4-36:7\n• 핵심 요약: 시내산에서 모세와 아론, 장로 칠십 명이 하나님을 뵙고 언약의 식사를 나누었고, 이후 이스라엘은 자원하는 예물로 성막을 짓습니다. 언약이 맺어진 백성의 응답이 예배와 헌신으로 이어지는 과정을 보여 줍니다.\n\n출애굽기 24장에서 모세와 아론, 나답과 아비후, 장로 칠십 명은 산에 올라 이스라엘의 하나님을 봅니다. 그분의 발 아래에는 청옥을 편 듯한 것이 있었다고 기록하는데, 청옥은 삽피르로 불리는 청색 보석입니다(출 24:10). 하나님이 그들에게 손을 대지 않으셨다는 설명이 있고, 그들은 먹고 마셨습니다. 언약을 맺은 뒤의 식사는 하나님과 화목한 사이가 되었다는 뜻으로 볼 수 있습니다. 모세는 이어 구름이 덮인 산에 올라 사십 주야를 머뭅니다(출 24:18).\n\n35장은 금송아지 사건과 두 번째 사십 일을 지난 뒤의 장면입니다. 모세가 성막 예물을 요청하자 마음에 감동받은 사람들이 스스로 가져왔고, 브살렐과 오홀리압에게는 하나님의 영이 충만하여 설계와 세공의 재능이 주어졌습니다(출 35:30-35). 브살렐은 '하나님의 그늘 아래'라는 뜻으로 풀이되는 이름입니다. 예물이 너무 많아 더 가져오지 말라고 막아야 했다는 기록(출 36:5-7)은 강요가 아니라 자원이 성막을 세웠음을 말해 줍니다.\n\n산 위의 식사와 성막은 모두 하나님이 백성 가운데 거하시겠다는 약속을 가리킵니다. 이 약속은 말씀이 육신이 되어 우리 가운데 거하신 그리스도(요 1:14)로 이루어졌고, 오늘 성찬의 식탁에서 새 언약의 식사로 이어집니다.\n\n• 설교·삶의 적용: 헌신이 의무가 아니라 감동에서 시작될 때 어떤 열매가 맺히는지 보여 주는 본문입니다. 은사를 가진 이들이 그것을 교회를 세우는 데 드리도록 격려하고, 주일 식탁을 언약의 식사로 다시 바라보게 하십시오.",
       "heroImg": "assets/events/E094_hero.webp",
       "thumbImg": "assets/events/E094_thumb.webp",
       "relatedPersons": [
@@ -5869,7 +5965,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "시내산에서 모세와 아론, 장로 칠십 명이 하나님을 뵙고 언약의 식사를 나누었고, 이후 이스라엘은 자원하는 예물로 성막을 짓습니다. 언약이 맺어진 백성의 응답이 예배와 헌신으로 이어지는 과정을 보여 줍니다."
     },
     {
       "id": "E095",
@@ -5891,7 +5989,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E095] 광야 은나팔·기브롯핫다아와 메추라기·70장로 성령 임재와 하세롯 미리암 비방 (민 10~12장)\n• P009 / P010 / P011 / P012\n• 탐욕의 불평 끝에 임한 기브롯핫다아와 메추라기 징계(출 16장 은혜의 메추라기와 구별!)와, 온 지면의 모든 사람보다 온유하던 모세를 친히 변호하시고 모세의 중보기도로 미리암의 나병을 고치신 사건",
+      "dossierMd": "■ [E095] 광야 출발 은나팔 두 개 제작·다베라와 기브롯핫다아와 탐욕의 메추라기·70장로 성령 임재와 하세롯 미리암·아론의 모세 비방 및 모세의 온유함\n• 본문: 민 10:1-12:16\n• 핵심 요약: 시내산을 떠나는 이스라엘은 은나팔로 행진 신호를 정하지만, 곧 불평과 탐욕과 가족의 시기가 이어집니다. 그 속에서 하나님은 칠십 장로에게 영을 부으시고, 비방받은 온유한 모세를 변호하십니다.\n\n민수기 10장에서 하나님은 은으로 두 개의 나팔을 두들겨 만들게 하십니다. 나팔은 회중을 모으고 진을 출발시키며, 전쟁과 절기에도 쓰였습니다(민 10:1-10). 그러나 출발한 지 얼마 되지 않아 백성은 불평하고, 진 끝에 불이 붙어 그곳은 다베라(불사름)라 불립니다. 이어 고기를 달라는 요구가 터지자 메추라기가 내려오고, 탐욕을 부린 자들을 묻은 곳은 기브롯핫다아와, 곧 탐욕의 무덤이 됩니다(민 11장). 탐욕에 해당하는 타아와는 필요가 아니라 욕심이 앞선 마음을 가리킵니다.\n\n모세가 혼자 짐을 질 수 없다고 호소하자 하나님은 장로 칠십 명에게 모세에게 있던 영을 나누어 주십니다. 진에 남아 있던 엘닷과 메닷까지 예언하자 모세는 여호와의 백성이 다 선지자가 되기를 바란다고 말하는데(민 11:29), 이 소망은 오순절 성령 강림에서 이루어졌다고 볼 수 있습니다.\n\n하세롯에서는 미리암과 아론이 모세의 구스 여인과 권위를 문제 삼고, 미리암은 나병에 걸려 칠 일간 진 밖에 머뭅니다. 본문은 모세가 지면의 모든 사람보다 온유했다고 증언하는데(민 12:3), 온유로 번역된 아나브는 낮고 겸손한 자를 뜻합니다. 모세는 변명하지 않고 미리암을 위해 기도했습니다.\n\n• 설교·삶의 적용: 공동체를 흔드는 것은 외부의 위협보다 안에서 자라는 탐욕과 시기인 경우가 많습니다. 비방을 받고도 대적을 위해 중보한 모세의 모습을 통해, 억울함 앞에서 변호를 하나님께 맡기는 온유를 말씀해 주십시오.",
       "heroImg": "assets/events/E095_hero.webp",
       "thumbImg": "assets/events/E095_thumb.webp",
       "relatedPersons": [
@@ -5921,7 +6019,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "시내산을 떠나는 이스라엘은 은나팔로 행진 신호를 정하지만, 곧 불평과 탐욕과 가족의 시기가 이어집니다. 그 속에서 하나님은 칠십 장로에게 영을 부으시고, 비방받은 온유한 모세를 변호하십니다."
     },
     {
       "id": "E096",
@@ -5943,7 +6043,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E096] 요단 동편 시혼·옥 격파와 비느하스의 평화 언약 및 슬로브핫 다섯 딸의 기업 판결 (민 21; 25; 27; 36장)\n• P009 / P233 / P236\n• 아모리 왕 시혼과 바산 왕 옥(철 침상 9규빗 거인 왕)을 물리쳐 동편 땅을 얻고, 비느하스의 거룩한 질투로 바알브올 염병을 그치게 하시며, 슬로브핫 다섯 딸의 믿음의 청원으로 여성 기업 상속법을 제정하신 사건",
+      "dossierMd": "■ [E096] 요단 동편 아모리 왕 시혼·바산 왕 옥 격파와 바알브올 사건(비느하스의 평화의 언약) 및 슬로브핫 다섯 딸의 기업 상속 판결\n• 본문: 민 21:21-35; 25:1-18; 27:1-11; 36:1-12\n• 핵심 요약: 광야 마지막 해에 이스라엘은 시혼과 옥을 꺾어 요단 동편을 얻었지만, 싯딤에서는 바알브올 우상숭배로 큰 심판을 당합니다. 이 시기에 비느하스는 평화의 언약을 받았고, 슬로브핫의 딸들은 기업을 얻어 약속의 땅이 모두의 몫임을 보여 줍니다.\n\n이스라엘은 가나안으로 향하며 헤스본의 아모리 왕 시혼과 바산 왕 옥을 차례로 무찔러 요단 동편을 차지했습니다(민 21:21-35). 승리의 기쁨도 잠시, 싯딤에서 백성은 모압 여인들과 어울리며 바알브올에게 절합니다(민 25장). 바알브올은 '브올의 주'라는 뜻이며, 염병으로 이만 사천 명이 죽었다고 기록합니다. 이때 제사장 아론의 손자 비느하스가 창으로 범죄한 자를 처단하자 재앙이 그쳤고, 하나님은 그에게 평화의 언약, 곧 샬롬의 언약을 약속하십니다(민 25:12-13).\n\n이어지는 장면은 사뭇 다릅니다. 므낫세 지파의 슬로브핫은 아들 없이 죽었고, 다섯 딸이 모세와 제사장 앞에 나아가 아버지의 이름이 끊기지 않도록 기업을 달라고 요청합니다. 하나님은 그 말이 옳다고 하시며 딸도 기업을 이을 수 있다는 율례를 세우셨습니다(민 27:1-11). 기업을 뜻하는 나할라는 약속의 땅을 받은 가족의 몫을 가리키는 말입니다. 36장에서는 기업이 지파 밖으로 넘어가지 않도록 같은 지파 안에서 결혼하라는 조건이 더해집니다.\n\n우상 앞에서 흐려진 언약이 한 제사장의 열심으로 지켜지고, 약한 자의 기업이 법으로 보호받는 이 흐름은 모든 믿는 자가 하나님의 상속자가 된다는 복음(갈 3:28-29)을 미리 보여 준다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 승리 직후에 찾아오는 영적 방심이 얼마나 위험한지 짚어 주십시오. 또한 기업에서 소외될 뻔한 이들을 하나님이 먼저 살피셨다는 점에서, 교회가 작은 목소리에 귀 기울이는 공동체가 되도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E096_hero.webp",
       "thumbImg": "assets/events/E096_thumb.webp",
       "relatedPersons": [
@@ -5973,7 +6073,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "'하나님은 예루살렘 성전에만 계셔서 바벨론까지는 못 오신다'며 절망하던 포로들에게 왜 바퀴 안에 바퀴가 달린 이동식 보좌 전차가 나타났을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "광야 마지막 해에 이스라엘은 시혼과 옥을 꺾어 요단 동편을 얻었지만, 싯딤에서는 바알브올 우상숭배로 큰 심판을 당합니다. 이 시기에 비느하스는 평화의 언약을 받았고, 슬로브핫의 딸들은 기업을 얻어 약속의 땅이 모두의 몫임을 보여 줍니다."
     },
     {
       "id": "E097",
@@ -5995,7 +6097,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E097] 요단 동편 지파들의 '증거의 제단(엣)' 오해 해소와 모세의 여호수아 안수 위임 (신 31~33장; 수 22장)\n• P009 / P012 / P233\n• 요단강가에 쌓은 큰 제단이 배교용이 아니라 후손들에게 \"여호와는 하나님이시라\" 증거하기 위한 제단('엣')임을 대화를 통해 확인하고 동족 내전을 기쁨과 찬송으로 바꾼 사건",
+      "dossierMd": "■ [E097] 요단 동편 두 지파 반(르우벤·갓·므낫세 반)의 '증거의 제단(엣)' 오해 해소와 모세의 여호수아 안수 위임 및 모세의 노래(신 32장)·12지파 축복(신 33장)\n• 본문: 신 31:1-33:29; 수 22:1-34\n• 핵심 요약: 약속의 땅을 앞둔 모세는 여호수아에게 사명을 맡기고 노래와 축복으로 이스라엘을 마지막으로 가르칩니다. 정복을 마친 동편 지파가 세운 제단이 오해를 부르지만, 대화로 풀리며 '엣'이라는 증거의 이름을 얻습니다.\n\n신명기 31-33장은 모세가 백이십 세에 남긴 마지막 말입니다. 그는 여호수아를 세워 강하고 담대하라고 격려하며(신 31:7-8), 하나님은 회막에서 여호수아에게 사명을 주십니다. 안수를 통한 위임은 민수기 27장과 신명기 34장 9절에 함께 언급됩니다. 이어지는 모세의 노래에서 하나님은 반석, 곧 츠르로 불립니다(신 32:4). 변하지 않는 피난처를 뜻하는 이 칭호는 이후 시편과 신약에서도 이어집니다. 33장의 열두 지파 축복은 야곱의 축복(창 49장)을 이어 가며 이스라엘의 미래를 내다봅니다.\n\n여호수아 22장에서는 요단 동편의 르우벤, 갓, 므낫세 반 지파가 가나안 정복을 도운 뒤 돌아가는 길에 요단 가에 큰 제단을 쌓습니다. 서편 지파들은 이를 배교로 여겨 실로에 모여 전쟁을 준비했지만, 먼저 비느하스와 지휘관들을 보내 대화를 시도합니다. 동편 지파는 번제를 위한 제단이 아니라 후손에게 같은 하나님을 섬기는 한 백성임을 알리는 증거라고 답했고, 그 제단은 증인을 뜻하는 말에서 온 '엣'이라 불렸습니다(수 22:34).\n\n모세가 이끌고 여호수아가 들어가게 하는 구도는 율법의 인도자와 구원의 인도자를 대비시킨다고 볼 수 있습니다. 여호수아의 이름은 신약의 예수와 같은 이름으로, 참 여호수아이신 그리스도가 하나님의 백성을 참된 안식으로 이끄십니다.\n\n• 설교·삶의 적용: 리더십의 교체기에 중요한 것은 사람이 아니라 하나님의 말씀과 증거를 다음 세대에 건네는 일입니다. 또한 오해가 생겼을 때 먼저 칼을 뽑지 않고 찾아가 묻는 서편 지파의 태도는 교회 안 갈등을 풀 때 본보기가 됩니다.",
       "heroImg": "assets/events/E097_hero.webp",
       "thumbImg": "assets/events/E097_thumb.webp",
       "relatedPersons": [
@@ -6025,7 +6127,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하나님은 가장 사랑하는 아내를 잃은 에스겔 선지자에게 장례 애곡도 하지 말고 조용히 탄식만 하라고 명하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "약속의 땅을 앞둔 모세는 여호수아에게 사명을 맡기고 노래와 축복으로 이스라엘을 마지막으로 가르칩니다. 정복을 마친 동편 지파가 세운 제단이 오해를 부르지만, 대화로 풀리며 '엣'이라는 증거의 이름을 얻습니다."
     },
     {
       "id": "E098",
@@ -6047,7 +6151,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E098] 사사기 부록 2대 사건(에브라임 미가의 우상과 기브아 만행·베냐민 내전) (삿 17~21장)\n• P318 / P233\n• \"그때에 이스라엘에 왕이 없으므로 사람마다 자기 소견에 옳은 대로 행하였더라\"(삿 17:6; 21:25)는 사사 시대의 종교적·도덕적 총체적 파산과 참된 왕(다윗·메시아) 대망",
+      "dossierMd": "■ [E098] 사사기 부록 2대 사건(에브라임 미가의 우상과 단 지파의 라이스 이주·레위인 첩 기브아 만행과 베냐민 지파 내전) 및 시대 진단(\"그때에 왕이 없으므로\")\n• 본문: 삿 17:1-21:25\n• 핵심 요약: 사사기의 마지막 다섯 장은 에브라임 미가의 우상, 단 지파의 이주, 기브아의 만행과 베냐민 내전을 차례로 보여 줍니다. 왕이 없다는 후렴은 정치 제도 이전에 하나님을 왕으로 모시지 않는 이스라엘의 영적 현실을 진단합니다.\n\n사사기 17장에서 에브라임 산지의 미가는 어머니의 은으로 신상을 만들고 에봇과 드라빔을 갖추어 개인 신당을 세웁니다. 에봇은 제사장의 의복이고 드라빔은 가정 신상으로, 여호와 신앙과 우상이 뒤섞인 모습입니다. 떠돌던 레위인이 그 집의 제사장이 되었고, 땅을 찾던 단 지파는 그 신상과 제사장을 데려가 평화롭게 살던 라이스를 쳐서 단이라 이름 붙입니다(삿 18장).\n\n19-21장은 더 어두운 이야기입니다. 기브아에서 레위인의 첩이 능욕을 당해 죽자 이스라엘 지파들이 베냐민과 싸웠고, 이 과정에서 베냐민 지파는 육백 명만 남을 만큼 무너집니다. 기브아의 만행은 소돔의 죄(창 19장)를 떠올리게 하는데, 이번에는 이스라엘 안에서 벌어진 일입니다. 20장 28절에 아론의 손자 비느하스가 언급되므로, 부록의 사건들은 사사 시대 초기에 있었던 일로 보는 견해가 많습니다.\n\n책은 왕이 없는 때에 각자 자기 눈에 옳은 대로 행했다는 말을 되풀이합니다(삿 17:6; 21:25). 이 진단은 곧 참된 왕의 필요를 가리키며, 이 흐름은 유다 지파에서 나오는 왕(창 49:10)을 거쳐 끝내 왕이신 그리스도에게 이어진다고 볼 수 있습니다. 베냐민 지파 출신인 사울이 기브아에서 왕이 되는 점(삼상 10:26)도 눈여겨볼 만합니다.\n\n• 설교·삶의 적용: 각자의 소견이 기준이 되는 신앙은 종교의 형식을 갖춰도 우상으로 기울기 쉽다는 점을 경계해 주십시오. 성도의 삶에서 누가 왕인가를 묻는 질문이 이 본문이 오늘 던지는 핵심이라고 전할 수 있습니다.",
       "heroImg": "assets/events/E098_hero.webp",
       "thumbImg": "assets/events/E098_thumb.webp",
       "relatedPersons": [
@@ -6071,7 +6175,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 다니엘과 세 친구는 바벨론 우상 신의 이름이 들어간 개명과 갈대아 학문은 받아들이면서 왕의 식탁 음식만은 목숨 걸고 거부했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "사사기의 마지막 다섯 장은 에브라임 미가의 우상, 단 지파의 이주, 기브아의 만행과 베냐민 내전을 차례로 보여 줍니다. 왕이 없다는 후렴은 정치 제도 이전에 하나님을 왕으로 모시지 않는 이스라엘의 영적 현실을 진단합니다."
     },
     {
       "id": "E099",
@@ -6093,7 +6199,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E099] 다윗의 시글락 위기(\"여호와를 힘입어 용기를 얻었더라\")와 브솔 시내 공평 분배 법칙 (삼상 30장)\n• P021 / P259\n• 시글락이 불타고 처자식이 사로잡힌 절체절명의 위기에서 여호와를 힘입어 용기를 얻고 에봇으로 물어 전부 되찾은 후, 전장에 내려간 자나 피곤하여 브솔 시내 소유물 곁에 머문 자가 똑같이 분깃을 나누는 은혜 공동체의 원리를 세운 사건",
+      "dossierMd": "■ [E099] 다윗의 시글락 위기(\"여호와를 힘입어 용기를 얻었더라\")와 브솔 시내 공평 분배 법칙 제정\n• 본문: 삼상 30:1-31\n• 핵심 요약: 아말렉에게 시글락이 불타고 가족이 끌려가자, 동료들에게 돌로 맞을 위기에 선 다윗은 하나님을 힘입어 일어섭니다. 그는 모든 것을 되찾고, 싸움에 나가지 못한 사람에게도 같은 몫을 주는 규례를 세웁니다.\n\n다윗과 부하들이 블레셋 진영에서 돌아오니 시글락은 아말렉의 습격으로 불타 있었고, 아내와 자녀들이 사라진 뒤였습니다. 다윗과 부하들이 더 울 기력이 없을 때까지 울었고, 슬픔은 곧 다윗을 향한 분노로 바뀌어 돌로 치자는 말까지 나옵니다(삼상 30:4-6). 본문은 그 한가운데서 다윗이 그의 하나님 여호와를 힘입어 용기를 얻었다고 기록합니다. 이 표현의 동사 하자크는 강하게 하다, 붙들다를 뜻하는 말로, 힘의 근원이 자기 안에 있지 않았음을 보여 줍니다.\n\n다윗은 제사장 아비아달을 통해 하나님께 묻고 추격에 나섭니다. 브솔 시내에서 지쳐 남은 이백 명을 두고 사백 명이 길을 계속해 아말렉 군대를 쳤고, 빼앗겼던 것을 모두 되찾았습니다(삼상 30:18-19). 돌아오자 일부는 남았던 자들에게 전리품을 나눠 주지 말자고 했지만, 다윗은 전쟁에 나간 자와 짐 곁에 있던 자가 같은 몫을 받는다는 규례를 세웠고, 이 규례는 이후 이스라엘의 율례가 되었다고 본문은 말합니다(삼상 30:24-25).\n\n이 장면은 사울이 길보아에서 무너지는 바로 그 무렵에 놓여, 곧 왕이 될 다윗의 성품을 보여 줍니다. 공로가 아니라 은혜로 같은 몫을 받는 원리는 포도원 품꾼의 비유(마 20장)처럼, 은혜로 구원하시는 그리스도의 나라를 미리 비춥니다.\n\n• 설교·삶의 적용: 가장 낮은 순간에 다윗이 한 일은 대책 회의가 아니라 하나님께로 돌이킨 것이었다는 점을 전할 수 있습니다. 또한 앞서 달린 사람과 뒤에 남은 사람이 같은 몫을 받는 규례를 통해, 교회 안에서 봉사의 크기를 비교하는 마음을 은혜로 다시 다듬어 주십시오.",
       "heroImg": "assets/events/E099_hero.webp",
       "thumbImg": "assets/events/E099_thumb.webp",
       "relatedPersons": [
@@ -6117,7 +6223,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 바벨론의 벨사살 왕은 손글씨를 해석한 다니엘에게 2인자가 아닌 '나라의 셋째 통치자' 자리를 주었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "아말렉에게 시글락이 불타고 가족이 끌려가자, 동료들에게 돌로 맞을 위기에 선 다윗은 하나님을 힘입어 일어섭니다. 그는 모든 것을 되찾고, 싸움에 나가지 못한 사람에게도 같은 몫을 주는 규례를 세웁니다."
     },
     {
       "id": "E100",
@@ -6139,7 +6247,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E100] 다윗의 웃사 베레스웃사 교훈·오벧에돔의 축복과 솔로몬의 잠언·전도서·아가 편찬 (삼하 6:1-12; 왕상 4:29-34)\n• P021 / P022 / P328\n• 블레셋 방식의 새 수레가 아닌 하나님의 말씀 규례(레위인의 어깨)로 섬겨야 함을 배운 사건과 오벧에돔의 집에 임한 축복, 그리고 솔로몬 지혜 문학 정경의 탄생",
+      "dossierMd": "■ [E100] 다윗의 웃사 베레스웃사 실패 교훈과 오벧에돔의 집 석 달 축복 및 솔로몬의 다드몰·에시온게벨 건설과 잠언·전도서·아가 지혜 문학 편찬\n• 본문: 삼하 6:1-12; 대상 13:1-15:15; 왕상 4:29-34; 잠 1:1; 전 1:1; 아 1:1\n• 핵심 요약: 다윗은 법궤를 새 수레에 실어 옮기다 웃사가 죽는 일을 겪고, 규례를 따라야 한다는 교훈을 얻어 오벧에돔의 집에 복을 받은 뒤 법궤를 모십니다. 솔로몬의 지혜는 잠언, 전도서, 아가에 담겨 지혜 문학으로 이어집니다.\n\n다윗은 법궤를 예루살렘으로 옮기려 아비나답의 집에서 새 수레에 실었습니다. 그러나 소들이 뛰자 웃사가 손을 대었다가 죽었고, 그곳은 '웃사를 치다'라는 뜻으로 베레스웃사라 불리게 됩니다(삼하 6:8). 베레스는 터뜨리고 깨뜨린다는 뜻입니다. 율법은 법궤를 레위 자손이 채로 메어야 한다고 정했는데(민 4:15), 다윗은 후에 규례대로 구하지 않았기 때문이라고 인정합니다(대상 15:13). 두려워진 다윗은 법궤를 가드 사람 오벧에돔의 집에 두었고, 그 집은 석 달 동안 복을 받았습니다(삼하 6:11).\n\n이후 법궤는 레위인들이 메어 기쁨 가운데 올라옵니다(대상 15장). 하나님의 임재는 열정이나 새로운 방법이 아니라 하나님이 정하신 길로 가까이 갈 때 복이 된다는 뜻으로 볼 수 있습니다.\n\n같은 통일왕국의 맥락에서 솔로몬은 잠언 삼천 마디와 노래 천다섯 편을 지었다고 전합니다(왕상 4:32). 잠언, 전도서, 아가의 첫 절은 모두 그의 이름을 밝힙니다. 전도서의 전하는 자 코헬렛은 무리를 모아 가르치는 자를 가리키는 말입니다. 광야의 다드몰과 홍해 가의 에시온게벨에서 이룬 솔로몬의 건설과 교역(왕상 9:18, 26)도 이 번영의 배경입니다. 그러나 솔로몬보다 더 큰 이가 여기 있다는 말씀처럼(마 12:42), 지혜의 완성은 그리스도에게 있습니다.\n\n• 설교·삶의 적용: 하나님께 가까이 가려는 열심이 하나님이 정하신 방식과 분리될 수 없음을 말씀하십시오. 지혜 문학을 읽는 성도에게는 솔로몬의 지혜가 지식의 양이 아니라 여호와를 경외하는 데서 시작한다는 점을 상기시킬 수 있습니다.",
       "heroImg": "assets/events/E100_hero.webp",
       "thumbImg": "assets/events/E100_thumb.webp",
       "relatedPersons": [
@@ -6163,7 +6271,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "다윗은 법궤를 새 수레에 실어 옮기다 웃사가 죽는 일을 겪고, 규례를 따라야 한다는 교훈을 얻어 오벧에돔의 집에 복을 받은 뒤 법궤를 모십니다. 솔로몬의 지혜는 잠언, 전도서, 아가에 담겨 지혜 문학으로 이어집니다."
     },
     {
       "id": "E101",
@@ -6185,7 +6295,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E101] 바아사의 라마 봉쇄(아사 왕의 아람 의존 실책)와 시므리의 7일 천하 방화 자결 (왕상 15:16~16:20; 대하 16장)\n• P053 / P033 / P055\n• 구스 대군은 기도로 이겼던 아사 왕이 말년에 바아사 앞에서는 성전 은금을 내어 아람을 의지했다가 선견자 하나니에게 대하 16:9(\"여호와의 눈은 온 땅을 두루 감찰하사...\") 책망을 들은 사건",
+      "dossierMd": "■ [E101] 북이스라엘 바아사의 라마 봉쇄와 아사 왕의 아람 동맹 실책(선견자 하나니 투옥) 및 시므리의 7일 천하 디르사 왕궁 방화 자결\n• 본문: 왕상 15:16-16:20; 대하 16:1-10\n• 핵심 요약: 북왕국 바아사가 라마를 요새화해 유다를 봉쇄하자, 아사는 하나님을 의지하는 대신 성전 곳간의 은금으로 아람 왕과 동맹을 맺습니다. 북왕국에서는 곧 쿠데타가 이어져 시므리가 칠 일 만에 스스로 몰락합니다.\n\n북이스라엘 왕 바아사는 나답을 죽이고 왕위에 오른 인물로, 유다 땅 북쪽의 라마를 요새화하여 왕래를 막았습니다. 라마는 예루살렘 북쪽 가까이에 있어 수도의 목을 조르는 위치였습니다. 이에 아사는 성전과 왕궁 곳간의 은금을 다메섹의 아람 왕 벤하닷에게 보내 동맹을 청했고, 벤하닷은 이욘과 단 등 북쪽 성읍을 쳐서 바아사의 공사를 멈추게 했습니다(왕상 15:16-22). 아사는 라마의 돌과 재목으로 게바와 미스바를 쌓았습니다.\n\n역대하는 이 일에 선견자 하나니가 아사를 책망한 사실을 전합니다. 과거에 큰 군대를 하나님께 맡겼던 아사가 이번에는 사람을 의지했다는 지적이었고, 아사는 분노하여 그를 옥에 가두었습니다(대하 16:7-10). 선견자의 호제는 하나님이 보여 주신 것을 보는 사람이라는 뜻입니다.\n\n한편 북왕국에서는 바아사의 아들 엘라가 술 취한 중에 장수 시므리에게 살해됩니다. 시므리는 왕이 되어 칠 일 동안 디르사에서 통치했으나, 군대가 오므리를 왕으로 세우자 왕궁에 불을 질러 스스로 죽었습니다(왕상 16:8-20). 사람의 계략으로 세운 정권은 오래 서지 못했고, 하나님이 정하신 왕권만 다윗의 계보를 따라 이어집니다. 이 계보의 끝에 참된 왕 그리스도가 계십니다.\n\n• 설교·삶의 적용: 위기가 닥칠 때 우리는 하나님께 맡기기보다 이미 가진 것을 꺼내 해결책을 사려는 유혹을 받습니다. 아사가 한때의 믿음에도 불구하고 책망을 달게 받지 못했다는 점에서, 쓴소리를 듣는 자리가 은혜의 자리임을 일깨워 줄 수 있습니다.",
       "heroImg": "assets/events/E101_hero.webp",
       "thumbImg": "assets/events/E101_thumb.webp",
       "relatedPersons": [
@@ -6221,7 +6331,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "성경이 150년 전에 미리 이름을 부른 이방 황제 고레스의 포로 귀환·성전 재건 칙령이 고대 원통 점토판에는 어떻게 기록되어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "북왕국 바아사가 라마를 요새화해 유다를 봉쇄하자, 아사는 하나님을 의지하는 대신 성전 곳간의 은금으로 아람 왕과 동맹을 맺습니다. 북왕국에서는 곧 쿠데타가 이어져 시므리가 칠 일 만에 스스로 몰락합니다."
     },
     {
       "id": "E102",
@@ -6243,7 +6355,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E102] 아합의 아람 왕 벤하닷 1·2차 격파(\"산의 신이요 골짜기의 신이 아님\" 응징)와 섣부른 조약 (왕상 20장)\n• P057 / P330\n• 여호와를 산의 지역신으로 모독한 아람 대군을 아벡 평지에서 격파하게 하셨으나 진멸 대상인 벤하닷을 놓아준 아합의 불순종",
+      "dossierMd": "■ [E102] 아합의 아람 왕 벤하닷 1·2차 격파(\"산의 신이요 골짜기의 신이 아님\" 오만 응징)와 섣부른 형제 조약에 대한 선지자의 비유 책망\n• 본문: 왕상 20:1-43\n• 핵심 요약: 아람 왕 벤하닷이 사마리아를 포위했을 때 하나님은 악한 왕 아합을 통해서도 이스라엘을 건지십니다. 하나님은 산의 신이 아니라는 말씀을 증명하시지만, 아합은 진멸하기로 작정된 벤하닷을 놓아 책망을 받습니다.\n\n벤하닷은 서른두 왕을 이끌고 사마리아를 에워싸 금은과 처자까지 요구했습니다. 아합이 이를 거절하자 이름 없는 선지자가 나타나 하나님이 이 큰 무리를 넘기시리라고 전하고, 지방 장관의 청년 이백삼십이 명이 먼저 나가 아람 군대를 흩습니다(왕상 20:13-21). 승리 후 아람 신하들은 이스라엘의 신이 산의 신이므로 졌으니 평지에서 싸우면 이기리라 판단했고, 이듬해 봄 아벡에서 다시 맞붙습니다(왕상 20:23-26). 아벡의 정확한 위치는 단정하기 어렵습니다.\n\n하나님은 그 오만을 그대로 두지 않으셨습니다. 이스라엘 군대는 두 떼의 어린 염소처럼 작았으나 아람 보병 십만을 쳤고, 도망친 사람들 이만 칠천 명은 성벽이 무너져 죽었다고 기록합니다(왕상 20:29-30). 이 승리는 아합의 덕이 아니라 여호와가 하나님이심을 알리시려는 일이었습니다. 그런데 아합은 항복한 벤하닷을 형제라 부르며 조약으로 살려 보냅니다. 선지자는 상처 입은 모습으로 비유를 들려주며, 하나님이 진멸하기로 작정한 사람, 곧 헤렘 아래 있던 자를 놓았으므로 그 목숨이 대신 요구되리라고 선언합니다(왕상 20:42).\n\n하나님이 산과 골짜기를 가리지 않고 온 땅의 주권자이심은 신약에서 만물을 창조하시고 다스리시는 그리스도(골 1:16-17)에게로 이어집니다.\n\n• 설교·삶의 적용: 여호와를 제한된 영역의 신으로 대하는 습관이 현대에도 우리 안에 있는지 점검해 보게 하십시오. 또한 하나님의 도우심을 받고도 순종하지 않는 아합의 모습은 은혜를 입은 뒤의 태도가 더 중요함을 일깨워 줍니다.",
       "heroImg": "assets/events/E102_hero.webp",
       "thumbImg": "assets/events/E102_thumb.webp",
       "relatedPersons": [
@@ -6261,7 +6373,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "아람 왕 벤하닷이 사마리아를 포위했을 때 하나님은 악한 왕 아합을 통해서도 이스라엘을 건지십니다. 하나님은 산의 신이 아니라는 말씀을 증명하시지만, 아합은 진멸하기로 작정된 벤하닷을 놓아 책망을 받습니다."
     },
     {
       "id": "E103",
@@ -6283,7 +6397,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E103] 아하시야의 다락 추락 심판과 여호사밧·요람·에돔 3국 연합군의 모압 개천 물 기적 (왕하 1; 3장)\n• P059 / P023 / P060 / P034 / P071\n• 에돔 광야에서 물이 떨어졌을 때 거문고 타는 자를 부른 엘리사의 예언대로 바람도 비도 없이 골짜기 개천에 물이 가득 차 모압 군을 격파한 사건(모압 메사 비석 교차 고증)",
+      "dossierMd": "■ [E103] 아하시야 왕의 다락 난간 추락(바알세붑 자문과 엘리야의 하늘 불 심판) 및 여호사밧·요람·에돔 3국 연합군의 모압 메사 왕 원정과 개천 물 기적\n• 본문: 왕하 1:1-18; 3:1-27\n• 핵심 요약: 북이스라엘 왕 아하시야는 병이 들자 하나님이 아닌 에그론의 신에게 묻다가 엘리야의 심판 선언을 듣습니다. 이후 요람이 세 나라 연합군을 이끌고 모압을 칠 때 엘리사의 말씀으로 물의 기적이 일어납니다.\n\n아하시야는 아합의 아들로, 사마리아 왕궁 다락 난간에서 떨어져 병들었는데, 그는 하나님께 묻는 대신 사자들을 에그론의 신 바알세붑에게 보내 회복 여부를 묻게 했습니다. 바알세붑이라는 이름은 '파리의 주'를 뜻하는 말로 원래의 바알 칭호를 비꼬아 부른 것으로 보는 견해가 있습니다. 엘리야는 길에서 사자들을 막아 이스라엘에 하나님이 없느냐고 꾸짖었고, 왕이 보낸 오십부장 두 부대에 하늘의 불이 내렸으며, 셋째 부대의 장이 엎드려 간구하자 엘리야는 왕에게 직접 가서 말씀을 전했습니다(왕하 1장). 신약에서 바알세불 논쟁이 예수께 제기된 것(마 12:24)을 볼 때, 이 이름은 대적하는 영의 세력을 상징해 왔다고 볼 수 있습니다.\n\n왕하 3장의 요람은 아하시야의 동생입니다. 모압 왕 메사가 조공을 끊자 요람은 유다 왕 여호사밧과 에돔 왕과 연합해 에돔 광야 길로 칠 일을 행군했으나 물이 떨어졌습니다. 엘리사는 여호사밧의 얼굴을 보아 말씀을 주었고, 골짜기를 파면 비도 바람도 없이 물이 가득 찰 것이라 했습니다(왕하 3:14-20). 모압 석비에서도 메사가 이스라엘의 압제에서 벗어난 기록이 전해집니다.\n\n거짓 신에게 묻는 왕과 믿음으로 골짜기를 파게 한 선지자의 대조는, 생명의 길을 묻는 자에게 참되신 하나님이 응답하신다는 사실을 보여 주며 그리스도의 승리를 미리 비춥니다.\n\n• 설교·삶의 적용: 위기에서 가장 먼저 누구에게 묻는가가 신앙의 실상을 드러낸다고 전할 수 있습니다. 골짜기를 파라는 말씀처럼 하나님의 약속은 순종의 준비를 요구한다는 점도 함께 나눠 주십시오.",
       "heroImg": "assets/events/E103_hero.webp",
       "thumbImg": "assets/events/E103_thumb.webp",
       "relatedPersons": [
@@ -6325,7 +6439,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "'판벽한 집'은 어떤 최고급 인테리어 주택을 뜻하며 왜 우선순위를 잃은 백성들의 수입은 구멍 뚫린 지갑처럼 새어 나갔을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "북이스라엘 왕 아하시야는 병이 들자 하나님이 아닌 에그론의 신에게 묻다가 엘리야의 심판 선언을 듣습니다. 이후 요람이 세 나라 연합군을 이끌고 모압을 칠 때 엘리사의 말씀으로 물의 기적이 일어납니다."
     },
     {
       "id": "E104",
@@ -6347,7 +6463,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E104] 엘리사의 독국 해독·보리떡 20개로 100명 급식(오병이어 원형) 및 떠오른 쇠도끼날 이적 (왕하 4:38-44; 6:1-7)\n• P071\n• 바알살리사에서 가져온 첫 이삭 보리떡 20개로 100명을 먹이고 남긴 구약의 오병이어 예표 사건과 선지생도가 빌려 온 도끼날을 나뭇가지로 물 위에 떠오르게 한 세심한 은혜",
+      "dossierMd": "■ [E104] 엘리사의 길갈 독이 든 들호박 국 해독·보리떡 20개로 100명을 먹인 이적(오병이어 구약 원형) 및 요단강에서 물에 빠진 쇠도끼날이 떠오른 이적\n• 본문: 왕하 4:38-44; 6:1-7\n• 핵심 요약: 엘리사는 독이 든 국을 해독하고 보리떡 스무 개로 백 명을 먹이며, 물에 빠진 쇠도끼날을 떠오르게 합니다. 작고 평범한 일상의 자리에서도 하나님이 돌보신다는 것을 보여 주고, 신약의 오병이어와 연결되는 구약의 장면입니다.\n\n엘리사는 기근이 든 길갈에서 선지 생도들을 가르치고 있었습니다. 한 사람이 들에서 따 온 박을 국에 넣었는데, 맛보던 이들이 통 속에 죽음이 있다고 외쳤습니다(왕하 4:40). 이 박은 들호박으로 번역되는 팍쿠오트로, 쓰고 독이 있는 야생 박류로 알려져 있습니다. 엘리사가 가루를 던져 넣고 먹으라 하니 해가 없어졌다고 합니다. 엘리사라는 이름은 '하나님은 구원이시다'라는 뜻으로 풀이되며, 사건마다 이 이름의 의미를 보여 줍니다.\n\n이어 바알살리사에서 온 사람이 처음 익은 보리떡 스무 개와 곡식을 가져오자 엘리사는 백 명에게 주어 먹게 하라고 했습니다. 종은 부족하다고 여겼으나 여호와께서 먹고 남으리라 하셨다는 말씀대로 되었습니다(왕하 4:42-44). 예수님이 보리떡 다섯 개와 물고기 두 마리로 오천 명을 먹이신 사건(요 6:9)과 닮았으며, 구약의 장면이 신약의 더 큰 사건으로 이어지는 흐름으로 볼 수 있습니다.\n\n6장에서는 생도들이 거처를 넓히려고 요단 가에서 나무를 베다가 빌려 온 도끼날을 물에 빠뜨립니다. 엘리사는 나뭇가지를 던져 쇠가 떠오르게 했습니다(왕하 6:1-7). 하나님은 큰 기적뿐 아니라 가난한 생도의 빌린 도끼 같은 작은 근심도 외면하지 않으십니다.\n\n• 설교·삶의 적용: 죽음이 담긴 국그릇 같은 상황에서도 하나님은 말씀으로 먹을 것을 바꾸시고, 부족해 보이는 떡으로도 남기실 수 있음을 증언할 수 있습니다. 하나님이 작은 일상의 손실까지 돌보신다는 위로를 성도에게 건네십시오.",
       "heroImg": "assets/events/E104_hero.webp",
       "thumbImg": "assets/events/E104_thumb.webp",
       "relatedPersons": [
@@ -6365,7 +6481,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "사탄이 대제사장 여호수아의 더러운 옷을 가리키며 참소할 때 여호와의 사자는 어떻게 변호하시고 성령의 기름을 공급하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "엘리사는 독이 든 국을 해독하고 보리떡 스무 개로 백 명을 먹이며, 물에 빠진 쇠도끼날을 떠오르게 합니다. 작고 평범한 일상의 자리에서도 하나님이 돌보신다는 것을 보여 주고, 신약의 오병이어와 연결되는 구약의 장면입니다."
     },
     {
       "id": "E105",
@@ -6387,7 +6505,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E105] 남유다 아마샤의 에돔 승전 후 에돔 우상 숭배와 벧스메스 패전(예루살렘 성벽 파쇄) (왕하 14장; 대하 25장)\n• P039 / P063\n• 패전국 에돔의 신들을 가져와 경배한 어리석음과 교만으로 북왕국 요아스에게 도전했다가 예루살렘 성벽 400규빗이 헐린 사건",
+      "dossierMd": "■ [E105] 남유다 아마샤의 에돔 소금 골짜기 승전 후 에돔 우상 숭배와 북왕국 요아스와의 벧스메스 패전(예루살렘 성벽 400규빗 파쇄)\n• 본문: 왕하 14:1-20; 대하 25:1-28\n• 핵심 요약: 유다 왕 아마샤는 에돔을 이긴 뒤 에돔의 신들을 섬기고, 북이스라엘 요아스에게 도전했다가 벧세메스에서 패배합니다. 승리 직후의 교만이 어떻게 한 왕과 도성을 무너뜨리는지를 보여 줍니다.\n\n아마샤는 요아스의 아들로 이십오 세에 왕이 되어 이십구 년 동안 유다를 다스렸습니다. 아버지를 죽인 신하들은 처형했으나 자녀는 죽이지 않았는데, 이는 자식이 아버지의 죄로 죽지 않는다는 율법을 따른 일입니다(왕하 14:5-6; 신 24:16). 그는 소금 골짜기에서 에돔 군사 만 명을 쳐서 바위를 뜻하는 셀라를 점령하고 욕드엘이라 이름 붙였습니다(왕하 14:7). 역대하는 아마샤가 북이스라엘 용병을 고용했다가 선지자의 말에 돌려보냈고, 그들이 돌아가며 유다 성읍들을 약탈한 일도 전합니다(대하 25:6-13).\n\n그러나 승전 후 아마샤는 에돔의 신들을 가져와 섬겼습니다. 선지자는 자기 백성조차 구원하지 못한 신들을 왜 찾느냐고 꾸짖었습니다(대하 25:14-16). 그는 오히려 북왕국의 요아스에게 맞붙자고 도전했고, 요아스는 가시나무와 백향목의 비유로 교만을 경고했습니다. 벧세메스에서 유다는 패했고, 아마샤는 사로잡혀 예루살렘 성벽 사백 규빗(약 180미터)이 헐렸으며 성전과 궁의 보물이 약탈당했습니다(왕하 14:11-14). 벧세메스는 '태양의 집'이라는 뜻의 지명입니다.\n\n승리가 곧 안전이 아님을 일깨우는 이 사건은 참된 왕의 필요를 드러냅니다. 아마샤 같은 왕들의 실패 뒤에 교만하지 않고 낮아지신 그리스도(빌 2:6-8)가 서십니다.\n\n• 설교·삶의 적용: 승리의 자리, 형통의 자리에서 오히려 신앙이 흔들릴 수 있음을 성도에게 경고해 주십시오. 하나님이 주신 은혜를 내 능력으로 돌리는 순간 우리도 아마샤처럼 다른 신을 찾게 된다는 점을 짚을 수 있습니다.",
       "heroImg": "assets/events/E105_hero.webp",
       "thumbImg": "assets/events/E105_thumb.webp",
       "relatedPersons": [
@@ -6421,7 +6539,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "역대기 저자 에스라는 다윗 왕조의 허물을 감추려고 역사를 왜곡한 것일까 아니면 포로에서 돌아온 낙심한 백성들에게 다윗 언약의 소망을 일깨우려 한 것일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "유다 왕 아마샤는 에돔을 이긴 뒤 에돔의 신들을 섬기고, 북이스라엘 요아스에게 도전했다가 벧세메스에서 패배합니다. 승리 직후의 교만이 어떻게 한 왕과 도성을 무너뜨리는지를 보여 줍니다."
     },
     {
       "id": "E106",
@@ -6443,7 +6563,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E106] 요엘의 메뚜기 재앙 회개·만민 성령 강림 예언(욜 2:28)과 미가의 베들레헴 예언(미 5:2)·히스기야 회개 (욜 1~2장; 미 4~6장; 렘 26:18)\n• P075 / P079 / P043\n• \"옷을 찢지 말고 마음을 찢으라\"는 회개 촉구와 오순절 성령 강림(행 2:16) 예언, 그리고 모레셋 미가의 심판 경고를 듣고 히스기야가 회개하여 재앙을 돌이킨 구약 역사상 최고의 왕-선지자 청종 모범",
+      "dossierMd": "■ [E106] 요엘의 메뚜기 재앙 회개 촉구와 만민 성령 강림 예언(욜 2:28-32) 및 미가의 베들레헴 메시아 예언(미 5:2)과 히스기야의 회개(렘 26:18-19)\n• 본문: 욜 1:1-2:32; 미 4:1-5:5; 6:6-8; 렘 26:18-19\n• 핵심 요약: 요엘은 메뚜기 재앙을 앞에 두고 회개를 촉구하며 마지막 날에 성령이 만민에게 부어질 것을 예언했습니다. 미가는 베들레헴에서 나올 영원한 통치자를 예언하고, 하나님이 요구하시는 참된 신앙을 정의와 인자와 겸손으로 요약합니다.\n\n요엘은 네 종류의 메뚜기가 땅을 휩쓴 재앙(욜 1:4)을 여호와의 날이 다가오는 경고로 선포하고, 제사장과 백성에게 마음을 찢고 돌아오라고 촉구합니다(욜 2:12-13). 요엘이란 '여호와는 하나님이시다'라는 뜻의 이름입니다. 그는 회개하는 백성에게 후에 하나님이 영을 육체, 곧 모든 사람에게 부어 주시리라고 약속합니다(욜 2:28-32). 베드로는 오순절에 이 말씀이 이루어졌다고 선포했습니다(행 2:16-21). 요엘서의 연대는 학자들 사이에서 의견이 갈려 단정하기 어렵습니다.\n\n미가는 모레셋 출신 선지자로 요담 시대부터 히스기야 시대까지 활동한 것으로 봅니다. 마지막 날 이방 민족이 시온으로 올라와 칼을 쳐서 보습을 만들 것이라는 장면(미 4:1-3)과 함께, 에브라다 베들레헴에서 이스라엘을 다스릴 자가 나오리라는 예언이 있습니다(미 5:2). 이 구절은 헤롯 앞에서 학자들이 인용했고(마 2:5-6), 예수의 탄생으로 이루어졌습니다. 미가 6장 6-8절은 번제물보다 정의를 행하고 인자를 사랑하며 겸손히 하나님과 동행하는 삶을 요구합니다. 인자에 해당하는 히브리어 헤세드는 언약에 신실한 사랑을 뜻합니다.\n\n예레미야 26장 18-19절은 미가의 예언을 들은 히스기야가 하나님을 두려워해 기도하자 재앙이 거두어졌다고 회고합니다. 말씀을 듣고 돌이킨 왕과 영을 받은 백성의 모습은 성령을 보내시는 그리스도의 사역으로 이어집니다.\n\n• 설교·삶의 적용: 형식적인 의식보다 마음을 찢는 회개와 일상의 정의와 인자가 하나님이 받으시는 예배의 본질임을 전할 수 있습니다. 또한 오순절의 성령이 요엘의 약속의 성취임을 상기시켜, 성도의 삶에 성령이 부어졌다는 감사를 고취하십시오.",
       "heroImg": "assets/events/E106_hero.webp",
       "thumbImg": "assets/events/E106_thumb.webp",
       "relatedPersons": [
@@ -6467,7 +6587,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "요엘은 메뚜기 재앙을 앞에 두고 회개를 촉구하며 마지막 날에 성령이 만민에게 부어질 것을 예언했습니다. 미가는 베들레헴에서 나올 영원한 통치자를 예언하고, 하나님이 요구하시는 참된 신앙을 정의와 인자와 겸손으로 요약합니다."
     },
     {
       "id": "E107",
@@ -6489,7 +6611,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E107] 히스기야의 병상 눈물 기도(15년 연장·해시계 10도 후퇴)와 바벨론 사절단 보물고 과시 (왕하 20장; 사 38~39장)\n• P043 / P024\n• 죽게 된 병상에서 벽을 향해 눈물로 기도하여 15년 생명 연장과 일영표 10도 후퇴 표징을 받았으나, 병 나은 후 바벨론 사절단에게 마음이 교만하여 왕궁 보물을 다 보여 준 실책",
+      "dossierMd": "■ [E107] 히스기야의 병든 몸 눈물의 기도(15년 생명 연장·무화과 반죽)와 바벨론 사절단(므로닥발라단)에게 보물고를 다 보여 준 교만\n• 본문: 왕하 20:1-21; 대하 32:24-31; 사 38:1-39:8\n• 핵심 요약: 히스기야는 죽을병에서 눈물로 기도하여 십오 년의 생명을 더 얻지만, 바벨론 사절단에게 보물고를 보여 주는 교만으로 훗날 포로 예언을 듣습니다. 은혜로 연장된 삶이 어떻게 쓰이는가를 묻는 본문입니다.\n\n히스기야는 병이 위중하여 이사야에게서 집을 정리하라는 말을 들었습니다. 그는 얼굴을 벽으로 돌리고 눈물로 기도했고, 하나님은 이사야가 성읍 중앙까지 채 나가기 전에 다시 보내 십오 년을 더하고 앗수르 왕의 손에서 성을 건지시겠다고 약속하셨습니다. 이사야가 무화과 반죽을 종기에 붙이게 하자 병이 나았고, 하나님은 징조로 아하스의 해시계 그림자를 열 도 물러가게 하셨습니다(왕하 20:1-11). 히스기야라는 이름은 '여호와께서 강하게 하신다'는 뜻으로 풀이됩니다.\n\n그러나 병이 나은 뒤 바벨론 왕 므로닥발라단의 사절이 찾아오자 그는 보물고와 병기고를 모두 보여 주었습니다(왕하 20:12-13). 열왕기에서는 이름이 브로닥발라단으로 표기됩니다. 역대하는 이 일을 마음이 교만해져 진노가 임했으나 뉘우쳤다고 기록합니다(대하 32:25-26). 이사야는 그 보물이 바벨론으로 옮겨질 것을 예언했으나, 히스기야는 자기 시대에 평안이 있다면 좋다고 반응했습니다(왕하 20:16-19).\n\n연장된 십오 년 동안 태어난 므낫세는 유다 역사에서 가장 악한 왕 가운데 하나로 평가됩니다. 생명이 연장되어도 죽음을 이길 수는 없기에, 한 번 더 살아나는 은혜가 아니라 죽음을 이기신 그리스도의 부활이 필요합니다.\n\n• 설교·삶의 적용: 고난에서 건져 주신 은혜를 받은 뒤에 우리의 마음이 어디로 향하는지 살피게 하십시오. 연장된 날들은 자랑하라고 주어진 것이 아니라 다음 세대를 위해 믿음을 남기라고 주어졌다는 점을 도전해 줄 수 있습니다.",
       "heroImg": "assets/events/E107_hero.webp",
       "thumbImg": "assets/events/E107_thumb.webp",
       "relatedPersons": [
@@ -6507,7 +6629,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "히스기야는 죽을병에서 눈물로 기도하여 십오 년의 생명을 더 얻지만, 바벨론 사절단에게 보물고를 보여 주는 교만으로 훗날 포로 예언을 듣습니다. 은혜로 연장된 삶이 어떻게 쓰이는가를 묻는 본문입니다."
     },
     {
       "id": "E108",
@@ -6529,7 +6653,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E108] 이사야 후반부(사 40~66장) 위로의 메시아 예언과 '고난받는 여호와의 종의 노래'(사 53장) 선포 (사 40; 42; 49; 50; 52:13~53:12; 61장)\n• P024 / P026 / P153 / P282\n• 구약 성경의 에베레스트산: 도살장으로 끌려가는 어린양처럼 잠잠히 우리의 질고와 슬픔을 지고 찔리고 상하여 많은 사람의 죄를 담당하시고 범죄자를 위해 기도하신 예수 그리스도의 십자가 대속을 700년 앞서 그려 낸 예언 사건",
+      "dossierMd": "■ [E108] 이사야 후반부(사 40~66장) 위로의 메시아 예언과 네 편의 '여호와의 종의 노래'(사 52:13~53:12 고난받는 종의 대속) 선포\n• 본문: 사 40:1-31; 42:1-9; 49:1-7; 50:4-9; 52:13-53:12; 61:1-3; 행 8:32-35\n• 핵심 요약: 이사야 40장 이후는 바벨론 포로를 내다보며 선포된 위로의 메시지로, 하나님의 위로와 함께 여호와의 종이 등장합니다. 네 편의 종의 노래가 고난받는 종의 대속으로 절정에 이르며, 신약은 이 종이 예수 그리스도이심을 선포합니다.\n\n이사야 40장은 하나님이 위로하라고 명하시는 장면으로 시작하며, 백성이 곧 포로에서 돌아오리라는 소망을 알립니다. 위로로 번역된 나함은 깊이 탄식하며 마음을 돌이킨다는 의미까지 담는 말입니다. 이어 42장, 49장, 50장, 52-53장에는 여호와의 종이 등장합니다. 흔히 종의 노래라 부르는 네 본문으로 분류되며, 61장 1-3절은 같은 영의 기름 부음을 말하는 구절로 예수께서 나사렛 회당에서 읽으신 말씀입니다(눅 4:16-21).\n\n종의 노래의 절정인 52장 13절부터 53장 12절은 한 사람이 우리의 질고와 슬픔을 짊어진다고 말합니다. 그가 찔림은 우리의 허물 때문이요 그가 상함은 우리의 죄악 때문이라는 말씀(사 53:5)과, 그의 영혼이 속건제물이 되었다는 선언(사 53:10)은 십자가의 대속을 미리 보여 줍니다. 속건제물로 번역된 아삼은 잘못을 배상하는 제사를 뜻합니다.\n\n사도행전 8장에서 에티오피아 내시가 이사야 53장을 읽다가 누구를 가리키는지 묻자, 빌립은 이 글에서 시작해 예수를 전했습니다(행 8:32-35). 신약은 이 종이 그리스도이심을 분명히 증언하며, 이사야 이름의 뜻인 '여호와는 구원이시다'가 십자가에서 이루어졌다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 위로가 필요한 성도에게 하나님이 먼저 위로를 말씀하신다는 사실을 전해 주십시오. 또한 이사야 53장은 개인의 슬픔 속에서도 그리스도의 대속이 나를 위한 것임을 확신하게 하는 본문임을 강조할 수 있습니다.",
       "heroImg": "assets/events/E108_hero.webp",
       "thumbImg": "assets/events/E108_thumb.webp",
       "relatedPersons": [
@@ -6559,7 +6683,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "이사야 40장 이후는 바벨론 포로를 내다보며 선포된 위로의 메시지로, 하나님의 위로와 함께 여호와의 종이 등장합니다. 네 편의 종의 노래가 고난받는 종의 대속으로 절정에 이르며, 신약은 이 종이 예수 그리스도이심을 선포합니다."
     },
     {
       "id": "E109",
@@ -6581,7 +6707,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E109] 에스겔의 그발 강가 보좌 환상·성전을 떠나는 영광(겔 8~11장)·마른 뼈 골짜기 부활(겔 37장)·새 성전 생명수 강(겔 47장) (겔 1~48장)\n• P073\n• 우상 숭배로 더러워진 예루살렘 성전에서 여호와의 영광이 떠나가되 포로지 백성에게는 하나님이 친히 '잠깐 성소'가 되시고, 마른 뼈 군대 소생과 동문으로 다시 돌아오시는 영광·생명수 강('여호와 삼마')으로 완성되는 대환상",
+      "dossierMd": "■ [E109] 에스겔의 바벨론 그발 강가 보좌 환상·예루살렘 성전을 떠나는 영광(겔 8~11장)·마른 뼈 골짜기 군대 부활 환상(겔 37장) 및 새 성전 생명수 강(겔 47장)\n• 본문: 겔 1:1-3:27; 8:1-11:25; 37:1-28; 40:1-48:35(\"여호와 삼마\")\n• 핵심 요약: 포로 된 제사장 에스겔은 그발 강가에서 하나님의 보좌 환상을 보고 예언자로 부름받습니다. 성전을 떠나는 영광, 마른 뼈의 부활, 성전에서 흐르는 생명수의 환상은 심판 너머의 회복과 하나님이 함께하시는 새 시대를 보여 줍니다.\n\n에스겔은 여호야긴과 함께 BC 597년 바벨론에 끌려온 제사장으로, 그발 강가에서 하나님을 보았습니다. 네 생물과 바퀴가 받친 보좌 위에 사람 모양의 형상이 있었고(겔 1:26), 그는 파수꾼의 사명을 받습니다. 사역은 BC 593년경부터 571년경까지 이어진 것으로 봅니다. 8-11장에서는 예루살렘 성전에 우상이 가득한 모습을 보고, 하나님의 영광이 성전과 성읍을 떠나 동쪽 산 위에 머무는 장면(겔 11:23)이 이어집니다.\n\n37장의 마른 뼈 골짜기는 이스라엘이 소망이 끊어졌다고 탄식하는 때에 주어진 환상입니다. 에스겔이 말씀을 대언하자 뼈가 살아나 군대가 되는데, 여기서 숨, 바람, 영을 뜻하는 루아흐가 반복됩니다. 하나님이 영을 넣으시면 죽은 백성이 살아난다는 이 환상은 이스라엘의 회복을 말하며, 부활 신앙의 중요한 배경으로 볼 수 있습니다.\n\n40-48장은 새 성전의 환상입니다. 성전 문지방에서 흘러나온 물이 강이 되어 사해를 살리며, 성읍의 이름은 '여호와 삼마', 곧 여호와께서 거기 계신다는 선언으로 끝납니다(겔 48:35). 이 환상의 해석에는 문자적 해석과 상징적 해석 등 여러 견해가 있습니다. 다만 하나님이 사람 가운데 거하시고 생명수가 흐른다는 흐름은 요한복음 1장 14절과 7장 37-39절의 그리스도, 요한계시록 22장의 생명수 강으로 이어집니다.\n\n• 설교·삶의 적용: 절망의 자리에서 사람의 가능성을 묻기보다 하나님의 말씀과 영이 하실 일을 보게 하십시오. 마른 뼈 같은 현실에서 말씀을 선포하는 교회의 사명을 격려할 수 있습니다.",
       "heroImg": "assets/events/E109_hero.webp",
       "thumbImg": "assets/events/E109_thumb.webp",
       "relatedPersons": [
@@ -6593,7 +6719,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "포로 된 제사장 에스겔은 그발 강가에서 하나님의 보좌 환상을 보고 예언자로 부름받습니다. 성전을 떠나는 영광, 마른 뼈의 부활, 성전에서 흐르는 생명수의 환상은 심판 너머의 회복과 하나님이 함께하시는 새 시대를 보여 줍니다."
     },
     {
       "id": "E110",
@@ -6615,7 +6743,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E110] 미스바 총독 그달랴의 암살(이스마엘 반역)과 요하난 일행의 예레미야 강제 동반 애굽 다바네스 이주 (왕하 25:22-26; 렘 40~44장)\n• P111 / P072 / P099\n• 유다 땅에 머물라는 하나님의 말씀을 끝내 불순종하고 두려워 애굽 다바네스로 내려가 우상을 섬긴 남은 자들과 눈물로 끝까지 말씀을 대언한 노선지자 예레미야와 바룩",
+      "dossierMd": "■ [E110] 예루살렘 함락 후 미스바 총독 그달랴의 암살(이스마엘의 반역)과 요하난 일행의 예레미야 강제 동반 애굽 다바네스 이주\n• 본문: 왕하 25:22-26; 렘 40:1-44:30\n• 핵심 요약: 예루살렘이 무너진 뒤 바벨론이 세운 총독 그달랴가 암살되자, 남은 백성은 바벨론의 보복이 두려워 예레미야의 경고를 외면하고 애굽으로 내려갑니다. 순종하지 않는 질문이 어떤 길로 이어지는지를 보여 주는 본문입니다.\n\nBC 586년 예루살렘이 함락된 뒤 바벨론 왕은 사반의 손자 그달랴를 유다에 남은 백성의 총독으로 세우고 미스바에 두었습니다. 그달랴라는 이름은 '여호와께서 위대하게 하신다'는 뜻으로 풀이되며, 예레미야도 그에게 가서 함께 머물렀습니다(렘 40:1-6). 흩어졌던 사람들이 돌아와 포도주와 여름 과일을 풍성하게 거둘 만큼 회복의 조짐이 보였습니다.\n\n그러나 요하난이 이스마엘의 암살 음모를 경고했는데도 그달랴는 믿지 않았고, 왕족 이스마엘은 일곱째 달에 식사하던 그달랴와 함께한 사람들을 죽입니다(렘 41:1-3). 요하난이 포로들을 되찾았지만 바벨론의 보복이 두려워 애굽으로 가려 했고, 예레미야에게 하나님의 뜻을 구하며 무엇이든 순종하겠다고 약속했습니다. 열흘 뒤 응답은 이 땅에 머물면 세우시고 애굽으로 가면 칼과 기근이 따르리라는 것이었습니다(렘 42장). 그러나 백성은 이를 거짓이라 하며 예레미야와 바룩까지 데리고 다바네스, 곧 애굽 동북부 델타 지역의 도시로 내려갔습니다(렘 43:1-7).\n\n하나님께 묻는다고 하면서 이미 답을 정해 놓은 마음이 문제였습니다. 그럼에도 다윗의 왕통은 이어졌습니다. 열왕기하 25장 27-30절은 바벨론에서 여호야긴이 풀려나는 장면으로 끝나며, 이는 다윗의 자손 그리스도에게로 이어질 소망을 남깁니다.\n\n• 설교·삶의 적용: 기도하며 하나님께 묻는 일이 이미 정한 결론에 허락을 받으려는 절차가 되지 않았는지 점검하게 하십시오. 두려움 때문에 하나님이 가라 하신 자리를 떠나려는 우리에게, 순종이 안전의 길임을 상기시킬 수 있습니다.",
       "heroImg": "assets/events/E110_hero.webp",
       "thumbImg": "assets/events/E110_thumb.webp",
       "relatedPersons": [
@@ -6639,7 +6767,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "예루살렘이 무너진 뒤 바벨론이 세운 총독 그달랴가 암살되자, 남은 백성은 바벨론의 보복이 두려워 예레미야의 경고를 외면하고 애굽으로 내려갑니다. 순종하지 않는 질문이 어떤 길로 이어지는지를 보여 주는 본문입니다."
     },
     {
       "id": "E111",
@@ -6661,7 +6791,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E111] 바벨론 포로 제37년(BC 561) 에윌므로닥 왕의 여호야긴 왕 석방·왕의 식탁 예우와 다윗 계보 보존 (왕하 25:27-30; 렘 52:31-34)\n• P049\n• 열왕기하 대단원: 37년간 옥에 갇혔던 여호야긴 왕이 머리를 들고 죄수의 옷을 벗어 평생 왕의 상에서 먹음으로 다윗 언약과 메시아 족보(스룹바벨→예수님, 마 1:12)가 끊어지지 않았음을 선포한 소망의 결말",
+      "dossierMd": "■ [E111] 바벨론 포로 제37년(BC 561) 에윌므로닥 왕의 여호야긴 왕 석방·왕의 식탁 예우와 다윗-메시아 계보의 보존\n• 본문: 왕하 25:27-30; 렘 52:31-34; 마 1:11-12\n• 핵심 요약: 바벨론 포로 제37년에 새 왕 에윌므로닥이 감옥에 있던 유다 왕 여호야긴을 풀어 주고 평생 왕의 식탁에서 먹게 한 사건입니다. 열왕기하는 심판의 어두운 기록을 이 작은 장면으로 맺으며, 다윗의 계보가 끊어지지 않았음을 조용히 알립니다.\n\n여호야긴은 주전 597년에 바벨론으로 끌려간 유다 왕으로, 포로 제37년인 주전 561년 열두째 달 이십칠일에 새로 즉위한 에윌므로닥(아멜 마르둑)에 의해 석방되었습니다. 바벨론에서 출토된 배급 문서에는 '유다 왕 야우킨'과 그 아들들이 기름과 곡식을 받은 기록이 남아 있어, 성경 기사가 실제 역사의 한 장면임을 뒷받침합니다.\n\n본문에서 '머리를 들어 올리다'로 옮겨진 나사(들다)는 사면하고 높여 준다는 뜻으로 쓰이며, 그가 평생 왕 앞에서 먹었다는 대목의 타미드(항상, 계속)는 은혜가 일시적 호의에 그치지 않았음을 보여 줍니다. 성전도 왕국도 무너진 시점이었지만, 사무엘하 7장에서 다윗에게 주신 언약은 폐기되지 않고 이 포로 한 사람 안에 살아 있었습니다.\n\n마태복음 1장 12절의 족보는 여호야긴(여고냐) 다음에 스룹바벨로 이어지고 마침내 그리스도에게 닿습니다. 심판 가운데서도 약속을 지키시는 하나님의 신실하심이 이 짧은 결말에 담겨 있다고 볼 수 있습니다. 포로 한 사람의 식탁이 약속의 보존을 알리는 징표가 된 셈입니다.\n\n• 설교·삶의 적용: 하나님의 약속은 우리의 형편이 가장 낮아진 자리에서도 취소되지 않으며, 그 사실이 낙심한 이들에게 가장 큰 위로가 됩니다. 설교자는 열왕기의 마지막 문장을 소망의 문장으로 풀어, 은혜가 오랜 어둠 끝에 조용히 찾아오는 방식을 전할 수 있습니다.",
       "heroImg": "assets/events/E111_hero.webp",
       "thumbImg": "assets/events/E111_thumb.webp",
       "relatedPersons": [
@@ -6673,7 +6803,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "바벨론 포로 제37년에 새 왕 에윌므로닥이 감옥에 있던 유다 왕 여호야긴을 풀어 주고 평생 왕의 식탁에서 먹게 한 사건입니다. 열왕기하는 심판의 어두운 기록을 이 작은 장면으로 맺으며, 다윗의 계보가 끊어지지 않았음을 조용히 알립니다."
     },
     {
       "id": "E112",
@@ -6695,7 +6827,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E112] 다니엘의 네 짐승·인자 같은 이의 영원한 나라 환상(단 7장)과 예레미야 70년 책 깨달음·70이레 메시아 예언(단 9~12장) (단 7~12장)\n• P025 / P072 / P026\n• 다니엘이 성경(예레미야의 책)을 읽다가 70년 포로 기한이 차감을 깨닫고 베옷을 입고 드린 민족 회개 기도(단 9장)와 가브리엘을 통해 주어진 '기름 부음 받은 자(메시아)'의 70이레 및 부활(\"별과 같이 영원토록 빛나리라\", 12:3) 계시",
+      "dossierMd": "■ [E112] 다니엘의 네 짐승·인자 같은 이의 영원한 나라 환상(단 7장)과 예레미야 70년 책 깨달음·이레(70이레) 메시아 예언 및 힛데겔 강가 마지막 종말 계시(단 9~12장)\n• 본문: 단 7:1-12:13; 마 24:15; 26:64\n• 핵심 요약: 다니엘은 바벨론 말기부터 페르시아 초기까지 네 짐승 환상과 인자 같은 이의 영원한 나라, 예레미야의 칠십 년을 깨달은 회개 기도와 칠십 이레 예언을 받았습니다. 이 계시들은 세상 제국의 흥망 너머에서 하나님의 나라가 인자를 통해 세워진다는 구속사의 방향을 보여 줍니다.\n\n다니엘 7장의 환상은 벨사살 제1년(주전 553년경)에 주어졌고, 9장의 기도는 메대 사람 다리오 원년, 10장 이하의 마지막 계시는 고레스 제3년 힛데겔(티그리스) 강가에서 받은 것으로 기록됩니다. 7장은 아람어로 기록된 부분에 속하며, 구름을 타고 오는 바르 에나쉬(사람의 아들 같은 이)가 옛적부터 항상 계신 이에게서 영원한 통치권을 받는 장면을 그립니다.\n\n9장에서 다니엘은 예레미야서를 읽고 칠십 년의 기한이 찬 것을 깨닫자 베옷을 입고 백성의 죄를 자기 죄처럼 고백합니다. 이에 가브리엘이 전한 샤부임(이레, 일곱 단위)의 예언은 기름 부음 받은 자가 끊어질 것을 말하는데, 그 기간의 계산법에는 여러 견해가 있으나 대다수 해석은 이를 그리스도의 사역과 연결합니다.\n\n예수님께서 대제사장 앞에서 자신을 인자로 밝히시며 구름 타고 오실 것을 말씀하신 것은 이 환상을 가리키신 것입니다(마 26:64). 그러므로 다니엘의 계시는 십자가와 재림을 아우르는 하나님 나라의 구도로 볼 수 있습니다.\n\n• 설교·삶의 적용: 다니엘은 성경을 읽다가 약속의 때를 깨닫고, 그 깨달음을 곧바로 회개의 기도로 이어 갔습니다. 말씀 연구가 기도로 이어지는 이 순서를 설교와 묵상 모임에서 함께 따라가 볼 만합니다. 또한 제국들이 요동치는 시대에도 마지막 통치가 인자께 있다는 사실이 성도에게 흔들리지 않는 중심이 됩니다.",
       "heroImg": "assets/events/E112_hero.webp",
       "thumbImg": "assets/events/E112_thumb.webp",
       "relatedPersons": [
@@ -6713,7 +6845,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "다니엘은 바벨론 말기부터 페르시아 초기까지 네 짐승 환상과 인자 같은 이의 영원한 나라, 예레미야의 칠십 년을 깨달은 회개 기도와 칠십 이레 예언을 받았습니다. 이 계시들은 세상 제국의 흥망 너머에서 하나님의 나라가 인자를 통해 세워진다는 구속사의 방향을 보여 줍니다."
     },
     {
       "id": "E113",
@@ -6735,7 +6869,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E113] 스룹바벨과 대제사장 여호수아의 1차 포로귀환(5만 명)·번제단 복원·성전 기초 놓음과 16년 공사 중단 (스 1~4장)\n• P113 / P114 / P269\n• 가장 먼저 번제단을 세워 예배를 회복하고 성전 기초를 놓을 때 젊은이들의 기쁨의 함성과 솔로몬 성전을 보았던 노인들의 통곡 소리가 합쳐져 멀리까지 들린 감격적인 사건",
+      "dossierMd": "■ [E113] 스룹바벨과 대제사장 여호수아의 1차 포로귀환(5만 명)·번제단 복원·성전 기초 놓음(기쁨의 함성과 노인들의 통곡) 및 사마리아 대적들의 16년 공사 중단\n• 본문: 스 1:1-4:24\n• 핵심 요약: 고레스의 조서로 스룹바벨과 대제사장 여호수아가 이끈 무리가 예루살렘으로 돌아와 가장 먼저 번제단을 세우고 이듬해 성전 기초를 놓았습니다. 그러나 대적의 방해로 공사는 오랫동안 멈추었고, 기쁨과 통곡이 뒤섞인 이 첫걸음이 제2성전 재건의 출발이 되었습니다.\n\n주전 538년경 고레스가 내린 조서(스 1:1-4)에 따라 유다 백성이 돌아왔고, 에스라 2장은 회중의 수를 사만 이천삼백육십 명, 종들까지 합하면 약 오만 명으로 기록합니다. 일곱째 달에 그들은 성전 기초가 놓이기도 전에 먼저 번제단을 세워 아침저녁 제사를 드렸고, 이는 두려움 속에서도 예배를 일의 앞에 둔 선택이었습니다.\n\n이듬해 기초를 놓는 날, 제사장들은 나팔을 불고 아삽 자손은 제금으로 찬송했으며 백성은 큰 소리로 함성을 질렀습니다. 환호의 소리를 가리키는 테루아가 쓰인 이 자리에서, 솔로몬 성전을 기억하는 노인들은 목 놓아 울었고 두 소리가 섞여 멀리까지 들렸다고 본문은 전합니다(스 3:12-13). 이후 사마리아 사람들의 방해로 공사는 다리오 때까지 중단되었으며, 이는 약 십육 년에 걸친 공백입니다.\n\n속죄의 제단이 성전보다 먼저 세워진 순서는 죄 사함 위에서만 하나님을 만날 수 있다는 복음의 질서를 미리 보여 주는 장면으로 볼 수 있습니다. 눈에 보이는 성전이 없던 시기에 제단이 먼저 세워진 이 질서는 이후 이스라엘 예배의 기준이 되었습니다.\n\n• 설교·삶의 적용: 기초만 놓인 작은 시작 앞에서 어떤 이는 웃고 어떤 이는 울었으나, 하나님은 두 마음을 모두 받으시는 분입니다. 설교자는 예전만 못하다는 슬픔과 새 일에 대한 기대가 한 교회 안에 함께 있음을 인정하며, 우선 예배부터 세우는 순서를 권면할 수 있습니다.",
       "heroImg": "assets/events/E113_hero.webp",
       "thumbImg": "assets/events/E113_thumb.webp",
       "relatedPersons": [
@@ -6759,7 +6893,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "고레스의 조서로 스룹바벨과 대제사장 여호수아가 이끈 무리가 예루살렘으로 돌아와 가장 먼저 번제단을 세우고 이듬해 성전 기초를 놓았습니다. 그러나 대적의 방해로 공사는 오랫동안 멈추었고, 기쁨과 통곡이 뒤섞인 이 첫걸음이 제2성전 재건의 출발이 되었습니다."
     },
     {
       "id": "E114",
@@ -6781,7 +6917,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E114] 학개·스가랴의 예언 독려와 스가랴 8대 밤의 환상(\"오직 나의 영으로 되느니라\") 및 제2성전 완공·봉헌(BC 516) (스 5~6장; 학 1~2장; 슥 1~6장)\n• P083 / P084 / P113 / P114\n• 판벽한 자기 집에만 머물던 백성을 일깨운 학개의 외침과 대제사장 여호수아의 더러운 옷을 벗기시고 스룹바벨에게 순금 등잔대와 두 감람나무 환상을 보이신 스가랴의 예언으로 마침내 주전 516년 제2성전을 완공하고 유월절을 지킨 사건",
+      "dossierMd": "■ [E114] 학개·스가랴의 예언 독려와 스가랴 8대 밤의 환상(여호수아의 정결한 옷·순금 등잔대와 두 감람나무 \"오직 나의 영으로 되느니라\") 및 제2성전 완공·봉헌(BC 516)\n• 본문: 스 5:1-6:22; 학 1:1-2:23; 슥 1:1-6:15\n• 핵심 요약: 포로에서 돌아온 백성이 성전 공사를 접고 자기 집을 꾸미던 때에 학개와 스가랴가 일어나 그들을 일깨웠고, 주전 516년에 제2성전이 완공되어 봉헌되었습니다. 스가랴의 밤 환상은 이 공사가 사람의 힘이 아니라 하나님의 영으로 이루어진다는 사실과 장차 오실 싹이신 메시아를 가리킵니다.\n\n학개는 다리오 제2년 여섯째 달(주전 520년)에 먼저 말씀을 전했고, 스가랴가 두 달 뒤 합류하여 공사가 다시 시작되었습니다. 스가랴 1~6장의 여덟 환상은 하루 밤에 연이어 받은 것으로 보는 견해가 많습니다. 그중 대제사장 여호수아가 더러운 옷을 벗고 새 옷을 입는 환상(슥 3장)은 죄 사함을, 순금 등잔대와 두 감람나무의 환상(슥 4장)은 성령이 공급하시는 기름을 보여 줍니다.\n\n4장 6절에서 하나님은 \"힘으로 되지 아니하며 능력으로 되지 아니하고 오직 나의 영으로 되느니라\"고 선언하십니다. 여기서 '영'으로 옮겨진 루아흐는 바람과 숨, 곧 하나님의 영을 가리키는 말입니다. 3장 8절과 6장 12절의 체마흐(싹)는 다윗의 가지로 오실 메시아의 호칭이기도 합니다.\n\n성전은 제1성전이 무너진 지 약 칠십 년 만인 아달월 삼일(주전 516년 봄)에 완공되었고, 백성은 곧 유월절을 지켰습니다(스 6:15-19). 예배가 회복되는 자리에서 구속의 절기가 다시 기억된 것입니다. 두 예언자의 사역은 약 사 개월 사이에 집중되어 있어, 말씀이 공동체를 움직인 속도를 짐작하게 합니다.\n\n• 설교·삶의 적용: 큰 산처럼 보이는 장애물 앞에서도 일을 이루시는 분이 성령이시라는 약속은 오늘의 교회에도 유효합니다. 설교자는 사람의 계획과 노력을 앞세우기 쉬운 사역의 자리에서, 먼저 죄 사함의 새 옷을 입고 성령께 의지하는 순서를 상기시킬 수 있습니다.",
       "heroImg": "assets/events/E114_hero.webp",
       "thumbImg": "assets/events/E114_thumb.webp",
       "relatedPersons": [
@@ -6811,7 +6947,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "포로에서 돌아온 백성이 성전 공사를 접고 자기 집을 꾸미던 때에 학개와 스가랴가 일어나 그들을 일깨웠고, 주전 516년에 제2성전이 완공되어 봉헌되었습니다. 스가랴의 밤 환상은 이 공사가 사람의 힘이 아니라 하나님의 영으로 이루어진다는 사실과 장차 오실 싹이신 메시아를 가리킵니다."
     },
     {
       "id": "E115",
@@ -6833,7 +6971,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E115] 스가랴 후반부의 메시아 수난·재림 집중 예언(나귀 새끼를 타신 왕·은 삼십·찔린 바 된 목자) (슥 9~14장)\n• P084 / P026\n• 공의로우며 구원을 베푸시되 겸손하여 나귀 새끼를 타신 시온의 왕(슥 9:9), 은 삼십에 평가되어 토기장이에게 던져진 목자(11:12-13), 그들이 그 찌른 바 그를 바라보고 애통하며 죄와 더러움을 씻는 샘이 열리는 날(12:10~13:1) 예언",
+      "dossierMd": "■ [E115] 스가랴 후반부의 메시아 수난·재림 집중 예언(나귀 새끼를 타신 겸손한 왕·은 삼십·찔린 바 된 목자와 통곡·감람산이 갈라지는 여호와의 날)\n• 본문: 슥 9:9-10; 11:12-13; 12:10; 13:1, 7; 14:1-9; 마 21:5; 26:31; 27:9; 요 19:37\n• 핵심 요약: 스가랴 9~14장에는 나귀를 타신 겸손한 왕, 은 삼십에 값 매겨진 목자, 찔림을 당한 이, 치심을 받는 목자, 감람산에 서시는 여호와가 연이어 등장합니다. 신약은 이 예언들이 예수 그리스도의 수난과 재림에서 이루어진다고 증언합니다.\n\n스가랴 후반부는 포로귀환기의 예언서로 알려져 있으며, 문체와 주제가 달라 저작에 대한 학문적 논의가 있으나 복음서 기자들은 이를 메시아 예언으로 받아들였습니다. 9장 9절의 왕은 의로우며 구원을 베푸시되 아니(겸손한, 낮은 자)의 모습으로 나귀 새끼를 타고 오시는데, 마태는 이를 예수님의 예루살렘 입성과 연결합니다(마 21:5).\n\n11장 12~13절의 은 삼십은 목자의 값으로 책정되어 여호와의 성전에서 토기장이에게 던져지며, 마태복음 27장에서 유다의 배신과 연결됩니다. 마태가 이를 예레미야의 이름으로 인용한 점에는 여러 해석이 있습니다. 12장 10절에서는 다카르(찌르다)라는 동사로 표현된 찔린 이를 바라보며 온 집이 애통하게 되는데, 요한은 십자가 위의 예수님께 이 말씀이 이루어졌다고 말합니다(요 19:37). 13장 7절의 치심을 받은 목자는 겟세마네의 제자들의 흩어짐과 이어지고, 13장 1절의 죄와 더러움을 씻는 샘과 14장의 여호와의 날은 완성된 구원의 날을 가리킵니다. 이 모든 구절은 한 분 메시아의 낮아짐과 높아지심을 하나의 줄기로 이어 줍니다.\n\n• 설교·삶의 적용: 스가랴의 예언은 왕이신 그리스도가 먼저 낮은 모습으로 오셨고 다시 영광 중에 오실 것임을 함께 보여 줍니다. 수난주간이나 대림절에 설교자는 구약의 한 줄이 십자가의 사건과 어떻게 맞닿는지 짚어 주어 성도가 성경의 일관성을 확신하게 도울 수 있습니다.",
       "heroImg": "assets/events/E115_hero.webp",
       "thumbImg": "assets/events/E115_thumb.webp",
       "relatedPersons": [
@@ -6851,7 +6989,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "스가랴 9~14장에는 나귀를 타신 겸손한 왕, 은 삼십에 값 매겨진 목자, 찔림을 당한 이, 치심을 받는 목자, 감람산에 서시는 여호와가 연이어 등장합니다. 신약은 이 예언들이 예수 그리스도의 수난과 재림에서 이루어진다고 증언합니다."
     },
     {
       "id": "E116",
@@ -6873,7 +7013,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E116] 학사 에스라의 3대 결단(스 7:10)과 아하와 강가 금식 기도·2차 귀환 및 이방 통혼 눈물의 회개 개혁 (스 7~10장)\n• P115 / P332\n• 왕의 마병 호위 대신 아하와 강가 금식 기도로 하나님의 보호를 의지해 귀환하고, 언약 백성의 영적 혼합 위기 앞에서 속옷과 겉옷을 찢고 저녁 제사 때까지 엎드려 울며 공동체의 거룩함을 회복한 사건",
+      "dossierMd": "■ [E116] 학사 에스라의 3대 결단(스 7:10)과 아하와 강가 금식 기도·2차 귀환 및 이방 통혼 죄악 앞 속옷·겉옷을 찢은 눈물의 회개 개혁\n• 본문: 스 7:1-10:44\n• 핵심 요약: 학사 에스라는 주전 458년경 두 번째 귀환 무리를 이끌고 아하와 강가에서 금식하며 하나님의 보호를 구한 뒤 예루살렘에 도착했습니다. 그곳에서 이방인과의 통혼 문제를 알게 되자 옷을 찢고 엎드려 백성의 죄를 자기 죄처럼 고백하며 언약 공동체의 회복을 이끌었습니다.\n\n에스라는 아닥사스다 왕 제7년에 왕의 조서를 받아 바벨론에서 올라왔으며, 여정은 대략 넉 달이 걸렸습니다(스 7:7-9). 7장 10절은 그의 결단을 말씀을 연구하고, 준행하고, 가르치는 것으로 요약하는데, 여기서 연구하다로 옮겨진 다라쉬는 '구하다, 찾다'를 뜻하는 말입니다.\n\n그는 왕에게 호위 군사를 청하는 일을 부끄럽게 여겨 아하와 강가에서 금식하며 평탄한 길을 구했고, 하나님께서 그 기도를 들으셨습니다(스 8:21-23). 예루살렘에 이른 뒤 백성과 지도자가 이방 여인들과 혼인한 사실을 듣고 에스라는 속옷과 겉옷을 찢고 저녁 제사 때까지 놀라 앉아 있었습니다(스 9:3-4). 이는 단순한 혈통 문제라기보다 우상숭배의 유입으로 언약의 정체성이 흐려지는 위기에 대한 반응으로 볼 수 있습니다. 비가 쏟아지는 광장에서 회중이 함께 죄를 인정하고 돌이키는 모습이 이어집니다.\n\n죄를 대신 아뢰는 에스라의 중보는 더 완전한 중보자이신 그리스도를 기다리게 하는 그림자라고 볼 수 있습니다. 그의 사역은 이후 느헤미야와 함께 말씀 중심의 공동체를 세우는 토대가 되었습니다.\n\n• 설교·삶의 적용: 에스라는 말씀을 가르치기 전에 먼저 마음을 다해 찾고 지켰으며, 길을 떠나기 전에 먼저 엎드렸습니다. 설교자는 가르침과 삶이 함께 가는 말씀 사역의 자세를 되새기고, 공동체의 죄를 남의 일로 돌리지 않고 함께 아뢰는 회개의 모범을 전할 수 있습니다.",
       "heroImg": "assets/events/E116_hero.webp",
       "thumbImg": "assets/events/E116_thumb.webp",
       "relatedPersons": [
@@ -6891,7 +7031,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "학사 에스라는 주전 458년경 두 번째 귀환 무리를 이끌고 아하와 강가에서 금식하며 하나님의 보호를 구한 뒤 예루살렘에 도착했습니다. 그곳에서 이방인과의 통혼 문제를 알게 되자 옷을 찢고 엎드려 백성의 죄를 자기 죄처럼 고백하며 언약 공동체의 회복을 이끌었습니다."
     },
     {
       "id": "E117",
@@ -6913,7 +7055,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E117] 느헤미야의 수산 궁 금식·아닥사스다 앞 묵도와 야간 성벽 시찰 및 '한 손엔 일·한 손엔 병기' 52일 성벽 완공 (느 1~6장)\n• P116 / P332 / P270\n• 눈물의 기도와 치밀한 구간 분담, 내부 빚 탕감 개혁과 외부 산발랏·도비야의 음모 극복을 통해 140년간 무너져 있던 예루살렘 성벽을 단 52일 만에 재건한 기적",
+      "dossierMd": "■ [E117] 느헤미야의 수산 궁 눈물의 금식·아닥사스다 앞 묵도와 야간 성벽 시찰 및 산발랏·도비야 위협 속 '한 손엔 일·한 손엔 병기' 52일 성벽 완공\n• 본문: 느 1:1-6:19\n• 핵심 요약: 느헤미야는 수산 궁에서 예루살렘 성벽이 무너졌다는 소식에 눈물로 금식하며 기도했고, 왕의 허락을 얻어 올라가 밤에 성벽을 살핀 뒤 사람들을 구간별로 나누어 재건을 시작했습니다. 한 손에는 일을, 한 손에는 병기를 들고 대적의 위협을 이겨 낸 끝에 52일 만에 성벽이 완공되었습니다.\n\n느헤미야는 아닥사스다 제20년인 주전 445년, 기슬르월에 하나니에게서 예루살렘의 형편을 들었고 이듬해 니산월에 왕의 조서와 총독 직분을 받아 올라갔습니다. 도착 후 사흘째 밤 그는 소수의 사람만 데리고 무너진 성벽을 둘러보았고, 3장은 대제사장부터 금장색과 장사꾼에 이르기까지 각자 자기 집 맞은편을 맡아 고친 구간의 목록을 남깁니다.\n\n산발랏과 도비야, 게셈은 비웃음과 음모로 공사를 막으려 했고, 이에 느헤미야는 일꾼 절반은 창을 들게 하고 나머지는 일하되 한 손에는 병기를 잡게 했습니다(느 4:16-17). 2장 18절에서 백성이 건축하자며 손을 힘 있게 한 하자크(강하게 하다)는 이 책 전체의 어조를 이루는 동사입니다. 5장에는 빚으로 아들딸을 팔던 가난한 이들의 외침을 듣고 이자를 면제하게 한 내부 개혁이 있으며, 외벽보다 공동체의 공의가 먼저였음을 알 수 있습니다. 엘룰월 이십오일에 성벽이 마쳐지자 주변 민족도 이 일이 하나님께로 말미암았음을 인정했습니다(느 6:15-16).\n\n• 설교·삶의 적용: 느헤미야는 기도로 시작하되 기도에 머물지 않고 계획을 세우고 사람을 세워 움직였습니다. 설교자는 기도와 실천, 외부의 방해와 내부의 불의라는 두 전선을 함께 다루는 사역의 균형을 이 본문에서 전할 수 있습니다. 또한 공동체의 보호는 성벽보다 가난한 이웃을 돌보는 정의에서 시작됨을 상기시킬 만합니다.",
       "heroImg": "assets/events/E117_hero.webp",
       "thumbImg": "assets/events/E117_thumb.webp",
       "relatedPersons": [
@@ -6937,7 +7079,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "느헤미야는 수산 궁에서 예루살렘 성벽이 무너졌다는 소식에 눈물로 금식하며 기도했고, 왕의 허락을 얻어 올라가 밤에 성벽을 살핀 뒤 사람들을 구간별로 나누어 재건을 시작했습니다. 한 손에는 일을, 한 손에는 병기를 들고 대적의 위협을 이겨 낸 끝에 52일 만에 성벽이 완공되었습니다."
     },
     {
       "id": "E118",
@@ -6959,7 +7103,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E118] 예루살렘 수문 앞 광장 나무 강단 에스라의 율법책 낭독 대부흥회(\"여호와로 인하여 기뻐하는 것이 너희의 힘이니라\")와 초막절·언약 인봉 (느 8~10장)\n• P115 / P116\n• 새벽부터 정오까지 율법책을 낭독하고 레위인들이 그 뜻을 해석하여 깨닫게 하매 온 백성이 울다가, \"근심하지 말라 여호와로 인하여 기뻐하는 것이 너희의 힘이니라\"(느 8:10) 말씀으로 큰 기쁨의 초막절과 언약 인봉에 이른 성경적 부흥의 모델",
+      "dossierMd": "■ [E118] 예루살렘 수문 앞 광장 나무 강단 에스라의 율법책 낭독 대부흥회(\"여호와로 인하여 기뻐하는 것이 너희의 힘이니라\")와 초막절 회복·언약 인봉\n• 본문: 느 8:1-10:39\n• 핵심 요약: 성벽이 완공된 뒤 일곱째 달 초하루에 온 백성이 수문 앞 광장에 모여 서자 에스라가 나무 강단에서 율법책을 읽었고, 레위인들이 뜻을 풀어 주었습니다. 백성은 울다가 여호와를 기뻐하는 힘으로 초막절을 지키고, 이어 죄를 고백한 뒤 언약에 인을 쳤습니다.\n\n느헤미야 8장은 일곱째 달 첫날 남녀와 알아들을 수 있는 모든 사람이 수문 앞 광장에 모인 장면으로 시작합니다. 에스라는 새벽부터 정오까지 율법책을 읽었고, 백성이 일어서 있을 때 그가 책을 펴자 모두 '아멘 아멘' 하며 손을 들고 엎드려 경배했습니다. 8절에서 레위인들이 뜻을 '밝히 풀어' 깨닫게 했다는 말의 메포라쉬(분명하게 하다, 풀어 주다)는 오늘의 강해 설교의 모형으로 자주 인용됩니다.\n\n말씀을 깨달은 백성이 울자 느헤미야와 에스라는 이날이 거룩한 날이니 근심하지 말라고 하며 \"여호와로 인하여 기뻐하는 것이 너희의 힘이니라\"고 했습니다(느 8:10). 여기서 기쁨은 헤드바, 힘은 마오즈(요새, 피난처)로 불리는 말입니다. 이어 그들은 초막을 짓고 칠 일간 절기를 지켰는데, 본문은 눈의 아들 여호수아 때 이후 이런 일이 없었다고 증언합니다. 9~10장에서는 금식과 죄 고백, 언약에의 인봉으로 이어집니다. 말씀의 낭독과 해석, 회개와 기쁨이 한 흐름으로 이어진 이 모임은 예배 공동체의 기본 순서를 보여 줍니다.\n\n• 설교·삶의 적용: 부흥은 새로운 프로그램에서 시작되지 않고 펼쳐진 말씀을 깨닫는 자리에서 시작되었습니다. 설교자는 말씀을 풀어 이해하게 하는 일과 눈물을 기쁨으로 이끄는 일이 서로 분리되지 않음을 상기하고, 성도에게는 말씀 앞에 서는 시간을 일상 속에 지킬 것을 권할 수 있습니다.",
       "heroImg": "assets/events/E118_hero.webp",
       "thumbImg": "assets/events/E118_thumb.webp",
       "relatedPersons": [
@@ -6977,7 +7121,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "성벽이 완공된 뒤 일곱째 달 초하루에 온 백성이 수문 앞 광장에 모여 서자 에스라가 나무 강단에서 율법책을 읽었고, 레위인들이 뜻을 풀어 주었습니다. 백성은 울다가 여호와를 기뻐하는 힘으로 초막절을 지키고, 이어 죄를 고백한 뒤 언약에 인을 쳤습니다."
     },
     {
       "id": "E119",
@@ -6999,7 +7145,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E119] 오바댜의 시온산 구원자 선포·나훔의 니느웨 심판 예언 및 스바냐의 '너로 말미암아 기쁨을 이기지 못하시며'(습 3:17) 회복 찬가 (옵 1장; 나 1~3장; 습 3장)\n• P030(바울) / P080 / P082\n• 열방의 교만을 꺾으시는 공의의 주권자가 시온의 남은 자 한가운데 계셔서 \"너로 말미암아 기쁨을 이기지 못하시며 너를 잠잠히 사랑하시며 너로 말미암아 즐거이 부르며 기뻐하시리라\"(습 3:17) 노래하신 구약 복음의 절창",
+      "dossierMd": "■ [E119] 오바댜의 에돔 심판·시온산 구원자 선포와 나훔의 니느웨 멸망 예언 및 스바냐의 '너로 말미암아 기쁨을 이기지 못하시며'(습 3:17) 회복의 노래\n• 본문: 옵 1:15-21; 나 1:7, 15; 습 3:14-20\n• 핵심 요약: 오바댜는 교만한 에돔의 심판과 시온에 세워질 구원자들을, 나훔은 앗수르의 수도 니느웨의 멸망을, 스바냐는 심판 뒤에 남은 백성 가운데서 기뻐 노래하시는 하나님을 예언했습니다. 세 예언서는 공의로 열방을 심판하시는 하나님이 동시에 피하는 자들을 아시고 기뻐하시는 구원자임을 전합니다.\n\n오바댜서는 에돔이 예루살렘의 멸망 때 형제 유다를 외면하고 약탈에 가담한 일을 책망하며, 21절에서 시온 산에 구원자들이 올라가고 나라가 여호와께 속하리라고 선언합니다. 책의 연대는 학자들 사이에 논의가 있으나 예루살렘이 무너진 주전 586년 이후로 보는 견해가 많습니다. 구원자로 옮겨진 모쉬임은 '구원하는 자들'을 뜻하는 말입니다.\n\n나훔(위로)은 앗수르가 주전 612년에 무너지기 전에 니느웨의 멸망을 예언했습니다. 1장 7절은 여호와가 선하시며 환난 날에 산성이시고 자기에게 피하는 자들을 아신다고 말하고, 1장 15절은 산 위에서 평화를 전하는 자의 발을 말합니다.\n\n스바냐는 요시야 시대의 예언자로 알려져 있으며, 3장 17절에서 하나님은 구원을 베푸실 전능자(깁보르)로서 \"너로 말미암아 기쁨을 이기지 못하시며 너를 잠잠히 사랑하시며\" 즐거이 부르며 기뻐하신다고 노래하십니다. 이 구원의 기쁨은 십자가로 죄를 해결하시고 백성을 자기 것으로 삼으신 그리스도 안에서 온전히 이루어진다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 교만한 자를 낮추시는 하나님이 연약한 자를 잠잠히 사랑하시는 분임을 함께 전할 때 심판의 메시지가 복음으로 균형을 이룹니다. 설교자는 죄책감 때문에 하나님 앞에서 위축된 성도에게 스바냐 3장 17절의 장면을 보여 주어, 하나님이 먼저 기뻐하며 부르시는 분임을 일깨울 수 있습니다.",
       "heroImg": "assets/events/E119_hero.webp",
       "thumbImg": "assets/events/E119_thumb.webp",
       "relatedPersons": [
@@ -7023,7 +7169,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "오바댜는 교만한 에돔의 심판과 시온에 세워질 구원자들을, 나훔은 앗수르의 수도 니느웨의 멸망을, 스바냐는 심판 뒤에 남은 백성 가운데서 기뻐 노래하시는 하나님을 예언했습니다. 세 예언서는 공의로 열방을 심판하시는 하나님이 동시에 피하는 자들을 아시고 기뻐하시는 구원자임을 전합니다."
     },
     {
       "id": "E120",
@@ -7086,7 +7234,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "페르시아 제국의 작은 속주로 위축된 유다 백성들에게 왜 구약의 마지막 책 말라기는 '만군의 여호와'를 24번이나 외치며 끝을 맺을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E121",
@@ -7141,7 +7290,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E121_hero.webp",
-      "thumbImage": "assets/events/E121_thumb.webp"
+      "thumbImage": "assets/events/E121_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E122",
@@ -7224,7 +7374,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E122_hero.webp",
-      "thumbImage": "assets/events/E122_thumb.webp"
+      "thumbImage": "assets/events/E122_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E123",
@@ -7279,7 +7430,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E123_hero.webp",
-      "thumbImage": "assets/events/E123_thumb.webp"
+      "thumbImage": "assets/events/E123_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E124",
@@ -7352,7 +7504,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E124_hero.webp",
-      "thumbImage": "assets/events/E124_thumb.webp"
+      "thumbImage": "assets/events/E124_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E125",
@@ -7395,7 +7548,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E125_hero.webp",
-      "thumbImage": "assets/events/E125_thumb.webp"
+      "thumbImage": "assets/events/E125_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E126",
@@ -7444,7 +7598,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E126_hero.webp",
-      "thumbImage": "assets/events/E126_thumb.webp"
+      "thumbImage": "assets/events/E126_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E127",
@@ -7498,7 +7653,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E127_hero.webp",
-      "thumbImage": "assets/events/E127_thumb.webp"
+      "thumbImage": "assets/events/E127_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E128",
@@ -7547,7 +7703,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E128_hero.webp",
-      "thumbImage": "assets/events/E128_thumb.webp"
+      "thumbImage": "assets/events/E128_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E129",
@@ -7619,7 +7776,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E129_hero.webp",
-      "thumbImage": "assets/events/E129_thumb.webp"
+      "thumbImage": "assets/events/E129_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E130",
@@ -7668,7 +7826,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E130_hero.webp",
-      "thumbImage": "assets/events/E130_thumb.webp"
+      "thumbImage": "assets/events/E130_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E131",
@@ -7728,7 +7887,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E131_hero.webp",
-      "thumbImage": "assets/events/E131_thumb.webp"
+      "thumbImage": "assets/events/E131_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E132",
@@ -7771,7 +7931,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E132_hero.webp",
-      "thumbImage": "assets/events/E132_thumb.webp"
+      "thumbImage": "assets/events/E132_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E133",
@@ -7820,7 +7981,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E133_hero.webp",
-      "thumbImage": "assets/events/E133_thumb.webp"
+      "thumbImage": "assets/events/E133_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E134",
@@ -7875,7 +8037,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E134_hero.webp",
-      "thumbImage": "assets/events/E134_thumb.webp"
+      "thumbImage": "assets/events/E134_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E135",
@@ -7935,7 +8098,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E135_hero.webp",
-      "thumbImage": "assets/events/E135_thumb.webp"
+      "thumbImage": "assets/events/E135_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E136",
@@ -7995,7 +8159,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E136_hero.webp",
-      "thumbImage": "assets/events/E136_thumb.webp"
+      "thumbImage": "assets/events/E136_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E137",
@@ -8043,7 +8208,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E137_hero.webp",
-      "thumbImage": "assets/events/E137_thumb.webp"
+      "thumbImage": "assets/events/E137_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E138",
@@ -8098,7 +8264,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E138_hero.webp",
-      "thumbImage": "assets/events/E138_thumb.webp"
+      "thumbImage": "assets/events/E138_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E139",
@@ -8170,7 +8337,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E139_hero.webp",
-      "thumbImage": "assets/events/E139_thumb.webp"
+      "thumbImage": "assets/events/E139_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E140",
@@ -8225,7 +8393,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E140_hero.webp",
-      "thumbImage": "assets/events/E140_thumb.webp"
+      "thumbImage": "assets/events/E140_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E141",
@@ -8268,7 +8437,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E141_hero.webp",
-      "thumbImage": "assets/events/E141_thumb.webp"
+      "thumbImage": "assets/events/E141_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E142",
@@ -8311,7 +8481,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E142_hero.webp",
-      "thumbImage": "assets/events/E142_thumb.webp"
+      "thumbImage": "assets/events/E142_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E143",
@@ -8360,7 +8531,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E143_hero.webp",
-      "thumbImage": "assets/events/E143_thumb.webp"
+      "thumbImage": "assets/events/E143_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E144",
@@ -8419,7 +8591,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E144_hero.webp",
-      "thumbImage": "assets/events/E144_thumb.webp"
+      "thumbImage": "assets/events/E144_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E145",
@@ -8483,7 +8656,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E145_hero.webp",
-      "thumbImage": "assets/events/E145_thumb.webp"
+      "thumbImage": "assets/events/E145_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E146",
@@ -8532,7 +8706,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E146_hero.webp",
-      "thumbImage": "assets/events/E146_thumb.webp"
+      "thumbImage": "assets/events/E146_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E147",
@@ -8581,7 +8756,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E147_hero.webp",
-      "thumbImage": "assets/events/E147_thumb.webp"
+      "thumbImage": "assets/events/E147_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E148",
@@ -8639,7 +8815,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E148_hero.webp",
-      "thumbImage": "assets/events/E148_thumb.webp"
+      "thumbImage": "assets/events/E148_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E149",
@@ -8710,7 +8887,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E149_hero.webp",
-      "thumbImage": "assets/events/E149_thumb.webp"
+      "thumbImage": "assets/events/E149_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E150",
@@ -8783,7 +8961,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E150_hero.webp",
-      "thumbImage": "assets/events/E150_thumb.webp"
+      "thumbImage": "assets/events/E150_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E151",
@@ -8862,7 +9041,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E151_hero.webp",
-      "thumbImage": "assets/events/E151_thumb.webp"
+      "thumbImage": "assets/events/E151_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E152",
@@ -8938,7 +9118,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E152_hero.webp",
-      "thumbImage": "assets/events/E152_thumb.webp"
+      "thumbImage": "assets/events/E152_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E153",
@@ -9031,7 +9212,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E153_hero.webp",
-      "thumbImage": "assets/events/E153_thumb.webp"
+      "thumbImage": "assets/events/E153_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E154",
@@ -9134,7 +9316,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E154_hero.webp",
-      "thumbImage": "assets/events/E154_thumb.webp"
+      "thumbImage": "assets/events/E154_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E155",
@@ -9250,7 +9433,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E155_hero.webp",
-      "thumbImage": "assets/events/E155_thumb.webp"
+      "thumbImage": "assets/events/E155_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E156",
@@ -9344,7 +9528,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E156_hero.webp",
-      "thumbImage": "assets/events/E156_thumb.webp"
+      "thumbImage": "assets/events/E156_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E157",
@@ -9439,7 +9624,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E157_hero.webp",
-      "thumbImage": "assets/events/E157_thumb.webp"
+      "thumbImage": "assets/events/E157_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E158",
@@ -9512,7 +9698,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E158_hero.webp",
-      "thumbImage": "assets/events/E158_thumb.webp"
+      "thumbImage": "assets/events/E158_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E159",
@@ -9585,7 +9772,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E159_hero.webp",
-      "thumbImage": "assets/events/E159_thumb.webp"
+      "thumbImage": "assets/events/E159_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E160",
@@ -9652,7 +9840,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E160_hero.webp",
-      "thumbImage": "assets/events/E160_thumb.webp"
+      "thumbImage": "assets/events/E160_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E161",
@@ -9695,7 +9884,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E161_hero.webp",
-      "thumbImage": "assets/events/E161_thumb.webp"
+      "thumbImage": "assets/events/E161_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E162",
@@ -9762,7 +9952,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E162_hero.webp",
-      "thumbImage": "assets/events/E162_thumb.webp"
+      "thumbImage": "assets/events/E162_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E163",
@@ -9823,7 +10014,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E163_hero.webp",
-      "thumbImage": "assets/events/E163_thumb.webp"
+      "thumbImage": "assets/events/E163_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E164",
@@ -9889,7 +10081,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E164_hero.webp",
-      "thumbImage": "assets/events/E164_thumb.webp"
+      "thumbImage": "assets/events/E164_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E165",
@@ -9944,7 +10137,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E165_hero.webp",
-      "thumbImage": "assets/events/E165_thumb.webp"
+      "thumbImage": "assets/events/E165_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E166",
@@ -10016,7 +10210,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E166_hero.webp",
-      "thumbImage": "assets/events/E166_thumb.webp"
+      "thumbImage": "assets/events/E166_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E167",
@@ -10038,7 +10233,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E167] [1차 선교 전반] 안디옥 파송과 구브로 바보 총독 서기오 바울 회심·마가 귀환 (행 13:1-13)\n• 안디옥 → 실루기아 → 구브로 살라미·바보 → 버가\n(P030/P156/P285/P188/P189/P163)\n• 다민족 리더 5인의 금식·안수 파송, 바보에서 마술사 엘루마(P188)의 눈을 어둡게 하고 로마 원로원 총독 서기오 바울(P189)이 주의 가르치심을 놀랍게 여겨 믿음('사울 곧 바울' 호칭 전환점)",
+      "dossierMd": "■ [E167] [제1차 선교여행 전반] 안디옥 교회의 금식·안수 파송과 구브로 바보에서 마술사 엘루마를 꾸짖고 총독 서기오 바울을 회심시킴 및 버가에서 마가 요한의 중도 귀환\n• 본문: 행 13:1-13\n• 핵심 요약: 안디옥 교회가 금식하며 섬길 때 성령께서 바나바와 사울을 따로 세우라 하셨고, 두 사람은 구브로를 거쳐 바보에서 총독 서기오 바울이 믿게 되는 일을 경험했습니다. 이 사건은 이방 선교가 교회의 안수와 성령의 인도 아래 시작되었음을 보여 주는 이정표입니다.\n\n사도행전 13장 1절은 안디옥 교회의 지도자로 바나바, 니게르라 하는 시므온, 구레네 사람 루기오, 분봉 왕 헤롯과 함께 자란 마나엔, 사울을 꼽습니다. 아프리카계 인물과 궁정 출신까지 섞인 이 다양한 공동체가 주를 섬기며 금식할 때, 성령께서 '따로 세우라'고 하셨고 여기에 쓰인 아포리조는 구별하여 세운다는 뜻입니다. 선교는 인간의 기획이 아니라 성령의 부르심에 대한 교회의 순종에서 시작되었습니다.\n\n그들은 실루기아에서 배를 타고 구브로의 살라미와 바보에 이르렀고, 바보에서 마술사 엘루마가 총독 서기오 바울이 믿는 것을 막으려 하자 바울이 성령이 충만하여 그를 꾸짖었습니다. 총독은 주의 교훈에 놀라 믿게 되었으며(행 13:12), 이 대목에서 본문은 사울 곧 바울이라는 이름을 병기한 뒤 바울을 중심으로 기록합니다. 이후 일행은 밤빌리아 버가에 이르렀는데, 요한 마가는 그곳에서 일행을 떠나 예루살렘으로 돌아갔습니다. 이 일은 15장의 갈라섬으로 이어지는 복선이 됩니다. 바울이라는 이름은 로마식 이름으로 병기되었다고 보는 견해가 많으며, 이방 선교의 문이 열리는 시점과 겹칩니다.\n\n• 설교·삶의 적용: 선교의 출발점이 예배와 금식 가운데 들려온 성령의 음성이었다는 점은 오늘의 교회에도 같은 질문을 던집니다. 설교자는 파송이 특별한 소수의 일이 아니라 교회 전체의 순종임을 일깨울 수 있고, 마가의 귀환을 통해 실패한 동역자에게도 이야기가 끝나지 않았음을 전할 수 있습니다.",
       "heroImg": "assets/events/E167_hero.webp",
       "thumbImg": "assets/events/E167_thumb.webp",
       "relatedPersons": [
@@ -10089,7 +10284,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E167_hero.webp",
-      "thumbImage": "assets/events/E167_thumb.webp"
+      "thumbImage": "assets/events/E167_thumb.webp",
+      "isPreparing": false,
+      "hook": "안디옥 교회가 금식하며 섬길 때 성령께서 바나바와 사울을 따로 세우라 하셨고, 두 사람은 구브로를 거쳐 바보에서 총독 서기오 바울이 믿게 되는 일을 경험했습니다. 이 사건은 이방 선교가 교회의 안수와 성령의 인도 아래 시작되었음을 보여 주는 이정표입니다."
     },
     {
       "id": "E168",
@@ -10111,7 +10308,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E168] [1차 선교 후반] 비시디아 안디옥 설교와 이고니온·루스드라(돌 맞고 일어남)·더베 장로 임명 (행 13:14~14:28)\n• 비시디아 안디옥 → 이고니온 → 루스드라 → 더베 → 안디옥 귀환\n(P030/P156/P158)\n• 루스드라에서 나면서 못 걷던 이를 고치자 무리가 바나바를 제우스, 바울을 헤르메스라 부르며 제사하려다 유대인들의 선동으로 돌로 바울을 쳐서 죽은 줄 알고 시외로 끌어내쳤으나, 제자들이 둘러섰을 때 일어나 더베로 갔다가 돌 맞았던 그 성읍들로 다시 돌아와 장로들을 세운 순교적 목회",
+      "dossierMd": "■ [E168] [제1차 선교여행 후반] 비시디아 안디옥 회당 구속사 설교(\"이방인의 빛\")와 이고니온·루스드라(나면서 못 걷던 이 치유·제우스/헤르메스 소동·돌에 맞고 다시 일어남)·더베 선교 및 각 교회 장로 임명 귀환\n• 본문: 행 13:14-14:28; 딤후 3:11\n• 핵심 요약: 바울과 바나바는 비시디아 안디옥 회당에서 구속사를 따라 복음을 전했고, 이고니온과 루스드라, 더베로 이어진 여정에서 환영과 핍박을 함께 겪었습니다. 돌에 맞고도 일어난 바울은 같은 성들로 되돌아가 제자들을 굳게 하고 교회마다 장로를 세웠습니다.\n\n비시디아 안디옥 회당에서 회당장들이 권할 말, 곧 파라클레시스(권면)를 청하자 바울은 출애굽에서 다윗, 그리고 부활하신 예수까지 이어지는 구속사를 설교했습니다(행 13:16-41). 유대인들이 반대하자 두 사람은 이사야 49장 6절을 인용하며 이방의 빛이 되라는 주의 명령을 따라 이방인에게로 향했습니다.\n\n루스드라에서 바울이 나면서 걷지 못하던 사람을 일으키자 무리는 루가오니아 말로 소리 질러 바나바를 제우스, 바울을 헤르메스라 부르며 제사하려 했습니다. 두 사람은 옷을 찢으며 자신들도 같은 사람임을 외치고 살아 계신 하나님께로 돌이키라고 전했습니다. 그러나 안디옥과 이고니온에서 온 유대인들이 무리를 충동하여 바울을 돌로 쳐 성 밖으로 끌어냈고, 제자들이 둘러서자 바울은 일어나 성에 들어갔다가 이튿날 더베로 떠났습니다(행 14:19-20).\n\n돌아오는 길에 그들은 \"우리가 하나님의 나라에 들어가려면 많은 환난을 겪어야 할 것이라\"며 제자들을 권면했고(행 14:22), 기도하며 금식한 뒤 교회마다 장로를 택해 세웠습니다.\n\n• 설교·삶의 적용: 복음의 길에는 환영과 환난이 번갈아 오며, 환난은 하나님 나라 길의 일부라는 가르침이 본문 안에 있습니다. 설교자는 박수와 돌이 동시에 날아드는 현장에서 사람의 칭송을 받지 않고 하나님께 영광을 돌린 바울의 태도를 되짚고, 개척의 열매를 장로 세우기로 지켜 간 목회의 지혜를 전할 수 있습니다.",
       "heroImg": "assets/events/E168_hero.webp",
       "thumbImg": "assets/events/E168_thumb.webp",
       "relatedPersons": [
@@ -10138,7 +10335,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E168_hero.webp",
-      "thumbImage": "assets/events/E168_thumb.webp"
+      "thumbImage": "assets/events/E168_thumb.webp",
+      "isPreparing": false,
+      "hook": "바울과 바나바는 비시디아 안디옥 회당에서 구속사를 따라 복음을 전했고, 이고니온과 루스드라, 더베로 이어진 여정에서 환영과 핍박을 함께 겪었습니다. 돌에 맞고도 일어난 바울은 같은 성들로 되돌아가 제자들을 굳게 하고 교회마다 장로를 세웠습니다."
     },
     {
       "id": "E169",
@@ -10160,7 +10359,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E169] 예루살렘 공의회(행 15장: 이방인 무할례 구원 공인)와 2개 선교팀 분립 (행 15:1-41; 갈 2:1-10)\n• 안디옥 → 예루살렘 → 안디옥\n(P030/P156/P029/P133/P159/P157/P163)\n• 베드로(\"주 예수의 은혜로 구원받음\")와 바울·바나바의 보고 후 주의 형제 야고보(P133)가 아모스 9:11-12('다윗의 무너진 장막 재건')를 인용하여 이방인에게 할례의 멍에를 지우지 말라는 공의회 결정문을 확정함",
+      "dossierMd": "■ [E169] 예루살렘 공의회(행 15장: 베드로·바울·바나바의 증언과 주의 형제 야고보의 아모스 9장 인용 최종 판결 — 이방인 무할례 구원 공인) 및 바울·실라와 바나바·마가의 2개 선교팀 분립\n• 본문: 행 15:1-41; 갈 2:1-10\n• 핵심 요약: 안디옥에서 일어난 할례 논쟁은 예루살렘 공의회로 옮겨졌고, 베드로와 바울, 바나바의 증언과 야고보의 판결로 이방인은 율법의 멍에 없이 은혜로 구원받음이 확정되었습니다. 이후 마가 요한 문제로 바울과 바나바가 갈라서 두 선교팀이 나뉘었으나 복음은 더 넓게 퍼져 갔습니다.\n\n공의회는 주후 49년경 열렸으며, 유대에서 온 어떤 사람들이 모세의 관례를 따라 할례를 받지 않으면 구원받을 수 없다고 가르친 것이 발단이었습니다(행 15:1). 베드로는 하나님께서 이방인의 마음을 믿음으로 깨끗하게 하셨다고 증언했고, 바울과 바나바는 이방인 가운데 행하신 표적을 보고했습니다. 주의 형제 야고보는 아모스 9장 11~12절을 인용했는데, 이 예언의 '다윗의 무너진 장막'(숙카)이 다시 세워져 이방인들이 주를 찾게 된다는 말씀을 이방 선교의 성경적 근거로 삼았습니다.\n\n결정문은 이방 신자에게 우상의 더러운 것과 음행, 목매어 죽인 것과 피를 멀리하라는 최소한의 요구만을 담았고, 이는 구원의 조건이 아니라 유대인과 이방인이 한 식탁에 앉기 위한 배려로 볼 수 있습니다. 같은 문제를 갈라디아서 2장 1~10절의 예루살렘 방문과 연결하는 견해가 많지만 학자들 사이에 논의가 있습니다.\n\n이 판결은 구원이 행위가 아닌 그리스도의 은혜로만 주어진다는 복음의 본질을 교회가 공적으로 확정한 사건입니다.\n\n• 설교·삶의 적용: 복음의 본질을 지킬 때는 양보할 수 없는 선이 있으나 그 선 밖의 일에서는 서로를 배려하는 지혜가 필요합니다. 설교자는 구원의 문 앞에 은혜 아닌 다른 조건을 붙이려는 유혹을 경계하게 하고, 이견이 있는 공동체가 말씀 앞에서 함께 결론에 이르는 과정을 모범으로 전할 수 있습니다.",
       "heroImg": "assets/events/E169_hero.webp",
       "thumbImg": "assets/events/E169_thumb.webp",
       "relatedPersons": [
@@ -10217,7 +10416,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E169_hero.webp",
-      "thumbImage": "assets/events/E169_thumb.webp"
+      "thumbImage": "assets/events/E169_thumb.webp",
+      "isPreparing": false,
+      "hook": "안디옥에서 일어난 할례 논쟁은 예루살렘 공의회로 옮겨졌고, 베드로와 바울, 바나바의 증언과 야고보의 판결로 이방인은 율법의 멍에 없이 은혜로 구원받음이 확정되었습니다. 이후 마가 요한 문제로 바울과 바나바가 갈라서 두 선교팀이 나뉘었으나 복음은 더 넓게 퍼져 갔습니다."
     },
     {
       "id": "E170",
@@ -10239,7 +10440,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E170] [2차 선교 전반] 드로아 마게도냐 환상(누가 합류)과 빌립보 루디아 회심·옥중 찬송과 간수 가정 구원 (행 16:1-40)\n• 루스드라(디모데 합류) → 드로아 → 빌립보\n(P030/P157/P158/P160/P165/P166)\n• 성령의 인도하심으로 유럽 첫 성 빌립보에 건너가 강가에서 자주 옷감 장사 루디아(P165)의 집을 첫 가정교회로 세우고, 깊은 옥 나무 차꼬 속에서 드린 한밤중의 기도·찬송으로 옥문이 열리며 간수 온 가족이 세례를 받음",
+      "dossierMd": "■ [E170] [제2차 선교여행 전반] 루스드라 디모데 합류·성령의 아시아 금지와 드로아 '마게도냐 사람의 환상'(누가 합류) 및 빌립보 강가 자주 장사 루디아의 회심과 옥중 한밤중 찬송·빌립보 간수 온 가족 세례\n• 본문: 행 16:1-40; 빌 1:3-5\n• 핵심 요약: 2차 선교여행에서 바울 일행은 성령의 막으심을 따라 소아시아를 지나 드로아에서 마게도냐 사람의 환상을 보고 유럽의 첫 성 빌립보로 건너갔습니다. 빌립보에서는 루디아의 마음이 열리고, 옥중에서 한밤에 찬송하던 바울과 실라를 통해 간수의 온 가족이 구원받았습니다.\n\n바울은 루스드라에서 디모데를 동행자로 맞았고(행 16:1-3), 성령께서 아시아에서 말씀을 전하지 못하게 하시고 비두니아로 가는 것도 허락하지 않으시자 드로아에 이르렀습니다. 그곳에서 마게도냐 사람이 건너와 도우라고 청하는 환상을 본 후, 본문의 화자가 '우리'로 바뀌어 누가가 이 시점부터 합류했을 것으로 보는 견해가 많습니다. 빌립보는 로마의 식민도시여서 안식일에 유대인 회당 대신 성문 밖 강가 기도처에서 여인들이 모였습니다.\n\n두아디라 출신의 자주 옷감 장사 루디아에 대해 본문은 주께서 그 마음을 '열어'(디아노이고) 바울의 말을 따르게 하셨다고 기록하고(행 16:14), 그의 집은 유럽의 첫 가정 교회가 되었습니다. 점치는 여종의 일로 매 맞고 깊은 옥에 갇힌 바울과 실라가 한밤에 기도하며 하나님을 찬송(휘므네오)하자 지진이 일어나 옥문이 열렸고, 간수에게 \"주 예수를 믿으라 그리하면 너와 네 집이 구원을 받으리라\"고 전했습니다(행 16:31). 이 한밤의 사건은 감옥이 예배당이 될 수 있음을 보여 주며, 빌립보서의 기쁨과도 이어진다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 복음의 문을 닫으시는 것도 여시는 것도 성령이시며, 막힘조차 더 큰 길을 향한 인도일 수 있습니다. 설교자는 고난의 한가운데서도 찬송을 멈추지 않은 두 사도의 모습과 한 사람의 열린 마음에서 한 가정으로 번지는 구원의 흐름을 전하여, 오늘의 성도에게 용기를 줄 수 있습니다.",
       "heroImg": "assets/events/E170_hero.webp",
       "thumbImg": "assets/events/E170_thumb.webp",
       "relatedPersons": [
@@ -10295,7 +10496,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E170_hero.webp",
-      "thumbImage": "assets/events/E170_thumb.webp"
+      "thumbImage": "assets/events/E170_thumb.webp",
+      "isPreparing": false,
+      "hook": "2차 선교여행에서 바울 일행은 성령의 막으심을 따라 소아시아를 지나 드로아에서 마게도냐 사람의 환상을 보고 유럽의 첫 성 빌립보로 건너갔습니다. 빌립보에서는 루디아의 마음이 열리고, 옥중에서 한밤에 찬송하던 바울과 실라를 통해 간수의 온 가족이 구원받았습니다."
     },
     {
       "id": "E171",
@@ -10317,7 +10520,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E171] [2차 선교 중반] 데살로니가(야손)·베뢰아 날마다 성경 상고 및 아덴 아레오바고 법정 설교 (행 17:1-34)\n• 데살로니가 → 베뢰아 → 아덴(아고라·아레오바고)\n(P030/P157/P158/P286/P183)\n• 간절한 마음으로 날마다 성경을 상고한 베뢰아 성도들과, 아덴 아레오바고 바위 언덕에서 스토아·에피쿠로스 철학자들을 향해 '알지 못하는 신' 제단에서 출발해 천지의 주재 창조주 하나님과 부활의 주 예수님을 변증하여 법관 디오누시오와 다마리(P183)가 회심한 사건",
+      "dossierMd": "■ [E171] [제2차 선교여행 중반] 데살로니가 세 안식일 성경 강론(야손의 보호)과 베뢰아 사람들의 간절한 날마다 성경 상고 및 아덴 아레오바고 법정 설교('알지 못하는 신'에서 창조주·부활의 주로)\n• 본문: 행 17:1-34; 살전 1:1-2:16\n• 핵심 요약: 바울은 데살로니가에서 세 안식일 동안 성경을 강론했고, 베뢰아에서는 날마다 성경을 상고하는 사람들을 만났으며, 아덴에서는 아레오바고 법정에서 철학자들에게 창조주와 부활을 전했습니다. 세 도시의 반응은 말씀을 대하는 자세와 복음이 다른 문화와 만나는 방식을 함께 보여 줍니다.\n\n바울은 암비볼리와 아볼로니아를 지나 데살로니가에 이르러 세 안식일 동안 성경을 풀어 그리스도가 고난받고 부활하셔야 함을 증명했습니다. 이에 반대하는 이들이 야손의 집을 습격하여 소동이 일자 바울 일행은 밤에 베뢰아로 피했습니다.\n\n베뢰아 사람들은 \"이것이 그러한가 하여 날마다 성경을 상고\"했다고 하는데(행 17:11), 상고하다로 옮겨진 아나크리노는 법정에서 신문하듯 자세히 살핀다는 뜻을 가진 말입니다. 아덴에서는 도시에 가득한 우상을 본 바울이 아고라에서 날마다 변론했고, 스토아와 에피쿠로스 철학자들과 마주쳐 아레오바고로 가게 되었습니다.\n\n그는 '알지 못하는 신'에게 바친 제단을 접촉점 삼아 만물을 지으신 한 분 하나님을 소개하고, 그분이 정하신 사람을 죽은 자 가운데서 살리심으로 믿을 근거를 주셨다고 선포합니다(행 17:31). 일부는 조롱했으나 디오누시오와 다마리라는 여인을 비롯해 믿는 이들도 있었습니다. 복음의 중심인 부활은 문화의 어떤 수사로도 약화되지 않았다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 말씀 앞에서 중요한 것은 호기심 많은 지식보다 성경으로 확인하며 받아들이는 정직한 태도입니다. 설교자는 상대의 문화를 이해하되 부활의 핵심을 양보하지 않은 바울의 전도 방식을 소개하고, 성도에게 말씀을 날마다 상고하는 습관을 권할 수 있습니다.",
       "heroImg": "assets/events/E171_hero.webp",
       "thumbImg": "assets/events/E171_thumb.webp",
       "relatedPersons": [
@@ -10362,7 +10565,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E171_hero.webp",
-      "thumbImage": "assets/events/E171_thumb.webp"
+      "thumbImage": "assets/events/E171_thumb.webp",
+      "isPreparing": false,
+      "hook": "바울은 데살로니가에서 세 안식일 동안 성경을 강론했고, 베뢰아에서는 날마다 성경을 상고하는 사람들을 만났으며, 아덴에서는 아레오바고 법정에서 철학자들에게 창조주와 부활을 전했습니다. 세 도시의 반응은 말씀을 대하는 자세와 복음이 다른 문화와 만나는 방식을 함께 보여 줍니다."
     },
     {
       "id": "E172",
@@ -10447,7 +10652,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E172_hero.webp",
-      "thumbImage": "assets/events/E172_thumb.webp"
+      "thumbImage": "assets/events/E172_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E173",
@@ -10469,7 +10675,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E173] [3차 선교 전반] 에베소 두란노 서원 2년 강론·마술책 은 오만 어치 소각과 데메드리오의 아데미 연극장 소동 (행 18:23~19:41)\n• 에베소(두란노 서원·대연극장)\n(P030/P161/P162/P164/P187/P174)\n• 두란노 서원에서 날마다 강론하여 소아시아 전역(요한계시록 일곱 교회의 모판!)이 다 주의 말씀을 듣고, 회심자들이 마술책 두루마리를 모아 불사르며 \"주의 말씀이 힘이 있어 흥왕하여 세력을 얻으니라\"(행 19:20) 성취됨",
+      "dossierMd": "■ [E173] [제3차 선교여행 전반] 브리스길라·아굴라의 아볼로 성경 지도와 바울의 에베소 두란노 서원 2년 강론·마술책 은 오만 어치 소각(\"주의 말씀이 힘이 있어 흥왕하여 세력을 얻으니라\") 및 은장색 데메드리오의 아데미 연극장 소동\n• 본문: 행 18:23-19:41; 고전 16:8-9\n• 핵심 요약: 아볼로가 브리스길라와 아굴라에게 하나님의 도를 더 정확히 배운 뒤, 바울은 에베소 두란노 서원에서 이 년간 날마다 강론하여 아시아 전역에 말씀이 퍼지게 했습니다. 마술책이 불살라지고 은장색 데메드리오의 소동이 일어난 에베소는 복음이 우상 경제와 정면으로 맞닥뜨린 현장이었습니다.\n\n알렉산드리아 출신의 아볼로는 성경에 능통했으나 요한의 세례만 알았기에, 브리스길라와 아굴라가 그를 데려다가 하나님의 도를 더 자세히 풀어 주었습니다(행 18:26). 이후 바울은 에베소에서 석 달간 회당에서 가르치다가 두란노 서원에서 이 년간 날마다 강론했고, 아시아에 사는 유대인과 헬라인이 다 주의 말씀을 듣게 되었습니다(행 19:9-10). 서원으로 옮겨진 스콜레는 '학교'의 어원이 된 말로, 여가나 배움의 장소를 뜻합니다.\n\n마술을 행하던 이들이 책을 모아 사람들 앞에서 불사르니 값이 은 오만이었다고 하며, 누가는 \"주의 말씀이 힘이 있어 흥왕하여 세력을 얻으니라\"고 요약합니다(행 19:20). 그러나 아데미 신전의 모형을 만들던 데메드리오가 생계를 위협받자 시민을 선동하여 대연극장에 모였고, 군중은 두 시간쯤 소리를 질렀습니다. 서기장의 중재로 소동은 가라앉았습니다. 바울이 이 도시에서 고린도전서를 썼고(고전 16:8), 에베소는 요한계시록 2장의 첫 교회로도 이어집니다. 한 도시에서 시작된 말씀의 영향이 주변 도시로 번져 갔다는 점도 눈여겨볼 만합니다.\n\n• 설교·삶의 적용: 말씀의 부흥은 소리 높은 집회보다 날마다 가르침의 자리를 지키는 꾸준함에서 열매 맺었습니다. 설교자는 더 정확하게 가르치는 일을 겸손히 받은 아볼로와 가르친 부부의 모습을 통해 교회 안의 배움과 동역을 격려하고, 마술책을 불사른 결단을 통해 회심이 삶의 가치 변화로 이어짐을 전할 수 있습니다.",
       "heroImg": "assets/events/E173_hero.webp",
       "thumbImg": "assets/events/E173_thumb.webp",
       "relatedPersons": [
@@ -10520,7 +10726,9 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E173_hero.webp",
-      "thumbImage": "assets/events/E173_thumb.webp"
+      "thumbImage": "assets/events/E173_thumb.webp",
+      "isPreparing": false,
+      "hook": "아볼로가 브리스길라와 아굴라에게 하나님의 도를 더 정확히 배운 뒤, 바울은 에베소 두란노 서원에서 이 년간 날마다 강론하여 아시아 전역에 말씀이 퍼지게 했습니다. 마술책이 불살라지고 은장색 데메드리오의 소동이 일어난 에베소는 복음이 우상 경제와 정면으로 맞닥뜨린 현장이었습니다."
     },
     {
       "id": "E174",
@@ -10604,7 +10812,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E174_hero.webp",
-      "thumbImage": "assets/events/E174_thumb.webp"
+      "thumbImage": "assets/events/E174_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E175",
@@ -10704,7 +10913,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E175_hero.webp",
-      "thumbImage": "assets/events/E175_thumb.webp"
+      "thumbImage": "assets/events/E175_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E176",
@@ -10796,7 +11006,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E176_hero.webp",
-      "thumbImage": "assets/events/E176_thumb.webp"
+      "thumbImage": "assets/events/E176_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E177",
@@ -10873,7 +11084,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E177_hero.webp",
-      "thumbImage": "assets/events/E177_thumb.webp"
+      "thumbImage": "assets/events/E177_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E178",
@@ -10964,7 +11176,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E178_hero.webp",
-      "thumbImage": "assets/events/E178_thumb.webp"
+      "thumbImage": "assets/events/E178_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E179",
@@ -11037,7 +11250,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E179_hero.webp",
-      "thumbImage": "assets/events/E179_thumb.webp"
+      "thumbImage": "assets/events/E179_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E180",
@@ -11092,7 +11306,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E180_hero.webp",
-      "thumbImage": "assets/events/E180_thumb.webp"
+      "thumbImage": "assets/events/E180_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E181",
@@ -11141,7 +11356,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E181_hero.webp",
-      "thumbImage": "assets/events/E181_thumb.webp"
+      "thumbImage": "assets/events/E181_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E182",
@@ -11196,7 +11412,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E182_hero.webp",
-      "thumbImage": "assets/events/E182_thumb.webp"
+      "thumbImage": "assets/events/E182_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E183",
@@ -11239,7 +11456,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E183_hero.webp",
-      "thumbImage": "assets/events/E183_thumb.webp"
+      "thumbImage": "assets/events/E183_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E184",
@@ -11282,7 +11500,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E184_hero.webp",
-      "thumbImage": "assets/events/E184_thumb.webp"
+      "thumbImage": "assets/events/E184_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E185",
@@ -11319,7 +11538,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E185_hero.webp",
-      "thumbImage": "assets/events/E185_thumb.webp"
+      "thumbImage": "assets/events/E185_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E186",
@@ -11362,7 +11582,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E186_hero.webp",
-      "thumbImage": "assets/events/E186_thumb.webp"
+      "thumbImage": "assets/events/E186_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E187",
@@ -11399,7 +11620,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E187_hero.webp",
-      "thumbImage": "assets/events/E187_thumb.webp"
+      "thumbImage": "assets/events/E187_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E188",
@@ -11448,7 +11670,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E188_hero.webp",
-      "thumbImage": "assets/events/E188_thumb.webp"
+      "thumbImage": "assets/events/E188_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E189",
@@ -11503,7 +11726,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E189_hero.webp",
-      "thumbImage": "assets/events/E189_thumb.webp"
+      "thumbImage": "assets/events/E189_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E190",
@@ -11546,7 +11770,8 @@ window.KKUMDIDO_EVENTS_DATA = {
       "hasImage": true,
       "imageReady": true,
       "heroImage": "assets/events/E190_hero.webp",
-      "thumbImage": "assets/events/E190_thumb.webp"
+      "thumbImage": "assets/events/E190_thumb.webp",
+      "isPreparing": false
     },
     {
       "id": "E191",
@@ -11586,7 +11811,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E192",
@@ -11632,7 +11858,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E193",
@@ -11666,7 +11893,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E194",
@@ -11712,7 +11940,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E195",
@@ -11746,7 +11975,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E196",
@@ -11798,7 +12028,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E197",
@@ -11844,7 +12075,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E198",
@@ -11890,7 +12122,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E199",
@@ -11936,7 +12169,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E200",
@@ -12038,7 +12272,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "로마 제국의 박해로 꺼져가던 소아시아 교회들에게 예수님이 '일곱 금 촛대 사이를 거니시는 대제사장 겸 만왕의 왕'으로 나타나신 이유는 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E201",
@@ -12060,7 +12295,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E201] 노아의 포도원 농사와 셈·야벳의 뒷걸음 효행 및 3형제 예언 (창 9:18-29)\n• P003 / P206 / P301 / P302\n• 홍수 후 노아가 농사를 시작하여 포도나무를 심고 취하여 장막 안에서 벌거벗었을 때, 허물을 드러낸 함과 달리 셈과 야벳이 옷을 가져다 자기들의 어깨에 메고 뒷걸음쳐 들어가 아비의 하체를 덮으며 얼굴을 돌이켜 보지 아니함으로 '셈의 하나님 여호와'와 '셈의 장막에 거할 야벳'의 구속사 축복이 선포됨",
+      "dossierMd": "■ [E201] 노아의 포도원 농사와 장막 안 취함 및 셈·야벳의 뒷걸음 효행과 노아의 3형제 예언(창 9:18-29)\n• 본문: 창 9:18-29\n• 핵심 요약: 홍수 후 포도원을 일군 노아가 포도주에 취해 장막 안에서 벌거벗은 일을 두고, 함은 그 모습을 형제들에게 알렸으나 셈과 야벳은 뒷걸음쳐 아버지를 덮어 드렸습니다. 노아는 깨어난 뒤 가나안을 저주하고 셈의 하나님을 찬송하며 야벳이 셈의 장막에 거할 것을 예언했습니다.\n\n창세기 9장 18~29절은 홍수 이후 새 세상의 첫 장면에서 노아를 포도나무를 심은 농부로 소개합니다. 하나님의 은혜로 방주에서 구원받은 의인도 취함 앞에서 약해졌다는 점에서, 노아는 새로운 아담이면서도 완전한 구원자가 될 수 없는 인물로 볼 수 있습니다. 라멕이 그의 이름에 담은 위로(창 5:29)는 더 큰 노아를 기다리게 합니다.\n\n함은 아버지의 에르와(벌거벗음)를 보고 밖에 알렸지만, 셈과 야벳은 옷을 어깨에 메고 뒷걸음쳐 들어가 아버지를 카사(덮다)했습니다. 본문은 저주를 함이 아닌 그의 아들 가나안에게 선언하며, 이는 훗날 가나안 땅 정복 이야기와 연결됩니다. 셈의 하나님은 여호와로 찬송되고, 야벳에 대해서는 야프트(넓히다)라는 말이 쓰여 하나님이 그의 영역을 넓히시고 셈의 장막에 거하게 하실 것을 예언합니다.\n\n죄를 드러내는 대신 덮어 주는 태도와 셈의 계보에서 아브라함을 거쳐 그리스도에 이르는 구속의 흐름이 이 짧은 이야기 속에서 이미 예고되었다고 볼 수 있습니다. 이 이야기는 인간의 부끄러움 위에 하나님의 계획이 이어진다는 사실을 조용히 증언합니다.\n\n• 설교·삶의 적용: 의인조차 넘어질 수 있다는 사실은 사람이 아닌 하나님의 은혜에 소망을 두게 합니다. 설교자는 형제의 허물 앞에서 폭로 대신 덮어 주는 사랑을 권하되, 허물을 가볍게 여기지 않는 거룩함의 긴장 안에서 전할 수 있습니다. 또 이 본문을 가나안 사람에 대한 편견의 근거로 삼는 오용을 경계해야 합니다.",
       "heroImg": "assets/events/E201_hero.webp",
       "thumbImg": "assets/events/E201_thumb.webp",
       "relatedPersons": [
@@ -12096,7 +12331,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "노아의 벌거벗음을 보고 조롱한 것은 둘째 아들 함이었는데 왜 노아는 함이 아니라 그의 막내아들 '가나안'을 저주했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "홍수 후 포도원을 일군 노아가 포도주에 취해 장막 안에서 벌거벗은 일을 두고, 함은 그 모습을 형제들에게 알렸으나 셈과 야벳은 뒷걸음쳐 아버지를 덮어 드렸습니다. 노아는 깨어난 뒤 가나안을 저주하고 셈의 하나님을 찬송하며 야벳이 셈의 장막에 거할 것을 예언했습니다."
     },
     {
       "id": "E202",
@@ -12118,7 +12355,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E202] 창세기 10장 노아의 세 아들 70열국 분기표와 니므롯의 제국 건설 (창 10:1-32)\n• P206 / P301 / P302 / P303\n• 홍수 후에 야벳(해안 민족 14)·함(남방·가나안 30)·셈(동방·언약 계보 26)에게서 나뉜 70열국 계보표(장차 예수님이 열방을 향해 70인 전도대[E144]를 파송하시는 구약적 배경!)",
+      "dossierMd": "■ [E202] 창세기 10장 노아의 세 아들(야벳·함·셈) 70열국 분기표와 니므롯의 바벨·니느웨 건설 및 벨렉 시대의 땅 나뉨\n• 본문: 창 10:1-32\n• 핵심 요약: 창세기 10장은 홍수 이후 노아의 세 아들 야벳, 함, 셈에게서 나뉜 일흔 민족의 계보를 기록하며, 함의 후손 니므롯이 세운 나라들도 소개합니다. 이 족보는 모든 민족이 한 조상에게서 나왔다는 사실과 하나님의 구원 계획이 처음부터 열방을 향해 있다는 사실을 보여 줍니다.\n\n창세기 10장은 야벳의 후손 열네 이름, 함의 후손 서른, 셈의 후손 스물여섯을 합쳐 모두 일흔 민족으로 정리하는 것이 전통적인 이해입니다. 일흔이라는 수는 민족 전체를 가리키는 상징으로 쓰인 것으로 볼 수 있습니다. 본문은 각 민족을 땅과 언어와 족속을 따라 나뉜 고임(민족들, 나라들)으로 소개합니다.\n\n함의 후손 니므롯은 힘 있는 사냥꾼으로 불리며 시날 땅의 바벨과 에렉, 악갓, 갈레에서 나라를 시작했습니다. 이어지는 11절은 니므롯이 앗수르로 나아가 니느웨 등을 세웠다는 번역과 앗수르가 그 일을 했다는 번역으로 갈려 해석에 논의가 있습니다. 25절에서 에벨의 아들 벨렉 때 땅이 나뉘었다고 하는데, 벨렉의 이름은 나뉘다를 뜻하는 팔라그와 관련됩니다.\n\n이 족보는 단순한 가계도를 넘어, 바벨 사건 이후 흩어진 모든 민족이 아브라함 안에서 복을 받는다는 약속(창 12:3)의 무대를 마련합니다. 사도 바울은 한 혈통에서 모든 민족을 내셨다고 말했고(행 17:26), 요한계시록 7장 9절에서는 모든 민족이 어린 양 앞에 서는 장면으로 완성됩니다.\n\n• 설교·삶의 적용: 족보는 지루한 이름의 나열이 아니라 하나님이 모든 민족을 기억하신다는 선언입니다. 설교자는 이 본문으로 인종과 문화의 차이를 넘는 한 인류의 창조와, 열방을 향한 교회의 선교적 부르심을 함께 설명할 수 있습니다.",
       "heroImg": "assets/events/E202_hero.webp",
       "thumbImg": "assets/events/E202_thumb.webp",
       "relatedPersons": [
@@ -12148,7 +12385,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "창세기 10장은 홍수 이후 노아의 세 아들 야벳, 함, 셈에게서 나뉜 일흔 민족의 계보를 기록하며, 함의 후손 니므롯이 세운 나라들도 소개합니다. 이 족보는 모든 민족이 한 조상에게서 나왔다는 사실과 하나님의 구원 계획이 처음부터 열방을 향해 있다는 사실을 보여 줍니다."
     },
     {
       "id": "E203",
@@ -12170,7 +12409,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E203] 아브람의 가나안 남하와 세겜 모레 상수리나무·벧엘 첫 제단 건립 (창 12:4-9)\n• P004 / P005 / P208\n• 75세에 하란을 떠나 가나안 땅 세겜 땅 모레 상수리나무에 이르렀을 때 여호와께서 나타나 \"내가 이 땅을 네 자손에게 주리라\" 하시매 가는 곳마다 제단을 쌓고 여호와의 이름을 부른 예배자의 삶",
+      "dossierMd": "■ [E203] 아브람과 조카 롯의 가나안 남하 및 세겜 모레 상수리나무·벧엘과 아이 사이 첫 제단 건립\n• 본문: 창 12:4-9\n• 핵심 요약: 하란을 떠난 일흔다섯 살의 아브람은 조카 롯과 함께 가나안으로 내려와 세겜 모레 상수리나무에서 여호와의 나타나심을 받았고, 그 땅을 자손에게 주신다는 약속을 들었습니다. 그는 세겜과 벧엘 부근에서 각각 제단을 쌓고 여호와의 이름을 불렀습니다.\n\n아브람은 하란에서 아버지의 집을 떠나 가나안에 들어와 세겜의 모레 상수리나무 곁까지 이르렀고, 본문은 그때 그 땅에 가나안 사람이 있었다고 덧붙입니다(창 12:6). 아직 약속의 땅이 약속으로만 존재하던 시기였습니다. 여호와께서 나타나 \"내가 이 땅을 네 자손에게 주리라\"고 하셨고(창 12:7), 아브람은 그 말씀 앞에서 제단을 쌓았습니다.\n\n제단으로 옮겨진 미즈베아흐는 제물을 잡는 곳을 가리키며, 이어 벧엘 동쪽 산으로 옮겨 서쪽의 벧엘과 동쪽의 아이 사이에 장막을 친 뒤 다시 제단을 쌓고 여호와의 이름을 불렀습니다. 부르다로 옮겨진 카라는 선포하고 예배한다는 뜻을 함께 가집니다. 소유한 땅이 없었으나 그는 장막과 제단으로 하나님의 땅임을 고백했습니다.\n\n세겜은 훗날 야곱과 여호수아가 언약을 새롭게 하는 장소가 되며, 약속의 씨는 갈라디아서 3장 16절이 말하듯 한 사람, 곧 그리스도를 가리킵니다. 아브람의 첫 제단은 그 약속이 이루어질 길의 첫 표지라고 볼 수 있습니다. 그 이름 부름은 이후 이삭과 야곱에게도 이어지는 신앙의 방식이 되었습니다.\n\n• 설교·삶의 적용: 약속의 땅에 들어섰으나 아직 아무것도 소유하지 못한 자리에서, 아브람은 건물보다 먼저 제단을 세웠습니다. 설교자는 눈에 보이는 성취가 없는 시간에 예배를 쌓아 가는 신앙의 순서를 일깨우고, 장막 생활 속에서도 이름을 부르는 삶이 신앙의 본질임을 전할 수 있습니다.",
       "heroImg": "assets/events/E203_hero.webp",
       "thumbImg": "assets/events/E203_thumb.webp",
       "relatedPersons": [
@@ -12194,7 +12433,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "하란을 떠난 일흔다섯 살의 아브람은 조카 롯과 함께 가나안으로 내려와 세겜 모레 상수리나무에서 여호와의 나타나심을 받았고, 그 땅을 자손에게 주신다는 약속을 들었습니다. 그는 세겜과 벧엘 부근에서 각각 제단을 쌓고 여호와의 이름을 불렀습니다."
     },
     {
       "id": "E204",
@@ -12216,7 +12457,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E204] 싯딤 골짜기(염해) 4왕 대 5왕의 국제 전쟁과 롯의 피랍 (창 14:1-12)\n• P004 / P208\n• 시날 왕 아므라벨·엘라살 왕 아리옥·엘람 왕 그돌라오멜·고임 왕 디달 연합군이 반역한 소돔·고모라 5왕을 역청 구덩이가 많은 싯딤 골짜기에서 격파하고 소돔에 거주하던 롯과 재물을 사로잡아 간 사건",
+      "dossierMd": "■ [E204] 그돌라오멜 메소포타미아 4왕 연합군과 사해(싯딤 골짜기) 5왕의 전쟁 및 소돔 포로 사건\n• 본문: 창 14:1-12\n• 핵심 요약: 창세기 14장 1~12절은 시날, 엘라살, 엘람, 고임 네 왕의 연합군이 소돔과 고모라 등 다섯 왕을 싯딤 골짜기에서 무찌르고 소돔의 재물과 롯을 사로잡아 간 전쟁을 기록합니다. 성경에서 처음 나오는 국제 전쟁이며, 소돔 가까이에 장막을 쳤던 롯의 선택이 가져온 결과를 보여 줍니다.\n\n본문에 등장하는 네 왕은 아므라벨, 아리옥, 그돌라오멜, 디달이며 그돌라오멜은 엘람 왕으로 연합군의 우두머리였습니다. 그돌라오멜은 엘람식 이름으로 보는 견해가 많으나 성경 밖 자료에서 이 인물이 분명하게 확인된 것은 아닙니다. 요르단 동쪽 지역의 여러 민족을 치며 내려온 연합군은 십이 년간 섬기다 십삼 년째 반역한 다섯 왕과 맞섰고, 십사 년째 전쟁이 벌어졌습니다.\n\n전쟁터인 싯딤 골짜기는 오늘의 염해(사해) 부근으로 소개되는데 정확한 위치는 논의가 있습니다. 골짜기에는 역청 구덩이, 곧 헤마르가 많아 소돔과 고모라의 왕들이 도망치다 빠졌다고 하며, 살아남은 이들은 산으로 달아났습니다. 연합군은 소돔 사람의 재물과 양식을 탈취해 갔고, 소돔에 살던 아브람의 조카 롯도 재물과 함께 끌려갔습니다(창 14:12).\n\n이 전쟁은 아브람이 구출에 나서고 살렘 왕 멜기세덱을 만나는 이어지는 장면의 배경이 되며, 훗날 히브리서는 멜기세덱을 그리스도의 제사장직의 모형으로 소개합니다. 아브람의 출정은 소돔의 운명과 그의 믿음이 서로 다른 방향을 향했음을 드러냅니다.\n\n• 설교·삶의 적용: 롯의 곤경은 한 번의 선택이 아니라 소돔을 향해 조금씩 기울어 간 방향의 결과였습니다. 설교자는 세상과의 거리를 점검하게 하는 경고로 이 본문을 사용할 수 있고, 구출이 필요한 이를 위해 나서는 아브람 이야기로 이어 가며 은혜의 구원자 그리스도를 가리킬 수 있습니다.",
       "heroImg": "assets/events/E204_hero.webp",
       "thumbImg": "assets/events/E204_thumb.webp",
       "relatedPersons": [
@@ -12240,7 +12481,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "당대 최고의 거부였던 욥이 왜 성문 밖 쓰레기 재 더미에 앉아 깨진 토기 파편(질그릇 조각)으로 자기 살을 긁어야 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "창세기 14장 1~12절은 시날, 엘라살, 엘람, 고임 네 왕의 연합군이 소돔과 고모라 등 다섯 왕을 싯딤 골짜기에서 무찌르고 소돔의 재물과 롯을 사로잡아 간 전쟁을 기록합니다. 성경에서 처음 나오는 국제 전쟁이며, 소돔 가까이에 장막을 쳤던 롯의 선택이 가져온 결과를 보여 줍니다."
     },
     {
       "id": "E205",
@@ -12262,7 +12505,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E205] 아브라함의 후처 그두라 혼인과 175세 임종·이삭과 이스마엘의 막벨라 굴 합동 장사 (창 25:1-11)\n• P004 / P006 / P211 / P304\n• 아브라함이 이삭에게 자기의 모든 소유를 주고 서자들에게는 재물을 주어 동방으로 떠나보낸 후 175세에 기운이 다하여 죽으매, 아들 이삭과 이스마엘이 함께 아버지를 헤브론 막벨라 굴 사라 곁에 장사한 형제 화해",
+      "dossierMd": "■ [E205] 아브라함의 후처 그두라 혼인(미디안 등 6남 출산)과 아브라함의 175세 임종 및 이삭·이스마엘의 막벨라 굴 합동 장사\n• 본문: 창 25:1-11\n• 핵심 요약: 아브라함은 그두라를 아내로 맞아 여섯 아들을 두었으나 모든 소유를 이삭에게 넘겼고, 백칠십오 세에 죽자 이삭과 이스마엘이 함께 막벨라 굴에 그를 장사했습니다. 갈라섰던 두 형제가 아버지의 장례 앞에서 한자리에 섰고, 하나님은 이삭에게 복을 주셨습니다.\n\n창세기 25장은 아브라함이 그두라에게서 시므란, 욕산, 므단, 미디안, 이스박, 수아를 낳았다고 전하며, 역대상 1장 32절은 그두라를 첩으로 부릅니다. 아브라함은 살아 있을 때 서자들에게 선물을 주어 동방으로 보내고 이삭에게 모든 소유를 넘겼는데, 이는 언약의 계승자를 분명히 하는 조치였습니다.\n\n그는 백칠십오 세에 기운이 다하여 죽었고, 본문은 그가 '그의 조상에게로 돌아갔다'고 표현합니다. 여기서 아사프(모으다)는 죽음을 조상의 곁으로 모이는 것으로 이해한 표현입니다. 이삭과 이스마엘은 아브라함이 에브론에게 사 둔 헤브론의 막벨라 굴에 아버지를 장사했으며(창 25:9), 이는 23장에서 사라를 장사하며 마련한 땅이었습니다.\n\n약속의 땅에서 아브라함이 실제로 소유한 땅은 이 무덤뿐이었다고 볼 수 있으며, 히브리서 11장 13절은 그가 약속을 멀리서 보고 환영했다고 증언합니다. 아브라함이 죽은 뒤 하나님께서 이삭에게 복을 주셨다는 11절의 바라크(복 주시다)는 언약이 사람의 죽음을 넘어 이어짐을 확인해 줍니다.\n\n• 설교·삶의 적용: 하나님의 약속은 한 세대에서 끝나지 않고 믿음의 계승으로 이어집니다. 설교자는 신앙의 유산을 물질보다 언약으로 넘긴 아브라함의 마지막을 통해 부모 세대의 책임을 전할 수 있고, 갈등이 있던 형제가 장례 앞에서 함께 선 모습으로 가정과 교회의 화해를 권면할 수 있습니다.",
       "heroImg": "assets/events/E205_hero.webp",
       "thumbImg": "assets/events/E205_thumb.webp",
       "relatedPersons": [
@@ -12292,7 +12535,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "아브라함은 그두라를 아내로 맞아 여섯 아들을 두었으나 모든 소유를 이삭에게 넘겼고, 백칠십오 세에 죽자 이삭과 이스마엘이 함께 막벨라 굴에 그를 장사했습니다. 갈라섰던 두 형제가 아버지의 장례 앞에서 한자리에 섰고, 하나님은 이삭에게 복을 주셨습니다."
     },
     {
       "id": "E206",
@@ -12314,7 +12559,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E206] 야곱의 숙곳 체류와 세겜 성 앞 밭 매입·'엘엘로헤이스라엘' 제단 건립 (창 33:17-20)\n• P007\n• 하란에서 돌아온 야곱이 세겜 성 앞 밭을 하몰의 아들들의 손에서 크시타 백 개(고대 은 중량 화폐)에 사고 거기에 제단을 쌓아 '엘엘로헤이스라엘'(하나님, 이스라엘의 하나님)이라 부름(훗날 요셉의 해골 안장지이자 수가성 야곱의 우물 터)",
+      "dossierMd": "■ [E206] 야곱의 얍복강 귀환 후 브니엘·숙곳 체류와 세겜 성 앞 밭을 크시타 백 개에 매입해 '엘엘로헤이스라엘' 제단을 쌓음\n• 본문: 창 33:17-20; 수 24:32; 요 4:5\n• 핵심 요약: 야곱은 얍복강에서 에서와 화해한 뒤 숙곳에 잠시 머물렀다가 세겜 성 앞의 밭을 은 백 크시타에 사서 제단을 쌓고 '엘엘로헤이스라엘'이라 불렀습니다. 가나안 땅에서 처음으로 자기 소유의 땅을 얻은 사건이며, 이 밭은 훗날 요셉의 유골이 묻히고 수가성 야곱의 우물이 있던 터로 이어집니다.\n\n야곱은 에서를 만난 뒤 세일로 가지 않고 숙곳으로 내려가 집을 짓고 가축의 우리를 만들었습니다(창 33:17). 숙곳이라는 이름은 '초막들'에서 왔으며, 오래 머문 흔적이 이름에 남은 셈입니다. 이어 가나안 땅의 세겜 성 앞에 장막을 치고 하몰의 자손에게서 밭을 샀는데, 값으로 치른 크시타는 정확한 무게를 알기 어려운 고대의 화폐 단위입니다. 약속의 땅에서 야곱이 처음 값을 치르고 얻은 땅이었다는 점이 중요합니다.\n\n그는 거기에 제단을 쌓고 '엘엘로헤이스라엘', 곧 '하나님, 이스라엘의 하나님'이라 이름 붙였습니다(창 33:20). 얍복강에서 받은 이스라엘이라는 새 이름을 제단의 이름 안에 넣어 고백한 것입니다. 이 밭은 여호수아 24:32에서 요셉의 뼈가 묻힌 곳으로 다시 나타나고, 요한복음 4:5-6의 수가 근처 야곱의 우물 자리와 이어집니다. 야곱이 산 땅 위에서 예수님이 사마리아 여인에게 영생의 샘물을 말씀하셨다는 점에서, 족장의 제단은 생수를 주시는 그리스도를 가리키는 자리로 볼 수 있습니다.\n\n• 설교·삶의 적용: 하나님 앞에서 새로 받은 정체성은 이름을 바꾸는 데서 그치지 않고 제단과 삶의 자리에서 고백되어야 합니다. 다만 야곱이 벧엘로 올라가라는 부르심(창 35:1)을 받기 전까지 세겜에 머문 점도 함께 살피면, 약속의 자리로 가는 순종을 미루지 않도록 돌아보게 됩니다.",
       "heroImg": "assets/events/E206_hero.webp",
       "thumbImg": "assets/events/E206_thumb.webp",
       "relatedPersons": [
@@ -12326,7 +12571,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "야곱은 얍복강에서 에서와 화해한 뒤 숙곳에 잠시 머물렀다가 세겜 성 앞의 밭을 은 백 크시타에 사서 제단을 쌓고 '엘엘로헤이스라엘'이라 불렀습니다. 가나안 땅에서 처음으로 자기 소유의 땅을 얻은 사건이며, 이 밭은 훗날 요셉의 유골이 묻히고 수가성 야곱의 우물이 있던 터로 이어집니다."
     },
     {
       "id": "E207",
@@ -12348,7 +12595,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E207] 리브가의 유모 드보라의 장사('알론바굿')와 이삭의 180세 별세 (창 35:8, 27-29)\n• P006 / P007 / P214\n• 벧엘 아래 상수리나무 밑에 묻힌 리브가의 유모 드보라('통곡의 상수리나무' 알론바굿)와, 헤브론에서 나이가 많고 늙어 기운이 다하매 그 아들 에서와 야곱이 함께 장사한 180세 이삭의 평안한 최후",
+      "dossierMd": "■ [E207] 리브가의 유모 드보라의 죽음(벧엘 아래 상수리나무 '알론바굿' 장사)과 이삭의 180세 별세(에서·야곱 합동 장사), Burial of Deborah at Allon-bacuth & Death of Isaac at 180 (창 35:8\n• 본문: 창 35:8, 27-29\n• 핵심 요약: 리브가의 유모 드보라가 벧엘 아래 상수리나무 밑에 묻혀 그곳이 '통곡의 상수리나무'로 불리게 되었고, 이삭은 헤브론에서 180세에 숨을 거두어 에서와 야곱이 함께 장사했습니다. 두 장례는 언약의 가문이 한 세대를 보내고 다음 세대로 넘어가는 마디를 보여 줍니다.\n\n창세기 35장은 야곱이 벧엘로 올라간 이야기 속에 드보라의 죽음을 짧게 끼워 넣습니다(창 35:8). 드보라는 리브가가 밧단아람을 떠날 때 함께 온 유모였고(창 24:59), 그가 야곱의 가정에 머물렀다는 사실은 본문이 다른 설명 없이 전할 뿐입니다. 이름 '알론바굿'에서 알론은 상수리나무 같은 큰 나무를, 바굿은 통곡을 뜻합니다. 사사 드보라와는 다른 인물이며, 이름 하나를 나무에 새길 만큼 가족이 그를 깊이 애도했다고 볼 수 있습니다.\n\n이어 이삭의 죽음이 기록됩니다. 그는 마므레 곧 기럇아르바 헤브론에서 180세에 기운이 다하여 숨지고 조상에게로 돌아갔으며, 에서와 야곱이 함께 그를 장사했습니다(창 35:27-29). 갈라섰던 두 형제가 아버지의 장례 앞에 다시 모였다는 점에서 화해의 열매가 드러납니다. 이삭은 막벨라 굴에 묻혔고(창 49:31), 그곳은 나그네로 살던 족장들이 약속의 땅에 확보한 유일한 소유지였습니다. 이는 죽음 이후에도 약속이 이어진다는 믿음의 표지이며, 부활의 소망을 먼저 가리킨다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 교회 안에서 오래 섬기고 돌봐 준 이름 없는 일꾼의 죽음을 말씀이 기록해 둔 것은, 하나님께서 작은 섬김을 기억하신다는 뜻으로 받을 수 있습니다. 부모의 장례 같은 자리가 가족이 다시 만나 화해하는 기회가 되도록 평소에 관계를 돌볼 필요가 있습니다.",
       "heroImg": "assets/events/E207_hero.webp",
       "thumbImg": "assets/events/E207_thumb.webp",
       "relatedPersons": [
@@ -12372,7 +12619,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "리브가의 유모 드보라가 벧엘 아래 상수리나무 밑에 묻혀 그곳이 '통곡의 상수리나무'로 불리게 되었고, 이삭은 헤브론에서 180세에 숨을 거두어 에서와 야곱이 함께 장사했습니다. 두 장례는 언약의 가문이 한 세대를 보내고 다음 세대로 넘어가는 마디를 보여 줍니다."
     },
     {
       "id": "E208",
@@ -12394,7 +12643,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E208] 바로의 두 꿈(일곱 암소·일곱 이삭)과 요셉의 7년 풍년 비축·7년 기근 구원 행정 (창 41:1-57; 47:13-26)\n• P008\n• 나일강에서 올라온 일곱 암소와 동풍에 마른 일곱 이삭 꿈을 \"하나님께서 하실 일을 바로에게 보이심이니이다\" 해석하고 성령의 지혜로 풍년 곡식 오분의 일을 거두어 애굽과 온 땅의 생명을 구원한 사건",
+      "dossierMd": "■ [E208] 바로의 두 꿈(일곱 암소와 일곱 이삭)과 요셉의 해몽·7년 풍년 곡식 비축 및 7년 대기근 토지·세금 개혁\n• 본문: 창 41:1-57; 47:13-26\n• 핵심 요약: 바로가 꾼 일곱 암소와 일곱 이삭의 꿈을 요셉이 하나님의 일하심으로 해석하고, 칠 년 풍년 동안 곡식을 비축하여 칠 년 기근에서 애굽과 주변 땅을 살렸습니다. 감옥에서 총리로 오른 요셉의 행정은 야곱의 가문이 애굽에 내려가는 길을 열었고, 장차 오실 구원자를 앞서 보여 주는 그림이 됩니다.\n\n바로의 꿈은 나일강에서 올라온 살진 암소 일곱을 파리한 암소 일곱이 삼키고, 동풍에 마른 일곱 이삭이 충실한 일곱 이삭을 삼키는 내용이었습니다(창 41:1-7). 애굽의 박수와 현인들이 풀지 못한 꿈을 요셉은 '피트론'(해석)이 자기에게 있지 않고 하나님께 있다고 밝히며 풀어 줍니다. 요셉은 하나님께서 하실 일을 바로에게 보이신 것이라 말했고, 바로는 그를 '하나님의 영에 감동된 사람'으로 인정했습니다(창 41:38). 당시 서른 살이던 요셉은 오분의 일을 거두어 저장하자는 계획을 내놓았고, 풍년과 흉년이 차례로 닥쳐 그 말대로 이루어졌습니다.\n\n창세기 47:13-26은 기근이 길어지자 백성이 은과 가축과 토지를 차례로 내어놓고 생명을 보존한 일을 전합니다. 이로써 수확의 오분의 일이 바로에게 돌아가는 제도가 세워졌습니다. 백성은 요셉이 자기들의 생명을 살렸다고 고백했습니다. 이 구원은 형제들을 포함한 야곱의 가문까지 품었으며, 하나님께서 형제에게 버림받은 자를 통해 생명의 양식을 나누게 하셨다는 점에서 생명의 떡이 되신 그리스도를 예표한다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 요셉은 재능을 자랑하지 않고 해석이 하나님께 있음을 먼저 밝혔습니다. 맡겨진 일을 지혜롭게 감당하되 영광은 하나님께 돌리는 태도가 직업과 직분 모두에 필요합니다. 풍년에 준비하는 일이 곧 이웃의 생명을 위한 청지기의 일임도 새길 만합니다.",
       "heroImg": "assets/events/E208_hero.webp",
       "thumbImg": "assets/events/E208_thumb.webp",
       "relatedPersons": [
@@ -12412,7 +12661,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하나님은 제단에 바치는 제물에 달콤한 꿀이나 부풀어 오르는 누룩은 절대 넣지 말고 반드시 '소금'을 치라고 명령하셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "바로가 꾼 일곱 암소와 일곱 이삭의 꿈을 요셉이 하나님의 일하심으로 해석하고, 칠 년 풍년 동안 곡식을 비축하여 칠 년 기근에서 애굽과 주변 땅을 살렸습니다. 감옥에서 총리로 오른 요셉의 행정은 야곱의 가문이 애굽에 내려가는 길을 열었고, 장차 오실 구원자를 앞서 보여 주는 그림이 됩니다."
     },
     {
       "id": "E209",
@@ -12434,7 +12685,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E209] 야곱의 130세 바로 축복과 147세 임종 및 아벨미스라임·막벨라 굴 국장(國葬) 행렬 (창 47:7-10; 49:29~50:14)\n• P007 / P008\n• 당대 제국 황제 바로 앞에 서서 비굴하지 않고 두 번이나 손을 들어 바로를 축복한 언약의 족장 야곱의 영적 권위와, 40일 향 재료 염습·70일 애곡 후 애굽 원로들과 병거·마병이 호위하여 가나안 막벨라 굴에 안장한 출애굽의 예행연습",
+      "dossierMd": "■ [E209] 야곱의 130세 바로 알현(\"내 나그네 길의 세월이 백삼십 년이니이다\" 바로 축복)과 147세 임종 및 요단 건너 아벨미스라임·막벨라 굴 국장(國葬) 행렬\n• 본문: 창 47:7-10; 49:29-50:14\n• 핵심 요약: 야곱은 130세에 바로 앞에 서서 그를 축복했고, 147세에 열두 아들에게 막벨라 굴에 묻어 달라는 유언을 남기고 숨졌습니다. 애굽은 그의 시신에 향을 채우고 칠십 일을 애곡한 뒤 병거와 기병을 앞세워 가나안까지 행렬을 이루었습니다.\n\n바로가 나이를 묻자 야곱은 자기 나그네 길의 세월이 백삼십 년이라 답하고 바로를 축복한 뒤 물러났습니다(창 47:7-10). 축복하다는 뜻의 '바라크'가 쓰이는데, 보잘것없는 목자 노인이 당대 최고 권력자를 축복하는 모습은 복의 근원이 하나님께 있음을 보여 줍니다. 야곱이 자기 삶을 가리켜 쓴 '나그네 길'은 '구르'에서 나온 말로, 땅에 뿌리내리지 못한 순례의 삶을 뜻하며 히브리서 11장의 믿음의 조상들이 고백한 순례자의 삶과 만납니다.\n\n야곱은 숨을 거두기 전 조상과 같이 막벨라 굴에 장사해 달라고 당부했습니다(창 49:29-32). 의원들이 향으로 사십 일을 채웠고, 애굽 사람들은 칠십 일을 애곡했습니다. 바로의 신하들과 애굽의 원로들, 병거와 기병이 요셉과 함께 올라갔으며, 요단 건너편 아닷의 타작마당에서 칠 일 동안 크게 애곡하여 그곳이 아벨미스라임, 곧 '애굽 사람의 애곡'이라 불렸습니다(창 50:1-14). 가나안을 향한 이 행렬은 장차 이스라엘이 약속의 땅으로 올라갈 길을 미리 보인다고 볼 수 있으며, 죽음 앞에서도 약속을 붙든 믿음을 드러냅니다.\n\n• 설교·삶의 적용: 야곱은 험한 세월을 지나온 나그네이면서도 마지막에 바로를 축복하는 자리에 섰습니다. 인생의 끝에서 무엇을 남기고 어디에 묻히기를 바라는지가 곧 어디에 소망을 두었는지를 보여 준다는 점을 설교자와 성도가 함께 생각해 볼 수 있습니다.",
       "heroImg": "assets/events/E209_hero.webp",
       "thumbImg": "assets/events/E209_thumb.webp",
       "relatedPersons": [
@@ -12458,7 +12709,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "저절로 흐르는 수액(소합향)과 불에 태운 조개껍데기(나감향) 등 네 가지 향료를 같은 비율로 섞어 피운 분향단 향기는 무엇을 상징할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "야곱은 130세에 바로 앞에 서서 그를 축복했고, 147세에 열두 아들에게 막벨라 굴에 묻어 달라는 유언을 남기고 숨졌습니다. 애굽은 그의 시신에 향을 채우고 칠십 일을 애곡한 뒤 병거와 기병을 앞세워 가나안까지 행렬을 이루었습니다."
     },
     {
       "id": "E210",
@@ -12480,7 +12733,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E210] 청년 모세의 미디안 도피와 우물가 이드로의 딸들 구출·십보라 혼인 (출 2:11-25)\n• P009 / P227 / P228\n• 자기 힘으로 동족을 구원하려다 실패하고 미디안 광야로 도망쳐 우물가에서 양 떼에 물을 길어 주고 이드로의 사위가 되어 40년간 광야 양 떼를 치며 겸손의 그릇으로 빚어진 사건",
+      "dossierMd": "■ [E210] 청년 모세의 애굽인 타살과 미디안 도피·우물가에서 이드로의 일곱 딸을 도와주고 십보라와 결혼하여 게르솜(\"내가 타국에서 나그네가 되었다\")을 낳음\n• 본문: 출 2:11-25; 행 7:23-29; 히 11:24-27\n• 핵심 요약: 애굽 왕궁에서 자란 모세는 동족을 구하려다 애굽 사람을 죽이고 미디안으로 피했고, 우물가에서 이드로의 딸들을 도운 일로 그 가문에서 십보라와 혼인하여 게르솜을 낳았습니다. 사십 년의 광야 생활은 구원자로 부르시기 전에 하나님께서 그를 빚으신 준비의 시간이었습니다.\n\n모세는 동족이 학대받는 것을 보고 애굽 사람을 쳐 죽였으나, 그 일이 드러나 바로를 피해 미디안 땅으로 갔습니다(출 2:11-15). 스데반은 모세가 사십 세였다고 증언하며(행 7:23), 이후 미디안에서 사십 년을 지낸 것으로 전합니다(행 7:30). 히브리서 11:24-27은 모세가 바로의 공주의 아들이라 일컬어지기를 거절하고, 죄악의 낙을 누리기보다 그리스도를 위하여 받는 수모를 더 큰 재물로 여겼다고 말합니다.\n\n미디안의 우물가에서 모세는 목자들에게 쫓기던 이드로의 일곱 딸을 도와 양 떼에게 물을 먹였고, 그 일로 십보라를 아내로 맞았습니다(출 2:16-21). 우물가의 혼인은 이삭과 야곱의 이야기와 닮은 장면입니다. 아들의 이름 게르솜은 '게르'(나그네)와 '솜'(거기)이 합쳐진 말로, 타국에서 나그네가 되었다는 고백을 담고 있습니다. 한편 이스라엘의 부르짖음을 들으시고 언약을 기억하신 하나님께서 모세를 준비시키고 계셨다는 점에서(출 2:23-25), 이 사건은 동족에게 배척받았으나 마침내 구원자로 세워진 모세를 통해 그리스도의 길을 비추어 줍니다.\n\n• 설교·삶의 적용: 스스로 구원하려던 시도는 실패했지만 하나님께서는 그 실패한 사람을 광야에서 다시 빚어 쓰셨습니다. 사역이 멈춘 듯한 시간도 하나님께는 준비의 시간일 수 있다는 위로를 성도에게 전할 수 있습니다.",
       "heroImg": "assets/events/E210_hero.webp",
       "thumbImg": "assets/events/E210_thumb.webp",
       "relatedPersons": [
@@ -12510,7 +12763,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 대속죄일에는 염소 한 마리로 끝내지 않고 두 마리를 제비 뽑아 한 마리는 피를 뿌리고 다른 한 마리(아사셀 염소)는 광야 무인지경으로 내보냈을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "애굽 왕궁에서 자란 모세는 동족을 구하려다 애굽 사람을 죽이고 미디안으로 피했고, 우물가에서 이드로의 딸들을 도운 일로 그 가문에서 십보라와 혼인하여 게르솜을 낳았습니다. 사십 년의 광야 생활은 구원자로 부르시기 전에 하나님께서 그를 빚으신 준비의 시간이었습니다."
     },
     {
       "id": "E211",
@@ -12532,7 +12787,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E211] 모세의 애굽 귀환길 숙소 차돌 할례 사건과 출애굽 밤 요셉의 해골 반출 (출 4:24-26; 13:19)\n• P009 / P228 / P008\n• 귀환길 숙소에서 십보라가 돌칼(차돌)을 가져다가 아들의 포피를 베어 할례 언약을 회복한 사건과, \"하나님이 반드시 너희를 찾아오시리니 너희는 내 해골을 여기서 가지고 나가라\" 하던 요셉의 유언을 400년 만에 모세가 이행한 사건",
+      "dossierMd": "■ [E211] 모세의 애굽 귀환길 숙소 할례 사건(십보라의 차돌 할례 \"당신은 참으로 내게 피 남편이로다\")과 요셉의 해골 반출(출 13:19)\n• 본문: 출 4:24-26; 13:19\n• 핵심 요약: 모세가 애굽으로 돌아가던 길의 숙소에서 하나님이 그를 죽이려 하시자 십보라가 아들에게 할례를 행하여 위기가 지나갔습니다. 출애굽의 밤에는 모세가 요셉의 유언대로 그의 유골을 가지고 나와, 언약의 증표와 약속이 이어짐을 보여 줍니다.\n\n출애굽기 4:24-26은 구약에서 가장 해석하기 어려운 본문으로 꼽힙니다. 숙소에서 여호와께서 모세를 죽이려 하셨고, 십보라가 차돌칼로 아들의 포피를 베어 그 발 앞에 던지며 '피 남편'이라 말하자 하나님이 그를 놓아 주셨습니다. 본문은 죽음의 위협을 받은 이가 모세인지 아들인지, 피 남편이라는 말이 어떤 뜻인지 분명히 밝히지 않아 학자마다 견해가 갈립니다. 다만 아브라함에게 주신 할례의 언약(창 17:10-14)을 소홀히 한 채 백성을 구원하러 가는 길을 열 수 없다는 점은 문맥에서 분명합니다. 구원의 사명이 언약의 표를 지키는 순종에서 시작됨을 보여 줍니다.\n\n출애굽기 13:19는 모세가 요셉의 유골을 가지고 나왔다고 기록합니다. 요셉은 하나님이 반드시 이스라엘을 '찾아오실' 것이라며 자기 뼈를 가지고 나가라고 맹세시켰고(창 50:25), '찾아오다'로 옮겨진 말은 돌보아 구원하신다는 뜻의 '파카드'입니다. 사백여 년 동안 약속을 기다린 믿음이 마침내 열매를 맺었고, 이는 피를 통한 구원과 약속의 성취로 이어지는 흐름 속에서 그리스도께서 이루실 더 큰 구원을 내다보게 합니다.\n\n• 설교·삶의 적용: 사명을 받은 자도 먼저 가정과 언약 안에서 하나님 앞에 바로 서야 합니다. 요셉이 남긴 유언을 사백 년 뒤에도 기억한 것처럼, 하나님의 약속을 다음 세대에 신실하게 전하는 일이 얼마나 중요한지 돌아볼 만합니다.",
       "heroImg": "assets/events/E211_hero.webp",
       "thumbImg": "assets/events/E211_thumb.webp",
       "relatedPersons": [
@@ -12567,7 +12822,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 구약의 봄 절기 네 개는 예수님의 십자가 죽음(유월절)·장사(무교절)·주일 부활(초실절)·성령 강림(오순절)의 정확한 날짜와 요일에 성취되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "모세가 애굽으로 돌아가던 길의 숙소에서 하나님이 그를 죽이려 하시자 십보라가 아들에게 할례를 행하여 위기가 지나갔습니다. 출애굽의 밤에는 모세가 요셉의 유언대로 그의 유골을 가지고 나와, 언약의 증표와 약속이 이어짐을 보여 줍니다."
     },
     {
       "id": "E212",
@@ -12613,7 +12870,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E213",
@@ -12659,7 +12917,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E214",
@@ -12681,7 +12940,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E214] 시내 광야 제1차 인구조사(603,550명)·성막 중심 행군 진형과 모압 평지 제2차 인구조사(601,730명) (민 1~4; 26장)\n• P009 / P010 / P232 / P012 / P013\n• 언제나 성막과 언약궤를 진영 정중앙에 모시고 구름의 인도를 따라 행진한 광야 교회(행 7:38)의 편제와, 40년 광야 연단을 거친 후 출애굽 2세대로 세대교체를 이루고도 수가 줄지 않은 하나님의 보존하심",
+      "dossierMd": "■ [E214] 시내 광야 제1차 인구조사(603, 550명)·성막 중심 12지파 행군 진형 배치와 모압 평지 제2차 인구조사(601, 730명, 출애굽 새 세대)\n• 본문: 민 1:1-4:49; 26:1-65\n• 핵심 요약: 시내 광야에서 이스라엘은 성막을 가운데 두고 열두 지파가 사방에 진을 치는 질서를 받았고 첫 인구조사에서 603,550명이 계수되었습니다. 약 사십 년 뒤 모압 평지의 둘째 인구조사에서는 새 세대 601,730명이 계수되어, 심판 속에서도 언약의 약속이 보존되었음을 보여 줍니다.\n\n민수기 1장은 출애굽 둘째 해 둘째 달에 이십 세 이상 싸움에 나갈 만한 남자를 조사한 기록이며, 레위 지파는 성막을 맡아 제외되었습니다. 합계 603,550명이라는 수는 학계에서 정확한 해석을 둘러싼 논의가 있지만, 본문이 강조하는 바는 큰 무리로 번성하게 하신 약속의 성취입니다. 민수기 2장에 따르면 진영은 동쪽에 유다, 남쪽에 르우벤, 서쪽에 에브라임, 북쪽에 단이 자리하고 그 가운데에 레위인과 성막이 놓였습니다. 예배의 중심이 늘 백성 한가운데 있도록 한 배치입니다. 스데반은 이를 '광야 교회'(행 7:38)라고 불렀습니다.\n\n민수기 26장의 둘째 조사는 광야에서 죽은 세대 뒤에 일어난 새 세대를 계수합니다. 여호수아와 갈렙 외에는 처음 조사된 사람이 남지 않았고(민 26:64-65), 총수는 601,730명으로 크게 줄지 않았습니다. 이때 쓰인 '파카드'(계수하다)는 돌보다, 찾아오다의 뜻도 지녀서 단순한 계산이 아니라 하나님의 돌보심을 담은 말로 볼 수 있습니다. 성막 가운데 거하신 하나님은 장차 우리 가운데 장막을 치신 그리스도(요 1:14)를 가리킨다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 교회 공동체의 중심에 무엇이 놓여 있는지를 점검할 필요가 있습니다. 한 세대가 광야에서 쓰러져도 하나님은 약속을 다음 세대로 이어 가신다는 사실은 교회의 세대 계승을 고민하는 설교자에게 위로와 책임을 함께 줍니다.",
       "heroImg": "assets/events/E214_hero.webp",
       "thumbImg": "assets/events/E214_thumb.webp",
       "relatedPersons": [
@@ -12717,7 +12976,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "시내 광야에서 이스라엘은 성막을 가운데 두고 열두 지파가 사방에 진을 치는 질서를 받았고 첫 인구조사에서 603,550명이 계수되었습니다. 약 사십 년 뒤 모압 평지의 둘째 인구조사에서는 새 세대 601,730명이 계수되어, 심판 속에서도 언약의 약속이 보존되었음을 보여 줍니다."
     },
     {
       "id": "E215",
@@ -12739,7 +13000,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E215] 발람의 말하는 나귀 기적과 바알브올의 음행·미디안 정벌 (민 22:21-35; 31장)\n• P235 / P310 / P009 / P233\n• 여호와의 사자가 칼을 빼어 길에 선 것을 선지자 발람은 보지 못하고 나귀가 먼저 보고 세 번이나 피하다가 여호와께서 나귀 입을 여사 사람의 소리로 발람의 탐욕을 꾸짖게 하신 사건",
+      "dossierMd": "■ [E215] 모압 왕 발락과 점술가 발람의 말하는 나귀 기적 및 바알브올의 음행과 미디안 정벌 전쟁\n• 본문: 민 22:21-35; 31:1-54; 벧후 2:15-16\n• 핵심 요약: 모압 왕 발락이 점술가 발람을 불러 이스라엘을 저주하게 하려 했으나, 하나님은 말하는 나귀로 발람을 막으시고 저주를 축복으로 바꾸셨습니다. 그러나 발람은 이스라엘을 음행과 우상숭배로 이끄는 꾀를 냈고, 이 일은 바알브올 사건과 미디안 정벌로 이어졌습니다.\n\n발락은 모압 왕으로, 유브라데 강가 브돌에 살던 브올의 아들 발람에게 값을 치르고 이스라엘을 저주하게 하려 했습니다(민 22:5-6). 발람이 길을 나서자 여호와의 사자가 칼을 빼어 들고 길을 막았고, 나귀는 그것을 보고 세 번 피했으나 발람은 나귀를 때렸습니다. 여호와께서 나귀의 입을 열어 말하게 하시자 비로소 발람은 눈이 열려 사자를 보았습니다(민 22:21-35). 베드로후서 2:15-16은 이를 불의의 삯을 사랑한 선지자의 어리석음을 말 못하는 짐승이 사람의 소리로 꾸짖은 일로 설명합니다.\n\n발람은 저주하려던 입으로 세 번 '바라크'(축복하다)를 말했고, 민수기 24:17에서는 야곱에게서 한 별이 나오리라는 예언까지 남겼습니다. 하지만 이후 미디안 여자들을 통해 이스라엘을 바알브올의 음행에 빠뜨린 것이 발람의 꾀였다고 민수기 31:16은 말합니다. 요한계시록 2:14도 이를 '발람의 교훈'이라 부릅니다. 밖에서 저주할 수 없던 백성을 안에서 무너뜨리려 한 시도에 하나님은 미디안 정벌로 응답하셨고(민 31장), 이 모든 과정에서 별로 오시는 왕 그리스도를 향한 약속은 꺾이지 않았습니다.\n\n• 설교·삶의 적용: 입으로 하나님의 말씀을 전하면서 마음은 삯에 기울어 있던 발람의 모습은 사역자에게 경고가 됩니다. 밖의 공격보다 안에서 일어나는 타협과 유혹이 더 위험할 수 있으므로 교회는 순결을 지키도록 깨어 있어야 합니다.",
       "heroImg": "assets/events/E215_hero.webp",
       "thumbImg": "assets/events/E215_thumb.webp",
       "relatedPersons": [
@@ -12769,7 +13030,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "모압 왕 발락이 점술가 발람을 불러 이스라엘을 저주하게 하려 했으나, 하나님은 말하는 나귀로 발람을 막으시고 저주를 축복으로 바꾸셨습니다. 그러나 발람은 이스라엘을 음행과 우상숭배로 이끄는 꾀를 냈고, 이 일은 바알브올 사건과 미디안 정벌로 이어졌습니다."
     },
     {
       "id": "E216",
@@ -12791,7 +13054,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E216] 길갈 부싯돌 칼 할례와 여호와의 군대 대장 현현(\"네 발에서 신을 벗으라\", 수 5:13-15) (수 5장)\n• P012 / P026\n• 여리고 가까이에 이르렀을 때 칼을 빼어 손에 들고 마주 서신 분에게 여호수아가 \"너는 우리를 위하느냐 우리의 적들을 위하느냐\" 묻자 \"아니라 나는 여호와의 군대 대장으로 지금 왔느니라!\"(성육신 이전 성자 그리스도의 현현! 하나님 편에 우리가 서야 함을 일깨우심) 하시매 여호수아가 얼굴을 땅에 대고 엎드려 절하고 호렙산의 모세처럼 발에서 신을 벗은 사건",
+      "dossierMd": "■ [E216] 여호수아의 할례산(길갈) 부싯돌 칼 할례와 여호와의 군대 대장 현현(\"네 발에서 신을 벗으라\", 수 5:13-15)\n• 본문: 수 5:13-15\n• 핵심 요약: 길갈에서 부싯돌 칼로 할례를 행한 이스라엘 앞에, 여리고 가까이에서 칼을 빼어 든 여호와의 군대 대장이 나타났습니다. 여호수아는 얼굴을 땅에 대고 엎드려 신을 벗음으로써 이 전쟁의 주인이 하나님이심을 받아들이고 정복을 시작했습니다.\n\n요단을 건넌 뒤 여호수아는 부싯돌 칼로 광야에서 태어난 새 세대에게 할례를 행했고, 그곳은 애굽의 수치를 굴려 버렸다는 뜻에서 '길갈'(굴리다, 갈갈과 연결)이라 불렸습니다(수 5:2-9). 이스라엘은 유월절을 지켰고 이튿날부터 만나가 그쳤습니다. 언약의 표와 구원의 기념과 땅의 소산이 차례로 갖추어지는 흐름입니다. 약속의 땅에서 전쟁을 시작하기 전에 먼저 언약의 백성으로 서는 일이 우선이었습니다.\n\n여리고 가까이에서 여호수아는 칼을 빼어 든 한 사람을 보고, 우리 편인지 적 편인지 물었습니다(수 5:13). 그는 어느 편도 아니라고 답하며 자신이 여호와의 군대 대장으로 왔다고 했습니다. 원어는 '사르 쯔바'(군대의 장)입니다. 여호수아가 엎드려 경배했는데도 책망받지 않았고, 신을 벗으라는 말씀이 모세의 떨기나무 앞에서 들은 말씀(출 3:5)과 같다는 점에서 이분을 성육신 이전 그리스도의 나타나심으로 보는 견해가 많습니다. 하나님이 우리 편이 되시는지를 따지기에 앞서 우리가 하나님 편에 서야 한다는 가르침이며, 이 전쟁이 여호수아의 전략이 아닌 여호와의 전쟁임을 보여 줍니다.\n\n• 설교·삶의 적용: 큰 일을 앞두었을 때 먼저 필요한 것은 전략이 아니라 하나님 앞에 엎드려 신을 벗는 자세입니다. 하나님이 내 편이시라고 주장하기에 앞서 내가 하나님 편에 서 있는지를 점검하도록 성도를 이끌 수 있습니다.",
       "heroImg": "assets/events/E216_hero.webp",
       "thumbImg": "assets/events/E216_thumb.webp",
       "relatedPersons": [
@@ -12809,7 +13072,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "길갈에서 부싯돌 칼로 할례를 행한 이스라엘 앞에, 여리고 가까이에서 칼을 빼어 든 여호와의 군대 대장이 나타났습니다. 여호수아는 얼굴을 땅에 대고 엎드려 신을 벗음으로써 이 전쟁의 주인이 하나님이심을 받아들이고 정복을 시작했습니다."
     },
     {
       "id": "E217",
@@ -12831,7 +13096,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E217] 레위 지파 48성읍 분배와 여호수아·엘리야살 임종 및 요셉의 해골 세겜 안장 (수 21; 24장)\n• P012 / P232 / P008\n• 땅 기업 대신 여호와 자신이 기업이 되신 레위 지파가 12지파 전역에 48성읍(도피성 6개 포함)으로 흩어져 말씀을 가르치게 된 은혜와, 애굽에서부터 메고 온 요셉의 해골을 마침내 세겜 땅에 장사함으로써 창세기 50:25 언약을 완결한 사건",
+      "dossierMd": "■ [E217] 레위 지파의 48개 성읍 제비뽑기 분배(\"이스라엘의 하나님 여호와께서 그들의 기업이 되심이라\")와 여호수아·엘리야살의 임종 및 요셉의 해골 세겜 안장\n• 본문: 수 21:1-45; 24:29-33\n• 핵심 요약: 레위 지파는 땅 대신 열두 지파 가운데 흩어져 48개 성읍을 받았고, 여호수아가 죽은 뒤 요셉의 유골이 마침내 세겜에 묻혔습니다. 하나님께서 약속하신 선한 말씀이 하나도 빠짐없이 이루어졌다는 선언과 함께 정복의 시기가 마무리됩니다.\n\n레위 지파의 우두머리들은 가나안 땅 실로에서 엘르아살과 여호수아에게 나아가 모세를 통해 명하신 성읍을 달라고 요청했고, 제비를 뽑아 고핫 자손에게 열세 성읍과 열 성읍, 게르손 자손에게 열세 성읍, 므라리 자손에게 열두 성읍이 돌아갔습니다. 합계 48성읍이며 도피성 여섯이 포함되었습니다(수 21:41; 민 35:6). 야곱이 시므온과 레위를 두고 이스라엘 중에 흩으리라 한 말(창 49:7)은 심판의 말이었으나, 이제 레위 지파는 열두 지파 곳곳에서 말씀을 가르치는 자로 쓰였다는 점에서 저주가 섭리 속에서 사명으로 바뀐 모습입니다.\n\n그들에게는 땅 대신 여호와께서 '나할라'(기업)가 되셨다는 약속이 있었습니다(민 18:20). 이어 여호수아서는 여호와께서 이스라엘에게 하신 선한 말씀이 하나도 틀림없이 다 이루어졌다고 선언합니다(수 21:45). 여호수아는 110세에 딤낫세라에 장사되고 엘르아살도 죽어 기브아에 묻혔으며, 애굽에서 가져온 요셉의 뼈가 세겜 땅에 장사되어 창세기 50:25의 맹세가 끝맺어졌습니다(수 24:29-33). 모든 약속이 이루어졌다는 증언은 아직 더 큰 약속, 곧 참된 안식을 주실 예수 그리스도를 기다리게 합니다.\n\n• 설교·삶의 적용: 세상의 소유를 기업으로 삼는 대신 하나님 자신을 기업으로 삼은 레위인의 모습은 사역자에게 도전이 됩니다. 눈에 보이는 약속이 하나씩 이루어진 역사를 되짚으면서, 아직 이루어지지 않은 약속도 끝까지 신뢰할 근거를 얻을 수 있습니다.",
       "heroImg": "assets/events/E217_hero.webp",
       "thumbImg": "assets/events/E217_thumb.webp",
       "relatedPersons": [
@@ -12855,7 +13120,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "레위 지파는 땅 대신 열두 지파 가운데 흩어져 48개 성읍을 받았고, 여호수아가 죽은 뒤 요셉의 유골이 마침내 세겜에 묻혔습니다. 하나님께서 약속하신 선한 말씀이 하나도 빠짐없이 이루어졌다는 선언과 함께 정복의 시기가 마무리됩니다."
     },
     {
       "id": "E218",
@@ -12907,7 +13174,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E219",
@@ -12941,7 +13209,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E220",
@@ -12981,7 +13250,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E221",
@@ -13044,7 +13314,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "사막 모래폭풍과 불길 속에서도 종려나무(대추야자나무)가 죽지 않고 100년이 넘도록 가장 달콤한 열매를 맺는 식물학적 비밀은 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E222",
@@ -13096,7 +13367,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 시편 119편은 정확히 8절씩 22개 연(총 176절)으로 나뉘어 있으며 히브리어 원문 첫 글자에 어떤 예술적 법칙이 숨어 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E223",
@@ -13148,7 +13420,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E224",
@@ -13199,7 +13472,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "물에 빵을 던지면 다 불어서 못 먹는데 '네 떡을 물 위에 던지면 여러 날 후에 도로 찾는다'는 말씀의 실제 중동 배경은 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E225",
@@ -13245,7 +13519,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "구약성경에서 '에쉐트 하일(현숙한 여인)'이라는 칭호를 직접 들은 유일한 실존 인물은 누구이며 안식일 가정에서 어떻게 불릴까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E226",
@@ -13303,7 +13578,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "고대 근동 사람들은 왜 자기의 분신과 같은 도장(인장)을 심장 위 목걸이와 오른팔 손목에 묶고 다녔을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E227",
@@ -13343,7 +13619,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E228",
@@ -13365,7 +13642,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E228] 동방 의인 욥의 고난과 폭풍 속 여호와의 현현(\"이제는 눈으로 주를 뵈옵나이다\") 및 갑절의 회복 (욥 1~42장)\n• P263 / P264\n• 잿더미 위 질그릇 조각 속에서도 \"내가 알기에는 나의 대속자가 살아 계시니\"(욥 19:25) 고백한 욥이 폭풍 가운데 임하신 창조주 하나님을 눈으로 뵙고 친구들을 위해 중보기도할 때 갑절의 축복으로 회복된 고난 신학의 대서사",
+      "dossierMd": "■ [E228] 동방 의인 욥의 두 차례 사탄 시험(열 자녀와 전 재산 상실·악창)과 세 친구·엘리후의 변론 및 폭풍 가운데 임하신 여호와의 현현과 갑절의 회복(욥 1~42장)\n• 본문: 욥 1:1-2:13; 19:25-27; 23:10; 38:1-42:17; 약 5:11\n• 핵심 요약: 욥은 하나님께서 허락하신 사탄의 시험으로 자녀와 재산과 건강을 잃었고, 친구들의 인과응보 논리 속에서도 하나님을 붙들었습니다. 폭풍 가운데 나타나신 여호와를 만나 회개한 욥이 친구들을 위해 기도하자 하나님은 그의 곤경을 돌이키시고 모든 소유를 갑절로 회복시키셨습니다.\n\n욥기는 우스 땅의 온전하고 정직한 사람 욥을 소개하며 시작합니다(욥 1:1). 사탄은 욥이 까닭 없이 하나님을 경외하겠느냐고 참소했는데, '까닭 없이'는 '힌남'으로 대가 없이를 뜻합니다. 욥은 열 자녀와 가축을 하루에 잃고도 예배했으며, 이어 발바닥에서 정수리까지 악창이 번졌으나 끝내 하나님을 저버리지 않았습니다(욥 1:6-2:10). 욥기를 족장 시대의 배경으로 보는 견해가 많으며, 세 친구 엘리바스와 빌닷과 소발과 젊은 엘리후는 고난을 죄의 결과로 단정했으나 하나님은 그들의 말이 옳지 않다고 하셨습니다.\n\n욥은 자기를 변호할 중재자를 갈망하며(욥 9:33), 자기를 변호하실 '고엘'(대속자, 구속자)이 살아 계신다고 고백했습니다(욥 19:25). 욥기 38장에서 폭풍 가운데 말씀하신 여호와는 욥의 질문에 답하시기보다 창조의 주권을 보이셨고, 욥은 전에는 귀로 들었으나 이제는 눈으로 하나님을 뵈었다며 회개했습니다(욥 42:5-6). 하나님은 욥이 친구들을 위해 기도할 때 그의 곤경을 돌이키셨고(욥 42:10), 야고보는 이를 주께서 자비와 긍휼로 맺으신 결말이라 말합니다(약 5:11). 의로운 고난자가 중보하여 다른 이를 살린다는 점에서 욥의 모습은 참된 중보자 그리스도를 바라보게 합니다.\n\n• 설교·삶의 적용: 고난을 곧 죄의 결과로 단정하지 않고, 이유를 모르는 고난 속에서도 하나님을 신뢰하는 믿음을 성도와 함께 배울 수 있습니다. 또한 아픔 중에도 상처를 준 이들을 위해 기도하는 일이 회복의 문을 여는 순종이라는 점을 설교에서 짚어 줄 수 있습니다.",
       "heroImg": "assets/events/E228_hero.webp",
       "thumbImg": "assets/events/E228_thumb.webp",
       "relatedPersons": [
@@ -13383,7 +13660,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "욥은 하나님께서 허락하신 사탄의 시험으로 자녀와 재산과 건강을 잃었고, 친구들의 인과응보 논리 속에서도 하나님을 붙들었습니다. 폭풍 가운데 나타나신 여호와를 만나 회개한 욥이 친구들을 위해 기도하자 하나님은 그의 곤경을 돌이키시고 모든 소유를 갑절로 회복시키셨습니다."
     },
     {
       "id": "E229",
@@ -13423,7 +13702,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E230",
@@ -13457,7 +13737,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E231",
@@ -13503,7 +13784,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E232",
@@ -13561,7 +13843,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E233",
@@ -13607,7 +13890,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E234",
@@ -13659,7 +13943,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E235",
@@ -13711,7 +13996,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E236",
@@ -13751,7 +14037,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E237",
@@ -13773,7 +14060,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E237] 동방박사들의 베들레헴 '집'(마 2:11) 방문과 별의 인도 (마 2:1-12)\n• P333 / P026 / P028 / P196\n• 예루살렘 대제사장·서기관들의 무관심과 대조되는 이방 동방박사들의 큰 기쁨과 베들레헴 집(oikia) 안에서의 경배·3대 예물(황금·유향·몰약) 봉헌",
+      "dossierMd": "■ [E237] 가버나움 야이로의 집으로 가던 길과 귀향길의 두 맹인·말 못하는 자 치유 및 동방박사들의 베들레헴 '집'(마 2:11) 방문과 별의 인도\n• 본문: 마 2:1-12; 민 24:17; 미 5:2\n• 핵심 요약: 동방에서 온 박사들이 별을 보고 유대인의 왕을 찾아 예루살렘에 이르렀고, 베들레헴의 집에서 아기 예수께 경배하며 황금과 유향과 몰약을 드렸습니다. 성경을 아는 종교 지도자들은 움직이지 않았으나 이방 박사들이 먼저 나아간 대조가 마태복음의 주제인 왕이신 그리스도의 이방 선포를 보여 줍니다.\n\n마태복음 2장의 박사들은 '마고이'로 불리는 동방의 학자들로, 어느 나라에서 왔는지는 바벨론, 페르시아, 아라비아 등 여러 견해가 있고 그 수는 본문에 나오지 않으며 예물이 세 가지라는 사실만 기록되어 있습니다. 그들은 별을 보고 유대인의 왕으로 나신 이를 찾으러 왔고, 헤롯과 예루살렘 사람들은 소동했습니다. 대제사장과 서기관들은 메시아가 베들레헴에서 나신다는 미가 5:2을 곧바로 알려 주었으나 직접 찾아가지는 않았습니다(마 2:1-6).\n\n별이 다시 앞서 인도하자 박사들은 매우 크게 기뻐했고, '집'(오이키아)에 들어가 어머니 마리아와 함께 있는 아기를 보고 엎드려 경배했습니다(마 2:9-11). 집이라는 표현과 이후 두 살 이하 아이들을 죽이라는 명령(마 2:16)을 함께 보면, 박사들의 방문은 탄생 후 얼마가 지난 시점이라는 견해가 많습니다. 민수기 24:17의 야곱의 별과 이사야 60:3-6의 열방이 황금과 유향을 들고 나아오는 예언이 이 장면과 겹쳐지며, 예수님이 이스라엘만이 아니라 모든 민족의 왕이심을 처음부터 드러냅니다. 박사들은 꿈의 지시를 받아 다른 길로 고국에 돌아갔습니다(마 2:12).\n\n• 설교·삶의 적용: 말씀을 가장 잘 아는 자리에 있어도 움직이지 않으면 그리스도를 만나지 못할 수 있다는 경고가 담겨 있습니다. 반대로 먼 길을 마다 않고 찾아와 경배한 이방 박사들의 기쁨은 오늘 우리의 예배가 무엇을 향해야 하는지 생각하게 합니다.",
       "heroImg": "assets/events/E237_hero.webp",
       "thumbImg": "assets/events/E237_thumb.webp",
       "relatedPersons": [
@@ -13803,7 +14090,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "동방에서 온 박사들이 별을 보고 유대인의 왕을 찾아 예루살렘에 이르렀고, 베들레헴의 집에서 아기 예수께 경배하며 황금과 유향과 몰약을 드렸습니다. 성경을 아는 종교 지도자들은 움직이지 않았으나 이방 박사들이 먼저 나아간 대조가 마태복음의 주제인 왕이신 그리스도의 이방 선포를 보여 줍니다."
     },
     {
       "id": "E238",
@@ -13825,7 +14114,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E238] 가버나움 회당 귀신 축출(마가복음 첫 이적)과 베드로 장모의 열병 치유 (막 1:21-31)\n• P026 / P029\n• 서기관들과 다른 권위 있는 새 교훈으로 더러운 귀신을 꾸짖어 내쫓으시고 베드로 장모의 손을 잡아 일으키신 안식일 치유",
+      "dossierMd": "■ [E238] 가버나움 회당의 더러운 귀신 들린 사람 치유(\"나사렛 예수여 우리가 당신과 무슨 상관이 있나이까... 나는 당신이 누구인 줄 아노니 하나님의 거룩한 자니이다\")와 시몬의 장모 치유\n• 본문: 막 1:21-31; 눅 4:31-39\n• 핵심 요약: 안식일에 가버나움 회당에서 예수님은 권위 있는 가르침을 베푸시고 더러운 귀신을 꾸짖어 내쫓으셨으며, 곧이어 시몬의 장모의 열병을 고치셨습니다. 마가복음이 기록한 첫 이적으로, 하나님 나라가 말씀과 권능으로 임했음을 보여 줍니다.\n\n가버나움은 갈릴리 호수 북서쪽 해안에 있던 성읍으로, 예수님이 갈릴리 사역의 중심지로 삼으신 곳입니다. 안식일에 회당에서 가르치시자 사람들은 서기관들과 달리 권위 있는 새 교훈이라며 놀랐는데, 여기서 '권위'는 헬라어 '엑수시아'입니다(막 1:21-22, 27). 그때 더러운 귀신 들린 사람이 소리 질러 나사렛 예수를 하나님의 거룩한 자로 안다고 외쳤습니다(막 1:23-24). 예수님은 이를 '에피티마오'(꾸짖다)하며 잠잠하고 나오라고 명하셨고, 귀신은 경련을 일으키며 큰 소리로 외치고 나갔습니다(막 1:25-26). 귀신이 정체를 알아도 구원의 고백이 되지는 않는다는 점을 보게 됩니다.\n\n회당을 나온 예수님은 시몬과 안드레의 집에 들어가 열병으로 누운 장모의 손을 잡아 일으키셨고, 그가 곧 일어나 그들을 섬겼습니다(막 1:29-31). 일으키셨다는 동사 '에게이로'는 신약에서 부활을 말할 때도 쓰입니다. 안식일에 일어난 이 두 치유는 죄와 병과 악한 영의 속박에서 사람을 풀어 주시는 안식의 주인이 오셨다는 선포이며, 십자가와 부활로 이루실 완전한 구원의 첫 맛을 보여 준다고 볼 수 있습니다.\n\n• 설교·삶의 적용: 예수님은 말씀과 능력으로 회당에서 열린 공적인 자리와 한 가정의 병상까지 두루 돌보셨습니다. 지식으로 예수님이 누구신지 아는 일에서 멈추지 않고, 그분의 권위 아래 순종하며 섬기는 삶으로 나아가야 한다는 점을 새길 만합니다.",
       "heroImg": "assets/events/E238_hero.webp",
       "thumbImg": "assets/events/E238_thumb.webp",
       "relatedPersons": [
@@ -13843,7 +14132,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "안식일에 가버나움 회당에서 예수님은 권위 있는 가르침을 베푸시고 더러운 귀신을 꾸짖어 내쫓으셨으며, 곧이어 시몬의 장모의 열병을 고치셨습니다. 마가복음이 기록한 첫 이적으로, 하나님 나라가 말씀과 권능으로 임했음을 보여 줍니다."
     },
     {
       "id": "E239",
@@ -13865,7 +14156,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E239] 바리새인들의 표적 요구 거절('선지자 요나의 표적')과 누룩 경계 교훈 (마 12:38-45; 16:1-12)\n• P026 / P078 / P261\n• 요나가 밤낮 사흘 동안 큰 물고기 뱃속에 있었던 것같이 인자도 밤낮 사흘 동안 땅속에 있으리라 하신 유일한 십자가·부활 표적 선언",
+      "dossierMd": "■ [E239] 바리새인들의 표적 요구 거절(\"악하고 음란한 세대가 표적을 구하나 선지자 요나의 표적밖에는 보일 표적이 없느니라\")과 바리새인·헤롯의 누룩 경계 교훈\n• 본문: 마 12:38-45; 16:1-12; 막 8:11-21; 눅 11:29-32\n• 핵심 요약: 바리새인들이 표적을 요구하자 예수님은 선지자 요나의 표적 외에는 보일 표적이 없다고 하시며 자신의 죽으심과 부활을 가리키셨습니다. 이어 제자들에게 바리새인과 헤롯의 누룩을 조심하라고 경계하셨고, 눈앞의 표적을 보고도 믿지 않는 마음이 누룩처럼 번짐을 일깨우셨습니다.\n\n서기관과 바리새인들은 이미 수많은 이적을 보았으면서도 다시 표적을 보여 달라고 요구했습니다(마 12:38). 표적을 뜻하는 '세메이온'은 믿음을 일으키려는 하나님의 증거이지만, 이들은 믿음이 아니라 시험하려는 마음으로 구했습니다(마 16:1). 예수님은 요나가 밤낮 사흘 동안 큰 물고기 뱃속에 있었던 것같이 인자도 사흘을 땅속에 있으리라고 하셨고(마 12:39-40), 이는 장차 있을 십자가와 부활을 미리 가리킨 말씀입니다. '밤낮 사흘'은 유대의 날 계산에서 일부를 하루로 세는 방식을 고려하여 이해하는 견해가 많습니다.\n\n예수님은 요나의 전도를 듣고 회개한 니느웨 사람들과 솔로몬의 지혜를 들으러 땅끝에서 온 남방 여왕이 이 세대를 정죄하리라 하셨고, 요나보다 솔로몬보다 더 큰 이가 여기 있다고 선언하셨습니다(마 12:41-42; 눅 11:29-32). 이후 배 위에서는 제자들에게 바리새인과 사두개인, 곧 헤롯의 누룩을 주의하라고 하셨습니다(마 16:6; 막 8:15). 누룩은 헬라어 '쥐메'로, 눈에 띄지 않게 반죽 전체에 퍼지는 성질이 있으며 마태복음 16:12는 이것이 그들의 교훈임을 설명합니다. 믿음 없는 지도자들의 가르침이 공동체에 스며드는 위험을 경계하신 말씀입니다.\n\n• 설교·삶의 적용: 표적을 달라고 요구하는 마음은 이미 주신 말씀을 믿지 않는 마음의 다른 모습일 수 있습니다. 교회는 눈에 보이는 증거보다 십자가와 부활이라는 복음의 표적을 붙들고, 작은 누룩처럼 번지는 잘못된 가르침을 분별해야 합니다.",
       "heroImg": "assets/events/E239_hero.webp",
       "thumbImg": "assets/events/E239_thumb.webp",
       "relatedPersons": [
@@ -13889,7 +14180,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "바리새인들이 표적을 요구하자 예수님은 선지자 요나의 표적 외에는 보일 표적이 없다고 하시며 자신의 죽으심과 부활을 가리키셨습니다. 이어 제자들에게 바리새인과 헤롯의 누룩을 조심하라고 경계하셨고, 눈앞의 표적을 보고도 믿지 않는 마음이 누룩처럼 번짐을 일깨우셨습니다."
     },
     {
       "id": "E240",
@@ -13911,7 +14204,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E240] 어리석은 부자의 비유(\"오늘 밤에 네 영혼을 도로 찾으리니\")와 들의 백합화 염려 금지 (눅 12:13-34; 마 6:25-34)\n• P026\n• 자기를 위하여 재물을 쌓아 두고 하나님께 대하여 부요하지 못한 자의 허무함과 먼저 그의 나라와 그의 의를 구하는 천국 백성의 삶",
+      "dossierMd": "■ [E240] 어리석은 부자의 비유(\"오늘 밤에 네 영혼을 도로 찾으리니\")와 공중의 새·들의 백합화 염려 금지(\"너희는 먼저 그의 나라와 그의 의를 구하라\")\n• 본문: 마 6:25-34; 눅 12:13-34\n• 핵심 요약: 유산 문제로 다투던 사람에게 예수님은 탐심을 경계하라 하시며 곳간을 더 크게 지으려다 그날 밤 영혼을 잃게 된 어리석은 부자의 비유를 말씀하셨습니다. 이어 공중의 새와 들의 백합화를 보며 염려를 내려놓고 먼저 하나님 나라와 그의 의를 구하라고 가르치셨습니다.\n\n누가복음 12:13에서 한 사람이 예수님께 형제에게 유산을 나누라고 말해 달라고 요청하자, 예수님은 재판관 노릇을 거절하시고 모든 탐심을 물리치라고 경고하셨습니다. 사람의 생명은 소유의 넉넉함에 있지 않다는 말씀입니다(눅 12:15). 탐심은 '플레오넥시아'로, 더 가지려는 끊임없는 욕심을 뜻합니다. 비유의 부자는 풍년에 곳간을 헐고 더 크게 지어 오래 쓸 양식을 쌓아 두고 편히 쉬자고 말하지만, 하나님은 어리석은 자여 오늘 밤에 네 영혼을 도로 찾으리니 네가 준비한 것이 누구의 것이 되겠느냐고 하십니다(눅 12:16-20). 그는 자기를 위해 쌓았을 뿐 하나님께 대하여 부요하지 못했습니다.\n\n마태복음 6:25-34과 누가복음 12:22-31은 같은 문맥의 가르침으로 새와 백합화를 말씀합니다. 염려를 뜻하는 '메리므나오'는 마음이 여러 갈래로 나뉜다는 뜻을 지닙니다. 하나님이 먹이시는 새와 솔로몬의 모든 영광보다 아름답게 입히신 백합화를 보며, 하물며 자녀를 돌보시지 않겠느냐고 물으십니다. 그러면서 먼저 그의 나라와 그의 의를 구하라고 하셨습니다(마 6:33). 부요하신 그리스도께서 우리를 위해 가난해지셨다는 사실(고후 8:9)이 참된 부요의 근거입니다.\n\n• 설교·삶의 적용: 재물을 쌓는 계획이 잘못이라기보다 하나님을 빼놓은 채 자기 안위만 위한 계획이 문제라는 점을 구분해 설교할 수 있습니다. 염려가 올라올 때마다 하나님 나라를 구하는 일에 시선을 돌리는 구체적인 습관을 성도와 나눠 볼 만합니다.",
       "heroImg": "assets/events/E240_hero.webp",
       "thumbImg": "assets/events/E240_thumb.webp",
       "relatedPersons": [
@@ -13929,7 +14222,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하늘 보좌를 호위하는 네 생물의 얼굴(사자·송아지·사람·독수리)은 왜 마태(왕)·마가(종)·누가(인자)·요한복음(하나님의 아들)의 그리스도 증거와 정확히 일치할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "유산 문제로 다투던 사람에게 예수님은 탐심을 경계하라 하시며 곳간을 더 크게 지으려다 그날 밤 영혼을 잃게 된 어리석은 부자의 비유를 말씀하셨습니다. 이어 공중의 새와 들의 백합화를 보며 염려를 내려놓고 먼저 하나님 나라와 그의 의를 구하라고 가르치셨습니다."
     },
     {
       "id": "E241",
@@ -13951,7 +14246,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E241] 불의한 청지기 비유와 무익한 종의 비유(\"우리의 하여야 할 일을 한 것뿐이라\") (눅 16:1-13; 17:1-10)\n• P026\n• 하나님과 재물(맘몬)을 겸하여 섬길 수 없음을 경고하시고 모든 명령을 다 행한 후에도 자기 공로를 내세우지 않는 은혜의 종의 자세를 교훈하심",
+      "dossierMd": "■ [E241] 불의한 청지기 비유(지혜로운 재물 사용)와 무익한 종의 비유(\"우리는 무익한 종이라 우리의 하여야 할 일을 한 것뿐이라\") 및 열 문둥병자 치유\n• 본문: 눅 16:1-13; 17:1-10\n• 핵심 요약: 불의한 청지기 비유는 다가올 일을 내다보며 재물을 지혜롭게 쓰라고 가르치고, 하나님과 재물을 겸하여 섬길 수 없다는 경고로 이어집니다. 이어지는 무익한 종의 비유는 명령받은 일을 다 한 후에도 공로를 내세우지 않는 종의 자세를 가르칩니다.\n\n누가복음 16장의 비유에서 청지기는 주인의 소유를 낭비하다 해고를 앞두고 빚진 자들의 채무를 깎아 주어 장래를 준비합니다. 주인이 칭찬한 것은 그의 불의가 아니라 닥칠 일을 내다본 '지혜로움'이었다고 본문이 밝힙니다(눅 16:8). 예수님은 이 재물을 이용해 영원한 처소에서 맞아 줄 친구를 사귀라 하시고, 지극히 작은 것에 충성된 사람이 큰 것에도 충성된다고 하셨습니다. 마지막에는 종이 두 주인을 섬길 수 없으며 하나님과 재물, 곧 '맘모나스'를 겸하여 섬길 수 없다고 선언하십니다(눅 16:9-13).\n\n누가복음 17장에서 예수님은 실족하게 하는 일을 엄히 경계하고 일곱 번이라도 용서하라 하셨으며, 제자들이 믿음을 더해 달라고 하자 겨자씨 한 알만 한 믿음의 능력을 말씀하셨습니다. 이어 밭 갈고 양 치던 종이 일을 마친 뒤에도 주인의 식사를 시중드는 모습을 들어, 명령받은 대로 다 행한 후에도 자신을 무익한 종이라 여기라고 가르치셨습니다(눅 17:1-10). 또 열 명의 나병 환자 중 한 사마리아 사람만 돌아와 감사하였으니(눅 17:11-19), 구원은 공로가 아니라 은혜로 받는 것임을 보여 줍니다. 종의 형체를 입고 섬기러 오신 그리스도(빌 2:7)가 이 겸손의 본이 되십니다.\n\n• 설교·삶의 적용: 재물과 사역의 성과를 모두 하나님이 맡기신 것으로 알고 쓰는 청지기의 자세가 필요합니다. 많이 했다는 자랑 대신 하여야 할 일을 했을 뿐이라는 고백으로 섬길 때 은혜 아래 있는 교회의 겸손이 드러납니다.",
       "heroImg": "assets/events/E241_hero.webp",
       "thumbImg": "assets/events/E241_thumb.webp",
       "relatedPersons": [
@@ -13969,7 +14264,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 하늘에서는 '유다 지파의 사자(Lion)'가 이겼다고 선포했는데 정작 요한의 눈앞에는 피 흘린 상처가 있는 작은 '어린양(아르니온)'이 서 계셨을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "불의한 청지기 비유는 다가올 일을 내다보며 재물을 지혜롭게 쓰라고 가르치고, 하나님과 재물을 겸하여 섬길 수 없다는 경고로 이어집니다. 이어지는 무익한 종의 비유는 명령받은 일을 다 한 후에도 공로를 내세우지 않는 종의 자세를 가르칩니다."
     },
     {
       "id": "E242",
@@ -13991,7 +14288,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E242] 잎만 무성한 무화과나무 표징과 악한 포도원 농부 비유('건축자들의 버린 돌이 모퉁이의 머릿돌이 됨') (마 21:18~22:14)\n• P026\n• 열매 없는 성전 체제에 대한 심판과 상속자인 아들을 죽였으나 하나님이 부활로 세우신 모퉁이의 머릿돌(시 118:22) 예언",
+      "dossierMd": "■ [E242] 수난주간 월요일·화요일 잎만 무성한 무화과나무 저주(믿음과 용서의 기도 교훈)와 두 아들·악한 포도원 농부(건축자들의 버린 모퉁이의 머릿돌)·왕의 혼인잔치 비유\n• 본문: 마 21:18-22:14; 막 11:12-14, 20-25; 12:1-12\n• 핵심 요약: 예수님은 성전 정화 사이에 열매 없이 잎만 무성한 무화과나무를 저주하여 마르게 하시고 이어 비유로 성전 지도자들의 불순종과 심판을 말씀하셨습니다. 상속자인 아들을 죽인 악한 포도원 농부의 비유는 건축자들이 버린 돌이 모퉁이의 머릿돌이 된다는 시편 말씀으로 십자가와 부활을 예고합니다.\n\n마가복음 11장은 예수님이 월요일에 무화과나무를 저주하시고, 성전을 정화하신 뒤, 화요일 아침 그 나무가 뿌리째 마른 것을 제자들이 보았다고 전합니다. 마태복음 21:18-22는 이를 하나로 묶어 기록합니다. 잎만 무성하고 열매가 없는 나무는 겉모양은 풍성하나 열매 없는 성전 체제에 대한 징표로 볼 수 있습니다. 예수님은 이 일을 통해 믿음으로 구하는 기도와 용서의 필요를 가르치셨습니다(막 11:22-25).\n\n이어지는 두 아들, 악한 포도원 농부, 혼인 잔치의 비유는 모두 이스라엘 지도자들을 향합니다. 포도원은 이사야 5장의 노래 이후 이스라엘을 가리켰고, 주인이 보낸 종들을 때리고 죽이던 농부들은 마침내 상속자인 아들까지 포도원 밖으로 내쫓아 죽입니다(마 21:33-39). 예수님은 시편 118:22의 건축자들이 버린 돌이 모퉁이의 머릿돌, 곧 '로쉬 핀나'가 되었다는 말씀을 인용하여 하나님이 버림받은 아들을 부활로 높이실 것을 선포하셨습니다(마 21:42). 베드로도 이 말씀을 그리스도께 적용했으며(행 4:11), 혼인 잔치 비유는 초대에 응하되 예복을 갖춰야 한다는 점도 함께 가르칩니다(마 22:1-14).\n\n• 설교·삶의 적용: 겉으로 드러나는 사역의 모양과 열매는 같지 않으며 하나님은 열매를 보신다는 점에서 목회자와 교회가 스스로 돌아볼 수 있습니다. 거절당한 아들이 머릿돌이 되셨다는 복음은 세상에서 외면당하는 처지에 있는 이들에게 큰 위로가 됩니다.",
       "heroImg": "assets/events/E242_hero.webp",
       "thumbImg": "assets/events/E242_thumb.webp",
       "relatedPersons": [
@@ -14009,7 +14306,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하루 일당(1데나리온)을 다 주고도 밀 한 되(1인 하루 최소 식량)밖에 못 사는 극심한 기근 속에서도 '감람유와 포도주는 해치지 말라' 하신 제한적 심판의 뜻은 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "예수님은 성전 정화 사이에 열매 없이 잎만 무성한 무화과나무를 저주하여 마르게 하시고 이어 비유로 성전 지도자들의 불순종과 심판을 말씀하셨습니다. 상속자인 아들을 죽인 악한 포도원 농부의 비유는 건축자들이 버린 돌이 모퉁이의 머릿돌이 된다는 시편 말씀으로 십자가와 부활을 예고합니다."
     },
     {
       "id": "E243",
@@ -14031,7 +14330,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E243] 수난주간 성전 4대 논쟁(가이사 세금 동전·사두개인 부활 논쟁·가장 큰 계명·다윗의 주이신 그리스도) (마 22:15-46; 막 12:13-37)\n• P026\n• 데나리온 은화와 출 3:6(아브라함·이삭·야곱의 살아 계신 하나님), 신 6:5·레 19:18(하나님 사랑과 이웃 사랑), 시 110:1(다윗이 성령에 감동되어 그리스도를 '내 주'라 부름)로 모든 대적자의 질문을 완벽히 제압하신 지혜",
+      "dossierMd": "■ [E243] 수난주간 화요일 바리새인·헤롯당(가이사 세금 동전)·사두개인(일곱 형제와 부활 \"하나님은 죽은 자의 하나님이 아니요 살아 있는 자의 하나님이시니라\")·율법사(가장 큰 계명: 하나님 사랑과 이웃 사랑) 논쟁과 다윗의 자손이요 주이신 그리스도 질문\n• 본문: 마 22:15-46; 막 12:13-37; 눅 20:20-44\n• 핵심 요약: 성전에서 예수님은 세금, 부활, 가장 큰 계명을 두고 던진 대적들의 질문에 차례로 답하시고 마지막으로 그리스도가 다윗의 자손이면서 어찌 다윗의 주가 되시는지를 물으셨습니다. 이 논쟁들은 성경과 하나님의 능력을 모르는 대적들의 한계를 드러내고, 율법의 핵심이 하나님과 이웃 사랑임을 밝혔습니다.\n\n화요일 성전에서 바리새인들은 헤롯당과 함께 가이사에게 세금을 바치는 일이 옳은지 물었습니다. 예수님은 데나리온 동전에 새겨진 형상과 글을 보이시고, 가이사의 것은 가이사에게, 하나님의 것은 하나님께 바치라고 답하셨습니다(마 22:15-22). 동전의 '형상'(에이콘)이 가이사의 것이라면, 하나님의 형상으로 지음 받은 사람은 하나님께 속했다는 의미로 이해하는 전통이 있습니다. 부활을 부정하는 사두개인들은 일곱 형제와 한 여인의 사례를 들었으나, 예수님은 성경과 하나님의 능력을 모르는 탓이라 하시고 출애굽기 3:6을 들어 하나님이 아브라함과 이삭과 야곱의 하나님이시므로 그들이 하나님께 살아 있다고 논증하셨습니다(마 22:23-33).\n\n한 율법사가 가장 큰 계명을 묻자 예수님은 신명기 6:5의 마음과 목숨과 뜻을 다해 하나님을 사랑하는 것과, 레위기 19:18의 이웃 사랑이 율법과 선지자의 강령이라 답하셨습니다(마 22:34-40). 마지막으로 시편 110:1을 인용하여 다윗이 성령 안에서 그리스도를 '주'라 부른 사실을 묻자 아무도 대답하지 못했습니다(마 22:41-46). 다윗의 자손으로 오시되 다윗의 주이신 그리스도가 곧 예수님이심을 가리키는 질문입니다.\n\n• 설교·삶의 적용: 정치와 신앙, 죽음 이후와 율법의 우선순위를 묻는 질문들 앞에서 예수님은 늘 성경으로 답하셨습니다. 오늘 교회도 사회의 논쟁에 휩쓸리기보다 말씀의 중심인 하나님 사랑과 이웃 사랑으로 돌아가고, 그리스도가 누구신지에 대한 질문 앞에 서야 합니다.",
       "heroImg": "assets/events/E243_hero.webp",
       "thumbImg": "assets/events/E243_thumb.webp",
       "relatedPersons": [
@@ -14043,7 +14342,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "성전에서 예수님은 세금, 부활, 가장 큰 계명을 두고 던진 대적들의 질문에 차례로 답하시고 마지막으로 그리스도가 다윗의 자손이면서 어찌 다윗의 주가 되시는지를 물으셨습니다. 이 논쟁들은 성경과 하나님의 능력을 모르는 대적들의 한계를 드러내고, 율법의 핵심이 하나님과 이웃 사랑임을 밝혔습니다."
     },
     {
       "id": "E244",
@@ -14065,7 +14366,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E244] 감람산 종말 강화 3대 비유(열 처녀의 등불과 기름·달란트 비유·양과 염소의 지극히 작은 자 심판) (마 25:1-46)\n• P026\n• 다시 오실 주님을 맞이하는 세 가지 준비: ① 깨어 기름을 준비하는 영성(열 처녀), ② 맡기신 은사에 충성하는 사명(달란트), ③ 지극히 작은 자 하나를 주님 섬기듯 돌보는 사랑(양과 염소)",
+      "dossierMd": "■ [E244] 감람산 종말 강화의 세 가지 비유(슬기로운 다섯 처녀와 미련한 다섯 처녀의 등불과 기름·다섯 달란트와 두 달란트 착하고 충성된 종·지극히 작은 자 하나에게 한 양과 염소의 최후 심판, 마 25장)\n• 본문: 마 25:1-46\n• 핵심 요약: 감람산 강화의 끝에 예수님은 열 처녀, 달란트, 양과 염소의 세 비유로 다시 오실 주님을 기다리는 성도가 어떻게 살아야 하는지 말씀하셨습니다. 깨어 준비하는 믿음, 맡기신 것에 충성하는 삶, 지극히 작은 자를 향한 사랑이 재림을 기다리는 삶의 모습으로 제시됩니다.\n\n마태복음 24-25장의 감람산 강화는 성전 멸망과 재림을 묻는 제자들에게 주신 말씀이며, 25장은 그 결론으로 세 비유를 이어 놓았습니다. 열 처녀의 비유는 신랑이 밤중에 오는 혼인 풍습을 배경으로 하며, 슬기로운 처녀들은 등과 함께 그릇에 '엘라이온'(기름)을 준비했으나 미련한 처녀들은 준비하지 않아 혼인 잔치의 문이 닫혔습니다(마 25:1-13). 비유의 요점은 깨어 있으라는 것이며, 때를 알 수 없기에 늘 준비해야 한다는 뜻입니다.\n\n달란트 비유에서는 주인이 종들에게 다섯, 둘, 하나를 각각 맡기고 떠났는데, 한 달란트는 노동자의 품삯으로 대략 이십 년 가까이에 이르는 큰 금액이었다고 설명되곤 합니다. 다섯과 둘을 받은 종은 각각 배로 남겨 칭찬을 받았으나 땅에 묻어 둔 종은 책망받았습니다(마 25:14-30). 양과 염소의 비유에서 왕은 지극히 작은 자 하나에게 한 일이 곧 자신에게 한 일이라고 하십니다(마 25:31-46). 여기서 작은 자를 그리스도의 형제들로 보는 견해와 고난 중의 모든 이웃으로 보는 견해가 있으나, 믿음이 사랑의 열매로 나타난다는 점은 분명합니다. 심판의 자리에 앉으실 분은 먼저 우리를 위해 십자가에서 자기를 내어 주신 인자이십니다.\n\n• 설교·삶의 적용: 기다림은 막연히 시간을 보내는 것이 아니라 기름을 준비하고, 맡은 은사를 활용하며, 눈앞의 가난하고 아픈 이웃을 돌보는 구체적인 순종으로 채워집니다. 재림 신앙을 두려움이나 호기심이 아니라 오늘의 충성으로 이끄는 설교로 연결할 수 있습니다.",
       "heroImg": "assets/events/E244_hero.webp",
       "thumbImg": "assets/events/E244_thumb.webp",
       "relatedPersons": [
@@ -14077,7 +14378,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "감람산 강화의 끝에 예수님은 열 처녀, 달란트, 양과 염소의 세 비유로 다시 오실 주님을 기다리는 성도가 어떻게 살아야 하는지 말씀하셨습니다. 깨어 준비하는 믿음, 맡기신 것에 충성하는 삶, 지극히 작은 자를 향한 사랑이 재림을 기다리는 삶의 모습으로 제시됩니다."
     },
     {
       "id": "E245",
@@ -14099,7 +14402,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E245] 솔로몬 행각의 사도 표적(베드로의 그림자 치유)과 스데반 박해 후 베니게·구브로·안디옥 복음 확산 (행 5:12-16; 8:1-4; 11:19)\n• P029 / P122\n• 박해의 바람이 오히려 복음의 불씨를 예루살렘 밖 온 유대와 사마리아와 안디옥까지 흩어 퍼지게 한 하나님의 역설적 섭리",
+      "dossierMd": "■ [E245] 초대교회 오순절 이후 날마다 성전 솔로몬 행각 모임과 사도들의 표적·기사(베드로의 그림자 치유) 및 흩어진 성도들의 베니게·구브로·안디옥 복음 전파\n• 본문: 행 5:12-16; 8:1-4; 11:19-21\n• 핵심 요약: 오순절 이후 예루살렘 교회는 솔로몬 행각에 모여 사도들을 통한 표적과 기사를 체험했고, 스데반의 순교 뒤 박해로 흩어진 성도들이 베니게와 구브로와 안디옥까지 복음을 전했습니다. 박해가 오히려 땅끝을 향한 복음 전파의 길이 되는 것을 사도행전은 보여 줍니다.\n\n솔로몬 행각은 예루살렘 성전 동쪽의 지붕 덮인 회랑으로, 예수님이 거니셨던 곳이며(요 10:23) 초대교회가 날마다 모이던 장소였습니다. 사도행전 5:12-16은 사도들의 손으로 민간에 많은 표적과 기사가 일어났다고 전하며, '표적과 기사'(세메이온 카이 테라스)는 하나님의 능력이 임하였음을 가리키는 말입니다. 사람들이 병자를 길거리에 메고 나와 베드로의 그림자라도 덮이기를 바랐다고 기록되며, 본문은 예루살렘 근처 성읍에서 병든 사람과 귀신 들린 사람이 모두 나음을 얻었다고 정리합니다. 능력의 주체는 베드로가 아니라 사도들을 통해 일하신 주님이십니다.\n\n그러나 스데반의 순교를 기점으로 큰 박해가 일어나 사도들 외에는 유대와 사마리아 여러 지역으로 흩어졌습니다(행 8:1). '흩어지다'로 번역된 '디아스페이로'는 씨를 뿌리듯 흩는 것을 뜻하며, 흩어진 이들은 가는 곳마다 복음의 말씀을 전했습니다(행 8:4). 일부는 베니게와 구브로를 지나 안디옥까지 이르렀고, 구브로와 구레네 출신 몇 사람은 헬라인에게도 주 예수를 전하여 많은 사람이 믿고 주께 돌아왔습니다(행 11:19-21). 이는 사도행전 1:8의 증인의 사명이 하나님의 섭리 속에서 이루어지는 모습이며, 안디옥에서 제자들이 처음 그리스도인이라 불리게 된 일(행 11:26)로 이어집니다.\n\n• 설교·삶의 적용: 교회가 안전한 자리에서 모일 때만이 아니라 흩어져 고난받을 때에도 하나님의 선교는 멈추지 않습니다. 오늘 교회의 위기와 변화를 두려움으로만 보지 않고, 복음이 새로운 곳으로 흘러가는 기회로 받아들이는 믿음의 시선을 설교에서 나눌 수 있습니다.",
       "heroImg": "assets/events/E245_hero.webp",
       "thumbImg": "assets/events/E245_thumb.webp",
       "relatedPersons": [
@@ -14117,7 +14420,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "오순절 이후 예루살렘 교회는 솔로몬 행각에 모여 사도들을 통한 표적과 기사를 체험했고, 스데반의 순교 뒤 박해로 흩어진 성도들이 베니게와 구브로와 안디옥까지 복음을 전했습니다. 박해가 오히려 땅끝을 향한 복음 전파의 길이 되는 것을 사도행전은 보여 줍니다."
     },
     {
       "id": "E246",
@@ -14139,7 +14444,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E246] 바울의 아라비아 광야 3년 묵상과 다메섹 성벽 광주리 탈출·예루살렘 15일 방문 및 다소 준비기 (갈 1:15-24; 행 9:23-30; 고후 11:32-33)\n• P030 / P029 / P133 / P156\n• 회심 직후 아라비아에서 구약과 복음을 관통하는 계시를 정리하고, 다메섹 성벽 창문에서 광주리(spyris)를 타고 내려와 살아난 약함의 자랑(고후 11:30-33)",
+      "dossierMd": "■ [E246] 바울의 아라비아 광야 3년 묵상과 예루살렘 15일 방문(베드로와 주의 형제 야고보 면담) 및 수리아·길리기아(다소) 무명 준비기(갈 1:15-24)\n• 본문: 갈 1:15-24; 행 9:23-30; 고후 11:32-33(다메섹 성벽 광주리 탈출)\n• 핵심 요약: 회심 직후의 바울은 사람과 의논하지 않고 아라비아로 나갔다가 다메섹으로 돌아왔고, 삼 년 뒤에야 예루살렘에서 베드로와 주의 형제 야고보를 만났습니다. 이후 다소와 수리아·길리기아에서 알려지지 않은 시간을 보내며 사도 직분을 준비한 이 시기는 바울 신학이 사람의 가르침이 아니라 그리스도의 계시에서 비롯되었음을 보여 줍니다.\n\n바울은 자신이 전하는 복음이 사람에게서 받은 것이 아니라 예수 그리스도의 계시(아포칼륍시스, 가려진 것을 벗겨 드러냄)로 받은 것이라고 밝힙니다(갈 1:12, 16). 회심 뒤 그가 간 아라비아는 다메섹 남동쪽의 나바테아 왕국 영역으로 보는 견해가 많으며, 그곳에서 보낸 시간이 얼마나 길었는지, 무엇을 했는지는 본문이 말하지 않습니다. 구약을 부활하신 그리스도 중심으로 다시 읽었으리라는 추정은 이후 서신에 나타나는 해석에 근거한 것일 뿐입니다.\n\n다메섹에서는 나바테아 왕 아레다의 총독이 성을 지켜 바울을 잡으려 하자, 제자들이 그를 광주리(스퓌리스)에 담아 성벽 창에서 내려 보냈습니다(고후 11:32-33; 행 9:25). 이후 예루살렘에서 베드로를 알아보려고(히스토레사이) 십오 일을 머물렀고, 사도 가운데서는 베드로 외에 주의 형제 야고보만 보았다고 합니다(갈 1:18-19). 그 뒤 수리아와 길리기아로 갔고(갈 1:21), 바나바가 다소에서 그를 찾아 안디옥으로 데려오기까지(행 11:25-26) 오랜 침묵의 시간이 이어졌습니다.\n\n사도 중의 사도가 되기 전의 이 숨은 시간은, 하나님이 쓰시려는 사람을 먼저 낮추고 말씀 앞에 세우신다는 점을 보여 줍니다. 성벽을 도망쳐 내려온 약함이 오히려 그리스도의 능력이 머무는 자리가 되었다는 바울의 고백(고후 12:9)과도 이어집니다.\n\n• 설교·삶의 적용: 사역의 무대 뒤에서 보내는 준비의 시간은 낭비가 아니라 하나님이 빚어 가시는 과정이라는 점을 나눌 수 있습니다. 또한 성벽을 넘어 도망치는 일이 부끄러운 약함처럼 보여도 그리스도 안에서는 자랑이 될 수 있음을 함께 생각해 볼 만합니다.",
       "heroImg": "assets/events/E246_hero.webp",
       "thumbImg": "assets/events/E246_thumb.webp",
       "relatedPersons": [
@@ -14169,7 +14474,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "회심 직후의 바울은 사람과 의논하지 않고 아라비아로 나갔다가 다메섹으로 돌아왔고, 삼 년 뒤에야 예루살렘에서 베드로와 주의 형제 야고보를 만났습니다. 이후 다소와 수리아·길리기아에서 알려지지 않은 시간을 보내며 사도 직분을 준비한 이 시기는 바울 신학이 사람의 가르침이 아니라 그리스도의 계시에서 비롯되었음을 보여 줍니다."
     },
     {
       "id": "E247",
@@ -14191,7 +14498,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E247] 고린도전서 13장 '사랑장'과 15장 '부활장'(\"사망아 너의 승리가 어디 있느냐\") 계시 및 눈물의 편지 화해 (고전 13; 15장; 고후 7장)\n• P030 / P158 / P159\n• 모든 은사 위에 있는 가장 좋은 길인 사랑(아가페, 고전 13장)과, 그리스도의 부활을 잠자는 자들의 첫 열매로 선포하며 \"사망이 이김에 삼킨 바 되리라... 우리 주 예수 그리스도로 말미암아 우리에게 승리를 주시는 하나님께 감사하노니\"(고전 15:54-57) 외친 부활 대장정",
+      "dossierMd": "■ [E247] 바울과 고린도 교회의 '눈물의 편지' 화해와 고린도전서 13장 '사랑장'·15장 '부활장'(\"사망아 너의 승리가 어디 있느냐\") 계시\n• 본문: 고전 13:1-13; 15:1-58; 고후 2:1-4; 7:5-16\n• 핵심 요약: 바울은 에베소에서 고린도 교회의 분열과 은사 다툼을 다루며 사랑을 가장 좋은 길로 제시하고, 부활이 복음의 중심임을 논증했습니다. 이후 눈물로 쓴 편지와 디도의 소식을 통해 관계가 회복되었고, 고린도전서 13장과 15장은 교회가 무엇으로 서야 하는지를 보여 주는 본문으로 남았습니다.\n\n고린도전서는 대체로 AD 55년경 에베소에서 쓰였다고 보며, 고린도는 두 항구를 낀 상업 도시로 부와 방종과 파벌이 뒤섞인 곳이었습니다. 13장은 은사 논쟁 한가운데에 놓여 있어 사랑 없는 은사는 소리 나는 구리와 울리는 꽹과리에 지나지 않는다고 말합니다. 여기서 사랑은 아가페로 쓰이는데, 감정이 아니라 상대를 위해 자신을 내어 주는 의지와 행동을 가리키며, 십자가에서 가장 분명하게 드러났다고 볼 수 있습니다. 믿음과 소망과 사랑 가운데 제일은 사랑이라는 말로 이 장을 맺습니다(고전 13:13).\n\n15장에서 바울은 복음의 핵심을 그리스도의 죽으심과 장사됨, 성경대로 사흘 만에 살아나심으로 요약하고, 부활이 없다면 믿음도 헛되다고 논증합니다. 그리스도는 잠자는 자들의 첫 열매(아파르케)이시며, 이는 뒤따를 추수를 보증한다는 뜻입니다. 사망의 승리를 조롱하는 외침(고전 15:55)은 호세아 13:14과 이사야 25:8의 울림을 담고 있습니다.\n\n고린도후서에는 마음의 많은 눌림과 눈물로 쓴 편지, 그리고 디도가 가져온 위로의 소식이 나옵니다(고후 2:4; 7:5-9). 이 편지가 고린도전서 자체인지 이미 사라진 다른 편지인지는 학자들 사이에 의견이 갈립니다.\n\n• 설교·삶의 적용: 은사와 열심이 많아도 사랑이 없으면 교회는 소리만 요란할 수 있음을 짚어 줄 수 있습니다. 부활의 소망은 장례의 자리에서만이 아니라 오늘의 수고가 주 안에서 헛되지 않다는 확신으로 이어진다는 점을 전하면 좋겠습니다.",
       "heroImg": "assets/events/E247_hero.webp",
       "thumbImg": "assets/events/E247_thumb.webp",
       "relatedPersons": [
@@ -14221,7 +14528,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "바울은 에베소에서 고린도 교회의 분열과 은사 다툼을 다루며 사랑을 가장 좋은 길로 제시하고, 부활이 복음의 중심임을 논증했습니다. 이후 눈물로 쓴 편지와 디도의 소식을 통해 관계가 회복되었고, 고린도전서 13장과 15장은 교회가 무엇으로 서야 하는지를 보여 주는 본문으로 남았습니다."
     },
     {
       "id": "E248",
@@ -14243,7 +14552,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E248] 에베소 성도 오네시보로의 로마 감옥 수소문 방문과 바울의 첫 번 변명(\"주께서 내 곁에 서서 나에게 힘을 주심은\") (딤후 1:15-18; 4:9-18)\n• P030 / P178 / P160 / P163\n• 로마 법정 첫 변론 때 사람들이 다 바울을 버렸으나 주께서 친히 곁에 서서 힘을 주사 사자의 입에서 건지시고 온 이방인이 복음을 듣게 하신 은혜",
+      "dossierMd": "■ [E248] 바울의 예루살렘 결박 후 아시아·로마 성도들의 배신과 에베소 성도 오네시보로의 로마 감옥 수소문 방문 및 누가·마가의 최후 동역(딤후 1:15-18; 4:9-18)\n• 본문: 딤후 1:15-18; 4:9-18\n• 핵심 요약: 네로 박해기에 로마의 감옥에 다시 갇힌 바울은 첫 변명 때 곁에 선 사람이 없었으나 주님이 곁에 서서 힘을 주셨다고 증언합니다. 아시아 사람들이 떠나는 가운데 에베소의 오네시보로는 사슬을 부끄러워하지 않고 바울을 찾아왔고, 마지막까지 누가가 곁을 지켰으며 마가도 유익한 동역자로 불렸습니다.\n\n디모데후서는 바울이 순교를 앞두고 쓴 마지막 서신으로 보는 견해가 많으며, 연대는 AD 66-67년경으로 추정됩니다. 이 무렵 그는 첫 번째 투옥 때와 달리 사슬에 매인 죄수로 취급되어 찾는 일조차 쉽지 않았습니다. 아시아에 있는 사람들이 다 자신을 떠났다는 말(딤후 1:15)은 복음 때문에 받는 수치를 피하려는 흐름이 교회 안에도 있었음을 보여 줍니다.\n\n그 가운데 오네시보로는 바울의 사슬을 부끄러워하지 않았고, 로마에 이르러 부지런히 그를 찾아 만났다고 합니다(딤후 1:16-17). 그가 여러 번 바울을 안위했다고 할 때 쓰인 아나프쉬코는 숨을 돌리게 하다, 시원하게 하다라는 뜻입니다. 첫 번 변명 때 사람들이 다 버렸으나 주께서 곁에 서서 힘을 주셨고 사자의 입에서 건지셨다는 고백(딤후 4:16-17)은, 법정에서 복음이 이방인에게 선포되는 기회가 되었음을 말합니다. 이때 변명이 누구 앞에서 어떤 재판이었는지는 본문이 밝히지 않습니다.\n\n데마는 세상을 사랑하여 떠났지만 누가는 홀로 남았고, 한때 바울과 갈라섰던 마가는 이제 직무에 유익한 사람으로 불립니다(딤후 4:10-11). 사람은 떠나도 그리스도는 떠나지 않으신다는 약속이 가장 어두운 자리에서 확인됩니다.\n\n• 설교·삶의 적용: 고난 가운데 있는 이를 찾아가 곁에 있어 주는 일이 복음을 위한 가장 구체적인 섬김이 될 수 있음을 나눌 수 있습니다. 버림받은 듯한 자리에서도 주님이 곁에 서시며, 그분이 끝까지 붙드신다는 위로를 성도에게 전할 수 있습니다.",
       "heroImg": "assets/events/E248_hero.webp",
       "thumbImg": "assets/events/E248_thumb.webp",
       "relatedPersons": [
@@ -14285,7 +14594,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 '666'은 물리적 바코드나 기계 칩이 아니라 하나님을 대적하는 세상 권력('네로 황제')과 불완전한 인간 교만의 삼중 극치를 뜻할까?, 히브리어 게마트리아 숫자 합산표(네론 카이사르 = 666)와 어린양의 인(이마에 기록된 아버지의 이름"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "네로 박해기에 로마의 감옥에 다시 갇힌 바울은 첫 변명 때 곁에 선 사람이 없었으나 주님이 곁에 서서 힘을 주셨다고 증언합니다. 아시아 사람들이 떠나는 가운데 에베소의 오네시보로는 사슬을 부끄러워하지 않고 바울을 찾아왔고, 마지막까지 누가가 곁을 지켰으며 마가도 유익한 동역자로 불렸습니다."
     },
     {
       "id": "E249",
@@ -14307,7 +14618,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E249] 요한계시록 4~5장 하늘 보좌와 24장로·네 생물의 경배 및 일곱 인 두루마리를 취하신 '죽임을 당한 어린양'의 새 노래 (계 4~5장)\n• P122 / P026\n• 하늘에 열린 문을 통해 본 하나님의 보좌와 무지개·유리 바다, 그리고 유다 지파의 사자이자 다윗의 뿌리이신 '일찍이 죽임을 당한 것 같은 어린양'이 두루마리를 취하실 때 온 우주 만물이 \"죽임을 당하신 어린양은 능력과 부와 지혜와 힘과 존귀와 영광과 찬송을 받으시기에 합당하도다!\"(계 5:12) 화답한 천상 예배",
+      "dossierMd": "■ [E249] 요한계시록 4~5장 하늘 보좌와 네 생물·이십사 장로의 경배 및 일곱 인으로 봉한 두루마리를 취하신 '유다 지파의 사자·죽임을 당한 어린양'의 새 노래 찬양\n• 본문: 계 4:1-5:14\n• 핵심 요약: 요한은 하늘에 열린 문 안에서 보좌에 앉으신 이와 그를 경배하는 네 생물, 이십사 장로를 보고, 일곱 인으로 봉한 두루마리를 펼 이가 없어 울게 됩니다. 이때 유다 지파의 사자로 소개되는 분이 보좌 가운데 서신 죽임을 당한 어린 양으로 나타나 두루마리를 취하시고, 온 피조물이 새 노래로 그분을 찬송합니다.\n\n요한계시록은 AD 90년대 도미티아누스 치하의 박해 속에서 밧모섬에 있던 요한이 받은 환상으로 보는 견해가 많습니다. 4장의 보좌(트로노스)는 황제의 권좌가 아니라 창조주의 권위가 모든 역사의 중심임을 보여 주며, 무지개와 유리 바다 같은 장면은 에스겔 1장과 이사야 6장의 보좌 환상을 떠올리게 합니다. 네 생물과 이십사 장로의 정확한 정체에 대해서는 해석이 나뉘지만, 피조물과 구속받은 자들이 함께 하나님을 경배하는 모습으로 이해하는 견해가 널리 받아들여집니다.\n\n5장의 두루마리는 안팎으로 글이 쓰이고 일곱 인으로 봉해져 있어, 하나님의 구속 계획과 심판의 집행을 가리킨다고 보는 이가 많습니다. 장로가 알린 대로라면 이긴 사자가 나타나야 하지만, 요한이 본 것은 죽임을 당한 것 같은 어린 양(아르니온)이었습니다. 승리는 힘으로 짓밟는 방식이 아니라 십자가의 희생으로 이루어졌다는 반전입니다.\n\n사람들이 부르는 새 노래는 어린 양이 피로 각 족속과 방언과 백성과 나라에서 사람들을 사서 하나님께 드리셨다고 선언합니다(계 5:9). 그리스도의 구속이 역사의 두루마리를 여는 열쇠라는 선포입니다.\n\n• 설교·삶의 적용: 박해와 혼란 속에서도 역사의 주관자가 보좌에 앉아 계심을 설교자가 분명히 전할 수 있습니다. 성도의 예배가 하늘의 예배와 이어져 있으며, 어린 양의 희생이 우리 찬송의 이유임을 함께 고백하게 해 줍니다.",
       "heroImg": "assets/events/E249_hero.webp",
       "thumbImg": "assets/events/E249_thumb.webp",
       "relatedPersons": [
@@ -14325,7 +14636,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "요한은 하늘에 열린 문 안에서 보좌에 앉으신 이와 그를 경배하는 네 생물, 이십사 장로를 보고, 일곱 인으로 봉한 두루마리를 펼 이가 없어 울게 됩니다. 이때 유다 지파의 사자로 소개되는 분이 보좌 가운데 서신 죽임을 당한 어린 양으로 나타나 두루마리를 취하시고, 온 피조물이 새 노래로 그분을 찬송합니다."
     },
     {
       "id": "E250",
@@ -14347,7 +14660,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E250] 어린양이 떼시는 일곱 인과 제단 아래 순교자들의 흰 두루마리 및 어린양의 피에 옷을 씻어 희게 한 큰 무리의 구원 찬양 (계 6~7장)\n• P122 / P026\n• 각 나라와 족속과 백성과 방언에서 아무도 능히 셀 수 없는 큰 무리가 나와 흰 옷을 입고 손에 종려가지를 들고 \"구원하심이 보좌에 앉으신 우리 하나님과 어린양에게 있도다\" 외치며, 보좌 가운데 계신 어린양이 그들의 목자가 되사 생명수 샘으로 인도하시고 모든 눈물을 씻어 주시는 천상 환상",
+      "dossierMd": "■ [E250] 어린양이 떼시는 일곱 인(계 6~8장: 네 말 탄 자·제단 아래 순교자들의 신원 호소와 흰 두루마리·하나님의 인 맞은 십사만 사천과 각 나라에서 나온 흰 옷 입은 큰 무리의 구원 찬양)\n• 본문: 계 6:1-8:5\n• 핵심 요약: 어린 양이 일곱 인을 차례로 떼실 때 전쟁과 기근과 죽음이 풀려 나오고, 제단 아래 순교자들은 언제까지냐고 호소합니다. 그 사이에 하나님은 인 맞은 자들과 어린 양의 피에 옷을 씻은 큰 무리를 보여 주셔서, 환난 속에서도 구원이 보좌와 어린 양에게 있음을 선포하십니다.\n\n여섯 인까지의 장면에서 흰 말, 붉은 말, 검은 말, 청황색 말은 각각 정복, 전쟁, 기근, 죽음을 상징한다고 보며(계 6:1-8), 스가랴 1장과 6장의 말 환상이 배경으로 지목됩니다. 다섯째 인에서 제단 아래의 영혼들이 거룩하고 참되신 대주재(데스포테스)께 이 땅의 피를 갚아 주시기를 호소하자, 흰 두루마기를 받고 잠시 더 쉬라는 응답을 듣습니다(계 6:9-11). 순교자의 외침을 하나님이 잊지 않으신다는 뜻입니다.\n\n7장의 인 맞은 십사만 사천이 문자적 숫자인지 상징인지, 이스라엘과 교회의 관계를 어떻게 볼지는 해석이 나뉩니다. 그러나 곧이어 각 나라와 족속과 백성과 방언에서 나온 셀 수 없는 큰 무리가 흰 옷을 입고 종려가지를 든 모습이 나오며, 그들은 “구원하심이 보좌에 앉으신 우리 하나님과 어린 양에게 있도다”(계 7:10)라고 외칩니다. 큰 환난에서 나왔다는 말(계 7:14)과 어린 양의 피에 씻어 희게 했다는 표현은 구원이 행위가 아니라 그리스도의 피에 달려 있음을 분명히 합니다.\n\n일곱째 인을 떼실 때 하늘은 반 시간쯤 고요하며(계 8:1), 이어 나팔의 심판이 준비됩니다. 무서운 심판 가운데서도 어린 양이 목자가 되셔서 눈물을 씻어 주신다는 위로가 놓여 있습니다.\n\n• 설교·삶의 적용: 환난과 순교의 현실 앞에서 하나님이 침묵하시는 것이 아니라 정의와 위로를 준비하고 계심을 전할 수 있습니다. 성도의 소망이 자신의 의로움이 아니라 어린 양의 피에 있음을 함께 고백하도록 이끌 수 있습니다.",
       "heroImg": "assets/events/E250_hero.webp",
       "thumbImg": "assets/events/E250_thumb.webp",
       "relatedPersons": [
@@ -14371,7 +14684,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 요한계시록 7장에서는 먼저 4절에서 '인 맞은 자의 수를 들으니 144, 000'이라 한 직후 9절에서 '내가 보니 아무도 능히 셀 수 없는 큰 무리'라고 밝혔으며 왜 12지파 명단에서 우상 숭배 지파인 단(Dan) 지파가 빠졌을까?, [귀로 들음: 12(구약)×12(신약)×1000(완전수) = 144"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "어린 양이 일곱 인을 차례로 떼실 때 전쟁과 기근과 죽음이 풀려 나오고, 제단 아래 순교자들은 언제까지냐고 호소합니다. 그 사이에 하나님은 인 맞은 자들과 어린 양의 피에 옷을 씻은 큰 무리를 보여 주셔서, 환난 속에서도 구원이 보좌와 어린 양에게 있음을 선포하십니다."
     },
     {
       "id": "E251",
@@ -14393,7 +14708,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E251] 라멕의 칼의 노래(일흔일곱 배 복수)와 유발·두발가인의 수금·구리·철기 문명 시작 (창 4:19-24)\n• P201\n• 가인 계열 7대손 라멕의 일부다처와 살인 과시 노래(예수님의 마 18:22 '일흔 번씩 일곱 번 용서'로 치유됨!)",
+      "dossierMd": "■ [E251] 가인의 후손 라멕의 일부다처와 살인 자랑('라멕의 칼의 노래') 및 유발·두발가인의 수금·구리·철기 문명 시작(창 4:19-24)\n• 본문: 창 4:19-24\n• 핵심 요약: 창세기 4장은 가인 계보의 일곱째 후손 라멕이 두 아내를 두고 살인을 자랑하는 노래를 부르는 모습과, 그의 자손들이 목축과 음악, 금속 기술을 시작하는 모습을 함께 기록합니다. 문명의 진보와 폭력이 나란히 자라는 인류의 모습을 보여 주며, 훗날 예수님이 용서의 횟수를 일흔 번씩 일곱 번으로 말씀하신 것과 대비됩니다.\n\n라멕은 가인에서 일곱째 세대로 기록되며(창 4:17-18), 성경에 처음으로 두 아내를 취한 사람으로 나옵니다. 아다와 씰라 사이에서 야발은 장막에 거하며 가축 치는 자의 조상, 유발은 수금(키노르)과 퉁소를 다루는 자의 조상, 두발가인은 구리와 쇠로 여러 기구를 만드는 자로 소개됩니다. 본문은 이 기술과 예술을 직접 정죄하지 않으며, 문화 자체보다 그것을 쓰는 마음이 문제임을 암시한다고 볼 수 있습니다.\n\n라멕의 노래는 히브리 시의 병행 형식을 갖추고 있으며, 상처 하나에 사람을 죽이고도 “가인을 위하여는 벌이 칠 배일진대 라멕을 위하여는 벌이 칠십칠 배이리로다”(창 4:24)라고 큰소리칩니다. 하나님이 가인을 보호하신 은혜의 표를 그는 폭력의 보증으로 바꾸어 버린 셈입니다. 스스로를 복수의 심판자로 세운 이 노래에서 죄가 세대를 지나며 더 깊어지는 모습이 드러납니다.\n\n예수님은 형제를 몇 번까지 용서해야 하느냐는 질문에 “일곱 번뿐 아니라 일곱 번을 일흔 번까지라도”(마 18:22)라고 답하셨습니다. 복수의 수를 세던 이야기가 용서의 수로 뒤집힌 셈이며, 그 근거는 십자가에서 이루어진 하나님의 용서입니다.\n\n• 설교·삶의 적용: 기술과 재능이 뛰어나도 마음이 하나님 앞에 낮아지지 않으면 교만과 폭력으로 흐를 수 있음을 짚어 줄 수 있습니다. 상처를 곱절로 갚으려는 본성 앞에서 그리스도께 용서받은 자로서 용서를 선택하도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E251_hero.webp",
       "thumbImg": "assets/events/E251_thumb.webp",
       "relatedPersons": [
@@ -14411,7 +14726,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "우렁찬 천군천사의 찬양이 울려 퍼지던 하늘 보좌에 왜 갑자기 약 30분간의 완벽한 정적(고요함)이 흘렀을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "창세기 4장은 가인 계보의 일곱째 후손 라멕이 두 아내를 두고 살인을 자랑하는 노래를 부르는 모습과, 그의 자손들이 목축과 음악, 금속 기술을 시작하는 모습을 함께 기록합니다. 문명의 진보와 폭력이 나란히 자라는 인류의 모습을 보여 주며, 훗날 예수님이 용서의 횟수를 일흔 번씩 일곱 번으로 말씀하신 것과 대비됩니다."
     },
     {
       "id": "E252",
@@ -14433,7 +14750,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E252] 대홍수 직전 하나님의 아들들과 사람의 딸들의 혼합 타락과 120년 은혜 유예 선포 (창 6:1-7)\n• P003\n• 경건한 계보의 세속적 타락 속에서도 심판 전 120년의 회개 기한을 주시고 노아에게 은혜를 베푸신 사건",
+      "dossierMd": "■ [E252] 대홍수 직전 '하나님의 아들들'과 '사람의 딸들'의 타락·네피림 등장과 여호와의 한탄 및 120년 은혜 유예 선포(창 6:1-7)\n• 본문: 창 6:1-7; 벧전 3:20\n• 핵심 요약: 홍수 이전 사람들이 늘어나면서 하나님의 아들들이 사람의 딸들을 아내로 취하고 네피림이 땅에 있었으며, 사람의 악이 가득하자 여호와는 마음에 근심하셨습니다. 그러면서도 사람의 날을 백이십 년으로 정하시고 노아에게 은혜를 베푸신 이 장면은 심판 직전에도 작동하는 하나님의 인내를 보여 줍니다.\n\n창세기 6:1-4의 하나님의 아들들이 누구인지는 해석이 크게 갈립니다. 경건한 셋의 후손으로 보는 견해, 권세 있는 왕적 인물로 보는 견해, 타락한 천사적 존재로 보는 견해가 있으며, 어느 하나로 단정하기 어렵습니다. 네피림은 흔히 쓰러뜨리는 자 또는 쓰러진 자로 풀이되지만 어원이 확실하지 않고, 본문은 그들을 용사요 명성 있는 사람으로 소개할 뿐입니다.\n\n백이십 년(창 6:3)은 홍수까지 남은 유예 기간으로 보는 견해가 많으나, 사람의 수명 한계를 가리킨다고 보는 견해도 있습니다. 베드로는 노아의 때에 하나님이 오래 참고 기다리셨다고 말하며(벧전 3:20), 이는 심판 앞에 회개의 문을 열어 두신 하나님의 성품과 이어집니다. 6장 6절에서 하나님이 사람 지으셨음을 한탄하셨다고 할 때의 나함은 마음을 돌이킨다는 뜻이며, 여기서는 변덕이 아니라 죄로 인한 깊은 슬픔을 나타내는 표현으로 이해됩니다. 이어 나오는 이차브는 마음이 아프다는 뜻입니다.\n\n그러나 노아는 여호와의 눈에 은혜(헨)를 입었다고 기록됩니다(창 6:8). 은혜는 노아의 의로움을 보시고 주어진 보상이 아니라 그를 구원으로 부르시는 하나님의 선택에서 시작되며, 이는 모든 인류를 구원하러 오신 그리스도의 은혜를 미리 가리킵니다.\n\n• 설교·삶의 적용: 죄가 깊어지는 시대에도 하나님이 즉시 심판하지 않으시고 회개의 시간을 주신다는 점을 전할 수 있습니다. 그 인내에 기대지 말고 은혜의 방주이신 그리스도께 나아가도록 권할 수 있습니다.",
       "heroImg": "assets/events/E252_hero.webp",
       "thumbImg": "assets/events/E252_thumb.webp",
       "relatedPersons": [
@@ -14445,7 +14762,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "홍수 이전 사람들이 늘어나면서 하나님의 아들들이 사람의 딸들을 아내로 취하고 네피림이 땅에 있었으며, 사람의 악이 가득하자 여호와는 마음에 근심하셨습니다. 그러면서도 사람의 날을 백이십 년으로 정하시고 노아에게 은혜를 베푸신 이 장면은 심판 직전에도 작동하는 하나님의 인내를 보여 줍니다."
     },
     {
       "id": "E253",
@@ -14467,7 +14786,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E253] 방주 안 1년 10일 보존과 아라랏산 정착·까마귀와 비둘기 세 번 파송(새 감람 잎사귀) (창 8:1-22)\n• P003\n• \"하나님이 노아를 기억하사\"(창 8:1) 바람을 불게 하시고 감람 새 잎사귀를 문 비둘기로 새 창조의 평화를 알리신 사건",
+      "dossierMd": "■ [E253] 방주 안 1년 10일간의 보존과 아라랏산 정착·까마귀와 비둘기 세 번 파송(새 감람 잎사귀) 및 사계절 보존 언약(창 8:1-22)\n• 본문: 창 8:1-22\n• 핵심 요약: 하나님이 노아와 방주 안의 모든 생명을 기억하시자 바람이 불고 물이 줄어 방주가 아라랏 산지에 머물렀습니다. 노아는 까마귀와 비둘기를 차례로 내보냈고, 비둘기가 새 감람 잎사귀를 물고 돌아와 땅이 회복되고 있음을 알렸습니다. 그 뒤 하나님은 사계절과 파종과 추수가 땅이 있는 동안 그치지 않으리라고 약속하셨습니다.\n\n홍수는 노아 육백 세 둘째 달 열이렛날에 시작되어(창 7:11) 육백한 세 둘째 달 스무이렛날에 땅이 말랐으니(창 8:14), 방주 안에서 보낸 시간은 만 일 년 십 일입니다. 방주가 머문 아라랏은 한 봉우리가 아니라 산지(아라랏의 산들)를 가리키며, 후대의 우라르투 지역과 이어서 보는 견해가 많습니다. 정확한 위치는 확정하기 어렵습니다.\n\n본문의 첫머리에서 하나님이 노아를 기억하셨다고 할 때 쓰인 자카르는 단순히 떠올림이 아니라 약속에 따라 행동하심을 뜻합니다. 노아는 먼저 까마귀를 내보내고, 이어 비둘기를 세 번 보냈습니다. 첫 번째는 발 붙일 곳이 없어 돌아왔고, 두 번째는 새 감람 잎을 물고 왔으며, 세 번째는 돌아오지 않았습니다(창 8:8-12). 감람 잎은 마른 땅의 징조로서 새 창조의 시작을 알리는 표지로 볼 수 있습니다.\n\n방주에서 나온 노아가 번제를 드리자 여호와께서 그 향기를 받으시고(창 8:21), 다시는 사람 때문에 땅을 저주하지 않겠다고 약속하셨습니다. 방주 안에서 구원받은 이들이 새 땅에 첫발을 딛는 이 장면은 물에서 건져 새 생명으로 옮기시는 그리스도의 구원을 미리 보여 줍니다(벧전 3:20-21).\n\n• 설교·삶의 적용: 끝이 보이지 않는 기다림 속에서도 하나님은 잊지 않고 기억하시며 때에 맞게 일하신다는 위로를 전할 수 있습니다. 새 감람 잎 같은 작은 증거에 감사하며 믿음으로 걸음을 내딛도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E253_hero.webp",
       "thumbImg": "assets/events/E253_thumb.webp",
       "relatedPersons": [
@@ -14479,7 +14798,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "하나님이 노아와 방주 안의 모든 생명을 기억하시자 바람이 불고 물이 줄어 방주가 아라랏 산지에 머물렀습니다. 노아는 까마귀와 비둘기를 차례로 내보냈고, 비둘기가 새 감람 잎사귀를 물고 돌아와 땅이 회복되고 있음을 알렸습니다. 그 뒤 하나님은 사계절과 파종과 추수가 땅이 있는 동안 그치지 않으리라고 약속하셨습니다."
     },
     {
       "id": "E254",
@@ -14501,7 +14822,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E254] 이삭과 그랄 왕 아비멜렉(군대장관 비골)의 브엘세바('맹세의 우물') 평화 조약 (창 26:26-33)\n• P006\n• 우물을 양보하며 화평을 지킨 이삭에게 대적 아비멜렉이 스스로 찾아와 \"여호와께서 너와 함께 계심을 우리가 분명히 보았노라\" 화친을 청하고 그날 우물물을 얻은 사건",
+      "dossierMd": "■ [E254] 이삭과 그랄 왕 아비멜렉(군대장관 비골)의 브엘세바('맹세의 우물') 평화 조약 체결(창 26:26-33)\n• 본문: 창 26:26-33\n• 핵심 요약: 그랄 왕 아비멜렉은 이삭을 쫓아냈으나 하나님이 그와 함께하심을 분명히 보고 군대장관 비골과 함께 찾아와 화친을 청했습니다. 두 사람은 잔치를 열고 서로 해치지 않기로 맹세했으며, 그날 이삭의 종들이 우물을 파고 물을 얻자 그곳을 브엘세바라 불렀습니다.\n\n그랄은 가나안 남쪽 해안 평지와 네게브가 만나는 지역으로 보는 견해가 많으며, 이삭은 기근 때 이곳에 머물렀다가 번성하자 시기를 당했습니다(창 26:12-16). 우물은 유목 생활에서 생존이 걸린 재산이어서, 이삭은 에섹과 싯나에서 다투기보다 물러나 르호봇에 이르렀고 마침내 브엘세바로 올라갔습니다. 이곳에서 여호와께서 나타나 두려워하지 말라고 하시며 아브라함에게 하신 언약을 확인해 주셨고, 이삭은 제단을 쌓고 장막을 쳤습니다(창 26:23-25).\n\n아비멜렉이 스스로 찾아온 장면에서 그는 “여호와께서 너와 함께 계심을 우리가 분명히 보았으므로”(창 26:28)라고 고백합니다. 이삭이 자신의 권리를 주장하지 않고 양보한 일이 대적의 마음을 돌려 평안히 보내는 조약으로 이어졌습니다. 맹세로 번역되는 쉐부아와 일곱을 뜻하는 쉐바가 어근을 공유하므로, 브엘세바는 맹세의 우물 또는 일곱 우물이라는 두 가지로 풀이됩니다(창 21:31 참조).\n\n이 이야기에서 화평은 힘으로 얻어진 것이 아니라 하나님이 함께하심이 드러나 맺어진 열매로 나타납니다. 이 점은 화평케 하는 자가 복이 있다고 하신 예수님의 말씀(마 5:9)과 이어집니다.\n\n• 설교·삶의 적용: 손해를 보더라도 다투지 않고 물러서는 일이 하나님이 함께하심을 드러내는 증거가 될 수 있음을 나눌 수 있습니다. 화평을 위해 먼저 손을 내밀면서도 하나님이 주시는 약속에 시선을 두도록 권할 수 있습니다.",
       "heroImg": "assets/events/E254_hero.webp",
       "thumbImg": "assets/events/E254_thumb.webp",
       "relatedPersons": [
@@ -14519,7 +14840,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "구원의 말씀 자체는 입에 꿀처럼 달콤한데 그 말씀을 내 삶으로 소화하고 세상에 나가 증거할 때는 왜 배가 쓰라린 고난이 따를까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "그랄 왕 아비멜렉은 이삭을 쫓아냈으나 하나님이 그와 함께하심을 분명히 보고 군대장관 비골과 함께 찾아와 화친을 청했습니다. 두 사람은 잔치를 열고 서로 해치지 않기로 맹세했으며, 그날 이삭의 종들이 우물을 파고 물을 얻자 그곳을 브엘세바라 불렀습니다."
     },
     {
       "id": "E255",
@@ -14541,7 +14864,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E255] 라헬의 드라빔 절도와 야곱의 하란 탈출·라반의 추격 및 미스바('갈르엣') 돌무더기 경계 언약 (창 31:1~32:2)\n• P007 / P215 / P216 / P217\n• 야곱을 해하려 추격하던 라반을 밤 꿈에 막아서신 하나님과 갈르엣 돌무더기 화평 조약, 그리고 길을 가는 야곱을 맞이한 하나님의 사자들('마하나임', 두 진영)",
+      "dossierMd": "■ [E255] 라헬의 드라빔 절도와 야곱의 하란 탈출·라반의 길르앗산 추격 및 미스바('갈르엣') 돌무더기 경계 언약(창 31:1-55)\n• 본문: 창 31:1-55\n• 핵심 요약: 야곱은 라반 몰래 하란을 떠났고, 그 사이 라헬은 아버지의 드라빔을 훔쳤습니다. 길르앗 산지에서 야곱을 따라잡은 라반은 이미 꿈에 하나님의 경고를 받은 터라 해치지 못했고, 두 사람은 돌 더미를 쌓아 서로 넘어 해치지 않기로 언약했습니다. 이후 야곱은 마하나임에서 하나님의 사자들을 만났습니다.\n\n드라빔은 집안의 수호신상으로 쓰인 작은 상으로, 누지 같은 고대 문서와 비교하여 가장권이나 상속권의 상징으로 쓰였다고 보는 견해도 있으나 확정하기는 어렵습니다. 라헬이 이를 낙타 안장 밑에 숨긴 일(창 31:34)은 우상을 곁에 둔 채 야곱의 가정에 남은 문제를 보여 주며, 야곱은 이를 모른 채 훔친 자가 죽으리라고 말하기도 했습니다. 라반은 하란에서 칠 일 길을 쫓아 길르앗 산지에서 야곱을 만났지만, 하나님이 꿈에 나타나 야곱에게 선악간에 말하지 말라고 막으셨습니다(창 31:24).\n\n두 사람은 돌을 세우고 무더기를 쌓아 증거로 삼았는데, 라반은 아람어로 여갈사하두다, 야곱은 히브리어로 갈르엣이라 불렀으며 둘 다 증거의 무더기라는 뜻입니다. 미스바(망대)라는 이름은 여호와께서 서로 떠나 있을 때에도 감시하시기를 바란다는 말에서 나왔습니다(창 31:49). 이 말은 흔히 위로의 축도처럼 쓰이지만, 본문에서는 서로를 믿지 못하는 이들이 하나님을 증인으로 세운 맹세였습니다.\n\n바로 이어 야곱은 하나님의 군대 곧 마하나임을 보고(창 32:1-2), 자신이 홀로 걷는 길이 아님을 확인합니다. 속임과 두려움 속에 있던 야곱을 하나님이 지켜 오셨다는 점은 더 큰 보호자이신 그리스도를 가리킵니다.\n\n• 설교·삶의 적용: 신뢰가 무너진 관계에서도 하나님이 증인이 되어 주시며 해로부터 지키신다는 사실을 전할 수 있습니다. 또한 가정 안에 남아 있는 숨은 우상이 없는지 돌아보도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E255_hero.webp",
       "thumbImg": "assets/events/E255_thumb.webp",
       "relatedPersons": [
@@ -14577,7 +14900,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 계시록 11장의 증인은 한 명이 아니라 율법의 유효 증인 수인 '두 증인'이며 모세(율법)와 엘리야(선지자)의 권능을 함께 나타낼까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "야곱은 라반 몰래 하란을 떠났고, 그 사이 라헬은 아버지의 드라빔을 훔쳤습니다. 길르앗 산지에서 야곱을 따라잡은 라반은 이미 꿈에 하나님의 경고를 받은 터라 해치지 못했고, 두 사람은 돌 더미를 쌓아 서로 넘어 해치지 않기로 언약했습니다. 이후 야곱은 마하나임에서 하나님의 사자들을 만났습니다."
     },
     {
       "id": "E256",
@@ -14599,7 +14924,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E256] 에브랏(베들레헴) 길에서 막내 베냐민('베노니'→'베냐민') 출산과 라헬의 임종·묘비 건립 (창 35:16-20)\n• P007 / P215 / P222\n• 어머니가 숨지며 부른 '베노니'(내 슬픔의 아들)를 아버지 야곱이 '베냐민'(오른손의 아들)으로 바꾸어 부른 사건",
+      "dossierMd": "■ [E256] 에브랏(베들레헴) 길에서 막내 베냐민('베노니'→'베냐민')을 낳다 숨진 라헬과 라헬의 묘비 건립(창 35:16-20)\n• 본문: 창 35:16-20; 렘 31:15; 마 2:18\n• 핵심 요약: 야곱의 일행이 벧엘을 떠나 에브랏 길에 이르렀을 때 라헬이 난산 끝에 막내를 낳고 숨을 거두었습니다. 라헬은 아이 이름을 내 슬픔의 아들이라는 뜻의 베노니로 불렀지만 야곱은 오른손의 아들이라는 뜻의 베냐민으로 고쳤고, 라헬의 무덤 위에 기둥을 세웠습니다.\n\n에브랏은 본문이 곧 베들레헴이라고 덧붙이는 곳이며(창 35:19), 라헬은 그 길가에 묻혔습니다. 다만 사무엘상 10:2에 나오는 베냐민 지경의 라헬 무덤 위치와 오늘날 전통 위치를 어떻게 연결할지에 대해서는 학자들 사이에 논의가 이어지고 있습니다. 라헬은 일찍이 요셉을 낳고 아들 하나를 더 달라고 간구했는데(창 30:24), 그 기도가 응답되는 자리가 곧 그의 임종의 자리가 되었습니다.\n\n산파가 두려워 말라고 위로했으나 라헬은 마지막 숨 가운데 아이를 베노니(벤오니)라고 불렀습니다. 야곱은 그 이름을 베냐민(벤야민)으로 바꾸었는데, 야민은 오른손 또는 남쪽을 뜻하며 오른손은 성경에서 힘과 복의 자리로 쓰입니다. 아내를 잃은 슬픔 속에서도 아들에게 복의 이름을 주었다는 점에서, 이 개명은 슬픔을 소망으로 바꾸려는 신앙의 선택으로 볼 수 있습니다.\n\n훗날 예레미야는 라마에서 자식을 잃은 라헬의 울음을 말했고(렘 31:15), 마태는 헤롯이 베들레헴의 아이들을 죽였을 때 이 말씀이 이루어졌다고 적습니다(마 2:17-18). 라헬이 눈물로 묻힌 베들레헴 길에서 다윗과 메시아가 나시니, 슬픔의 땅에서 구원의 이야기가 시작되는 셈입니다.\n\n• 설교·삶의 적용: 슬픔의 이름을 소망의 이름으로 바꾸어 부르는 믿음을 나눌 수 있습니다. 눈물이 마르지 않는 자리에서도 베들레헴에 오신 그리스도가 위로의 근거가 됨을 전할 수 있습니다.",
       "heroImg": "assets/events/E256_hero.webp",
       "thumbImg": "assets/events/E256_thumb.webp",
       "relatedPersons": [
@@ -14623,7 +14948,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "야곱의 일행이 벧엘을 떠나 에브랏 길에 이르렀을 때 라헬이 난산 끝에 막내를 낳고 숨을 거두었습니다. 라헬은 아이 이름을 내 슬픔의 아들이라는 뜻의 베노니로 불렀지만 야곱은 오른손의 아들이라는 뜻의 베냐민으로 고쳤고, 라헬의 무덤 위에 기둥을 세웠습니다."
     },
     {
       "id": "E257",
@@ -14645,7 +14972,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E257] 장자 루벤의 빌하 침상 범죄(장자권 상실)와 야곱의 12아들 구속사 역할 분담 확정 (창 35:22-26; 대상 5:1-2)\n• P007 / P220 / P008 / P218\n• 대상 5:1-2 주석 그대로 장자의 두 몫 명분은 요셉(에브라임·므낫세)에게, 주권자(메시아 왕권)는 유다에게, 제사장 직분은 레위에게로 나뉘어 위임된 구속사 섭리",
+      "dossierMd": "■ [E257] 야곱의 가나안 첫째 귀환 후 장자 루벤의 빌하 침상 범죄(장자권 박탈, 창 35:22; 대상 5:1)와 12아들 명단 확정\n• 본문: 창 35:22-26; 49:3-4; 대상 5:1-2\n• 핵심 요약: 야곱이 에델 망대를 지나 거주하는 동안 맏아들 루벤이 아버지의 첩 빌하와 동침했고, 이스라엘이 그 사실을 들었다고 기록됩니다. 이 범죄로 장자의 명분은 요셉에게, 주권자는 유다에게로 돌아가게 되었으며, 이어서 열두 아들의 명단이 확정되어 이스라엘 지파 구조의 바탕이 놓였습니다.\n\n창세기 35:22는 짧게 루벤의 범죄를 기록하고 곧바로 야곱의 열두 아들 명단으로 넘어갑니다. 레아에게서 루벤, 시므온, 레위, 유다, 잇사갈, 스불론이, 라헬에게서 요셉과 베냐민이, 빌하에게서 단과 납달리가, 실바에게서 갓과 아셀이 났다고 정리됩니다(창 35:23-26). 베냐민은 가나안 땅에서 태어났으나 본문은 이를 대략 밧단아람에서 난 아들들로 묶어 정리하는 것으로 이해됩니다.\n\n야곱은 임종 때 루벤에게 물의 끓음 같았으니 탁월하지 못하리라고 말합니다(창 49:3-4). 역대상 5:1-2는 장자의 명분이 요셉에게 돌아갔다고 설명하는데, 요셉의 아들 에브라임과 므낫세가 각각 한 지파를 이루어 두 몫의 기업을 받았기 때문입니다. 장자를 가리키는 베코르 대신 유다에게는 나기드(주권자)라는 말이 쓰이는데, 이는 왕권의 약속과 이어집니다. 레위는 후에 금송아지 사건에서 여호와 편에 선 일로 제사장 직분을 맡게 되니(출 32:26-29), 직분이 하나의 지파로 모인 것이 아니라 여러 지파에 나뉘었다고 볼 수 있습니다.\n\n유다 지파에서 다윗이 나고 마침내 예수 그리스도가 나셨습니다(마 1:2-3). 죄 때문에 상실된 자리 위에서도 하나님은 약속의 줄기를 이어 가십니다.\n\n• 설교·삶의 적용: 한순간의 죄가 오랜 기간 지위와 복을 잃게 할 수 있음을 경계하되, 사람의 실패 위에서도 하나님의 약속은 끊어지지 않는다는 은혜를 함께 전할 수 있습니다. 장자의 자리가 아니라 은혜로 맡겨진 사명을 소중히 여기도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E257_hero.webp",
       "thumbImg": "assets/events/E257_thumb.webp",
       "relatedPersons": [
@@ -14681,7 +15008,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 다니엘서와 요한계시록은 성도가 겪는 환난의 기간을 늘 완전수 7년의 절반인 '3년 반(한 때 두 때 반 때 / 42달 / 1260일)'으로 표현할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "야곱이 에델 망대를 지나 거주하는 동안 맏아들 루벤이 아버지의 첩 빌하와 동침했고, 이스라엘이 그 사실을 들었다고 기록됩니다. 이 범죄로 장자의 명분은 요셉에게, 주권자는 유다에게로 돌아가게 되었으며, 이어서 열두 아들의 명단이 확정되어 이스라엘 지파 구조의 바탕이 놓였습니다."
     },
     {
       "id": "E258",
@@ -14703,7 +15032,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E258] 요셉의 감옥 내 술 맡은 관원장·떡 굽는 관원장 해몽과 만 2년 만의 바로 앞 호출 (창 40:1~41:14)\n• P008\n• 사람들의 잊음 속에서도 하나님의 정확한 시간표(만 2년 후 바로의 꿈)에 수염을 깎고 총리로 불려 나온 요셉",
+      "dossierMd": "■ [E258] 요셉의 애굽 매입 후 술 맡은 관원장과 떡 굽는 관원장의 옥중 해몽 및 2년 만의 바로 앞 호출(창 40:1~41:14)\n• 본문: 창 40:1-41:14\n• 핵심 요약: 요셉이 보디발의 집에서 모함을 받아 시위대장의 감옥에 갇혔을 때, 같은 감옥에 들어온 술 맡은 관원장과 떡 굽는 관원장의 꿈을 해석해 주었습니다. 술 맡은 관원장은 복직했으나 요셉을 잊었고, 만 이태가 지난 뒤 바로가 꿈을 꾸게 되어서야 요셉이 불려 나갔습니다.\n\n창세기 40장의 두 관원은 바로의 음식과 음료를 책임지는 요직에 있던 사람들입니다. 요셉이 이들을 섬기다가 근심하는 얼굴을 보고 사정을 물은 것은(창 40:6-7), 억울한 중에도 이웃을 살피는 마음을 잃지 않은 증거라 할 수 있습니다. 그는 해석(파타르)이 하나님께 있다고 말하며 꿈을 풀었고(창 40:8), 사흘 뒤 바로의 생일에 한 사람은 복직하고 다른 사람은 처형되었습니다.\n\n요셉은 복직하는 이에게 자기를 기억하여 달라고 청하며 억울한 사정을 말했으나(창 40:14), 본문은 그가 요셉을 기억하지 못하고 잊었다고 기록합니다. 만 이태 뒤 바로가 꿈을 꾸고 어떤 박사도 풀지 못하자 비로소 술 맡은 관원장이 기억해 냈습니다. 요셉은 수염을 깎고 의복을 갈아입고 나아갔는데(창 41:14), 수염을 기르는 셈족과 달리 이집트에서는 수염을 깎는 것이 격식이었다고 알려져 있습니다.\n\n사람의 기억은 사라져도 하나님의 때는 한 해도 어긋나지 않았습니다. 낮아짐의 감옥에서 높아짐의 궁정으로 불려 나오는 요셉은, 자기를 낮추어 십자가에 죽으시고 높이 올림을 받으신 그리스도를 예표한다고 볼 수 있습니다(빌 2:8-9).\n\n• 설교·삶의 적용: 잊힌 듯한 시간이 길어도 하나님은 가장 정확한 때에 일하신다는 위로를 전할 수 있습니다. 감옥 같은 자리에서도 이웃의 얼굴을 살피고 하나님께 해석을 맡기는 요셉의 태도를 본받도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E258_hero.webp",
       "thumbImg": "assets/events/E258_thumb.webp",
       "relatedPersons": [
@@ -14715,7 +15044,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "요셉이 보디발의 집에서 모함을 받아 시위대장의 감옥에 갇혔을 때, 같은 감옥에 들어온 술 맡은 관원장과 떡 굽는 관원장의 꿈을 해석해 주었습니다. 술 맡은 관원장은 복직했으나 요셉을 잊었고, 만 이태가 지난 뒤 바로가 꿈을 꾸게 되어서야 요셉이 불려 나갔습니다."
     },
     {
       "id": "E259",
@@ -14737,7 +15068,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E259] 야곱 가문의 입애굽 길 브엘세바 밤의 이상(\"애굽으로 내려가기를 두려워하지 말라\") (창 46:1-7)\n• P007 / P008\n• 가나안을 떠나기를 두려워하던 130세 야곱에게 \"내가 너와 함께 애굽으로 내려가겠고 정녕 너를 인도하여 다시 올라올 것이며\" 약속하신 브엘세바 제단",
+      "dossierMd": "■ [E259] 야곱 가문의 애굽 이주 길 브엘세바 밤의 이상(\"애굽으로 내려가기를 두려워하지 말라 내가 거기서 너로 큰 민족을 이루게 하리라\", 창 46:1-7)\n• 본문: 창 46:1-7\n• 핵심 요약: 기근을 피해 아들 요셉을 만나러 가던 야곱은 브엘세바에서 아버지 이삭의 하나님께 제사를 드렸고, 밤의 환상 가운데 하나님이 그를 부르셨습니다. 하나님은 애굽으로 내려가기를 두려워하지 말라고 하시며 함께 가시고 다시 올라오게 하시겠다고 약속하셨고, 야곱의 가문은 그 약속을 품고 애굽으로 들어갔습니다.\n\n브엘세바는 아브라함과 이삭이 제단을 쌓은 곳이어서(창 21:33; 26:25), 야곱이 가나안의 남쪽 끝에서 제사를 드린 것은 약속의 땅을 떠나기 전 조상의 하나님께 길을 구한 행동으로 볼 수 있습니다. 하나님이 밤에 부르신 “야곱아 야곱아”(창 46:2)는 아브라함을 부르실 때처럼 친밀한 반복 호칭이며, 이어 “애굽으로 내려가기를 두려워하지 말라 내가 거기서 너로 큰 민족을 이루게 하리라”(창 46:3)고 말씀하십니다. 이삭은 기근 때 애굽으로 내려가지 말라는 명령을 받았지만(창 26:2), 이번에는 같은 하나님이 내려가도록 허락하신다는 점이 주목됩니다.\n\n두려움의 이유는 아브라함에게 주신 약속의 땅을 떠나는 일이 약속의 취소로 이어질 수 있었기 때문일 것입니다. 하나님은 이를 알고 계시며 야곱과 함께 내려가고(야라드), 후손을 다시 올라오게(알라) 하겠다고 약속하셨습니다. 이는 아브라함에게 주신 사백 년의 예언(창 15:13-14)을 이어 가는 말씀입니다.\n\n야곱의 가문은 칠십 명이 되어 애굽으로 들어갔고(창 46:27), 훗날 호세아는 이스라엘이 애굽에서 나왔음을 하나님이 아들을 부르신 일로 노래하며(호 11:1), 마태는 이를 예수님의 어린 시절에 적용합니다(마 2:15).\n\n• 설교·삶의 적용: 낯선 땅과 낯선 길로 들어서는 두려움 앞에서 하나님이 먼저 함께하겠다고 약속하신다는 사실을 전할 수 있습니다. 하나님의 인도를 구하는 예배를 먼저 드리고 나서 길을 나서는 야곱의 순서를 본받도록 권면할 수 있습니다.",
       "heroImg": "assets/events/E259_hero.webp",
       "thumbImg": "assets/events/E259_thumb.webp",
       "relatedPersons": [
@@ -14755,7 +15086,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "기근을 피해 아들 요셉을 만나러 가던 야곱은 브엘세바에서 아버지 이삭의 하나님께 제사를 드렸고, 밤의 환상 가운데 하나님이 그를 부르셨습니다. 하나님은 애굽으로 내려가기를 두려워하지 말라고 하시며 함께 가시고 다시 올라오게 하시겠다고 약속하셨고, 야곱의 가문은 그 약속을 품고 애굽으로 들어갔습니다."
     },
     {
       "id": "E260",
@@ -14777,7 +15110,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E260] 유월절·무교절·초태생 규례 제정과 낮의 구름기둥·밤의 불기둥 인도 시작 (출 12:43~13:22)\n• P009 / P010\n• 40년 광야 길 내내 백성 앞에서 떠나지 아니하고 낮에는 그늘로, 밤에는 빛으로 인도하신 구름기둥과 불기둥",
+      "dossierMd": "■ [E260] 유월절 규례와 무교절·초태생 성별 규례 제정 및 숙곳에서 에담·비하히롯으로 인도한 낮의 구름기둥과 밤의 불기둥(출 12:43~13:22)\n• 본문: 출 12:43-13:22; 느 9:12, 19\n• 핵심 요약: 출애굽 직후 하나님은 유월절 규례와 무교절, 초태생 성별 규례를 세우셨고, 이스라엘은 라암셋을 떠나 숙곳과 에담으로 나아갔습니다. 낮에는 구름 기둥, 밤에는 불 기둥이 백성 앞에서 떠나지 않았으며, 이는 하나님이 백성과 함께하며 인도하신다는 눈에 보이는 표지였습니다.\n\n출애굽기 12:43-51은 유월절에 이방인이 참여하려면 할례를 받아야 한다는 규례를 밝히고, 13장은 무교절과 초태생 성별 규례를 이어서 주십니다. 유월절은 어린 양의 피로 죽음이 넘어간 사건을 기억하는 절기이고, 무교병(맛초트)은 급히 떠난 그날을 기억하게 합니다. 처음 난 것은 모두 하나님께 속하며, 나귀는 어린 양으로 대속(파다)하고 사람의 초태생은 반드시 대속해야 했습니다(출 13:13). 이는 구원받은 자가 하나님께 속했음을 대를 이어 가르치는 방식이었습니다.\n\n13:17에서 하나님은 가장 가까운 블레셋 길 대신 홍해 광야 길로 백성을 돌려 인도하셨는데, 전쟁을 보면 마음이 변해 애굽으로 돌아갈까 염려하셨기 때문입니다. 숙곳에서 에담에 이르는 길에서 구름 기둥과 불 기둥이 앞서 갔고, 뒤이어 비하히롯 앞에 진 치게 하신 것으로 이어집니다(출 14:2). 느헤미야 9:12, 19는 이 기둥이 광야 기간 내내 낮과 밤에 길을 보여 주었다고 회고합니다.\n\n유월절 어린 양은 그리스도께서 우리의 유월절 양으로 희생되셨다는 말씀(고전 5:7)으로 성취되고, 구름과 불의 인도는 세상의 빛으로 오신 예수님(요 8:12)과 이어서 읽을 수 있습니다.\n\n• 설교·삶의 적용: 구원받은 자는 기억하는 백성이며, 그 기억을 다음 세대에게 가르치는 책임이 있음을 전할 수 있습니다. 눈에 보이는 길이 없는 광야에서도 하나님이 앞서 걸으신다는 확신을 성도에게 줄 수 있습니다.",
       "heroImg": "assets/events/E260_hero.webp",
       "thumbImg": "assets/events/E260_thumb.webp",
       "relatedPersons": [
@@ -14795,7 +15128,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "출애굽 직후 하나님은 유월절 규례와 무교절, 초태생 성별 규례를 세우셨고, 이스라엘은 라암셋을 떠나 숙곳과 에담으로 나아갔습니다. 낮에는 구름 기둥, 밤에는 불 기둥이 백성 앞에서 떠나지 않았으며, 이는 하나님이 백성과 함께하며 인도하신다는 눈에 보이는 표지였습니다."
     },
     {
       "id": "E261",
@@ -14817,7 +15152,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E261] 아론의 대제사장 성의(에봇·12보석 판결흉패·금방울과 석류 청색 겉옷·순금 성패 '여호와께 성결') 제작 (출 28; 39장)\n• P010 / P230 / P026\n• 이스라엘 12지파의 이름을 두 어깨(호마노 2개)에 메고 가슴(판결흉패 12보석)에 품고 성소에 들어가며 이마의 순금 패('코데쉬 라아도나이', 여호와께 성결)로 성물의 죄책을 담당하는 대제사장 예수 그리스도의 시청각적 예표",
+      "dossierMd": "■ [E261] 아론의 대제사장 성의(에봇·12보석 판결흉패·우림과 둠밈·청색 겉옷 금방울과 석류·순금 성패 '여호와께 성결') 제작(출 28; 39장)\n• 본문: 출 28:1-43; 39:1-31; 히 4:14-16; 7:25\n• 핵심 요약: 하나님은 아론과 그 아들들에게 거룩하고 영화롭게 할 성의를 만들게 하셨고, 에봇과 판결 흉패, 청색 겉옷, 이마의 금패가 그 중심을 이루었습니다. 대제사장이 열두 지파의 이름을 어깨와 가슴에 지고 성소에 들어가는 모습은, 우리를 품고 하나님 앞에서 간구하시는 대제사장 그리스도를 미리 보여 줍니다.\n\n출애굽기 28장은 에봇과 흉패, 에봇 받침 겉옷, 반포 속옷, 관, 띠와 같은 여러 복식을 정리합니다. 에봇 어깨받이에는 호마노 두 개를 물려 여섯 지파씩 이름을 새기게 했고, 판결 흉패(호셴 미쉬파트)에는 네 줄로 열두 보석을 달아 각 지파의 이름을 인장처럼 새겼습니다. 흉패 안에는 우림과 둠밈을 넣었는데, 그 모양과 쓰임은 본문에 자세히 나오지 않아 확정하기 어렵습니다. 대제사장은 지파를 대표하여 들어가며 그 이름을 어깨와 가슴에 지고 하나님 앞에 섰습니다.\n\n청색 겉옷 가장자리에는 금방울과 석류를 번갈아 달아, 대제사장이 성소에서 섬길 때 그 소리가 들리게 하고 죽지 않게 했습니다(출 28:35). 이마의 순금 패에는 “여호와께 성결”(코데쉬 라아도나이)이라 새겼으며, 이는 대제사장이 백성이 드리는 성물에 관한 허물을 담당한다는 뜻을 가졌습니다(출 28:36-38). 출애굽기 39장은 이 복식이 여호와께서 명하신 대로 만들어졌음을 거듭 확인합니다.\n\n히브리서는 하늘에 오르신 큰 대제사장 예수님이 우리의 연약함을 체휼하시며(히 4:14-16), 영원히 살아 계셔서 우리를 위해 간구하신다고 말합니다(히 7:25). 아론의 옷이 가리키던 실체가 그분 안에서 이루어졌습니다.\n\n• 설교·삶의 적용: 성도를 어깨와 가슴에 품고 기도하시는 대제사장 그리스도가 계심을 설교자와 성도가 함께 붙들 수 있습니다. 또한 거룩함이 우리의 노력에서 나오지 않고 그분이 입혀 주신 옷에서 비롯됨을 전하면 좋겠습니다.",
       "heroImg": "assets/events/E261_hero.webp",
       "thumbImg": "assets/events/E261_thumb.webp",
       "relatedPersons": [
@@ -14847,7 +15182,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 천국 유리바다 가에 선 구원받은 성도들은 구약 출애굽의 '모세의 노래'와 신약 구속의 '어린양의 노래'를 한 노래로 합창할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "하나님은 아론과 그 아들들에게 거룩하고 영화롭게 할 성의를 만들게 하셨고, 에봇과 판결 흉패, 청색 겉옷, 이마의 금패가 그 중심을 이루었습니다. 대제사장이 열두 지파의 이름을 어깨와 가슴에 지고 성소에 들어가는 모습은, 우리를 품고 하나님 앞에서 간구하시는 대제사장 그리스도를 미리 보여 줍니다."
     },
     {
       "id": "E262",
@@ -14869,7 +15206,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E262] 모세의 회막 밖 대면 기도와 반석 틈에서 여호와의 영광(등)을 보게 하심 (출 33:7-23)\n• P009 / P012\n• 사람이 여호와와 친구와 이야기함같이 대면하여 말씀하시고, \"주의 영광을 내게 보이소서\" 간구한 모세를 반석 틈에 두시고 손으로 덮어 보호하신 뒤 하나님의 자비와 은혜의 성품을 선포하신 사건",
+      "dossierMd": "■ [E262] 모세의 회막 밖 기도와 여호와께서 친구와 이야기함같이 모세와 대면하여 말씀하심 및 여호와의 영광(등)을 보게 하심(출 33:7-23)\n• 본문: 출 33:7-23\n• 핵심 요약: 금송아지 사건 이후 모세는 진영 밖에 회막을 치고 여호와와 친구처럼 대면하여 말씀을 나누었습니다. 모세가 주의 영광을 보여 달라고 구하자, 하나님은 그를 반석 틈에 두고 손으로 덮으신 뒤 자신의 선하심과 이름을 선포하시되 얼굴이 아니라 지나가신 뒤의 등을 보게 하셨습니다.\n\n출애굽기 33:7-11의 회막은 훗날 완성된 성막(출 40장)과 구별되는 임시 천막으로 보는 견해가 많습니다. 금송아지로 백성이 범죄한 뒤라 여호와는 백성과 함께 올라가지 않겠다고 하셨고, 모세는 천막을 진영 밖 멀리 쳐서 하나님과 만나는 자리로 삼았습니다. 구름 기둥이 문에 서고 백성이 일어서서 경배하는 가운데, 여호와는 사람이 친구와 이야기하듯 모세와 말씀하셨고 젊은 수종자 여호수아는 회막을 떠나지 않았습니다.\n\n모세는 이어서 주의 길을 알려 달라고 구하고, 이어 영광(카보드, 무게와 존귀)을 보여 달라고 간구했습니다(출 33:13, 18). 하나님은 누구도 얼굴(파님)을 보고 살 수 없다고 하시며, 반석 틈에 모세를 두시고 손으로 덮은 뒤 지나가신 후에 등(아호라이)만 보게 하셨습니다(출 33:20-23). 하나님은 자신의 모든 선하심이 지나가게 하며 이름을 선포하시겠다고 하셨고, 이어 34:6-7에서 자비롭고 은혜로우며 노하기를 더디 하시는 분이라 선언하십니다.\n\n요한복음은 하나님을 본 사람이 없으나 아버지 품속에 있는 독생자가 그를 나타내셨다고 증언하며(요 1:18), 고린도후서 4:6은 하나님의 영광이 그리스도의 얼굴에 있다고 말합니다. 모세가 반석 틈에서 본 것의 실체가 육신을 입으신 말씀 안에 드러났습니다.\n\n• 설교·삶의 적용: 죄 후에도 하나님은 기도하는 사람을 만나 주시며 자신의 성품으로 응답하신다는 점을 전할 수 있습니다. 영광을 보여 달라는 갈망이 호기심이 아니라 하나님을 아는 데 있어야 함을 권면할 수 있습니다.",
       "heroImg": "assets/events/E262_hero.webp",
       "thumbImg": "assets/events/E262_thumb.webp",
       "relatedPersons": [
@@ -14887,7 +15224,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "금송아지 사건 이후 모세는 진영 밖에 회막을 치고 여호와와 친구처럼 대면하여 말씀을 나누었습니다. 모세가 주의 영광을 보여 달라고 구하자, 하나님은 그를 반석 틈에 두고 손으로 덮으신 뒤 자신의 선하심과 이름을 선포하시되 얼굴이 아니라 지나가신 뒤의 등을 보게 하셨습니다."
     },
     {
       "id": "E263",
@@ -14909,7 +15248,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E263] 레위기 19장 성결 법전(\"너희도 거룩할지어다\"·\"네 이웃 사랑하기를 네 자신과 같이 사랑하라\", 레 19:2, 18)과 밭 모퉁이 이삭줍기 법 (레 19:1-37)\n• P009 / P010 / P026\n• 가난한 자와 거류민을 위해 밭 모퉁이를 남겨 두는 사회 정의 법(룻기 성취!)과 예수님이 온 율법의 둘째 강령으로 꼽으신 레위기 19:18의 제정",
+      "dossierMd": "■ [E263] 레위기 11~15장 정결법과 레위기 19장 성결 법전(\"나 여호와 너희 하나님이 거룩하니 너희도 거룩할지어다\"·\"네 이웃 사랑하기를 네 자신과 같이 사랑하라\", 레 19:2, 18)\n• 본문: 레 19:1-37; 마 22:39; 롬 13:9; 갈 5:14; 약 2:8; 벧전 1:16\n• 핵심 요약: 레위기 11-15장은 음식, 출산, 피부병, 유출 등을 다루는 정결법을 주고, 19장은 거룩한 백성이 삶의 모든 영역에서 어떻게 살아야 하는지를 보여 줍니다. 이웃을 자기 몸처럼 사랑하라는 19:18은 예수님이 둘째로 큰 계명으로 인용하셨고, 밭 모퉁이를 남겨 가난한 자와 거류민에게 주라는 규례는 룻기의 배경이 됩니다.\n\n레위기 11-15장의 정결과 부정 구분은 위생 규정으로만 환원하기 어렵고, 하나님의 거룩한 임재 가까이 사는 백성이 삶의 구석구석에서 구별됨을 훈련하는 길이었다고 이해되어 왔습니다. 17-26장을 흔히 성결 법전이라 부르며, 19장은 그 중심에서 “너희는 거룩하라”(레 19:2)는 말씀으로 시작합니다. 거룩(카도쉬)은 구별되어 하나님께 속함을 뜻하며, 십계명의 항목들이 일상의 윤리와 맞물려 반복됩니다.\n\n이삭줍기 규례(레 19:9-10)는 곡식을 거둘 때 밭 모퉁이까지 다 베지 말고 떨어진 것을 줍지 말아 가난한 자와 거류민에게 남기라는 것으로, 룻이 보아스의 밭에서 이삭을 주울 수 있었던 법적 배경으로 볼 수 있습니다. 거류민을 자기 같이 사랑하라는 말씀(레 19:34)도 포함되어 있어, 이웃의 범위가 혈연을 넘어섭니다. 19:18의 이웃 사랑은 마태복음 22:39와 로마서 13:9, 갈라디아서 5:14, 야고보서 2:8에서 율법의 요약으로 인용됩니다.\n\n베드로전서 1:16은 이 거룩의 부름을 신약 교회에 그대로 적용합니다. 거룩은 도덕적 완성이 아니라 거룩하신 하나님이 먼저 우리를 구별하셨기 때문에 가능한 삶이며, 그 은혜가 십자가에서 나타났습니다.\n\n• 설교·삶의 적용: 거룩이 예배당 안의 종교 행위가 아니라 가난한 이웃을 위해 밭 모퉁이를 남기는 일상의 순종임을 설교자가 구체적으로 짚을 수 있습니다. 이웃 사랑이 우리 노력의 결과가 아니라 먼저 사랑받은 자의 반응임을 함께 고백하도록 이끌 수 있습니다.",
       "heroImg": "assets/events/E263_hero.webp",
       "thumbImg": "assets/events/E263_thumb.webp",
       "relatedPersons": [
@@ -14933,7 +15272,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "레위기 11-15장은 음식, 출산, 피부병, 유출 등을 다루는 정결법을 주고, 19장은 거룩한 백성이 삶의 모든 영역에서 어떻게 살아야 하는지를 보여 줍니다. 이웃을 자기 몸처럼 사랑하라는 19:18은 예수님이 둘째로 큰 계명으로 인용하셨고, 밭 모퉁이를 남겨 가난한 자와 거류민에게 주라는 규례는 룻기의 배경이 됩니다."
     },
     {
       "id": "E264",
@@ -14955,7 +15296,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E264] 성막 봉헌식 열두 지파 지휘관들의 12일간 예물 봉헌과 속죄소 두 그룹 사이의 음성 (민 7:1-89)\n• P009 / P010\n• 각 지파의 동일한 헌신을 하루씩 12일간 개별적으로 귀하게 받으시고 속죄소 위 두 그룹 사이에서 모세에게 말씀하신 은혜",
+      "dossierMd": "■ [E264] 성막 봉헌식 열두 지파 지휘관들의 12일간 봉헌 예물 행렬과 시은좌(속죄소) 두 그룹 사이에서 들려온 여호와의 음성(민 7:1-89)\n• 본문: 민 7:1-89\n• 핵심 요약: 성막이 세워지고 기름 부음을 받은 뒤, 열두 지파의 지휘관들이 하루에 한 사람씩 열두 날 동안 똑같은 예물을 드렸습니다. 마지막 절에서는 모세가 회막에 들어가 속죄소 위 두 그룹 사이에서 들려오는 여호와의 음성을 들었으며, 하나님께 드려진 예물이 응답의 말씀과 맞닿는 대목입니다.\n\n민수기 7장은 89절로 민수기에서 가장 긴 장이며, 같은 내용이 열두 번 반복되는 특이한 구조를 가집니다. 시기는 성막이 세워진 뒤인 둘째 해 첫째 달 무렵(출 40:17)으로, 지휘관(나시)들은 각 지파의 대표로 은 쟁반과 은 바리, 향을 채운 금 숟가락, 번제와 속죄제와 화목제의 짐승을 가져왔습니다. 먼저 레위 사람에게 쓰일 수레 여섯 대와 소 열두 마리를 드렸고, 고핫 자손은 거룩한 기구를 어깨에 메야 하므로 수레를 받지 않았습니다(민 7:3-9). 열두 번이나 같은 목록을 되풀이해 적은 것은 지파마다 드린 몫을 하나님이 빠짐없이 기억하신다는 뜻으로 볼 수 있습니다.\n\n봉헌(하누카)이라는 말은 이 장에서 거듭 쓰이며, 하나님께 구별되어 드려짐을 뜻합니다. 7장의 끝은 모세가 회막에서 증거궤 위 속죄소(카포레트)의 두 그룹 사이에서 나는 소리를 들었다고 기록합니다(민 7:89). 속죄소는 속죄일에 피가 뿌려지는 자리로, 로마서 3:25가 그리스도를 화목제물로 세우셨다고 할 때 쓰이는 단어와 연결됩니다.\n\n예물이 하나님께 도달하는 길이 속죄소에 있듯, 우리의 헌신도 그리스도의 피 위에서만 받아들여진다는 복음이 볼 수 있습니다.\n\n• 설교·삶의 적용: 성도의 헌신은 크기보다 하나님 앞에 드려진 마음으로 기억됨을 전할 수 있습니다. 예물과 봉사가 속죄소이신 그리스도 위에서만 열납됨을 분명히 하면 좋겠습니다.",
       "heroImg": "assets/events/E264_hero.webp",
       "thumbImg": "assets/events/E264_thumb.webp",
       "relatedPersons": [
@@ -14979,7 +15320,9 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "므깃도는 실제로는 산이 아니라 이스르엘 평야의 언덕인데 왜 계시록은 '하르 므깃도(므깃도의 산 = 바로 옆 갈멜산!)'라고 불렀을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "성막이 세워지고 기름 부음을 받은 뒤, 열두 지파의 지휘관들이 하루에 한 사람씩 열두 날 동안 똑같은 예물을 드렸습니다. 마지막 절에서는 모세가 회막에 들어가 속죄소 위 두 그룹 사이에서 들려오는 여호와의 음성을 들었으며, 하나님께 드려진 예물이 응답의 말씀과 맞닿는 대목입니다."
     },
     {
       "id": "E265",
@@ -15001,7 +15344,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E265] 시내 광야 제2유월절 배려 규정과 성막 위 구름을 따라 진 치고 행진한 순종 훈련 (민 9:1-23)\n• P009\n• 시체로 부정하게 되어 정월 유월절을 못 지킨 자들에게 둘째 달 14일에 지킬 수 있는 은혜의 길을 열어 주시고, 구름이 머무르면 머물고 떠오르면 행진한 절대 순종 훈련",
+      "dossierMd": "■ [E265] 시내 광야 제2년 유월절 준수(부정하여 못 지킨 자들을 위한 제2유월절 규정)와 성막 위 구름이 떠오를 때 행진하고 머물 때 진 친 훈련(민 9:1-23)\n• 본문: 민 9:1-23\n• 핵심 요약: 둘째 해 첫째 달에 이스라엘은 시내 광야에서 유월절을 지켰고, 시체로 부정하여 참여하지 못한 사람들을 위해 둘째 달 열나흗날에 지킬 수 있는 길이 열렸습니다. 이어 구름이 성막을 덮고 머물거나 떠오르는 모습에 따라 진을 치고 행진하는 법이 정리되어, 광야 생활의 모든 움직임이 여호와의 명령에 달렸음을 보여 줍니다.\n\n민수기 9:1-5는 둘째 해 첫째 달 열나흗날 해 질 때 유월절을 지키라는 명령으로 시작합니다. 시체를 만져 부정해진 사람들이 모세와 아론에게 와서 이 때에 예물을 드리지 못하게 하느냐고 묻자(민 9:6-7), 하나님은 둘째 달 열나흗날에 지키도록 허락하셨습니다. 이 제2 유월절은 규례를 가볍게 하는 것이 아니라 부정함을 이유로 언약 공동체에서 소외되지 않게 하신 은혜의 길입니다. 이방인이 지킬 때도 같은 규례를 적용했습니다(민 9:14).\n\n이어지는 장면에서 구름이 성막을 덮되 밤에는 불 모양으로 보였고(민 9:15-16), 구름이 떠오르면 진을 걷고 머무는 곳에서 진을 쳤습니다. 이틀이든 한 달이든 일 년이든 구름이 머물면 머물렀다는 말은(민 9:22), 일정은 사람이 아니라 하나님이 정하신다는 뜻입니다. 이스라엘은 여호와의 명령을 따라 진을 치고 따라 행진했다고 요약되는데(민 9:23), 여기서 명령으로 번역된 표현은 여호와의 입을 따라(알 피)라는 문자적 뜻을 가집니다.\n\n성령으로 인도함을 받는 자가 곧 하나님의 아들이라는 로마서 8:14의 말씀은, 구름을 따라 걷던 광야 백성의 순종이 신약의 교회에서 성령의 인도로 이어졌음을 보여 줍니다.\n\n• 설교·삶의 적용: 때를 놓친 사람에게도 길을 열어 두시는 하나님의 자비를 전하되, 하나님이 움직이실 때 따르고 멈추실 때 머무는 순종을 권면할 수 있습니다. 내 계획이 아니라 그분의 입을 따라 사는 삶이 광야를 건너는 방식임을 함께 나눌 수 있습니다.",
       "heroImg": "assets/events/E265_hero.webp",
       "thumbImg": "assets/events/E265_thumb.webp",
       "relatedPersons": [
@@ -15013,7 +15356,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "둘째 해 첫째 달에 이스라엘은 시내 광야에서 유월절을 지켰고, 시체로 부정하여 참여하지 못한 사람들을 위해 둘째 달 열나흗날에 지킬 수 있는 길이 열렸습니다. 이어 구름이 성막을 덮고 머물거나 떠오르는 모습에 따라 진을 치고 행진하는 법이 정리되어, 광야 생활의 모든 움직임이 여호와의 명령에 달렸음을 보여 줍니다."
     },
     {
       "id": "E266",
@@ -15035,7 +15380,7 @@ window.KKUMDIDO_EVENTS_DATA = {
       ],
       "isPillar": false,
       "comparisonKey": null,
-      "dossierMd": "■ [E266] 모압 평지 모세의 신명기 3대 고별 설교와 쉐마(신 6:4-9)·\"생명을 택하라\"(신 30:19) 유언 (신 1~30장)\n• P009 / P012\n• 가나안 입성 직전 모압 평지에서 선포된 모세오경의 심장부: \"이스라엘아 들으라(쉐마 이스라엘)... 너는 마음을 다하고 뜻을 다하고 힘을 다하여 네 하나님 여호와를 사랑하라\"와 \"내가 오늘 하늘과 땅을 불러 너희에게 증거를 삼노라 내가 생명과 사망과 복과 저주를 네 앞에 두었은즉 너와 네 자손이 살기 위하여 생명을 택하고\"",
+      "dossierMd": "■ [E266] 모압 평지 요단 동편에서의 모세 고별 설교 3편(신명기 1~30장: 가데스 회고·쉐마 신 6:4-9·축복과 저주의 두 길 \"생명을 택하라\") 선포\n• 본문: 신 1:1-30:20; 마 4:4, 7, 10; 22:37\n• 핵심 요약: 광야 사십 년째 열한째 달에 모세는 모압 평지에서 가나안 입성을 앞둔 새 세대에게 긴 설교를 전했습니다. 가데스에서의 불순종을 돌아보게 하고, 쉐마로 하나님을 사랑하라고 가르쳤으며, 축복과 저주 앞에서 생명을 택하라고 간곡히 권했습니다. 신명기는 모세오경의 신학이 집약된 언약 갱신의 책입니다.\n\n신명기 1:3은 이 설교가 사십 년째 열한째 달 첫째 날에 시작되었다고 밝히며, 장소는 요단 건너편 모압 땅입니다. 설교를 세 편으로 나누는 방식(신 1:6-4:40; 4:44-28:68; 29-30장)이 흔히 쓰이지만, 구분은 학자마다 조금씩 다릅니다. 첫 부분은 가데스에서 시작된 광야 방랑의 역사를 회고하며 불순종의 결과를 기억하게 합니다. 전체 구조가 고대 근동의 종주권 조약, 곧 역사 서문과 조항, 축복과 저주를 갖추었다는 점은 널리 지적됩니다.\n\n쉐마(샤마, 듣다)는 이스라엘아 들으라는 부름(신 6:4)로 시작하여, 하나님이 한 분(에하드)이시므로 마음과 뜻과 힘을 다해 사랑하라는 명령으로 이어집니다. 사랑(아하브)은 감정만이 아니라 언약에 대한 충성이며, 말씀을 자녀에게 가르치고 집과 문에 새기도록 하는 일상의 신앙 교육으로 연결됩니다. 마지막 설교의 결론에서 모세는 하늘과 땅을 증인으로 불러 생명과 사망, 복과 저주를 앞에 두었다고 선언하고, “너와 네 자손이 살기 위하여 생명을 택하고”(신 30:19) 살라고 권합니다.\n\n예수님은 광야 시험에서 신명기 6장과 8장으로 사탄을 물리치셨고(마 4:4, 7, 10), 가장 큰 계명으로 신명기 6:5를 인용하셨습니다(마 22:37). 율법의 저주를 대신 받으신 분이 그리스도이므로(갈 3:13), 생명의 길은 그분 안에서 열렸습니다.\n\n• 설교·삶의 적용: 말씀을 반복해서 듣고 가르치는 일이 신앙의 연속성을 지켜 준다는 점을 설교자가 강조할 수 있습니다. 생명을 택하라는 권면이 율법의 짐이 아니라 그리스도께서 열어 주신 길을 걷는 선택임을 전할 수 있습니다.",
       "heroImg": "assets/events/E266_hero.webp",
       "thumbImg": "assets/events/E266_thumb.webp",
       "relatedPersons": [
@@ -15053,7 +15398,9 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false,
+      "hook": "광야 사십 년째 열한째 달에 모세는 모압 평지에서 가나안 입성을 앞둔 새 세대에게 긴 설교를 전했습니다. 가데스에서의 불순종을 돌아보게 하고, 쉐마로 하나님을 사랑하라고 가르쳤으며, 축복과 저주 앞에서 생명을 택하라고 간곡히 권했습니다. 신명기는 모세오경의 신학이 집약된 언약 갱신의 책입니다."
     },
     {
       "id": "E267",
@@ -15093,7 +15440,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E268",
@@ -15139,7 +15487,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E269",
@@ -15179,7 +15528,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E270",
@@ -15213,7 +15563,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E271",
@@ -15247,7 +15598,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E272",
@@ -15287,7 +15639,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E273",
@@ -15333,7 +15686,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E274",
@@ -15378,7 +15732,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "바울이 '내가 모든 것을 할 수 있느니라'고 외친 장소는 화려한 승리 무대였을까 아니면 배고픔과 쇠사슬의 로마 감옥이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E275",
@@ -15430,7 +15785,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 바울은 전신갑주를 묘사할 때 머리(투구)부터 내려오지 않고 허리띠 → 호심경 → 신발 → 방패 → 투구 → 검의 순서로 기록했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E276",
@@ -15488,7 +15844,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "1세기 로마 상법에서 빚을 다 갚은 파피루스 차용증서('카이로그라폰')의 글씨를 스펀지로 말갛게 지운 뒤 어디에 못을 박아 무효 공고를 했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E277",
@@ -15528,7 +15885,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 바울은 도망친 노예 오네시모의 이름으로 원어 언어유희를 치며 '그가 빚진 것은 다 내 장부에 달아 놓으라'고 친필 서명했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E278",
@@ -15578,7 +15936,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 세상 사람들은 '돈이 일만 악의 뿌리'라고 성경을 잘못 인용하며 재물 자체와 '돈을 사랑하는 탐심(필라르귀리아)'은 어떻게 다를까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E279",
@@ -15618,7 +15977,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "인생의 마지막 겨울, 죽음을 앞둔 노사도 바울이 영적 아들 디모데에게 마지막으로 보고 싶다며 부탁한 세 가지는 무엇이었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E280",
@@ -15658,7 +16018,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "오케스트라 악기 '팀파니(Tympani)'의 어원이 된 히브리서 11장 35절의 고문 동사 '팀파니조'는 어떤 순교 현장을 묘사한 것일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E281",
@@ -15709,7 +16070,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "수백 톤짜리 고대 지중해 범선의 방향을 바꾸는 선미의 작은 나무 키('페달리온')는 우리 삶의 무엇을 비유할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E282",
@@ -15764,7 +16126,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "대제사장 뜰에서 여종 앞에서 주님을 세 번 부인했던 베드로가 어떻게 로마 황제의 박해 앞에서는 '나를 거꾸로 매달라'며 순교할 수 있었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E283",
@@ -15804,7 +16167,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E284",
@@ -15850,7 +16214,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "왜 요한이서와 요한삼서는 다른 서신들과 달리 정확히 13~15절로 끝나는 짧은 분량이며 '종이와 먹과 붓'으로 쓰지 않겠다 한 이유는 무엇일까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E285",
@@ -15896,7 +16261,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "초대교회 성도들이 주일마다 음식을 나누던 '애찬(아가페 잔치)'은 어떤 모습이었으며 왜 거짓 교사들을 '물속 암초'에 비유했을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E286",
@@ -15930,7 +16296,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E287",
@@ -15970,7 +16337,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E288",
@@ -16004,7 +16372,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E289",
@@ -16050,7 +16419,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E290",
@@ -16102,7 +16472,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E291",
@@ -16160,7 +16531,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E292",
@@ -16200,7 +16572,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E293",
@@ -16240,7 +16613,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E294",
@@ -16280,7 +16654,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E295",
@@ -16326,7 +16701,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E296",
@@ -16366,7 +16742,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "구원은 오직 믿음과 어린양의 피로 받는데 왜 계시록 19장 8절은 신부의 세마포 옷을 '성도들의 옳은 행실들'이라고 설명할까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E297",
@@ -16412,7 +16789,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "하늘이 열리고 백마를 타고 오시는 예수님이 아직 땅의 짐승 군대와 싸우기도 전인데 왜 옷에 이미 피가 뿌려져 있을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E298",
@@ -16452,7 +16830,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E299",
@@ -16492,7 +16871,8 @@ window.KKUMDIDO_EVENTS_DATA = {
         }
       ],
       "relatedBehinds": [],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     },
     {
       "id": "E300",
@@ -16563,7 +16943,8 @@ window.KKUMDIDO_EVENTS_DATA = {
           "hook": "광물성 보석과 달리 오직 살아있는 조개가 자기 살을 파고든 상처를 생명의 진액으로 감싸 안아 만드는 유일한 보석 '진주'가 왜 천국에 들어가는 열두 대문이 되었을까?"
         }
       ],
-      "hasImage": true
+      "hasImage": true,
+      "isPreparing": false
     }
   ],
   "imageCompleteCount": 100

@@ -1194,6 +1194,21 @@
   var USER_EDITED_POINTS = false;
   var mosesToastTimer = null;
 
+  function checkMosesLogin(customMsg) {
+    if (window.__KKD_TEST_BYPASS === true) return true;
+    if (window.kkumdidoPass && typeof window.kkumdidoPass.isVerified === 'function') {
+      if (!window.kkumdidoPass.isVerified()) {
+        if (typeof window.kkumdidoPass.requireLogin === 'function') {
+          window.kkumdidoPass.requireLogin(null, customMsg || '🔐 「꿈디도 도서관 이용증」 로그인을 완료하신 분만 모세의 지팡이 스튜디오를 사용하실 수 있습니다.');
+        } else if (typeof window.kkumdidoPass.open === 'function') {
+          window.kkumdidoPass.open(null, customMsg || '🔐 「꿈디도 도서관 이용증」 로그인을 완료하신 분만 모세의 지팡이 스튜디오를 사용하실 수 있습니다.', true);
+        }
+        return false;
+      }
+    }
+    return true;
+  }
+
   function showMosesToast(msg) {
     var t = document.getElementById('mosesActionToast');
     if (!t) {
@@ -1275,6 +1290,7 @@
   }
 
   function loadSampleSermon(idx, isUserClick) {
+    if (isUserClick && !checkMosesLogin()) return;
     var s = SAMPLE_SERMONS[idx] || SAMPLE_SERMONS[0];
     document.getElementById('inTitle').value = s.title;
     document.getElementById('inScripture').value = s.scripture;
@@ -1314,6 +1330,7 @@
   }
 
   function generateAll7Materials(isManualClick, btnEl) {
+    if (isManualClick && !checkMosesLogin()) return;
     // 사용자가 [주간 사역 7종 자료 일괄 생성하기]를 직접 눌렀는데
     // 본문 장절(inScripture)이나 1단계 검색창(mosesQueryInput)에 새로운 본문을 적어두고 아직 채우기를 안 한 경우 자동 동기화
     if (isManualClick) {
@@ -1679,6 +1696,7 @@
   }
 
   function copyCurrentPanelText() {
+    if (!checkMosesLogin()) return;
     var activePanel = document.querySelector('.out-panel.active');
     if (!activePanel) return;
     var txt = extractCleanPanelText(activePanel);
@@ -1692,6 +1710,7 @@
   }
 
   function copyAiPromptAndOpen(url) {
+    if (!checkMosesLogin()) return;
     var box = document.getElementById('aiMasterPromptBox');
     if (!box) return;
     navigator.clipboard.writeText(box.value).then(function() {
@@ -1702,6 +1721,7 @@
   }
 
   function downloadAll7AsText() {
+    if (!checkMosesLogin()) return;
     var title = document.getElementById('inTitle').value.trim() || '주일설교';
     var parts = [];
     document.querySelectorAll('.out-panel').forEach(function(p) {
@@ -1742,6 +1762,7 @@
   }
 
   function fillStep2FromScriptureInput(btnEl) {
+    if (!checkMosesLogin()) return;
     var sInput = document.getElementById('inScripture');
     var mq = document.getElementById('mosesQueryInput');
     var q = (sInput && sInput.value.trim()) || (mq && mq.value.trim()) || '룻기 2:12';
@@ -1754,6 +1775,7 @@
   }
 
   function quickSummonPassage(q) {
+    if (!checkMosesLogin()) return;
     var mq = document.getElementById('mosesQueryInput');
     if (mq) mq.value = q;
     summonKkumdidoCards(q, false);
@@ -1825,6 +1847,7 @@
   }
 
   function summonKkumdidoCards(optionalQuery, syncToStep2, btnEl) {
+    if (syncToStep2 && !checkMosesLogin()) return;
     var mq = document.getElementById('mosesQueryInput');
     var q = (optionalQuery != null ? optionalQuery : (mq ? mq.value : '')).trim() || '룻기 2:12';
     if (mq && optionalQuery != null) mq.value = q;
@@ -2005,6 +2028,7 @@
   }
 
   function applySummonedCard(type, btnEl) {
+    if (!checkMosesLogin()) return;
     if (!CURRENT_SUMMONED) summonKkumdidoCards(null, false);
     if (!CURRENT_SUMMONED) return;
     var cs = CURRENT_SUMMONED;
@@ -2041,6 +2065,7 @@
   }
 
   function appendArchiveModToManuscript(modIdx, btnEl) {
+    if (!checkMosesLogin()) return;
     if (!CURRENT_SUMMONED || !CURRENT_SUMMONED.mods[modIdx]) return;
     ensureStep2MatchesSummonedBase();
     var m = CURRENT_SUMMONED.mods[modIdx];
@@ -2057,6 +2082,7 @@
   }
 
   function appendSummonedCardToManuscript(cardType, btnEl) {
+    if (!checkMosesLogin()) return;
     if (!CURRENT_SUMMONED) summonKkumdidoCards(null, false);
     if (!CURRENT_SUMMONED) return;
     ensureStep2MatchesSummonedBase();
@@ -2111,6 +2137,7 @@
   }
 
   function applyAllSummonedCardsToSermon(isUserClick, btnEl) {
+    if (isUserClick && !checkMosesLogin()) return;
     var mq = document.getElementById('mosesQueryInput');
     var mqVal = mq ? mq.value.trim() : '';
     if (!CURRENT_SUMMONED || (mqVal && mqVal !== CURRENT_SUMMONED.query)) {
@@ -2164,6 +2191,7 @@
 
   /* 🏺 내 설교 곳간 (IndexedDB 'KkumbaonPastorGotganDB') 원클릭 직결 저장 */
   function saveCurrentSermonToGotgan() {
+    if (!checkMosesLogin()) return;
     var title = document.getElementById('inTitle').value.trim() || '제목 없는 설교';
     var scripture = document.getElementById('inScripture').value.trim() || '';
     var date = document.getElementById('inDate').value || new Date().toISOString().slice(0, 10);

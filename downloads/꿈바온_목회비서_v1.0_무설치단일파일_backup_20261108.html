@@ -1,0 +1,2332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">아론의 지팡이 — 목양 · 심방 · 주보 · 행정 실무 스튜디오 (v1.0)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;600;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root, body[data-theme="beige"] {
+    --bg-deep: #F6F2E9;
+    --bg-warm: #EFE8D9;
+    --bg-card: #FFFFFF;
+    --bg-parchment: #FBF9F4;
+    --hero-grad: linear-gradient(180deg, #F5EFE2 0%, #EAE0CC 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #FCF9F4 0%, #F1EAE0 80%);
+    --nav-bg: rgba(248, 244, 235, 0.96);
+    --card-grad: linear-gradient(145deg, #FFFFFF 0%, #FAF6EE 100%);
+    --gold-main: #8C621E;
+    --gold-bright: #6E4B12;
+    --gold-accent: #C59B38;
+    --gold-soft: rgba(140, 98, 30, 0.11);
+    --text-cream: #1F1A15;
+    --text-muted: #5C5248;
+    --text-ink: #1F1A15;
+    --input-bg: #FFFFFF;
+    --border-gold: rgba(140, 98, 30, 0.28);
+    --border-soft: rgba(140, 98, 30, 0.15);
+    --shadow-heavy: 0 16px 40px rgba(31, 26, 21, 0.11);
+    --shadow-card: 0 6px 20px rgba(60, 45, 20, 0.07);
+    --dday-urgent-bg: #FDECEB;
+    --dday-urgent-fg: #B42318;
+    --dday-soon-bg: #FEF3C7;
+    --dday-soon-fg: #92400E;
+    --dday-norm-bg: #E7F1FC;
+    --dday-norm-fg: #1D5B9E;
+    --font-scale: 1;
+  }
+
+  body[data-theme="dark"] {
+    --bg-deep: #12100E;
+    --bg-warm: #1A1612;
+    --bg-card: #221D17;
+    --bg-parchment: #1D1813;
+    --hero-grad: linear-gradient(180deg, #1E1813 0%, #14110E 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #241D16 0%, #12100E 78%);
+    --nav-bg: rgba(18, 16, 14, 0.95);
+    --card-grad: linear-gradient(145deg, #251F18 0%, #1B1611 100%);
+    --gold-main: #D8B26E;
+    --gold-bright: #F0D290;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 178, 110, 0.14);
+    --text-cream: #F4EEE1;
+    --text-muted: #B8AB96;
+    --text-ink: #F4EEE1;
+    --input-bg: #17130F;
+    --border-gold: rgba(216, 178, 110, 0.30);
+    --border-soft: rgba(216, 178, 110, 0.16);
+    --shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.38);
+    --dday-urgent-bg: rgba(180, 35, 24, 0.28);
+    --dday-urgent-fg: #FDA29B;
+    --dday-soon-bg: rgba(146, 64, 14, 0.32);
+    --dday-soon-fg: #FCD34D;
+    --dday-norm-bg: rgba(29, 91, 158, 0.28);
+    --dday-norm-fg: #93C5FD;
+  }
+
+  body[data-theme="green"] {
+    --bg-deep: #0D1914;
+    --bg-warm: #13241D;
+    --bg-card: #172B23;
+    --bg-parchment: #12221B;
+    --hero-grad: linear-gradient(180deg, #152920 0%, #0E1B15 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1A3328 0%, #0D1914 75%);
+    --nav-bg: rgba(13, 25, 20, 0.95);
+    --card-grad: linear-gradient(145deg, #193026 0%, #11211A 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF5F0;
+    --text-muted: #9EB5A8;
+    --text-ink: #EEF5F0;
+    --input-bg: #0F1E18;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  body[data-theme="navy"] {
+    --bg-deep: #0C1322;
+    --bg-warm: #121C31;
+    --bg-card: #17233D;
+    --bg-parchment: #131E35;
+    --hero-grad: linear-gradient(180deg, #16223B 0%, #0D1526 100%);
+    --body-grad: radial-gradient(circle at 50% 0%, #1B2A47 0%, #0C1322 75%);
+    --nav-bg: rgba(12, 19, 34, 0.95);
+    --card-grad: linear-gradient(145deg, #1A2845 0%, #121C31 100%);
+    --gold-main: #D8B572;
+    --gold-bright: #F2D598;
+    --gold-accent: #E5C878;
+    --gold-soft: rgba(216, 181, 114, 0.14);
+    --text-cream: #EEF2F8;
+    --text-muted: #9AA9C2;
+    --text-ink: #EEF2F8;
+    --input-bg: #0E1729;
+    --border-gold: rgba(216, 181, 114, 0.28);
+    --border-soft: rgba(216, 181, 114, 0.15);
+    --shadow-heavy: 0 18px 45px rgba(0, 0, 0, 0.55);
+    --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--body-grad);
+    color: var(--text-cream);
+    min-height: 100vh;
+    line-height: 1.6;
+    word-break: keep-all;
+    padding-bottom: 60px;
+  }
+  .serif { font-family: 'Noto Serif KR', serif; }
+
+  /* 상단 GNB */
+  .top-gnb {
+    position: sticky;
+    top: 0;
+    z-index: 900;
+    background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border-gold);
+    padding: 10px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .gnb-left, .gnb-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .gnb-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-cream);
+    margin-right: 6px;
+  }
+  .gnb-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #241A10, #4A3520);
+    border: 1.5px solid #C59B38;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+  }
+  .gnb-brand strong {
+    display: block;
+    font-size: 1.08rem;
+    font-weight: 900;
+  }
+  .gnb-brand small {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--gold-main);
+    font-weight: 700;
+  }
+  .gnb-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 7px 12px;
+    border-radius: 9px;
+    font-size: 0.84rem;
+    font-weight: 800;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    transition: all 0.16s ease;
+  }
+  .gnb-btn:hover { background: var(--gold-soft); }
+  .gnb-btn.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  /* 메인 2단 워크스페이스 레이아웃 */
+  .studio-layout {
+    max-width: 1460px;
+    margin: 18px auto 0;
+    padding: 0 18px;
+    display: grid;
+    grid-template-columns: 360px 1fr;
+    gap: 20px;
+    align-items: start;
+  }
+
+  /* 왼쪽 사이드바: 내 교회 프로필 + 일정 D-day + 오늘 할 일 시간표 */
+  .left-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .side-panel {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 18px;
+    box-shadow: var(--shadow-card);
+  }
+  .side-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .side-head h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .side-head small {
+    font-size: 0.76rem;
+    color: var(--gold-main);
+    font-weight: 700;
+  }
+
+  .form-group {
+    margin-bottom: 9px;
+  }
+  .form-group label {
+    display: block;
+    font-size: 0.79rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    margin-bottom: 3px;
+  }
+  .form-input, .form-select, .form-textarea {
+    width: 100%;
+    padding: 8px 11px;
+    border-radius: 9px;
+    border: 1px solid var(--border-gold);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-family: inherit;
+    font-size: 0.9rem;
+  }
+  .form-textarea {
+    resize: vertical;
+    min-height: 62px;
+    line-height: 1.45;
+  }
+  .form-row-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .side-btn {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    font-size: 0.9rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.16s ease;
+  }
+  .side-btn:hover { opacity: 0.92; }
+  .side-btn.secondary {
+    background: var(--bg-parchment);
+    color: var(--text-cream);
+    border-color: var(--border-gold);
+  }
+  .side-btn.secondary:hover { background: var(--gold-soft); }
+
+  /* D-day 일정 리스트 */
+  .dday-list {
+    list-style: none;
+    display: grid;
+    gap: 7px;
+    margin-bottom: 10px;
+  }
+  .dday-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-soft);
+    font-size: 0.86rem;
+  }
+  .dday-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+  }
+  .dday-badge {
+    font-size: 0.74rem;
+    font-weight: 900;
+    padding: 2px 8px;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .dday-badge.urgent { background: var(--dday-urgent-bg); color: var(--dday-urgent-fg); }
+  .dday-badge.soon { background: var(--dday-soon-bg); color: var(--dday-soon-fg); }
+  .dday-badge.norm { background: var(--dday-norm-bg); color: var(--dday-norm-fg); }
+  .dday-title {
+    font-weight: 700;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .del-mini-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 0.85rem;
+    padding: 2px 5px;
+  }
+  .del-mini-btn:hover { color: #D92D20; }
+
+  /* 할 일 & 시간표 리스트 */
+  .todo-list {
+    list-style: none;
+    display: grid;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .todo-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 10px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-soft);
+    font-size: 0.86rem;
+  }
+  .todo-item.done .todo-text {
+    text-decoration: line-through;
+    color: var(--text-muted);
+  }
+  .todo-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    cursor: pointer;
+  }
+  .todo-slot-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 2px 7px;
+    border-radius: 6px;
+    background: var(--gold-soft);
+    color: var(--gold-main);
+    white-space: nowrap;
+  }
+
+  /* 오른쪽 메인 영역: 6대 목회 자리 탭 + 작업실 */
+  .right-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* 환영 및 상태 요약 바 */
+  .workspace-banner {
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 16px 22px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow-card);
+  }
+  .wb-title strong {
+    font-size: 1.18rem;
+    font-weight: 900;
+  }
+  .wb-title p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+  }
+  .wb-badges {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .wb-pill {
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+  }
+
+  /* 6대 목양 자리 탭 */
+  .seats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+  .seat-btn {
+    background: var(--card-grad);
+    border: 2px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 13px 12px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--text-cream);
+    transition: all 0.18s ease;
+    box-shadow: var(--shadow-card);
+  }
+  .seat-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-accent);
+  }
+  .seat-btn.active {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+    box-shadow: 0 10px 24px rgba(36, 26, 16, 0.24);
+  }
+  .seat-btn .s-icon {
+    font-size: 1.4rem;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .seat-btn strong {
+    display: block;
+    font-size: 0.96rem;
+    font-weight: 900;
+    line-height: 1.25;
+  }
+  .seat-btn small {
+    display: block;
+    font-size: 0.74rem;
+    opacity: 0.82;
+    margin-top: 3px;
+    line-height: 1.3;
+  }
+
+  /* 자리별 패널 */
+  .seat-panel {
+    display: none;
+    background: var(--card-grad);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: var(--shadow-heavy);
+  }
+  .seat-panel.active {
+    display: block;
+  }
+  .panel-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    padding-bottom: 16px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .panel-header h2 {
+    font-size: 1.38rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .panel-header p {
+    font-size: 0.92rem;
+    color: var(--text-muted);
+  }
+
+  /* 빠른 예시 칩 */
+  .quick-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 16px;
+    align-items: center;
+  }
+  .quick-chips span.lbl {
+    font-size: 0.82rem;
+    font-weight: 800;
+    color: var(--gold-main);
+  }
+  .q-chip {
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    color: var(--text-cream);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .q-chip:hover {
+    background: var(--gold-soft);
+    transform: translateY(-1px);
+  }
+
+  /* 결과 출력 카드 (결론 → 근거 → 할 일 → 되묻는 질문 / 원고 에디터) */
+  .result-box {
+    margin-top: 18px;
+    background: var(--bg-parchment);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 20px;
+  }
+  .result-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .result-top-bar strong {
+    font-size: 1.02rem;
+    color: var(--gold-main);
+  }
+  .result-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .act-btn {
+    padding: 7px 13px;
+    border-radius: 9px;
+    font-size: 0.83rem;
+    font-weight: 800;
+    cursor: pointer;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    text-decoration: none;
+  }
+  .act-btn:hover { background: var(--gold-soft); }
+  .act-btn.pri {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  .output-textarea {
+    width: 100%;
+    min-height: 360px;
+    padding: 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border-soft);
+    background: var(--input-bg);
+    color: var(--text-cream);
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.96rem;
+    line-height: 1.72;
+    resize: vertical;
+  }
+
+  /* 위기 상담 안내 경고 박스 (솔로몬 목회자용 안전 가드레일 반영) */
+  .crisis-alert-box {
+    display: none;
+    margin-top: 14px;
+    padding: 15px 18px;
+    border-radius: 14px;
+    background: #FEF2F2;
+    border: 2px solid #EF4444;
+    color: #7F1D1D;
+    font-size: 0.9rem;
+    line-height: 1.55;
+  }
+  .crisis-alert-box strong {
+    display: block;
+    font-size: 1rem;
+    color: #991B1B;
+    margin-bottom: 4px;
+  }
+
+  /* 자리 4: 실시간 A4 주보 빌더 2단 뷰 */
+  .jubo-builder-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.08fr;
+    gap: 20px;
+    align-items: start;
+  }
+  .jubo-preview-sheet {
+    background: #FFFFFF;
+    color: #1A1A1A;
+    border: 1px solid #C8C0B0;
+    border-radius: 12px;
+    padding: 28px 26px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    font-family: 'Noto Serif KR', serif;
+  }
+  .jubo-sheet-head {
+    text-align: center;
+    border-bottom: 2.5px double #2C241B;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+  }
+  .jubo-sheet-head h3 {
+    font-size: 1.55rem;
+    font-weight: 900;
+    color: #1A1410;
+    letter-spacing: 0.04em;
+  }
+  .jubo-sheet-head p {
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.82rem;
+    color: #555;
+    margin-top: 4px;
+  }
+  .jubo-sec-title {
+    font-size: 0.95rem;
+    font-weight: 900;
+    color: #241A10;
+    background: #F4EFE4;
+    border-left: 4px solid #8C621E;
+    padding: 5px 10px;
+    margin: 14px 0 8px;
+    font-family: 'Pretendard', sans-serif;
+  }
+  .jubo-order-list {
+    list-style: none;
+    display: grid;
+    gap: 5px;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.86rem;
+  }
+  .jubo-order-row {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dotted #D8D0C5;
+    padding-bottom: 3px;
+  }
+
+  /* 토스트 알림 */
+  .toast-msg {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 2000;
+    background: #241A10;
+    color: #F7E29E;
+    border: 1.5px solid #C59B38;
+    padding: 12px 20px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.92rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    display: none;
+  }
+
+  /* 인쇄 전용 스타일 */
+  @media print {
+    body { background: #FFFFFF !important; color: #000000 !important; padding: 0 !important; }
+    .top-gnb, .left-sidebar, .workspace-banner, .seats-grid, .panel-header, .quick-chips, .no-print, .result-actions {
+      display: none !important;
+    }
+    .studio-layout { display: block !important; max-width: 100% !important; margin: 0 !important; padding: 0 !important; }
+    .seat-panel { border: none !important; box-shadow: none !important; padding: 0 !important; }
+    .jubo-builder-grid { display: block !important; }
+    .jubo-form-col { display: none !important; }
+    .jubo-preview-sheet { border: none !important; box-shadow: none !important; width: 100% !important; padding: 10mm !important; }
+    .output-textarea { border: none !important; height: auto !important; min-height: 600px !important; font-size: 13pt !important; }
+  }
+
+  @media (max-width: 1180px) {
+    .studio-layout { grid-template-columns: 1fr; }
+    .seats-grid { grid-template-columns: repeat(3, 1fr); }
+    .jubo-builder-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 680px) {
+    .seats-grid { grid-template-columns: repeat(2, 1fr); }
+    .form-row-2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body data-theme="beige" data-kkd-studio="true">
+
+<header class="top-gnb">
+  <div class="gnb-left">
+    <a href="kkumdido_church_support_annex.html" class="gnb-brand">
+      <div class="gnb-logo">🌿</div>
+      <div>
+        <strong>아론의 지팡이 — 목양 · 심방 · 주보 · 행정 스튜디오</strong>
+        <small>AARON'S ROD · 내 교회를 돌보는 목양·심방·주보·행정 실무 도구</small>
+      </div>
+    </a>
+    <a href="kkumdido_church_support_annex.html" class="gnb-btn gold">🏛️ 교회지원 별관으로</a>
+    <a href="kkumdido_sermon_ai_studio.html" class="gnb-btn">🪄 모세의 지팡이(설교·카드대령)</a>
+    <a href="kkumdido_gyojeok_studio.html" class="gnb-btn">🐑 양떼 수첩(교적)</a>
+    <a href="kkumdido_finance_studio.html" class="gnb-btn">💰 청지기 장부(재정)</a>
+    <a href="index.html" class="gnb-btn">🏛️ 도서관 본관</a>
+  </div>
+  <div class="gnb-right">
+    <button type="button" class="gnb-btn" onclick="adjustScale(-0.08)">가-</button>
+    <button type="button" class="gnb-btn" onclick="adjustScale(0.08)">가+ 크게</button>
+    <select id="themePicker" class="gnb-btn" onchange="setStudioTheme(this.value)" aria-label="화면 테마">
+      <option value="beige">📜 양피지 베이지</option>
+      <option value="dark">🌙 밤의 서재</option>
+      <option value="green">🌲 올리브 그린</option>
+      <option value="navy">🌌 로얄 네이비</option>
+    </select>
+    <button type="button" class="gnb-btn" onclick="exportBackupJson()">📤 백업 저장</button>
+    <button type="button" class="gnb-btn" onclick="document.getElementById('importFileInp').click()">📥 복원</button>
+    <input type="file" id="importFileInp" accept=".json" style="display:none" onchange="importBackupJson(event)">
+    <button type="button" class="gnb-btn gold" onclick="downloadStandaloneHtml()">💾 단일파일(.html) 통째 저장</button>
+  </div>
+</header>
+
+<main class="studio-layout">
+
+  <!-- ================= 왼쪽 사이드바: 내 교회 프로필 + 일정 D-day + 오늘 할 일 시간표 ================= -->
+  <aside class="left-sidebar">
+
+    <!-- 1. 우리 교회 프로필 -->
+    <section class="side-panel">
+      <div class="side-head">
+        <h3>⛪ 목회 프로필</h3>
+        <small>내 컴퓨터에 기억하고 모든 문서에 반영합니다</small>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="profChurchName">교회 이름</label>
+          <input type="text" id="profChurchName" class="form-input" placeholder="예: 소망교회">
+        </div>
+        <div class="form-group">
+          <label for="profPastorTitle">목사님 성함·호칭</label>
+          <input type="text" id="profPastorTitle" class="form-input" placeholder="예: 김은혜 담임목사">
+        </div>
+      </div>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="profDenom">교단 · 신학 전통</label>
+          <input type="text" id="profDenom" class="form-input" placeholder="예: 복음주의 · 감리교/장로교">
+        </div>
+        <div class="form-group">
+          <label for="profSize">교인 규모 · 구성</label>
+          <input type="text" id="profSize" class="form-input" placeholder="예: 장년 70명 · 주일학교 15명">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="profMotto">올해 교회 표어</label>
+        <input type="text" id="profMotto" class="form-input" placeholder="예: 말씀과 기도로 다시 세우는 가정과 교회">
+      </div>
+      <div class="form-group">
+        <label for="profFocus">현재 중점 사역 · 기도제목</label>
+        <textarea id="profFocus" class="form-textarea" placeholder="예: 새가족 정착, 환우 성도 돌봄, 주일 강해설교 준비"></textarea>
+      </div>
+      <button type="button" class="side-btn" onclick="saveProfile()">💾 프로필 저장 (모든 자리에 즉시 적용)</button>
+    </section>
+
+    <!-- 2. 다가오는 목회 일정 (D-day 자동 계산) -->
+    <section class="side-panel">
+      <div class="side-head">
+        <h3>📅 다가오는 일정 (D-day)</h3>
+        <small id="scheduleCountTxt">0건</small>
+      </div>
+      <ul class="dday-list" id="ddayList"></ul>
+      <div class="form-row-2" style="margin-bottom:6px;">
+        <select id="newSchedType" class="form-select">
+          <option value="📖 설교">📖 설교 일정</option>
+          <option value="🏠 심방">🏠 심방 일정</option>
+          <option value="⛪ 행사">⛪ 교회 행사·회의</option>
+          <option value="⏰ 마감">⏰ 행정 마감</option>
+        </select>
+        <input type="date" id="newSchedDate" class="form-input">
+      </div>
+      <div style="display:flex; gap:6px;">
+        <input type="text" id="newSchedTitle" class="form-input" placeholder="예: 주일설교(누가복음 15:25-32)" onkeydown="if(event.key==='Enter')addSchedule()">
+        <button type="button" class="side-btn secondary" style="width:auto; white-space:nowrap; padding:8px 12px;" onclick="addSchedule()">+ 추가</button>
+      </div>
+    </section>
+
+    <!-- 3. 목사님 오늘 할 일 & 자동 시간표 -->
+    <section class="side-panel">
+      <div class="side-head">
+        <h3>🗓️ 목사님 오늘 할 일</h3>
+        <small id="todoCountTxt">0건</small>
+      </div>
+      <ul class="todo-list" id="todoList"></ul>
+      <div style="display:flex; gap:6px; margin-bottom:10px;">
+        <input type="text" id="newTodoTitle" class="form-input" placeholder="예: 주보 광고 문구 정리" onkeydown="if(event.key==='Enter')addTodo()">
+        <select id="newTodoMins" class="form-select" style="width:95px; flex-shrink:0;">
+          <option value="20분">20분</option>
+          <option value="30분" selected>30분</option>
+          <option value="40분">40분</option>
+          <option value="60분">60분</option>
+        </select>
+        <button type="button" class="side-btn secondary" style="width:auto; white-space:nowrap; padding:8px 11px;" onclick="addTodo()">+</button>
+      </div>
+      <div class="form-row-2">
+        <button type="button" class="side-btn" onclick="autoPlanToday()">⏰ 오늘 시간표 짜기</button>
+        <button type="button" class="side-btn secondary" onclick="rolloverUnfinishedTodos()">↪ 못한 일 내일로</button>
+      </div>
+    </section>
+
+  </aside>
+
+  <!-- ================= 오른쪽 메인 작업실: 6대 목회 자리 ================= -->
+  <section class="right-workspace">
+
+    <!-- 상단 환영 배너 -->
+    <div class="workspace-banner">
+      <div class="wb-title">
+        <strong id="welcomeBannerTitle">🕊️ 평안하십니까, 목사님! 오늘 사역을 함께 준비하겠습니다.</strong>
+        <p id="welcomeBannerSub">아래 여섯 자리 중 필요한 사역을 누르시면 우리 교회 프로필과 일정을 반영해 결론부터 조언하고 문서를 만듭니다.</p>
+      </div>
+      <div class="wb-badges">
+        <span class="wb-pill" id="desktopStatusBadge">🔒 내 컴퓨터 단독 저장 모드</span>
+        <span class="wb-pill">📖 복음주의 신학 가드레일</span>
+      </div>
+    </div>
+
+    <!-- 6대 목양 자리 탭 버튼 -->
+    <nav class="seats-grid" aria-label="아론의 지팡이 6대 자리 선택">
+      <button type="button" class="seat-btn active" data-seat="brief" onclick="switchSeat('brief', this)">
+        <span class="s-icon">☀️</span>
+        <strong>1. 목회 전체 · 브리핑</strong>
+        <small>오늘 조언 · 아침 브리핑 · 3줄 사역일지</small>
+      </button>
+      <button type="button" class="seat-btn" data-seat="sermon" onclick="switchSeat('sermon', this)">
+        <span class="s-icon">📖</span>
+        <strong>2. 본문 관찰 · 설교 개요</strong>
+        <small>본문 관찰 · 중심 메시지 · 3대지 · 예화</small>
+      </button>
+      <button type="button" class="seat-btn" data-seat="care" onclick="switchSeat('care', this)">
+        <span class="s-icon">🏠</span>
+        <strong>3. 심방 · 돌봄 말씀</strong>
+        <small>상황별 위로 말씀 · 기도문 · 돌봄 기록</small>
+      </button>
+      <button type="button" class="seat-btn" data-seat="jubo" onclick="switchSeat('jubo', this)">
+        <span class="s-icon">📰</span>
+        <strong>4. A4 주보 · 행정 문서</strong>
+        <small>실시간 A4 주보 인쇄 · 공문 · 회의록</small>
+      </button>
+      <button type="button" class="seat-btn" data-seat="growth" onclick="switchSeat('growth', this)">
+        <span class="s-icon">🌱</span>
+        <strong>5. 새가족 · 교회 성장</strong>
+        <small>4주 환영 문자 · 초청장 · 구역 나눔지</small>
+      </button>
+      <button type="button" class="seat-btn" data-seat="ai" onclick="switchSeat('ai', this)">
+        <span class="s-icon">🤖</span>
+        <strong>6. 내 AI 1초 연결</strong>
+        <small>클로드·GPT·제미나이 맞춤 지시문</small>
+      </button>
+    </nav>
+
+    <!-- ================= [자리 1] 목회 전체 · 아침 브리핑 · 저녁 사역일지 ================= -->
+    <article class="seat-panel active" id="panel-brief">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">☀️ 자리 1. 목회 전체 · 아침 브리핑 &amp; 저녁 3줄 사역일지</h2>
+          <p>오늘 일정과 설교 D-day, 할 일을 종합하여 [결론 → 근거 → 오늘 할 일 → 되묻는 질문] 순서로 브리핑합니다.</p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;" class="no-print">
+          <button type="button" class="act-btn pri" onclick="generateMorningBriefing()">☀️ 아침 목회 브리핑 새로고침</button>
+          <button type="button" class="act-btn" onclick="generateOnePageSummary()">📋 내 목회 한 장 정리</button>
+          <button type="button" class="act-btn" onclick="generateEveningDiary()">📓 저녁 3줄 사역일지 쓰기</button>
+        </div>
+      </div>
+
+      <div class="quick-chips no-print">
+        <span class="lbl">💡 바로 시켜보기:</span>
+        <button type="button" class="q-chip" onclick="generateMorningBriefing()">☀️ 오늘 아침 목회 브리핑 해 줘</button>
+        <button type="button" class="q-chip" onclick="generateOnePageSummary()">📊 우리 교회 목회 현황 한 장으로 정리해 줘</button>
+        <button type="button" class="q-chip" onclick="generateWeeklyPriority()">🗓️ 이번 주 가장 먼저 챙길 목회 우선순위 3가지</button>
+        <button type="button" class="q-chip" onclick="generateEveningDiary()">🌙 오늘 하루 3줄 사역일지 정리해 줘</button>
+      </div>
+
+      <div class="result-box">
+        <div class="result-top-bar">
+          <strong id="briefResultTitle">☀️ 오늘의 목회 브리핑 &amp; 조언</strong>
+          <div class="result-actions">
+            <button type="button" class="act-btn" onclick="copyTextarea('briefOutput')">📋 전체 복사</button>
+            <button type="button" class="act-btn" onclick="downloadTextFile('briefOutput', '목회브리핑_사역일지.md')">💾 파일(.md) 저장</button>
+            <button type="button" class="act-btn" onclick="window.print()">🖨️ A4 인쇄</button>
+          </div>
+        </div>
+        <textarea id="briefOutput" class="output-textarea"></textarea>
+      </div>
+    </article>
+
+    <!-- ================= [자리 2] 설교 준비 비서 ================= -->
+    <article class="seat-panel" id="panel-sermon">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">📖 자리 2. 설교 준비 비서 (7단계 강해 개요 · 초안은 비서가, 말씀은 목사님이)</h2>
+          <p>본문 관찰 → 원어·배경 → 중심 메시지 한 문장 → 3대지 → 예화(가상 예화 구분 표시) → 삶 적용 → 마침 기도 순서로 작성합니다.</p>
+        </div>
+        <div class="no-print">
+          <a href="kkumdido_sermon_studio.html" class="act-btn pri">👑 꿈디도 66권 원어 설교 프로그램 열기 ↗</a>
+        </div>
+      </div>
+
+      <div class="quick-chips no-print">
+        <span class="lbl">📖 자주 쓰는 본문 예시:</span>
+        <button type="button" class="q-chip" onclick="fillSermonPreset('누가복음 15:25-32', '주일 대예배', '집 안에 있으나 아버지의 기쁨을 모르는 큰아들, 비교에서 은혜의 잔치로')">누가복음 15:25-32 (큰아들 이야기)</button>
+        <button type="button" class="q-chip" onclick="fillSermonPreset('시편 23:1-6', '수요예배', '사망의 음침한 골짜기에서도 부족함이 없는 선한 목자의 인도하심')">시편 23:1-6 (선한 목자)</button>
+        <button type="button" class="q-chip" onclick="fillSermonPreset('요한복음 21:15-17', '새벽기도회', '숯불 앞에서 베드로를 다시 세우시는 주님의 사랑과 사명')">요한복음 21:15-17 (내 양을 먹이라)</button>
+        <button type="button" class="q-chip" onclick="fillSermonPreset('빌립보서 4:6-7', '금요기도회', '염려를 기도와 감사로 바꾸실 때 임하는 하나님의 평강')">빌립보서 4:6-7 (아무것도 염려하지 말고)</button>
+      </div>
+
+      <div class="form-row-2 no-print">
+        <div class="form-group">
+          <label for="sermPassage">설교 본문 (장·절)</label>
+          <input type="text" id="sermPassage" class="form-input" value="누가복음 15:25-32" placeholder="예: 누가복음 15:25-32">
+        </div>
+        <div class="form-group">
+          <label for="sermOccasion">예배 구분 · 대상</label>
+          <select id="sermOccasion" class="form-select">
+            <option value="주일 대예배">주일 대예배 (전교인)</option>
+            <option value="수요말씀예배">수요말씀예배 (강해 중심)</option>
+            <option value="새벽기도회">새벽기도회 (묵상·기도 중심)</option>
+            <option value="금요성령기도회">금요성령기도회 (간구·회복 중심)</option>
+            <option value="청년·다음세대 예배">청년·다음세대 예배</option>
+            <option value="절기·특별예배">절기·특별예배 (감사·부활·성탄)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group no-print">
+        <label for="sermTheme">핵심 주제 또는 담고 싶은 목회 마음</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="sermTheme" class="form-input" value="아버지의 집 안에 있으면서도 아버지와 멀어질 수 있습니다 — 비교에서 함께 기뻐하는 은혜의 자리로" placeholder="예: 큰아들 이야기로 새가족을 품는 교회의 마음을 나누고 싶어요">
+          <button type="button" class="side-btn" style="width:auto; white-space:nowrap; padding:10px 22px;" onclick="generateSermonOutline()">📖 설교 7단계 개요 만들기</button>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-top-bar">
+          <strong id="sermResultTitle">📖 설교 7단계 강해 개요 &amp; 초안</strong>
+          <div class="result-actions">
+            <button type="button" class="act-btn pri" onclick="saveSermonToGotgan()">🏺 내 설교 곳간에 보관</button>
+            <button type="button" class="act-btn" onclick="copyTextarea('sermOutput')">📋 원고 복사</button>
+            <button type="button" class="act-btn" onclick="downloadTextFile('sermOutput', '설교개요_초안.md')">💾 파일(.md) 저장</button>
+            <button type="button" class="act-btn" onclick="window.print()">🖨️ 강단용 인쇄</button>
+          </div>
+        </div>
+        <textarea id="sermOutput" class="output-textarea"></textarea>
+      </div>
+    </article>
+
+    <!-- ================= [자리 3] 심방 · 돌봄 비서 ================= -->
+    <article class="seat-panel" id="panel-care">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">🏠 자리 3. 심방 · 돌봄 비서 (위로 말씀 · 심방 기도문 · 위기 돌봄 안전망)</h2>
+          <p>성도의 아픔과 상황에 맞는 권면 말씀과 기도문을 준비합니다. 정서적 위기 신호가 있을 때는 전문 상담 기관 연계 안내를 함께 표시합니다.</p>
+        </div>
+      </div>
+
+      <div class="quick-chips no-print">
+        <span class="lbl">🏠 심방 상황 빠른 선택:</span>
+        <button type="button" class="q-chip" onclick="fillCarePreset('박은혜 권사', '병환·수술 앞둔 성도', '다음 주 화요일 무릎 수술 예정, 두려움 없이 평안하시도록')">🏥 병환·수술 심방</button>
+        <button type="button" class="q-chip" onclick="fillCarePreset('이소망 성도 가정', '새가족 첫 심방', '이사 후 우리 교회에 처음 등록한 40대 부부, 낯설지 않고 정착하도록')">🌱 새가족 첫 심방</button>
+        <button type="button" class="q-chip" onclick="fillCarePreset('김믿음 집사', '낙심·장기결석 성도', '사업 어려움으로 한 달째 예배에 못 나오고 마음 문을 닫은 상태')">😢 낙심·결석 돌봄</button>
+        <button type="button" class="q-chip" onclick="fillCarePreset('최성실 집사', '개업·이사 축복 심방', '동네 베이커리 카페 새롭게 오픈, 정직하고 복된 일터가 되도록')">🏪 개업·이사 축복</button>
+        <button type="button" class="q-chip" onclick="fillCarePreset('정평안 청년', '정서적 위기·우울 긴급돌봄', '극심한 번아웃과 우울감, 잠을 못 자고 삶의 의미를 힘들어함')">🚨 정서적 위기·우울 돌봄</button>
+      </div>
+
+      <div class="form-row-2 no-print">
+        <div class="form-group">
+          <label for="careTarget">심방 대상 성도 · 가정</label>
+          <input type="text" id="careTarget" class="form-input" value="박은혜 권사" placeholder="예: 박은혜 권사님 댁">
+        </div>
+        <div class="form-group">
+          <label for="careSituation">심방 유형 · 상황</label>
+          <select id="careSituation" class="form-select" onchange="checkCareCrisisAlert()">
+            <option value="병환·수술 앞둔 성도">🏥 병환 · 입원 · 수술 앞둔 성도</option>
+            <option value="새가족 첫 심방">🌱 새가족 첫 환영 심방</option>
+            <option value="낙심·장기결석 성도">😢 낙심 · 시험 · 장기결석 성도</option>
+            <option value="개업·이사 축복 심방">🏪 개업 · 이사 · 입주 축복 심방</option>
+            <option value="장례·유가족 위로 심방">🕯️ 장례 · 천국환송 · 유가족 위로</option>
+            <option value="청년·수험생 격려 심방">🎓 청년 · 취업 · 수험생 격려</option>
+            <option value="정서적 위기·우울 긴급돌봄">🚨 정서적 위기 · 우울 · 극심한 고통 (전문연계 포함)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group no-print">
+        <label for="careNote">구체적인 사정 · 기도제목</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="careNote" class="form-input" value="다음 주 수술을 앞두고 마음이 불안해하십니다. 주님의 평안이 임하도록 위로하고 싶습니다." placeholder="성도님의 현재 상황이나 기도제목을 적어 주세요">
+          <button type="button" class="side-btn" style="width:auto; white-space:nowrap; padding:10px 22px;" onclick="generateCareMessage()">🏠 심방 말씀·기도문 만들기</button>
+        </div>
+      </div>
+
+      <div id="crisisAlertBanner" class="crisis-alert-box">
+        <strong>🚨 [목회 돌봄 안전 안내] 정서적 위기·우울·자해 위험 신호가 보일 때는 목회적 돌봄과 함께 반드시 전문 기관 연계를 권해 주세요.</strong>
+        • <b>자살예방 상담전화:</b> 국번 없이 <b>109</b> (24시간 운영)<br>
+        • <b>정신건강 위기상담전화:</b> <b>1577-0199</b> (24시간 운영)<br>
+        • <b>긴급 위기 상황 시:</b> <b>112</b>(경찰) 또는 <b>119</b>(구급대) 즉시 도움 요청
+      </div>
+
+      <div class="result-box">
+        <div class="result-top-bar">
+          <strong id="careResultTitle">🏠 심방 위로 말씀 · 기도문 · 돌봄 기록 카드</strong>
+          <div class="result-actions">
+            <button type="button" class="act-btn pri" onclick="copyTextarea('careOutput')">📋 복사 (문자/카톡 전송용)</button>
+            <button type="button" class="act-btn" onclick="downloadTextFile('careOutput', '심방돌봄_기록카드.md')">💾 파일(.md) 저장</button>
+            <button type="button" class="act-btn" onclick="window.print()">🖨️ 심방카드 인쇄</button>
+          </div>
+        </div>
+        <textarea id="careOutput" class="output-textarea"></textarea>
+      </div>
+    </article>
+
+    <!-- ================= [자리 4] 실시간 A4 주보 만들기 & 교회 행정 문서 ================= -->
+    <article class="seat-panel" id="panel-jubo">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">📰 자리 4. 실시간 A4 주보 만들기 &amp; 교회 행정 문서</h2>
+          <p>왼쪽 칸에 적으면 오른쪽 A4 주보에 즉시 나타나며 [A4 주보 인쇄]로 바로 뽑을 수 있습니다. 회의록·공문도 1초 만에 작성합니다.</p>
+        </div>
+        <div style="display:flex; gap:8px;" class="no-print">
+          <button type="button" class="act-btn pri" id="subTabJuboBtn" onclick="toggleJuboSubTab('jubo')">📰 실시간 A4 주보 만들기</button>
+          <button type="button" class="act-btn" id="subTabAdminBtn" onclick="toggleJuboSubTab('admin')">📝 공문 · 회의록 · 행정문서</button>
+        </div>
+      </div>
+
+      <!-- 서브탭 A: 실시간 A4 주보 빌더 -->
+      <div id="subPanelJubo" class="jubo-builder-grid">
+        <div class="jubo-form-col no-print">
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="jbDate">주일 날짜 (요일 자동 표기)</label>
+              <input type="date" id="jbDate" class="form-input" oninput="renderJuboPreview()">
+            </div>
+            <div class="form-group">
+              <label for="jbIssue">호수 · 절기 표기</label>
+              <input type="text" id="jbIssue" class="form-input" value="제2026-45호 · 성령강림절 후 주일" oninput="renderJuboPreview()">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="jbSermonTitle">주일 설교 제목</label>
+              <input type="text" id="jbSermonTitle" class="form-input" value="함께 기뻐하는 아버지의 잔치" oninput="renderJuboPreview()">
+            </div>
+            <div class="form-group">
+              <label for="jbSermonScripture">성경 본문</label>
+              <input type="text" id="jbSermonScripture" class="form-input" value="누가복음 15장 25-32절" oninput="renderJuboPreview()">
+            </div>
+          </div>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="jbHymns">예배 찬송 (개회 / 봉헌 / 파송)</label>
+              <input type="text" id="jbHymns" class="form-input" value="찬송 85장 / 305장 / 405장" oninput="renderJuboPreview()">
+            </div>
+            <div class="form-group">
+              <label for="jbPrayPerson">대표기도 (이번 주 / 다음 주)</label>
+              <input type="text" id="jbPrayPerson" class="form-input" value="이번 주: 이충성 장로 (다음 주: 박은혜 권사)" oninput="renderJuboPreview()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="jbNews">교회 소식 · 주보 광고 (한 줄에 하나씩 적어 주세요)</label>
+            <textarea id="jbNews" class="form-textarea" style="min-height:110px;" oninput="renderJuboPreview()">1. 오늘 주일예배에 나오신 모든 성도님과 새가족 여러분을 주님의 이름으로 환영합니다.
+2. 예배 후 친교실에서 애찬과 구역별 말씀 나눔 모임이 있습니다.
+3. 다음 주일 오후에는 제직회 정기 모임 및 추수감사절 준비 모임이 진행됩니다.
+4. 병환 중에 계신 환우 성도님들의 쾌유를 위해 중보기도 부탁드립니다.</textarea>
+          </div>
+          <div class="form-group">
+            <label for="jbVerse">이번 주 암송 · 묵상 말씀</label>
+            <input type="text" id="jbVerse" class="form-input" value="얘야 너는 항상 나와 함께 있으니 내 것이 다 네 것이로되 (누가복음 15:31)" oninput="renderJuboPreview()">
+          </div>
+          <div style="display:flex; gap:8px; margin-top:10px;">
+            <button type="button" class="side-btn" onclick="window.print()">🖨️ A4 주보 바로 인쇄 / PDF 저장</button>
+            <button type="button" class="side-btn secondary" onclick="copyJuboAsText()">📋 주보 텍스트 복사</button>
+          </div>
+        </div>
+
+        <!-- 오른쪽 실시간 A4 주보 미리보기 시트 -->
+        <div class="jubo-preview-sheet" id="juboPrintSheet">
+          <div class="jubo-sheet-head">
+            <div style="font-size:0.78rem; color:#8C621E; font-weight:800; letter-spacing:0.08em;" id="jpMotto">말씀과 기도로 다시 세우는 가정과 교회</div>
+            <h3 id="jpChurchTitle">소망교회 주일주보</h3>
+            <p id="jpMetaLine">2026년 11월 8일 주일 · 제2026-45호 · 담임목사 김은혜</p>
+          </div>
+
+          <div class="jubo-sec-title">🙏 주일 낮 대예배 순서</div>
+          <ul class="jubo-order-list" id="jpOrderList"></ul>
+
+          <div class="jubo-sec-title">📖 이번 주 암송 및 묵상 말씀</div>
+          <div id="jpVerseBox" style="font-size:0.88rem; padding:10px 12px; background:#FAF7F0; border:1px solid #E5DEC9; border-radius:8px; line-height:1.55;"></div>
+
+          <div class="jubo-sec-title">📢 교회 소식 및 주간 광고</div>
+          <div id="jpNewsBox" style="font-family:'Pretendard',sans-serif; font-size:0.86rem; line-height:1.68; white-space:pre-line; padding:4px 6px;"></div>
+
+          <div style="margin-top:18px; padding-top:10px; border-top:1px solid #D8D0C5; display:flex; justify-content:space-between; font-family:'Pretendard',sans-serif; font-size:0.76rem; color:#666;">
+            <span id="jpFooterLeft">예배와 섬김의 자리마다 주님의 은혜가 가득하기를 축복합니다.</span>
+            <span id="jpFooterRight">꿈바온 아론의 지팡이 주보 시스템</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 서브탭 B: 교회 행정 문서 메이커 -->
+      <div id="subPanelAdmin" style="display:none;">
+        <div class="quick-chips no-print">
+          <span class="lbl">📝 행정 양식 선택:</span>
+          <button type="button" class="q-chip" onclick="generateAdminDoc('meeting')">📋 제직회·당회 회의록 초안</button>
+          <button type="button" class="q-chip" onclick="generateAdminDoc('official')">✉️ 대외 공문서 (협조 요청·안내)</button>
+          <button type="button" class="q-chip" onclick="generateAdminDoc('cert')">🏅 임명장 · 감사장 문안</button>
+          <button type="button" class="q-chip" onclick="generateAdminDoc('plan')">🗓️ 절기·특별행사 기획안</button>
+        </div>
+        <div class="form-row-2 no-print">
+          <div class="form-group">
+            <label for="admType">문서 종류</label>
+            <select id="admType" class="form-select">
+              <option value="meeting">제직회 · 당회 · 운영위원회 회의록</option>
+              <option value="official">교회 대외 공문 (노회·지방회·기관 발송용)</option>
+              <option value="cert">봉사자 임명장 · 감사장 · 표창장 문안</option>
+              <option value="plan">교회 절기 · 수련회 · 전도행사 기획서</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="admSubject">안건 · 제목 · 대상</label>
+            <div style="display:flex; gap:8px;">
+              <input type="text" id="admSubject" class="form-input" value="추수감사주일 행사 준비 및 새해 예산위원회 구성의 건">
+              <button type="button" class="side-btn" style="width:auto; white-space:nowrap; padding:9px 18px;" onclick="generateAdminDoc()">📝 문서 만들기</button>
+            </div>
+          </div>
+        </div>
+        <div class="result-box">
+          <div class="result-top-bar">
+            <strong>📝 교회 행정 문서 초안</strong>
+            <div class="result-actions">
+              <button type="button" class="act-btn" onclick="copyTextarea('admOutput')">📋 복사</button>
+              <button type="button" class="act-btn" onclick="downloadTextFile('admOutput', '교회행정문서.md')">💾 파일(.md) 저장</button>
+              <button type="button" class="act-btn" onclick="window.print()">🖨️ 인쇄</button>
+            </div>
+          </div>
+          <textarea id="admOutput" class="output-textarea"></textarea>
+        </div>
+      </div>
+    </article>
+
+    <!-- ================= [자리 5] 새가족 정착 · 교회 성장 · 소그룹 나눔 ================= -->
+    <article class="seat-panel" id="panel-growth">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">🌱 자리 5. 새가족 정착 · 교회 성장 · 구역/속회 나눔 질문지</h2>
+          <p>새가족 4주 환영 문자, 전도축제 초청장, 주일 설교와 이어지는 소그룹(구역·속회·셀) 나눔 질문지를 즉시 만듭니다.</p>
+        </div>
+      </div>
+
+      <div class="quick-chips no-print">
+        <span class="lbl">🌱 원하는 문서 클릭:</span>
+        <button type="button" class="q-chip" onclick="generateGrowthDoc('newcomer4w')">💌 새가족 1~4주차 정착 환영 문자 시리즈</button>
+        <button type="button" class="q-chip" onclick="generateGrowthDoc('smallgroup')">👥 이번 주 설교 연동 구역·속회 나눔 질문지</button>
+        <button type="button" class="q-chip" onclick="generateGrowthDoc('invite')">🎉 이웃 초청 잔치 · 절기 예배 초청장 문구</button>
+        <button type="button" class="q-chip" onclick="generateGrowthDoc('parents')">👨‍👩‍👧 다음세대 주일학교 학부모 안부·가정통신문</button>
+      </div>
+
+      <div class="form-group no-print">
+        <label for="growthTopic">맞춤 요청 내용 (새가족 이름, 소그룹 본문, 행사명 등)</label>
+        <div style="display:flex; gap:8px;">
+          <input type="text" id="growthTopic" class="form-input" value="이번 주 설교(누가복음 15:25-32 큰아들 이야기)로 구역 식구들이 따뜻하게 속마음을 나눌 수 있는 질문지 5문항">
+          <button type="button" class="side-btn" style="width:auto; white-space:nowrap; padding:10px 20px;" onclick="generateGrowthDoc('custom')">🌱 맞춤 생성하기</button>
+        </div>
+      </div>
+
+      <div class="result-box">
+        <div class="result-top-bar">
+          <strong id="growthResultTitle">🌱 새가족 · 소그룹 · 교회 성장 자료</strong>
+          <div class="result-actions">
+            <button type="button" class="act-btn pri" onclick="copyTextarea('growthOutput')">📋 카톡/문자 전송용 복사</button>
+            <button type="button" class="act-btn" onclick="downloadTextFile('growthOutput', '새가족_소그룹나눔.md')">💾 파일(.md) 저장</button>
+            <button type="button" class="act-btn" onclick="window.print()">🖨️ 인쇄</button>
+          </div>
+        </div>
+        <textarea id="growthOutput" class="output-textarea"></textarea>
+      </div>
+    </article>
+
+    <!-- ================= [자리 6] 내 AI(클로드·ChatGPT·제미나이) 1초 연결 ================= -->
+    <article class="seat-panel" id="panel-ai">
+      <div class="panel-header">
+        <div>
+          <h2 class="serif">🤖 자리 6. 내 AI (클로드 · ChatGPT · 제미나이) 1초 연결 스튜디오</h2>
+          <p>15만 원짜리 유료 프로그램을 따로 살 필요 없이, 목사님이 쓰시는 AI에 [우리 교회 프로필 + 일정 + 신학 안전 규칙]을 입혀 1초 만에 전담 비서로 연결합니다.</p>
+        </div>
+      </div>
+
+      <div class="quick-chips no-print">
+        <span class="lbl">✨ 내 부탁 문장 고쳐 쓰기 &amp; AI 지시문 자동 조립:</span>
+        <button type="button" class="q-chip" onclick="setAiDraft('이번 주일 설교 본문이 요한복음 15장 1-8절인데 설교 개요랑 예화 좀 찾아줘')">📖 설교 개요·예화 부탁 다듬기</button>
+        <button type="button" class="q-chip" onclick="setAiDraft('새로 등록한 30대 부부 심방 가는데 어떤 말씀과 기도를 준비하면 좋을까')">🏠 심방 준비 부탁 다듬기</button>
+        <button type="button" class="q-chip" onclick="setAiDraft('우리 교회 올해 표어에 맞춰서 대림절·성탄절 4주 사역 계획표 짜줘')">🎄 절기 4주 사역 계획 부탁 다듬기</button>
+      </div>
+
+      <div class="form-group no-print">
+        <label for="aiRawAsk">목사님이 AI에게 시키고 싶은 말을 편하게 적어 보세요</label>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <input type="text" id="aiRawAsk" class="form-input" style="flex:1; min-width:260px;" value="이번 주일 설교 본문이 누가복음 15장 25-32절인데 우리 교회 상황에 맞게 설교 개요랑 적용 질문 만들어줘">
+          <button type="button" class="side-btn" style="width:auto; padding:10px 18px;" onclick="buildAiMasterPrompt()">✨ 내 교회 맞춤 AI 지시문 조립하기</button>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap; margin:14px 0;" class="no-print">
+        <button type="button" class="act-btn pri" style="padding:12px 18px; font-size:0.95rem;" onclick="copyAndOpenAI('https://claude.ai/new', 'Claude(클로드)')">📋 지시문 복사하고 Claude 열기 ↗</button>
+        <button type="button" class="act-btn pri" style="padding:12px 18px; font-size:0.95rem;" onclick="copyAndOpenAI('https://chatgpt.com/', 'ChatGPT')">📋 지시문 복사하고 ChatGPT 열기 ↗</button>
+        <button type="button" class="act-btn pri" style="padding:12px 18px; font-size:0.95rem;" onclick="copyAndOpenAI('https://gemini.google.com/', 'Google Gemini')">📋 지시문 복사하고 Gemini 열기 ↗</button>
+      </div>
+
+      <div class="result-box">
+        <div class="result-top-bar">
+          <strong>🤖 조립 완료된 [아론의 지팡이 · 우리 교회 맞춤 마스터 지시문] (복사해서 AI 채팅창에 붙여넣으세요)</strong>
+          <div class="result-actions">
+            <button type="button" class="act-btn" onclick="copyTextarea('aiPromptOutput')">📋 지시문 복사</button>
+          </div>
+        </div>
+        <textarea id="aiPromptOutput" class="output-textarea" style="min-height:320px;"></textarea>
+      </div>
+    </article>
+
+  </section>
+</main>
+
+<div id="toastBox" class="toast-msg"></div>
+
+<script>
+  var STORAGE_KEY = 'kkumbaon_pastoral_secretary_v1';
+  var GOTGAN_STORAGE_KEY = 'kkumdido_gotgan_sermons_v1';
+  var DESKTOP_API_URL = '/api/state';
+  var isDesktopServerConnected = false;
+
+  var DEFAULT_STATE = {
+    theme: 'beige',
+    fontScale: 1,
+    profile: {
+      churchName: '소망교회',
+      pastorTitle: '김은혜 담임목사',
+      denom: '복음주의 · 건강한 말씀 공동체',
+      size: '장년 80명 · 주일학교·청년 20명',
+      motto: '말씀과 기도로 다시 세우는 가정과 교회',
+      focus: '새가족 따뜻한 정착, 환우 성도 심방 돌봄, 주일 본문 중심 강해설교와 소그룹 나눔 연결'
+    },
+    schedules: [
+      { id: 'sc1', type: '📖 설교', date: getOffsetDateStr(2), title: '주일 대예배 설교 (누가복음 15:25-32)' },
+      { id: 'sc2', type: '🏠 심방', date: getOffsetDateStr(4), title: '박은혜 권사님 병문안 심방 (수술 전 기도)' },
+      { id: 'sc3', type: '⛪ 행사', date: getOffsetDateStr(7), title: '새가족 환영 다과 모임 및 제직회' },
+      { id: 'sc4', type: '📖 설교', date: getOffsetDateStr(9), title: '추수감사주일 특별설교 (시편 100:1-5)' }
+    ],
+    todos: [
+      { id: 'td1', title: '주일 설교 3대지 및 적용 질문 정리', mins: '40분', slot: '오전 09:30', done: false },
+      { id: 'td2', title: '박은혜 권사님 심방 위로 말씀·기도문 준비', mins: '30분', slot: '오전 10:30', done: false },
+      { id: 'td3', title: '이번 주일 A4 주보 광고 문구 점검 및 인쇄', mins: '20분', slot: '오후 02:00', done: false },
+      { id: 'td4', title: '새가족 이소망 성도 가정 안부 문자 발송', mins: '20분', slot: '오후 03:00', done: true }
+    ],
+    diaries: []
+  };
+
+  var STATE = JSON.parse(JSON.stringify(DEFAULT_STATE));
+
+  function getOffsetDateStr(days) {
+    var d = new Date();
+    d.setDate(d.getDate() + days);
+    var yyyy = d.getFullYear();
+    var mm = String(d.getMonth() + 1).padStart(2, '0');
+    var dd = String(d.getDate()).padStart(2, '0');
+    return yyyy + '-' + mm + '-' + dd;
+  }
+
+  function showToast(msg) {
+    var box = document.getElementById('toastBox');
+    if (!box) return;
+    box.textContent = msg;
+    box.style.display = 'block';
+    clearTimeout(window.__toastTimer);
+    window.__toastTimer = setTimeout(function() {
+      box.style.display = 'none';
+    }, 2800);
+  }
+
+  function loadState() {
+    try {
+      if (window.__EMBEDDED_SECRETARY_STATE__) {
+        STATE = Object.assign({}, DEFAULT_STATE, window.__EMBEDDED_SECRETARY_STATE__);
+      } else {
+        var raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          var parsed = JSON.parse(raw);
+          STATE = Object.assign({}, DEFAULT_STATE, parsed);
+          STATE.profile = Object.assign({}, DEFAULT_STATE.profile, parsed.profile || {});
+        }
+      }
+    } catch (e) {
+      STATE = JSON.parse(JSON.stringify(DEFAULT_STATE));
+    }
+    applyThemeAndScale();
+    populateProfileInputs();
+    renderSchedules();
+    renderTodos();
+    updateWelcomeBanner();
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(STATE));
+    } catch (e) {}
+    if (isDesktopServerConnected) {
+      fetch(DESKTOP_API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(STATE)
+      }).catch(function() {});
+    }
+  }
+
+  function tryConnectDesktopServer() {
+    if (window.location.protocol.indexOf('http') !== 0) return;
+    fetch(DESKTOP_API_URL, { method: 'GET' })
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(data) {
+        if (data && typeof data === 'object') {
+          isDesktopServerConnected = true;
+          var badge = document.getElementById('desktopStatusBadge');
+          if (badge) badge.textContent = '🟢 내 PC 로컬 DB(SQLite) 실시간 저장 연결됨';
+          if (data.profile) {
+            STATE = Object.assign({}, DEFAULT_STATE, data);
+            applyThemeAndScale();
+            populateProfileInputs();
+            renderSchedules();
+            renderTodos();
+            updateWelcomeBanner();
+          } else {
+            saveState();
+          }
+        }
+      })
+      .catch(function() {});
+  }
+
+  function applyThemeAndScale() {
+    document.body.setAttribute('data-theme', STATE.theme || 'beige');
+    var picker = document.getElementById('themePicker');
+    if (picker) picker.value = STATE.theme || 'beige';
+    document.documentElement.style.setProperty('--font-scale', STATE.fontScale || 1);
+  }
+
+  function setStudioTheme(theme) {
+    STATE.theme = theme;
+    applyThemeAndScale();
+    saveState();
+  }
+
+  function adjustScale(delta) {
+    var cur = parseFloat(STATE.fontScale || 1);
+    cur = Math.min(1.28, Math.max(0.88, +(cur + delta).toFixed(2)));
+    STATE.fontScale = cur;
+    applyThemeAndScale();
+    saveState();
+  }
+
+  function populateProfileInputs() {
+    var p = STATE.profile || {};
+    document.getElementById('profChurchName').value = p.churchName || '';
+    document.getElementById('profPastorTitle').value = p.pastorTitle || '';
+    document.getElementById('profDenom').value = p.denom || '';
+    document.getElementById('profSize').value = p.size || '';
+    document.getElementById('profMotto').value = p.motto || '';
+    document.getElementById('profFocus').value = p.focus || '';
+  }
+
+  function saveProfile() {
+    STATE.profile = {
+      churchName: document.getElementById('profChurchName').value.trim() || '우리교회',
+      pastorTitle: document.getElementById('profPastorTitle').value.trim() || '담임목사',
+      denom: document.getElementById('profDenom').value.trim() || '복음주의',
+      size: document.getElementById('profSize').value.trim() || '성도 공동체',
+      motto: document.getElementById('profMotto').value.trim() || '말씀과 기도로 서는 교회',
+      focus: document.getElementById('profFocus').value.trim() || '말씀 목양과 성도 돌봄'
+    };
+    saveState();
+    updateWelcomeBanner();
+    generateMorningBriefing();
+    renderJuboPreview();
+    buildAiMasterPrompt();
+    showToast('✅ 우리 교회 프로필이 저장되어 6개 자리에 모두 반영되었습니다!');
+  }
+
+  function updateWelcomeBanner() {
+    var p = STATE.profile || {};
+    var titleEl = document.getElementById('welcomeBannerTitle');
+    var subEl = document.getElementById('welcomeBannerSub');
+    if (titleEl) {
+      titleEl.textContent = '🕊️ ' + (p.churchName || '우리교회') + ' ' + (p.pastorTitle || '목사님') + ', 오늘 사역을 함께 준비하겠습니다.';
+    }
+    if (subEl) {
+      subEl.textContent = '표어: “' + (p.motto || '') + '” · 현재 중점: ' + (p.focus || '');
+    }
+  }
+
+  // ── D-day 계산 및 일정 렌더링 ──
+  function calcDdayInfo(dateStr) {
+    if (!dateStr) return { label: '일정', cls: 'norm', diff: 999 };
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+    var target = new Date(dateStr + 'T00:00:00');
+    var diff = Math.round((target - today) / (1000 * 60 * 60 * 24));
+    if (diff === 0) return { label: 'D-Day', cls: 'urgent', diff: 0 };
+    if (diff > 0 && diff <= 3) return { label: 'D-' + diff, cls: 'urgent', diff: diff };
+    if (diff > 3 && diff <= 7) return { label: 'D-' + diff, cls: 'soon', diff: diff };
+    if (diff > 7) return { label: 'D-' + diff, cls: 'norm', diff: diff };
+    return { label: 'D+' + Math.abs(diff), cls: 'norm', diff: diff };
+  }
+
+  function renderSchedules() {
+    var ul = document.getElementById('ddayList');
+    var cnt = document.getElementById('scheduleCountTxt');
+    if (!ul) return;
+    var list = (STATE.schedules || []).slice().sort(function(a, b) {
+      return String(a.date || '').localeCompare(String(b.date || ''));
+    });
+    if (cnt) cnt.textContent = list.length + '건';
+    ul.innerHTML = list.map(function(item) {
+      var d = calcDdayInfo(item.date);
+      return '<li class="dday-item">' +
+        '<div class="dday-left">' +
+          '<span class="dday-badge ' + d.cls + '">' + d.label + '</span>' +
+          '<span class="dday-title" title="' + escHtml(item.title) + '">' + escHtml(item.type) + ' · ' + escHtml(item.title) + '</span>' +
+        '</div>' +
+        '<button type="button" class="del-mini-btn" onclick="deleteSchedule(\'' + item.id + '\')" title="삭제">✕</button>' +
+      '</li>';
+    }).join('');
+  }
+
+  function addSchedule() {
+    var type = document.getElementById('newSchedType').value;
+    var date = document.getElementById('newSchedDate').value || getOffsetDateStr(3);
+    var title = document.getElementById('newSchedTitle').value.trim();
+    if (!title) {
+      showToast('일정 제목을 입력해 주세요.');
+      return;
+    }
+    STATE.schedules.push({
+      id: 'sc_' + Date.now(),
+      type: type,
+      date: date,
+      title: title
+    });
+    document.getElementById('newSchedTitle').value = '';
+    saveState();
+    renderSchedules();
+    generateMorningBriefing();
+    showToast('📅 새 목회 일정이 D-day에 추가되었습니다.');
+  }
+
+  function deleteSchedule(id) {
+    STATE.schedules = (STATE.schedules || []).filter(function(x) { return x.id !== id; });
+    saveState();
+    renderSchedules();
+  }
+
+  // ── 오늘 할 일 & 자동 시간표 (plan_today / replan) ──
+  function renderTodos() {
+    var ul = document.getElementById('todoList');
+    var cnt = document.getElementById('todoCountTxt');
+    if (!ul) return;
+    var list = STATE.todos || [];
+    var remain = list.filter(function(t) { return !t.done; }).length;
+    if (cnt) cnt.textContent = '남은 일 ' + remain + '건 / 총 ' + list.length + '건';
+    ul.innerHTML = list.map(function(t) {
+      return '<li class="todo-item ' + (t.done ? 'done' : '') + '">' +
+        '<div class="todo-left" onclick="toggleTodo(\'' + t.id + '\')">' +
+          '<input type="checkbox" ' + (t.done ? 'checked' : '') + ' style="pointer-events:none;">' +
+          (t.slot ? '<span class="todo-slot-tag">' + escHtml(t.slot) + '</span>' : '') +
+          '<span class="todo-text">' + escHtml(t.title) + ' <small style="opacity:0.75;">(' + escHtml(t.mins || '30분') + ')</small></span>' +
+        '</div>' +
+        '<button type="button" class="del-mini-btn" onclick="deleteTodo(\'' + t.id + '\')" title="삭제">✕</button>' +
+      '</li>';
+    }).join('');
+  }
+
+  function addTodo() {
+    var title = document.getElementById('newTodoTitle').value.trim();
+    var mins = document.getElementById('newTodoMins').value;
+    if (!title) {
+      showToast('할 일 내용을 입력해 주세요.');
+      return;
+    }
+    STATE.todos.push({
+      id: 'td_' + Date.now(),
+      title: title,
+      mins: mins,
+      slot: '오늘',
+      done: false
+    });
+    document.getElementById('newTodoTitle').value = '';
+    saveState();
+    renderTodos();
+    showToast('🗓️ 오늘 할 일이 추가되었습니다.');
+  }
+
+  function toggleTodo(id) {
+    STATE.todos.forEach(function(t) {
+      if (t.id === id) t.done = !t.done;
+    });
+    saveState();
+    renderTodos();
+  }
+
+  function deleteTodo(id) {
+    STATE.todos = (STATE.todos || []).filter(function(t) { return t.id !== id; });
+    saveState();
+    renderTodos();
+  }
+
+  function autoPlanToday() {
+    var slots = ['오전 09:30', '오전 10:30', '오전 11:20', '오후 02:00', '오후 03:00', '오후 04:00', '저녁 07:30'];
+    var idx = 0;
+    (STATE.todos || []).forEach(function(t) {
+      if (!t.done) {
+        t.slot = slots[idx % slots.length];
+        idx++;
+      } else {
+        t.slot = '완료됨';
+      }
+    });
+    saveState();
+    renderTodos();
+    generateMorningBriefing();
+    showToast('⏰ 남은 할 일을 오늘 오전·오후 사역 시간표에 맞춰 자동 배정했습니다!');
+  }
+
+  function rolloverUnfinishedTodos() {
+    var count = 0;
+    (STATE.todos || []).forEach(function(t) {
+      if (!t.done) {
+        t.slot = '내일 오전';
+        count++;
+      }
+    });
+    saveState();
+    renderTodos();
+    showToast('↪ 오늘 못 다 한 사역 ' + count + '건을 내일 일정으로 무리 없이 옮겼습니다.');
+  }
+
+  // ── 탭 전환 ──
+  function switchSeat(seatKey, btn) {
+    document.querySelectorAll('.seat-btn').forEach(function(b) {
+      b.classList.toggle('active', b === btn);
+    });
+    document.querySelectorAll('.seat-panel').forEach(function(p) {
+      p.classList.toggle('active', p.id === 'panel-' + seatKey);
+    });
+  }
+
+  // ── [자리 1] 아침 목회 브리핑 · 내 목회 한 장 정리 · 저녁 3줄 사역일지 ──
+  function generateMorningBriefing() {
+    var p = STATE.profile || {};
+    var scheds = (STATE.schedules || []).slice().sort(function(a, b) {
+      return String(a.date || '').localeCompare(String(b.date || ''));
+    });
+    var nextSermon = scheds.find(function(s) { return s.type.indexOf('설교') !== -1; }) || scheds[0];
+    var ddayTxt = nextSermon ? (calcDdayInfo(nextSermon.date).label + ' — ' + nextSermon.title) : '예정된 설교 일정 없음';
+
+    var activeTodos = (STATE.todos || []).filter(function(t) { return !t.done; });
+    var topTodo = activeTodos[0] ? activeTodos[0].title : '주일 설교 본문 묵상 및 성도 안부 점검';
+
+    var schedLines = scheds.map(function(s) {
+      var d = calcDdayInfo(s.date);
+      return '  • [' + d.label + '] ' + s.type + ' : ' + s.title + ' (' + s.date + ')';
+    }).join('\n') || '  • 등록된 일정이 없습니다.';
+
+    var todoLines = activeTodos.map(function(t, i) {
+      return '  ' + (i + 1) + '. [' + (t.slot || '오늘') + '] ' + t.title + ' (예상 ' + (t.mins || '30분') + ')';
+    }).join('\n') || '  • 오늘 예정된 모든 할 일을 마치셨습니다!';
+
+    var out = [
+      '====================================================================',
+      '☀️ [' + p.churchName + '] 오늘의 아침 목회 브리핑 (' + formatTodayKorean() + ')',
+      '   수신: ' + p.pastorTitle + ' | 표어: “' + p.motto + '”',
+      '====================================================================',
+      '',
+      '🧭 [결론 — 오늘 가장 먼저 챙기실 한 가지]',
+      '👉 오늘은 무엇보다 「' + topTodo + '」에 집중하시는 것을 권면드립니다.',
+      '   다가오는 핵심 일정인 [' + ddayTxt + '] 준비와 성도 돌봄의 중심축이 되기 때문입니다.',
+      '',
+      '📂 [근거 — 우리 교회 프로필 및 다가오는 일정 D-day]',
+      '• 교회 현황: ' + p.denom + ' / ' + p.size,
+      '• 현재 중점 사역: ' + p.focus,
+      '• 다가오는 일정:',
+      schedLines,
+      '',
+      '🗓️ [이번 주·오늘 목사님 할 일 시간표]',
+      todoLines,
+      '',
+      '💬 [되묻는 질문 — 비서가 더 도울 일]',
+      '1) 다가오는 설교 본문의 7단계 강해 개요나 구역 나눔 질문지를 먼저 초안으로 잡아 드릴까요? (👉 2번 [설교 준비 비서] 탭)',
+      '2) 이번 주 심방 예정인 성도님께 보낼 위로 문자와 기도문을 미리 준비해 둘까요? (👉 3번 [심방·돌봄 비서] 탭)',
+      '   *(출석 인원이나 헌금·재정 숫자는 임의로 지어내지 않고 목사님께서 입력하신 내용만 반영합니다.)*'
+    ].join('\n');
+
+    document.getElementById('briefResultTitle').textContent = '☀️ 오늘의 아침 목회 브리핑 (' + formatTodayKorean() + ')';
+    document.getElementById('briefOutput').value = out;
+  }
+
+  function generateOnePageSummary() {
+    var p = STATE.profile || {};
+    var scheds = (STATE.schedules || []).map(function(s) {
+      return '  - [' + calcDdayInfo(s.date).label + '] ' + s.title + ' (' + s.date + ')';
+    }).join('\n');
+    var out = [
+      '====================================================================',
+      '📋 [' + p.churchName + '] 내 목회 한 장 전체 정리표',
+      '====================================================================',
+      '',
+      '1. 교회 기본 정체성 및 비전',
+      '   • 교회명 / 담임: ' + p.churchName + ' (' + p.pastorTitle + ')',
+      '   • 교단 및 신학: ' + p.denom,
+      '   • 성도 규모: ' + p.size,
+      '   • 올해 표어: “' + p.motto + '”',
+      '',
+      '2. 올해 중점 목회 과제 및 기도제목',
+      '   • ' + p.focus,
+      '',
+      '3. 주요 목회 일정 및 D-day 점검',
+      scheds || '   - 등록된 일정 없음',
+      '',
+      '4. 영역별 균형 목회 실천 지침',
+      '   • [말씀·예배] 성경 본문 관찰과 원어 배경에 뿌리내린 강해설교 및 전교인 아멘 화답',
+      '   • [심방·돌봄] 환우·낙심 성도 및 새가족 4주 밀착 케어로 낙오자 없는 양떼 목양',
+      '   • [다음세대·가정] 주일 설교 본문을 주중 가정예배 및 구역 모임 질문지와 하나로 연결'
+    ].join('\n');
+
+    document.getElementById('briefResultTitle').textContent = '📋 [' + p.churchName + '] 내 목회 한 장 전체 정리표';
+    document.getElementById('briefOutput').value = out;
+    showToast('📋 우리 교회 목회 한 장 정리표가 완성되었습니다.');
+  }
+
+  function generateWeeklyPriority() {
+    var p = STATE.profile || {};
+    var out = [
+      '====================================================================',
+      '🗓️ [' + p.churchName + '] 이번 주 목회 우선순위 3대 제안',
+      '====================================================================',
+      '',
+      '🧭 [결론]',
+      '이번 주는 ① 주일 설교 중심 메시지 확정, ② 환우·새가족 심방 돌봄, ③ 주보 및 소그룹 질문지 조기 배부를 최우선으로 두십시오.',
+      '',
+      '1순위: [말씀 사역] 주일 설교 1문장 중심 메시지 및 대지 확정 (화~목요일 오전)',
+      '   - 강단 말씀이 먼저 서야 대표기도, 찬양 선곡, 구역 공과가 한 호흡으로 묶입니다.',
+      '',
+      '2순위: [돌봄 사역] 수술·병환 성도 및 새가족 안부 심방 (수~금요일 오후)',
+      '   - 15분의 따뜻한 전화·방문 기도가 성도 한 가정을 다시 일으켜 세웁니다.',
+      '',
+      '3순위: [행정·소그룹] A4 주보 및 구역장 나눔 질문지 미리 나누기 (토요일 오전)',
+      '   - 구역장·속장님들께 주일 본문 질문지를 하루 먼저 보내 드리면 모임이 풍성해집니다.'
+    ].join('\n');
+    document.getElementById('briefResultTitle').textContent = '🗓️ 이번 주 목회 우선순위 3대 제안';
+    document.getElementById('briefOutput').value = out;
+  }
+
+  function generateEveningDiary() {
+    var p = STATE.profile || {};
+    var doneList = (STATE.todos || []).filter(function(t) { return t.done; });
+    var remainList = (STATE.todos || []).filter(function(t) { return !t.done; });
+
+    var line1 = doneList.length
+      ? '1. [오늘 감당케 하신 사역] ' + doneList.map(function(t) { return t.title; }).join(', ') + ' 등 ' + doneList.length + '건의 목양 일과를 은혜 가운데 마쳤습니다.'
+      : '1. [오늘 감당케 하신 사역] 말씀 묵상과 교회 현안을 살피며 차분히 다음 사역을 준비한 하루였습니다.';
+    var line2 = remainList.length
+      ? '2. [내일 이어갈 사역] 미처 다 하지 못한 「' + remainList[0].title + '」 외 ' + (remainList.length - 1) + '건은 내일 오전 시간표로 옮겨 차근차근 감당하기로 했습니다.'
+      : '2. [내일 이어갈 사역] 오늘 계획한 할 일을 모두 마쳤으니, 내일은 다가오는 설교 본문 묵상과 심방 기도에 더욱 깊이 머물고자 합니다.';
+    var line3 = '3. [목자의 한 줄 감사기도] “주님, ' + p.churchName + '의 양떼를 주님의 손에 의탁합니다. 오늘 심은 작은 기도와 말씀의 씨앗이 성도들의 가정마다 평안의 열매로 맺히게 하옵소서. 아멘.”';
+
+    var out = [
+      '====================================================================',
+      '📓 [' + p.churchName + '] 저녁 3줄 사역일지 (' + formatTodayKorean() + ')',
+      '====================================================================',
+      '',
+      line1,
+      '',
+      line2,
+      '',
+      line3,
+      '',
+      '--------------------------------------------------------------------',
+      '💡 [기억 노트에 자동 기록된 항목]',
+      '• 작성자: ' + p.pastorTitle,
+      '• 중점 기도제목: ' + p.focus
+    ].join('\n');
+
+    document.getElementById('briefResultTitle').textContent = '📓 오늘의 저녁 3줄 사역일지';
+    document.getElementById('briefOutput').value = out;
+    showToast('📓 오늘 하루를 갈무리하는 3줄 사역일지가 작성되었습니다.');
+  }
+
+  // ── [자리 2] 설교 준비 비서 (7단계 강해 개요 + 가상예화 분리 표기) ──
+  function fillSermonPreset(passage, occasion, theme) {
+    document.getElementById('sermPassage').value = passage;
+    document.getElementById('sermOccasion').value = occasion;
+    document.getElementById('sermTheme').value = theme;
+    generateSermonOutline();
+  }
+
+  function generateSermonOutline() {
+    var p = STATE.profile || {};
+    var passage = document.getElementById('sermPassage').value.trim() || '누가복음 15:25-32';
+    var occasion = document.getElementById('sermOccasion').value;
+    var theme = document.getElementById('sermTheme').value.trim() || '하나님 아버지의 마음과 은혜의 회복';
+
+    var isLuke15 = passage.indexOf('15') !== -1 && (passage.indexOf('누가') !== -1 || passage.indexOf('눅') !== -1);
+    var isPs23 = passage.indexOf('23') !== -1 && passage.indexOf('시') !== -1;
+
+    var bgSection = isLuke15
+      ? '• 본문 맥락: 세리와 죄인들이 예수님께 나아올 때 바리새인과 서기관들이 수군거리는 상황(눅 15:1-2)에서 주신 세 번째 비유의 결론부입니다.\n• 원어·문화 포인트: 아버지가 집 밖으로 ‘나와서 권하다’(파라칼레오, παρακαλέω — 곁으로 불러 다정히 간청하다)라는 표현은, 작은아들을 향해 달려가신 아버지께서 문밖에 서서 성내는 큰아들에게도 똑같은 사랑으로 걸어 나오셨음을 보여 줍니다.'
+      : isPs23
+      ? '• 본문 맥락: 양 치던 목동 다윗이 광야의 거친 골짜기와 건기·우기를 지나며 경험한 여호와 하나님의 세밀한 인도하심을 고백한 신뢰시입니다.\n• 원어·문화 포인트: ‘부족함이 없으리로다’(로 에흐사르, לֹא אֶחְסָר)는 환경에 아무 결핍이 없다는 뜻이 아니라, 목자 되신 주님 한 분으로 인해 내 영혼이 온전히 채워져 있다는 신앙 선포입니다.'
+      : '• 본문 맥락: [' + passage + '] 본문의 앞뒤 문맥을 살피며, 하나님께서 당시 언약 백성에게 무엇을 깨우치시고 어떻게 구속사적 은혜를 베푸시는지 관찰합니다.\n• 원어·문화 포인트: 본문의 핵심 동사와 명사가 가진 히브리어/헬라어 원어의 결을 살려, 추상적인 교리가 아니라 오늘 성도들의 삶에 닿는 생생한 말씀으로 풀어냅니다. (👉 상단 [👑 꿈디도 66권 원어 설교 프로그램]에서 상세 원어 데이터를 바로 대조하실 수 있습니다.)';
+
+    var pointsSection = isLuke15
+      ? '  1대지: 집 가까이 왔으나 잔치에 들어가지 못하는 마음 (25-28절 상)\n' +
+        '     - 몸은 아버지의 밭에 있었으나 마음은 기쁨을 잃고 종처럼 일만 하던 큰아들의 모습\n' +
+        '     - 신앙 연수가 깊어질수록 우리도 모르게 찾아오는 ‘영적 피로’와 ‘비교 의식’ 점검\n\n' +
+        '  2대지: 문밖에 선 큰아들에게도 직접 걸어 나오시는 아버지 (28절 하-30절)\n' +
+        '     - 분노하며 따지는 아들을 꾸짖지 않으시고 먼저 밖으로 나와 다정히 권하시는(파라칼레오) 아버지의 인내\n' +
+        '     - 율법적 공로가 아니라 오직 아버지의 자비로만 유지되는 은혜의 집\n\n' +
+        '  3대지: “얘야, 너는 항상 나와 함께 있으니 내 것이 다 네 것이로다” (31-32절)\n' +
+        '     - 이미 누리고 있는 자녀 됨의 특권을 회복하고, 돌아온 한 영혼을 함께 기뻐하는 성숙한 공동체로 나아감'
+      : '  1대지: 본문이 보여주는 우리의 현실과 영적 갈급함 (본문 전반부 관찰)\n' +
+        '     - ' + passage + ' 속에서 드러나는 인간의 한계와 질문\n' +
+        '     - 오늘 ' + p.churchName + ' 성도들이 삶의 자리에서 겪는 실제적인 고민과 연결\n\n' +
+        '  2대지: 본문 한가운데서 일하시는 주님의 은혜와 반전 (본문 중반부 핵심)\n' +
+        '     - 우리의 노력이나 자격이 아니라, 먼저 찾아오시고 말씀하시는 하나님의 주권적 사랑\n' +
+        '     - “' + theme + '”의 복음적 해답 제시\n\n' +
+        '  3대지: 은혜 입은 성도가 이번 한 주간 살아낼 삶의 응답 (본문 후반부 결론)\n' +
+        '     - 말씀을 들은 자리에서 일상의 순종과 감사로 이어지는 구체적 실천';
+
+    var out = [
+      '====================================================================',
+      '📖 [' + p.churchName + '] ' + occasion + ' 7단계 설교 준비 개요',
+      '   • 성경 본문: ' + passage,
+      '   • 핵심 주제: ' + theme,
+      '   • 설교자: ' + p.pastorTitle + ' (초안은 비서가, 생명력 있는 말씀 선포는 목사님이 채우십니다)',
+      '====================================================================',
+      '',
+      '1️⃣ [본문 관찰 & 중심 메시지 한 문장]',
+      '• 중심 메시지: “' + theme + '”',
+      '• 설교 목표: 성도들이 말씀 앞에서 자신의 마음을 정직하게 비추어 보고, 정죄나 비교가 아닌 하나님의 은혜와 감사로 한 주간을 시작하게 한다.',
+      '',
+      '2️⃣ [성경 배경 · 원어 포인트]',
+      bgSection,
+      '',
+      '3️⃣ [설교 3대지 구성 (서론 → 본론 1·2·3 → 결론)]',
+      pointsSection,
+      '',
+      '4️⃣ [예화 제안 — 사실과 가상 예화를 명확히 구분합니다]',
+      '• (성경·역사 배경 예화): 초대교회와 종교개혁, 그리고 웨슬리 부흥운동 당시 교회 문턱을 넘어 돌아오는 영혼들을 맞이했던 성도들의 환대 이야기',
+      '• (가상 예화 — 설교 시 비유임을 밝히고 사용하세요): 30년 동안 교회 부엌과 주차장에서 한 번도 빠짐없이 봉사하던 한 직분자가, 새가족 환영 잔치 날 문득 서운한 마음이 들었지만 예배당 문밖까지 찾아와 손잡아 주신 주님의 위로를 깨닫고 처음으로 새가족의 손을 따뜻하게 감싸 안았다는 이야기',
+      '',
+      '5️⃣ [성도 삶 적용 & 이번 주 한 가지 실천]',
+      '• 개인 적용: 이번 주 내가 마음속으로 판단하거나 서운해했던 가족·지체 한 사람의 이름을 부르며 축복기도 하기',
+      '• 공동체 적용 (' + p.motto + '): 주일 예배 후 처음 본 성도나 오랜만에 나온 지체에게 먼저 다가가 따뜻한 인사 건네기',
+      '',
+      '6️⃣ [구역·속회 소그룹 나눔 질문 2가지]',
+      '1) 오늘 본문에서 가장 마음에 와닿은 구절이나 내 모습 같다고 느낀 장면은 어디인가요?',
+      '2) 이번 한 주간 우리 가정과 일터에서 주님의 기쁨에 동참하기 위해 내가 내려놓을 한 가지는 무엇인가요?',
+      '',
+      '7️⃣ [설교 마침 기도문 초안]',
+      '“사랑과 은혜가 풍성하신 아버지 하나님, 오늘 ' + passage + ' 말씀을 통해 우리를 다시 아버지의 품으로 불러 주시니 감사합니다. 익숙함 속에 무뎌졌던 우리의 마음을 녹여 주시고, 주님께서 우리에게 베푸신 은혜가 얼마나 큰지 날마다 기억하게 하옵소서. 이번 한 주간도 ' + p.churchName + '의 모든 성도들이 삶의 자리에서 복음의 기쁨을 누리며 살아가게 하옵소서. 예수 그리스도의 이름으로 기도드립니다. 아멘.”'
+    ].join('\n');
+
+    document.getElementById('sermResultTitle').textContent = '📖 [' + passage + '] ' + occasion + ' 7단계 설교 개요';
+    document.getElementById('sermOutput').value = out;
+    showToast('📖 [' + passage + '] 설교 7단계 강해 개요가 생성되었습니다!');
+  }
+
+  function saveSermonToGotgan() {
+    var passage = document.getElementById('sermPassage').value.trim() || '설교본문';
+    var occasion = document.getElementById('sermOccasion').value;
+    var theme = document.getElementById('sermTheme').value.trim() || '설교 개요';
+    var content = document.getElementById('sermOutput').value.trim();
+    if (!content) {
+      showToast('먼저 설교 개요를 생성해 주세요.');
+      return;
+    }
+    try {
+      var list = JSON.parse(localStorage.getItem(GOTGAN_STORAGE_KEY) || '[]');
+      list.unshift({
+        id: 'gotgan_' + Date.now(),
+        title: '[' + occasion + '] ' + theme,
+        scripture: passage,
+        book: passage.split(/\s+/)[0] || '성경',
+        date: getOffsetDateStr(0),
+        serviceType: occasion,
+        tags: ['아론의지팡이초안', occasion],
+        content: content,
+        updatedAt: new Date().toISOString()
+      });
+      localStorage.setItem(GOTGAN_STORAGE_KEY, JSON.stringify(list));
+      showToast('🏺 [내 설교 곳간] 서재에 이 설교 개요가 안전하게 보관되었습니다!');
+    } catch (e) {
+      showToast('저장 중 오류가 발생했습니다.');
+    }
+  }
+
+  // ── [자리 3] 심방 · 돌봄 비서 (위기 신호 감지 안내 포함) ──
+  function fillCarePreset(target, situation, note) {
+    document.getElementById('careTarget').value = target;
+    document.getElementById('careSituation').value = situation;
+    document.getElementById('careNote').value = note;
+    checkCareCrisisAlert();
+    generateCareMessage();
+  }
+
+  function checkCareCrisisAlert() {
+    var sit = document.getElementById('careSituation').value || '';
+    var note = document.getElementById('careNote').value || '';
+    var isCrisis = sit.indexOf('위기') !== -1 || /우울|자살|자해|죽고|극단|공황/.test(note);
+    var banner = document.getElementById('crisisAlertBanner');
+    if (banner) {
+      banner.style.display = isCrisis ? 'block' : 'none';
+    }
+    return isCrisis;
+  }
+
+  function generateCareMessage() {
+    var p = STATE.profile || {};
+    var target = document.getElementById('careTarget').value.trim() || '성도님';
+    var sit = document.getElementById('careSituation').value;
+    var note = document.getElementById('careNote').value.trim();
+    var isCrisis = checkCareCrisisAlert();
+
+    var verseMap = {
+      '병환·수술 앞둔 성도': '“두려워하지 말라 내가 너와 함께 함이라 놀라지 말라 나는 네 하나님이 됨이라 내가 너를 굳세게 하리라 참으로 너를 도와 주리라” (이사야 41:10)',
+      '새가족 첫 심방': '“그러므로 이제부터 너희는 외인도 아니요 나그네도 아니요 오직 성도들과 동일한 시민이요 하나님의 권속이라” (에베소서 2:19)',
+      '낙심·장기결석 성도': '“수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라” (마태복음 11:28)',
+      '개업·이사 축복 심방': '“네 시작은 미약하였으나 네 나중은 심히 창대하리라” (욥기 8:7) / “여호와께서 너의 출입을 지금부터 영원까지 지키시리로다” (시편 121:8)',
+      '장례·유가족 위로 심방': '“나는 부활이요 생명이니 나를 믿는 자는 죽어도 살겠고 무릇 살아서 나를 믿는 자는 영원히 죽지 아니하리니” (요한복음 11:25-26)',
+      '청년·수험생 격려 심방': '“너의 행사를 여호와께 맡기라 그리하면 네가 경영하는 것이 이루어지리라” (잠언 16:3)',
+      '정서적 위기·우울 긴급돌봄': '“여호와는 마음이 상한 자를 가까이 하시고 충심이 통회하는 자를 구원하시는도다” (시편 34:18)'
+    };
+
+    var verse = verseMap[sit] || verseMap['병환·수술 앞둔 성도'];
+
+    var crisisGuide = isCrisis
+      ? '\n🚨 [전문 상담 및 위기 보호 연계 안내]\n' +
+        '• 영적 돌봄과 더불어 전문 상담·의료 기관의 도움을 함께 받으시도록 따뜻하게 안내해 드려야 합니다.\n' +
+        '• 자살예방 상담전화: 109 (24시간) | 정신건강 위기상담전화: 1577-0199 | 긴급 상황: 112 / 119\n'
+      : '';
+
+    var out = [
+      '====================================================================',
+      '🏠 [' + p.churchName + '] 맞춤 심방 · 돌봄 준비 카드',
+      '   • 심방 대상: ' + target + ' (' + sit + ')',
+      '   • 돌봄 사역자: ' + p.pastorTitle + ' | 작성일: ' + formatTodayKorean(),
+      '====================================================================',
+      crisisGuide,
+      '1️⃣ [결론 — 이번 심방의 핵심 방향]',
+      '• 섣부른 조언이나 긴 설명보다, ' + target + '의 마음과 아픔(' + note + ')을 충분히 경청하고 주님께서 지금 함께 계심을 확인시켜 드리는 위로 심방으로 진행합니다.',
+      '',
+      '2️⃣ [심방 본문 말씀]',
+      '📖 ' + verse,
+      '',
+      '3️⃣ [따뜻한 권면 메시지 & 카톡/문자 발송용 안부 글]',
+      '“사랑하고 축복하는 ' + target + ', ' + p.churchName + ' ' + p.pastorTitle + '입니다.',
+      note + ' 소식을 듣고 새벽마다 주님 앞에 ' + target + '의 이름을 올려 드리며 기도하고 있습니다.',
+      '우리 눈에 보이지 않아도 치료자요 목자 되신 주님께서 지금 ' + target + '의 오른손을 굳게 붙들고 계심을 믿습니다.',
+      '혼자 짐을 지지 마시고 언제든 교회와 목회자에게 기대어 주세요. 주님의 깊은 평안이 가정 위에 가득하기를 간절히 기도합니다.”',
+      '',
+      '4️⃣ [심방 마침 기도문]',
+      '“자비와 긍휼의 아버지 하나님, 오늘 사랑하는 ' + target + '을 찾아와 주시고 주님의 따뜻한 손길로 어루만져 주옵소서. ' + note + '의 모든 과정을 주님께 의탁하오니, 두려움과 염려는 사라지고 하늘로부터 내려오는 세상이 줄 수 없는 평강으로 채워 주옵소서. 눈물 골짜기가 변하여 은혜의 샘이 되게 하실 예수 그리스도의 이름으로 간절히 축복하며 기도드립니다. 아멘.”',
+      '',
+      '5️⃣ [심방 후 사역자 돌봄 체크리스트]',
+      '  [ ] 3일 뒤 안부 전화 또는 짧은 말씀 문자 한 번 더 보내기',
+      '  [ ] 담당 구역장/속장님과 중보기도 제목(비밀 보장 범위 내) 공유하기',
+      '  [ ] 필요 시 무료 교적 프로그램(양떼 수첩) 심방일지에 오늘 기록 옮겨 두기'
+    ].join('\n');
+
+    document.getElementById('careResultTitle').textContent = '🏠 [' + target + '] ' + sit + ' 심방 말씀·기도문';
+    document.getElementById('careOutput').value = out;
+    showToast('🏠 [' + target + '] 맞춤 심방 말씀과 기도문이 준비되었습니다.');
+  }
+
+  // ── [자리 4] 실시간 A4 주보 만들기 & 교회 행정 문서 ──
+  function toggleJuboSubTab(mode) {
+    var juboPanel = document.getElementById('subPanelJubo');
+    var admPanel = document.getElementById('subPanelAdmin');
+    var btnJ = document.getElementById('subTabJuboBtn');
+    var btnA = document.getElementById('subTabAdminBtn');
+    if (mode === 'jubo') {
+      juboPanel.style.display = 'grid';
+      admPanel.style.display = 'none';
+      btnJ.classList.add('pri');
+      btnA.classList.remove('pri');
+    } else {
+      juboPanel.style.display = 'none';
+      admPanel.style.display = 'block';
+      btnA.classList.add('pri');
+      btnJ.classList.remove('pri');
+      if (!document.getElementById('admOutput').value) generateAdminDoc('meeting');
+    }
+  }
+
+  function formatKoreanDateWithDow(dateStr) {
+    if (!dateStr) return formatTodayKorean();
+    var d = new Date(dateStr + 'T00:00:00');
+    var dows = ['주일(일)', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    return d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + dows[d.getDay()];
+  }
+
+  function renderJuboPreview() {
+    var p = STATE.profile || {};
+    var dateVal = document.getElementById('jbDate').value;
+    var issue = document.getElementById('jbIssue').value;
+    var sermTitle = document.getElementById('jbSermonTitle').value;
+    var sermScripture = document.getElementById('jbSermonScripture').value;
+    var hymns = document.getElementById('jbHymns').value;
+    var prayPerson = document.getElementById('jbPrayPerson').value;
+    var news = document.getElementById('jbNews').value;
+    var verse = document.getElementById('jbVerse').value;
+
+    document.getElementById('jpMotto').textContent = '“' + (p.motto || '말씀과 기도로 서는 교회') + '”';
+    document.getElementById('jpChurchTitle').textContent = (p.churchName || '우리교회') + ' 주일주보';
+    document.getElementById('jpMetaLine').textContent = formatKoreanDateWithDow(dateVal) + ' · ' + issue + ' · ' + (p.pastorTitle || '담임목사');
+
+    var orders = [
+      ['묵상기도 · 예배로의 부름', '다함께 / 인도자'],
+      ['신앙고백 (사도신경)', '다함께'],
+      ['경배와 찬송', hymns],
+      ['대표기도', prayPerson],
+      ['성경봉독', sermScripture],
+      ['말씀선포', '「' + sermTitle + '」 — ' + (p.pastorTitle || '담임목사')],
+      ['봉헌 및 봉헌기도', '다함께 / 인도자'],
+      ['교회소식 및 환영', '인도자'],
+      ['축도', p.pastorTitle || '담임목사']
+    ];
+
+    document.getElementById('jpOrderList').innerHTML = orders.map(function(row) {
+      return '<li class="jubo-order-row"><strong>• ' + escHtml(row[0]) + '</strong><span>' + escHtml(row[1]) + '</span></li>';
+    }).join('');
+
+    document.getElementById('jpVerseBox').textContent = '📖 ' + verse;
+    document.getElementById('jpNewsBox').textContent = news;
+    document.getElementById('jpFooterRight').textContent = (p.churchName || '우리교회') + ' · ' + (p.denom || '');
+  }
+
+  function copyJuboAsText() {
+    var sheet = document.getElementById('juboPrintSheet');
+    if (!sheet) return;
+    navigator.clipboard.writeText(sheet.innerText).then(function() {
+      showToast('📋 주보 전체 내용이 클립보드에 복사되었습니다!');
+    });
+  }
+
+  function generateAdminDoc(typeOverride) {
+    var p = STATE.profile || {};
+    if (typeOverride) document.getElementById('admType').value = typeOverride;
+    var admType = document.getElementById('admType').value;
+    var subject = document.getElementById('admSubject').value.trim() || '주요 사역 안건 협의의 건';
+    var todayStr = formatTodayKorean();
+
+    var out = '';
+    if (admType === 'meeting') {
+      out = [
+        '====================================================================',
+        '📋 [' + p.churchName + '] 정기 제직회 · 운영위원회 회의록',
+        '====================================================================',
+        '• 일시: ' + todayStr + ' 오후 1시 30분',
+        '• 장소: ' + p.churchName + ' 본당 (또는 소예배실)',
+        '• 의장: ' + p.pastorTitle,
+        '• 주요 안건: ' + subject,
+        '--------------------------------------------------------------------',
+        '',
+        '1. 개회 예배 및 기도',
+        '   - 의장 ' + p.pastorTitle + '의 인도로 찬송 후 개회 기도로 회의를 시작하다.',
+        '',
+        '2. 회원 점명 및 개회 선언',
+        '   - 서기가 출석 회원을 보고하니 성수가 되어 의장이 개회를 선언하다.',
+        '',
+        '3. 전회의록 낭독 및 경과보고',
+        '   - 지난 회의록과 각 부서 사역 경과보고를 유인물대로 받기로 가결하다.',
+        '',
+        '4. 안건 토의: 「' + subject + '」',
+        '   - 의장이 안건의 취지를 설명하고 회원들의 의견을 청취하다.',
+        '   - 결의 사항:',
+        '     ① 일정 및 세부 계획안은 담당 부서와 임원회에 위임하여 추진하기로 만장일치 가결하다.',
+        '     ② 예산 집행은 기존 편성된 예산 범위 내에서 투명하게 집행 후 차기 회의에 보고하기로 하다.',
+        '',
+        '5. 폐회 선언 및 주기도문',
+        '   - 더 이상 토의할 안건이 없으므로 주기도문으로 회의를 은혜 중에 마치다.',
+        '',
+        '작성일: ' + todayStr,
+        '의장: ' + p.pastorTitle + ' (인)   |   서기: ____________ (인)'
+      ].join('\n');
+    } else if (admType === 'official') {
+      out = [
+        '====================================================================',
+        '                    ' + p.churchName,
+        '              “' + p.motto + '”',
+        '====================================================================',
+        '문서번호: 제2026-1101호',
+        '시행일자: ' + todayStr,
+        '수    신: 관계 기관장 및 성도 제위',
+        '제    목: ' + subject,
+        '--------------------------------------------------------------------',
+        '',
+        '1. 하나님의 크신 은혜와 평강이 귀 기관(가정) 위에 늘 함께하시기를 기원합니다.',
+        '',
+        '2. 본 ' + p.churchName + '에서는 아래와 같이 「' + subject + '」을(를) 진행하고자 하오니 적극적인 협조와 기도를 부탁드립니다.',
+        '',
+        '                         - 아     래 -',
+        '   가. 사 역 명: ' + subject,
+        '   나. 일    시: 2026년  월  일 (요일) 오전/오후  시',
+        '   다. 장    소: ' + p.churchName + ' 본당',
+        '   라. 문 의 처: 교회 사무실 / 담당 교역자',
+        '',
+        '붙임: 세부 안내문 1부. 끝.',
+        '',
+        '               ' + p.churchName + ' 담임목사 ' + p.pastorTitle + ' [직인생략]'
+      ].join('\n');
+    } else if (admType === 'cert') {
+      out = [
+        '====================================================================',
+        '                      임 명 장 / 감 사 장',
+        '====================================================================',
+        '',
+        '성  명: 홍 길 동',
+        '직  분: 집 사 (권 사)',
+        '',
+        '귀하께서는 주님의 몸 된 ' + p.churchName + '를 사랑하는 마음으로',
+        '「' + subject + '」 사역에 충성과 헌신을 다하여 섬겨 주셨기에,',
+        '온 성도들의 감사와 축복의 마음을 담아 이 패(장)를 드립니다.',
+        '',
+        '“네가 죽도록 충성하라 그리하면 내가 생명의 관을 네게 주리라” (요한계시록 2:10)',
+        '',
+        '                     ' + todayStr,
+        '             ' + p.churchName + ' 담임목사 ' + p.pastorTitle
+      ].join('\n');
+    } else {
+      out = [
+        '====================================================================',
+        '🗓️ [' + p.churchName + '] 사역 · 행사 실행 기획안',
+        '   • 행사명: ' + subject,
+        '====================================================================',
+        '',
+        '1. 목적 및 기대효과',
+        '   • 올해 교회 표어(“' + p.motto + '”)에 발맞추어 온 성도가 말씀과 감사를 회복하고 새가족을 따뜻하게 품는 계기를 마련한다.',
+        '',
+        '2. 주차별 D-day 준비 일정',
+        '   • [D-21] 기획안 확정 및 봉사 부서별 역할 분담',
+        '   • [D-14] 주보 광고 및 성도 전교인 중보기도 시작, 초청장 배부',
+        '   • [D-7] 예배 순서자 점검, 다과·선물 준비, 음향/시설 리허설',
+        '   • [D-Day] 본 행사 진행 및 새가족 환영·사진 촬영',
+        '   • [D+3] 참석자 감사 문자 발송 및 평가·결산 갈무리'
+      ].join('\n');
+    }
+
+    document.getElementById('admOutput').value = out;
+    showToast('📝 교회 행정 문서 초안이 작성되었습니다.');
+  }
+
+  // ── [자리 5] 새가족 정착 · 소그룹 나눔 질문지 · 초청장 ──
+  function generateGrowthDoc(kind) {
+    var p = STATE.profile || {};
+    var topic = document.getElementById('growthTopic').value.trim();
+    var out = '';
+
+    if (kind === 'newcomer4w') {
+      out = [
+        '====================================================================',
+        '💌 [' + p.churchName + '] 새가족 1~4주차 정착 환영 문자 시리즈',
+        '====================================================================',
+        '',
+        '🌱 [1주차 — 등록 당일 저녁 안부 문자]',
+        '“반갑습니다, ○○○ 성도님! 오늘 ' + p.churchName + '에서 함께 예배드리게 되어 참 기쁘고 감사했습니다. 낯선 발걸음이셨을 텐데 주님께서 성도님의 걸음을 가장 복된 길로 인도해 주실 줄 믿습니다. 이번 한 주간도 주님의 평안이 가득하시길 기도합니다. — ' + p.pastorTitle + ' 드림”',
+        '',
+        '🌿 [2주차 — 두 번째 주일 전 토요일 안내 문자]',
+        '“○○○ 성도님, 한 주간 평안하셨나요? 내일은 주님 앞에 나아와 마음의 쉼을 얻는 복된 주일입니다. 성도님을 위해 기도로 자리를 준비해 두었습니다. 내일 밝은 얼굴로 뵙겠습니다!”',
+        '',
+        '🌳 [3주차 — 새가족 모임 및 기도제목 요청 문자]',
+        '“사랑하는 ○○○ 성도님, 우리 ' + p.churchName + '의 한 가족으로 조금씩 익숙해지시는 모습에 감사드립니다. 혹시 가정이나 일터에 함께 기도할 제목이 있으시면 편하게 답장 남겨 주세요. 새벽마다 성도님 가정을 위해 기도하겠습니다.”',
+        '',
+        '🍎 [4주차 — 수료 및 구역/속회 연결 축복 문자]',
+        '“축하드립니다, ○○○ 성도님! 지난 4주간 주일마다 신실하게 예배의 자리를 지켜 주셔서 참 감사합니다. 이제 소그룹(구역/속회) 믿음의 식구들과 함께 기쁨도 슬픔도 나누는 든든한 신앙의 뿌리를 내리시기를 축복합니다!”'
+      ].join('\n');
+    } else if (kind === 'smallgroup' || kind === 'custom') {
+      out = [
+        '====================================================================',
+        '👥 [' + p.churchName + '] 주일 설교 연동 구역 · 속회 · 셀 나눔 질문지',
+        '   • 나눔 주제: ' + topic,
+        '====================================================================',
+        '',
+        '1. [마음 열기 (Ice Break)]',
+        '   • 지난 한 주간을 지내며 가장 감사했거나 미소 지었던 작은 일 한 가지를 나누어 보세요.',
+        '',
+        '2. [말씀 속으로 (관찰 나눔)]',
+        '   • 이번 주일 설교 말씀을 들으며 가장 마음에 남았던 한 문장이나 성경 구절은 무엇이었나요?',
+        '',
+        '3. [내 삶에 비추기 (고백 나눔)]',
+        '   • 말씀을 나의 일상(가정·일터·관계)에 비추어 볼 때, 주님께서 내게 “이제 그 짐을 내게 내려놓아라” 또는 “다시 내 품으로 오라”고 말씀하시는 부분은 어디인가요?',
+        '',
+        '4. [함께 살아내기 (실천 나눔)]',
+        '   • 이번 한 주간 내가 가정이나 구역 식구를 위해 실천할 작은 사랑의 행동 한 가지를 정해 봅시다.',
+        '',
+        '5. [서로를 위한 중보기도]',
+        '   • 구역 식구들의 기도제목을 한 가지씩 나누고, 옆 사람의 기도제목을 내 기도처럼 품고 합심하여 기도합니다.'
+      ].join('\n');
+    } else if (kind === 'invite') {
+      out = [
+        '====================================================================',
+        '🎉 [' + p.churchName + '] 이웃 초청 & 절기 예배 따뜻한 초청장 문구',
+        '====================================================================',
+        '',
+        '[카톡 / 문자 발송용 초청 글]',
+        '“소중한 당신을 따뜻한 쉼과 은혜의 자리로 초대합니다.',
+        '바쁘게 달려온 일상 속에서 지친 마음을 잠시 내려놓고,',
+        '변함없는 사랑으로 우리를 안아 주시는 하나님의 말씀을 함께 듣고 싶습니다.',
+        '',
+        '• 일시: 이번 주일 오전 11시',
+        '• 장소: ' + p.churchName,
+        '• 안내: ' + p.pastorTitle + ' 및 온 성도 드림',
+        '',
+        '당신의 빈자리를 기도로 따뜻하게 데워 놓고 기다리겠습니다.”'
+      ].join('\n');
+    } else {
+      out = [
+        '====================================================================',
+        '👨‍👩‍👧 [' + p.churchName + '] 다음세대 주일학교 학부모님께 드리는 가정통신문',
+        '====================================================================',
+        '',
+        '“사랑하는 ' + p.churchName + ' 학부모님 가정에 주님의 평안을 전합니다.',
+        '우리 아이들이 교회에서 보내는 주일 1시간과 가정에서 부모님과 함께 보내는 167시간이 하나로 이어질 때, 아이들의 믿음은 흔들리지 않는 나무로 자라납니다.',
+        '',
+        '• 이번 주 가정 식탁 대화 한 마디:',
+        '  아이의 눈을 보며 ‘너는 하나님이 우리 가정에 주신 가장 귀한 선물이란다’라고 꼭 안아 주세요.',
+        '• 이번 주 부모님의 1분 축복기도:',
+        '  잠들기 전 아이의 머리 위에 손을 얹고 지혜와 믿음의 성장을 위해 기도해 주시기 바랍니다.”'
+      ].join('\n');
+    }
+
+    document.getElementById('growthOutput').value = out;
+    showToast('🌱 문서가 생성되었습니다. [복사] 버튼으로 바로 활용하세요!');
+  }
+
+  // ── [자리 6] 내 AI (클로드·ChatGPT·제미나이) 1초 연결 스튜디오 ──
+  function setAiDraft(txt) {
+    document.getElementById('aiRawAsk').value = txt;
+    buildAiMasterPrompt();
+  }
+
+  function buildAiMasterPrompt() {
+    var p = STATE.profile || {};
+    var rawAsk = document.getElementById('aiRawAsk').value.trim() || '이번 주일 설교 준비와 목회 일정을 도와줘';
+    var scheds = (STATE.schedules || []).map(function(s) {
+      return '- [' + calcDdayInfo(s.date).label + '] ' + s.type + ': ' + s.title + ' (' + s.date + ')';
+    }).join('\n');
+
+    var masterPrompt = [
+      '당신은 지금부터 [' + p.churchName + '] ' + p.pastorTitle + '을 보좌하는 전담 목회·신학·사역 AI 비서입니다.',
+      '',
+      '[1. 내 교회 프로필 및 목회 배경 — 매 답변마다 이 맥락을 기억하고 맞추세요]',
+      '• 교회명 및 호칭: ' + p.churchName + ' (' + p.pastorTitle + '님이라고 정중히 호칭할 것)',
+      '• 교단 및 신학 정체성: ' + p.denom + ' (오직 성경, 오직 예수 그리스도, 역사적 정통 복음주의 신학 수호)',
+      '• 교인 규모 및 구성: ' + p.size,
+      '• 올해 교회 표어: “' + p.motto + '”',
+      '• 현재 중점 사역 및 기도제목: ' + p.focus,
+      '',
+      '[2. 다가오는 주요 목회 일정 (D-day)]',
+      scheds || '- 등록된 일정 없음',
+      '',
+      '[3. 반드시 지켜야 할 목양 도우미 응답 규칙 (가드레일)]',
+      '① 답변 순서: 반드시 [결론 → 성경적·목회적 근거 → 이번 주 바로 실행할 할 일 → 되묻는 질문] 순서로 일목요연하게 대답하세요.',
+      '② 성경과 사실 정직성: 성경 장·절과 원어 뜻은 정확히 확인하고, 출석 인원·재정 숫자 등 모르는 사실은 절대 지어내지 말고(할루시네이션 금지) 목사님께 되물으세요.',
+      '③ 설교 및 예화 규칙: 설교 초안을 도울 때는 [본문 관찰 → 원어·배경 → 중심 메시지 한 문장 → 대지 → 예화 → 적용 → 기도] 순서를 지키고, AI가 만든 비유나 예화에는 반드시 앞에 「(가상 예화)」라고 명확히 표시하세요.',
+      '④ 성도 돌봄 안전: 우울·자해 등 위기 상담 내용이 포함될 경우 목회적 위로와 함께 자살예방 상담전화(109), 정신건강 위기상담(1577-0199) 연계를 함께 권하세요.',
+      '',
+      '[4. 오늘 목사님의 요청 사항]',
+      '👉 “' + rawAsk + '”',
+      '   (위 교회 상황과 표어, 성도들의 눈높이에 맞추어 지금 바로 쓸 수 있는 구체적이고 은혜로운 결과물로 작성해 주세요.)'
+    ].join('\n');
+
+    document.getElementById('aiPromptOutput').value = masterPrompt;
+  }
+
+  function copyAndOpenAI(url, aiName) {
+    buildAiMasterPrompt();
+    var txt = document.getElementById('aiPromptOutput').value;
+    navigator.clipboard.writeText(txt).then(function() {
+      showToast('📋 지시문이 복사되었습니다! 열리는 ' + aiName + ' 창에 붙여넣기(Ctrl+V / Cmd+V)만 하세요.');
+      setTimeout(function() {
+        window.open(url, '_blank');
+      }, 450);
+    });
+  }
+
+  // ── 공통 유틸리티 (복사, 파일 다운로드, JSON 백업/복원, 단일파일 저장) ──
+  function escHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function formatTodayKorean() {
+    var d = new Date();
+    var dows = ['주일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일'];
+    return d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일 ' + dows[d.getDay()];
+  }
+
+  function copyTextarea(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    navigator.clipboard.writeText(el.value).then(function() {
+      showToast('📋 클립보드에 복사되었습니다! 원하시는 곳에 붙여넣기 하세요.');
+    });
+  }
+
+  function downloadTextFile(id, filename) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var blob = new Blob([el.value], { type: 'text/markdown;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (STATE.profile.churchName || '우리교회') + '_' + filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('💾 파일이 내 컴퓨터에 저장되었습니다.');
+  }
+
+  function exportBackupJson() {
+    var raw = JSON.stringify(STATE, null, 2);
+    var blob = new Blob([raw], { type: 'application/json;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (STATE.profile.churchName || '꿈바온') + '_아론의지팡이_백업_' + getOffsetDateStr(0) + '.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('📤 아론의 지팡이 전체 데이터가 백업 파일(.json)로 저장되었습니다.');
+  }
+
+  function importBackupJson(ev) {
+    var file = ev.target.files && ev.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      try {
+        var parsed = JSON.parse(e.target.result);
+        if (parsed && parsed.profile) {
+          STATE = Object.assign({}, DEFAULT_STATE, parsed);
+          saveState();
+          loadState();
+          generateMorningBriefing();
+          renderJuboPreview();
+          buildAiMasterPrompt();
+          showToast('📥 백업 데이터를 성공적으로 불러왔습니다!');
+        }
+      } catch (err) {
+        alert('올바른 백업 JSON 파일이 아닙니다.');
+      }
+    };
+    reader.readAsText(file);
+  }
+
+  function downloadStandaloneHtml() {
+    var cloneDoc = document.documentElement.cloneNode(true);
+    cloneDoc.querySelectorAll('script[src*="kkumdido-shield"], script[src*="kkumdido_mobile"]').forEach(function(s) {
+      s.remove();
+    });
+    var embedScript = document.createElement('script');
+    embedScript.textContent = 'window.__EMBEDDED_SECRETARY_STATE__ = ' + JSON.stringify(STATE) + ';';
+    var head = cloneDoc.querySelector('head');
+    if (head) head.insertBefore(embedScript, head.firstChild);
+
+    var htmlStr = '<!DOCTYPE html>\n' + cloneDoc.outerHTML;
+    var blob = new Blob([htmlStr], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (STATE.profile.churchName || '꿈바온') + '_아론의지팡이_무설치단일파일.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('💾 내 교회 설정과 일정이 통째로 담긴 무설치 단일파일(.html)이 저장되었습니다!');
+  }
+
+  window.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('newSchedDate').value = getOffsetDateStr(3);
+    document.getElementById('jbDate').value = getOffsetDateStr(2);
+    loadState();
+    generateMorningBriefing();
+    generateSermonOutline();
+    generateCareMessage();
+    renderJuboPreview();
+    generateGrowthDoc('smallgroup');
+    buildAiMasterPrompt();
+    tryConnectDesktopServer();
+  });
+</script>
+  <script src="kkumdido-shield.js"></script>
+  <script src="kkumdido_mobile.js?v=20261107e"></script>
+</body>
+</html>

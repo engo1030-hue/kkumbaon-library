@@ -101,7 +101,7 @@
 
   // 스튜디오 페이지 판별 (이 페이지들은 반드시 도서관 이용증 간편 로그인 후에만 열림)
   var STUDIO_PATTERNS = [
-        'kkumdido_pastoral_secretary',
+    'kkumdido_pastoral_secretary',
     'kkumdido_sermon_ai',
     'kkumdido_finance',
     'kkumdido_sermon_studio',
@@ -113,13 +113,33 @@
     'kkumdido_13dept',
     'kkumdido_family_worship',
     'kkumdido_commentary',
-    'kkumdido_translation'
+    'kkumdido_translation',
+    'kkumdido_12archives',
+    '원어풀어읽기',
+    '00_꿈바온',
+    '12대아카이브',
+    '말씀설교스튜디오',
+    '설교스튜디오',
+    '13대부서별_52주',
+    '꿈바온_설교ai',
+    '꿈바온_목회비서',
+    '꿈바온_무료교적',
+    '꿈바온_무료헌금재정'
   ];
 
+  function getDecodedPathLower() {
+    var raw = (window.location && window.location.pathname) ? window.location.pathname : '';
+    try {
+      return decodeURIComponent(raw).toLowerCase();
+    } catch (e) {
+      return raw.toLowerCase();
+    }
+  }
+
   function isStudioPage() {
-    if (window.location && window.location.protocol === 'file:') return false;
-    var path = (window.location.pathname || '').toLowerCase();
-    if (path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('kkumdido_annex') !== -1) return false;
+    if (window.__KKD_TEST_BYPASS === true) return false;
+    var path = getDecodedPathLower();
+    if (path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('kkumdido_annex') !== -1 || path.indexOf('annex_proposal') !== -1 || path.indexOf('00_목사님전용') !== -1) return false;
     for (var i = 0; i < STUDIO_PATTERNS.length; i++) {
       if (path.indexOf(STUDIO_PATTERNS[i]) !== -1) return true;
     }
@@ -160,17 +180,19 @@
   }
 
   function getCurrentPageLabel() {
-    var path = (window.location.pathname || '').toLowerCase();
+    var path = getDecodedPathLower();
     if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·말씀등불)';
-    if (path.indexOf('kkumdido_pastoral_secretary') !== -1) return '🌿 아론의 지팡이 (목양·심방·주보)';
-    if (path.indexOf('kkumdido_sermon_ai') !== -1) return '🪄 모세의 지팡이 (본문카드대령·7종변환)';
-    if (path.indexOf('kkumdido_finance') !== -1) return '💰 무료 헌금·재정 (청지기장부)';
-    if (path.indexOf('kkumdido_sermon_studio') !== -1) return '👑 모세의 지팡이 · 66권 원어 설교준비실';
+    if (path.indexOf('kkumdido_pastoral_secretary') !== -1 || path.indexOf('꿈바온_목회비서') !== -1) return '🌿 아론의 지팡이 (목양·심방·주보)';
+    if (path.indexOf('kkumdido_sermon_ai') !== -1 || path.indexOf('꿈바온_설교ai') !== -1) return '🪄 모세의 지팡이 (본문카드대령·7종변환)';
+    if (path.indexOf('kkumdido_finance') !== -1 || path.indexOf('꿈바온_무료헌금재정') !== -1) return '💰 무료 헌금·재정 (청지기장부)';
+    if (path.indexOf('kkumdido_sermon_studio') !== -1 || path.indexOf('말씀설교스튜디오') !== -1) return '👑 모세의 지팡이 · 66권 원어 설교준비실';
+    if (path.indexOf('원어풀어읽기') !== -1 || path.indexOf('00_꿈바온') !== -1) return '📖 66권 원어·풀어읽기 주석 서고';
+    if (path.indexOf('kkumdido_12archives') !== -1 || path.indexOf('12대아카이브') !== -1) return '🏛️ 12대 아카이브 3,650모듈 서고';
     if (path.indexOf('kkumdido_gotgan') !== -1) return '🏺 내 설교 곳간 (개인 서재)';
-    if (path.indexOf('kkumdido_gyojeok') !== -1) return '🐑 무료 교적 스튜디오 (양떼 수첩)';
+    if (path.indexOf('kkumdido_gyojeok') !== -1 || path.indexOf('꿈바온_무료교적') !== -1) return '🐑 무료 교적 스튜디오 (양떼 수첩)';
     if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🎨 전도지·절기 인쇄물 공방';
     if (path.indexOf('kkumdido_sunday_school') !== -1) return '🌱 교회학교 교사 스튜디오';
-    if (path.indexOf('kkumdido_13dept') !== -1) return '📋 13부서 52주 커리큘럼';
+    if (path.indexOf('kkumdido_13dept') !== -1 || path.indexOf('13대부서별_52주') !== -1) return '📋 13부서 52주 커리큘럼';
     if (path.indexOf('kkumdido_family_worship') !== -1) return '🕯️ 52주 가정예배 스튜디오';
     if (path.indexOf('kkumdido_translation') !== -1) return '🌐 기독교 번역 스튜디오';
     if (path.indexOf('kkumdido_commentary') !== -1) return '📚 성경 주석·강해 연구실';
@@ -2066,10 +2088,14 @@
     if (customMessage && !isVerified()) {
       descEl.innerHTML = '<strong style="color:#f3c969;">' + customMessage + '</strong><br>Google 또는 카카오 계정으로 10초 만에 무료 도서관 이용증을 발급받으시면 모든 스튜디오와 인쇄 기능이 즉시 열립니다.';
     } else if (!isVerified()) {
-      descEl.innerHTML = '구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 설교 곳간 · 모세의 지팡이 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 다운로드 없이 웹에서 바로 쓰실 수 있습니다.';
+      descEl.innerHTML = '구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 설교 곳간 · 모세의 지팡이 · 아론의 지팡이 · 양떼 수첩 · 청지기 장부 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 다운로드 없이 웹에서 바로 쓰실 수 있습니다.';
     }
     syncAuthState();
-    document.getElementById('kkumdido-card-modal-bg').classList.add('on');
+    var modalBg = document.getElementById('kkumdido-card-modal-bg');
+    if (modalBg) modalBg.classList.add('on');
+    if (!isVerified()) {
+      startProviderFlow(selectedProvider || 'Google');
+    }
   }
 
   function closeCardModal() {
@@ -2092,13 +2118,29 @@
           document.body.classList.remove('kkumdido-studio-locked');
           unlockGotganIfPresent(getCard());
         },
-        '🔐 이 사역 프로그램(스튜디오)은 「꿈디도 도서관 이용증」 간편 로그인 후 바로 사용하실 수 있습니다.',
+        '🔐 이 사역 프로그램(스튜디오)은 「꿈디도 도서관 이용증」 로그인을 완료하신 분만 사용하실 수 있습니다.',
         true
       );
     }
   }
 
-  // 설교 곳간(Gotgan) 및 교적 스튜디오(Gyojeok) 페이지에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제 및 교회·목회자명 연동
+  function requireStudioLogin(afterAction, customMessage) {
+    if (isVerified() || window.__KKD_TEST_BYPASS === true) {
+      if (typeof afterAction === 'function') afterAction();
+      return true;
+    }
+    if (isStudioPage()) {
+      document.body.classList.add('kkumdido-studio-locked');
+    }
+    openCardModal(
+      afterAction || null,
+      customMessage || '🔐 로그인(꿈디도 도서관 이용증 발급)을 완료하신 분만 이 사역 도구를 사용하실 수 있습니다.',
+      isStudioPage()
+    );
+    return false;
+  }
+
+  // 전 스튜디오에 들어왔을 때 도서관 이용증 회원 정보로 자동 잠금 해제 및 교회·목회자명 연동
   function unlockGotganIfPresent(card) {
     if (!card) return;
     var gate = document.getElementById('licenseGate');
@@ -2117,6 +2159,45 @@
       }
       if (typeof window.applyMemberGyojeokProfile === 'function') {
         window.applyMemberGyojeokProfile(card.name, card.church, card.cardNo);
+      }
+      if (typeof window.applyMemberSecretaryProfile === 'function') {
+        window.applyMemberSecretaryProfile(card.name, card.church);
+      }
+      // 모세의 지팡이 (설교 AI 스튜디오) 설교자·교회명 자동 연동
+      var inPreacher = document.getElementById('inPreacher');
+      if (inPreacher && (!inPreacher.value || inPreacher.value === '담임목사')) {
+        inPreacher.value = card.name;
+      }
+      var inChurch = document.getElementById('inChurch');
+      if (inChurch && card.church && card.church !== '꿈바온 가족' && (!inChurch.value || inChurch.value === '꿈바온교회' || inChurch.value === '꿈바온 은혜교회')) {
+        inChurch.value = card.church;
+        if (typeof window.generateAll7Materials === 'function') {
+          try { window.generateAll7Materials(false); } catch (e0) {}
+        }
+      }
+      // 아론의 지팡이 (목회비서 6석) 목회자·교회명 자동 연동
+      var sermPreacher = document.getElementById('sermPreacher');
+      if (sermPreacher && (!sermPreacher.value || sermPreacher.value === '담임목사')) {
+        sermPreacher.value = card.name;
+      }
+      var jbPastor = document.getElementById('jbPastorName');
+      if (jbPastor && (!jbPastor.value || jbPastor.value === '담임목사')) {
+        jbPastor.value = card.name;
+      }
+      if (card.church && card.church !== '꿈바온 가족') {
+        var bulCh = document.getElementById('bulChurchName');
+        if (bulCh && (!bulCh.value || bulCh.value === '꿈바온교회')) bulCh.value = card.church;
+        var jbCh = document.getElementById('jbChurchName');
+        if (jbCh && (!jbCh.value || jbCh.value === '꿈바온교회')) jbCh.value = card.church;
+      }
+      // 66권 원어 설교준비실 (kkumdido_sermon_studio) 목회자 프로필 연동
+      var sermonPreacher = document.getElementById('sermonPreacherInput');
+      if (sermonPreacher && (!sermonPreacher.value || sermonPreacher.value === '꿈바온 사역팀')) {
+        sermonPreacher.value = card.name;
+      }
+      var mBadge = document.getElementById('headerModeBadge');
+      if (mBadge && mBadge.textContent.indexOf(card.name) === -1) {
+        mBadge.textContent = '[🪪 도서관 이용증 인증됨 · ' + card.name + ' (' + card.cardNo + ' · 66권 전체 열림)]';
       }
     } catch (e) {}
   }
@@ -2510,6 +2591,43 @@
     }
   }
 
+  // ── 9. 스튜디오 비로그인 조작 원천 차단 가드 (캡처 단계 + 잠금 워치독) ──
+  function isInsideAuthModal(target) {
+    if (!target || !target.closest) return false;
+    return !!(
+      target.closest('#kkumdido-card-modal-bg') ||
+      target.closest('#kkumdido-admin-modal-bg') ||
+      target.closest('#kkumdido-pass-fab')
+    );
+  }
+
+  ['click', 'mousedown', 'touchstart', 'submit'].forEach(function (evtName) {
+    document.addEventListener(evtName, function (e) {
+      if (isStudioPage() && !isVerified()) {
+        if (!isInsideAuthModal(e.target)) {
+          e.preventDefault();
+          e.stopPropagation();
+          enforceStudioGateIfNeeded();
+          return false;
+        }
+      }
+    }, true);
+  });
+
+  setInterval(function () {
+    if (!document.body) return;
+    if (isStudioPage() && !isVerified()) {
+      if (!document.body.classList.contains('kkumdido-studio-locked')) {
+        document.body.classList.add('kkumdido-studio-locked');
+      }
+      var modalBg = document.getElementById('kkumdido-card-modal-bg');
+      var admBg = document.getElementById('kkumdido-admin-modal-bg');
+      if (modalBg && !modalBg.classList.contains('on') && (!admBg || !admBg.classList.contains('on'))) {
+        enforceStudioGateIfNeeded();
+      }
+    }
+  }, 800);
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
       buildDOM();
@@ -2524,6 +2642,7 @@
     open: openCardModal,
     openAdmin: requestOpenAdminModal,
     isVerified: isVerified,
+    requireLogin: requireStudioLogin,
     getCard: getCard,
     logout: clearCard,
     getVault: getLocalVault,
