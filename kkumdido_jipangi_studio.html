@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex, nofollow">
   <script src="static/pptxgen.bundle.js"></script>
   <script src="static/moses-web-engine.js?v=20261103_video_idb2gb"></script>
-
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>모세의 지팡이 · 목회자 사역 스튜디오</title>
   <link rel="icon" type="image/png" href="static/kkumbaon_logo.png" />
   <link rel="manifest" href="static/manifest.json" />
@@ -2072,219 +2071,240 @@
     <!-- 좌측: 5대 사역 탭별 워크플로우 -->
     <div class="workflow-column">
 
-      <!-- ==================== [탭 1] 주일설교 하이라이트 쇼츠 스튜디오 ==================== -->
+            <!-- ==================== [탭 1] 주일설교 하이라이트 쇼츠 스튜디오 (안간사 원터치 3스타일 직관형) ==================== -->
       <div id="studioPaneSermon" style="display:block;">
 
-      <!-- 🌟 직관적 3단계 상단 마법사 바 (① 영상 넣기 ── ② 완성본 고르기 ── ③ 다듬고 완성) -->
-      <div class="sermon-wizard-bar" id="sermonWizardBar">
+      <!-- 호환용 숨김 마법사 바 -->
+      <div class="sermon-wizard-bar" id="sermonWizardBar" style="display:none;">
         <div class="sermon-wizard-steps">
-          <button type="button" class="wiz-step-pill" id="wizStepBtn_1" onclick="switchSermonWizardStep(1)">
-            <span class="wiz-step-num">1</span>
-            <span>영상 넣기</span>
-          </button>
-          <span class="wiz-step-line"></span>
-          <button type="button" class="wiz-step-pill active" id="wizStepBtn_2" onclick="switchSermonWizardStep(2)">
-            <span class="wiz-step-num">2</span>
-            <span>완성본 고르기</span>
-          </button>
-          <span class="wiz-step-line"></span>
-          <button type="button" class="wiz-step-pill" id="wizStepBtn_3" onclick="switchSermonWizardStep(3)">
-            <span class="wiz-step-num">3</span>
-            <span>다듬고 완성</span>
-          </button>
+          <button type="button" class="wiz-step-pill" id="wizStepBtn_1" onclick="switchSermonWizardStep(1)"><span class="wiz-step-num">1</span><span>영상 넣기</span></button>
+          <button type="button" class="wiz-step-pill active" id="wizStepBtn_2" onclick="switchSermonWizardStep(2)"><span class="wiz-step-num">2</span><span>완성본 고르기</span></button>
+          <button type="button" class="wiz-step-pill" id="wizStepBtn_3" onclick="switchSermonWizardStep(3)"><span class="wiz-step-num">3</span><span>다듬고 완성</span></button>
         </div>
-        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-          <button type="button" class="mini-btn" id="btnToggleAllStepsView" onclick="toggleSermonAllStepsView()" style="font-weight:800; color:#475569;">
-            📋 한 화면에 모두 보기
-          </button>
-          <button type="button" class="btn btn-primary" style="padding:8px 16px; font-size:13.5px; border-radius:999px; background:#1B4332; border-color:#1B4332;" onclick="switchSermonWizardStep(3, 'finish')">
-            ✓ 완성하기 ›
-          </button>
-        </div>
+        <button type="button" class="mini-btn" id="btnToggleAllStepsView" onclick="toggleSermonAllStepsView()">📋 한 화면에 모두 보기</button>
       </div>
 
-      <!-- ==================== [마법사 1단계] ① 영상 넣기 ==================== -->
-      <div id="sermonWizPane1" style="display:none;">
-        <section class="step-section" style="border-top:4px solid #1B4332;">
-          <!-- 바구니 드롭존 -->
+      <!-- ==================== [1] 설교 영상 또는 원고 툭 던져 넣기 ==================== -->
+      <div id="sermonWizPane1" style="display:block;">
+        <section class="step-section" style="border-top:4px solid #1B4332; margin-bottom:16px;">
+          <div class="step-header" style="margin-bottom:10px;">
+            <div class="step-title-wrap">
+              <span class="step-num" style="width:auto; padding:0 12px; background:#1B4332;">STEP 1</span>
+              <h2 class="step-title">설교 영상이나 원고만 <span style="color:#1B4332;">툭 던져 넣으세요</span></h2>
+            </div>
+            <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap;">
+              <span style="font-size:12px; font-weight:800; color:#065F46; background:#ECFDF5; border:1px solid #A7F3D0; padding:4px 10px; border-radius:999px;">⚡ 안간사에게 맡기듯 넣기만 하면 은혜 대목 4~5편이 자동 완성됩니다</span>
+            </div>
+          </div>
+
+          <!-- 직관적 원터치 투입 바구니 -->
           <div class="intuitive-drop-basket" id="intuitiveDropZone"
+               style="padding:20px 18px; margin-bottom:12px;"
                ondragover="onSermonBasketDragOver(event)"
                ondragleave="onSermonBasketDragLeave(event)"
                ondrop="onSermonBasketDrop(event)"
                onclick="document.getElementById('basketQuickFileInput').click()">
-            <div style="width:66px; height:66px; border-radius:20px; background:linear-gradient(135deg, #1B4332 0%, #2D6A4F 100%); color:#FDE68A; font-size:32px; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; box-shadow:0 8px 20px rgba(27,67,50,0.22);">
-              🧺
+            <div style="font-size:19px; font-weight:900; color:#0F172A; margin-bottom:4px; letter-spacing:-0.3px;">
+              🧺 여기에 설교 영상(MP4)이나 음성 파일(M4A·MP3)을 끌어다 놓으세요
             </div>
-            <div style="font-size:21px; font-weight:900; color:#0F172A; margin-bottom:6px; letter-spacing:-0.3px;">
-              설교 영상을 여기에 끌어다 놓으세요
-            </div>
-            <div style="font-size:13.5px; color:#64748B; font-weight:700; margin-bottom:6px;">
-              예배 전체 영상이어도 됩니다 · 동영상(MP4, MOV, WEBM) 및 음성 녹음(M4A, MP3, WAV) 지원
-            </div>
-            <div style="display:inline-block; background:#ECFDF5; border:1px solid #A7F3D0; color:#065F46; font-size:12px; font-weight:800; padding:4px 12px; border-radius:999px; margin-bottom:14px;">
-              💾 <b>수백 MB · 1GB 이상(최대 2GB) 대용량 설교 영상</b>도 무압축 즉시 연결 & 브라우저 보관함 <b>자동 저장</b> (새로고침 후에도 유지)
+            <div style="font-size:13px; color:#64748B; font-weight:700; margin-bottom:12px;">
+              40분 전체 예배 영상이어도 좋고, 원고(글)만 넣으셔도 됩니다 · 1~2GB 대용량 영상도 기다림 없이 0.1초 즉시 연결!
             </div>
             <div style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap;" onclick="event.stopPropagation()">
               <label class="btn btn-primary" style="cursor:pointer; margin:0; padding:11px 22px; font-size:14.5px; border-radius:999px; background:#1B4332; border-color:#1B4332;">
-                📂 영상 · 녹음 파일 고르기
+                📂 설교 영상 · 녹음 파일 넣기
                 <input type="file" id="basketQuickFileInput" accept=".mp4,.mov,.webm,.mkv,.m4v,.m4a,.mp3,.wav,.aac,.ogg,.flac,video/*,audio/*" style="display:none;" onchange="quickUploadVoiceToStudio1(this)" />
               </label>
-              <button type="button" class="btn btn-outline" id="btnMicRecord_sermon" style="border-radius:999px; padding:11px 18px; font-size:13.5px; background:#FFFFFF; border-color:#E03131; color:#C92A2A; font-weight:800;" onclick="toggleBrowserMicRecord('sermon', this)">
-                🔴 지금 마이크로 바로 녹음
+              <button type="button" class="btn btn-gold" style="border-radius:999px; padding:11px 20px; font-size:14px; font-weight:900;" onclick="openAddSermonModal()">
+                📝 설교 원고(글·자막)만 넣어 만들기
               </button>
-              <button type="button" class="btn btn-outline" style="border-radius:999px; padding:11px 18px; font-size:13.5px;" onclick="openAddSermonModal()">
-                📝 대본(SRT)과 함께 상세 등록
+              <button type="button" class="btn btn-outline" id="btnMicRecord_sermon" style="border-radius:999px; padding:11px 16px; font-size:13.5px; background:#FFFFFF; border-color:#E03131; color:#C92A2A; font-weight:800;" onclick="toggleBrowserMicRecord('sermon', this)">
+                🔴 지금 마이크로 녹음
+              </button>
+              <button type="button" class="btn btn-outline" style="border-radius:999px; padding:11px 16px; font-size:13.5px;" onclick="startSampleSermonQuick()">
+                ✨ 샘플 설교 체험
               </button>
             </div>
             <div id="sermonCustomVoiceStatus" style="margin-top:10px; font-size:13px; font-weight:800; color:#1B4332;"></div>
             <audio id="sermonVoicePreviewAudio" controls onclick="event.stopPropagation()" style="display:none; width:100%; max-width:440px; height:36px; margin:8px auto 0;"></audio>
           </div>
 
-          <!-- 만들 것 5가지 빠른 선택 카드 -->
-          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-            <span style="font-size:13.5px; font-weight:900; color:#1E293B;">🎯 만들 것 고르기</span>
-            <span style="font-size:12px; color:#64748B; font-weight:700;">원하시는 구성을 누르면 바로 맞춤 편성됩니다</span>
-          </div>
-          <div class="make-target-grid" id="wizMakeTargetGrid">
-            <div class="make-target-card active" data-make="4" onclick="selectWizMakeTarget(4, this)">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                <span style="font-size:13.5px; font-weight:900; color:#0F172A;">60초 쇼츠 4개</span>
-                <span style="font-size:10.5px; font-weight:900; background:#1B4332; color:#FFFFFF; padding:2px 7px; border-radius:999px;">추천</span>
+          <!-- 최근 올린 영상 보관함 & 현재 선택된 설교 한 줄 바 -->
+          <div style="display:grid; grid-template-columns: 1.15fr 0.85fr; gap:12px; align-items:stretch;">
+            <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:14px; padding:11px 14px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">
+                <span style="font-size:12.5px; font-weight:900; color:#1E293B;">📂 최근 넣은 영상·음성 보관함 (누르면 바로 열림)</span>
+                <button type="button" class="mini-btn" style="padding:3px 8px; font-size:11px;" onclick="loadRecentLocalVideos()">🔄 새로고침</button>
               </div>
-              <div style="font-size:11.5px; color:#64748B; font-weight:700;">주간 평일 은혜 나눔 표준</div>
+              <div id="recentLocalVideosGrid" class="recent-videos-grid" style="max-height:92px; overflow-y:auto;">
+                <div style="grid-column:1/-1; font-size:12px; color:#64748B; padding:6px; text-align:center;">최근 영상 파일을 불러오는 중입니다...</div>
+              </div>
             </div>
-            <div class="make-target-card" data-make="6" onclick="selectWizMakeTarget(6, this)">
-              <div style="font-size:13.5px; font-weight:900; color:#0F172A;">60초 쇼츠 6개</div>
-              <div style="font-size:11.5px; color:#64748B; font-weight:700;">월~토 매일 묵상 풀 패키지</div>
-            </div>
-            <div class="make-target-card" data-make="2" onclick="selectWizMakeTarget(2, this)">
-              <div style="font-size:13.5px; font-weight:900; color:#0F172A;">60초 쇼츠 2개</div>
-              <div style="font-size:11.5px; color:#64748B; font-weight:700;">핵심 명제 2편 빠른 제작</div>
-            </div>
-            <div class="make-target-card" data-make="summary" onclick="switchStudioMode('bulletin')">
-              <div style="font-size:13.5px; font-weight:900; color:#0F172A;">전체 요약 · 주보</div>
-              <div style="font-size:11.5px; color:#64748B; font-weight:700;">주보 요약 · 구역공과 · 가정예배</div>
-            </div>
-            <div class="make-target-card" data-make="sample" onclick="startSampleSermonQuick()">
-              <div style="font-size:13.5px; font-weight:900; color:#8C5A08;">✨ 샘플 설교 체험</div>
-              <div style="font-size:11.5px; color:#9C6B19; font-weight:700;">파일 없이 지금 바로 체험</div>
+            <div style="background:#F8FAFC; border:1.5px solid #CBD5E1; border-radius:14px; padding:11px 14px; display:flex; flex-direction:column; justify-content:space-between; gap:8px;">
+              <div style="font-size:12.5px; font-weight:900; color:#1E293B;">📌 현재 작업 중인 설교</div>
+              <select id="sermonSelect" class="sermon-select" style="width:100%; font-size:13px; padding:7px 10px;" onchange="onSelectSermon(this.value)"></select>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button class="mini-btn" onclick="autoCorrectAllSubtitles()">🪄 성경 용어·자막 자동 교정</button>
+                <button class="mini-btn" onclick="reAnalyzeWithAI()">✨ 다른 대목 다시 뽑기</button>
+                <button class="mini-btn" onclick="openApiKeyModal()">⚙️ AI 키(선택)</button>
+              </div>
             </div>
           </div>
 
-          <!-- 최근 영상 (브라우저 대용량 보관함 최대 2GB — 누르면 바로 시작) -->
-          <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:16px; padding:14px 16px; margin-bottom:16px;">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
-              <div>
-                <span style="font-size:13.5px; font-weight:900; color:#1E293B;">📂 최근 올린 영상 · 음성 보관함</span>
-                <span style="font-size:12px; color:#065F46; font-weight:800; margin-left:6px;">(수백 MB ~ 최대 2GB 대용량 설교 영상도 새로고침 후 이곳에 자동 보관됩니다 — 누르면 바로 시작)</span>
-              </div>
-              <button type="button" class="mini-btn" onclick="loadRecentLocalVideos()">🔄 보관함 새로고침</button>
-            </div>
-            <div id="recentLocalVideosGrid" class="recent-videos-grid">
-              <div style="grid-column:1/-1; font-size:12.5px; color:#64748B; padding:10px; text-align:center;">최근 영상 파일을 불러오는 중입니다...</div>
-            </div>
-          </div>
-
-          <!-- ① 설교 미디어 원본 등록 (기존 호환 바) -->
-          <div class="step-header" style="margin-top:8px;">
-            <div class="step-title-wrap">
-              <span class="step-num" style="width:auto; padding:0 10px;">STEP 01</span>
-              <h2 class="step-title" style="font-size:16px;">불러온 설교 선택 및 자막 도구</h2>
-            </div>
-            <div style="display:flex; gap:8px; align-items:center;">
-              <button class="mini-btn" onclick="openApiKeyModal()">⚙️ AI 키 설정 (선택)</button>
-              <button type="button" class="btn btn-gold" style="padding:7px 14px; font-size:13px;" onclick="switchSermonWizardStep(2)">
-                ② 완성본 고르기로 이동 ›
-              </button>
-            </div>
-          </div>
-          <div class="sermon-selector-bar">
-            <select id="sermonSelect" class="sermon-select" onchange="onSelectSermon(this.value)"></select>
-            <button class="btn btn-primary" onclick="openAddSermonModal()">📁 설교 영상 · 육성 파일 등록 (상세 설정 ★)</button>
-            <label class="btn btn-gold" style="cursor:pointer; margin:0; font-size:13.5px; padding:9px 14px;">
-              🎙️🎬 영상 · 육성 파일 원클릭 즉시 불러오기
-              <input type="file" accept=".mp4,.mov,.webm,.mkv,.m4v,.m4a,.mp3,.wav,.aac,.ogg,.flac,video/*,audio/*" style="display:none;" onchange="quickUploadVoiceToStudio1(this)" />
-            </label>
-            <button type="button" class="btn btn-outline" style="background:#FFFFFF; border-color:#E03131; color:#C92A2A; font-weight:800;" onclick="toggleBrowserMicRecord('sermon', this)">
-              🔴 마이크로 바로 녹음
-            </button>
-            <button class="btn btn-outline" onclick="reAnalyzeWithAI()">✨ AI 핵심 구간 재분석</button>
-            <button class="btn btn-outline" onclick="autoCorrectAllSubtitles()">🪄 성경 용어·자막 자동 교정</button>
-          </div>
+          <!-- 호환용 숨김 타겟 그리드 -->
+          <div class="make-target-grid" id="wizMakeTargetGrid" style="display:none;"></div>
         </section>
       </div><!-- /sermonWizPane1 -->
 
-      <!-- ==================== [마법사 2단계] ② 완성본 고르기 ==================== -->
+      <!-- ==================== [2] 우리만의 대표 시그니처 스타일 3선 & 바로 찍어내기 ==================== -->
       <div id="sermonWizPane2" style="display:block;">
-      <!-- ② AI 설교 맥락 분석 및 하이라이트 큐시트 편성 -->
-      <section class="step-section" style="border-top:4px solid #C59B27;">
-        <div class="step-header">
+      <section class="step-section" style="border-top:4px solid #C59B27; margin-bottom:16px;">
+        <div class="step-header" style="margin-bottom:10px;">
           <div class="step-title-wrap">
-            <span class="step-num" style="width:auto; padding:0 10px; background:#1B4332;">② 완성본 고르기</span>
-            <h2 class="step-title">만들어진 쇼츠 확인 및 <span style="color:#9C6B19;">완성본 고르기</span></h2>
+            <span class="step-num" style="width:auto; padding:0 12px; background:#9C6B19;">STEP 2</span>
+            <h2 class="step-title">우리만의 대표 스타일 <span style="color:#9C6B19;">3가지 중 하나만 고르세요</span></h2>
           </div>
-          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
-            <span class="pill-orange" id="sermonSummaryPill">설교 분석 완료 ➔ 4편 · 1분 내외</span>
-            <button type="button" class="mini-btn" onclick="switchSermonWizardStep(1)">📂 다른 영상 넣기</button>
-          </div>
-        </div>
-        <p class="step-desc">추천된 쇼츠 완성본입니다. 마음에 드는 카드는 <b>[이걸로]</b>를 눌러 바로 완성하거나, <b>[고치기]</b>를 눌러 문장 길이와 디자인을 다듬으세요.</p>
-
-        <!-- 🎨 분위기 한꺼번에 바꿔 보기 바 (남은 조각 2.0 스타일) -->
-        <div style="background:#FFFDF9; border:1.5px solid #E5DEC9; border-radius:14px; padding:11px 14px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;" id="batchMoodBar">
-            <span style="font-size:13px; font-weight:900; color:#1B2845; margin-right:4px;">🎨 분위기 한꺼번에 바꿔 보기:</span>
-            <button type="button" class="mood-chip-btn active" data-mood="mixed" onclick="applyBatchMood('mixed', this)">✨ 카드마다 어울리게</button>
-            <button type="button" class="mood-chip-btn" data-mood="warm" onclick="applyBatchMood('warm', this)">🕯️ 따뜻하게</button>
-            <button type="button" class="mood-chip-btn" data-mood="bold" onclick="applyBatchMood('bold', this)">🔥 힘 있게</button>
-            <button type="button" class="mood-chip-btn" data-mood="calm" onclick="applyBatchMood('calm', this)">🌿 잔잔하게</button>
-            <button type="button" class="mood-chip-btn" data-mood="solemn" onclick="applyBatchMood('solemn', this)">🏛️ 장엄하게</button>
-          </div>
-          <button type="button" class="mini-btn" onclick="shuffleAllClipsMood()">🎲 분위기 다시 섞기</button>
+          <span style="font-size:12px; font-weight:800; color:#8C5A08; background:#FFFBEB; border:1px solid #FDE68A; padding:4px 10px; border-radius:999px;">글자 크기 · 자막 위치 · 피아노 BGM(음성 8 : BGM 2) 황금 비율 자동 고정!</span>
         </div>
 
-        <!-- 🎯 주간 편성 쇼츠 제작 편수 지정 바 (2편 ~ 6편, 4편 안정 추천) -->
-        <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:12px; padding:10px 14px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-          <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;" id="shortsCountBar">
-            <span style="font-size:13px; font-weight:900; color:#1B2845; margin-right:4px;">🎬 쇼츠 개수:</span>
-            <button class="filter-btn" data-cnt="2" onclick="setTargetShortsCount(2, this)">2편 (핵심 요약)</button>
-            <button class="filter-btn" data-cnt="3" onclick="setTargetShortsCount(3, this)">3편 (월·수·금)</button>
-            <button class="filter-btn active" data-cnt="4" onclick="setTargetShortsCount(4, this)">4편 (주간 안정 추천 ⭐)</button>
-            <button class="filter-btn" data-cnt="5" onclick="setTargetShortsCount(5, this)">5편 (평일 매일)</button>
-            <button class="filter-btn" data-cnt="6" onclick="setTargetShortsCount(6, this)">6편 (풀 패키지)</button>
+        <!-- 🎨 우리만의 3대 대표 시그니처 스타일 원클릭 선택 카드 -->
+        <div id="kkumbaon3StyleCardsGrid" style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:12px; margin-bottom:16px;">
+          <!-- 스타일 1: 정통 강단 골드 -->
+          <div class="kkd-3style-card active" data-kstyle="royal_gold" onclick="selectKkumbaonSignatureStyle('royal_gold', this)" style="cursor:pointer; border:2.5px solid #D4AF37; background:linear-gradient(145deg, #FFFDF7 0%, #FAF5E8 100%); border-radius:16px; padding:14px; display:flex; gap:12px; align-items:center; box-shadow:0 8px 20px rgba(212,175,55,0.18); transition:all 0.16s ease;">
+            <div style="width:58px; height:98px; border-radius:10px; background:#162038; border:1.5px solid #E8C574; flex-shrink:0; display:flex; flex-direction:column; justify-content:space-between; padding:6px 4px; text-align:center; color:#FFFFFF; font-family:'NanumMyeongjo',serif;">
+              <div>
+                <div style="font-size:6px; color:#E8C574;">─ ✦ ─</div>
+                <div style="font-size:7.5px; font-weight:900; color:#F3D689;">은혜의 말씀</div>
+                <div style="font-size:8px; font-weight:900; color:#FFFFFF;">주님의 평안</div>
+              </div>
+              <div style="height:34px; background:rgba(255,255,255,0.12); border-top:1px solid rgba(232,197,116,0.5); border-bottom:1px solid rgba(232,197,116,0.5); display:grid; place-items:center; font-size:9px;">🎬</div>
+              <div style="font-size:6.5px; background:rgba(12,16,22,0.85); color:#FFFDF7; padding:2px; border-radius:3px; font-weight:800;">황금 명조 자막</div>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="background:#162038; color:#FDE68A; font-size:10.5px; font-weight:900; padding:2px 8px; border-radius:999px;">스타일 1 · 기본 추천 ★</span>
+              </div>
+              <div style="font-size:15px; font-weight:900; color:#0F172A; margin-bottom:3px;">👑 정통 강단 골드</div>
+              <div style="font-size:12px; color:#475569; font-weight:700; line-height:1.45;">로열 네이비 &amp; 금빛 명조<br><span style="color:#8C5A08;">주일 대예배 · 강해설교 표준</span></div>
+            </div>
           </div>
-          <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button class="filter-btn active" onclick="selectClipsByFilter('all')">전체 선택</button>
-            <button class="filter-btn" onclick="selectClipsByFilter('A')">★ 1순위만</button>
-            <button class="filter-btn" onclick="selectClipsByFilter('none')">선택 해제</button>
+
+          <!-- 스타일 2: 따뜻한 양피지 묵상 -->
+          <div class="kkd-3style-card" data-kstyle="parchment_warm" onclick="selectKkumbaonSignatureStyle('parchment_warm', this)" style="cursor:pointer; border:1.5px solid #CBD5E1; background:#FFFFFF; border-radius:16px; padding:14px; display:flex; gap:12px; align-items:center; transition:all 0.16s ease;">
+            <div style="width:58px; height:98px; border-radius:10px; background:#F4EFE6; border:1.5px solid #C2B299; flex-shrink:0; display:flex; flex-direction:column; justify-content:space-between; padding:6px 4px; text-align:center; color:#221E1B; font-family:'NanumMyeongjo',serif;">
+              <div>
+                <div style="font-size:6px; color:#7C6A56;">─────</div>
+                <div style="font-size:7.5px; font-weight:900; color:#8C5A08;">새벽의 묵상</div>
+                <div style="font-size:8px; font-weight:900; color:#221E1B;">푸른 풀밭으로</div>
+              </div>
+              <div style="height:34px; background:rgba(34,30,27,0.08); border-top:1px solid rgba(140,130,117,0.45); border-bottom:1px solid rgba(140,130,117,0.45); display:grid; place-items:center; font-size:9px;">🌿</div>
+              <div style="font-size:6.5px; background:rgba(255,255,255,0.92); color:#221E1B; border:1px solid #D6C7B2; padding:2px; border-radius:3px; font-weight:800;">따뜻한 먹빛 자막</div>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="background:#F4EFE6; color:#5C4D32; border:1px solid #D6C7B2; font-size:10.5px; font-weight:900; padding:2px 8px; border-radius:999px;">스타일 2 · 묵상형</span>
+              </div>
+              <div style="font-size:15px; font-weight:900; color:#0F172A; margin-bottom:3px;">📜 따뜻한 양피지 묵상</div>
+              <div style="font-size:12px; color:#475569; font-weight:700; line-height:1.45;">크림 베이지 &amp; 에스프레소 명조<br><span style="color:#065F46;">새벽기도 · 위로 · 시편 묵상 표준</span></div>
+            </div>
+          </div>
+
+          <!-- 스타일 3: 세로 풀화면 릴스 -->
+          <div class="kkd-3style-card" data-kstyle="full_reels" onclick="selectKkumbaonSignatureStyle('full_reels', this)" style="cursor:pointer; border:1.5px solid #CBD5E1; background:#FFFFFF; border-radius:16px; padding:14px; display:flex; gap:12px; align-items:center; transition:all 0.16s ease;">
+            <div style="width:58px; height:98px; border-radius:10px; background:linear-gradient(180deg, #1E293B 0%, #0F172A 100%); border:1.5px solid #FBBF24; flex-shrink:0; display:flex; flex-direction:column; justify-content:space-between; padding:6px 4px; text-align:center; color:#FFFFFF;">
+              <div style="background:rgba(15,23,42,0.78); border-radius:4px; padding:2px;">
+                <div style="font-size:7px; font-weight:900; color:#FBBF24;">핵심 1분 말씀</div>
+                <div style="font-size:7.5px; font-weight:900; color:#FFFFFF;">세로 꽉 찬 화면</div>
+              </div>
+              <div style="font-size:12px;">🎙️</div>
+              <div style="font-size:6.5px; background:#F6E05E; color:#111827; padding:2px; border-radius:3px; font-weight:900;">선명한 강조 자막</div>
+            </div>
+            <div style="min-width:0; flex:1;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="background:#FEF3C7; color:#92400E; font-size:10.5px; font-weight:900; padding:2px 8px; border-radius:999px;">스타일 3 · 릴스 집중형</span>
+              </div>
+              <div style="font-size:15px; font-weight:900; color:#0F172A; margin-bottom:3px;">📱 세로 풀화면 릴스</div>
+              <div style="font-size:12px; color:#475569; font-weight:700; line-height:1.45;">목사님 9:16 꽉 찬 화면 &amp; 강조 자막<br><span style="color:#1D4ED8;">유튜브 쇼츠 · 인스타 릴스 표준</span></div>
+            </div>
           </div>
         </div>
 
-        <!-- AI 설교 분석 상태 안내 배너 (_LAST_AI_ANALYZE_NOTICE 표시용) -->
+        <!-- 호환용 숨김 분위기 바 -->
+        <div id="batchMoodBar" style="display:none;"></div>
+
+        <!-- ==================== [3] 뽑아진 쇼츠 확인 & 원클릭 일괄 찍어내기 ==================== -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; padding:12px 16px; background:linear-gradient(135deg, #141C2E 0%, #1F2B44 100%); border:1.5px solid #D4AF37; border-radius:14px; margin-bottom:14px; color:#FFFFFF;">
+          <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+            <span style="background:#D4AF37; color:#141C2E; font-size:12px; font-weight:900; padding:4px 10px; border-radius:999px;">STEP 3 · 바로 찍어내기</span>
+            <span style="font-size:15px; font-weight:900; color:#FAF7F0;" id="sermonSummaryPill">설교 분석 완료 ➔ 4편 · 1분 내외</span>
+            <div style="display:inline-flex; align-items:center; gap:4px; margin-left:6px;" id="shortsCountBar">
+              <span style="font-size:12px; color:#CBD5E1; font-weight:700;">편수:</span>
+              <button class="filter-btn" style="padding:3px 9px; font-size:11.5px;" data-cnt="3" onclick="setTargetShortsCount(3, this)">3편</button>
+              <button class="filter-btn active" style="padding:3px 9px; font-size:11.5px;" data-cnt="4" onclick="setTargetShortsCount(4, this)">4편 (추천)</button>
+              <button class="filter-btn" style="padding:3px 9px; font-size:11.5px;" data-cnt="5" onclick="setTargetShortsCount(5, this)">5편</button>
+            </div>
+          </div>
+          <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+            <button type="button" class="btn btn-gold" style="padding:11px 22px; font-size:14.5px; font-weight:900; border-radius:999px; box-shadow:0 6px 18px rgba(212,175,55,0.35);" onclick="startRenderSelected()">
+              🚀 이 스타일로 쇼츠 <span id="selectedCountBtnTxt">4</span>편 한 번에 찍어내기 (MP4)
+            </button>
+            <button type="button" class="btn btn-outline" style="background:rgba(255,255,255,0.1); color:#FFFFFF; border-color:rgba(255,255,255,0.3); border-radius:999px; padding:9px 14px; font-size:12.5px;" onclick="openOutputFolder()">
+              📂 완성 폴더
+            </button>
+          </div>
+        </div>
+
+        <!-- AI 설교 분석 상태 안내 배너 -->
         <div id="sermonAiAnalyzeNoticeBox" style="display:none; margin-bottom:12px; padding:12px 16px; border-radius:12px; font-size:13.5px; font-weight:800; line-height:1.55;"></div>
 
+        <!-- 추천 쇼츠 대목 카드 그리드 -->
         <div id="clipsGrid" class="clips-grid"></div>
 
-        <!-- 2단계 하단 원클릭 일괄 완성 바 -->
-        <div style="margin-top:16px; padding:14px 18px; background:linear-gradient(135deg, #F4FBF7 0%, #ECFDF5 100%); border:1.5px solid #A7F3D0; border-radius:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
-          <div>
-            <div style="font-size:14.5px; font-weight:900; color:#065F46;">🎬 마음에 드는 쇼츠를 고르셨나요?</div>
-            <div style="font-size:12.5px; color:#047857; font-weight:700;">바로 MP4 영상으로 모두 만들거나, [③ 다듬고 완성]에서 문장 길이·카톡 나눔 카드를 만드실 수 있습니다.</div>
+        <!-- 하단 원클릭 일괄 완성 & 완성된 MP4 즉시 확인 박스 -->
+        <div id="step4RenderSection" style="margin-top:16px; padding:16px 20px; background:linear-gradient(135deg, #F4FBF7 0%, #ECFDF5 100%); border:2px solid #10B981; border-radius:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="font-size:15.5px; font-weight:900; color:#065F46;">🎬 준비된 쇼츠를 MP4 영상 파일로 바로 찍어내세요!</div>
+              <div style="font-size:12.5px; color:#047857; font-weight:700;">버튼 한 번만 누르면 선택하신 대표 스타일과 피아노 BGM(음성 8 : BGM 2)이 입혀진 1080×1920 세로 영상이 완성됩니다.</div>
+            </div>
+            <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+              <button type="button" class="btn btn-primary" style="background:#1B4332; border-color:#1B4332; padding:13px 24px; font-size:15px; font-weight:900; border-radius:12px;" onclick="startRenderSelected()">
+                🚀 체크된 쇼츠 모두 MP4 영상으로 찍어내기
+              </button>
+              <button type="button" class="btn btn-gold" style="padding:12px 18px; font-size:13.5px; border-radius:12px;" onclick="openShareCardModal()">
+                💌 카톡·주보 나눔 카드 만들기
+              </button>
+              <button type="button" class="btn btn-outline" style="padding:12px 16px; font-size:13px; border-radius:12px; background:#FFFFFF;" onclick="openOutputFolder()">
+                📂 완성 폴더 열기
+              </button>
+            </div>
           </div>
-          <div style="display:flex; gap:10px; flex-wrap:wrap;">
-            <button type="button" class="btn btn-primary" style="background:#1B4332; border-color:#1B4332; padding:11px 20px; font-size:14px;" onclick="switchSermonWizardStep(3, 'finish'); startRenderSelected();">
-              🎬 선택된 쇼츠 모두 영상으로 만들기
-            </button>
-            <button type="button" class="btn btn-outline" style="padding:11px 18px; font-size:13.5px;" onclick="switchSermonWizardStep(3)">
-              ③ 다듬고 완성으로 이동 ›
-            </button>
+          <div id="renderProgressText" style="margin-top:8px; font-size:14px; font-weight:800; color:#1B2845;"></div>
+          <div id="renderedOutputsBox" style="margin-top:12px;"></div>
+        </div>
+
+        <!-- 📋 유튜브·인스타 릴스 업로드용 추천 제목 & 해시태그 원클릭 복사 (한 화면에 바로 배치) -->
+        <div id="step5YoutubeSection" style="margin-top:14px; padding:14px 18px; background:#FFFDF9; border:1.5px solid #E5DEC9; border-radius:16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+            <div style="font-size:14px; font-weight:900; color:#1E293B;">
+              📋 쇼츠별 유튜브 · 인스타 릴스 업로드용 제목 &amp; 해시태그 (버튼만 눌러 복사하세요)
+            </div>
+            <button class="filter-btn active" id="btnTabDirect" style="display:none;" onclick="switchYtTab('direct')">직접 예약</button>
+          </div>
+          <div id="ytTabDirect" style="display:block;">
+            <div id="directUploadClipsList" style="display:flex; flex-direction:column; gap:8px;"></div>
           </div>
         </div>
       </section>
       </div><!-- /sermonWizPane2 -->
 
-      <!-- ==================== [마법사 3단계] ③ 다듬고 완성 ==================== -->
-      <div id="sermonWizPane3" style="display:none;">
+      <!-- ==================== [선택사항: 세부 설정 직접 만지기 (평소에는 깔끔하게 접혀 있음)] ==================== -->
+      <details id="advancedShortsSettingsDetails" style="margin-top:12px; background:#FAF8F5; border:1.5px dashed #CBD5E1; border-radius:16px; padding:12px 16px;">
+        <summary style="cursor:pointer; font-size:13.5px; font-weight:900; color:#475569; list-style:none; display:flex; justify-content:space-between; align-items:center;">
+          <span>⚙️ 세부 설정 직접 만지기 (문장 길이 미세조절 · 글자 크기 · 다른 배경음악/성화 고르기 — 필요하실 때만 여세요)</span>
+          <span style="font-size:12px; color:#64748B; font-weight:700;">클릭하여 펼치기 ▾</span>
+        </summary>
+      <div id="sermonWizPane3" style="display:block; margin-top:14px;">
 
         <!-- 3단계 상단 5대 원형 도구 탭 (Aa 글자 · ✂️ 자르기 · 🎨 템플릿 · ♪ 소리·성화 · ✓ 완성하기) -->
         <div class="step3-subtab-bar" id="wizStep3SubTabs">
@@ -2644,65 +2664,8 @@
         </div>
       </section>
 
-      <!-- ④ Full HD 마스터 MP4 영상 렌더링 -->
-      <section class="step-section" id="step4RenderSection">
-        <div class="step-header">
-          <div class="step-title-wrap">
-            <span class="step-num" style="width:auto; padding:0 10px;">STEP 04</span>
-            <h2 class="step-title">Full HD (1080×1920) <span style="color:#9C6B19;">마스터 MP4 영상 생성</span></h2>
-          </div>
-        </div>
-        <p class="step-desc">선택하신 큐시트 구간에 시그니처 아트워크와 EBU R128(-16 LUFS) 음향 마스터링을 적용하여 고화질 MP4 영상 파일로 제작합니다.</p>
-
-        <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
-          <button class="btn btn-primary" style="padding:14px 26px; font-size:16px;" onclick="startRenderSelected()">
-            🎬 선택된 큐시트 <span id="selectedCountBtnTxt">5</span>편 고화질 MP4 일괄 생성
-          </button>
-          <button class="btn btn-outline" onclick="openOutputFolder()">📂 완성 영상 보관 폴더 열기</button>
-          <span id="renderProgressText" style="font-size:14px; font-weight:800; color:#1B2845;"></span>
-        </div>
-
-        <!-- 완성된 쇼츠 파일 리스트 -->
-        <div id="renderedOutputsBox" style="margin-top:18px;"></div>
-      </section>
-
-      <!-- ⑤ 유튜브 채널 주간 예약 발행 & 메타데이터 복사 -->
-      <section class="step-section" id="step5YoutubeSection">
-        <div class="step-header">
-          <div class="step-title-wrap">
-            <span class="step-num" style="width:auto; padding:0 10px;">STEP 05</span>
-            <h2 class="step-title">유튜브 채널 <span style="color:#9C6B19;">주간 예약 발행 & 메타데이터 복사</span></h2>
-          </div>
-          <div style="display:flex; gap:6px;">
-            <button class="filter-btn active" id="btnTabDirect" onclick="switchYtTab('direct')">🌟 직접 10초 예약 걸기 (API 불필요 · 추천!)</button>
-            
-          </div>
-        </div>
-        <p class="step-desc">
-          어려운 구글 API 승인이나 토큰 발급을 받으실 필요가 전혀 없습니다! 쇼츠를 다운로드하여 유튜브에 올릴 때 <b>「게시 ➔ 예약」</b> 시간만 지정해 두시면 매일 정한 시간에 자동으로 성도님들께 쇼츠가 공개됩니다.
-        </p>
-
-        <!-- 탭 1: 직접 예약 걸기 (가장 쉽고 직관적) -->
-        <div id="ytTabDirect" style="display:block;">
-          <div style="background:#FFF9F5; border:1px solid #FFD8A8; border-radius:14px; padding:18px 20px; margin-bottom:18px;">
-            <div style="font-size:15px; font-weight:800; color:#D9480F; margin-bottom:10px;">
-              💡 10초 만에 끝나는 초간단 예약 올리기 3단계:
-            </div>
-            <ol style="font-size:13.5px; color:#343A40; line-height:1.7; padding-left:20px;">
-              <li>아래에서 원하는 쇼츠의 <b>[📋 제목&해시태그 복사]</b> 단추를 누릅니다.</li>
-              <li><b>[⬇ 영상 다운로드]</b>를 누르거나 <b>[📂 완성 폴더 열기]</b>를 누릅니다.</li>
-              <li>유튜브(PC 스튜디오 또는 스마트폰 유튜브 앱)에서 영상을 올릴 때 제목을 붙여넣고, <b>「공개 상태 ➔ 예약」</b>에서 원하시는 날짜와 시각(예: 내일 오전 8시)을 선택하시면 끝!</li>
-            </ol>
-          </div>
-
-          <div style="font-size:14.5px; font-weight:800; margin-bottom:10px; color:#212529;">
-            📋 쇼츠별 유튜브 업로드용 추천 제목 & 해시태그 (복사해서 붙여넣기만 하세요)
-          </div>
-          <div id="directUploadClipsList" style="display:flex; flex-direction:column; gap:10px;"></div>
-        </div>
-
-        </section>
-      </div><!-- /sermonWizPane3 -->
+            </div><!-- /sermonWizPane3 -->
+      </details>
       </div><!-- /studioPaneSermon -->
 
       <!-- ==================== [스튜디오 2] 🪄 아론의 지팡이 (초고속 찬양 가사 PPT 생성기) ==================== -->
@@ -2951,7 +2914,18 @@
             <audio id="readVoicePreviewAudio" controls style="display:none; width:100%; height:36px; margin-top:10px;"></audio>
           </div>
 
-          <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; margin-bottom:18px;">
+          <!-- 🎨 말씀 낭독 쇼츠도 고민 없이 우리만의 대표 스타일 3선 중 택1 -->
+          <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:14px; padding:12px 16px; margin-bottom:14px;">
+            <div style="font-size:13px; font-weight:900; color:#1E293B; margin-bottom:8px;">🎨 대표 스타일 선택 (클릭 한 번으로 배경 성화 · 피아노 BGM · 색감이 자동 세팅됩니다)</div>
+            <div style="display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); gap:10px;" id="reading3StyleBar">
+              <button type="button" class="btn btn-gold" style="justify-content:center; padding:10px; font-size:13px; border-radius:10px;" onclick="applyReadingQuickStyle('royal_gold', this)">👑 1. 정통 로열 골드 (기본 ★)</button>
+              <button type="button" class="btn btn-outline" style="justify-content:center; padding:10px; font-size:13px; border-radius:10px; background:#FFFFFF;" onclick="applyReadingQuickStyle('muji_warm', this)">📜 2. 따뜻한 양피지 묵상</button>
+              <button type="button" class="btn btn-outline" style="justify-content:center; padding:10px; font-size:13px; border-radius:10px; background:#FFFFFF;" onclick="applyReadingQuickStyle('dawn_navy', this)">🌙 3. 고요한 새벽 네이비</button>
+            </div>
+          </div>
+          <details style="margin-bottom:16px; background:#F8FAFC; border:1px dashed #CBD5E1; border-radius:12px; padding:10px 14px;">
+            <summary style="cursor:pointer; font-size:12.5px; font-weight:800; color:#475569;">⚙️ 성화 · 배경음악 · 색감 개별 변경 (원하실 때만 여세요)</summary>
+          <div style="display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:14px; margin-top:12px;">
             <div class="control-item">
               <label>🎙️ 낭독 목소리 선택 (공개 영상 권장)</label>
               <select id="readVoiceSelect">
@@ -2977,6 +2951,7 @@
               </select>
             </div>
           </div>
+          </details>
 
           <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
             <button class="btn btn-gold" id="btnRenderReading" style="padding:14px 28px; font-size:16px;" onclick="startRenderBibleReading()">
@@ -5632,11 +5607,7 @@
         const isLightMood = (moodKey === "calm");
         const subSample = (c.summary || "은혜의 말씀 자막").slice(0, 14);
 
-        const moodChipsHtml = MOOD_ORDER.map(mk => {
-          const m = MOOD_PRESET_MAP[mk];
-          const act = (mk === moodKey) ? "active" : "";
-          return `<button type="button" class="mood-chip-btn ${act}" style="padding:3px 9px; font-size:11px;" onclick="applyClipMood(${idx}, '${mk}')">${m.label}</button>`;
-        }).join("");
+        const moodChipsHtml = `<span style="font-size:11px; font-weight:800; color:#8C5A08; background:#FFFBEB; border:1px solid #FDE68A; padding:2px 8px; border-radius:999px;">✨ 선택 스타일 자동 적용됨</span>`;
 
         return `
           <div class="clip-card ${isSel}" id="clipCard_${idx}">
@@ -5692,14 +5663,14 @@
               </div>
             </div>
 
-            <!-- 우측: [이걸로 (바로 완성)] & [고치기 (다듬기)] & 미세 트리밍 -->
+            <!-- 우측: [🎬 이 1편 바로 찍기] & [💌 나눔카드] & 미세 트리밍 -->
             <div class="cue-right-panel">
               <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-bottom:6px;">
-                <button type="button" class="btn btn-primary" style="padding:9px 10px; font-size:13px; border-radius:10px; background:#1B4332; border-color:#1B4332; justify-content:center;" onclick="pickClipAndFinishNow(${idx})">
-                  ✓ 이걸로
+                <button type="button" class="btn btn-primary" style="padding:9px 10px; font-size:12.5px; border-radius:10px; background:#1B4332; border-color:#1B4332; justify-content:center; font-weight:900;" onclick="currentClipIndex=${idx}; previewClip(${idx}, false); renderCurrentClipNow();">
+                  🎬 바로 찍기
                 </button>
-                <button type="button" class="btn btn-gold" style="padding:9px 10px; font-size:13px; border-radius:10px; justify-content:center;" onclick="openClipInStep3Editor(${idx})">
-                  ✎ 고치기
+                <button type="button" class="btn btn-gold" style="padding:9px 10px; font-size:12.5px; border-radius:10px; justify-content:center; font-weight:900;" onclick="currentClipIndex=${idx}; openShareCardModal();">
+                  💌 나눔카드
                 </button>
               </div>
               <div class="cue-primary-actions">
@@ -10071,32 +10042,151 @@ ${st.error || "로그를 확인해 주세요."}`);
 
     function switchSermonWizardStep(stepNum, subTab = "") {
       currentSermonWizardStep = stepNum;
-      sermonAllStepsView = false;
-      const btnAll = document.getElementById("btnToggleAllStepsView");
-      if (btnAll) btnAll.textContent = "📋 한 화면에 모두 보기";
-
-      [1, 2, 3].forEach(n => {
-        const pane = document.getElementById(`sermonWizPane${n}`);
-        if (pane) pane.style.display = (n === stepNum) ? "block" : "none";
-        const pill = document.getElementById(`wizStepBtn_${n}`);
-        if (pill) {
-          pill.classList.toggle("active", n === stepNum);
-          pill.classList.toggle("done", n < stepNum);
-        }
-      });
+      const p1 = document.getElementById("sermonWizPane1");
+      const p2 = document.getElementById("sermonWizPane2");
+      if (p1) p1.style.display = "block";
+      if (p2) p2.style.display = "block";
 
       if (stepNum === 1) {
         loadRecentLocalVideos();
       } else if (stepNum === 2) {
         renderClipsGrid();
       } else if (stepNum === 3) {
+        const adv = document.getElementById("advancedShortsSettingsDetails");
+        if (adv && subTab !== "finish") adv.open = true;
         syncStep3QuickEditorUI();
-        if (subTab) {
+        if (subTab === "finish") {
+          const rSec = document.getElementById("step4RenderSection");
+          if (rSec) rSec.scrollIntoView({ behavior: "smooth", block: "center" });
+        } else if (subTab) {
           const tabBtn = document.querySelector(`#wizStep3SubTabs [data-subtab="${subTab}"]`);
           switchStep3SubTab(subTab, tabBtn);
         }
       }
     }
+
+    // ==================== 🌟 [2026.11.08 목사님 확정] 안간사 원터치 3대 시그니처 스타일 엔진 ====================
+    let currentKkumbaonSignatureStyle = "royal_gold";
+
+    const KKUMBAON_3STYLE_CONFIG = {
+      royal_gold: {
+        mood: "warm",
+        presetId: "preset_01",
+        fullVertical: false,
+        fontFamily: "serif",
+        bgmIdx: 0,
+        bgmVol: 0.18,
+        artworkMode: "intro_3s",
+        badgeText: "👑 정통 강단 골드"
+      },
+      parchment_warm: {
+        mood: "calm",
+        presetId: "preset_muji_01",
+        fullVertical: false,
+        fontFamily: "serif",
+        bgmIdx: 2,
+        bgmVol: 0.18,
+        artworkMode: "intro_3s",
+        badgeText: "📜 따뜻한 양피지 묵상"
+      },
+      full_reels: {
+        mood: "bold",
+        presetId: "preset_02",
+        fullVertical: true,
+        fontFamily: "sans",
+        bgmIdx: 1,
+        bgmVol: 0.18,
+        artworkMode: "none",
+        badgeText: "📱 세로 풀화면 릴스"
+      }
+    };
+
+    function selectKkumbaonSignatureStyle(styleKey, cardEl) {
+      const cfg = KKUMBAON_3STYLE_CONFIG[styleKey] || KKUMBAON_3STYLE_CONFIG.royal_gold;
+      currentKkumbaonSignatureStyle = styleKey;
+
+      // 3스타일 카드 UI 활성화 표시
+      document.querySelectorAll("#kkumbaon3StyleCardsGrid .kkd-3style-card").forEach(el => {
+        const isAct = el.getAttribute("data-kstyle") === styleKey;
+        el.classList.toggle("active", isAct);
+        el.style.border = isAct ? "2.5px solid #D4AF37" : "1.5px solid #CBD5E1";
+        el.style.background = isAct ? "linear-gradient(145deg, #FFFDF7 0%, #FAF5E8 100%)" : "#FFFFFF";
+        el.style.boxShadow = isAct ? "0 8px 20px rgba(212,175,55,0.18)" : "none";
+      });
+
+      // 모든 쇼츠 클립의 mood를 통일
+      if (currentSermon && currentSermon.clips) {
+        currentSermon.clips.forEach(c => {
+          c.mood = cfg.mood;
+        });
+      }
+
+      // 프리셋 연동
+      if (appData && appData.presets && appData.presets.length > 0) {
+        const foundP = appData.presets.find(p => p.id === cfg.presetId) || appData.presets[0];
+        if (foundP) {
+          currentPreset = foundP;
+          customStyle.preset_id = foundP.id;
+        }
+      }
+
+      // 세로 풀화면 여부 및 폰트·아트워크·BGM 황금값 고정 (음성 8 : BGM 2 = 0.18)
+      customStyle.full_vertical_mode = cfg.fullVertical;
+      customStyle.title_font = cfg.fontFamily;
+      customStyle.artwork_mode = cfg.artworkMode;
+      customStyle.bgm_volume = cfg.bgmVol;
+
+      const selFull = document.getElementById("selectFullVertical");
+      if (selFull) selFull.value = cfg.fullVertical ? "true" : "false";
+      const selFont = document.getElementById("selectFontFamily");
+      if (selFont) selFont.value = cfg.fontFamily;
+      const selArtMode = document.getElementById("selectArtworkMode");
+      if (selArtMode) selArtMode.value = cfg.artworkMode;
+      const inBgmVol = document.getElementById("inputBgmVolume");
+      if (inBgmVol) inBgmVol.value = String(cfg.bgmVol);
+
+      if (appData && appData.bgm_list && appData.bgm_list.length > 0) {
+        const bgmItem = appData.bgm_list[cfg.bgmIdx % appData.bgm_list.length] || appData.bgm_list[0];
+        if (bgmItem) {
+          customStyle.bgm_id = bgmItem.id;
+          const selBgm = document.getElementById("selectBgmTrack");
+          if (selBgm) selBgm.value = bgmItem.id;
+        }
+      }
+
+      const designBadge = document.getElementById("currentDesignBadge");
+      if (designBadge) designBadge.textContent = cfg.badgeText;
+
+      renderPresetsGrid();
+      renderClipsGrid();
+      applyDesignToPhone();
+    }
+
+    function applyReadingQuickStyle(themeKey, btnEl) {
+      const bar = document.getElementById("reading3StyleBar");
+      if (bar && btnEl) {
+        bar.querySelectorAll("button").forEach(b => {
+          b.className = (b === btnEl) ? "btn btn-gold" : "btn btn-outline";
+          if (b !== btnEl) b.style.background = "#FFFFFF";
+        });
+      }
+      const themeSel = document.getElementById("readThemeSelect");
+      if (themeSel) themeSel.value = themeKey;
+      const artSel = document.getElementById("readArtworkSelect");
+      if (artSel && artSel.options.length > 0) {
+        const idxMap = { royal_gold: 0, muji_warm: 1, dawn_navy: 2 };
+        artSel.selectedIndex = (idxMap[themeKey] || 0) % artSel.options.length;
+      }
+      const bgmSel = document.getElementById("readBgmSelect");
+      if (bgmSel && bgmSel.options.length > 0) {
+        const idxMap = { royal_gold: 0, muji_warm: 2, dawn_navy: 1 };
+        bgmSel.selectedIndex = (idxMap[themeKey] || 0) % bgmSel.options.length;
+      }
+      if (typeof syncReadingPreviewToPhone === "function") {
+        syncReadingPreviewToPhone();
+      }
+    }
+
 
     function toggleSermonAllStepsView() {
       sermonAllStepsView = !sermonAllStepsView;
@@ -10854,6 +10944,31 @@ ${st.error || "로그를 확인해 주세요."}`);
 
     window.addEventListener("DOMContentLoaded", () => {
       loadRecentLocalVideos();
+      setTimeout(() => {
+        try {
+          const raw = localStorage.getItem("kkd_onetouch_shorts_payload");
+          if (raw) {
+            localStorage.removeItem("kkd_onetouch_shorts_payload");
+            const payload = JSON.parse(raw);
+            if (payload && payload.script) {
+              switchStudioMode("reading");
+              const tEl = document.getElementById("readTitleInput");
+              const vEl = document.getElementById("readVerseInput");
+              const cEl = document.getElementById("readChurchInput");
+              const sEl = document.getElementById("readScriptInput");
+              if (tEl && payload.title) tEl.value = payload.title;
+              if (vEl && payload.scripture) vEl.value = payload.scripture;
+              if (cEl && payload.church) cEl.value = payload.church;
+              if (sEl && payload.script) sEl.value = payload.script;
+              if (payload.styleKey && typeof applyReadingQuickStyle === "function") {
+                const mapTheme = { royal_gold: "royal_gold", parchment_warm: "muji_warm", full_reels: "dawn_navy" };
+                applyReadingQuickStyle(mapTheme[payload.styleKey] || "royal_gold");
+              }
+              if (typeof syncReadingPreviewToPhone === "function") syncReadingPreviewToPhone();
+            }
+          }
+        } catch (e) {}
+      }, 450);
     });
 
   

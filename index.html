@@ -3452,9 +3452,9 @@ body.dark-theme .knb-card-link {
     overflow: visible !important;
     flex-shrink: 0 !important;
   }
-  /* PC용 메뉴 버튼들은 모바일 헤더에서 완전 숨김 (스크린샷 1번 잘림 현상 원천 박멸) */
+  /* PC용 메뉴 버튼들은 모바일 헤더에서 완전 숨김 (별관으로 가기 버튼은 유지) */
   .entrance-nav > button[data-cat],
-  .entrance-nav > a,
+  .entrance-nav > a:not(.nav-studio-trigger),
   .entrance-nav .nav-guide-btn,
   .entrance-nav .nav-12arch-btn,
   .entrance-nav .nav-moses-btn {
@@ -3615,6 +3615,9 @@ body.dark-theme .knb-card-link {
     white-space: normal !important;
     word-break: keep-all !important;
     line-height: 1.4 !important;
+    color: #1F1A15 !important;
+  }
+  body.dark-theme .kw-headline {
     color: #F8F5EE !important;
   }
   .kw-quote {
@@ -3685,9 +3688,9 @@ body.dark-theme .knb-card-link {
 }
 /* === [KKUMDIDO_NOTICE_BOARD_END] === */
 </style>
-  <link rel="stylesheet" href="atrium.css?v=20261107a"/>
+  <link rel="stylesheet" href="atrium.css?v=20261108b"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
   <link rel="manifest" href="manifest.json"/>
   <meta name="theme-color" content="#1A140E"/>
   <link rel="apple-touch-icon" href="assets/icons/kkumdido_apple_touch_icon.png"/>
@@ -6549,7 +6552,7 @@ body.dark-theme .knb-card-link {
       });
     })();
   </script>
-  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭: 홈·지도 / 12대관 / 자료검색 / 별관 / 3D둘러보기) -->
   <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
     <button type="button" class="kkumdido-mobile-tab-item active" data-tab-action="home">
       <span class="tab-icon">🏛️</span>
@@ -6559,18 +6562,18 @@ body.dark-theme .knb-card-link {
       <span class="tab-icon">📚</span>
       <span>12대관</span>
     </button>
-    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
-      <span class="tab-icon">📖</span>
-      <span>강해·주석</span>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search">
+      <span class="tab-icon">🔍</span>
+      <span>자료검색</span>
+    </button>
+    <a href="kkumdido_church_support_annex.html" class="kkumdido-mobile-tab-item" data-tab-action="annex">
+      <span class="tab-icon">🏛️</span>
+      <span>별관</span>
     </a>
     <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
       <span class="tab-icon">⛪</span>
-      <span>채플</span>
+      <span>3D둘러보기</span>
     </a>
-    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search">
-      <span class="tab-icon">🔍</span>
-      <span>빠른검색</span>
-    </button>
   </nav>
 
   <!-- 📖 꿈바온 디지털 도서관 순례자 영구 방명록 모달 (3D 아트리움 등잔 밑 방명록과 100% 실시간·영구 연동) -->

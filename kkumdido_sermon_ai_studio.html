@@ -547,9 +547,23 @@
   }
 
   @media (max-width: 1080px) {
-    .hero-grid, .studio-grid { grid-template-columns: 1fr; }
-    .qt-grid { grid-template-columns: 1fr; }
-    .summon-cards-grid { grid-template-columns: 1fr !important; }
+    .hero-grid, .studio-grid { grid-template-columns: minmax(0, 1fr); }
+    .qt-grid { grid-template-columns: minmax(0, 1fr); }
+    .summon-cards-grid { grid-template-columns: minmax(0, 1fr) !important; }
+  }
+  @media (max-width: 780px) {
+    html, body { max-width: 100vw; overflow-x: hidden; }
+    .wrap { padding: 0 12px; max-width: 100%; min-width: 0; }
+    .top-gnb { padding: 10px 12px; }
+    .gnb-title strong { font-size: 0.98rem; }
+    .gnb-title small { font-size: 0.68rem; }
+    .gnb-btn { padding: 6px 10px; font-size: 0.78rem; }
+    .hero-bar { padding: 16px 0 14px; }
+    .moses-summoner-card, .card { padding: 14px 12px; border-radius: 16px; min-width: 0; max-width: 100%; }
+    .moses-search-bar { grid-template-columns: minmax(0, 1fr); }
+    .moses-search-input, .moses-search-btn, .moses-apply-all-btn { min-width: 0; width: 100%; max-width: 100%; white-space: normal; font-size: 0.88rem; padding: 10px 12px; }
+    .summon-card { min-width: 0; max-width: 100%; padding: 12px; }
+    #kkumdido-pass-fab { right: 8px !important; bottom: 10px !important; max-width: calc(100vw - 16px) !important; transform: scale(0.85) !important; transform-origin: bottom right !important; }
   }
 
   /* === 🪄 모세의 지팡이: 꿈디도 본문·주제 카드 대령대 스타일 === */
@@ -591,7 +605,7 @@
     margin-bottom: 10px;
   }
   @media (max-width: 780px) {
-    .moses-search-bar { grid-template-columns: 1fr; }
+    .moses-search-bar { grid-template-columns: minmax(0, 1fr); }
   }
   .moses-search-input {
     width: 100%;
