@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>설교 자료 대백과 사전 — 족보 · 왕조별 연대기 · 신나는 성경 이야기 | 꿈바온 디지털 도서관</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1A140E">
+<link rel="apple-touch-icon" href="assets/icons/kkumdido_apple_touch_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root, [data-theme="beige"] {
+    --bg-main: #FBF8F1;
+    --bg-card: #FFFFFF;
+    --bg-parchment: #F4EFE4;
+    --bg-elevated: #EFE7D6;
+    --text-cream: #1F1912;
+    --text-muted: #5C5040;
+    --gold-main: #8C621E;
+    --gold-accent: #B8862D;
+    --gold-soft: rgba(140, 98, 30, 0.12);
+    --border-gold: rgba(140, 98, 30, 0.30);
+    --border-soft: rgba(31, 25, 18, 0.10);
+    --shadow-card: 0 8px 26px rgba(31, 25, 18, 0.07);
+    --shadow-heavy: 0 14px 36px rgba(31, 25, 18, 0.13);
+    --input-bg: #FFFFFF;
+    --font-scale: 1;
+  }
+  [data-theme="dark"] {
+    --bg-main: #120F0B;
+    --bg-card: #1C1712;
+    --bg-parchment: #241E17;
+    --bg-elevated: #2C241B;
+    --text-cream: #F5EFE4;
+    --text-muted: #B8AA96;
+    --gold-main: #E5B85C;
+    --gold-accent: #F3D48A;
+    --gold-soft: rgba(229, 184, 92, 0.15);
+    --border-gold: rgba(229, 184, 92, 0.34);
+    --border-soft: rgba(245, 239, 228, 0.10);
+    --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.45);
+    --shadow-heavy: 0 16px 40px rgba(0, 0, 0, 0.65);
+    --input-bg: #17130E;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg-main);
+    color: var(--text-cream);
+    line-height: 1.68;
+    word-break: keep-all;
+    min-height: 100vh;
+    padding-bottom: 90px;
+  }
+  .serif { font-family: 'Noto Serif KR', Georgia, serif; }
+
+  /* 상단 GNB */
+  .top-gnb {
+    position: sticky;
+    top: 0;
+    z-index: 950;
+    background: var(--bg-card);
+    border-bottom: 2px solid var(--border-gold);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    box-shadow: var(--shadow-card);
+  }
+  .gnb-left, .gnb-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .gnb-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--text-cream);
+    margin-right: 6px;
+  }
+  .gnb-logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #241A10, #4A3520);
+    border: 1.5px solid #D4A853;
+    color: #F7E29E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+  .gnb-title strong {
+    display: block;
+    font-size: 1.06rem;
+    font-weight: 800;
+  }
+  .gnb-title small {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--gold-main);
+    font-weight: 700;
+  }
+  .gnb-btn {
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--text-cream);
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .gnb-btn:hover { background: var(--gold-soft); }
+  .gnb-btn.gold {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+  .gnb-btn.pwa {
+    background: linear-gradient(135deg, #164E35, #0E3624);
+    color: #E8FFF3;
+    border-color: #38A169;
+  }
+
+  .wrap {
+    max-width: 1420px;
+    margin: 0 auto;
+    padding: 0 22px;
+  }
+
+  /* 히어로 & 만능 검색창 */
+  .enc-hero {
+    background: linear-gradient(180deg, var(--bg-parchment) 0%, var(--bg-main) 100%);
+    border-bottom: 1.5px solid var(--border-gold);
+    padding: 32px 0 26px;
+  }
+  .enc-hero-head {
+    text-align: center;
+    max-width: 1120px;
+    margin: 0 auto 22px;
+  }
+  .enc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 14px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+    font-size: 0.82rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+  .enc-hero-head h1 {
+    font-size: clamp(1.65rem, 2.8vw, 2.35rem);
+    font-weight: 900;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+  .enc-hero-head p {
+    font-size: 1rem;
+    color: var(--text-muted);
+  }
+
+  /* 중앙 만능 검색바 */
+  .omni-search-box {
+    max-width: 960px;
+    margin: 0 auto 18px;
+    background: var(--bg-card);
+    border: 2.5px solid var(--gold-main);
+    border-radius: 18px;
+    padding: 10px 12px;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 10px;
+    box-shadow: var(--shadow-heavy);
+  }
+  @media (max-width: 760px) {
+    .omni-search-box { grid-template-columns: 1fr; }
+  }
+  .omni-input {
+    border: none;
+    background: transparent;
+    color: var(--text-cream);
+    font-size: 1.05rem;
+    font-weight: 700;
+    padding: 8px 12px;
+    outline: none;
+    width: 100%;
+    font-family: inherit;
+  }
+  .omni-btn {
+    padding: 11px 20px;
+    border-radius: 12px;
+    border: 1.5px solid #C59B38;
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    font-size: 0.94rem;
+    font-weight: 900;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+  .omni-btn.moses {
+    background: linear-gradient(135deg, #8C621E, #6E4B12);
+    color: #FFFFFF;
+    border-color: #8C621E;
+  }
+
+  .quick-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+    max-width: 980px;
+    margin: 0 auto;
+  }
+  .q-tag {
+    padding: 5px 12px;
+    border-radius: 999px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-gold);
+    color: var(--text-cream);
+    font-size: 0.8rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.14s ease;
+  }
+  .q-tag:hover { background: var(--gold-soft); border-color: var(--gold-main); }
+
+  /* 3대 큰 문 (직관적 네비게이션) */
+  .three-doors-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin: 22px auto 0;
+    max-width: 1240px;
+  }
+  @media (max-width: 920px) {
+    .three-doors-grid { grid-template-columns: 1fr; }
+  }
+  .door-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 15px 18px;
+    text-decoration: none;
+    color: var(--text-cream);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: var(--shadow-card);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .door-card:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-main);
+  }
+  .door-card.active-door {
+    border: 2px solid var(--gold-main);
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-parchment));
+  }
+  .door-card strong {
+    display: block;
+    font-size: 1.02rem;
+    font-weight: 900;
+    margin-bottom: 3px;
+  }
+  .door-card span {
+    display: block;
+    font-size: 0.81rem;
+    color: var(--text-muted);
+  }
+  .door-arrow {
+    font-size: 1.1rem;
+    font-weight: 900;
+    color: var(--gold-main);
+  }
+
+  /* 4대 대백과 메인 탭 */
+  .enc-main-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 26px 0 20px;
+  }
+  @media (max-width: 980px) {
+    .enc-main-tabs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .enc-main-tabs { grid-template-columns: 1fr; }
+  }
+  .enc-tab-btn {
+    padding: 16px 18px;
+    border-radius: 16px;
+    border: 2px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    text-align: left;
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    transition: all 0.16s ease;
+  }
+  .enc-tab-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-main);
+  }
+  .enc-tab-btn.active {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #D4A853;
+    box-shadow: var(--shadow-heavy);
+  }
+  .enc-tab-btn strong {
+    display: block;
+    font-size: 1.08rem;
+    font-weight: 900;
+    margin-bottom: 4px;
+  }
+  .enc-tab-btn small {
+    display: block;
+    font-size: 0.8rem;
+    opacity: 0.86;
+    line-height: 1.4;
+  }
+
+  .enc-section { display: none; }
+  .enc-section.active { display: block; }
+
+  /* 시대/주제 필터 바 */
+  .sub-filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 18px;
+    padding: 12px 14px;
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    border-radius: 14px;
+  }
+  .sub-filter-btn {
+    padding: 7px 13px;
+    border-radius: 10px;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-card);
+    color: var(--text-cream);
+    font-size: 0.84rem;
+    font-weight: 800;
+    cursor: pointer;
+  }
+  .sub-filter-btn.active {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  /* 계보 흐름 배너 */
+  .era-flow-banner {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 16px;
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    box-shadow: var(--shadow-card);
+  }
+  .era-flow-banner h3 {
+    font-size: 1.16rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+  }
+  .era-flow-banner p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+  }
+  .flow-chain {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+  .flow-node {
+    padding: 6px 13px;
+    border-radius: 999px;
+    background: var(--bg-parchment);
+    border: 1.5px solid var(--gold-main);
+    font-size: 0.84rem;
+    font-weight: 800;
+    color: var(--text-cream);
+  }
+  .flow-arrow {
+    color: var(--gold-main);
+    font-weight: 900;
+  }
+
+  /* 대백과 스토리 카드 그리드 */
+  .enc-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (max-width: 960px) {
+    .enc-cards-grid { grid-template-columns: 1fr; }
+  }
+  .enc-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 22px 24px;
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .enc-card-badge {
+    display: inline-block;
+    padding: 4px 11px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--border-gold);
+    color: var(--gold-main);
+    font-size: 0.77rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  .enc-card h3 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    line-height: 1.42;
+    margin-bottom: 8px;
+  }
+  .enc-meta-box {
+    background: var(--bg-parchment);
+    border-left: 3.5px solid var(--gold-main);
+    padding: 9px 13px;
+    border-radius: 0 10px 10px 0;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+  }
+  .enc-story-body {
+    font-size: 0.94rem;
+    line-height: 1.75;
+    color: var(--text-cream);
+    margin-bottom: 10px;
+  }
+  .enc-sermon-tip {
+    background: linear-gradient(135deg, rgba(140, 98, 30, 0.11), rgba(140, 98, 30, 0.05));
+    border: 1px dashed var(--gold-main);
+    border-radius: 12px;
+    padding: 11px 14px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-cream);
+  }
+  .enc-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .enc-act-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.83rem;
+    font-weight: 800;
+    border: 1px solid var(--border-gold);
+    background: var(--bg-parchment);
+    color: var(--text-cream);
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .enc-act-btn:hover { background: var(--gold-soft); }
+  .enc-act-btn.primary {
+    background: linear-gradient(135deg, #241A10, #3E2C1B);
+    color: #F7E29E;
+    border-color: #C59B38;
+  }
+
+  /* 북이스라엘 19왕 vs 남유다 20왕 비교 테이블 */
+  .kings-compare-wrap {
+    margin-top: 24px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  @media (max-width: 1080px) {
+    .kings-compare-wrap { grid-template-columns: 1fr; }
+  }
+  .kings-table-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--border-gold);
+    border-radius: 18px;
+    padding: 18px 20px;
+    box-shadow: var(--shadow-card);
+    overflow-x: auto;
+  }
+  .kings-table-card h3 {
+    font-size: 1.12rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    color: var(--gold-main);
+  }
+  table.kings-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.83rem;
+  }
+  table.kings-table th, table.kings-table td {
+    border: 1px solid var(--border-gold);
+    padding: 7px 9px;
+    text-align: left;
+    vertical-align: top;
+  }
+  table.kings-table th {
+    background: var(--bg-parchment);
+    font-weight: 800;
+    color: var(--gold-main);
+  }
+  table.kings-table tr:hover td {
+    background: var(--gold-soft);
+  }
+
+  /* PWA 앱 설치 안내 모달 */
+  .pwa-modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(0, 0, 0, 0.65);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .pwa-modal-backdrop.open { display: flex; }
+  .pwa-modal {
+    background: var(--bg-card);
+    border: 2px solid var(--gold-main);
+    border-radius: 22px;
+    max-width: 540px;
+    width: 100%;
+    padding: 26px 28px;
+    box-shadow: var(--shadow-heavy);
+  }
+  .pwa-modal h3 {
+    font-size: 1.28rem;
+    font-weight: 900;
+    margin-bottom: 8px;
+  }
+  .pwa-step-box {
+    background: var(--bg-parchment);
+    border: 1px solid var(--border-gold);
+    border-radius: 12px;
+    padding: 12px 15px;
+    margin: 10px 0;
+    font-size: 0.9rem;
+  }
+</style>
+<script src="kkumdido_moses_archive_db.js"></script>
+<script src="kkumdido_grand_encyclopedia_db.js"></script>
+</head>
+<body data-theme="beige">
+
+<header class="top-gnb">
+  <div class="gnb-left">
+    <a href="index.html" class="gnb-brand">
+      <div class="gnb-logo">📚</div>
+      <div class="gnb-title">
+        <strong>꿈디도 설교 자료 대백과 사전</strong>
+        <small>GRAND BIBLICAL ENCYCLOPEDIA · GENEALOGY · DYNASTY · STORIES</small>
+      </div>
+    </a>
+    <a href="index.html" class="gnb-btn">🏛️ 도서관 본관</a>
+    <a href="kkumdido_sermon_ai_studio.html" class="gnb-btn gold">🪄 모세의 지팡이 (설교·7종변환)</a>
+    <a href="kkumdido_pastoral_secretary_studio.html" class="gnb-btn">🌿 아론의 지팡이 (목양·심방·주보)</a>
+    <a href="kkumdido_gotgan_studio.html" class="gnb-btn">🏺 내 설교 곳간</a>
+    <a href="kkumdido_church_support_annex.html" class="gnb-btn">🕯️ 교회지원 별관</a>
+  </div>
+  <div class="gnb-right">
+    <button type="button" class="gnb-btn pwa" onclick="openPwaInstallModal()">📲 꿈디도 앱 설치 (무료)</button>
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(-0.08)">가-</button>
+    <button type="button" class="gnb-btn" onclick="adjustFontScale(0.08)">가+ 큰글씨</button>
+    <select id="themeSelect" class="gnb-btn" onchange="changeTheme(this.value)" aria-label="테마 선택">
+      <option value="beige">📜 양피지 베이지</option>
+      <option value="dark">🌙 밤의 서재 (다크)</option>
+    </select>
+  </div>
+</header>
+
+<section class="enc-hero">
+  <div class="wrap">
+    <div class="enc-hero-head">
+      <div class="enc-eyebrow">📚 꿈디도의 최대 무기 · 유튜브 백 편을 합친 것보다 더 깊고 흥미진진한 성경 이야기 창고</div>
+      <h1 class="serif">설교 자료 대백과 사전<br><span style="font-size:0.66em; color:var(--gold-main); display:inline-block; margin-top:4px;">성경 대족보 · 왕조별 연대기 · 등잔 밑 비하인드 · 66권 1,189장 원어 백과</span></h1>
+      <p>인물 족보의 숨은 퍼즐부터 북이스라엘 19왕·남유다 20왕·페르시아·헤롯 왕조의 입체 역사, 고고학 발굴과 원어 반전 이야기까지 한눈에 찾고, 버튼 하나로 <b>『🪄 모세의 지팡이』</b> 설교 원고에 바로 담으십시오.</p>
+    </div>
+
+    <div class="omni-search-box">
+      <input type="text" id="omniSearchInput" class="omni-input" placeholder="🔍 본문·인물·족보·왕조·사물 검색 (예: 므두셀라, 여고냐, 아합, 히스기야, 에스더, 헤롯, 우슬초, 테텔레스타이, 룻기 2:12...)" onkeydown="if(event.key==='Enter') runOmniSearch()">
+      <button type="button" class="omni-btn" onclick="runOmniSearch()">📚 대백과 통합 검색</button>
+      <button type="button" class="omni-btn moses" onclick="sendOmniQueryToMoses()">🪄 모세의 지팡이로 바로 대령 ↗</button>
+    </div>
+
+    <div class="quick-tags">
+      <span style="font-size:0.8rem; font-weight:800; color:var(--gold-main); align-self:center;">인기 탐험 키워드:</span>
+      <button type="button" class="q-tag" onclick="quickOmniTag('므두셀라')">🌳 므두셀라 969년의 비밀</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('여고냐')">🌳 여고냐의 저주와 동정녀 탄생</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('아말렉')">🌳 에서→아말렉→하만→헤롯 2,000년</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('고라')">🌳 반역자 고라 후손 사무엘과 시편 84편</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('히스기야')">👑 히스기야 실로암 터널과 산헤립 편지</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('에스더')">👑 에스더와 살라미스 해전 4년의 비밀</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('헤롯')">👑 신약의 4대 헤롯 완전 구별</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('우슬초')">🔥 출애굽 문설주와 골고다의 우슬초</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('테텔레스타이')">🔥 파피루스 완납 도장 테텔레스타이</button>
+      <button type="button" class="q-tag" onclick="quickOmniTag('여리고')">🔥 바깥쪽으로 무너진 여리고 성벽</button>
+    </div>
+
+    <div class="three-doors-grid">
+      <a href="kkumdido_encyclopedia.html" class="door-card active-door">
+        <div>
+          <strong>📚 제1문 · 설교 자료 대백과 사전 (현재 열림)</strong>
+          <span>족보 · 왕조별 연대기 · 신나는 비하인드 · 66권 1,189장 원어 백과</span>
+        </div>
+        <span class="door-arrow">●</span>
+      </a>
+      <a href="kkumdido_sermon_ai_studio.html" class="door-card">
+        <div>
+          <strong>🪄 제2문 · 모세의 지팡이 (설교 카드 대령 &amp; 곳간)</strong>
+          <span>대백과 카드 소환 → 설교 원고 + 주간 사역 자료 7종 변환 + 내 설교 곳간</span>
+        </div>
+        <span class="door-arrow">↗</span>
+      </a>
+      <a href="kkumdido_pastoral_secretary_studio.html" class="door-card">
+        <div>
+          <strong>🌿 제3문 · 아론의 지팡이 &amp; 다음세대 (목양·살림)</strong>
+          <span>심방 위로문 · A4 주보 · 양떼수첩(교적) · 청지기장부(재정) · 교회학교</span>
+        </div>
+        <span class="door-arrow">↗</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+  <!-- 통합 검색 결과 영역 (검색 시 상단에 즉시 노출) -->
+  <section id="omniSearchResultsSec" style="display:none; margin-top:24px;">
+    <div class="era-flow-banner" style="border-color:var(--gold-main);">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <h3 id="omniSearchTitle" class="serif">🔍 대백과 통합 검색 결과</h3>
+        <button type="button" class="enc-act-btn" onclick="closeOmniSearch()">✕ 검색 닫고 전체 대백과 보기</button>
+      </div>
+      <p id="omniSearchDesc">성경 대족보 · 왕조별 연대기 · 신나는 성경 비하인드 · 66권 원어 주석 · 12대 아카이브에서 찾은 카드입니다.</p>
+    </div>
+    <div class="enc-cards-grid" id="omniSearchGrid"></div>
+  </section>
+
+  <!-- 4대 시각 대백과 메인 탭 -->
+  <div class="enc-main-tabs" role="tablist">
+    <button type="button" class="enc-tab-btn active" id="tabBtnGenealogy" onclick="switchEncTab('genealogy')">
+      <strong>🌳 1관 · 한눈에 보는 성경 대족보</strong>
+      <small>아담~노아~아브라함~12지파~다윗~예수님 족보와 숨겨진 구속사 퍼즐</small>
+    </button>
+    <button type="button" class="enc-tab-btn" id="tabBtnDynasty" onclick="switchEncTab('dynasty')">
+      <strong>👑 2관 · 왕조별 · 선지자 · 제국 연대기</strong>
+      <small>통일왕국 · 북이스라엘 19왕 vs 남유다 20왕 · 페르시아 · 헤롯 4대</small>
+    </button>
+    <button type="button" class="enc-tab-btn" id="tabBtnStories" onclick="switchEncTab('stories')">
+      <strong>🔥 3관 · 보기만 해도 신나는 성경 이야기</strong>
+      <small>등잔 밑 사물 · 고고학 발굴 쇼크 · 원어 반전 · 12대 아카이브 3,800선</small>
+    </button>
+    <button type="button" class="enc-tab-btn" id="tabBtnBible66" onclick="switchEncTab('bible66')">
+      <strong>📖 4관 · 성경 66권 1,189장 원어 백과</strong>
+      <small>창세기 1장~요한계시록 22장 모든 장의 풀어읽기·원어·웨슬리 주해·3대지</small>
+    </button>
+  </div>
+
+  <!-- 🌳 1관: 성경 대족보 -->
+  <section class="enc-section active" id="secGenealogy">
+    <div class="sub-filter-bar" id="genealogyEraFilters"></div>
+    <div id="genealogyEraBanner"></div>
+    <div class="enc-cards-grid" id="genealogyCardsGrid"></div>
+  </section>
+
+  <!-- 👑 2관: 왕조별 · 선지자 연대기 -->
+  <section class="enc-section" id="secDynasty">
+    <div class="sub-filter-bar" id="dynastyEraFilters"></div>
+    <div id="dynastyEraBanner"></div>
+    <div class="enc-cards-grid" id="dynastyCardsGrid"></div>
+
+    <!-- 북이스라엘 19왕 vs 남유다 20왕 한눈에 보는 전수 대조표 -->
+    <div class="kings-compare-wrap" id="kingsCompareTableWrap"></div>
+  </section>
+
+  <!-- 🔥 3관: 보기만 해도 신나는 성경 이야기 & 등잔 밑 대백과 -->
+  <section class="enc-section" id="secStories">
+    <div class="sub-filter-bar" id="storiesCatFilters">
+      <button type="button" class="sub-filter-btn active" onclick="filterExcitingStories('all', this)">🔥 전체 신나는 이야기</button>
+      <button type="button" class="sub-filter-btn" onclick="filterExcitingStories('등잔밑·사물', this)">🏺 등잔 밑 사물·유대 문화</button>
+      <button type="button" class="sub-filter-btn" onclick="filterExcitingStories('고고학·사건', this)">⛏️ 고고학 발굴 &amp; 역사 현장</button>
+      <button type="button" class="sub-filter-btn" onclick="filterExcitingStories('원어·반전', this)">💡 히브리어·헬라어 원어 반전</button>
+      <button type="button" class="sub-filter-btn" onclick="filterExcitingStories('archive_mods', this)">🏛️ 꿈디도 12대 아카이브 (3,650모듈)</button>
+    </div>
+    <div class="enc-cards-grid" id="excitingStoriesGrid"></div>
+  </section>
+
+  <!-- 📖 4관: 성경 66권 1,189장 원어 백과 -->
+  <section class="enc-section" id="secBible66">
+    <div class="era-flow-banner">
+      <div style="display:flex; flex-wrap:wrap; gap:12px; align-items:center; justify-content:space-between;">
+        <div>
+          <h3 class="serif">📖 성경 66권 1,189장 전수 원어·주해·설교 백과</h3>
+          <p style="margin-bottom:0;">성경 책과 장을 선택하시면 해당 장의 개역개정 요절, 꿈바온 원어 풀어읽기, 히브리어/헬라어 원어 보석, 역사 배경, 웨슬리 주해, 3대지 설교 골격이 즉시 펼쳐집니다.</p>
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <select id="encBookSelect" class="gnb-btn" style="font-size:0.95rem; padding:10px 14px;" onchange="onEncBookChange()"></select>
+          <select id="encChapSelect" class="gnb-btn" style="font-size:0.95rem; padding:10px 14px;" onchange="renderEncBibleChapter()"></select>
+          <button type="button" class="omni-btn moses" onclick="sendCurrentChapterToMoses()">🪄 이 장을 모세의 지팡이로 보내 설교 만들기 ↗</button>
+        </div>
+      </div>
+    </div>
+    <div class="enc-cards-grid" id="encBible66Grid"></div>
+  </section>
+</main>
+
+<!-- 📲 PWA 앱 설치 안내 모달 -->
+<div class="pwa-modal-backdrop" id="pwaModalBackdrop" onclick="if(event.target===this) closePwaInstallModal()">
+  <div class="pwa-modal">
+    <h3 class="serif">📲 꿈디도를 스마트폰·태블릿·PC 앱으로 설치하기 (비용 0원)</h3>
+    <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:12px;">별도의 유료 앱스토어 결제 없이, 지금 쓰시는 기기의 바탕화면(홈 화면)에 <b>『꿈디도 전용 앱 아이콘』</b>을 바로 설치하실 수 있습니다.</p>
+    <div id="pwaDirectInstallBox" style="display:none; margin-bottom:14px;">
+      <button type="button" class="omni-btn moses" style="width:100%; font-size:1rem; padding:14px;" onclick="triggerDeferredPwaInstall()">✨ 지금 바로 내 기기에 『꿈디도 앱』 원클릭 설치하기</button>
+    </div>
+    <div class="pwa-step-box">
+      <strong>📱 아이폰 · 아이패드 (Safari 브라우저)</strong>
+      <p style="margin-top:4px;">화면 하단(또는 상단)의 <b>[공유 버튼 (네모 위 화살표 📤)]</b>을 누르신 뒤 <b>[홈 화면에 추가 ➕]</b>를 누르시면 바탕화면에 금빛 『꿈디도』 어플이 설치됩니다.</p>
+    </div>
+    <div class="pwa-step-box">
+      <strong>🤖 갤럭시 안드로이드 폰 · 탭 (Chrome / 삼성 인터넷)</strong>
+      <p style="margin-top:4px;">우측 상단 <b>[점 세 개 ⋮ 메뉴]</b> → <b>[앱 설치]</b> 또는 <b>[홈 화면에 추가]</b>를 누르시면 일반 어플과 똑같이 설치됩니다.</p>
+    </div>
+    <div class="pwa-step-box">
+      <strong>💻 컴퓨터 (Mac / Windows 크롬·엣지 브라우저)</strong>
+      <p style="margin-top:4px;">주소창 오른쪽 끝의 <b>[컴퓨터 다운로드 아이콘 📥 (꿈디도 설치)]</b>을 누르시면 독(Dock)이나 바탕화면에 독립 프로그램으로 설치됩니다.</p>
+    </div>
+    <div style="text-align:right; margin-top:14px;">
+      <button type="button" class="gnb-btn gold" onclick="closePwaInstallModal()">확인 · 닫기</button>
+    </div>
+  </div>
+</div>
+
+<script src="kkumdido-shield.js"></script>
+<script>
+  let currentGenealogyEra = 'all';
+  let currentDynastyEra = 'all';
+  let deferredPwaPrompt = null;
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPwaPrompt = e;
+    const box = document.getElementById('pwaDirectInstallBox');
+    if (box) box.style.display = 'block';
+  });
+
+  function openPwaInstallModal() {
+    if (deferredPwaPrompt) {
+      triggerDeferredPwaInstall();
+      return;
+    }
+    document.getElementById('pwaModalBackdrop').classList.add('open');
+  }
+  function closePwaInstallModal() {
+    document.getElementById('pwaModalBackdrop').classList.remove('open');
+  }
+  async function triggerDeferredPwaInstall() {
+    if (!deferredPwaPrompt) return;
+    deferredPwaPrompt.prompt();
+    await deferredPwaPrompt.userChoice;
+    deferredPwaPrompt = null;
+    closePwaInstallModal();
+  }
+
+  if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+
+  function escH(s) {
+    return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+
+  function adjustFontScale(delta) {
+    const cur = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--font-scale')) || 1;
+    const next = Math.min(1.35, Math.max(0.85, cur + delta));
+    document.documentElement.style.setProperty('--font-scale', next.toFixed(2));
+  }
+
+  function changeTheme(theme) {
+    document.body.setAttribute('data-theme', theme);
+    try { localStorage.setItem('kkumdido_enc_theme', theme); } catch (e) {}
+  }
+
+  function switchEncTab(tabId) {
+    const map = {
+      genealogy: ['tabBtnGenealogy', 'secGenealogy'],
+      dynasty: ['tabBtnDynasty', 'secDynasty'],
+      stories: ['tabBtnStories', 'secStories'],
+      bible66: ['tabBtnBible66', 'secBible66']
+    };
+    Object.keys(map).forEach((k) => {
+      const [btnId, secId] = map[k];
+      document.getElementById(btnId).classList.toggle('active', k === tabId);
+      document.getElementById(secId).classList.toggle('active', k === tabId);
+    });
+  }
+
+  window._encCardRegistry = [];
+  function regEncCard(title, scripture, story, sermonPoint) {
+    const id = window._encCardRegistry.length;
+    window._encCardRegistry.push({ title, scripture, story, sermonPoint });
+    return id;
+  }
+  function sendRegCardToMoses(id) {
+    const c = window._encCardRegistry[id];
+    if (c) sendCardToMosesStaff(c.title, c.scripture, c.story, c.sermonPoint);
+  }
+  function copyRegCardText(id, btnEl) {
+    const c = window._encCardRegistry[id];
+    if (c) copyEncCardText(c.title, c.scripture, c.story, c.sermonPoint, btnEl);
+  }
+
+  // 모세의 지팡이로 카드 직송!
+  function sendCardToMosesStaff(title, scripture, story, sermonPoint) {
+    const payload = {
+      title: title || '',
+      scripture: scripture || '',
+      story: story || '',
+      sermonPoint: sermonPoint || '',
+      savedAt: Date.now()
+    };
+    try {
+      localStorage.setItem('kkumdido_moses_incoming_card_v1', JSON.stringify(payload));
+    } catch (e) {}
+    const q = encodeURIComponent(scripture ? scripture.split(',')[0].trim() : title);
+    window.location.href = 'kkumdido_sermon_ai_studio.html?q=' + q + '&from=encyclopedia';
+  }
+
+  function copyEncCardText(title, scripture, story, sermonPoint, btnEl) {
+    const txt = `[꿈디도 설교 자료 대백과]
+■ 제목: ${title}
+■ 관련 성구: ${scripture}
+
+${story}
+
+💡 ${sermonPoint}`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt);
+    }
+    if (btnEl) {
+      const orig = btnEl.textContent;
+      btnEl.textContent = '✅ 설교 예화로 복사됨!';
+      setTimeout(() => { btnEl.textContent = orig; }, 1600);
+    }
+  }
+
+  // 1관: 성경 대족보 렌더링
+  function initGenealogySection() {
+    const eras = window.KKD_GENEALOGY_ERAS || [];
+    const filterEl = document.getElementById('genealogyEraFilters');
+    let html = `<button type="button" class="sub-filter-btn active" onclick="selectGenealogyEra('all', this)">🌳 전체 7대 계보 한눈에 보기</button>`;
+    eras.forEach((era, idx) => {
+      html += `<button type="button" class="sub-filter-btn" onclick="selectGenealogyEra('${era.id}', this)">${idx + 1}. ${escH(era.title.split('(')[0].trim())}</button>`;
+    });
+    filterEl.innerHTML = html;
+    renderGenealogyContent('all');
+  }
+
+  function selectGenealogyEra(eraId, btnEl) {
+    currentGenealogyEra = eraId;
+    document.querySelectorAll('#genealogyEraFilters .sub-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    renderGenealogyContent(eraId);
+  }
+
+  function renderGenealogyContent(eraId) {
+    const eras = window.KKD_GENEALOGY_ERAS || [];
+    const nodes = window.KKD_GENEALOGY_NODES || [];
+    const bannerEl = document.getElementById('genealogyEraBanner');
+    const gridEl = document.getElementById('genealogyCardsGrid');
+
+    const targetEras = eraId === 'all' ? eras : eras.filter(e => e.id === eraId);
+    bannerEl.innerHTML = targetEras.map(e => `
+      <div class="era-flow-banner">
+        <span class="enc-card-badge">${escH(e.badge)}</span>
+        <h3 class="serif">${escH(e.title)}</h3>
+        <p>${escH(e.summary)}</p>
+        <div class="flow-chain">
+          ${(e.flow || []).map((step, idx) => `
+            <span class="flow-node">${escH(step)}</span>
+            ${idx < e.flow.length - 1 ? '<span class="flow-arrow">→</span>' : ''}
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    const filteredNodes = eraId === 'all' ? nodes : nodes.filter(n => n.era === eraId);
+    gridEl.innerHTML = filteredNodes.map(n => `
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">🌳 성경 대족보 핵심 열쇠 · ${escH(n.years)}</span>
+          <h3>${escH(n.name)}</h3>
+          <div class="enc-meta-box">
+            <div><b>• 계보 흐름:</b> ${escH(n.lineage)}</div>
+            <div style="margin-top:4px;"><b>• 원어·신학 핵심:</b> ${escH(n.meaning)}</div>
+          </div>
+          <div class="enc-story-body">${escH(n.story)}</div>
+          <div class="enc-sermon-tip">🎙️ ${escH(n.sermon_point)}</div>
+        </div>
+        <div class="enc-card-actions">
+          <button type="button" class="enc-act-btn primary" onclick="sendRegCardToMoses(${regEncCard(n.name, n.scripture, n.story, n.sermon_point)})">🪄 모세의 지팡이로 보내 설교 만들기</button>
+          <button type="button" class="enc-act-btn" onclick="copyRegCardText(${regEncCard(n.name, n.scripture, n.story, n.sermon_point)}, this)">📋 설교 예화로 복사</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  // 2관: 왕조별 · 선지자 연대기 렌더링
+  function initDynastySection() {
+    const eras = window.KKD_DYNASTY_ERAS || [];
+    const filterEl = document.getElementById('dynastyEraFilters');
+    let html = `<button type="button" class="sub-filter-btn active" onclick="selectDynastyEra('all', this)">👑 전체 왕조·제국 연대기</button>`;
+    eras.forEach(e => {
+      html += `<button type="button" class="sub-filter-btn" onclick="selectDynastyEra('${e.id}', this)">${escH(e.title.split('(')[0].trim())}</button>`;
+    });
+    filterEl.innerHTML = html;
+    renderDynastyContent('all');
+    renderKingsComparisonTable();
+  }
+
+  function selectDynastyEra(eraId, btnEl) {
+    currentDynastyEra = eraId;
+    document.querySelectorAll('#dynastyEraFilters .sub-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    renderDynastyContent(eraId);
+  }
+
+  function renderDynastyContent(eraId) {
+    const eras = window.KKD_DYNASTY_ERAS || [];
+    const cards = window.KKD_DYNASTY_CARDS || [];
+    const bannerEl = document.getElementById('dynastyEraBanner');
+    const gridEl = document.getElementById('dynastyCardsGrid');
+
+    const targetEras = eraId === 'all' ? [eras[0]] : eras.filter(e => e.id === eraId);
+    bannerEl.innerHTML = targetEras.map(e => `
+      <div class="era-flow-banner">
+        <span class="enc-card-badge">👑 왕조·선지자·세계사 입체 조망</span>
+        <h3 class="serif">${escH(e.title)}</h3>
+        <p>${escH(e.subtitle)}</p>
+        <div class="flow-chain">
+          <span class="flow-node">📣 동시대 선지자: ${escH(e.prophets)}</span>
+          <span class="flow-node">🌍 주변 제국: ${escH(e.empires)}</span>
+        </div>
+      </div>
+    `).join('');
+
+    const filteredCards = eraId === 'all' ? cards : cards.filter(c => c.era === eraId);
+    gridEl.innerHTML = filteredCards.map(c => `
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">👑 ${escH(c.reign)}</span>
+          <h3>${escH(c.ruler)}</h3>
+          <div class="enc-meta-box">
+            <div><b>• 활동 선지자:</b> ${escH(c.prophets)}</div>
+            <div style="margin-top:4px;"><b>• 세계사·고고학 정세:</b> ${escH(c.world_context)}</div>
+          </div>
+          <div class="enc-story-body">${escH(c.story)}</div>
+          <div class="enc-sermon-tip">🎙️ ${escH(c.sermon_point)}</div>
+        </div>
+        <div class="enc-card-actions">
+          <button type="button" class="enc-act-btn primary" onclick="sendRegCardToMoses(${regEncCard(c.ruler, c.scripture, c.story, c.sermon_point)})">🪄 모세의 지팡이로 보내 설교 만들기</button>
+          <button type="button" class="enc-act-btn" onclick="copyRegCardText(${regEncCard(c.ruler, c.scripture, c.story, c.sermon_point)}, this)">📋 설교 예화로 복사</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  function renderKingsComparisonTable() {
+    const kt = window.KKD_KINGS_TABLE;
+    if (!kt) return;
+    const wrap = document.getElementById('kingsCompareTableWrap');
+    const renderRows = (list) => list.map(k => `
+      <tr>
+        <td><b>${k.no}대</b><br><small style="color:var(--text-muted);">${escH(k.dynasty)}</small></td>
+        <td><b>${escH(k.name)}</b><br><small>${escH(k.years)}</small></td>
+        <td>${escH(k.eval)}</td>
+        <td><b>${escH(k.prophets)}</b></td>
+        <td>${escH(k.note)}</td>
+      </tr>
+    `).join('');
+
+    wrap.innerHTML = `
+      <div class="kings-table-card">
+        <h3 class="serif">⚔️ 북이스라엘 9왕조 19왕 전수 일람 (BC 930~722 · 앗수르에 멸망)</h3>
+        <table class="kings-table">
+          <thead>
+            <tr><th>대수·왕조</th><th>왕 이름·재위</th><th>성경 평가</th><th>동시대 선지자</th><th>핵심 사건 &amp; 설교 요약</th></tr>
+          </thead>
+          <tbody>${renderRows(kt.north_israel_19 || [])}</tbody>
+        </table>
+      </div>
+      <div class="kings-table-card">
+        <h3 class="serif">🕯️ 남유다 다윗 단일왕조 20왕 전수 일람 (BC 930~586 · 다윗의 등불)</h3>
+        <table class="kings-table">
+          <thead>
+            <tr><th>대수·왕조</th><th>왕 이름·재위</th><th>성경 평가</th><th>동시대 선지자</th><th>핵심 사건 &amp; 설교 요약</th></tr>
+          </thead>
+          <tbody>${renderRows(kt.south_judah_20 || [])}</tbody>
+        </table>
+      </div>
+    `;
+  }
+
+  // 3관: 보기만 해도 신나는 성경 이야기
+  function filterExcitingStories(cat, btnEl) {
+    document.querySelectorAll('#storiesCatFilters .sub-filter-btn').forEach(b => b.classList.remove('active'));
+    if (btnEl) btnEl.classList.add('active');
+    const gridEl = document.getElementById('excitingStoriesGrid');
+    const stories = window.KKD_EXCITING_STORIES || [];
+
+    if (cat === 'archive_mods') {
+      const mods = (window.KKD_MOSES_MODS || []).slice(0, 24);
+      gridEl.innerHTML = mods.map(m => `
+        <article class="enc-card">
+          <div>
+            <span class="enc-card-badge">🏛️ ${escH(m.hallTitle || m.sub || '꿈디도 아카이브')}</span>
+            <h3>${escH(m.title)} (${escH(m.orig || '')})</h3>
+            <div class="enc-meta-box"><b>• 성경 본문:</b> ${escH(m.verse || '')}</div>
+            <div class="enc-story-body">${escH(m.summary || '')}</div>
+            <div class="enc-sermon-tip">🎙️ 강단 포인트: ${escH(m.point || '')}</div>
+          </div>
+          <div class="enc-card-actions">
+            <button type="button" class="enc-act-btn primary" onclick="sendRegCardToMoses(${regEncCard(m.title, (m.verse || '').split(' ')[0], m.summary || '', m.point || '')})">🪄 모세의 지팡이로 보내 설교 만들기</button>
+          </div>
+        </article>
+      `).join('');
+      return;
+    }
+
+    const list = cat === 'all' ? stories : stories.filter(s => s.cat === cat);
+    gridEl.innerHTML = list.map(s => `
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">${escH(s.badge)}</span>
+          <h3>${escH(s.title)}</h3>
+          <div class="enc-meta-box">
+            <div><b>• 핵심 성구:</b> ${escH(s.scripture)}</div>
+            <div style="margin-top:4px;"><b>• 한 줄 요지:</b> ${escH(s.summary)}</div>
+          </div>
+          <div class="enc-story-body">${escH(s.story)}</div>
+          <div class="enc-sermon-tip">🎙️ ${escH(s.sermon_point)}</div>
+        </div>
+        <div class="enc-card-actions">
+          <button type="button" class="enc-act-btn primary" onclick="sendRegCardToMoses(${regEncCard(s.title, s.scripture, s.story, s.sermon_point)})">🪄 모세의 지팡이로 보내 설교 만들기</button>
+          <button type="button" class="enc-act-btn" onclick="copyRegCardText(${regEncCard(s.title, s.scripture, s.story, s.sermon_point)}, this)">📋 설교 예화로 복사</button>
+        </div>
+      </article>
+    `).join('');
+  }
+
+  // 4관: 성경 66권 1,189장 원어 백과
+  function initBible66Section() {
+    const books = window.KKD_MOSES_BOOKS || [];
+    const bSel = document.getElementById('encBookSelect');
+    if (!bSel || !books.length) return;
+    bSel.innerHTML = books.map(b => `<option value="${b.no}">${b.no}. ${escH(b.ko)} (${escH(b.abbr)} · 총 ${b.ch_count}장)</option>`).join('');
+    bSel.value = '8'; // 기본: 룻기
+    onEncBookChange(2);
+  }
+
+  function onEncBookChange(defaultCh) {
+    const books = window.KKD_MOSES_BOOKS || [];
+    const bNo = parseInt(document.getElementById('encBookSelect').value, 10) || 1;
+    const book = books.find(b => b.no === bNo) || books[0];
+    const cSel = document.getElementById('encChapSelect');
+    let html = '';
+    for (let c = 1; c <= (book ? book.ch_count : 1); c++) {
+      html += `<option value="${c}">${c}장</option>`;
+    }
+    cSel.innerHTML = html;
+    cSel.value = String(defaultCh || 1);
+    renderEncBibleChapter();
+  }
+
+  function renderEncBibleChapter() {
+    const books = window.KKD_MOSES_BOOKS || [];
+    const chs = window.KKD_MOSES_CHS || {};
+    const bNo = parseInt(document.getElementById('encBookSelect').value, 10) || 1;
+    const cNo = parseInt(document.getElementById('encChapSelect').value, 10) || 1;
+    const book = books.find(b => b.no === bNo) || { ko: '창세기' };
+    const ch = chs[`${bNo}_${cNo}`];
+    const grid = document.getElementById('encBible66Grid');
+    if (!ch) {
+      grid.innerHTML = `<div class="enc-card">해당 장 데이터를 불러오는 중입니다.</div>`;
+      return;
+    }
+    const wordsHtml = (ch.words || []).map(w => `
+      <div style="margin-bottom:8px; padding-bottom:6px; border-bottom:1px dashed var(--border-gold);">
+        <b style="color:var(--gold-main);">${escH(w.orig)} (${escH(w.pron)} · ${escH(w.strong)})</b> — <b>${escH(w.ko)}</b><br>
+        <span>${escH(w.desc)}</span>
+      </div>
+    `).join('');
+
+    const ptsHtml = (ch.sermon_pts || []).map((p, i) => `<div><b>${i + 1}.</b> ${escH(p)}</div>`).join('');
+
+    grid.innerHTML = `
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">📖 ${escH(book.ko)} ${cNo}장 · 본문 &amp; 꿈바온 풀어읽기</span>
+          <h3>${escH(ch.title)}</h3>
+          <div class="enc-meta-box"><b>• 핵심 요절 (${escH(ch.key_verse_ref)}):</b> ${escH(ch.key_verse_krv)}</div>
+          <div class="enc-story-body"><b>[꿈바온 원어 풀어읽기]</b><br>${escH(ch.key_verse_para)}</div>
+          <div class="enc-sermon-tip">💡 <b>역사·문맥 배경:</b> ${escH(ch.context)}</div>
+        </div>
+      </article>
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">💎 히브리어·헬라어 원어 보석 &amp; 정통 주해</span>
+          <h3>${escH(book.ko)} ${cNo}장 원어 주해와 강단 3대지</h3>
+          <div class="enc-story-body">${wordsHtml}</div>
+          <div class="enc-meta-box"><b>• 교부·개혁·웨슬리 주해:</b> ${escH(ch.theology)}</div>
+          <div class="enc-sermon-tip">
+            <b>🎙️ 추천 설교 제목: 「${escH(ch.sermon_title)}」</b>
+            <div style="margin-top:6px;">${ptsHtml}</div>
+          </div>
+        </div>
+      </article>
+    `;
+  }
+
+  function sendCurrentChapterToMoses() {
+    const books = window.KKD_MOSES_BOOKS || [];
+    const bNo = parseInt(document.getElementById('encBookSelect').value, 10) || 1;
+    const cNo = parseInt(document.getElementById('encChapSelect').value, 10) || 1;
+    const book = books.find(b => b.no === bNo) || { ko: '룻기' };
+    window.location.href = 'kkumdido_sermon_ai_studio.html?q=' + encodeURIComponent(`${book.ko} ${cNo}장`);
+  }
+
+  // 통합 만능 검색 (족보 + 왕조 + 신나는 이야기 + 12대 아카이브 + 66권 주석)
+  function quickOmniTag(kw) {
+    document.getElementById('omniSearchInput').value = kw;
+    runOmniSearch();
+  }
+
+  function closeOmniSearch() {
+    document.getElementById('omniSearchResultsSec').style.display = 'none';
+  }
+
+  function sendOmniQueryToMoses() {
+    const q = (document.getElementById('omniSearchInput').value || '룻기 2:12').trim();
+    window.location.href = 'kkumdido_sermon_ai_studio.html?q=' + encodeURIComponent(q);
+  }
+
+  function runOmniSearch() {
+    const q = (document.getElementById('omniSearchInput').value || '').trim();
+    if (!q) return;
+    const qLow = q.toLowerCase();
+    const results = [];
+
+    (window.KKD_GENEALOGY_NODES || []).forEach(n => {
+      const hay = `${n.name} ${n.lineage} ${n.meaning} ${n.story} ${n.scripture}`.toLowerCase();
+      if (hay.includes(qLow)) {
+        results.push({
+          badge: `🌳 성경 대족보 · ${n.years}`,
+          title: n.name,
+          scripture: n.scripture,
+          meta: n.lineage,
+          body: n.story,
+          tip: n.sermon_point
+        });
+      }
+    });
+
+    (window.KKD_DYNASTY_CARDS || []).forEach(c => {
+      const hay = `${c.ruler} ${c.prophets} ${c.world_context} ${c.story} ${c.scripture}`.toLowerCase();
+      if (hay.includes(qLow)) {
+        results.push({
+          badge: `👑 왕조·제국 연대기 · ${c.reign}`,
+          title: c.ruler,
+          scripture: c.scripture,
+          meta: `활동 선지자: ${c.prophets}`,
+          body: c.story,
+          tip: c.sermon_point
+        });
+      }
+    });
+
+    const kt = window.KKD_KINGS_TABLE || {};
+    [...(kt.north_israel_19 || []), ...(kt.south_judah_20 || [])].forEach(k => {
+      const hay = `${k.name} ${k.dynasty} ${k.prophets} ${k.note}`.toLowerCase();
+      if (hay.includes(qLow)) {
+        results.push({
+          badge: `👑 열왕기·역대기 왕조 일람 · ${k.years}`,
+          title: `${k.name} (${k.dynasty} · ${k.no}대 왕)`,
+          scripture: '열왕기상하 / 역대하',
+          meta: `성경 평가: ${k.eval} | 동시대 선지자: ${k.prophets}`,
+          body: k.note,
+          tip: `설교 적용: ${k.name} 시대의 영적 교훈과 선지자(${k.prophets})의 메시지`
+        });
+      }
+    });
+
+    (window.KKD_EXCITING_STORIES || []).forEach(s => {
+      const hay = `${s.title} ${s.summary} ${s.story} ${s.scripture}`.toLowerCase();
+      if (hay.includes(qLow)) {
+        results.push({
+          badge: s.badge,
+          title: s.title,
+          scripture: s.scripture,
+          meta: s.summary,
+          body: s.story,
+          tip: s.sermon_point
+        });
+      }
+    });
+
+    (window.KKD_MOSES_MODS || []).forEach(m => {
+      if (results.length >= 16) return;
+      const hay = `${m.title} ${m.orig} ${m.verse} ${m.summary} ${m.point}`.toLowerCase();
+      if (hay.includes(qLow)) {
+        results.push({
+          badge: `🏛️ 꿈디도 12대 아카이브 · ${m.hallTitle || m.sub}`,
+          title: `${m.title} (${m.orig || ''})`,
+          scripture: m.verse || '',
+          meta: m.sub || '',
+          body: m.summary || '',
+          tip: `강단 포인트: ${m.point || ''}`
+        });
+      }
+    });
+
+    const sec = document.getElementById('omniSearchResultsSec');
+    const titleEl = document.getElementById('omniSearchTitle');
+    const grid = document.getElementById('omniSearchGrid');
+    sec.style.display = 'block';
+    titleEl.textContent = `🔍 「${q}」 대백과 통합 검색 결과 (${results.length}건 대령)`;
+
+    if (!results.length) {
+      grid.innerHTML = `
+        <article class="enc-card">
+          <div>
+            <h3>「${escH(q)}」 본문을 『🪄 모세의 지팡이』에서 66권 장절 카드로 바로 대령하시겠습니까?</h3>
+            <p style="margin-top:8px;">성경 66권(1,189장) 원어 주석 및 12대 아카이브 카드 대령기로 즉시 연결됩니다.</p>
+          </div>
+          <div class="enc-card-actions">
+            <button type="button" class="enc-act-btn primary" onclick="sendOmniQueryToMoses()">🪄 모세의 지팡이에서 「${escH(q)}」 카드 대령하기 ↗</button>
+          </div>
+        </article>
+      `;
+      return;
+    }
+
+    grid.innerHTML = results.slice(0, 12).map(r => `
+      <article class="enc-card">
+        <div>
+          <span class="enc-card-badge">${escH(r.badge)}</span>
+          <h3>${escH(r.title)}</h3>
+          <div class="enc-meta-box"><b>• 성경/맥락:</b> ${escH(r.scripture)} | ${escH(r.meta)}</div>
+          <div class="enc-story-body">${escH(r.body)}</div>
+          <div class="enc-sermon-tip">🎙️ ${escH(r.tip)}</div>
+        </div>
+        <div class="enc-card-actions">
+          <button type="button" class="enc-act-btn primary" onclick="sendRegCardToMoses(${regEncCard(r.title, r.scripture, r.body, r.tip)})">🪄 모세의 지팡이로 보내 설교 만들기</button>
+          <button type="button" class="enc-act-btn" onclick="copyRegCardText(${regEncCard(r.title, r.scripture, r.body, r.tip)}, this)">📋 설교 예화로 복사</button>
+        </div>
+      </article>
+    `).join('');
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    try {
+      const savedTheme = localStorage.getItem('kkumdido_enc_theme');
+      if (savedTheme) {
+        document.body.setAttribute('data-theme', savedTheme);
+        document.getElementById('themeSelect').value = savedTheme;
+      }
+    } catch (e) {}
+    initGenealogySection();
+    initDynastySection();
+    filterExcitingStories('all', document.querySelector('#storiesCatFilters .sub-filter-btn'));
+    initBible66Section();
+
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('tab')) {
+      switchEncTab(params.get('tab'));
+    }
+    if (params.get('q')) {
+      document.getElementById('omniSearchInput').value = params.get('q');
+      runOmniSearch();
+    }
+  });
+</script>
+</body>
+</html>

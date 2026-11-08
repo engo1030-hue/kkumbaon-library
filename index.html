@@ -3672,6 +3672,11 @@ body.dark-theme .knb-card-link {
   <link rel="stylesheet" href="atrium.css?v=20261107a"/>
   <link rel="stylesheet" href="paul-route-intro.css?v=20261102-lock"/>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <link rel="manifest" href="manifest.json"/>
+  <meta name="theme-color" content="#1A140E"/>
+  <link rel="apple-touch-icon" href="assets/icons/kkumdido_apple_touch_icon.png"/>
+  <script src="kkumdido_moses_archive_db.js"></script>
+  <script src="kkumdido_grand_encyclopedia_db.js"></script>
 </head>
 <body>
 
@@ -3697,7 +3702,9 @@ body.dark-theme .knb-card-link {
       <button type="button" data-cat="feasts" onclick="navigateToHall('feasts')">성경 절기</button>
       <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">영상실</button>
       <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">웨슬리관</button>
+      <a href="kkumdido_encyclopedia.html" class="nav-studio-trigger" style="text-decoration:none; background:linear-gradient(135deg,#8C621E,#5E3F0E); color:#FFF8E7; border:1.5px solid #E5B85C; font-weight:900;" title="설교 자료 대백과 사전 — 족보·왕조별 연대기·신나는 성경 이야기·66권 원어 백과">📚 설교자료 대백과 ↗</a>
       <button type="button" class="nav-search-btn" onclick="openQuickSearchModal()" title="성경 인물·사건·지명·원어·설교 통합 검색 (단축키: Cmd+K)">🔍 통합검색</button>
+      <button type="button" class="nav-studio-trigger" onclick="openIndexPwaModal()" style="background:linear-gradient(135deg,#164E35,#0E3624); color:#E8FFF3; border:1px solid #38A169; font-weight:800;" title="스마트폰·태블릿·PC 바탕화면에 꿈디도 무료 앱 설치">📲 앱 설치</button>
       <a href="kkumdido_church_support_annex.html" class="nav-studio-trigger" style="text-decoration:none; background:linear-gradient(135deg,#241A10,#3E2C1B); color:#F7E29E; border:1px solid #C59B38;" title="꿈디도 교회지원 별관 (말씀 등불 · 모세의 지팡이 · 아론의 지팡이 · 양떼수첩 · 청지기장부 통합 별관)">🏛️ 교회지원 별관 ↗</a>
       <button type="button" class="nav-studio-trigger" id="studioDrawerBtn" onclick="toggleStudiosDrawer(event)" aria-expanded="false">👑 사역 스튜디오 ▾</button>
       <button type="button" class="nav-guide-btn" onclick="openBlueprintModal()">도서관 안내 ↗</button>
@@ -3714,31 +3721,32 @@ body.dark-theme .knb-card-link {
           <span class="sub">설교·말씀·곳간은 『모세의 지팡이』에서, 심방·주보·교적·재정은 『아론의 지팡이』에서, 교육·가정·번역은 『다음세대·열방』에서 바로 여십시오!</span>
         </div>
         <div class="kkd-drawer-actions">
+          <a href="kkumdido_encyclopedia.html" style="cursor:pointer;text-decoration:none;color:#FFF8E7;background:linear-gradient(135deg,#8C621E,#5E3F0E);border:1.5px solid #E5B85C;font-weight:900;font-size:13px;padding:6px 14px;border-radius:8px;">📚 설교 자료 대백과 사전 (족보·왕조·이야기) ↗</a>
           <a href="kkumdido_church_support_annex.html" style="cursor:pointer;text-decoration:none;color:#F7E29E;background:linear-gradient(135deg,#241A10,#42301D);border:1.5px solid #C59B38;font-weight:900;font-size:13px;padding:6px 14px;border-radius:8px;">🏛️ 꿈디도 교회지원 별관 전체 열기 (말씀 등불) ↗</a>
-          <button type="button" onclick="enterMosesSanctuary(); toggleStudiosDrawer();" style="cursor:pointer;color:#241A10;background:#FBF5E6;border:1px solid #C8A45D;font-weight:800;font-size:13px;padding:6px 13px;border-radius:8px;">🏛️ 본관 내 모세의 지팡이 성소 열기</button>
+          <button type="button" onclick="openIndexPwaModal()" style="cursor:pointer;color:#E8FFF3;background:#164E35;border:1px solid #38A169;font-weight:800;font-size:13px;padding:6px 13px;border-radius:8px;">📲 무료 앱 설치</button>
           <button type="button" onclick="window.kkumdidoPass && window.kkumdidoPass.open()" style="cursor:pointer;color:#F5DF98;background:#241A10;border:1px solid #B89446;font-weight:800;font-size:13px;padding:6px 14px;border-radius:8px;">🪪 도서관 이용증 발급·로그인</button>
           <button type="button" onclick="toggleStudiosDrawer()" style="cursor:pointer;color:#5C5248;background:#FFFFFF;border:1px solid #D5C8B3;font-weight:700;font-size:13px;padding:6px 11px;border-radius:8px;">닫기 ✕</button>
         </div>
       </div>
 
       <div class="kkd-drawer-cats">
-        <!-- 제1카테고리: 모세의 지팡이 (설교 · 말씀 · 곳간) -->
+        <!-- 제1카테고리: 모세의 지팡이 (설교 대백과 · 말씀 · 곳간) -->
         <div class="kkd-cat-box moses">
           <div class="kkd-cat-head">
-            <strong><span>🪄 모세의 지팡이 (설교 · 말씀 · 곳간)</span><small style="font-size:11.5px; color:#8C621E;">강단 말씀 사역</small></strong>
-            <span>본문을 치면 꿈디도 자료·주제 카드를 대령하고 주간 사역 자료까지 한 호흡에 빚습니다</span>
+            <strong><span>🪄 모세의 지팡이 (설교 대백과 · 말씀 · 곳간)</span><small style="font-size:11.5px; color:#8C621E;">강단 말씀 사역</small></strong>
+            <span>설교 자료 대백과와 본문 카드를 대령하고 주간 사역 자료까지 한 호흡에 빚습니다</span>
           </div>
           <div class="kkd-cat-list">
+            <a href="kkumdido_encyclopedia.html" class="kkd-studio-card featured">
+              <div><strong>📚 설교 자료 대백과 사전 (족보 · 왕조 · 신나는 이야기)</strong><small>[최대 무기] 성경 대족보 · 북19왕/남20왕 연대기 · 등잔 밑 비하인드</small></div>
+              <span class="arr">↗</span>
+            </a>
             <a href="kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
               <div><strong>🪄 모세의 지팡이 (본문 카드 대령 &amp; 주간 사역 변환)</strong><small>[핵심] 본문 입력 → 꿈디도 카드 6종 대령 + 나눔지·6일묵상·쇼츠 완성</small></div>
               <span class="arr">↗</span>
             </a>
-            <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+            <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
               <div><strong>👑 모세의 지팡이 · 66권 원어 설교 준비실</strong><small>[목회자 무료 개방] 66권 1,189장 × 12대 아카이브 3,650모듈 설교 빌더</small></div>
-              <span class="arr">↗</span>
-            </a>
-            <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" data-kkd-studio-link="1" class="kkd-studio-card">
-              <div><strong>📖 성경 66권 원어·풀어읽기 주석 서고</strong><small>창세기~요한계시록 1,189장 원어 직역·풀어읽기 &amp; 웨슬리 주해</small></div>
               <span class="arr">↗</span>
             </a>
             <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
@@ -3868,6 +3876,507 @@ body.dark-theme .knb-card-link {
   </section>
 
 <main class="entrance-main">
+
+  <!-- === [KKUMDIDO_INTUITIVE_GRAND_HUB_START] === -->
+  <style>
+    .kkd-grand-hub {
+      word-break: keep-all;
+      margin: 14px auto 24px;
+      background: linear-gradient(180deg, #FBF7EE 0%, #F4ECDC 100%);
+      border: 2px solid rgba(140, 98, 30, 0.38);
+      border-radius: 22px;
+      padding: 24px 26px;
+      box-shadow: 0 12px 34px rgba(31, 25, 18, 0.09);
+    }
+    body.dark-theme .kkd-grand-hub {
+      background: linear-gradient(180deg, #1B1610 0%, #14100C 100%);
+      border-color: rgba(229, 184, 92, 0.36);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.55);
+    }
+    .kkd-hub-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .kkd-hub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(140, 98, 30, 0.14);
+      border: 1px solid rgba(140, 98, 30, 0.35);
+      color: #7A5315;
+      font-size: 12.5px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    body.dark-theme .kkd-hub-badge {
+      color: #F3D48A;
+      background: rgba(229, 184, 92, 0.14);
+      border-color: rgba(229, 184, 92, 0.38);
+    }
+    .kkd-hub-title {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 900;
+      color: #1F1912;
+      line-height: 1.32;
+    }
+    body.dark-theme .kkd-hub-title { color: #F5EFE4; }
+    .kkd-hub-sub {
+      font-size: 0.92rem;
+      color: #5C5040;
+      margin-top: 4px;
+    }
+    body.dark-theme .kkd-hub-sub { color: #B8AA96; }
+
+    /* 중앙 만능 검색바 */
+    .kkd-hub-search {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 10px;
+      background: #FFFFFF;
+      border: 2px solid #8C621E;
+      border-radius: 15px;
+      padding: 8px 10px;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 20px rgba(31, 25, 18, 0.07);
+    }
+    body.dark-theme .kkd-hub-search {
+      background: #14100C;
+      border-color: #D4A853;
+    }
+    @media (max-width: 780px) {
+      .kkd-hub-search { grid-template-columns: 1fr; }
+    }
+    .kkd-hub-search input {
+      border: none;
+      background: transparent;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: inherit;
+      padding: 8px 12px;
+      outline: none;
+      width: 100%;
+    }
+    .kkd-hub-btn {
+      padding: 10px 18px;
+      border-radius: 11px;
+      border: 1.5px solid #C59B38;
+      background: linear-gradient(135deg, #241A10, #3E2C1B);
+      color: #F7E29E;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .kkd-hub-btn.moses {
+      background: linear-gradient(135deg, #8C621E, #6E4B12);
+      color: #FFFFFF;
+      border-color: #8C621E;
+    }
+
+    /* 3대 직관적 큰 문 */
+    .kkd-three-doors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin: 14px 0 18px;
+    }
+    @media (max-width: 960px) {
+      .kkd-three-doors { grid-template-columns: 1fr; }
+    }
+    .kkd-door-item {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(140, 98, 30, 0.32);
+      border-radius: 15px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      transition: transform 0.14s ease, border-color 0.14s ease;
+    }
+    body.dark-theme .kkd-door-item {
+      background: #211B14;
+      border-color: rgba(229, 184, 92, 0.30);
+    }
+    .kkd-door-item:hover {
+      transform: translateY(-2px);
+      border-color: #8C621E;
+    }
+    .kkd-door-item.highlight {
+      background: linear-gradient(135deg, #241A10, #3A2918);
+      color: #F7E29E;
+      border-color: #D4A853;
+    }
+    .kkd-door-item strong {
+      display: block;
+      font-size: 1rem;
+      font-weight: 900;
+      margin-bottom: 3px;
+    }
+    .kkd-door-item small {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.86;
+      line-height: 1.4;
+    }
+
+    /* 4대 대백과 프리뷰 탭 */
+    .kkd-enc-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(140, 98, 30, 0.22);
+    }
+    .kkd-enc-tab {
+      padding: 9px 15px;
+      border-radius: 11px;
+      border: 1.5px solid rgba(140, 98, 30, 0.32);
+      background: #FFFFFF;
+      color: #241A10;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    body.dark-theme .kkd-enc-tab {
+      background: #221C15;
+      color: #EFE6D5;
+      border-color: rgba(229, 184, 92, 0.32);
+    }
+    .kkd-enc-tab.active {
+      background: linear-gradient(135deg, #241A10, #3E2C1B);
+      color: #F7E29E;
+      border-color: #D4A853;
+    }
+
+    .kkd-enc-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 1040px) {
+      .kkd-enc-preview-grid { grid-template-columns: 1fr; }
+    }
+    .kkd-enc-mini-card {
+      background: #FFFFFF;
+      border: 1.5px solid rgba(140, 98, 30, 0.28);
+      border-radius: 15px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    body.dark-theme .kkd-enc-mini-card {
+      background: #1F1913;
+      border-color: rgba(229, 184, 92, 0.28);
+    }
+    .kkd-enc-mini-badge {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(140, 98, 30, 0.13);
+      color: #8C621E;
+      font-size: 0.74rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    body.dark-theme .kkd-enc-mini-badge {
+      color: #F3D48A;
+      background: rgba(229, 184, 92, 0.15);
+    }
+    .kkd-enc-mini-card h4 {
+      font-family: 'Noto Serif KR', Georgia, serif;
+      font-size: 1.02rem;
+      font-weight: 900;
+      line-height: 1.4;
+      margin-bottom: 6px;
+    }
+    .kkd-enc-mini-body {
+      font-size: 0.85rem;
+      line-height: 1.62;
+      opacity: 0.92;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .kkd-enc-mini-tip {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 8px 10px;
+      border-radius: 9px;
+      background: rgba(140, 98, 30, 0.09);
+      border-left: 3px solid #8C621E;
+    }
+    .kkd-enc-mini-foot {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      padding-top: 8px;
+      border-top: 1px dashed rgba(140, 98, 30, 0.22);
+    }
+    .kkd-mini-btn {
+      padding: 6px 11px;
+      border-radius: 8px;
+      font-size: 0.77rem;
+      font-weight: 800;
+      border: 1px solid rgba(140, 98, 30, 0.35);
+      background: #F7F2E7;
+      color: #241A10;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    body.dark-theme .kkd-mini-btn {
+      background: #2A2219;
+      color: #F5EFE4;
+    }
+    .kkd-mini-btn.gold {
+      background: linear-gradient(135deg, #241A10, #3E2C1B);
+      color: #F7E29E;
+      border-color: #C59B38;
+    }
+  </style>
+
+  <section id="kkdGrandEncyclopediaHub" class="kkd-grand-hub" aria-label="꿈디도 설교 자료 대백과 사전 및 3대 사역 관문">
+    <div class="kkd-hub-top">
+      <div>
+        <div class="kkd-hub-badge">📚 우리의 최대 무기 · 족보부터 왕조별 연대기, 유튜브를 다 합쳐도 더 풍부한 성경 이야기</div>
+        <h2 class="kkd-hub-title">꿈디도 『설교 자료 대백과 사전』 &amp; 3대 사역 광장</h2>
+        <p class="kkd-hub-sub">본문·인물·족보·왕조·사물을 검색하시면 대백과 카드를 즉시 대령하고, <b>『🪄 모세의 지팡이』</b>에서 설교와 주간 사역 자료 7종으로 바로 빚어냅니다.</p>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <a href="kkumdido_encyclopedia.html" class="kkd-hub-btn">📚 설교 자료 대백과 전체 화면 열기 ↗</a>
+        <button type="button" class="kkd-hub-btn" style="background:linear-gradient(135deg,#164E35,#0E3624); color:#E8FFF3; border-color:#38A169;" onclick="openIndexPwaModal()">📲 무료 앱 설치 (폰·태블릿·PC)</button>
+      </div>
+    </div>
+
+    <!-- 만능 검색창 -->
+    <div class="kkd-hub-search">
+      <input type="text" id="hubOmniInput" placeholder="🔍 설교 본문(예: 룻기 2:12, 로마서 8:28) 또는 족보·왕조·사물(예: 므두셀라, 여고냐, 아합, 히스기야, 에스더, 헤롯, 우슬초, 테텔레스타이) 입력..." onkeydown="if(event.key==='Enter') runHubOmniSearch()">
+      <button type="button" class="kkd-hub-btn" onclick="runHubOmniSearch()">📚 대백과 카드 즉시 찾기</button>
+      <button type="button" class="kkd-hub-btn moses" onclick="goMosesWithHubQuery()">🪄 모세의 지팡이로 본문 대령 ↗</button>
+    </div>
+
+    <!-- 직관적 3대 큰 문 -->
+    <div class="kkd-three-doors">
+      <a href="kkumdido_encyclopedia.html" class="kkd-door-item highlight">
+        <div>
+          <strong>📚 제1문 · 설교 자료 대백과 사전 (최대 무기)</strong>
+          <small>성경 대족보 · 북19왕/남20왕 왕조 연대기 · 신나는 비하인드 · 66권 원어 백과</small>
+        </div>
+        <span style="font-weight:900; font-size:1.1rem;">↗</span>
+      </a>
+      <a href="kkumdido_sermon_ai_studio.html" class="kkd-door-item">
+        <div>
+          <strong>🪄 제2문 · 모세의 지팡이 (설교 · 말씀 · 곳간)</strong>
+          <small>본문 입력 시 꿈디도 카드 6종 대령 + 주간 사역 7종 변환 + 내 설교 곳간</small>
+        </div>
+        <span style="font-weight:900; font-size:1.1rem; color:#8C621E;">↗</span>
+      </a>
+      <a href="kkumdido_pastoral_secretary_studio.html" class="kkd-door-item">
+        <div>
+          <strong>🌿 제3문 · 아론의 지팡이 &amp; 다음세대 (목양 · 살림)</strong>
+          <small>심방 위로문 · A4 주보 · 양떼수첩(교적) · 청지기장부(재정) · 교회학교</small>
+        </div>
+        <span style="font-weight:900; font-size:1.1rem; color:#3B622B;">↗</span>
+      </a>
+    </div>
+
+    <!-- 본관 안에서 바로 펼쳐보는 4대 시각 대백과 탭 -->
+    <div class="kkd-enc-tabs">
+      <button type="button" class="kkd-enc-tab active" onclick="switchHubEncTab('genealogy', this)">🌳 한눈에 보는 성경 대족보 (7대 계보)</button>
+      <button type="button" class="kkd-enc-tab" onclick="switchHubEncTab('dynasty', this)">👑 왕조별 · 선지자 · 제국 연대기 (남북 열왕·페르시아·헤롯)</button>
+      <button type="button" class="kkd-enc-tab" onclick="switchHubEncTab('stories', this)">🔥 보기만 해도 신나는 성경 비하인드 &amp; 등잔 밑</button>
+      <button type="button" class="kkd-enc-tab" onclick="switchHubEncTab('bible66', this)">📖 성경 66권 1,189장 원어·강해 백과</button>
+    </div>
+
+    <div id="hubEncPreviewGrid" class="kkd-enc-preview-grid"></div>
+  </section>
+
+  <!-- 📲 본관용 PWA 무료 앱 설치 모달 -->
+  <div id="indexPwaModal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(0,0,0,0.68); align-items:center; justify-content:center; padding:20px;" onclick="if(event.target===this) closeIndexPwaModal()">
+    <div style="background:#FAF6ED; color:#1F1912; border:2px solid #8C621E; border-radius:20px; max-width:520px; width:100%; padding:24px 26px; box-shadow:0 18px 44px rgba(0,0,0,0.5);">
+      <h3 style="font-family:'Noto Serif KR',serif; font-size:1.22rem; font-weight:900; margin-bottom:8px;">📲 꿈디도를 스마트폰·태블릿·PC 앱으로 설치하기 (비용 0원)</h3>
+      <p style="font-size:0.88rem; color:#5C5040; margin-bottom:12px;">유료 스토어 비용 없이, 지금 보시는 기기의 홈 화면(바탕화면)에 <b>『꿈디도 전용 앱 아이콘』</b>을 바로 추가해 전체 화면 어플처럼 쓰실 수 있습니다.</p>
+      <div style="background:#F2EBDC; border:1px solid rgba(140,98,30,0.3); border-radius:11px; padding:11px 14px; margin-bottom:9px; font-size:0.86rem;">
+        <b>📱 아이폰 · 아이패드 (Safari):</b> 하단 <b>[공유 📤]</b> 버튼 → <b>[홈 화면에 추가 ➕]</b> 터치
+      </div>
+      <div style="background:#F2EBDC; border:1px solid rgba(140,98,30,0.3); border-radius:11px; padding:11px 14px; margin-bottom:9px; font-size:0.86rem;">
+        <b>🤖 갤럭시 안드로이드 (Chrome / 삼성인터넷):</b> 우측 상단 <b>[메뉴 ⋮]</b> → <b>[앱 설치]</b> 또는 <b>[홈 화면에 추가]</b> 터치
+      </div>
+      <div style="background:#F2EBDC; border:1px solid rgba(140,98,30,0.3); border-radius:11px; padding:11px 14px; margin-bottom:14px; font-size:0.86rem;">
+        <b>💻 PC (Mac / Windows 크롬·엣지):</b> 주소창 우측 끝 <b>[컴퓨터 설치 아이콘 📥]</b> 클릭
+      </div>
+      <div style="text-align:right;">
+        <button type="button" class="kkd-hub-btn" onclick="closeIndexPwaModal()">확인 · 닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+        navigator.serviceWorker.register('sw.js').catch(function(){});
+      }
+      var deferredPrompt = null;
+      window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+      });
+      window.openIndexPwaModal = function() {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          deferredPrompt = null;
+          return;
+        }
+        var m = document.getElementById('indexPwaModal');
+        if (m) m.style.display = 'flex';
+      };
+      window.closeIndexPwaModal = function() {
+        var m = document.getElementById('indexPwaModal');
+        if (m) m.style.display = 'none';
+      };
+
+      function esc(s) {
+        return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+      }
+
+      window.sendHubCardToMoses = function(title, scripture, story, tip) {
+        try {
+          localStorage.setItem('kkumdido_moses_incoming_card_v1', JSON.stringify({
+            title: title || '',
+            scripture: scripture || '',
+            story: story || '',
+            sermonPoint: tip || '',
+            savedAt: Date.now()
+          }));
+        } catch (e) {}
+        var q = encodeURIComponent(scripture ? scripture.split(',')[0].trim() : title);
+        window.location.href = 'kkumdido_sermon_ai_studio.html?q=' + q + '&from=hub';
+      };
+
+      window.goMosesWithHubQuery = function() {
+        var q = (document.getElementById('hubOmniInput').value || '룻기 2:12').trim();
+        window.location.href = 'kkumdido_sermon_ai_studio.html?q=' + encodeURIComponent(q);
+      };
+
+      window.runHubOmniSearch = function() {
+        var q = (document.getElementById('hubOmniInput').value || '').trim();
+        if (!q) {
+          window.location.href = 'kkumdido_encyclopedia.html';
+          return;
+        }
+        var qLow = q.toLowerCase();
+        var found = [];
+        (window.KKD_GENEALOGY_NODES || []).forEach(function(n) {
+          if ((n.name + ' ' + n.lineage + ' ' + n.story + ' ' + n.scripture).toLowerCase().indexOf(qLow) !== -1) {
+            found.push({ badge: '🌳 성경 대족보 · ' + n.years, title: n.name, scripture: n.scripture, body: n.story, tip: n.sermon_point, tab: 'genealogy' });
+          }
+        });
+        (window.KKD_DYNASTY_CARDS || []).forEach(function(c) {
+          if ((c.ruler + ' ' + c.prophets + ' ' + c.story + ' ' + c.scripture).toLowerCase().indexOf(qLow) !== -1) {
+            found.push({ badge: '👑 왕조·제국 연대기 · ' + c.reign, title: c.ruler, scripture: c.scripture, body: c.story, tip: c.sermon_point, tab: 'dynasty' });
+          }
+        });
+        (window.KKD_EXCITING_STORIES || []).forEach(function(s) {
+          if ((s.title + ' ' + s.summary + ' ' + s.story + ' ' + s.scripture).toLowerCase().indexOf(qLow) !== -1) {
+            found.push({ badge: s.badge, title: s.title, scripture: s.scripture, body: s.story, tip: s.sermon_point, tab: 'stories' });
+          }
+        });
+        if (!found.length) {
+          window.location.href = 'kkumdido_encyclopedia.html?q=' + encodeURIComponent(q);
+          return;
+        }
+        renderHubCards(found.slice(0, 6));
+      };
+
+      window._hubCurrentItems = [];
+      window.sendHubCardByIdx = function(i) {
+        var it = (window._hubCurrentItems || [])[i];
+        if (!it) return;
+        window.sendHubCardToMoses(it.title, it.scripture, it.body, it.tip);
+      };
+      function renderHubCards(items) {
+        window._hubCurrentItems = items || [];
+        var grid = document.getElementById("hubEncPreviewGrid");
+        if (!grid) return;
+        grid.innerHTML = items.map(function(it, idx) {
+          return "<article class=\"kkd-enc-mini-card\">" +
+            "<div>" +
+              "<span class=\"kkd-enc-mini-badge\">" + esc(it.badge) + "</span>" +
+              "<h4>" + esc(it.title) + "</h4>" +
+              "<div class=\"kkd-enc-mini-body\">" + esc(it.body) + "</div>" +
+            "</div>" +
+            "<div>" +
+              "<div class=\"kkd-enc-mini-tip\">🎙️ " + esc(it.tip) + "</div>" +
+              "<div class=\"kkd-enc-mini-foot\" style=\"margin-top:8px;\">" +
+                "<button type=\"button\" class=\"kkd-mini-btn gold\" onclick=\"sendHubCardByIdx(" + idx + ")\">🪄 모세의 지팡이로 설교 만들기</button>" +
+                "<a href=\"kkumdido_encyclopedia.html?tab=" + esc(it.tab || "genealogy") + "\" class=\"kkd-mini-btn\">📚 대백과에서 전문 읽기 ↗</a>" +
+              "</div>" +
+            "</div>" +
+          "</article>";
+        }).join("");
+      }
+
+      window.switchHubEncTab = function(tab, btnEl) {
+        document.querySelectorAll('.kkd-enc-tab').forEach(function(b){ b.classList.remove('active'); });
+        if (btnEl) btnEl.classList.add('active');
+        if (tab === 'genealogy') {
+          var list = (window.KKD_GENEALOGY_NODES || []).slice(0, 6).map(function(n){
+            return { badge: '🌳 성경 대족보 · ' + n.years, title: n.name, scripture: n.scripture, body: n.story, tip: n.sermon_point, tab: 'genealogy' };
+          });
+          renderHubCards(list);
+        } else if (tab === 'dynasty') {
+          var list2 = (window.KKD_DYNASTY_CARDS || []).slice(0, 6).map(function(c){
+            return { badge: '👑 왕조 연대기 · ' + c.reign, title: c.ruler, scripture: c.scripture, body: c.story, tip: c.sermon_point, tab: 'dynasty' };
+          });
+          renderHubCards(list2);
+        } else if (tab === 'stories') {
+          var list3 = (window.KKD_EXCITING_STORIES || []).slice(0, 6).map(function(s){
+            return { badge: s.badge, title: s.title, scripture: s.scripture, body: s.story, tip: s.sermon_point, tab: 'stories' };
+          });
+          renderHubCards(list3);
+        } else if (tab === 'bible66') {
+          var chs = window.KKD_MOSES_CHS || {};
+          var sampleKeys = ['8_2', '50_4', '19_23', '45_8', '42_15', '43_19'];
+          var list4 = sampleKeys.map(function(k){
+            var c = chs[k] || {};
+            return {
+              badge: '📖 66권 원어 대백과 · ' + (c.key_verse_ref || k),
+              title: c.title || '성경 원어 풀어읽기',
+              scripture: c.key_verse_ref || '룻기 2:12',
+              body: (c.key_verse_para || '') + ' ' + (c.context || ''),
+              tip: '추천 설교: 「' + (c.sermon_title || '') + '」',
+              tab: 'bible66'
+            };
+          });
+          renderHubCards(list4);
+        }
+      };
+
+      window.addEventListener('DOMContentLoaded', function() {
+        var firstBtn = document.querySelector('.kkd-enc-tab');
+        window.switchHubEncTab('genealogy', firstBtn);
+      });
+    })();
+  </script>
+  <!-- === [KKUMDIDO_INTUITIVE_GRAND_HUB_END] === -->
+
   <section class="hall-intro" aria-labelledby="hallTitle">
     <div>
       <div class="hall-eyebrow"><span></span> 성경의 땅 · 사람 · 이야기</div>
