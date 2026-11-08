@@ -1040,7 +1040,11 @@ ${story}
     const stories = window.KKD_EXCITING_STORIES || [];
 
     if (cat === 'archive_mods') {
-      const mods = (window.KKD_MOSES_MODS || []).slice(0, 24);
+      const mods = window.KKD_MOSES_GET_MODS ? [
+        ...window.KKD_MOSES_GET_MODS('창세기', 1, ''),
+        ...window.KKD_MOSES_GET_MODS('시편', 23, ''),
+        ...window.KKD_MOSES_GET_MODS('요한복음', 1, '')
+      ] : [];
       gridEl.innerHTML = mods.map(m => `
         <article class="enc-card">
           <div>
@@ -1235,19 +1239,16 @@ ${story}
       }
     });
 
-    (window.KKD_MOSES_MODS || []).forEach(m => {
+    (window.KKD_MOSES_GET_MODS ? window.KKD_MOSES_GET_MODS('', 0, qLow) : []).forEach(m => {
       if (results.length >= 16) return;
-      const hay = `${m.title} ${m.orig} ${m.verse} ${m.summary} ${m.point}`.toLowerCase();
-      if (hay.includes(qLow)) {
-        results.push({
-          badge: `🏛️ 꿈디도 12대 아카이브 · ${m.hallTitle || m.sub}`,
-          title: `${m.title} (${m.orig || ''})`,
-          scripture: m.verse || '',
-          meta: m.sub || '',
-          body: m.summary || '',
-          tip: `강단 포인트: ${m.point || ''}`
-        });
-      }
+      results.push({
+        badge: `🏛️ 꿈디도 12대 아카이브 · ${m.hallTitle || m.sub}`,
+        title: `${m.title} (${m.orig || ''})`,
+        scripture: m.verse || '',
+        meta: m.sub || '',
+        body: m.summary || '',
+        tip: `강단 포인트: ${m.point || ''}`
+      });
     });
 
     const sec = document.getElementById('omniSearchResultsSec');

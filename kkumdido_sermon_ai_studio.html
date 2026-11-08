@@ -1814,31 +1814,13 @@
       }
     }
 
-    // 3. 주제어/키워드 검색: 1,189장 및 3,650모듈에서 가장 잘 맞는 장 찾기
-    var chs = window.KKD_MOSES_CHS || {};
-    var kw = q.toLowerCase();
-    var bestKey = null;
-    var bestScore = -1;
-    Object.keys(chs).forEach(function(k) {
-      var cObj = chs[k];
-      var hay = ((cObj.t || '') + ' ' + (cObj.th || '') + ' ' + (cObj.kv || '') + ' ' + (cObj.kp || '') + ' ' + (cObj.st || '') + ' ' + JSON.stringify(cObj.w || [])).toLowerCase();
-      if (hay.indexOf(kw) !== -1) {
-        var score = 1;
-        if ((cObj.t || '').toLowerCase().indexOf(kw) !== -1) score += 4;
-        if ((cObj.th || '').toLowerCase().indexOf(kw) !== -1) score += 3;
-        if (JSON.stringify(cObj.w || []).toLowerCase().indexOf(kw) !== -1) score += 3;
-        if (score > bestScore) {
-          bestScore = score;
-          bestKey = k;
-        }
+    // 3. 주제어/키워드 검색: 보안 클로저 인덱스(KKD_MOSES_FIND_TOPIC)를 통해 가장 잘 맞는 장 찾기
+    if (typeof window.KKD_MOSES_FIND_TOPIC === 'function') {
+      var topicHit = window.KKD_MOSES_FIND_TOPIC(q);
+      if (topicHit && topicHit.bookNo && topicHit.chNo) {
+        var foundBook = books.find(function(x) { return x.no === topicHit.bookNo; }) || books[0];
+        return { mode: 'topic', book: foundBook, chNo: topicHit.chNo, keyword: q, rawRef: foundBook.name + ' ' + topicHit.chNo + '장 (주제: ' + q + ')' };
       }
-    });
-    if (bestKey) {
-      var parts = bestKey.split('_');
-      var bNo = parseInt(parts[0], 10);
-      var cNo = parseInt(parts[1], 10);
-      var foundBook = books.find(function(x) { return x.no === bNo; }) || books[0];
-      return { mode: 'topic', book: foundBook, chNo: cNo, keyword: q, rawRef: foundBook.name + ' ' + cNo + '장 (주제: ' + q + ')' };
     }
 
     // 기본값: 룻기 2장
@@ -1868,20 +1850,11 @@
     var wList = Array.isArray(ch.w) ? ch.w : ((window.KKD_MOSES_OT_WORDS && window.KKD_MOSES_OT_WORDS[ch.w]) || []);
     var pts = Array.isArray(ch.pts) ? ch.pts : [];
 
-    // 연동된 12대 아카이브 모듈 검색
-    var allMods = window.KKD_MOSES_MODS || [];
-    var kwLower = (parsed.keyword || '').toLowerCase();
-    var matchedMods = allMods.filter(function(m) {
-      if (parsed.mode === 'topic' && kwLower) {
-        return (m.t + ' ' + m.s + ' ' + m.b).toLowerCase().indexOf(kwLower) !== -1;
-      }
-      return m.b === b.name && Number(m.c) === Number(chNo);
-    });
-    if (matchedMods.length < 3) {
-      var bookMods = allMods.filter(function(m) { return m.b === b.name && matchedMods.indexOf(m) === -1; }).slice(0, 4 - matchedMods.length);
-      matchedMods = matchedMods.concat(bookMods);
-    }
-    matchedMods = matchedMods.slice(0, 4);
+    // 연동된 12대 아카이브 모듈 검색 (보안 클로저 게이트를 통해 최대 4건만 수령)
+    var kwLower = (parsed.mode === 'topic' && parsed.keyword) ? parsed.keyword.toLowerCase() : '';
+    var matchedMods = (typeof window.KKD_MOSES_GET_MODS === 'function')
+      ? window.KKD_MOSES_GET_MODS(b.name, chNo, kwLower)
+      : [];
 
     var chUnit = (b.name === '시편') ? '편' : '장';
     var displayRef;

@@ -115,6 +115,7 @@
     'kkumdido_commentary',
     'kkumdido_translation',
     'kkumdido_12archives',
+    'kkumdido_encyclopedia',
     '원어풀어읽기',
     '00_꿈바온',
     '12대아카이브',
@@ -257,12 +258,15 @@
     return !!getCard();
   }
 
-  function isPastorAdmin() {
+  function isPastorCardHint() {
     var c = getCard();
     if (c && (c.cardNo === 'KKD-2026-6903' || c.cardNo === 'KKD-2026-1640' || (c.name && (c.name.indexOf('꿈바온') !== -1 || c.name.indexOf('한범수') !== -1)))) {
-      try { localStorage.setItem('kkumdido_is_pastor_device', '1'); } catch (e0) {}
       return true;
     }
+    return isPastorAdmin();
+  }
+
+  function isPastorAdmin() {
     try {
       if (sessionStorage.getItem('kkumdido_admin_unlocked') === '1') {
         localStorage.setItem('kkumdido_is_pastor_device', '1');
@@ -1798,6 +1802,7 @@
   }
 
   function openAdminModal() {
+    if (!isPastorAdmin()) return;
     try { localStorage.setItem('kkumdido_is_pastor_device', '1'); } catch (e0) {}
     buildDOM();
     adminModalOpen = true;
@@ -1823,6 +1828,7 @@
   }
 
   function renderAdminDashboard() {
+    if (!isPastorAdmin()) return;
     var wrap = document.getElementById('kkd-adm-table-wrap');
     if (!wrap) return;
     var vault = getLocalVault();
@@ -2012,6 +2018,7 @@
   }
 
   function exportVaultToCSV() {
+    if (!isPastorAdmin()) return;
     var vault = getLocalVault();
     var lines = ['\uFEFF구분,발급일/최근방문,이용증번호/ID,성함_직분,소속교회,이메일_계정,인증방식,방문횟수,인쇄횟수,사용한_스튜디오_목록,최근활동,1대1_정식판코드'];
     var esc = function (v) {
@@ -2239,7 +2246,7 @@
     var verZone = document.getElementById('kkd-verified-zone');
     var admBtn = document.getElementById('kkd-open-admin-btn');
     if (admBtn) {
-      admBtn.style.display = isPastorAdmin() ? 'flex' : 'none';
+      admBtn.style.display = isPastorCardHint() ? 'flex' : 'none';
     }
 
     if (noEl) {
@@ -2620,21 +2627,17 @@
     setTimeout(applyAnnexWellToStudio, 220);
   }
 
-  window.kkumdidoPass = {
+  window.kkumdidoPass = Object.freeze({
     open: openCardModal,
     openAdmin: requestOpenAdminModal,
     isVerified: isVerified,
     requireLogin: requireStudioLogin,
     getCard: getCard,
     logout: clearCard,
-    getVault: getLocalVault,
-    syncCloud: syncFromCloudAll,
     getWell: getAnnexWell,
     applyWellToPage: function () { return fillStudioFieldsFromWell(true); },
     logAction: function (detailText, type) {
       recordTelemetryEvent(type || 'studio', detailText);
-    },
-    computeLicenseCode: computeLicenseCode,
-    exportCSV: exportVaultToCSV
-  };
+    }
+  });
 })();

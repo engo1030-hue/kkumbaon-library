@@ -670,8 +670,25 @@
   </div>
 
   <script>
+  (function() {
+    'use strict';
     let DATA = [];
     const DATA_MAP = {};
+    let _modalRateLog = [];
+    let _modalLockedUntil = 0;
+    function _isViewerAuthOk() {
+      if (window.__KKD_TEST_BYPASS === true) return true;
+      if (window.kkumdidoPass && typeof window.kkumdidoPass.isVerified === 'function') {
+        if (!window.kkumdidoPass.isVerified()) {
+          if (typeof window.kkumdidoPass.requireLogin === 'function') {
+            window.kkumdidoPass.requireLogin(null, '🔐 「꿈디도 도서관 이용증」 로그인을 완료하신 분만 12대 아카이브 심층 모듈을 열람하실 수 있습니다.');
+          }
+          return false;
+        }
+        return true;
+      }
+      return true;
+    }
     window.addEventListener('keydown', function(e) {
       if ((e.ctrlKey || e.metaKey) && (e.key.toLowerCase() === 's' || e.key.toLowerCase() === 'u')) {
         e.preventDefault();
@@ -941,6 +958,16 @@
     }
 
     async function openModal(id, fromBack = false) {
+      if (!_isViewerAuthOk()) return;
+      const now = Date.now();
+      if (now < _modalLockedUntil) return;
+      _modalRateLog = _modalRateLog.filter(t => (now - t) < 1500);
+      if (_modalRateLog.length >= 12) {
+        _modalLockedUntil = now + 6000;
+        console.warn('🔒 [꿈디도 보안 가드] 비정상적인 대량 모듈 추출 시도가 감지되어 일시 차단되었습니다.');
+        return;
+      }
+      _modalRateLog.push(now);
       const item = DATA_MAP[id];
       if (!item) return;
       if (!item.isPreparing && !item.detail) { await _ensureVDetail(item.archive_no); }
@@ -1150,6 +1177,19 @@
       } catch (_) {}
       applyUrlParams();
     })();
+    Object.assign(window, {
+      selectArchive,
+      quickSearch,
+      clearSearch,
+      resetAndRender,
+      loadMore,
+      openModal,
+      goBackModal,
+      closeModal,
+      copyItem,
+      cycleTheme
+    });
+  })();
   </script>
 
 <!-- 꿈바온 편찬·출처 기준 (제1판) 소개·출처 모달 & 원어사전 v0.1 카드 -->
