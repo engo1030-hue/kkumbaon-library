@@ -208,15 +208,22 @@
           case 'home':
             if (this.tagName === 'BUTTON') {
               e.preventDefault();
+              if (typeof window.navigateToHall === 'function') {
+                window.navigateToHall('atlas');
+              }
               window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             break;
           case 'halls':
             e.preventDefault();
-            const hallsSection = document.getElementById('libraryShelves') || document.querySelector('.kkumdido-12halls-bar');
-            if (hallsSection) {
-              const topPos = hallsSection.getBoundingClientRect().top + window.pageYOffset - 55;
-              window.scrollTo({ top: topPos, behavior: 'smooth' });
+            if (typeof window.navigateToHall === 'function') {
+              window.navigateToHall('all');
+            } else {
+              const hallsSection = document.querySelector('.kkumdido-12halls-bar') || document.getElementById('libraryShelves');
+              if (hallsSection) {
+                const topPos = hallsSection.getBoundingClientRect().top + window.pageYOffset - 55;
+                window.scrollTo({ top: Math.max(0, topPos), behavior: 'smooth' });
+              }
             }
             break;
           case 'search':
@@ -226,7 +233,7 @@
             } else if (typeof window.openKkumdidoQuickSearch === 'function') {
               window.openKkumdidoQuickSearch();
             } else {
-              const searchInput = document.getElementById('searchInput') || document.getElementById('placeSearch');
+              const searchInput = document.getElementById('kkdMainSearchInput') || document.getElementById('searchInput') || document.getElementById('placeSearch');
               if (searchInput) {
                 searchInput.focus();
                 searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });

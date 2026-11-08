@@ -336,6 +336,41 @@
     justify-content: center !important;
   }
 
+  html:not(.pc-override) .kkumdido-mobile-shelves-strip {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 5px !important;
+    width: 100% !important;
+    padding-bottom: 4px !important;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.22) !important;
+  }
+  html:not(.pc-override) .kkumdido-mobile-shelves-strip::-webkit-scrollbar {
+    display: none !important;
+  }
+  html:not(.pc-override) .kkumdido-mobile-shelves-strip button {
+    flex: 0 0 auto !important;
+    font-size: 11.5px !important;
+    font-weight: 700 !important;
+    height: 29px !important;
+    min-height: 29px !important;
+    padding: 0 10px !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(212, 175, 55, 0.32) !important;
+    border-radius: 999px !important;
+    color: #F3EAD8 !important;
+    white-space: nowrap !important;
+    cursor: pointer !important;
+  }
+  html:not(.pc-override) .kkumdido-mobile-shelves-strip button.active {
+    background: linear-gradient(135deg, #D8B26E 0%, #B88938 100%) !important;
+    color: #1A140E !important;
+    border-color: #F5DF98 !important;
+    font-weight: 800 !important;
+  }
+
   html:not(.pc-override) .kkumdido-12halls-grid {
     display: flex !important;
     flex-wrap: nowrap !important;
@@ -1715,6 +1750,31 @@
 
   .kkumdido-mobile-tab-item.active {
     color: #F5DF98 !important;
+  }
+
+  /* 스튜디오 상단 이동 바 (#kkd-studio-topbar): 모바일에서 4줄로 늘어지지 않고 1줄 가로 스와이프로 정돈 */
+  html:not(.pc-override) #kkd-studio-topbar {
+    padding: 6px 10px !important;
+    flex-wrap: nowrap !important;
+    overflow: hidden !important;
+  }
+  html:not(.pc-override) #kkd-studio-topbar > div {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    gap: 6px !important;
+    width: 100% !important;
+    padding-bottom: 1px !important;
+  }
+  html:not(.pc-override) #kkd-studio-topbar > div::-webkit-scrollbar {
+    display: none !important;
+  }
+  html:not(.pc-override) #kkd-studio-topbar a,
+  html:not(.pc-override) #kkd-studio-topbar span {
+    flex: 0 0 auto !important;
+    white-space: nowrap !important;
+    font-size: 11.5px !important;
   }
 }
 
