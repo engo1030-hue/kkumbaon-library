@@ -608,6 +608,10 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 
   /* ── 방 목록 (12개 정식 개통 방 + 3개 짓는 터) ── */
   var ROOMS = [
+    { id: 'encyclopedia', wing: 'n', name: '설교 자료 대백과', program: '📚 성경 대족보 · 왕조별 연대기 · 비하인드 대백과', file: 'kkumdido_encyclopedia.html', status: 'open',
+      badge: '족보·왕조·이야기',
+      line: '성경 7대 대족보, 북이스라엘 19왕·남유다 20왕·페르시아·헤롯 왕조 연대기, 등잔 밑 비하인드와 66권 원어 대백과를 한눈에 펼쳐 봅니다.',
+      does: ['한눈에 보는 성경 대족보 열람', '남북 열왕·선지자·제국 연대기 열람', '신나는 성경 비하인드 & 66권 원어 백과 열람'] },
     { id: 'sermon', wing: 'n', name: '설교 준비실', program: '🪄 모세의 지팡이 · 66권 원어 설교 연구실', file: 'kkumdido_sermon_studio.html', status: 'open',
       badge: '목회자 무료 개방',
       line: '성경 66권을 원어와 주석, 강해와 함께 펴 놓고 설교를 세웁니다. (요한복음 기본 열람 · 신원 확인 목회자 66권 전체 무료 개방)',
@@ -669,6 +673,7 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   /* ── 현관의 문장들 (주보 순서지처럼) ── */
   var ERRANDS = [
     { text: '설교 본문을 쳐서 꿈디도 카드를 대령받고 주간 사역 자료를 만듭니다', room: 'sermon_ai', kw: '모세의 지팡이 설교 본문 카드 대령 주보요약 속회 구역 셀 소그룹 나눔지 큐티 QT 쇼츠 PPT' },
+    { text: '성경 대족보와 남북 왕조 연대기, 신나는 설교 자료 대백과를 펼쳐 봅니다', room: 'encyclopedia', kw: '설교 자료 대백과 족보 가계도 왕조 연대기 비하인드 등잔 밑' },
     { text: '성경 66권 원어와 강해로 주일 설교를 준비합니다', room: 'sermon', kw: '모세의 지팡이 설교 준비 성경 66권 원어 강해' },
     { text: '원어와 주석으로 말씀을 깊이 읽습니다', room: 'commentary', kw: '모세의 지팡이 원어 히브리어 헬라어 주석 성경 연구' },
     { text: '지난 설교를 곳간에서 꺼내 봅니다', room: 'gotgan', kw: '모세의 지팡이 내 설교 곳간 서재 원고 보관 백업' },

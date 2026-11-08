@@ -312,10 +312,10 @@
     grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     gap: 5px !important;
     width: 100% !important;
-    padding-right: 0 !important;
-    padding-bottom: 4px !important;
-    border-right: none !important;
-    border-bottom: 1px solid rgba(212, 175, 55, 0.18) !important;
+    padding-left: 0 !important;
+    padding-top: 4px !important;
+    border-left: none !important;
+    border-top: 1px solid rgba(212, 175, 55, 0.18) !important;
   }
 
   html:not(.pc-override) .kkumdido-12halls-badge,

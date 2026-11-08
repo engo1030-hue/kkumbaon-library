@@ -1927,7 +1927,7 @@
       unlockGotganIfPresent(card);
       if (fab) {
         fab.classList.add('verified');
-        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 ' + card.name + ' (' + card.cardNo + ')</span><span class="kkd-sep">🧰 스튜디오</span><span class="kkd-sep kkd-print-quick" title="이 페이지 인쇄">🖨️ 인쇄</span>';
+        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 ' + card.name + ' (' + card.cardNo + ')</span><span class="kkd-sep kkd-print-quick" title="이 페이지 인쇄">🖨️ 인쇄</span>';
       }
       if (certHeader) {
         certHeader.innerHTML = '<span>🏛️ <b>꿈바온 디지털도서관(꿈디도) 공식 열람본</b> · 무단 복제 및 상업적 재배포 금지</span><span>도서관 이용증: <b>' + card.cardNo + '</b> · 열람자: <b>' + card.name + ' (' + card.church + ')</b></span>';
@@ -1939,7 +1939,7 @@
       document.body.classList.remove('kkumdido-member-verified');
       if (fab) {
         fab.classList.remove('verified');
-        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 도서관 이용증 로그인 · 🧰 스튜디오 · 🖨️ 인쇄</span>';
+        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 도서관 이용증 로그인 · 🖨️ 인쇄</span>';
       }
       if (certHeader) {
         certHeader.innerHTML = '';
