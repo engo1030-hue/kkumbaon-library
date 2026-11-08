@@ -519,8 +519,8 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
         </article>
         <article class="chest-card">
           <div>
-            <small>살림채 · 목양 비서실 (웹 + 내 컴퓨터 겸용)</small>
-            <h3>꿈바온 목회 비서</h3>
+            <small>🌿 아론의 지팡이 · 목양·심방·주보 스튜디오 (웹 + 내 컴퓨터 겸용)</small>
+            <h3>🌿 아론의 지팡이 — 목양 · 심방 · 주보 · 행정 실무</h3>
             <p>설교 개요와 심방 위로문, 인쇄용 A4 주보와 회의록·공문 초안을 돕습니다. 인터넷 창에서 바로 쓰시거나 내 컴퓨터로 내려받아 쓰실 수 있습니다.</p>
           </div>
           <div class="chest-actions">
@@ -531,9 +531,9 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
         </article>
         <article class="chest-card">
           <div>
-            <small>말씀채 · 주간 말씀 나눔실 (웹 + 내 컴퓨터 겸용)</small>
-            <h3>꿈바온 설교AI — 주간 사역 7종 변환</h3>
-            <p>주일 설교 원고 한 편으로 주보 요약, 속회·구역·셀 나눔지, 주중 6일 QT, 쇼츠 대본, 예배 PPT, 가정예배 순서지를 한 번에 빚어냅니다.</p>
+            <small>🪄 모세의 지팡이 · 본문 카드 대령 &amp; 주간 말씀 나눔실 (웹 + 내 컴퓨터 겸용)</small>
+            <h3>🪄 모세의 지팡이 — 본문 카드 대령 &amp; 주간 사역 변환</h3>
+            <p>설교 본문을 입력하면 꿈디도 12대 아카이브에서 원어·배경·신학·설교 카드를 즉시 대령하고, 설교 원고 한 편으로 주보 요약·소그룹 나눔지·6일 QT·쇼츠·PPT·가정예배지를 한 번에 빚어냅니다.</p>
           </div>
           <div class="chest-actions">
             <a class="btn" data-room="sermon_ai" href="kkumdido_sermon_ai_studio.html">방으로 들어가기</a>
@@ -598,31 +598,33 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     theme: 'kkumdido_annex_theme_v1'
   };
 
-  /* ── 별관의 네 채 ── */
+  /* ── 별관의 네 채 (모세의 지팡이 · 아론의 지팡이 · 다음세대채) ── */
   var WINGS = [
-    { id: 'n', name: '말씀채', desc: '말씀을 깊이 연구하고 빚어내는 곳' },
-    { id: 'e', name: '돌봄채', desc: '사람을 살피고 섬기는 곳' },
-    { id: 's', name: '다음세대채', desc: '아이들과 가정을 세우는 곳' },
-    { id: 'w', name: '살림채', desc: '교회 살림을 꾸리는 곳' }
+    { id: 'n', name: '말씀채', desc: '🪄 모세의 지팡이 — 본문 카드 대령과 말씀 연구, 설교 곳간' },
+    { id: 'e', name: '돌봄채', desc: '🌿 아론의 지팡이 — 양떼를 살피고 성도 명부와 번역을 섬기는 곳' },
+    { id: 's', name: '다음세대채', desc: '🌱 교육·가정 — 아이들과 가정을 세우는 곳' },
+    { id: 'w', name: '살림채', desc: '🌿 아론의 지팡이 — 목양·심방·주보와 교회 살림을 꾸리는 곳' }
   ];
 
   /* ── 방 목록 (12개 정식 개통 방 + 3개 짓는 터) ── */
   var ROOMS = [
-    { id: 'sermon', wing: 'n', name: '설교 준비실', program: '꿈바온 설교 프로그램 (66권·원어)', file: 'kkumdido_sermon_studio.html', status: 'open',
-      line: '성경 66권을 원어와 주석, 강해와 함께 펴 놓고 설교를 세웁니다.',
+    { id: 'sermon', wing: 'n', name: '설교 준비실', program: '🪄 모세의 지팡이 · 66권 원어 설교 연구실', file: 'kkumdido_sermon_studio.html', status: 'open',
+      badge: '목회자 무료 개방',
+      line: '성경 66권을 원어와 주석, 강해와 함께 펴 놓고 설교를 세웁니다. (요한복음 기본 열람 · 신원 확인 목회자 66권 전체 무료 개방)',
       does: ['본문을 원어와 주석으로 펴 보기', '강해 자료 살피기', '설교 원고 세우기 및 강단 노트 인쇄'] },
-    { id: 'sermon_ai', wing: 'n', name: '주간 말씀 나눔실', program: '꿈바온 설교AI (주간 사역 7종 변환)', file: 'kkumdido_sermon_ai_studio.html', status: 'open',
+    { id: 'sermon_ai', wing: 'n', name: '모세의 지팡이', program: '🪄 본문 카드 대령 & 주간 사역 7종 변환', file: 'kkumdido_sermon_ai_studio.html', status: 'open',
+      badge: '본문 치면 꿈디도 카드 대령',
       dlHtml: 'downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_Mac_Windows_포터블.zip',
-      line: '주일 설교 원고 한 편으로 주보 요약과 소그룹 나눔지, 주중 6일 묵상집과 가정예배지를 함께 빚어냅니다.',
-      does: ['주보 요약과 카톡 말씀 안내문 만들기', '속회·구역·셀 나눔 질문지(A4) 만들기', '월~토 6일 성도용 묵상집과 쇼츠·PPT 초안 만들기'] },
-    { id: 'commentary', wing: 'n', name: '주석 서고', program: '성경 66권 원어 풀어읽기 주석관', file: '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', status: 'open',
+      line: '설교 본문을 입력하면 꿈디도 12대 아카이브에서 원어·배경·신학·설교 카드를 즉시 대령하고, 설교 원고 한 편으로 주보 요약·소그룹 나눔지·6일 묵상집·가정예배지를 함께 빚어냅니다.',
+      does: ['설교 본문 입력 시 꿈디도 6대 아카이브 카드 즉시 대령', '주보 요약과 카톡 말씀 안내문 만들기', '속회·구역·셀 나눔 질문지(A4)와 6일 묵상집·쇼츠·PPT 만들기'] },
+    { id: 'commentary', wing: 'n', name: '주석 서고', program: '🪄 모세의 지팡이 · 66권 원어 풀어읽기 주석관', file: '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', status: 'open',
       line: '66권을 원어로 풀어 읽은 주석을 권과 장으로 찾아 읽습니다.',
       does: ['권과 장으로 주석 찾기', '원어 낱말 풀이 깊이 읽기'] },
-    { id: 'gotgan', wing: 'n', name: '내 설교 곳간', program: '개인 설교 서재 (내 컴퓨터 보관)', file: 'kkumdido_gotgan_studio.html', status: 'open',
+    { id: 'gotgan', wing: 'n', name: '내 설교 곳간', program: '🪄 모세의 지팡이 · 개인 설교 서재 (내 컴퓨터 보관)', file: 'kkumdido_gotgan_studio.html', status: 'open',
       line: '지금까지 전한 설교를 66권 순서로 내 컴퓨터에 차곡차곡 쌓아 둡니다.',
       does: ['전한 설교 넣어 두기', '본문별로 지난 설교 꺼내 보기', '외부 전송 없이 내 컴퓨터에만 보관하기'] },
-    { id: 'gyojeok', wing: 'e', name: '성도 명부실', program: '무료 교적 프로그램 양떼 수첩', file: 'kkumdido_gyojeok_studio.html', status: 'open',
+    { id: 'gyojeok', wing: 'e', name: '성도 명부실', program: '🌿 아론의 지팡이 · 무료 교적 양떼 수첩', file: 'kkumdido_gyojeok_studio.html', status: 'open',
       badge: '내 PC 보관 가능',
       dlHtml: 'downloads/꿈바온_무료교적_양떼수첩_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_무료교적프로그램_양떼수첩_v1.0_Mac_Windows_포터블.zip',
@@ -640,16 +642,16 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     { id: 'family', wing: 's', name: '가정예배 식탁', program: '52주 가정예배 스튜디오', file: 'kkumdido_family_worship_studio.html', status: 'open',
       line: '온 가족이 식탁에 둘러앉아 드리는 52주 가정예배서를 나눕니다.',
       does: ['이번 주 가정예배지 펴기', '성도 가정에 인쇄해 나눠 드리기'] },
-    { id: 'jipangi', wing: 'w', name: '주보·행정 공방', program: '모세의 지팡이 스튜디오', file: 'kkumdido_jipangi_studio.html', status: 'open',
+    { id: 'jipangi', wing: 'w', name: '주보·전도지 공방', program: '🌿 아론의 지팡이 · 주보·전도지·기도문 공방', file: 'kkumdido_jipangi_studio.html', status: 'open',
       line: '전도지와 주보, 대표기도문과 교회 행정 서식을 만듭니다.',
       does: ['주보 만들기', '계절·절기 전도지 만들기', '대표기도문 준비하기', '행정 서식 뽑기'] },
-    { id: 'finance', wing: 'w', name: '헌금·재정 장부실', program: '작은교회 투명 재정·헌금 수첩 (청지기 장부)', file: 'kkumdido_finance_studio.html', status: 'open',
+    { id: 'finance', wing: 'w', name: '헌금·재정 장부실', program: '🌿 아론의 지팡이 · 무료 헌금·재정 청지기 장부', file: 'kkumdido_finance_studio.html', status: 'open',
       badge: '내 PC 보관 가능',
       dlHtml: 'downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip',
       line: '작은 교회의 주일 헌금과 지출결의서, 연말정산 기부금영수증을 내 컴퓨터에만 투명하고 안전하게 적어 둡니다.',
       does: ['주일 헌금 봉투 기록 및 주보 명단 복사', '3단 결재란 지출결의서와 제직회 결산서 인쇄', '국세청 표준 연말정산 기부금영수증 발급'] },
-    { id: 'secretary', wing: 'w', name: '목양 비서실', program: '꿈바온 목회 비서 스튜디오', file: 'kkumdido_pastoral_secretary_studio.html', status: 'open',
+    { id: 'secretary', wing: 'w', name: '아론의 지팡이', program: '🌿 목양 · 심방 · 주보 · 행정 스튜디오', file: 'kkumdido_pastoral_secretary_studio.html', status: 'open',
       dlHtml: 'downloads/꿈바온_목회비서_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_목회비서_v1.0_Mac_Windows_포터블.zip',
       line: '우리 교회의 한 주간 목양 흐름을 살피며 설교 개요와 심방 위로문, A4 주보 초안을 함께 다듬습니다.',
@@ -666,14 +668,14 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 
   /* ── 현관의 문장들 (주보 순서지처럼) ── */
   var ERRANDS = [
-    { text: '주일 설교를 준비합니다', room: 'sermon', kw: '설교 준비 성경 66권 원어 강해' },
-    { text: '설교 원고 한 편으로 주간 사역 자료 일곱 가지를 만듭니다', room: 'sermon_ai', kw: '설교AI 주보요약 속회 구역 셀 소그룹 나눔지 큐티 QT 쇼츠 PPT' },
-    { text: '원어와 주석으로 말씀을 깊이 읽습니다', room: 'commentary', kw: '원어 히브리어 헬라어 주석 성경 연구' },
-    { text: '지난 설교를 꺼내 봅니다', room: 'gotgan', kw: '내 설교 곳간 서재 원고 보관 백업' },
-    { text: '성도 한 분을 찾아뵙고 교적을 기록합니다', room: 'gyojeok', kw: '교적 양떼수첩 심방 가계도 새가족 출석 증명서 세례', tag: '내 PC 보관 가능' },
-    { text: '헌금과 재정 장부를 투명하게 정리합니다', room: 'finance', kw: '헌금 재정 청지기장부 십일조 감사헌금 지출결의서 기부금영수증 결산', tag: '내 PC 보관 가능' },
-    { text: '주보와 전도지, 대표기도문과 서식을 만듭니다', room: 'jipangi', kw: '모세의 지팡이 주보 전도지 대표기도문 행정 서식' },
-    { text: '한 주간 목양과 심방·주보 초안을 함께 세웁니다', room: 'secretary', kw: '목회 비서 심방 위로문 주보 회의록 공문' },
+    { text: '설교 본문을 쳐서 꿈디도 카드를 대령받고 주간 사역 자료를 만듭니다', room: 'sermon_ai', kw: '모세의 지팡이 설교 본문 카드 대령 주보요약 속회 구역 셀 소그룹 나눔지 큐티 QT 쇼츠 PPT' },
+    { text: '성경 66권 원어와 강해로 주일 설교를 준비합니다', room: 'sermon', kw: '모세의 지팡이 설교 준비 성경 66권 원어 강해' },
+    { text: '원어와 주석으로 말씀을 깊이 읽습니다', room: 'commentary', kw: '모세의 지팡이 원어 히브리어 헬라어 주석 성경 연구' },
+    { text: '지난 설교를 곳간에서 꺼내 봅니다', room: 'gotgan', kw: '모세의 지팡이 내 설교 곳간 서재 원고 보관 백업' },
+    { text: '아론의 지팡이로 한 주간 목양과 심방·주보 초안을 세웁니다', room: 'secretary', kw: '아론의 지팡이 목양 심방 위로문 주보 회의록 공문' },
+    { text: '성도 한 분을 찾아뵙고 교적을 기록합니다', room: 'gyojeok', kw: '아론의 지팡이 교적 양떼수첩 심방 가계도 새가족 출석 증명서 세례', tag: '내 PC 보관 가능' },
+    { text: '헌금과 재정 장부를 투명하게 정리합니다', room: 'finance', kw: '아론의 지팡이 헌금 재정 청지기장부 십일조 감사헌금 지출결의서 기부금영수증 결산', tag: '내 PC 보관 가능' },
+    { text: '주보와 전도지, 대표기도문과 서식을 만듭니다', room: 'jipangi', kw: '아론의 지팡이 주보 전도지 대표기도문 행정 서식' },
     { text: '아이들 공과와 부서 예배를 준비합니다', room: 'school', kw: '교회학교 주일학교 교사 공과 활동지 유치부 아동부 청소년부' },
     { text: '부서별 한 해 교육과정을 펼쳐 봅니다', room: 'curriculum', kw: '13부서 52주 표준 커리큘럼 교육과정 구속사' },
     { text: '가정예배지를 나눠 드립니다', room: 'family', kw: '52주 가정예배 식탁 부모 자녀 축복기도' },

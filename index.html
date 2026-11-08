@@ -2387,6 +2387,63 @@
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 10px 12px;
     }
+    .kkd-drawer-cats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .kkd-cat-box {
+      background: rgba(255, 253, 248, 0.72);
+      border: 1.5px solid #D5C4A6;
+      border-radius: 14px;
+      padding: 13px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .kkd-cat-box.moses {
+      background: linear-gradient(180deg, #FFFDF7 0%, #F7EFE0 100%);
+      border-color: #B89446;
+    }
+    .kkd-cat-box.aaron {
+      background: linear-gradient(180deg, #FCFDF9 0%, #EEF3E8 100%);
+      border-color: #8BA47E;
+    }
+    .kkd-cat-box.nextgen {
+      background: linear-gradient(180deg, #FDFBF7 0%, #F2ECE1 100%);
+      border-color: #C4B293;
+    }
+    .kkd-cat-head {
+      padding-bottom: 8px;
+      margin-bottom: 2px;
+      border-bottom: 1px solid rgba(140, 98, 30, 0.2);
+    }
+    .kkd-cat-head strong {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 15px;
+      font-weight: 900;
+      color: #241A10;
+      margin-bottom: 2px;
+    }
+    .kkd-cat-head span {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: #6B5842;
+    }
+    .kkd-cat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    body.dark-theme .kkd-cat-box {
+      background: rgba(22, 28, 40, 0.85);
+      border-color: rgba(212, 175, 55, 0.32);
+    }
+    body.dark-theme .kkd-cat-head strong { color: #F7DC81; }
+    body.dark-theme .kkd-cat-head span { color: #C7B9A5; }
     .kkd-studio-card {
       display: flex;
       align-items: center;
@@ -3641,81 +3698,107 @@ body.dark-theme .knb-card-link {
       <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">영상실</button>
       <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">웨슬리관</button>
       <button type="button" class="nav-search-btn" onclick="openQuickSearchModal()" title="성경 인물·사건·지명·원어·설교 통합 검색 (단축키: Cmd+K)">🔍 통합검색</button>
-      <a href="kkumdido_church_support_annex.html" class="nav-studio-trigger" style="text-decoration:none; background:linear-gradient(135deg,#241A10,#3E2C1B); color:#F7E29E; border:1px solid #C59B38;" title="꿈디도 교회지원센터 (설교AI·목회비서·원어설교 웹스튜디오 & 교적·헌금재정 로컬 다운로드 12종 통합 센터)">🏛️ 교회지원센터 ↗</a>
+      <a href="kkumdido_church_support_annex.html" class="nav-studio-trigger" style="text-decoration:none; background:linear-gradient(135deg,#241A10,#3E2C1B); color:#F7E29E; border:1px solid #C59B38;" title="꿈디도 교회지원 별관 (말씀 등불 · 모세의 지팡이 · 아론의 지팡이 · 양떼수첩 · 청지기장부 통합 별관)">🏛️ 교회지원 별관 ↗</a>
       <button type="button" class="nav-studio-trigger" id="studioDrawerBtn" onclick="toggleStudiosDrawer(event)" aria-expanded="false">👑 사역 스튜디오 ▾</button>
       <button type="button" class="nav-guide-btn" onclick="openBlueprintModal()">도서관 안내 ↗</button>
     </nav>
     <button class="entrance-theme" onclick="toggleDarkTheme()" id="themeBtn" aria-label="서가 화면 밝기 전환">🌙 밤의 서재</button>
   </header>
 
-  <!-- 사역 스튜디오 & 설교 곳간 (10종 무설치 웹서재 & 교회지원 별관) 메가 드로어 (클릭 시 펼침) -->
+  <!-- 사역 스튜디오 & 설교 곳간 (3대 카테고리: 모세의 지팡이 · 아론의 지팡이 · 다음세대/가정/번역) 메가 드로어 -->
   <section id="kkumdidoStudiosDrawer" class="kkumdido-studios-drawer" aria-label="꿈바온 사역 프로그램 및 스튜디오 메가 서랍">
     <div class="kkd-drawer-inner">
       <div class="kkd-drawer-top">
         <div class="kkd-drawer-title">
-          <span>👑 꿈디도 교회지원센터 &amp; 사역 스튜디오 (12종 — 웹 스튜디오 직결 + 민감정보 PC 다운로드)</span>
-          <span class="sub">설교AI·목회비서·원어설교는 웹에서 즉시! 민감한 교적(양떼수첩)·헌금재정(청지기장부)은 내 PC로 다운받아 100% 안전하게!</span>
+          <span>👑 꿈디도 교회지원 별관 &amp; 사역 스튜디오 (3대 지팡이 체계 — 웹 스튜디오 직결 + 민감정보 PC 보관)</span>
+          <span class="sub">설교·말씀·곳간은 『모세의 지팡이』에서, 심방·주보·교적·재정은 『아론의 지팡이』에서, 교육·가정·번역은 『다음세대·열방』에서 바로 여십시오!</span>
         </div>
         <div class="kkd-drawer-actions">
-          <a href="kkumdido_church_support_annex.html" style="cursor:pointer;text-decoration:none;color:#F7E29E;background:linear-gradient(135deg,#241A10,#42301D);border:1.5px solid #C59B38;font-weight:900;font-size:13px;padding:6px 14px;border-radius:8px;">🏛️ 꿈디도 교회지원센터 전체 열기 (12종) ↗</a>
+          <a href="kkumdido_church_support_annex.html" style="cursor:pointer;text-decoration:none;color:#F7E29E;background:linear-gradient(135deg,#241A10,#42301D);border:1.5px solid #C59B38;font-weight:900;font-size:13px;padding:6px 14px;border-radius:8px;">🏛️ 꿈디도 교회지원 별관 전체 열기 (말씀 등불) ↗</a>
           <button type="button" onclick="enterMosesSanctuary(); toggleStudiosDrawer();" style="cursor:pointer;color:#241A10;background:#FBF5E6;border:1px solid #C8A45D;font-weight:800;font-size:13px;padding:6px 13px;border-radius:8px;">🏛️ 본관 내 모세의 지팡이 성소 열기</button>
           <button type="button" onclick="window.kkumdidoPass && window.kkumdidoPass.open()" style="cursor:pointer;color:#F5DF98;background:#241A10;border:1px solid #B89446;font-weight:800;font-size:13px;padding:6px 14px;border-radius:8px;">🪪 도서관 이용증 발급·로그인</button>
           <button type="button" onclick="toggleStudiosDrawer()" style="cursor:pointer;color:#5C5248;background:#FFFFFF;border:1px solid #D5C8B3;font-weight:700;font-size:13px;padding:6px 11px;border-radius:8px;">닫기 ✕</button>
         </div>
       </div>
-      <div class="kkd-drawer-grid">
-        <a href="kkumdido_church_support_annex.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>🏛️ 꿈디도 교회지원센터 (별관)</strong><small>12종 교회 프로그램 전수조사 &amp; 통합 센터</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>⚡ 꿈바온 설교AI (7종 변환)</strong><small>[웹 전용] 설교원고 1편→주보·나눔지·6일QT·쇼츠</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>🕊️ 꿈바온 목회 비서 (솔로몬 초월)</strong><small>[웹+PC] 설교개요·심방·주보·일정·AI 1초 연결</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>👑 꿈바온 설교준비 (로고스 원어)</strong><small>[목회자 무료 개방] 66권 원어·주석·강해·설교 빌더</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_gyojeok_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>🐑 무료 교적 (양떼 수첩)</strong><small>[내PC 다운로드] 교적·심방·출석·증명서 로컬보안</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_finance_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
-          <div><strong>💰 무료 헌금·재정 (청지기 장부)</strong><small>[내PC 다운로드] 헌금·지출결의·기부금영수증·결산</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>🏺 내 설교 곳간 (개인 웹서재)</strong><small>서버 미전송 내 PC 단독보관 · 66권 자동정리</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_jipangi_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>🪄 모세의 지팡이 스튜디오</strong><small>목회·행정·심방·기도문 올인원 도구</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="javascript:void(0)" onclick="enterMosesSanctuary(); toggleStudiosDrawer();" class="kkd-studio-card">
-          <div><strong>🏛️ 본관 모세의 지팡이 성소</strong><small>전도지·주보·가정예배 본관 성소</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_sunday_school_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>🌱 교회학교 교사 스튜디오</strong><small>주일학교 설교·공과·활동지 제작실</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>📋 13부서 52주 커리큘럼</strong><small>영아부~장년부 1년 52주 표준 교육과정</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_family_worship_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>🕯️ 52주 가정예배 스튜디오</strong><small>온 가족이 함께 드리는 52주 가정예배서</small></div>
-          <span class="arr">↗</span>
-        </a>
-        <a href="kkumdido_translation_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
-          <div><strong>🌐 기독교 번역 스튜디오</strong><small>8개국어 성경·신학·설교 전문 번역기</small></div>
-          <span class="arr">↗</span>
-        </a>
+
+      <div class="kkd-drawer-cats">
+        <!-- 제1카테고리: 모세의 지팡이 (설교 · 말씀 · 곳간) -->
+        <div class="kkd-cat-box moses">
+          <div class="kkd-cat-head">
+            <strong><span>🪄 모세의 지팡이 (설교 · 말씀 · 곳간)</span><small style="font-size:11.5px; color:#8C621E;">강단 말씀 사역</small></strong>
+            <span>본문을 치면 꿈디도 자료·주제 카드를 대령하고 주간 사역 자료까지 한 호흡에 빚습니다</span>
+          </div>
+          <div class="kkd-cat-list">
+            <a href="kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+              <div><strong>🪄 모세의 지팡이 (본문 카드 대령 &amp; 주간 사역 변환)</strong><small>[핵심] 본문 입력 → 꿈디도 카드 6종 대령 + 나눔지·6일묵상·쇼츠 완성</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_sermon_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+              <div><strong>👑 모세의 지팡이 · 66권 원어 설교 준비실</strong><small>[목회자 무료 개방] 66권 1,189장 × 12대 아카이브 3,650모듈 설교 빌더</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>📖 성경 66권 원어·풀어읽기 주석 서고</strong><small>창세기~요한계시록 1,189장 원어 직역·풀어읽기 &amp; 웨슬리 주해</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_gotgan_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>🏺 내 설교 곳간 (개인 설교 서재)</strong><small>서버 미전송 내 PC 단독 보관 · 성경 66권별 내 설교 자동 정리</small></div>
+              <span class="arr">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 제2카테고리: 아론의 지팡이 (목양 · 심방 · 주보 · 교적 · 재정) -->
+        <div class="kkd-cat-box aaron">
+          <div class="kkd-cat-head">
+            <strong><span>🌿 아론의 지팡이 (목양 · 심방 · 살림)</span><small style="font-size:11.5px; color:#3B622B;">목양과 교회 살림</small></strong>
+            <span>성도 심방과 위로, A4 주보 조판, 교적(양떼수첩)과 재정(청지기장부)을 안전하게 돌봅니다</span>
+          </div>
+          <div class="kkd-cat-list">
+            <a href="kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+              <div><strong>🌿 아론의 지팡이 (목양 · 심방 · 주보 · 행정 실무)</strong><small>[웹+PC] 심방 위로문 · 인쇄용 A4 주보 · 목회 일정 · 회의록 · 공문</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_gyojeok_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+              <div><strong>🐑 무료 교적 (양떼 수첩 · 내 PC 보관)</strong><small>[내PC 다운로드] 교적 · 가계도 · 심방 기록 · 세례/교인증명서 로컬 보안</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_finance_studio.html" data-kkd-studio-link="1" class="kkd-studio-card featured">
+              <div><strong>💰 무료 헌금·재정 (청지기 장부 · 내 PC 보관)</strong><small>[내PC 다운로드] 주일 헌금 · 지출결의서 · 기부금영수증 · 제직회 결산</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_jipangi_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>🎨 전도지 · 절기 인쇄물 공방</strong><small>우리 교회 맞춤형 전도지 · 절기 포스터 · 새가족 환영 카드 인쇄</small></div>
+              <span class="arr">↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- 제3카테고리: 다음세대 · 가정 · 열방 선교 (교육과 번역) -->
+        <div class="kkd-cat-box nextgen">
+          <div class="kkd-cat-head">
+            <strong><span>🌱 다음세대 · 가정 · 열방 (교육 · 번역)</span><small style="font-size:11.5px; color:#6B5335;">교회학교와 선교</small></strong>
+            <span>교회학교 공과부터 온 가족 식탁 가정예배, 8개국어 성경·설교 번역까지 지원합니다</span>
+          </div>
+          <div class="kkd-cat-list">
+            <a href="kkumdido_sunday_school_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>🌱 교회학교 교사 스튜디오</strong><small>주일학교 설교 · 분반 공과 · 활동지 제작실</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>📋 13부서 52주 표준 커리큘럼</strong><small>영아부~장년부 1년 52주 구속사 표준 교육과정</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_family_worship_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>🕯️ 52주 가정예배 식탁 스튜디오</strong><small>온 가족이 식탁에서 함께 드리는 52주 가정예배서</small></div>
+              <span class="arr">↗</span>
+            </a>
+            <a href="kkumdido_translation_studio.html" data-kkd-studio-link="1" class="kkd-studio-card">
+              <div><strong>🌐 8개국어 기독교 번역 스튜디오</strong><small>8개국어 성경(공인 역본)·신학·설교 전문 번역기</small></div>
+              <span class="arr">↗</span>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -3809,8 +3892,8 @@ body.dark-theme .knb-card-link {
         <span class="knb-label">📜 사서실 공지</span>
         <span id="knbNewBadge" class="knb-new-badge">NEW</span>
         <span id="knbDate" class="knb-date">2026.11.08</span>
-        <span id="knbCat" class="knb-cat">[교회지원 별관 · 목회비서]</span>
-        <a id="knbHeadline" href="kkumdido_church_support_annex.html" class="knb-headline-link">『꿈디도 교회 지원 프로그램 별관』 및 『꿈바온 목회 비서 스튜디오 (v1.0)』 정식 개관</a>
+        <span id="knbCat" class="knb-cat">[교회지원 별관 · 모세와 아론의 지팡이]</span>
+        <a id="knbHeadline" href="kkumdido_church_support_annex.html" class="knb-headline-link">『꿈디도 교회지원 별관』 — 『🪄 모세의 지팡이(본문 카드 대령)』 및 『🌿 아론의 지팡이(목양·심방·주보)』 개관</a>
       </div>
       <div class="knb-right">
         <button type="button" class="knb-toggle-btn" onclick="openKkumdidoGuestbookModal()" style="background:linear-gradient(135deg,#241A10,#3D2C1B); color:#F5DF98; border-color:#C8A45D; font-weight:800;" title="꿈디도 방문 인사와 한 줄 묵상을 영구 방명록에 남겨보세요">📖 영구 방명록 ✍️</button>

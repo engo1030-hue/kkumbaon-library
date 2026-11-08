@@ -162,13 +162,13 @@
   function getCurrentPageLabel() {
     var path = (window.location.pathname || '').toLowerCase();
     if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·말씀등불)';
-    if (path.indexOf('kkumdido_pastoral_secretary') !== -1) return '🕊️ 꿈바온 목회 비서 스튜디오';
-    if (path.indexOf('kkumdido_sermon_ai') !== -1) return '⚡ 꿈바온 설교AI (7종 변환)';
+    if (path.indexOf('kkumdido_pastoral_secretary') !== -1) return '🌿 아론의 지팡이 (목양·심방·주보)';
+    if (path.indexOf('kkumdido_sermon_ai') !== -1) return '🪄 모세의 지팡이 (본문카드대령·7종변환)';
     if (path.indexOf('kkumdido_finance') !== -1) return '💰 무료 헌금·재정 (청지기장부)';
-    if (path.indexOf('kkumdido_sermon_studio') !== -1) return '👑 설교 프로그램 (66권·원어)';
+    if (path.indexOf('kkumdido_sermon_studio') !== -1) return '👑 모세의 지팡이 · 66권 원어 설교준비실';
     if (path.indexOf('kkumdido_gotgan') !== -1) return '🏺 내 설교 곳간 (개인 서재)';
     if (path.indexOf('kkumdido_gyojeok') !== -1) return '🐑 무료 교적 스튜디오 (양떼 수첩)';
-    if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🪄 모세의 지팡이 스튜디오';
+    if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🎨 전도지·절기 인쇄물 공방';
     if (path.indexOf('kkumdido_sunday_school') !== -1) return '🌱 교회학교 교사 스튜디오';
     if (path.indexOf('kkumdido_13dept') !== -1) return '📋 13부서 52주 커리큘럼';
     if (path.indexOf('kkumdido_family_worship') !== -1) return '🕯️ 52주 가정예배 스튜디오';
@@ -1380,18 +1380,19 @@
       '  </div>',
       '  <div class="kkd-studio-grid" aria-label="꿈디도 통합 스튜디오 바로가기">',
       '    <a href="' + pfx + 'index.html">🏛️ 꿈디도 도서관 본관</a>',
-      '    <a href="' + pfx + 'kkumdido_church_support_annex.html" data-kkd-studio-link="1">🏛️ 꿈디도 교회지원센터 (12종)</a>',
-      '    <a href="' + pfx + 'kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1">⚡ 꿈바온 설교AI (7종 변환)</a>',
-      '    <a href="' + pfx + 'kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1">🕊️ 꿈바온 목회 비서 (솔로몬 초월)</a>',
-      '    <a href="' + pfx + 'kkumdido_sermon_studio.html" data-kkd-studio-link="1">👑 설교 프로그램 (원어·설교)</a>',
+      '    <a href="' + pfx + 'kkumdido_church_support_annex.html" data-kkd-studio-link="1">🏛️ 꿈디도 교회지원 별관 (말씀 등불)</a>',
+      '    <a href="' + pfx + 'kkumdido_sermon_ai_studio.html" data-kkd-studio-link="1">🪄 모세의 지팡이 (본문카드대령·7종변환)</a>',
+      '    <a href="' + pfx + 'kkumdido_sermon_studio.html" data-kkd-studio-link="1">👑 모세의 지팡이 · 66권 원어 설교준비실</a>',
+      '    <a href="' + pfx + '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" data-kkd-studio-link="1">📖 66권 원어·풀어읽기 주석 서고</a>',
       '    <a href="' + pfx + 'kkumdido_gotgan_studio.html" data-kkd-studio-link="1">🏺 내 설교 곳간 (개인 웹서재)</a>',
-      '    <a href="' + pfx + 'kkumdido_gyojeok_studio.html" data-kkd-studio-link="1">🐑 무료 교적 (양떼 수첩·다운로드)</a>',
-      '    <a href="' + pfx + 'kkumdido_finance_studio.html" data-kkd-studio-link="1">💰 무료 헌금·재정 (청지기장부·다운로드)</a>',
-      '    <a href="' + pfx + 'kkumdido_jipangi_studio.html" data-kkd-studio-link="1">🪄 모세의 지팡이 스튜디오</a>',
+      '    <a href="' + pfx + 'kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1">🌿 아론의 지팡이 (목양·심방·주보)</a>',
+      '    <a href="' + pfx + 'kkumdido_gyojeok_studio.html" data-kkd-studio-link="1">🐑 무료 교적 (양떼 수첩·내PC보관)</a>',
+      '    <a href="' + pfx + 'kkumdido_finance_studio.html" data-kkd-studio-link="1">💰 무료 헌금·재정 (청지기장부·내PC보관)</a>',
+      '    <a href="' + pfx + 'kkumdido_jipangi_studio.html" data-kkd-studio-link="1">🎨 전도지·절기 인쇄물 공방</a>',
       '    <a href="' + pfx + 'kkumdido_sunday_school_studio.html" data-kkd-studio-link="1">🌱 교회학교 교사 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1">📋 13부서 52주 커리큘럼</a>',
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
-      '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 기독교 번역 스튜디오</a>',
+      '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 8개국어 기독교 번역 스튜디오</a>',
       '  </div>',
       '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 교회지원 프로그램이 무료로 바로 열립니다. 특히 [🏺 내 설교 곳간]과 [🐑 무료 교적 스튜디오]에 입력하시는 설교 원고 및 성도 교적 개인정보는 외부 서버로 절대 전송되지 않고 오직 본인 컴퓨터에만 안전하게 보관됩니다.</p>',
       '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
