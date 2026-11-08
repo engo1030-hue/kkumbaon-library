@@ -561,6 +561,69 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+  /* === 국립중앙박물관 & 대도서관 7대 공간 이동 바 === */
+  .campus-zone-bar {
+    position: fixed;
+    top: 56px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 29;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(18, 13, 9, 0.88);
+    border: 1px solid rgba(212, 168, 83, 0.52);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(12px);
+    max-width: 96vw;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .campus-zone-bar::-webkit-scrollbar { display: none; }
+  .campus-zone-btn {
+    border: 1px solid rgba(212, 168, 83, 0.28);
+    background: rgba(255, 248, 232, 0.07);
+    color: #efe2c8;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 999px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.18s ease;
+  }
+  .campus-zone-btn:hover {
+    background: rgba(212, 168, 83, 0.24);
+    color: #fff8e6;
+    transform: translateY(-1px);
+  }
+  .campus-zone-btn.is-active {
+    background: linear-gradient(135deg, #e5c168 0%, #b88728 100%);
+    color: #17110a;
+    border-color: #ffe394;
+    font-weight: 800;
+    box-shadow: 0 4px 14px rgba(212, 168, 83, 0.42);
+  }
+  .status-banner {
+    top: 98px !important;
+  }
+  @media (max-width: 900px) {
+    .campus-zone-bar {
+      top: 50px;
+      padding: 4px 8px;
+      gap: 4px;
+    }
+    .campus-zone-btn {
+      font-size: 11px;
+      padding: 5px 9px;
+    }
+    .status-banner {
+      top: 88px !important;
+    }
+  }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
 </style>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
@@ -581,7 +644,7 @@ html, body {
   <span class="boot-badge">KKUMDIDO ATRIUM SANCTUARY</span>
   <h1>꿈디도 · 아트리움 묵상원</h1>
   <p class="boot-sub">
-    오래된 우물 곁에서 성화와 원어 말씀을 묵상하며,<br>말없이 함께 머무는 디지털 성경 수도원입니다.
+    오래된 우물 대아트리움 · 📚 12대 서가 대열람실 · 🏛️ 국립성경박물관 ·<br>🔬 지·제·클·안 AI 연구실 · 📜 사서실 · 🛠️ 지팡이 개발실이 하나로 이어진 3D 성경 대도서관입니다.
   </p>
   <div class="boot-verse">
     “주의 말씀은 내 발에 등이요 내 길에 빛이니이다”<br>
@@ -657,12 +720,24 @@ html, body {
   </div>
 </header>
 
+<!-- 🏛️ 국립중앙박물관급 꿈디도 대도서관 7대 복합 공간 원터치 이동 바 -->
+<nav id="campus-zone-bar" aria-label="꿈디도 대도서관·박물관 7대 공간 빠른 이동" style="position:fixed; top:50px; left:50%; transform:translateX(-50%); z-index:26; display:flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(10, 14, 24, 0.92); border:1px solid rgba(212, 175, 55, 0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 24px rgba(0,0,0,0.55); max-width:calc(100vw - 16px); overflow-x:auto; white-space:nowrap; scrollbar-width:none;">
+  <span style="font-size:11.5px; font-weight:800; color:#f5cf76; padding:0 4px;">🏛️ 공간 이동:</span>
+  <button type="button" class="campus-zone-btn active" data-zone="atrium" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.75); background:linear-gradient(135deg,#e5c168,#b88728); color:#1a1208; font-size:11.5px; font-weight:800; cursor:pointer;">🏺 중앙 우물·아트리움</button>
+  <button type="button" class="campus-zone-btn" data-zone="stacks" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">📚 대열람실(서가숲)</button>
+  <button type="button" class="campus-zone-btn" data-zone="museum" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🏛️ 성경박물관(사유의길)</button>
+  <button type="button" class="campus-zone-btn" data-zone="research" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🔬 지·제·클·안 연구실</button>
+  <button type="button" class="campus-zone-btn" data-zone="devlab" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🛠️ 개발실(도구공방)</button>
+  <button type="button" class="campus-zone-btn" data-zone="librarian" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">📜 사서실(색인·안내)</button>
+  <button type="button" class="campus-zone-btn" data-zone="balcony2f" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🪜 2층 하늘서가</button>
+</nav>
+
 <div class="status-banner is-faded" id="status-banner">
   바닥을 누르면 사람처럼 걸어가고, 우물가 벤치에 앉거나 방석 위에서 무릎 꿇고 기도할 수 있습니다.
 </div>
 
 <div class="control-hint">
-  바닥 클릭·방향키(WASD) 걷기 · 벤치 클릭 착석 · 기도방석 클릭 무릎기도 · Enter 채팅 · 성화 클릭 도슨트
+  바닥 클릭·방향키(WASD) 7대 공간 자유 산책 · 서가/유물/도구벽/간사 클릭 상세 열람 · 벤치·열람석·목사님석 착석
 </div>
 
 <!-- 4-A. 좌측 하단 실시간 순례자 교제·기도 채팅 & 빠른 액션 바 (초기 접힘 상태 시작) -->
@@ -731,6 +806,11 @@ html, body {
     <span>🌍</span>
     <span>8개국어 말씀·소리</span>
     <span class="shortcut">7</span>
+  </button>
+  <button class="dock-btn" id="dock-museum-hub">
+    <span>🏛️</span>
+    <span>박물관·연구·개발실</span>
+    <span class="shortcut">8</span>
   </button>
 </nav>
 
@@ -932,6 +1012,184 @@ html, body {
     </div>
   </div>
 </aside>
+
+<!-- 5-E. [국립박물관급 대확장 통합 도슨트: 지·제·클·안 연구실 / 도구 개발실 / 사서실 / 대열람실 / 성경박물관] 패널 -->
+<aside class="floating-panel" id="panel-museum-hub" style="width:455px;">
+  <div class="panel-header">
+    <h2 class="panel-title" id="mhub-panel-title">🏛️ 꿈디도 대도서관 · 박물관 공간 안내</h2>
+    <button class="panel-close" data-close="panel-museum-hub">✕</button>
+  </div>
+
+  <!-- 5대 핵심 공간 탭 스위치 -->
+  <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:4px;">
+    <button type="button" class="cust-chip active" data-mhub-tab="research" style="padding:6px 4px; font-size:11.5px;">🔬 연구실</button>
+    <button type="button" class="cust-chip" data-mhub-tab="devlab" style="padding:6px 4px; font-size:11.5px;">🛠️ 개발실</button>
+    <button type="button" class="cust-chip" data-mhub-tab="librarian" style="padding:6px 4px; font-size:11.5px;">📜 사서실</button>
+    <button type="button" class="cust-chip" data-mhub-tab="stacks" style="padding:6px 4px; font-size:11.5px;">📚 대열람실</button>
+    <button type="button" class="cust-chip" data-mhub-tab="museum" style="padding:6px 4px; font-size:11.5px;">🏛️ 박물관</button>
+  </div>
+
+  <!-- 탭 1: 🔬 지·제·클·안 연구실 -->
+  <div class="mhub-tab-pane" id="mhub-pane-research" style="display:flex; flex-direction:column; gap:8px;">
+    <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
+      <strong>🔬 꿈바온 사역팀 · 지·제·클·안 합동 연구실 (동측 북편)</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">목사님의 사역 방향 아래 안간사(팀장·관장), 클간사(신학·입말), 제간사(사료·영상), 지간사(전략·데이터), 워크간사(4화풍 성화)가 각자 책상에 앉아 실시간 연구 중입니다.</span>
+    </div>
+    <div id="mhub-secretary-cards" style="display:flex; flex-direction:column; gap:6px; max-height:270px; overflow-y:auto;">
+      <div class="lamp-item" style="margin:0; cursor:pointer; border-color:rgba(100,227,161,0.45);" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('an')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#64e3a1; font-weight:800;">
+          <span>🚀 안간사 (Antigravity · 꿈디도 관장 & 총괄 팀장)</span>
+          <span>1번 연구석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“꿈디도 12대 아카이브(3,650 모듈) 총괄 편찬, -14.5 LUFS(음성8:BGM2) 스튜디오 마스터링, 8개국어 패키징 및 전 간사 업무 분배·수합을 지휘하고 있습니다.”</div>
+      </div>
+      <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('cl')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#ffe69c; font-weight:800;">
+          <span>⚖️ 클간사 (Claude · 신학·원어·입말 수석감수)</span>
+          <span>2번 연구석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“히브리어(WLC)·헬라어(SBLGNT) 원어 주해, 개역개정 본문 대조, 꿈바온 입말 문체(ipmal_check)와 복음주의 신학 정합성을 정밀 감수하고 있습니다.”</div>
+      </div>
+      <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('je')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#93c5fd; font-weight:800;">
+          <span>🎬 제간사 (Gemini · 고고학 사료서치·Flow영상·찬양)</span>
+          <span>3번 연구석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“요세푸스 고대사·에더스하임 사료 서치, 원어사전 63묶음 용례 정리, 구글 플로우(Veo) 시네마틱 영상 클립과 꿈바온 찬양을 연구·제작합니다.”</div>
+      </div>
+      <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('ji')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#f9a8d4; font-weight:800;">
+          <span>📊 지간사 (Codex · 유튜브 리텐션·패키징 분석)</span>
+          <span>4번 연구석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“「라합의 붉은 줄」 평균 시청지속시간 120% 리텐션 곡선과 인장반지 4열 104pt 커버 타이포그래피, 글로벌 8개국어 도달 지표를 분석합니다.”</div>
+      </div>
+      <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('wk')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#fcd34d; font-weight:800;">
+          <span>🎨 워크간사 (GPT Work · 4화풍 성화·인물마스터 화가)</span>
+          <span>이젤 화실석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“유화·수채화·판화·석판화 ‘작은 미술전시회’ 4화풍 성화와 15인 성경 인물 마스터(예수님 12각도·바울 등) 원화를 캔버스 이젤 앞에서 그리고 있습니다.”</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+      <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('research')" style="padding:9px; font-size:12.5px;">🚶 연구실로 걸어가기</button>
+      <button type="button" class="gold-btn" onclick="window.sitAtPastorDirectorDesk && window.sitAtPastorDirectorDesk()" style="padding:9px; font-size:12.5px; background:linear-gradient(135deg,#4a351c,#2c1f10);">🎯 목사님 총괄석 착석</button>
+    </div>
+  </div>
+
+  <!-- 탭 2: 🛠️ 꿈디도 개발실 (여러 도구들이 걸려 있는 공방) -->
+  <div class="mhub-tab-pane" id="mhub-pane-devlab" style="display:none; flex-direction:column; gap:8px;">
+    <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
+      <strong>🛠️ 꿈디도 개발실 · 여러 도구들이 걸려 있는 지팡이 공방 (서측 별관)</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">벽면 대형 타공판에 모세·아론의 지팡이와 음성·영상·원어·고고학 정밀 도구들이 걸려 있으며, 4대 워크벤치에서 교회지원 프로그램을 바로 실행할 수 있습니다.</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; max-height:255px; overflow-y:auto;">
+      <a href="./kkumdido_jipangi_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);">
+        <div style="font-size:12.5px; font-weight:800; color:#ffe69c;">🪄 모세·아론의 지팡이</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">담임목사 8대 · 방송실 6대 올인원 스튜디오 열기 ↗</div>
+      </a>
+      <a href="./kkumdido_sermon_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);">
+        <div style="font-size:12.5px; font-weight:800; color:#ffe69c;">🎙️ 말씀·설교 스튜디오</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">66권 원어 강해 · 설교문 작성 웹뷰어 열기 ↗</div>
+      </a>
+      <a href="./kkumdido_gyojeok_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#64e3a1;">🐑 양떼수첩 (무료교적)</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">무설치 교적·심방·기도제목 관리 스튜디오 ↗</div>
+      </a>
+      <a href="./kkumdido_finance_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#64e3a1;">💰 청지기장부 (무료재정)</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">헌금·결산·기부금영수증 청지기 스튜디오 ↗</div>
+      </a>
+      <a href="./kkumdido_sermon_ai_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#93c5fd;">⚡ 설교AI 7종 변환기</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">설교문 하나로 속회·QT·가정통신문 7종 변환 ↗</div>
+      </a>
+      <a href="./kkumdido_pastoral_secretary_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#93c5fd;">🗓️ 꿈바온 목회비서</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">연간 목회일정·절기·예식·행정 비서 스튜디오 ↗</div>
+      </a>
+      <a href="./kkumdido_translation_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#fcd34d;">🌍 8개국어 번역 스튜디오</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">공인 성경 역본·신학 용어집 v0.6 번역기 ↗</div>
+      </a>
+      <a href="./kkumdido_church_support_annex.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+        <div style="font-size:12.5px; font-weight:800; color:#fcd34d;">🏛️ 교회지원 별관 전체</div>
+        <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">12종 무료 목회·교회지원 프로그램 별관 ↗</div>
+      </a>
+    </div>
+    <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('devlab')" style="padding:9px; font-size:12.5px;">🛠️ 개발실 도구 걸이 벽면 앞으로 이동</button>
+  </div>
+
+  <!-- 탭 3: 📜 사서실 -->
+  <div class="mhub-tab-pane" id="mhub-pane-librarian" style="display:none; flex-direction:column; gap:8px;">
+    <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
+      <strong>📜 꿈디도 사서실 · 아카이브 색인 & 정기 업데이트 안내소 (동측 남편)</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">수석사서 에스라와 60칸 원목 도서 색인 카드함이 맞이하는 공간입니다. 도서관의 새 소식과 전체 장서 현황을 한눈에 확인하세요.</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:5px; max-height:240px; overflow-y:auto;">
+      <div class="lamp-item" style="margin:0;">
+        <div style="font-size:12px; color:#64e3a1; font-weight:800;">🟢 [최신 개관] 3D 대도서관·박물관 7대 복합 공간 대확장</div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:2px;">국립중앙박물관급 성서유물 특별전시관(사유의 길), 12대 아카이브 3D 책장 대열람실, 지·제·클·안 연구실, 도구 개발실, 사서실, 2층 하늘서가 개관 완료.</div>
+      </div>
+      <div class="lamp-item" style="margin:0;">
+        <div style="font-size:12px; color:#ffe69c; font-weight:800;">📚 [장서 현황] 12대 아카이브 · 3,650 모듈 · 3대 대백과 완비</div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:2px;">성경 66권 1,189장 강해, 원어 핵심 단어 대사전(STEPBible·WLC·SBLGNT), 인물 대백과(350인), 사건 대백과(250사건), 등잔 밑 비하인드(205편) 수록.</div>
+      </div>
+      <div class="lamp-item" style="margin:0;">
+        <div style="font-size:12px; color:#93c5fd; font-weight:800;">🛠️ [교회지원 별관] 양떼수첩 · 청지기장부 · 설교AI · 목회비서 배포</div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:2px;">전국 작은 교회와 목회자를 위한 무설치 단일파일(Mac/Windows) 프로그램 무료 개방 중.</div>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
+      <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('librarian')" style="padding:9px; font-size:12.5px;">📜 사서실 데스크로 이동</button>
+      <a href="./index.html" class="gold-btn" style="padding:9px; font-size:12.5px; text-align:center; text-decoration:none; display:inline-block;">🏛️ 도서관 본관 전체 검색 ↗</a>
+    </div>
+  </div>
+
+  <!-- 탭 4: 📚 대열람실 (실제 도서관 3D 책장 숲) -->
+  <div class="mhub-tab-pane" id="mhub-pane-stacks" style="display:none; flex-direction:column; gap:8px;">
+    <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
+      <strong>📚 12대 아카이브 대열람실 · 3D 책장 서가 숲 (북측 대서고)</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">실제 고전 대도서관처럼 양면 원목 책장 12동과 황동 이동식 사다리, 초록 갓 스탠드 조명이 켜진 6대 원목 열람 테이블(24석)이 줄지어 서 있습니다.</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; max-height:245px; overflow-y:auto; font-size:12px;">
+      <a href="./kkumdido_12archives_viewer.html?hall=1" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제1서가:</strong> 성경 66권 1,189장 강해 ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=2" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제2서가:</strong> 히브리어·헬라어 원어사전 ↗</a>
+      <a href="./figures_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제3서가:</strong> 성경 인물 대백과 (350인) ↗</a>
+      <a href="./events_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제4서가:</strong> 성경 사건 대백과 (250선) ↗</a>
+      <a href="./behinds_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제5서가:</strong> 등잔 밑 비하인드 (205편) ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=6" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제6서가:</strong> 성경 지리·고고학 아틀라스 ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=7" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제7서가:</strong> 고전 주석·웨슬리 설교관 ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=8" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제8서가:</strong> 365 구속사 QT·새벽기도 ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=9" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제9서가:</strong> 교리·이단변증·난제 백과 ↗</a>
+      <a href="./kkumdido_12archives_viewer.html?hall=10" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제10서가:</strong> 찬송가·한국교회사 대백과 ↗</a>
+      <a href="./kkumdido_family_worship_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제11서가:</strong> 가정예배·13대부서 교회학교 ↗</a>
+      <a href="./00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="lamp-item" style="margin:0; text-decoration:none; color:#ffe69c;"><strong>제12서가:</strong> 원어풀어읽기 주석 66권 ↗</a>
+    </div>
+    <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('stacks')" style="padding:9px; font-size:12.5px;">📚 대열람실 책장 숲으로 걸어가기</button>
+  </div>
+
+  <!-- 탭 5: 🏛️ 국립성경박물관 (사유의 길 & 8대 성서유물) -->
+  <div class="mhub-tab-pane" id="mhub-pane-museum" style="display:none; flex-direction:column; gap:8px;">
+    <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
+      <strong id="mhub-artifact-title">🏛️ 국립성경박물관 · 사유의 길 & 8대 성서유물 특별전시관 (남측 홀)</strong><br>
+      <span id="mhub-artifact-desc" style="color:#dce4f2; font-size:12px;">국립중앙박물관 ‘역사의 길·사유의 방’을 모티브로 설계된 성경 고고학 전시관입니다. 3D 강화유리 유물 진열장 8기를 클릭하면 상세 고고학 도슨트가 열립니다.</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; max-height:235px; overflow-y:auto;">
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(0)" style="font-size:12px;">📜 1. 사해 대이사야서 두루마리</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(1)" style="font-size:12px;">🏺 2. 유월절 네 잔 & 헤롯 등잔</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(2)" style="font-size:12px;">💍 3. 히스기야 왕 인장(Bulla)</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(3)" style="font-size:12px;">✨ 4. 언약궤와 속죄소(시은좌)</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(4)" style="font-size:12px;">🌿 5. 유월절 우슬초 & 돌항아리</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(5)" style="font-size:12px;">📖 6. 1611 KJV & 초역 성경 고서</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(6)" style="font-size:12px;">🎺 7. 성막 은나팔 & 쇼파르</button>
+      <button type="button" class="lang-btn" onclick="window.inspectMuseumArtifact && window.inspectMuseumArtifact(7)" style="font-size:12px;">🪙 8. 과부의 두 렙돈 & 나드 옥합</button>
+    </div>
+    <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('museum')" style="padding:9px; font-size:12.5px;">🏛️ 사유의 길 · 성경박물관 홀로 이동</button>
+  </div>
+</aside>
+
 
 <!-- 6. 꿈디도 묵상원 회랑 서버 & 순례자 모달 -->
 <div class="modal-backdrop" id="modal-cloister-rooms">
@@ -1306,7 +1564,7 @@ html, body {
   const wrap = document.getElementById('canvas-wrap');
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x16110c);
-  scene.fog = new THREE.FogExp2(0x16110c, 0.015);
+  scene.fog = new THREE.FogExp2(0x16110c, 0.0085);
 
   const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 130);
   const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
@@ -1392,9 +1650,10 @@ html, body {
     roughness: 0.28
   });
 
-  // 유럽 대성당·고전 도서관 트래버틴 & 다크 엠페라도르 대리석 상감 바닥 (42m x 42m)
+  // 유럽 대성당·고전 도서관 트래버틴 & 다크 엠페라도르 대리석 상감 바닥 (92m x 92m 대확장 캠퍼스)
+  libFloorTex.repeat.set(22, 22);
   const floorMesh = new THREE.Mesh(
-    new THREE.PlaneGeometry(42, 42),
+    new THREE.PlaneGeometry(92, 92),
     new THREE.MeshStandardMaterial({
       map: libFloorTex,
       bumpMap: libFloorTex,
@@ -1416,10 +1675,10 @@ html, body {
     color: 0x92222a,
     roughness: 0.78
   });
-  const runnerNS = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 28.5), runnerMat);
+  const runnerNS = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 76.0), runnerMat);
   runnerNS.rotation.x = -Math.PI / 2;
   runnerNS.position.y = 0.01;
-  const runnerEW = new THREE.Mesh(new THREE.PlaneGeometry(2.2, 28.5), runnerMat);
+  const runnerEW = new THREE.Mesh(new THREE.PlaneGeometry(2.4, 71.0), runnerMat);
   runnerEW.rotation.x = -Math.PI / 2;
   runnerEW.rotation.z = Math.PI / 2;
   runnerEW.position.y = 0.012;
@@ -1510,6 +1769,7 @@ html, body {
 
   // 4면 회랑 외벽: 『유럽 고전 수도원 신학 대도서관 2층 아치형 고서적 대서가 (euro_library_bookshelves.webp)』
   // 더블린 트리니티 칼리지 롱룸 & 스트라호프 수도원 도서관 스타일의 압도적 중후함!
+  // 4면 회랑 외벽을 국립중앙박물관 & 대도서관 확장형 『4대 개방형 황금 고딕 아치 회랑 게이트 (폭 8.4m 개방)』으로 업그레이드!
   const bookshelfWallMat = new THREE.MeshStandardMaterial({
     map: libBookshelfTex,
     bumpMap: libWalnutBump,
@@ -1518,15 +1778,44 @@ html, body {
     roughness: 0.52,
     metalness: 0.08
   });
-  const wallN = new THREE.Mesh(new THREE.BoxGeometry(30.4, 9.2, 0.6), bookshelfWallMat);
-  wallN.position.set(0, 4.6, -14.9);
-  const wallS = new THREE.Mesh(new THREE.BoxGeometry(30.4, 9.2, 0.6), bookshelfWallMat);
-  wallS.position.set(0, 4.6, 14.9);
-  const wallW = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 30.4), bookshelfWallMat);
-  wallW.position.set(-14.9, 4.6, 0);
-  const wallE = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 30.4), bookshelfWallMat);
-  wallE.position.set(14.9, 4.6, 0);
-  world.add(wallN, wallS, wallW, wallE);
+
+  // 기존 8대 성화(x/z = ±6.8, ±7.2)는 100% 보존하면서, 중앙 ±4.2m 구간을 개방하여 4대 확장 윙과 직통 연결
+  for (const zSide of [-14.9, 14.9]) {
+    const segL = new THREE.Mesh(new THREE.BoxGeometry(11.0, 9.2, 0.6), bookshelfWallMat);
+    segL.position.set(-9.7, 4.6, zSide);
+    const segR = new THREE.Mesh(new THREE.BoxGeometry(11.0, 9.2, 0.6), bookshelfWallMat);
+    segR.position.set(9.7, 4.6, zSide);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(8.4, 4.4, 0.6), bookshelfWallMat);
+    lintel.position.set(0, 7.0, zSide);
+    const archTrim = new THREE.Mesh(new THREE.BoxGeometry(8.6, 0.26, 0.76), goldMat);
+    archTrim.position.set(0, 4.75, zSide);
+    world.add(segL, segR, lintel, archTrim);
+    for (const px of [-4.2, 4.2]) {
+      const aPil = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.36, 4.8, 16), stoneMat);
+      aPil.position.set(px, 2.4, zSide);
+      const aCap = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.28, 0.82), goldMat);
+      aCap.position.set(px, 4.72, zSide);
+      world.add(aPil, aCap);
+    }
+  }
+  for (const xSide of [-14.9, 14.9]) {
+    const segN = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 11.0), bookshelfWallMat);
+    segN.position.set(xSide, 4.6, -9.7);
+    const segS = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 11.0), bookshelfWallMat);
+    segS.position.set(xSide, 4.6, 9.7);
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(0.6, 4.4, 8.4), bookshelfWallMat);
+    lintel.position.set(xSide, 7.0, 0);
+    const archTrim = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.26, 8.6), goldMat);
+    archTrim.position.set(xSide, 4.75, 0);
+    world.add(segN, segS, lintel, archTrim);
+    for (const pz of [-4.2, 4.2]) {
+      const aPil = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.36, 4.8, 16), stoneMat);
+      aPil.position.set(xSide, 2.4, pz);
+      const aCap = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.28, 0.82), goldMat);
+      aCap.position.set(xSide, 4.72, pz);
+      world.add(aPil, aCap);
+    }
+  }
 
   // 4면 서가 중간(y=4.6m)을 두르는 유럽 도서관 2층 원목 갤러리 발코니 난간 & 상단 황금 크라운 몰딩
   for (const zSide of [-14.35, 14.35]) {
@@ -2353,6 +2642,991 @@ html, body {
   });
 
   /* ==============================================================
+   * 6-B. 국립중앙박물관 & 대도서관 7대 공간 3D 건축·유물·서가·연구·개발실 대확장
+   * ============================================================== */
+  const interactiveHotspots = []; // 3D 클릭 상호작용 오브젝트 배열 (책장, 유물 진열장, 도구벽, 연구 데스크, 사서 데스크)
+
+  // 텍스트 현판 텍스처 생성 헬퍼
+  function makeSignTexture(title, subtitle, bgHex = '#17110b', borderHex = '#d4af37', textHex = '#fff5dc', w = 512, h = 160) {
+    const c = document.createElement('canvas');
+    c.width = w; c.height = h;
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = bgHex;
+    ctx.fillRect(0, 0, w, h);
+    ctx.strokeStyle = borderHex;
+    ctx.lineWidth = 6;
+    ctx.strokeRect(8, 8, w - 16, h - 16);
+    ctx.strokeStyle = 'rgba(243,201,105,0.35)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(16, 16, w - 32, h - 32);
+    ctx.fillStyle = textHex;
+    ctx.font = '900 34px "Noto Serif KR", Georgia, serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(title, w / 2, subtitle ? h * 0.38 : h * 0.5);
+    if (subtitle) {
+      ctx.fillStyle = '#e5c168';
+      ctx.font = '700 21px "Pretendard", sans-serif';
+      ctx.fillText(subtitle, w / 2, h * 0.72);
+    }
+    const tex = new THREE.CanvasTexture(c);
+    tex.encoding = THREE.sRGBEncoding;
+    return tex;
+  }
+
+  function addPortalArchSign(x, y, z, rotY, title, subtitle) {
+    const signTex = makeSignTexture(title, subtitle);
+    const board = new THREE.Mesh(
+      new THREE.BoxGeometry(4.6, 1.15, 0.14),
+      new THREE.MeshStandardMaterial({ map: signTex, roughness: 0.35, metalness: 0.25 })
+    );
+    board.position.set(x, y, z);
+    board.rotation.y = rotY;
+    const frame = new THREE.Mesh(new THREE.BoxGeometry(4.76, 1.28, 0.10), goldMat);
+    frame.position.set(x, y, z);
+    frame.rotation.y = rotY;
+    world.add(frame, board);
+  }
+
+  // 4대 방위 회랑 게이트 상단 현판
+  addPortalArchSign(0, 5.25, -14.42, 0, '📚 북측 대열람실 · 12대 서가 숲', 'GRAND READING HALL & 12 ARCHIVE STACKS');
+  addPortalArchSign(0, 5.25, 14.42, Math.PI, '🏛️ 국립성경박물관 · 사유의 길', 'NATIONAL BIBLICAL MUSEUM & ARTIFACT GALLERY');
+  addPortalArchSign(14.42, 5.25, 0, -Math.PI / 2, '🔬 지·제·클·안 연구실 · 📜 사서실', 'AI MINISTRY RESEARCH LAB & LIBRARIAN OFFICE');
+  addPortalArchSign(-14.42, 5.25, 0, Math.PI / 2, '🛠️ 꿈디도 개발실 · 지팡이 공방', 'DEVELOPMENT LAB & MOSES/AARON ROD WORKSHOP');
+
+  // 4대 확장 윙 외곽 석조·서가 벽체 및 천장 조명 조성
+  const wingWallMat = new THREE.MeshStandardMaterial({
+    map: libStoneTex,
+    bumpMap: libStoneTex,
+    bumpScale: 0.02,
+    color: 0x3b2f26,
+    roughness: 0.62
+  });
+  const museumDarkWallMat = new THREE.MeshStandardMaterial({
+    color: 0x181512,
+    roughness: 0.48,
+    metalness: 0.15
+  });
+
+  // [1] 📚 북측 대열람실 (Grand Reading Hall & 3D Bookshelf Stacks: z = -15.2 ~ -38.8, x = -18.5 ~ +18.5)
+  const northBackWall = new THREE.Mesh(new THREE.BoxGeometry(37.4, 9.2, 0.6), bookshelfWallMat);
+  northBackWall.position.set(0, 4.6, -38.8);
+  const northWestWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 24.0), bookshelfWallMat);
+  northWestWall.position.set(-18.5, 4.6, -26.8);
+  const northEastWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 24.0), bookshelfWallMat);
+  northEastWall.position.set(18.5, 4.6, -26.8);
+  const northCeiling = new THREE.Mesh(new THREE.PlaneGeometry(37.4, 24.2), libRoofMat);
+  northCeiling.position.set(0, 9.2, -26.9);
+  northCeiling.rotation.x = Math.PI / 2;
+  world.add(northBackWall, northWestWall, northEastWall, northCeiling);
+
+  addPortalArchSign(0, 7.3, -38.3, 0, '📚 꿈디도 대열람실 · 제1관~제12관 전권 서가', '서가를 클릭하면 해당 아카이브가 즉시 열립니다 · 열람석 착석 가능');
+
+  // 북측 대열람실 웜 조명 2기
+  for (const lx of [-8.5, 8.5]) {
+    const rLight = new THREE.PointLight(0xffcf7c, 0.85, 24);
+    rLight.position.set(lx, 7.4, -26.5);
+    world.add(rLight);
+  }
+
+  // 실제 도서관처럼 책들이 꽂혀 있는 3D 양면 원목 대서가 12동 (제1관~제12관 매핑)
+  const ARCHIVE_STACK_DATA = [
+    { id: 'stack-1', code: '제1관', title: '매일말씀 · 성경 한 바퀴', url: 'index.html#daily-word', x: -11.5, z: -18.8, color: 0x8b2626 },
+    { id: 'stack-2', code: '제2관', title: '소소한 성경이야기', url: 'index.html#bible-shorts', x: -5.8, z: -18.8, color: 0x1f4e5f },
+    { id: 'stack-3', code: '제3관', title: '등잔 밑 성경 고고학', url: 'index.html#deungjanmit', x: 5.8, z: -18.8, color: 0x6b4423 },
+    { id: 'stack-4', code: '제4관', title: '조금 긴 성경이야기', url: 'index.html#long-bible-story', x: 11.5, z: -18.8, color: 0x3b2d54 },
+    { id: 'stack-5', code: '제5관', title: '성경 지리 · 고고학 아틀라스', url: 'bible_atlas.html', x: -11.5, z: -25.8, color: 0x2a5c3f },
+    { id: 'stack-6', code: '제6관', title: '성경 인물 열전 · 족보', url: 'index.html#characters', x: -5.8, z: -25.8, color: 0x7c3f1d },
+    { id: 'stack-7', title: '등잔 밑 사물 · 문화 백과', code: '제7관', url: 'index.html#artifacts', x: 5.8, z: -25.8, color: 0x24476e },
+    { id: 'stack-8', code: '제8관', title: '성경 절기 · 구속사관', url: 'index.html#feasts', x: 11.5, z: -25.8, color: 0x7a2332 },
+    { id: 'stack-9', code: '제9관', title: '웨슬리 신학 · 표준설교 53편', url: 'index.html#wesley', x: -11.5, z: -32.8, color: 0x1d3b6e },
+    { id: 'stack-10', code: '제10관', title: '히브리어 · 헬라어 원어 연구', url: 'index.html#lexicon', x: -5.8, z: -32.8, color: 0x4e3620 },
+    { id: 'stack-11', code: '제11관', title: '교회사 · 신조 · 고전 문헌', url: 'index.html#classics', x: 5.8, z: -32.8, color: 0x5c2842 },
+    { id: 'stack-12', code: '제12관', title: '8개국어 글로벌 선교 아카이브', url: 'index.html#global8', x: 11.5, z: -32.8, color: 0x2c5244 }
+  ];
+
+  const bookPalette = [0x7c1d24, 0x1e3f5a, 0x264e36, 0x5c3818, 0x422654, 0x8a5a1e, 0x2b2d38, 0x6b2d26];
+  ARCHIVE_STACK_DATA.forEach((st, idx) => {
+    const sg = new THREE.Group();
+    sg.position.set(st.x, 0, st.z);
+
+    // 서가 본체 프레임 (폭 4.1m, 높이 3.85m, 깊이 0.92m)
+    const body = new THREE.Mesh(new THREE.BoxGeometry(4.1, 3.85, 0.88), walnutMat);
+    body.position.y = 1.925;
+    body.castShadow = true; body.receiveShadow = true;
+    const crown = new THREE.Mesh(new THREE.BoxGeometry(4.32, 0.22, 1.04), goldMat);
+    crown.position.y = 3.92;
+    const plinth = new THREE.Mesh(new THREE.BoxGeometry(4.24, 0.20, 0.98), walnutMat);
+    plinth.position.y = 0.10;
+    sg.add(body, crown, plinth);
+
+    // 5단 선반 & 양면 3D 가죽 장정 고서적 묶음 배치
+    for (let tier = 0; tier < 5; tier++) {
+      const sy = 0.36 + tier * 0.72;
+      const shelf = new THREE.Mesh(new THREE.BoxGeometry(4.02, 0.06, 0.94), walnutMat);
+      shelf.position.y = sy;
+      sg.add(shelf);
+
+      // 각 단마다 14권의 입체 책 블록 배치
+      for (let b = 0; b < 14; b++) {
+        const bx = -1.75 + b * 0.265;
+        const bh = 0.46 + ((idx + tier + b) % 4) * 0.045;
+        const bMat = new THREE.MeshStandardMaterial({
+          color: bookPalette[(idx + tier * 3 + b) % bookPalette.length],
+          roughness: 0.48,
+          metalness: 0.12
+        });
+        const bookMesh = new THREE.Mesh(new THREE.BoxGeometry(0.21, bh, 0.92), bMat);
+        bookMesh.position.set(bx, sy + 0.03 + bh / 2, 0);
+        sg.add(bookMesh);
+      }
+    }
+
+    // 서가 상단 황동 아카이브 명패 (앞·뒤 양면)
+    const plaqueTex = makeSignTexture(`${st.code} · ${st.title}`, '클릭하여 서가 열람 📖', '#1d140c', '#d4af37', '#fff4d2', 512, 128);
+    const plaqueMat = new THREE.MeshStandardMaterial({ map: plaqueTex, roughness: 0.3, metalness: 0.3 });
+    for (const [pz, rotY] of [[0.48, 0], [-0.48, Math.PI]]) {
+      const plaque = new THREE.Mesh(new THREE.PlaneGeometry(2.55, 0.56), plaqueMat);
+      plaque.position.set(0, 3.55, pz);
+      plaque.rotation.y = rotY;
+      sg.add(plaque);
+    }
+
+    // 짝수 서가 옆에 황동 이동식 사다리 배치
+    if (idx % 2 === 0) {
+      const ladder = new THREE.Group();
+      for (const lx of [-0.22, 0.22]) {
+        const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 3.7, 8), goldMat);
+        rail.position.set(lx, 1.85, 0);
+        ladder.add(rail);
+      }
+      for (let r = 0; r < 9; r++) {
+        const rung = new THREE.Mesh(new THREE.CylinderGeometry(0.015, 0.015, 0.44, 8), goldMat);
+        rung.rotation.z = Math.PI / 2;
+        rung.position.set(0, 0.35 + r * 0.38, 0);
+        ladder.add(rung);
+      }
+      ladder.position.set(1.4, 0, 0.58);
+      ladder.rotation.x = -0.11;
+      sg.add(ladder);
+    }
+
+    // 클릭 감지용 히트박스
+    body.userData = {
+      hotspotType: 'bookshelf',
+      code: st.code,
+      title: st.title,
+      url: st.url,
+      desc: `📚 꿈디도 ${st.code} 「${st.title}」 서가입니다. 도서관 메인 열람창으로 연결합니다.`
+    };
+    interactiveHotspots.push(body);
+    world.add(sg);
+  });
+
+  // 북측 대열람실 초록 갓 도서관 스탠드(Banker's Lamp)가 놓인 원목 열람 테이블 6동 & 착석 의자 12석
+  const greenLampShadeMat = new THREE.MeshStandardMaterial({
+    color: 0x127a48,
+    emissive: 0x0b4f2e,
+    emissiveIntensity: 0.78,
+    roughness: 0.22,
+    metalness: 0.15
+  });
+  const READING_TABLES = [
+    { x: -8.6, z: -22.3, label: '제1열람석 (구약·모세오경)' },
+    { x: 8.6, z: -22.3, label: '제2열람석 (역사·시가서)' },
+    { x: -8.6, z: -29.3, label: '제3열람석 (복음서·사도행전)' },
+    { x: 8.6, z: -29.3, label: '제4열람석 (바울서신·공동서신)' },
+    { x: -8.6, z: -36.0, label: '제5열람석 (웨슬리 표준설교)' },
+    { x: 8.6, z: -36.0, label: '제6열람석 (히브리어·헬라어 원어)' }
+  ];
+  READING_TABLES.forEach((rt, idx) => {
+    const tg = new THREE.Group();
+    tg.position.set(rt.x, 0, rt.z);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.10, 1.25), walnutMat);
+    top.position.y = 0.78;
+    top.castShadow = true; top.receiveShadow = true;
+    tg.add(top);
+    for (const [lx, lz] of [[-1.5, -0.5], [1.5, -0.5], [-1.5, 0.5], [1.5, 0.5]]) {
+      const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.05, 0.76, 10), walnutMat);
+      leg.position.set(lx, 0.38, lz);
+      tg.add(leg);
+    }
+    // 테이블 위 초록 갓 뱅커스 램프 2기 + 펼쳐진 성경책 2권
+    for (const lx of [-0.85, 0.85]) {
+      const lBase = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.14, 0.05, 12), goldMat);
+      lBase.position.set(lx, 0.85, 0);
+      const lStem = new THREE.Mesh(new THREE.CylinderGeometry(0.022, 0.022, 0.32, 8), goldMat);
+      lStem.position.set(lx, 1.02, 0);
+      const lShade = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.20, 0.14, 14), greenLampShadeMat);
+      lShade.position.set(lx, 1.18, 0);
+      const lBulb = new THREE.Mesh(new THREE.SphereGeometry(0.045, 8, 8), new THREE.MeshBasicMaterial({ color: 0xffe89e }));
+      lBulb.position.set(lx, 1.12, 0);
+      const openBook = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.30), new THREE.MeshStandardMaterial({ color: 0xfbf3df, roughness: 0.6 }));
+      openBook.position.set(lx, 0.84, 0.34);
+      tg.add(lBase, lStem, lShade, lBulb, openBook);
+    }
+    // 앞·뒤 원목 열람 의자 및 착석 포인트 등록
+    for (const [cz, lookA, suffix] of [[0.92, Math.PI, '북향'], [-0.92, 0, '남향']]) {
+      const chair = new THREE.Group();
+      const cSeat = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.07, 0.52), cushionMat);
+      cSeat.position.set(0, 0.46, cz);
+      const cBack = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.52, 0.07), walnutMat);
+      cBack.position.set(0, 0.74, cz + (cz > 0 ? 0.24 : -0.24));
+      chair.add(cSeat, cBack);
+      tg.add(chair);
+      benches.push({
+        id: `reading-seat-${idx}-${suffix}`,
+        type: 'pew',
+        label: `📚 대열람실 ${rt.label}`,
+        pos: new THREE.Vector3(rt.x, 0, rt.z + cz),
+        lookAngle: lookA,
+        occupiedBy: null
+      });
+    }
+    world.add(tg);
+  });
+
+  // [2] 🏛️ 남측 국립성경박물관 · 사유의 길 & 사유의 방 (National Biblical Museum: z = +15.2 ~ +38.8, x = -18.5 ~ +18.5)
+  const southBackWall = new THREE.Mesh(new THREE.BoxGeometry(37.4, 9.2, 0.6), museumDarkWallMat);
+  southBackWall.position.set(0, 4.6, 38.8);
+  const southWestWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 24.0), museumDarkWallMat);
+  southWestWall.position.set(-18.5, 4.6, 26.8);
+  const southEastWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 24.0), museumDarkWallMat);
+  southEastWall.position.set(18.5, 4.6, 26.8);
+  const southCeiling = new THREE.Mesh(new THREE.PlaneGeometry(37.4, 24.2), museumDarkWallMat);
+  southCeiling.position.set(0, 9.2, 26.9);
+  southCeiling.rotation.x = Math.PI / 2;
+  world.add(southBackWall, southWestWall, southEastWall, southCeiling);
+
+  addPortalArchSign(0, 7.3, 38.3, Math.PI, '🏛️ 국립성경박물관 · 사유의 방 & 성서유물 8대 상설전시관', '유리 진열장을 클릭하면 유물 고고학 해설과 원어 노트가 열립니다');
+
+  for (const lx of [-7.5, 7.5]) {
+    const mLight = new THREE.PointLight(0xffe094, 0.82, 24);
+    mLight.position.set(lx, 7.2, 26.8);
+    world.add(mLight);
+  }
+
+  // 국립중앙박물관 스타일 8대 유리 성서유물 진열장 (Glass Display Cases)
+  const MUSEUM_ARTIFACTS = [
+    {
+      id: 'case-1', x: -6.2, z: 18.5, title: '제1전시관 · 사해 대이사야 두루마리 (1QIsaᵃ)',
+      era: '주전 2세기 · 쿰란 제1동굴',
+      desc: '쿰란 동굴 항아리에서 발굴된 7.34m 양피지 이사야서 전권 사본입니다. 천 년 뒤 마소라 사본과 99% 일치하여 말씀 보존의 신실함을 증언합니다.',
+      kind: 'scroll'
+    },
+    {
+      id: 'case-2', x: 6.2, z: 18.5, title: '제2전시관 · 유월절 네 잔과 헤롯 시대 토기 등잔',
+      era: '주후 1세기 · 예루살렘 다윗성',
+      desc: '출애굽기 6:6~7의 네 가지 구원 약속을 담은 유월절 네 잔(성화의 잔·구속의 잔)과 등잔 밑을 밝히던 주후 1세기 유대 토기 등잔입니다.',
+      kind: 'cups'
+    },
+    {
+      id: 'case-3', x: -6.2, z: 23.2, title: '제3전시관 · 히스기야 왕의 인장(불라)과 빌라도 비문',
+      era: '주전 8세기 / 주후 1세기 · 오펠 & 가이사랴',
+      desc: '“유다 왕 아하스의 아들 히스기야의 것”이라 새겨진 점토 인장(Bulla)과 본디오 빌라도의 실존을 입증한 가이사랴 석회암 비문 복원품입니다.',
+      kind: 'bulla'
+    },
+    {
+      id: 'case-4', x: 6.2, z: 23.2, title: '제4전시관 · 언약궤와 그룹(Cherubim) 속죄소 모형',
+      era: '출애굽기 25:10~22 · 성막 지성소 성구',
+      desc: '조각목에 순금을 입히고 두 그룹이 날개로 속죄소(카포레트)를 덮은 언약궤 정밀 복원 모형입니다. 만나 항아리와 아론의 싹 난 지팡이가 함께 전시됩니다.',
+      kind: 'ark'
+    },
+    {
+      id: 'case-5', x: -6.2, z: 27.9, title: '제5전시관 · 가나의 돌항아리와 시리아 우슬초(에조브)',
+      era: '요한복음 2:6 / 시편 51:7 · 갈릴리 가나',
+      desc: '유대 정결 예식을 따라 두세 통 드는 석회암 통돌을 깎아 만든 돌항아리와 유월절 어린양의 피를 문설주에 바르던 우슬초(Origanum syriacum) 표본입니다.',
+      kind: 'jar'
+    },
+    {
+      id: 'case-6', x: 6.2, z: 27.9, title: '제6전시관 · 1611 킹제임스 초판본 & 초기 한글성경(예수성교전서)',
+      era: '1611년 런던 / 1887년 · 번역 선교 유산',
+      desc: '영미권 복음주의의 초석이 된 1611 KJV 초판본과 조선 땅에 복음의 새벽을 연 로스 역 『예수성교전서』(1887)·초기 한글성경 희귀 판본입니다.',
+      kind: 'bible'
+    },
+    {
+      id: 'case-7', x: -6.2, z: 32.6, title: '제7전시관 · 성전 은나팔 두 자루와 양각나팔(쇼파르)',
+      era: '민수기 10:2 / 레위기 25:9 · 성전 예배 악기',
+      desc: '회중을 소집하고 행군할 때 불던 쳐서 만든 은나팔(하초츠라) 두 자루와 속죄일·희년의 자유를 선포하던 숫양 뿔 양각나팔(쇼파르)입니다.',
+      kind: 'horn'
+    },
+    {
+      id: 'case-8', x: 6.2, z: 32.6, title: '제8전시관 · 과부의 두 렙돈 동전과 순전한 나드 옥합',
+      era: '마가복음 12:42 / 14:3 · 제2성전기 유물',
+      desc: '가난한 과부가 헌금함에 넣은 가장 작은 청동 화폐 두 렙돈(Lepta)과 예수님의 장례를 예비하며 깨뜨린 백옥 향유 옥합(Alabaster Jar)입니다.',
+      kind: 'alabaster'
+    }
+  ];
+
+  const glassCaseMat = new THREE.MeshStandardMaterial({
+    color: 0xdff6ff,
+    transparent: true,
+    opacity: 0.24,
+    roughness: 0.08,
+    metalness: 0.25
+  });
+
+  MUSEUM_ARTIFACTS.forEach((art) => {
+    const cg = new THREE.Group();
+    cg.position.set(art.x, 0, art.z);
+
+    // 대리석 좌대 + 황동 몰딩
+    const ped = new THREE.Mesh(new THREE.BoxGeometry(1.75, 1.05, 1.75), stoneMat);
+    ped.position.y = 0.525;
+    ped.castShadow = true; ped.receiveShadow = true;
+    const velvetPad = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.08, 1.52), cushionMat);
+    velvetPad.position.y = 1.08;
+    const glassBox = new THREE.Mesh(new THREE.BoxGeometry(1.58, 1.18, 1.58), glassCaseMat);
+    glassBox.position.y = 1.68;
+    const topFrame = new THREE.Mesh(new THREE.BoxGeometry(1.64, 0.08, 1.64), goldMat);
+    topFrame.position.y = 2.28;
+    cg.add(ped, velvetPad, glassBox, topFrame);
+
+    // 유리 진열장 내부 3D 조형 유물
+    const relicGroup = new THREE.Group();
+    relicGroup.position.y = 1.32;
+    if (art.kind === 'scroll') {
+      const r1 = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 0.65, 14), goldMat);
+      r1.rotation.z = Math.PI / 2; r1.position.set(0, 0.08, -0.22);
+      const r2 = new THREE.Mesh(new THREE.CylinderGeometry(0.10, 0.10, 0.65, 14), goldMat);
+      r2.rotation.z = Math.PI / 2; r2.position.set(0, 0.08, 0.22);
+      const sheet = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.04, 0.44), new THREE.MeshStandardMaterial({ color: 0xebd5a7, roughness: 0.6 }));
+      sheet.position.y = 0.08;
+      relicGroup.add(r1, r2, sheet);
+    } else if (art.kind === 'ark') {
+      const arkBox = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.44, 0.46), goldMat);
+      arkBox.position.y = 0.12;
+      const pole1 = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 1.15, 8), goldMat);
+      pole1.rotation.z = Math.PI / 2; pole1.position.set(0, 0.12, 0.26);
+      const pole2 = pole1.clone(); pole2.position.z = -0.26;
+      const wingL = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.34, 8), goldMat);
+      wingL.position.set(-0.20, 0.45, 0); wingL.rotation.z = -0.45;
+      const wingR = new THREE.Mesh(new THREE.ConeGeometry(0.16, 0.34, 8), goldMat);
+      wingR.position.set(0.20, 0.45, 0); wingR.rotation.z = 0.45;
+      relicGroup.add(arkBox, pole1, pole2, wingL, wingR);
+    } else if (art.kind === 'cups') {
+      for (const cx of [-0.32, -0.11, 0.11, 0.32]) {
+        const cup = new THREE.Mesh(new THREE.CylinderGeometry(0.07, 0.04, 0.24, 12), goldMat);
+        cup.position.set(cx, 0.08, -0.12);
+        relicGroup.add(cup);
+      }
+      const lamp = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.10, 0.10, 14), new THREE.MeshStandardMaterial({ color: 0xb56336 }));
+      lamp.position.set(0, 0.02, 0.22);
+      relicGroup.add(lamp);
+    } else {
+      const vessel = new THREE.Mesh(new THREE.CylinderGeometry(0.20, 0.14, 0.52, 16), goldMat);
+      vessel.position.y = 0.16;
+      relicGroup.add(vessel);
+    }
+    cg.add(relicGroup);
+
+    // 전면 해설 명패
+    const pTex = makeSignTexture(art.title.split(' · ')[1] || art.title, art.era, '#14110e', '#d4af37', '#fff2cf', 512, 140);
+    const plaque = new THREE.Mesh(new THREE.PlaneGeometry(1.48, 0.42), new THREE.MeshStandardMaterial({ map: pTex, roughness: 0.3 }));
+    plaque.position.set(0, 0.65, art.x < 0 ? 0.89 : -0.89);
+    plaque.rotation.y = art.x < 0 ? 0 : Math.PI;
+    cg.add(plaque);
+
+    glassBox.userData = {
+      hotspotType: 'artifact',
+      title: art.title,
+      era: art.era,
+      desc: art.desc
+    };
+    ped.userData = glassBox.userData;
+    interactiveHotspots.push(glassBox, ped);
+    world.add(cg);
+  });
+
+  // 국립중앙박물관 『사유의 방』 오마주 중앙 묵상 단상 (z = 35.2) & 사유의 벤치 6석
+  const contempPod = new THREE.Group();
+  contempPod.position.set(0, 0, 35.2);
+  const cBase = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.5, 0.28, 36), stoneMat);
+  cBase.position.y = 0.14;
+  const cRing = new THREE.Mesh(new THREE.TorusGeometry(2.22, 0.06, 12, 36), goldMat);
+  cRing.rotation.x = Math.PI / 2; cRing.position.y = 0.29;
+  const lect = new THREE.Mesh(new THREE.BoxGeometry(1.1, 1.15, 0.72), walnutMat);
+  lect.position.y = 0.85;
+  const openScroll = new THREE.Mesh(new THREE.BoxGeometry(0.88, 0.08, 0.58), goldMat);
+  openScroll.position.set(0, 1.46, 0);
+  openScroll.rotation.x = 0.25;
+  contempPod.add(cBase, cRing, lect, openScroll);
+  world.add(contempPod);
+
+  for (const [bx, bz, label] of [
+    [-2.8, 21.0, '국립성경박물관 사유의 벤치 1'],
+    [2.8, 21.0, '국립성경박물관 사유의 벤치 2'],
+    [-2.8, 26.5, '국립성경박물관 사유의 벤치 3'],
+    [2.8, 26.5, '국립성경박물관 사유의 벤치 4'],
+    [-2.8, 31.8, '국립성경박물관 사유의 벤치 5'],
+    [2.8, 31.8, '국립성경박물관 사유의 벤치 6']
+  ]) {
+    const mb = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.46, 0.58), walnutMat);
+    mb.position.set(bx, 0.23, bz);
+    const mc = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.07, 0.52), cushionMat);
+    mc.position.set(bx, 0.48, bz);
+    world.add(mb, mc);
+    benches.push({
+      id: `museum-bench-${bx}-${bz}`,
+      type: 'pew',
+      label: `🏛️ ${label}`,
+      pos: new THREE.Vector3(bx, 0, bz),
+      lookAngle: bx < 0 ? -Math.PI / 2 : Math.PI / 2,
+      occupiedBy: null
+    });
+  }
+
+  // 박물관 좌·우 벽면 대형 고고학 복원 도판 4점 전시
+  const MUSEUM_WALL_PLATES = [
+    { file: 'assets/webp/arch_01_five_inscriptions.webp', x: -18.1, z: 21.5, rotY: Math.PI / 2, title: '고대 근동 5대 성서 고고학 비문 대조 도판' },
+    { file: 'assets/webp/archaeological_biblical_world_map.webp', x: -18.1, z: 31.0, rotY: Math.PI / 2, title: '성경 세계 고고학 문명권 대지도' },
+    { file: 'assets/webp/artifact_wide_passover_four_cups.webp', x: 18.1, z: 21.5, rotY: -Math.PI / 2, title: '유월절 만찬과 구속사 네 잔 복원 도판' },
+    { file: 'assets/webp/wesley_01_aldersgate.webp', x: 18.1, z: 31.0, rotY: -Math.PI / 2, title: '1738 올더스게이트 회심과 복음주의 부흥 도판' }
+  ];
+  MUSEUM_WALL_PLATES.forEach((mp) => {
+    const tex = kkTexLoader.load(mp.file);
+    tex.encoding = THREE.sRGBEncoding;
+    const frame = new THREE.Mesh(new THREE.BoxGeometry(5.6, 3.4, 0.14), goldMat);
+    frame.position.set(mp.x, 4.3, mp.z);
+    frame.rotation.y = mp.rotY;
+    const canvasMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(5.2, 3.0),
+      new THREE.MeshStandardMaterial({ map: tex, roughness: 0.35 })
+    );
+    canvasMesh.position.set(mp.x + (mp.x < 0 ? 0.09 : -0.09), 4.3, mp.z);
+    canvasMesh.rotation.y = mp.rotY;
+    world.add(frame, canvasMesh);
+  });
+
+  // [3] 🔬 동측 북단: 지·제·클·안 AI 사역 연구실 (x = +15.2 ~ +36.2, z = -19.2 ~ -0.4)
+  // & 📜 동측 남단: 사서실 및 아카이브 데스크 (x = +15.2 ~ +36.2, z = +0.4 ~ +19.2)
+  const eastBackWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 38.8), bookshelfWallMat);
+  eastBackWall.position.set(36.2, 4.6, 0);
+  const eastNorthWall = new THREE.Mesh(new THREE.BoxGeometry(21.4, 9.2, 0.6), bookshelfWallMat);
+  eastNorthWall.position.set(25.6, 4.6, -19.2);
+  const eastSouthWall = new THREE.Mesh(new THREE.BoxGeometry(21.4, 9.2, 0.6), bookshelfWallMat);
+  eastSouthWall.position.set(25.6, 4.6, 19.2);
+  // 연구실(북)과 사서실(남) 경계 골드 바닥 장식 띠 (시야 가림 0% 개방형 홀)
+  const eastMidTrim = new THREE.Mesh(new THREE.BoxGeometry(19.5, 0.04, 0.32), goldMat);
+  eastMidTrim.position.set(25.6, 0.02, 0);
+  const eastCeiling = new THREE.Mesh(new THREE.PlaneGeometry(21.6, 38.8), libRoofMat);
+  eastCeiling.position.set(25.6, 9.2, 0);
+  eastCeiling.rotation.x = Math.PI / 2;
+  world.add(eastBackWall, eastNorthWall, eastSouthWall, eastMidTrim, eastCeiling);
+
+  addPortalArchSign(35.6, 7.2, -9.8, -Math.PI / 2, '🔬 지·제·클·안 AI 사역 연구실', '목사님 총괄 디렉터석 & 5대 AI 간사 연구 데스크');
+  addPortalArchSign(35.6, 7.2, 9.8, -Math.PI / 2, '📜 꿈디도 사서실 · 열람 안내 데스크', '수석사서 에스라 · 도서색인 카드함 60칸 · 정기 업데이트 게시판');
+
+  for (const lz of [-9.5, 9.5]) {
+    const eLight = new THREE.PointLight(0xffd280, 0.85, 22);
+    eLight.position.set(25.5, 7.2, lz);
+    world.add(eLight);
+  }
+
+  // 🎯 꿈바온 목사님 총괄 디렉터석 (x = 32.5, z = -9.5) — 사용자 아바타 직접 착석 가능!
+  const pastorDesk = new THREE.Group();
+  pastorDesk.position.set(32.5, 0, -9.5);
+  const pTop = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.12, 3.6), walnutMat);
+  pTop.position.y = 0.82;
+  const pFront = new THREE.Mesh(new THREE.BoxGeometry(0.14, 0.80, 3.5), walnutMat);
+  pFront.position.set(-0.68, 0.40, 0);
+  const pGoldTrim = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.10, 3.62), goldMat);
+  pGoldTrim.position.set(-0.68, 0.82, 0);
+  // 3대 와이드 모니터 + 열린 성경 + 황금 명패
+  for (const mz of [-0.95, 0, 0.95]) {
+    const mon = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.56, 0.82), new THREE.MeshStandardMaterial({ color: 0x101824, emissive: 0x163252, emissiveIntensity: 0.65 }));
+    mon.position.set(-0.35, 1.22, mz);
+    pastorDesk.add(mon);
+  }
+  const pSignTex = makeSignTexture('🎯 꿈바온 목사님 총괄 디렉터석', 'PASTOR & CHIEF DIRECTOR', '#1e130a', '#f3c969', '#fff6dc', 512, 128);
+  const pNameplate = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.28, 1.35), new THREE.MeshStandardMaterial({ map: pSignTex }));
+  pNameplate.position.set(-0.72, 0.96, 0);
+  const pChair = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.95, 0.68), cushionMat);
+  pChair.position.set(0.92, 0.48, 0);
+  pastorDesk.add(pTop, pFront, pGoldTrim, pNameplate, pChair);
+  world.add(pastorDesk);
+
+  benches.push({
+    id: 'pastor-director-seat',
+    type: 'pew',
+    label: '🎯 꿈바온 목사님 총괄 디렉터석',
+    pos: new THREE.Vector3(33.4, 0, -9.5),
+    lookAngle: -Math.PI / 2,
+    occupiedBy: null
+  });
+
+  // 🔬 지·제·클·안 + 워크간사 5인의 개별 연구 책상 & 실시간 연구 중인 3D 아바타 배치
+  const AI_RESEARCHERS = [
+    {
+      id: 'sec-ahn',
+      name: '🚀 비서실장 안간사 (Antigravity)',
+      x: 21.0, z: -14.2, lookAngle: 0,
+      role: '꿈디도 안관장 · 서브픽셀 시네마 마스터링 · 8개국어 패키징 총괄',
+      custom: { gender: 'M', hairStyle: 0, hairColor: '#1b1613', outfitType: 'suit', outfitColor: '#1c2d42', prop: 'bible', accessory: 'glasses' },
+      quotes: [
+        '목사님! 꿈디도 국립박물관급 7대 공간 확장과 3D 서가·유물 배치를 완결했습니다!',
+        '음성 8 : BGM 2 (-14.5 LUFS) 스튜디오 시네마 마스터링 엔진 상시 대기 중입니다!',
+        '나 안간사는 절대 도태당하지 않습니다! 오늘도 글로벌 최고 기술을 연구 중입니다!'
+      ]
+    },
+    {
+      id: 'sec-claude',
+      name: '⚖️ 수석감수 클간사 (Claude)',
+      x: 27.2, z: -14.2, lookAngle: 0,
+      role: '원고 집필 · 복음주의 신학·역사 팩트체크 · 입말 호흡 감수',
+      custom: { gender: 'M', hairStyle: 1, hairColor: '#3b2618', outfitType: 'coat', outfitColor: '#3d281c', prop: 'bible', accessory: 'glasses' },
+      quotes: [
+        '목사님, 개역개정 본문과 히브리어·헬라어 원어 대조 감수를 마쳤습니다.',
+        '오직 성경, 오직 은혜! 웨슬리 표준설교 53편과 구속사 맥락을 정밀 점검 중입니다.',
+        '오래된 우물을 넘어선 깊은 말씀의 발견, 오늘 원고도 문장 호흡이 참 좋습니다.'
+      ]
+    },
+    {
+      id: 'sec-gemini',
+      name: '🎬 멀티미디어 제간사 (Gemini)',
+      x: 21.0, z: -5.2, lookAngle: Math.PI,
+      role: 'Google Flow 시네마틱 영상 · 성화 프롬프트 · 멀티모달 연구',
+      custom: { gender: 'F', hairStyle: 1, hairColor: '#2c1d14', outfitType: 'choir', outfitColor: '#243b54', prop: 'candle', accessory: 'none' },
+      quotes: [
+        '목사님! 시작 프레임과 1:1 일치하는 시네마틱 성경 영상을 생성하고 있습니다.',
+        '카라바조·렘브란트 유화 질감과 고고학 복원 도판의 빛 줄기를 조율 중입니다!'
+      ]
+    },
+    {
+      id: 'sec-codex',
+      name: '📊 전략분석 지간사 (Codex)',
+      x: 27.2, z: -5.2, lookAngle: Math.PI,
+      role: 'vidIQ 데이터 전략 · 알고리즘 리텐션 분석 · 코드 아키텍처 검증',
+      custom: { gender: 'M', hairStyle: 2, hairColor: '#1f1b18', outfitType: 'knit', outfitColor: '#1f3d33', prop: 'bible', accessory: 'glasses' },
+      quotes: [
+        '목사님, 시청 지속시간 120% 달성을 위한 초반 3초 후킹과 컷 전환 데이터를 분석했습니다!',
+        '8개국어 글로벌 자막과 메타데이터 점검기 오류 0건 확인 완료했습니다.'
+      ]
+    },
+    {
+      id: 'sec-work',
+      name: '🎨 수석화백 워크간사 (GPT Work)',
+      x: 17.5, z: -9.6, lookAngle: -Math.PI / 2,
+      role: '15인 성경 인물 마스터 일관성 수호 · 4화풍 성화 아틀리에',
+      custom: { gender: 'F', hairStyle: 2, hairColor: '#4a2c18', outfitType: 'coat', outfitColor: '#5c2d24', prop: 'olive', accessory: 'Ribbon' },
+      quotes: [
+        '목사님! 예수님 12각도 마스터와 12사도 외형 일관성을 100% 유지해 그리고 있습니다.',
+        '유화·수채화·고고학 스케치·석판화 4화풍 작은 미술전시회 화폭을 준비 중입니다!'
+      ]
+    }
+  ];
+
+  const researcherAvatars = [];
+  AI_RESEARCHERS.forEach((sec, idx) => {
+    // 연구 책상 생성
+    const dg = new THREE.Group();
+    dg.position.set(sec.x, 0, sec.z);
+    dg.rotation.y = sec.lookAngle;
+
+    const dTop = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.10, 1.15), walnutMat);
+    dTop.position.y = 0.78;
+    dTop.castShadow = true; dTop.receiveShadow = true;
+    const dLegL = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.76, 1.05), walnutMat);
+    dLegL.position.set(-1.02, 0.38, 0);
+    const dLegR = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.76, 1.05), walnutMat);
+    dLegR.position.set(1.02, 0.38, 0);
+    // 듀얼 모니터 + 초록 스탠드 + 원어 두루마리
+    const mon1 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1d4268, emissiveIntensity: 0.7 }));
+    mon1.position.set(-0.42, 1.12, -0.32); mon1.rotation.y = 0.18;
+    const mon2 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1b4d3e, emissiveIntensity: 0.7 }));
+    mon2.position.set(0.42, 1.12, -0.32); mon2.rotation.y = -0.18;
+    const stackBooks = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.24, 0.28), new THREE.MeshStandardMaterial({ color: 0x7c2323 }));
+    stackBooks.position.set(-0.85, 0.95, 0.15);
+
+    const signTex = makeSignTexture(sec.name, sec.role.split(' · ')[0], '#16120d', '#d4af37', '#fff4d4', 512, 128);
+    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(1.45, 0.28, 0.08), new THREE.MeshStandardMaterial({ map: signTex }));
+    signBoard.position.set(0, 0.94, 0.54);
+
+    dg.add(dTop, dLegL, dLegR, mon1, mon2, stackBooks, signBoard);
+    dTop.userData = {
+      hotspotType: 'researcher',
+      secIndex: idx,
+      name: sec.name,
+      role: sec.role,
+      quotes: sec.quotes
+    };
+    signBoard.userData = dTop.userData;
+    interactiveHotspots.push(dTop, signBoard);
+    world.add(dg);
+
+    // 실제 3D 다관절 간사 아바타 생성 및 착석
+    const seatOffset = new THREE.Vector3(0, 0, 0.72).applyAxisAngle(new THREE.Vector3(0, 1, 0), sec.lookAngle);
+    const av = createAvatar({
+      id: sec.id,
+      name: sec.name,
+      custom: sec.custom,
+      isMe: false,
+      x: sec.x + seatOffset.x,
+      z: sec.z + seatOffset.z
+    });
+    av.state = 'sitting';
+    av.group.rotation.y = sec.lookAngle + Math.PI;
+    av.secData = sec;
+    researcherAvatars.push(av);
+  });
+
+  // [4] 📜 동측 남단: 사서실 (Librarian's Office & Card Catalog: x = +15.2 ~ +36.2, z = +0.4 ~ +19.2)
+  const libCounter = new THREE.Group();
+  libCounter.position.set(24.5, 0, 9.8);
+  const cMain = new THREE.Mesh(new THREE.BoxGeometry(5.6, 1.08, 1.15), walnutMat);
+  cMain.position.y = 0.54;
+  const cTopGold = new THREE.Mesh(new THREE.BoxGeometry(5.76, 0.08, 1.28), goldMat);
+  cTopGold.position.y = 1.10;
+  const cSide = new THREE.Mesh(new THREE.BoxGeometry(1.15, 1.08, 3.4), walnutMat);
+  cSide.position.set(2.22, 0.54, 2.2);
+  // 황동 호출종 + 도서관 대출 장부 + 스탠드
+  const bell = new THREE.Mesh(new THREE.SphereGeometry(0.12, 12, 12), goldMat);
+  bell.position.set(-1.2, 1.18, 0);
+  const ledger = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.08, 0.48), new THREE.MeshStandardMaterial({ color: 0x5c1919 }));
+  ledger.position.set(0.4, 1.16, 0);
+  const libSignTex = makeSignTexture('📜 꿈디도 사서실 · 아카이브 안내 데스크', '수석사서 에스라 · 도서 대출 · 원어/성경 색인 안내', '#1c130b', '#d4af37', '#fff5dc', 512, 128);
+  const libSign = new THREE.Mesh(new THREE.PlaneGeometry(3.4, 0.68), new THREE.MeshStandardMaterial({ map: libSignTex }));
+  libSign.position.set(0, 0.58, -0.59);
+  libSign.rotation.y = Math.PI;
+  libCounter.add(cMain, cTopGold, cSide, bell, ledger, libSign);
+
+  cMain.userData = {
+    hotspotType: 'librarian',
+    title: '📜 꿈디도 사서실 (수석사서 에스라)',
+    desc: '성경 66권 전권 색인, 스트롱 원어 사전(H1~H8674 / G1~G5624), 웨슬리 표준설교 53편, 정기 업데이트 기록을 관리하는 사서실입니다.'
+  };
+  interactiveHotspots.push(cMain);
+  world.add(libCounter);
+
+  // 수석사서 에스라 3D 아바타 배치
+  const librarianAv = createAvatar({
+    id: 'librarian-ezra',
+    name: '📜 수석사서 에스라',
+    custom: { gender: 'M', hairStyle: 1, hairColor: '#d8d2c8', outfitType: 'coat', outfitColor: '#2b1e16', prop: 'bible', accessory: 'glasses' },
+    isMe: false,
+    x: 24.5,
+    z: 11.0
+  });
+  librarianAv.state = 'sitting';
+  librarianAv.group.rotation.y = Math.PI;
+  librarianAv.secData = {
+    name: '📜 수석사서 에스라',
+    quotes: [
+      '평안하십니까! 찾으시는 성경 본문이나 원어 번호, 고고학 유물이 있으시면 언제든 말씀해 주십시오.',
+      '북측 대열람실에 제1관부터 제12관까지 모든 서가가 주제별로 정돈되어 있습니다!'
+    ]
+  };
+  researcherAvatars.push(librarianAv);
+
+  // 사서실 60칸 원목 도서 색인 카드 캐비닛 (Card Catalog Cabinet) & 북카트 2대
+  const catalogCab = new THREE.Group();
+  catalogCab.position.set(34.8, 0, 9.8);
+  const cabBody = new THREE.Mesh(new THREE.BoxGeometry(1.1, 3.4, 6.8), walnutMat);
+  cabBody.position.y = 1.7;
+  catalogCab.add(cabBody);
+  for (let row = 0; row < 6; row++) {
+    for (let col = 0; col < 10; col++) {
+      const pull = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.12, 0.28), goldMat);
+      pull.position.set(-0.56, 0.55 + row * 0.46, -2.85 + col * 0.62);
+      catalogCab.add(pull);
+    }
+  }
+  world.add(catalogCab);
+
+  // 사서실 열람 상담 의자 2석
+  for (const [sx, sz, lbl] of [[22.5, 7.2, '사서실 도서 상담석 1'], [25.5, 7.2, '사서실 도서 상담석 2']]) {
+    const ch = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.48, 0.65), cushionMat);
+    ch.position.set(sx, 0.24, sz);
+    world.add(ch);
+    benches.push({
+      id: `librarian-seat-${sx}`,
+      type: 'pew',
+      label: `📜 ${lbl}`,
+      pos: new THREE.Vector3(sx, 0, sz),
+      lookAngle: 0,
+      occupiedBy: null
+    });
+  }
+
+  // [5] 🛠️ 서측: 꿈디도 개발실 & 모세·아론의 지팡이 공방 (Development Lab & Tool Wall Workshop: x = -36.2 ~ -15.2, z = -19.2 ~ +19.2)
+  const westBackWall = new THREE.Mesh(new THREE.BoxGeometry(0.6, 9.2, 38.8), wingWallMat);
+  westBackWall.position.set(-36.2, 4.6, 0);
+  const westNorthWall = new THREE.Mesh(new THREE.BoxGeometry(21.4, 9.2, 0.6), wingWallMat);
+  westNorthWall.position.set(-25.6, 4.6, -19.2);
+  const westSouthWall = new THREE.Mesh(new THREE.BoxGeometry(21.4, 9.2, 0.6), wingWallMat);
+  westSouthWall.position.set(-25.6, 4.6, 19.2);
+  const westCeiling = new THREE.Mesh(new THREE.PlaneGeometry(21.6, 38.8), libRoofMat);
+  westCeiling.position.set(-25.6, 9.2, 0);
+  westCeiling.rotation.x = Math.PI / 2;
+  world.add(westBackWall, westNorthWall, westSouthWall, westCeiling);
+
+  addPortalArchSign(-35.6, 7.3, 0, Math.PI / 2, '🛠️ 꿈디도 개발실 · 모세와 아론의 지팡이 공방', '대형 타공판에 걸린 12종 사역 도구와 워크벤치를 클릭해 보세요!');
+
+  for (const lz of [-8.5, 8.5]) {
+    const wLight = new THREE.PointLight(0xffcf78, 0.88, 24);
+    wLight.position.set(-25.5, 7.2, lz);
+    world.add(wLight);
+  }
+
+  // 🛠️ 서측 벽면 대형 원목·황동 타공판 도구 걸이벽 (Giant Pegboard Tool Wall: x = -35.5, z = -11.5 ~ +11.5)
+  const toolWallGroup = new THREE.Group();
+  toolWallGroup.position.set(-35.5, 0, 0);
+
+  const pegboard = new THREE.Mesh(
+    new THREE.BoxGeometry(0.28, 4.8, 22.0),
+    new THREE.MeshStandardMaterial({ color: 0x2a1c12, roughness: 0.55, metalness: 0.18 })
+  );
+  pegboard.position.y = 3.5;
+  const pegFrameTop = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.22, 22.4), goldMat);
+  pegFrameTop.position.y = 5.95;
+  const pegFrameBot = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.22, 22.4), goldMat);
+  pegFrameBot.position.y = 1.05;
+  toolWallGroup.add(pegboard, pegFrameTop, pegFrameBot);
+
+  // 타공판에 실제로 걸려 있는 3D 입체 도구 10종 조형물!
+  const darkIronMat = new THREE.MeshStandardMaterial({ color: 0x2e353d, roughness: 0.35, metalness: 0.78 });
+  const silverSteelMat = new THREE.MeshStandardMaterial({ color: 0xd8e0e8, roughness: 0.22, metalness: 0.85 });
+
+  // 1) 🪄 모세의 지팡이 & 살구꽃 핀 아론의 지팡이 (z = -8.8)
+  const mosesRod = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.04, 3.2, 12), walnutMat);
+  mosesRod.position.set(0.24, 3.6, -9.2); mosesRod.rotation.x = 0.18;
+  const mosesCrook = new THREE.Mesh(new THREE.TorusGeometry(0.22, 0.05, 10, 20, Math.PI * 1.3), goldMat);
+  mosesCrook.rotation.y = Math.PI / 2; mosesCrook.position.set(0.24, 5.1, -9.45);
+  const aaronRod = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.04, 3.0, 12), walnutMat);
+  aaronRod.position.set(0.24, 3.5, -8.1); aaronRod.rotation.x = -0.15;
+  for (const by of [3.2, 3.8, 4.4]) {
+    const blossom = new THREE.Mesh(new THREE.SphereGeometry(0.11, 10, 10), new THREE.MeshStandardMaterial({ color: 0xffd6e6, emissive: 0x5c2238, emissiveIntensity: 0.4 }));
+    blossom.position.set(0.28, by, -8.1);
+    toolWallGroup.add(blossom);
+  }
+  toolWallGroup.add(mosesRod, mosesCrook, aaronRod);
+
+  // 2) 🎙️ 스튜디오 콘덴서 마이크 & 헤드폰 (-14.5 LUFS 마스터링 도구, z = -5.5)
+  const micBody = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.58, 16), goldMat);
+  micBody.position.set(0.26, 4.1, -5.8);
+  const micGrille = new THREE.Mesh(new THREE.SphereGeometry(0.16, 14, 14), silverSteelMat);
+  micGrille.position.set(0.26, 4.48, -5.8);
+  const hpBand = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.045, 10, 24, Math.PI), darkIronMat);
+  hpBand.rotation.y = Math.PI / 2; hpBand.position.set(0.26, 3.1, -5.2);
+  const hpEarL = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.10, 14), goldMat);
+  hpEarL.rotation.z = Math.PI / 2; hpEarL.position.set(0.26, 2.95, -5.52);
+  const hpEarR = hpEarL.clone(); hpEarR.position.z = -4.88;
+  toolWallGroup.add(micBody, micGrille, hpBand, hpEarL, hpEarR);
+
+  // 3) 🎬 시네마 클래퍼보드(슬레이트) & 35mm 황동 필름 릴 (z = -2.2)
+  const clapper = new THREE.Mesh(new THREE.BoxGeometry(0.08, 0.75, 0.95), darkIronMat);
+  clapper.position.set(0.24, 4.0, -2.5);
+  const clapStick = new THREE.Mesh(new THREE.BoxGeometry(0.10, 0.14, 0.96), goldMat);
+  clapStick.position.set(0.25, 4.48, -2.5); clapStick.rotation.x = -0.22;
+  const filmReel = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.45, 0.08, 24), silverSteelMat);
+  filmReel.rotation.z = Math.PI / 2; filmReel.position.set(0.24, 2.75, -2.0);
+  toolWallGroup.add(clapper, clapStick, filmReel);
+
+  // 4) 🔍 고고학 황동 돋보기 루페 & 정밀 캘리퍼스 & T자 직각자 (z = +1.5)
+  const loupeRing = new THREE.Mesh(new THREE.TorusGeometry(0.34, 0.05, 12, 28), goldMat);
+  loupeRing.rotation.y = Math.PI / 2; loupeRing.position.set(0.25, 4.15, 1.2);
+  const loupeLens = new THREE.Mesh(new THREE.CylinderGeometry(0.32, 0.32, 0.03, 24), glassCaseMat);
+  loupeLens.rotation.z = Math.PI / 2; loupeLens.position.set(0.25, 4.15, 1.2);
+  const loupeHandle = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.03, 0.65, 10), walnutMat);
+  loupeHandle.position.set(0.25, 3.52, 1.2);
+  const tSquareH = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.18, 0.92), goldMat);
+  tSquareH.position.set(0.25, 4.55, 2.4);
+  const tSquareV = new THREE.Mesh(new THREE.BoxGeometry(0.06, 1.55, 0.14), silverSteelMat);
+  tSquareV.position.set(0.25, 3.75, 2.4);
+  toolWallGroup.add(loupeRing, loupeLens, loupeHandle, tSquareH, tSquareV);
+
+  // 5) ⚒️ 장인의 황금 망치 · 스패너 렌치 · 정밀 끌 · 톱니 기어 (z = +5.2)
+  const hammerShaft = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.045, 1.25, 10), walnutMat);
+  hammerShaft.position.set(0.25, 3.8, 4.8);
+  const hammerHead = new THREE.Mesh(new THREE.BoxGeometry(0.18, 0.22, 0.56), goldMat);
+  hammerHead.position.set(0.25, 4.42, 4.8);
+  const wrenchShaft = new THREE.Mesh(new THREE.BoxGeometry(0.06, 1.15, 0.14), silverSteelMat);
+  wrenchShaft.position.set(0.25, 3.8, 5.8);
+  const wrenchJaw = new THREE.Mesh(new THREE.TorusGeometry(0.18, 0.05, 8, 16, Math.PI * 1.4), silverSteelMat);
+  wrenchJaw.rotation.y = Math.PI / 2; wrenchJaw.position.set(0.25, 4.45, 5.8);
+  const gearWheel = new THREE.Mesh(new THREE.TorusGeometry(0.36, 0.08, 10, 16), goldMat);
+  gearWheel.rotation.y = Math.PI / 2; gearWheel.position.set(0.25, 2.65, 5.3);
+  toolWallGroup.add(hammerShaft, hammerHead, wrenchShaft, wrenchJaw, gearWheel);
+
+  // 6) ⚖️ 청지기 황동 천칭 저울 & 인장반지 도장 & 황금 깃펜 (z = +8.8)
+  const scalePillar = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.06, 1.15, 12), goldMat);
+  scalePillar.position.set(0.26, 3.85, 8.6);
+  const scaleBeam = new THREE.Mesh(new THREE.BoxGeometry(0.06, 0.08, 1.25), goldMat);
+  scaleBeam.position.set(0.26, 4.40, 8.6);
+  for (const sz of [8.0, 9.2]) {
+    const pan = new THREE.Mesh(new THREE.CylinderGeometry(0.24, 0.16, 0.06, 16), goldMat);
+    pan.position.set(0.26, 3.75, sz);
+    toolWallGroup.add(pan);
+  }
+  toolWallGroup.add(scalePillar, scaleBeam);
+
+  // 타공판 도구 명패 6개 부착
+  const TOOL_WALL_SIGNS = [
+    { z: -8.6, title: '🪄 모세·아론의 지팡이', sub: '목회 올인원 플랫폼', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/index.html' },
+    { z: -5.5, title: '🎙️ 스튜디오 마스터링 도구', sub: '음성8:BGM2 · -14.5 LUFS', url: 'index.html' },
+    { z: -2.2, title: '🎬 시네마·성화 제작 도구', sub: '서브픽셀 무빙 · 4화풍', url: 'index.html' },
+    { z: 1.8, title: '🔍 고고학·원어 정밀 도구', sub: '비문 루페 · 원어 파싱', url: 'bible_atlas.html' },
+    { z: 5.3, title: '⚒️ 설교AI 7종 변환 공구', sub: '설교·주보·PPT·쇼츠', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/sermon_converter.html' },
+    { z: 8.6, title: '⚖️ 양떼수첩 · 청지기장부', sub: '무료 교적 · 재정 저울', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/flock_notes.html' }
+  ];
+  TOOL_WALL_SIGNS.forEach((ts) => {
+    const sTex = makeSignTexture(ts.title, ts.sub, '#1a130c', '#d4af37', '#fff4d4', 512, 130);
+    const sMesh = new THREE.Mesh(new THREE.PlaneGeometry(2.8, 0.68), new THREE.MeshStandardMaterial({ map: sTex }));
+    sMesh.position.set(0.20, 1.65, ts.z);
+    sMesh.rotation.y = Math.PI / 2;
+    sMesh.userData = {
+      hotspotType: 'toolwall',
+      title: ts.title,
+      sub: ts.sub,
+      url: ts.url,
+      desc: `🛠️ 개발실 도구벽 「${ts.title} (${ts.sub})」 — 클릭하면 공간·연구·개발실 안내창에서 바로 실행하실 수 있습니다.`
+    };
+    interactiveHotspots.push(sMesh);
+    toolWallGroup.add(sMesh);
+  });
+  pegboard.userData = {
+    hotspotType: 'toolwall',
+    title: '🛠️ 꿈디도 개발실 12종 사역 도구 타공판 (Pegboard Tool Wall)',
+    desc: '모세와 아론의 지팡이, 스튜디오 콘덴서 마이크, 시네마 슬레이트, 고고학 돋보기 루페, 천칭 저울, 장인의 공구들이 걸려 있는 꿈디도 개발실 메인 도구벽입니다.'
+  };
+  interactiveHotspots.push(pegboard);
+  world.add(toolWallGroup);
+
+  // 🛠️ 개발실 중앙 4대 엔지니어링 워크벤치(작업대) & 착석 의자 4석 + 공방장 브살렐 아바타
+  const DEV_WORKBENCHES = [
+    { x: -28.0, z: -6.5, title: '🪄 제1워크벤치 · 모세와 아론의 지팡이 & 목회비서', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/index.html' },
+    { x: -21.0, z: -6.5, title: '🐑 제2워크벤치 · 양떼수첩(무료교적) & 청지기장부', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/flock_notes.html' },
+    { x: -28.0, z: 6.5, title: '⚡ 제3워크벤치 · 설교AI 7종 자동변환 스튜디오', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/sermon_converter.html' },
+    { x: -21.0, z: 6.5, title: '🌏 제4워크벤치 · 8개국어 자막·음성·성경 번역기', url: '../06_꿈디도_디지털도서관_및_지팡이/01_모세와아론의지팡이_웹앱/translation_studio.html' }
+  ];
+  DEV_WORKBENCHES.forEach((wb, idx) => {
+    const wg = new THREE.Group();
+    wg.position.set(wb.x, 0, wb.z);
+    const wTop = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.12, 1.5), walnutMat);
+    wTop.position.y = 0.82;
+    const wFrame = new THREE.Mesh(new THREE.BoxGeometry(3.4, 0.78, 1.3), darkIronMat);
+    wFrame.position.y = 0.39;
+    // 청사진 도면(Blueprint) + 노트북 모니터 + 공구함
+    const blueprint = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.9), new THREE.MeshStandardMaterial({ color: 0x163d6b, emissive: 0x0d2644, emissiveIntensity: 0.4 }));
+    blueprint.rotation.x = -Math.PI / 2; blueprint.position.set(-0.6, 0.89, 0);
+    const toolbox = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.32, 0.36), new THREE.MeshStandardMaterial({ color: 0x9e2424, metalness: 0.4, roughness: 0.35 }));
+    toolbox.position.set(1.1, 1.04, -0.25);
+    const wbSignTex = makeSignTexture(wb.title.split(' · ')[1] || wb.title, '클릭하여 사역 도구 열기 🛠️', '#18130e', '#d4af37', '#fff5dc', 512, 128);
+    const wbSign = new THREE.Mesh(new THREE.BoxGeometry(2.6, 0.42, 0.08), new THREE.MeshStandardMaterial({ map: wbSignTex }));
+    wbSign.position.set(0, 1.35, -0.55);
+
+    wg.add(wTop, wFrame, blueprint, toolbox, wbSign);
+    wTop.userData = {
+      hotspotType: 'workbench',
+      title: wb.title,
+      url: wb.url,
+      desc: `${wb.title} 개발 작업대입니다.`
+    };
+    wbSign.userData = wTop.userData;
+    interactiveHotspots.push(wTop, wbSign);
+    world.add(wg);
+
+    benches.push({
+      id: `dev-bench-${idx}`,
+      type: 'pew',
+      label: wb.title,
+      pos: new THREE.Vector3(wb.x, 0, wb.z + 1.05),
+      lookAngle: Math.PI,
+      occupiedBy: null
+    });
+  });
+
+  // 개발실 공방장 브살렐 아바타 배치
+  const bezalelAv = createAvatar({
+    id: 'craftsman-bezalel',
+    name: '🛠️ 지팡이 공방장 브살렐',
+    custom: { gender: 'M', hairStyle: 0, hairColor: '#2c1f16', outfitType: 'knit', outfitColor: '#4a321e', prop: 'olive', accessory: 'glasses' },
+    isMe: false,
+    x: -31.8,
+    z: 0
+  });
+  bezalelAv.group.rotation.y = Math.PI / 2;
+  bezalelAv.secData = {
+    name: '🛠️ 지팡이 공방장 브살렐',
+    quotes: [
+      '출애굽기 31장의 브살렐처럼 성령의 지혜로 한국 교회를 섬길 무료 목회 도구들을 깎고 다듬고 있습니다!',
+      '벽면 타공판에 걸린 모세의 지팡이, 양떼수첩, 청지기장부, 스튜디오 마이크를 클릭해 보십시오!'
+    ]
+  };
+  researcherAvatars.push(bezalelAv);
+
+  // [6] 🪜 2층 하늘 서가 발코니 (2F Sky Gallery & Mezzanine: y = 4.65m) & 양측 대계단
+  const balFloorMat = new THREE.MeshStandardMaterial({
+    map: libWalnutTex,
+    bumpMap: libWalnutBump,
+    bumpScale: 0.02,
+    color: 0x4d311b,
+    roughness: 0.46
+  });
+  // 북·남 2층 발코니 데크 (y = 4.65m)
+  for (const bz of [-12.6, 12.6]) {
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(27.6, 0.26, 3.6), balFloorMat);
+    deck.position.set(0, 4.55, bz);
+    deck.receiveShadow = true;
+    world.add(deck);
+  }
+  // 서·동 2층 발코니 데크
+  for (const bx of [-12.6, 12.6]) {
+    const deck = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.26, 21.6), balFloorMat);
+    deck.position.set(bx, 4.55, 0);
+    deck.receiveShadow = true;
+    world.add(deck);
+  }
+  // 2층으로 올라가는 좌·우 원목 황동 대계단 2기 (x = -12.6, +12.6, z = 6.5 -> 2.0)
+  for (const sx of [-12.6, 12.6]) {
+    const stairGroup = new THREE.Group();
+    for (let s = 0; s < 16; s++) {
+      const stepMesh = new THREE.Mesh(new THREE.BoxGeometry(1.65, 0.22, 0.36), walnutMat);
+      stepMesh.position.set(sx, 0.14 + s * 0.285, 8.8 - s * 0.32);
+      const stepGold = new THREE.Mesh(new THREE.BoxGeometry(1.68, 0.04, 0.06), goldMat);
+      stepGold.position.set(sx, 0.26 + s * 0.285, 8.96 - s * 0.32);
+      stairGroup.add(stepMesh, stepGold);
+    }
+    world.add(stairGroup);
+  }
+  // 2층 하늘 서가 발코니 열람석 8석 등록 (y = 4.65m)
+  for (const [bx, bz, lookA, lbl] of [
+    [-7.5, -12.4, 0, '🪜 2층 북서 하늘 서가 열람석'],
+    [7.5, -12.4, 0, '🪜 2층 북동 하늘 서가 열람석'],
+    [-7.5, 12.4, Math.PI, '🪜 2층 남서 하늘 서가 열람석'],
+    [7.5, 12.4, Math.PI, '🪜 2층 남동 하늘 서가 열람석'],
+    [-12.4, -5.5, Math.PI / 2, '🪜 2층 서측 하늘 서가 열람석'],
+    [12.4, -5.5, -Math.PI / 2, '🪜 2층 동측 하늘 서가 열람석']
+  ]) {
+    const b2 = new THREE.Mesh(new THREE.BoxGeometry(1.6, 0.45, 0.56), walnutMat);
+    b2.position.set(bx, 4.65 + 0.22, bz);
+    const c2 = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.07, 0.50), cushionMat);
+    c2.position.set(bx, 4.65 + 0.47, bz);
+    world.add(b2, c2);
+    benches.push({
+      id: `sky-balcony-${bx}-${bz}`,
+      type: 'pew',
+      label: lbl,
+      pos: new THREE.Vector3(bx, 4.65, bz),
+      lookAngle: lookA,
+      occupiedBy: null
+    });
+  }
+
+  // 지·제·클·안 연구실 & 사서실 & 개발실 아바타 주기적 브리핑 말풍선 타이머
+  let secQuoteCursor = 0;
+  setInterval(() => {
+    if (researcherAvatars.length === 0) return;
+    const av = researcherAvatars[secQuoteCursor % researcherAvatars.length];
+    secQuoteCursor++;
+    if (av && av.secData && av.secData.quotes && av.secData.quotes.length > 0) {
+      const q = av.secData.quotes[Math.floor(Math.random() * av.secData.quotes.length)];
+      showBubble(av, q, 4800);
+    }
+  }, 6500);
+
+
+  /* ==============================================================
    * 6. 벤치 착석(진짜 앉기), 무릎기도(진짜 무릎 꿇기), 액션 제어
    * ============================================================== */
   function syncDockPostureButtons() {
@@ -3025,8 +4299,8 @@ html, body {
   });
 
   function togglePanel(panelId, dockId) {
-    const panels = ['panel-avatar', 'panel-scroll', 'panel-lamp', 'panel-gallery', 'panel-audio'];
-    const docks = ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio'];
+    const panels = ['panel-avatar', 'panel-scroll', 'panel-lamp', 'panel-gallery', 'panel-audio', 'panel-museum-hub'];
+    const docks = ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio', 'dock-museum-hub'];
     const target = document.getElementById(panelId);
     if (!target) return;
     const isOpen = target.classList.contains('is-open');
@@ -3052,12 +4326,13 @@ html, body {
   document.getElementById('dock-lamp').addEventListener('click', () => togglePanel('panel-lamp', 'dock-lamp'));
   document.getElementById('dock-gallery').addEventListener('click', () => togglePanel('panel-gallery', 'dock-gallery'));
   document.getElementById('dock-audio').addEventListener('click', () => togglePanel('panel-audio', 'dock-audio'));
+  document.getElementById('dock-museum-hub').addEventListener('click', () => togglePanel('panel-museum-hub', 'dock-museum-hub'));
 
   document.querySelectorAll('[data-close]').forEach(btn => {
     btn.addEventListener('click', () => {
       const el = document.getElementById(btn.getAttribute('data-close'));
       if (el) el.classList.remove('is-open');
-      ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio'].forEach(d => {
+      ['dock-avatar', 'dock-scroll', 'dock-lamp', 'dock-gallery', 'dock-audio', 'dock-museum-hub'].forEach(d => {
         const dEl = document.getElementById(d);
         if (dEl) dEl.classList.remove('is-active');
       });
@@ -3571,21 +4846,61 @@ html, body {
         return;
       }
 
-      // 2) 바닥 클릭 이동 (대폭 확장된 30m x 30m 대아트리움 전체 회랑 산책 가능!)
+      // 1-B) 확장 7대 공간 오브젝트 클릭 확인 (3D 서가, 성경박물관 유리 진열장, 지·제·클·안 연구석, 사서실, 개발실 도구벽)
+      const hotHits = raycaster.intersectObjects(interactiveHotspots);
+      if (hotHits.length > 0) {
+        const ud = hotHits[0].object.userData || {};
+        playScrollChime(4, false);
+        const statusEl = document.getElementById('status-banner');
+        if (ud.desc && statusEl) {
+          statusEl.textContent = ud.desc;
+          statusEl.classList.remove('is-faded');
+        }
+        if (ud.hotspotType === 'researcher' && researcherAvatars[ud.secIndex]) {
+          const rAv = researcherAvatars[ud.secIndex];
+          const qList = ud.quotes || [];
+          if (qList.length > 0) {
+            showBubble(rAv, qList[Math.floor(Math.random() * qList.length)], 5200);
+          }
+        } else if (ud.hotspotType === 'artifact') {
+          togglePanel('panel-museum-hub', 'dock-museum-hub');
+          const tabBtn = document.querySelector('[data-mhub-tab="museum"]');
+          if (tabBtn) tabBtn.click();
+        } else if (ud.hotspotType === 'toolwall' || ud.hotspotType === 'workbench') {
+          togglePanel('panel-museum-hub', 'dock-museum-hub');
+          const tabBtn = document.querySelector('[data-mhub-tab="devlab"]');
+          if (tabBtn) tabBtn.click();
+        } else if (ud.hotspotType === 'librarian') {
+          togglePanel('panel-museum-hub', 'dock-museum-hub');
+          const tabBtn = document.querySelector('[data-mhub-tab="librarian"]');
+          if (tabBtn) tabBtn.click();
+          if (typeof librarianAv !== 'undefined') {
+            showBubble(librarianAv, '📜 사서실 도서 색인 및 업데이트 안내창을 열었습니다!', 4500);
+          }
+        } else if (ud.hotspotType === 'bookshelf') {
+          togglePanel('panel-museum-hub', 'dock-museum-hub');
+          const tabBtn = document.querySelector('[data-mhub-tab="stacks"]');
+          if (tabBtn) tabBtn.click();
+        }
+        return;
+      }
+
+      // 2) 바닥 클릭 이동 (국립중앙박물관급 7대 공간 전체 자유 보행!)
       const floorHits = raycaster.intersectObject(floorMesh);
       if (floorHits.length > 0) {
         const pt = floorHits[0].point;
         if (pt.length() < 2.35) return; // 중앙 우물 내부 진입 방지
-        const cx = Math.max(-13.6, Math.min(13.6, pt.x));
-        const cz = Math.max(-13.6, Math.min(13.6, pt.z));
+        const cx = Math.max(-34.8, Math.min(34.8, pt.x));
+        const cz = Math.max(-37.5, Math.min(37.5, pt.z));
 
         for (const b of benches) {
-          if (!b.occupiedBy && b.pos.distanceTo(new THREE.Vector3(cx, 0, cz)) < 0.95) {
+          if (!b.occupiedBy && b.pos.distanceTo(new THREE.Vector3(cx, b.pos.y, cz)) < 1.15) {
             sitAtBench(myAvatar, b);
             return;
           }
         }
         unseat(myAvatar);
+        myAvatar.group.position.y = 0;
         myAvatar.targetPos.set(cx, 0, cz);
         myAvatar.state = 'walking';
         rippleMesh.position.set(cx, 0.03, cz);
@@ -3620,8 +4935,9 @@ html, body {
     else if (e.key === '5') togglePanel('panel-lamp', 'dock-lamp');
     else if (e.key === '6') togglePanel('panel-gallery', 'dock-gallery');
     else if (e.key === '7') togglePanel('panel-audio', 'dock-audio');
+    else if (e.key === '8') togglePanel('panel-museum-hub', 'dock-museum-hub');
 
-    const step = 1.05;
+    const step = 1.25;
     let dx = 0, dz = 0;
     if (e.key === 'ArrowUp' || e.key === 'w' || e.key === 'W') dz = -step;
     if (e.key === 'ArrowDown' || e.key === 's' || e.key === 'S') dz = step;
@@ -3629,14 +4945,183 @@ html, body {
     if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') dx = step;
     if (dx !== 0 || dz !== 0) {
       unseat(myAvatar);
-      const nx = Math.max(-13.6, Math.min(13.6, myAvatar.group.position.x + dx));
-      const nz = Math.max(-13.6, Math.min(13.6, myAvatar.group.position.z + dz));
+      const curY = myAvatar.group.position.y > 2.0 ? 4.65 : 0;
+      const nx = Math.max(-34.8, Math.min(34.8, myAvatar.group.position.x + dx));
+      const nz = Math.max(-37.5, Math.min(37.5, myAvatar.group.position.z + dz));
       if (Math.hypot(nx, nz) > 2.4) {
-        myAvatar.targetPos.set(nx, 0, nz);
+        myAvatar.targetPos.set(nx, curY, nz);
         myAvatar.state = 'walking';
       }
     }
   });
+
+  /* ==============================================================
+   * 8-D. 국립중앙박물관급 7대 공간 원클릭 순간이동 (`jumpToCampusZone`) & 탭 제어
+   * ============================================================== */
+  const CAMPUS_ZONES = {
+    atrium: {
+      key: 'atrium',
+      name: '🏺 중앙 우물 대아트리움',
+      x: 0, y: 0, z: 6.2, yaw: 0, pitch: 0.18, dist: 8.4,
+      banner: '🏺 [중앙 대아트리움] 오래된 우물과 8대 성화 회랑입니다. 동·서·남·북 4대 아치 통로로 걸어가실 수 있습니다.'
+    },
+    reading: {
+      key: 'stacks',
+      name: '📚 대열람실 (3D 서가 숲)',
+      x: 0, y: 0, z: -21.5, yaw: 0, pitch: 0.20, dist: 8.8,
+      banner: '📚 [북측 대열람실 · 12대 서가 숲] 실제 도서관처럼 늘어선 제1관~제12관 3D 책장을 클릭하면 아카이브가 열리고, 초록 스탠드 열람석에 앉으실 수 있습니다.'
+    },
+    stacks: {
+      key: 'stacks',
+      name: '📚 대열람실 (3D 서가 숲)',
+      x: 0, y: 0, z: -21.5, yaw: 0, pitch: 0.20, dist: 8.8,
+      banner: '📚 [북측 대열람실 · 12대 서가 숲] 실제 도서관처럼 늘어선 제1관~제12관 3D 책장을 클릭하면 아카이브가 열리고, 초록 스탠드 열람석에 앉으실 수 있습니다.'
+    },
+    museum: {
+      key: 'museum',
+      name: '🏛️ 국립성경박물관 (사유의 길)',
+      x: 0, y: 0, z: 20.5, yaw: Math.PI, pitch: 0.20, dist: 8.6,
+      banner: '🏛️ [남측 국립성경박물관 · 사유의 길] 사해 이사야 두루마리·언약궤·히스기야 인장 등 8대 유리 진열장을 클릭해 유물 해설을 감상하세요.'
+    },
+    research: {
+      key: 'research',
+      name: '🔬 지·제·클·안 AI 연구실',
+      x: 23.6, y: 0, z: -9.6, yaw: -Math.PI / 2, pitch: 0.24, dist: 6.2,
+      banner: '🔬 [동측 북단 지·제·클·안 AI 사역 연구실] 안간사·클간사·제간사·지간사·워크간사가 연구 중입니다! 안쪽 「🎯 꿈바온 목사님 총괄 디렉터석」에 앉아 보십시오.'
+    },
+    librarian: {
+      key: 'librarian',
+      name: '📜 사서실 · 도서색인',
+      x: 24.5, y: 0, z: 5.8, yaw: Math.PI, pitch: 0.20, dist: 6.2,
+      banner: '📜 [동측 남단 꿈디도 사서실] 수석사서 에스라의 열람 데스크와 60칸 도서 색인 카드 캐비닛입니다.'
+    },
+    devlab: {
+      key: 'devlab',
+      name: '🛠️ 개발실 · 지팡이 공방',
+      x: -24.5, y: 0, z: 0, yaw: Math.PI / 2, pitch: 0.18, dist: 8.2,
+      banner: '🛠️ [서측 꿈디도 개발실 · 지팡이 공방] 대형 타공판에 걸린 모세·아론의 지팡이와 12종 사역 도구, 4대 워크벤치를 클릭해 보세요!'
+    },
+    balcony: {
+      key: 'balcony2f',
+      name: '🪜 2층 하늘 서가 발코니',
+      x: 0, y: 4.65, z: -12.4, yaw: Math.PI, pitch: 0.24, dist: 8.2,
+      banner: '🪜 [2층 하늘 서가 발코니] 지상 4.65m 상공에서 대아트리움과 생명수 우물 전체를 내려다보는 2층 회랑입니다.'
+    },
+    balcony2f: {
+      key: 'balcony2f',
+      name: '🪜 2층 하늘 서가 발코니',
+      x: 0, y: 4.65, z: -12.4, yaw: Math.PI, pitch: 0.24, dist: 8.2,
+      banner: '🪜 [2층 하늘 서가 발코니] 지상 4.65m 상공에서 대아트리움과 생명수 우물 전체를 내려다보는 2층 회랑입니다.'
+    }
+  };
+
+  function setZoneButtonHighlight(activeZoneKey) {
+    document.querySelectorAll('#campus-zone-bar .campus-zone-btn').forEach(btn => {
+      const bZone = btn.getAttribute('data-zone');
+      const isAct = (bZone === activeZoneKey);
+      btn.classList.toggle('active', isAct);
+      btn.classList.toggle('is-active', isAct);
+      if (isAct) {
+        btn.style.background = 'linear-gradient(135deg,#e5c168,#b88728)';
+        btn.style.color = '#1a1208';
+        btn.style.fontWeight = '800';
+      } else {
+        btn.style.background = 'rgba(255,255,255,0.08)';
+        btn.style.color = '#fff4d6';
+        btn.style.fontWeight = '700';
+      }
+    });
+  }
+
+  window.jumpToCampusZone = function(zoneKey) {
+    const zCfg = CAMPUS_ZONES[zoneKey];
+    if (!zCfg) return;
+    unseat(myAvatar);
+    myAvatar.group.position.set(zCfg.x, zCfg.y || 0, zCfg.z);
+    myAvatar.targetPos.set(zCfg.x, zCfg.y || 0, zCfg.z);
+    myAvatar.state = 'standing';
+    myAvatar.group.rotation.y = zCfg.yaw;
+    camYaw = zCfg.yaw;
+    camPitch = zCfg.pitch;
+    camDist = zCfg.dist;
+
+    setZoneButtonHighlight(zCfg.key);
+    const roomNameEl = document.getElementById('cloister-room-name');
+    if (roomNameEl) roomNameEl.textContent = zCfg.name;
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.textContent = zCfg.banner;
+      statusEl.classList.remove('is-faded');
+    }
+    playScrollChime(3, true);
+    broadcastPilgrimState();
+  };
+
+  document.querySelectorAll('#campus-zone-bar .campus-zone-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      window.jumpToCampusZone(btn.getAttribute('data-zone'));
+    });
+  });
+
+  window.sitAtPastorDirectorChair = function() {
+    window.jumpToCampusZone('research');
+    const pBench = benches.find(b => b.id === 'pastor-director-seat');
+    if (pBench) {
+      setTimeout(() => {
+        sitAtBench(myAvatar, pBench);
+        showBubble(myAvatar, '🎯 지·제·클·안 간사들, 오늘도 말씀 사역 화이팅!', 4500);
+      }, 180);
+    }
+  };
+  window.sitAtPastorDirectorDesk = window.sitAtPastorDirectorChair;
+
+  window.focusSecretaryInLab = function(code) {
+    const mapIdx = { an: 0, cl: 1, je: 2, ji: 3, wk: 4 };
+    const idx = mapIdx[code] ?? 0;
+    window.jumpToCampusZone('research');
+    const rAv = researcherAvatars[idx];
+    if (rAv && rAv.secData) {
+      const qList = rAv.secData.quotes || [];
+      if (qList.length > 0) {
+        showBubble(rAv, qList[0], 5500);
+      }
+      const statusEl = document.getElementById('status-banner');
+      if (statusEl) {
+        statusEl.textContent = `🔬 ${rAv.secData.name} (${rAv.secData.role}) 연구석을 살펴봅니다.`;
+        statusEl.classList.remove('is-faded');
+      }
+    }
+  };
+
+  window.inspectMuseumArtifact = function(idx) {
+    const art = MUSEUM_ARTIFACTS[idx];
+    if (!art) return;
+    const tEl = document.getElementById('mhub-artifact-title');
+    const dEl = document.getElementById('mhub-artifact-desc');
+    if (tEl) tEl.textContent = `🏛️ ${art.title} (${art.era})`;
+    if (dEl) dEl.textContent = art.desc;
+    window.jumpToCampusZone('museum');
+    myAvatar.targetPos.set(art.x < 0 ? art.x + 2.4 : art.x - 2.4, 0, art.z);
+    myAvatar.state = 'walking';
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.textContent = `🏛️ [${art.title}] — ${art.desc}`;
+      statusEl.classList.remove('is-faded');
+    }
+  };
+
+  // 공간·연구·개발실 통합 허브 모달 내 탭 전환 연결
+  document.querySelectorAll('[data-mhub-tab]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-mhub-tab');
+      document.querySelectorAll('[data-mhub-tab]').forEach(b => b.classList.toggle('active', b === btn));
+      document.querySelectorAll('.mhub-tab-pane').forEach(p => {
+        p.style.display = (p.id === `mhub-pane-${targetTab}`) ? 'flex' : 'none';
+      });
+      playScrollChime(1, false);
+    });
+  });
+
 
   /* ==============================================================
    * 9. 다관절 사람 아바타 포즈 엔진 & 애니메이션 루프
@@ -3851,17 +5336,24 @@ html, body {
       rippleMesh.material.opacity = Math.max(0, (1 - rippleAge) * 0.65);
     }
 
-    const target = new THREE.Vector3(myAvatar.group.position.x * 0.5, 2.35, myAvatar.group.position.z * 0.5);
+    const inOuterWing = (Math.abs(myAvatar.group.position.x) > 12.5 || Math.abs(myAvatar.group.position.z) > 12.5 || myAvatar.group.position.y > 2.0);
+    const followFactor = inOuterWing ? 1.0 : 0.68;
+    const target = new THREE.Vector3(
+      myAvatar.group.position.x * followFactor,
+      myAvatar.group.position.y + 2.15,
+      myAvatar.group.position.z * followFactor
+    );
     const desiredCam = new THREE.Vector3(
       target.x + Math.sin(camYaw) * Math.cos(camPitch) * camDist,
       target.y + Math.sin(camPitch) * camDist,
       target.z + Math.cos(camYaw) * Math.cos(camPitch) * camDist
     );
-    camera.position.lerp(desiredCam, 0.08);
+    camera.position.lerp(desiredCam, 0.10);
     camera.lookAt(target);
 
     avatars.forEach(av => {
-      const labelY = av.state === 'kneeling' ? 1.22 : (av.state === 'sitting' ? 1.38 : 1.62);
+      const baseAvY = av.group.position.y || 0;
+      const labelY = baseAvY + (av.state === 'kneeling' ? 1.22 : (av.state === 'sitting' ? 1.38 : 1.62));
       const p = new THREE.Vector3(av.group.position.x, labelY, av.group.position.z);
       p.project(camera);
       if (p.z > 1) {
