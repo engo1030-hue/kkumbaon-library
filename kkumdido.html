@@ -2865,8 +2865,8 @@ html, body {
       openBook.position.set(lx, 0.84, 0.34);
       tg.add(lBase, lStem, lShade, lBulb, openBook);
     }
-    // 앞·뒤 원목 열람 의자 및 착석 포인트 등록
-    for (const [cz, lookA, suffix] of [[0.92, Math.PI, '북향'], [-0.92, 0, '남향']]) {
+    // 앞·뒤 원목 열람 의자 및 착석 포인트 등록 (cz>0 남측 의자는 북향 0, cz<0 북측 의자는 남향 Math.PI)
+    for (const [cz, lookA, suffix] of [[0.92, 0, '북향'], [-0.92, Math.PI, '남향']]) {
       const chair = new THREE.Group();
       const cSeat = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.07, 0.52), cushionMat);
       cSeat.position.set(0, 0.46, cz);
@@ -3123,7 +3123,7 @@ html, body {
     world.add(eLight);
   }
 
-  // 🎯 꿈바온 목사님 총괄 디렉터석 (x = 32.5, z = -9.5) — 사용자 아바타 직접 착석 가능!
+  // 🎯 꿈바온 목사님 총괄 디렉터석 (x = 32.5, z = -9.5) — 사용자 아바타 직접 착석 가능! (서쪽 연구실 전체를 바라봄: lookAngle = +Math.PI / 2)
   const pastorDesk = new THREE.Group();
   pastorDesk.position.set(32.5, 0, -9.5);
   const pTop = new THREE.Mesh(new THREE.BoxGeometry(1.55, 0.12, 3.6), walnutMat);
@@ -3141,9 +3141,11 @@ html, body {
   const pSignTex = makeSignTexture('🎯 꿈바온 목사님 총괄 디렉터석', 'PASTOR & CHIEF DIRECTOR', '#1e130a', '#f3c969', '#fff6dc', 512, 128);
   const pNameplate = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.28, 1.35), new THREE.MeshStandardMaterial({ map: pSignTex }));
   pNameplate.position.set(-0.72, 0.96, 0);
-  const pChair = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.95, 0.68), cushionMat);
-  pChair.position.set(0.92, 0.48, 0);
-  pastorDesk.add(pTop, pFront, pGoldTrim, pNameplate, pChair);
+  const pChair = new THREE.Mesh(new THREE.BoxGeometry(0.68, 0.46, 0.68), cushionMat);
+  pChair.position.set(0.92, 0.23, 0);
+  const pChairBack = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.65, 0.68), walnutMat);
+  pChairBack.position.set(1.22, 0.62, 0);
+  pastorDesk.add(pTop, pFront, pGoldTrim, pNameplate, pChair, pChairBack);
   world.add(pastorDesk);
 
   benches.push({
@@ -3151,16 +3153,17 @@ html, body {
     type: 'pew',
     label: '🎯 꿈바온 목사님 총괄 디렉터석',
     pos: new THREE.Vector3(33.4, 0, -9.5),
-    lookAngle: -Math.PI / 2,
+    lookAngle: Math.PI / 2,
     occupiedBy: null
   });
 
-  // 🔬 지·제·클·안 + 워크간사 5인의 개별 연구 책상 & 실시간 연구 중인 3D 아바타 배치
+  // 🔬 지·제·클·안 + 워크간사 5인의 개별 연구 책상 & 책상 모니터를 정면으로 마주보고 앉아 연구하는 3D 아바타 배치
+  // (참고: 아바타 기본 정면은 -Z 방향이므로, 로컬 +Z(0.62) 의자에 앉아 로컬 -Z(책상·모니터)를 바라볼 때 회전값은 sec.lookAngle 과 정확히 일치!)
   const AI_RESEARCHERS = [
     {
       id: 'sec-ahn',
       name: '🚀 비서실장 안간사 (Antigravity)',
-      x: 21.0, z: -14.2, lookAngle: 0,
+      x: 21.0, z: -13.6, lookAngle: Math.PI,
       role: '꿈디도 안관장 · 서브픽셀 시네마 마스터링 · 8개국어 패키징 총괄',
       custom: { gender: 'M', hairStyle: 0, hairColor: '#1b1613', outfitType: 'suit', outfitColor: '#1c2d42', prop: 'bible', accessory: 'glasses' },
       quotes: [
@@ -3172,7 +3175,7 @@ html, body {
     {
       id: 'sec-claude',
       name: '⚖️ 수석감수 클간사 (Claude)',
-      x: 27.2, z: -14.2, lookAngle: 0,
+      x: 27.2, z: -13.6, lookAngle: Math.PI,
       role: '원고 집필 · 복음주의 신학·역사 팩트체크 · 입말 호흡 감수',
       custom: { gender: 'M', hairStyle: 1, hairColor: '#3b2618', outfitType: 'coat', outfitColor: '#3d281c', prop: 'bible', accessory: 'glasses' },
       quotes: [
@@ -3184,7 +3187,7 @@ html, body {
     {
       id: 'sec-gemini',
       name: '🎬 멀티미디어 제간사 (Gemini)',
-      x: 21.0, z: -5.2, lookAngle: Math.PI,
+      x: 21.0, z: -5.4, lookAngle: 0,
       role: 'Google Flow 시네마틱 영상 · 성화 프롬프트 · 멀티모달 연구',
       custom: { gender: 'F', hairStyle: 1, hairColor: '#2c1d14', outfitType: 'choir', outfitColor: '#243b54', prop: 'candle', accessory: 'none' },
       quotes: [
@@ -3195,7 +3198,7 @@ html, body {
     {
       id: 'sec-codex',
       name: '📊 전략분석 지간사 (Codex)',
-      x: 27.2, z: -5.2, lookAngle: Math.PI,
+      x: 27.2, z: -5.4, lookAngle: 0,
       role: 'vidIQ 데이터 전략 · 알고리즘 리텐션 분석 · 코드 아키텍처 검증',
       custom: { gender: 'M', hairStyle: 2, hairColor: '#1f1b18', outfitType: 'knit', outfitColor: '#1f3d33', prop: 'bible', accessory: 'glasses' },
       quotes: [
@@ -3206,7 +3209,7 @@ html, body {
     {
       id: 'sec-work',
       name: '🎨 수석화백 워크간사 (GPT Work)',
-      x: 17.5, z: -9.6, lookAngle: -Math.PI / 2,
+      x: 17.5, z: -9.5, lookAngle: -Math.PI / 2,
       role: '15인 성경 인물 마스터 일관성 수호 · 4화풍 성화 아틀리에',
       custom: { gender: 'F', hairStyle: 2, hairColor: '#4a2c18', outfitType: 'coat', outfitColor: '#5c2d24', prop: 'olive', accessory: 'Ribbon' },
       quotes: [
@@ -3218,7 +3221,7 @@ html, body {
 
   const researcherAvatars = [];
   AI_RESEARCHERS.forEach((sec, idx) => {
-    // 연구 책상 생성
+    // 연구 책상 생성 (로컬 +Z에 의자와 간사가 앉고, 로컬 -Z에 모니터와 전면 명패가 위치)
     const dg = new THREE.Group();
     dg.position.set(sec.x, 0, sec.z);
     dg.rotation.y = sec.lookAngle;
@@ -3230,19 +3233,32 @@ html, body {
     dLegL.position.set(-1.02, 0.38, 0);
     const dLegR = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.76, 1.05), walnutMat);
     dLegR.position.set(1.02, 0.38, 0);
-    // 듀얼 모니터 + 초록 스탠드 + 원어 두루마리
-    const mon1 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1d4268, emissiveIntensity: 0.7 }));
-    mon1.position.set(-0.42, 1.12, -0.32); mon1.rotation.y = 0.18;
-    const mon2 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1b4d3e, emissiveIntensity: 0.7 }));
-    mon2.position.set(0.42, 1.12, -0.32); mon2.rotation.y = -0.18;
+    // 듀얼 모니터 (간사가 앉아 있는 +Z 방향을 바라보도록 배치) + 키보드/원어 사본 + 고서적 더미
+    const mon1 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1d4268, emissiveIntensity: 0.75 }));
+    mon1.position.set(-0.42, 1.12, -0.22); mon1.rotation.y = 0.20;
+    const mon2 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1b4d3e, emissiveIntensity: 0.75 }));
+    mon2.position.set(0.42, 1.12, -0.22); mon2.rotation.y = -0.20;
+    const kbPad = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.025, 0.20), new THREE.MeshStandardMaterial({ color: 0x222834 }));
+    kbPad.position.set(0, 0.84, 0.22);
+    const openMs = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.28), new THREE.MeshStandardMaterial({ color: 0xfbf2dc }));
+    openMs.position.set(0.68, 0.84, 0.20);
     const stackBooks = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.24, 0.28), new THREE.MeshStandardMaterial({ color: 0x7c2323 }));
     stackBooks.position.set(-0.85, 0.95, 0.15);
 
+    // 복도 쪽(로컬 -Z, z = -0.54)을 향하는 전면 황금 명패
     const signTex = makeSignTexture(sec.name, sec.role.split(' · ')[0], '#16120d', '#d4af37', '#fff4d4', 512, 128);
-    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(1.45, 0.28, 0.08), new THREE.MeshStandardMaterial({ map: signTex }));
-    signBoard.position.set(0, 0.94, 0.54);
+    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.30, 0.08), new THREE.MeshStandardMaterial({ map: signTex }));
+    signBoard.position.set(0, 0.95, -0.52);
 
-    dg.add(dTop, dLegL, dLegR, mon1, mon2, stackBooks, signBoard);
+    // 간사가 앉는 실제 3D 연구 의자 (로컬 +Z, z = +0.62)
+    const rChairSeat = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.08, 0.54), cushionMat);
+    rChairSeat.position.set(0, 0.44, 0.62);
+    const rChairBack = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.54, 0.08), walnutMat);
+    rChairBack.position.set(0, 0.74, 0.86);
+    const rChairBase = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.22, 0.42, 12), goldMat);
+    rChairBase.position.set(0, 0.21, 0.62);
+
+    dg.add(dTop, dLegL, dLegR, mon1, mon2, kbPad, openMs, stackBooks, signBoard, rChairSeat, rChairBack, rChairBase);
     dTop.userData = {
       hotspotType: 'researcher',
       secIndex: idx,
@@ -3254,8 +3270,8 @@ html, body {
     interactiveHotspots.push(dTop, signBoard);
     world.add(dg);
 
-    // 실제 3D 다관절 간사 아바타 생성 및 착석
-    const seatOffset = new THREE.Vector3(0, 0, 0.72).applyAxisAngle(new THREE.Vector3(0, 1, 0), sec.lookAngle);
+    // 실제 3D 다관절 간사 아바타 생성 및 책상 정면(모니터 쪽)을 바라보도록 착석!
+    const seatOffset = new THREE.Vector3(0, 0, 0.58).applyAxisAngle(new THREE.Vector3(0, 1, 0), sec.lookAngle);
     const av = createAvatar({
       id: sec.id,
       name: sec.name,
@@ -3265,7 +3281,7 @@ html, body {
       z: sec.z + seatOffset.z
     });
     av.state = 'sitting';
-    av.group.rotation.y = sec.lookAngle + Math.PI;
+    av.group.rotation.y = sec.lookAngle; // 로컬 -Z(책상 모니터와 키보드)를 정면으로 바라봄!
     av.secData = sec;
     researcherAvatars.push(av);
   });
@@ -3298,17 +3314,23 @@ html, body {
   interactiveHotspots.push(cMain);
   world.add(libCounter);
 
-  // 수석사서 에스라 3D 아바타 배치
+  // 수석사서 에스라 3D 아바타 및 의자 배치 (데스크 뒤 z=10.85에서 북쪽 데스크 z=9.8을 바라보도록 rotation.y = 0)
+  const ezraChair = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.46, 0.62), cushionMat);
+  ezraChair.position.set(24.5, 0.23, 10.95);
+  const ezraChairBack = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.58, 0.10), walnutMat);
+  ezraChairBack.position.set(24.5, 0.62, 11.24);
+  world.add(ezraChair, ezraChairBack);
+
   const librarianAv = createAvatar({
     id: 'librarian-ezra',
     name: '📜 수석사서 에스라',
     custom: { gender: 'M', hairStyle: 1, hairColor: '#d8d2c8', outfitType: 'coat', outfitColor: '#2b1e16', prop: 'bible', accessory: 'glasses' },
     isMe: false,
     x: 24.5,
-    z: 11.0
+    z: 10.85
   });
   librarianAv.state = 'sitting';
-  librarianAv.group.rotation.y = Math.PI;
+  librarianAv.group.rotation.y = 0; // 북쪽(-Z, 사서 데스크 정면)을 바라봄!
   librarianAv.secData = {
     name: '📜 수석사서 에스라',
     quotes: [
@@ -3333,17 +3355,17 @@ html, body {
   }
   world.add(catalogCab);
 
-  // 사서실 열람 상담 의자 2석
-  for (const [sx, sz, lbl] of [[22.5, 7.2, '사서실 도서 상담석 1'], [25.5, 7.2, '사서실 도서 상담석 2']]) {
-    const ch = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.48, 0.65), cushionMat);
-    ch.position.set(sx, 0.24, sz);
+  // 사서실 열람 상담 의자 2석 (남쪽 데스크를 바라보도록 lookAngle: Math.PI)
+  for (const [sx, sz, lbl] of [[22.8, 7.6, '사서실 도서 상담석 1'], [26.2, 7.6, '사서실 도서 상담석 2']]) {
+    const ch = new THREE.Mesh(new THREE.BoxGeometry(0.65, 0.46, 0.65), cushionMat);
+    ch.position.set(sx, 0.23, sz);
     world.add(ch);
     benches.push({
       id: `librarian-seat-${sx}`,
       type: 'pew',
       label: `📜 ${lbl}`,
       pos: new THREE.Vector3(sx, 0, sz),
-      lookAngle: 0,
+      lookAngle: Math.PI,
       occupiedBy: null
     });
   }
@@ -3531,7 +3553,7 @@ html, body {
       type: 'pew',
       label: wb.title,
       pos: new THREE.Vector3(wb.x, 0, wb.z + 1.05),
-      lookAngle: Math.PI,
+      lookAngle: 0,
       occupiedBy: null
     });
   });
