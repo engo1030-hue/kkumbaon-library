@@ -3296,3 +3296,4 @@ window.DREAMBAON_ATLAS = {
     ]
   }
 };
+window.CITIES_DATA = window.DREAMBAON_ATLAS.places;

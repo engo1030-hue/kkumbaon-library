@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
   <style>
     :root, [data-theme="light"] {
       --bg: #F9F6F0;
@@ -452,8 +452,8 @@
   
 
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_START] === */
-/* PC 와이드 환경(1025px 이상, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
-@media (min-width: 1025px) {
+/* PC 와이드 환경(1025px 이상 마우스 데스크톱, 모바일 모드가 아닐 때)에서만 1440px 고정 락 발동 */
+@media (min-width: 1025px) and (hover: hover) and (pointer: fine) {
   html:not(.mobile-mode), html:not(.mobile-mode) body {
     min-width: 1440px !important;
   }
@@ -534,18 +534,18 @@
 
 /* === [KKUMDIDO_12ARCHIVES_MOBILE_MODE_START] === */
 @media (max-width: 1024px), (pointer: coarse) {
-  html.mobile-mode, html.mobile-mode body {
+  html:not(.pc-override), html:not(.pc-override) body {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100vw !important;
     overflow-x: hidden !important;
     padding-bottom: 74px !important;
   }
-  html.mobile-mode header,
-  html.mobile-mode .header-inner,
-  html.mobile-mode .tabs-container,
-  html.mobile-mode .stats-bar,
-  html.mobile-mode .grid {
+  html:not(.pc-override) header,
+  html:not(.pc-override) .header-inner,
+  html:not(.pc-override) .tabs-container,
+  html:not(.pc-override) .stats-bar,
+  html:not(.pc-override) .grid {
     width: 100% !important;
     min-width: 0 !important;
     max-width: 100% !important;
@@ -555,21 +555,21 @@
     margin-left: 0 !important;
     margin-right: 0 !important;
   }
-  html.mobile-mode .top-bar {
+  html:not(.pc-override) .top-bar {
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 10px !important;
   }
-  html.mobile-mode .brand h1 {
+  html:not(.pc-override) .brand h1 {
     font-size: 1.15rem !important;
   }
-  html.mobile-mode .header-actions {
+  html:not(.pc-override) .header-actions {
     width: 100% !important;
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 6px !important;
   }
-  html.mobile-mode .tabs-container {
+  html:not(.pc-override) .tabs-container {
     display: flex !important;
     flex-wrap: nowrap !important;
     overflow-x: auto !important;
@@ -578,26 +578,26 @@
     gap: 6px !important;
     padding: 8px 12px !important;
   }
-  html.mobile-mode .tabs-container::-webkit-scrollbar {
+  html:not(.pc-override) .tabs-container::-webkit-scrollbar {
     display: none !important;
   }
-  html.mobile-mode .tab-btn {
+  html:not(.pc-override) .tab-btn {
     flex-shrink: 0 !important;
     white-space: nowrap !important;
     border-radius: 16px !important;
     font-size: 12px !important;
     padding: 7px 12px !important;
   }
-  html.mobile-mode .search-row {
+  html:not(.pc-override) .search-row {
     flex-direction: column !important;
     gap: 8px !important;
   }
-  html.mobile-mode .grid {
+  html:not(.pc-override) .grid {
     display: grid !important;
     grid-template-columns: 1fr !important;
     gap: 14px !important;
   }
-  html.mobile-mode .modal {
+  html:not(.pc-override) .modal {
     position: fixed !important;
     top: 0 !important;
     left: 0 !important;
@@ -1185,7 +1185,7 @@
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
-  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭: 홈·지도 / 12대관 / 자료검색 / 별관 / 3D둘러보기) -->
   <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
     <a href="index.html" class="kkumdido-mobile-tab-item" data-tab-action="home">
       <span class="tab-icon">🏛️</span>
@@ -1195,21 +1195,21 @@
       <span class="tab-icon">📚</span>
       <span>12대관</span>
     </button>
-    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
-      <span class="tab-icon">📖</span>
-      <span>강해·주석</span>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
+      <span class="tab-icon">🔍</span>
+      <span>자료검색</span>
+    </button>
+    <a href="kkumdido_church_support_annex.html" class="kkumdido-mobile-tab-item" data-tab-action="annex">
+      <span class="tab-icon">🏛️</span>
+      <span>별관</span>
     </a>
     <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
       <span class="tab-icon">⛪</span>
-      <span>채플</span>
+      <span>3D둘러보기</span>
     </a>
-    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
-      <span class="tab-icon">🔍</span>
-      <span>검색</span>
-    </button>
   </nav>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="kkumdido_mobile.js?v=20261108b"></script>
 </body>
 </html>

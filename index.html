@@ -4044,25 +4044,6 @@ body.dark-theme .knb-card-link {
     </div>
   </section>
   <script>
-    function enterMosesSanctuary() {
-      var salt = "KKUMBAON_SANCTUARY_GATE_2026_SOLI_DEO_GLORIA";
-      var ts = String(Date.now());
-      var str = ts + "::" + salt;
-      var h1 = 0xdeadbeef ^ str.length;
-      var h2 = 0x41c6ce57 ^ str.length;
-      for (var i = 0; i < str.length; i++) {
-        var ch = str.charCodeAt(i);
-        h1 = Math.imul(h1 ^ ch, 2654435761);
-        h2 = Math.imul(h2 ^ ch, 1597334677);
-      }
-      h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
-      h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
-      var sig = (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
-      try {
-        localStorage.setItem("kkb_gate_pass_v1", JSON.stringify({ ts: Number(ts), sig: sig }));
-      } catch (e) {}
-      window.location.href = "kkumdido_jipangi_studio.html?gate_ts=" + encodeURIComponent(ts) + "&gate_sig=" + encodeURIComponent(sig);
-    }
     function toggleSignatureVideoStage(forceState) {
       var stage = document.getElementById('kkumdidoSignatureStage');
       var vid = document.getElementById('kkumdidoSigVideoEl');
@@ -4382,7 +4363,7 @@ body.dark-theme .knb-card-link {
       <div class="cinema-subbar-top">
         <div>
           <span style="font-size:11.5px; color:var(--gold-light); font-weight:700; letter-spacing:0.05em;">✝️ EXHIBITION · WESLEYAN THEOLOGY &amp; STANDARD SERMONS ARCHIVE · 한 권의 책의 사람(Homo Unius Libri)</span>
-          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">웨슬리 신학 전시실 — 존 웨슬리 웨슬리 설교 16선과 구원의 서정을 『꿈바온 매일말씀』 6단 스타일로 읽습니다</h3>
+          <h3 class="serif" style="font-size:18.5px; color:#FFF; margin-top:2px;">웨슬리 신학 전시실 — 존 웨슬리 설교 16선과 구원의 서정을 『꿈바온 매일말씀』 6단 스타일로 읽습니다</h3>
         </div>
         <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
           <a href="kkumdido_12archives_viewer.html?archive=7" class="hdr-btn gold" style="text-decoration:none;">
@@ -4554,7 +4535,7 @@ body.dark-theme .knb-card-link {
           <button class="hdr-btn" onclick="changeFontSize(-1.5)" aria-label="글자 작게">가-</button>
           <button class="hdr-btn" onclick="changeFontSize(1.5)" aria-label="글자 크게">가+</button>
           <button class="hdr-btn" onclick="copyCurrentDocLink()" id="copyLinkBtn" title="이 자료의 고유 공유 주소를 복사합니다">🔗 이 글 링크 복사</button>
-          <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">🪪 도서관 이용증</button>
+          <button class="hdr-btn" onclick="copyCurrentManuscript()" id="copyDocBtn">📋 원고 전문 복사</button>
           <button class="hdr-btn gold" onclick="window.print()">🖨️ A4 유인물 인쇄 / PDF</button>
           <button class="hdr-btn" id="readerCloseBtn" onclick="closeReaderModal()">✕ 닫기</button>
         </div>
@@ -4617,7 +4598,7 @@ body.dark-theme .knb-card-link {
         <ul style="margin-left:20px; line-height:1.95; font-size:15px;">
           <li><strong>✝️ 웨슬리 신학 전시실 &amp; 전자책 열람:</strong> 상단 <code>웨슬리 전시실</code> 탭을 누르면 구원의 서정 로드맵과 웨슬리 설교 16선을 분류별로 열람하거나 PDF 총서로 내려받을 수 있습니다.</li>
           <li><strong>🗺️ 성경 지도 아틀라스 탐색:</strong> 상단 지도의 지역별 확대 버튼이나 마우스 휠·드래그로 성경 땅을 살펴보고, 각 도시의 원을 누르면 해당 도시에서 일어난 모든 성경 문헌이 우측에 열립니다.</li>
-          <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>🖨️ A4 유인물 인쇄</code> 또는 <code>🪪 도서관 이용증</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
+          <li><strong>🖨️ A4 유인물 인쇄 · 원고 복사 · 고유 링크 공유:</strong> 각 문헌을 열람하신 뒤 상단 <code>🔗 이 글 링크 복사</code>, <code>📋 원고 전문 복사</code> 또는 <code>🖨️ A4 유인물 인쇄</code> 버튼을 누르시면 특정 자료의 직통 주소를 공유하거나 유인물로 깔끔하게 출력하실 수 있습니다.</li>
         </ul>
 
         <div id="kkumbaonOfficialAboutSources" style="margin-top:20px; padding:18px 20px; border-radius:12px; background:rgba(197,155,82,0.08); border:1px solid rgba(197,155,82,0.35); line-height:1.8; font-size:14px;">
@@ -4908,256 +4889,10 @@ body.dark-theme .knb-card-link {
         figStripEl.textContent = `성화·초상 완비 ${figImgDone}인 (총 ${figImgPts}점 성화 도판) 원클릭 열전 바로가기`;
       }
 
-      if (typeof document.getElementById("mapPinsLayer") !== "undefined" && document.getElementById("mapPinsLayer")) initAtlasMap();
+      window.allDocs = [...(LIB.items || []), ...(LIB.videos || [])];
       renderGrid();
       // [목사님 확정] 첫 번째 메인 탭에서는 딱 지도와 4대 도시 카드에서 끝나도록 기본 뷰 설정!
       updateViewForCategory('atlas');
-    }
-
-    // 지도 확대/축소 및 패닝 상태 변수
-    let mapScale = 1.0;
-    let mapTx = 0;
-    let mapTy = 0;
-    let isDraggingMap = false;
-    let dragStartX = 0;
-    let dragStartY = 0;
-
-    function applyMapTransform() {
-      const stage = document.getElementById("mapStage");
-      const canvas = document.getElementById("mapCanvas");
-      const svgEl = document.getElementById("mapLeaderSvg");
-      if (!stage || !canvas) return;
-
-      const sw = stage.clientWidth;
-      const sh = stage.clientHeight;
-      const minTx = sw * (1 - mapScale);
-      const minTy = sh * (1 - mapScale);
-      mapTx = Math.min(0, Math.max(minTx, mapTx));
-      mapTy = Math.min(0, Math.max(minTy, mapTy));
-
-      canvas.style.transform = `translate(${mapTx}px, ${mapTy}px) scale(${mapScale})`;
-      const invScale = 1 / Math.pow(mapScale, 0.78);
-      canvas.style.setProperty("--pin-inv-scale", invScale.toFixed(3));
-      const zTxt = document.getElementById("zoomLevelText");
-      if (zTxt) zTxt.textContent = `${mapScale.toFixed(1)}x`;
-
-      // 확대 배율에 따른 탄성 좌표 보간 (1.0x 전체보기에서는 예루살렘 주변 도시들이 여유롭게 펼쳐지고, 확대할수록 실제 측량 좌표로 수렴)
-      const pins = LIB.atlasPins || [];
-      let svgHtml = "";
-      pins.forEach(p => {
-        const pinEl = document.getElementById(`map-pin-${p.id}`);
-        if (!pinEl) return;
-
-        const ux = p.ux !== undefined ? p.ux : p.x;
-        const uy = p.uy !== undefined ? p.uy : p.y;
-        const zx = p.zx !== undefined ? p.zx : p.x;
-        const zy = p.zy !== undefined ? p.zy : p.y;
-
-        let curX, curY;
-        if (mapScale <= 3.8) {
-          const t = Math.min(1, Math.max(0, (mapScale - 1.0) / 2.8));
-          curX = ux + (zx - ux) * t;
-          curY = uy + (zy - uy) * t;
-        } else {
-          const t2 = Math.min(1, Math.max(0, (mapScale - 3.8) / 2.2));
-          curX = zx + (p.x - zx) * t2;
-          curY = zy + (p.y - zy) * t2;
-        }
-
-        pinEl.style.left = `${curX.toFixed(2)}%`;
-        pinEl.style.top = `${curY.toFixed(2)}%`;
-
-        const dist = Math.hypot(curX - p.x, curY - p.y);
-        if (dist > 0.35) {
-          const strokeW = (0.16 / Math.pow(mapScale, 0.65)).toFixed(3);
-          const dotR = (0.28 / Math.pow(mapScale, 0.65)).toFixed(3);
-          svgHtml += `
-            <line x1="${p.x}" y1="${p.y}" x2="${curX.toFixed(2)}" y2="${curY.toFixed(2)}"
-                  stroke="rgba(70, 42, 20, 0.62)" stroke-width="${strokeW}" stroke-dasharray="${strokeW},${strokeW}" />
-            <circle cx="${p.x}" cy="${p.y}" r="${dotR}" fill="#7A1F14" stroke="#FFF8EB" stroke-width="${(strokeW * 0.6).toFixed(3)}" />
-          `;
-        }
-      });
-      if (svgEl) svgEl.innerHTML = svgHtml;
-    }
-
-    function stepMapZoom(factor, centerX, centerY) {
-      const stage = document.getElementById("mapStage");
-      if (!stage) return;
-      const sw = stage.clientWidth;
-      const sh = stage.clientHeight;
-      const cx = centerX !== undefined ? centerX : sw / 2;
-      const cy = centerY !== undefined ? centerY : sh / 2;
-
-      const newScale = Math.min(6.0, Math.max(1.0, mapScale * factor));
-      const ratio = newScale / mapScale;
-      mapTx = cx - (cx - mapTx) * ratio;
-      mapTy = cy - (cy - mapTy) * ratio;
-      mapScale = newScale;
-      applyMapTransform();
-    }
-
-    function resetMapCamera() {
-      mapScale = 1.0;
-      mapTx = 0;
-      mapTy = 0;
-      document.querySelectorAll(".rz-btn").forEach((b, i) => b.classList.toggle("active", i === 0));
-      applyMapTransform();
-    }
-
-    function focusMapRegion(regionKey, btnEl) {
-      if (btnEl) {
-        document.querySelectorAll(".rz-btn").forEach(b => b.classList.remove("active"));
-        btnEl.classList.add("active");
-      }
-      const stage = document.getElementById("mapStage");
-      if (!stage) return;
-      const sw = stage.clientWidth;
-      const sh = stage.clientHeight;
-
-      const presets = {
-        all:    { scale: 1.0, cxPct: 50, cyPct: 50, defaultPin: "pin-jerusalem" },
-        israel: { scale: 3.8, cxPct: 63.3, cyPct: 59.5, defaultPin: "pin-jerusalem" },
-        asia:   { scale: 2.2, cxPct: 39.5, cyPct: 29.0, defaultPin: "pin-ephesus" },
-        egypt:  { scale: 2.5, cxPct: 56.5, cyPct: 70.5, defaultPin: "pin-sinai-wilderness" },
-        meso:   { scale: 2.2, cxPct: 76.0, cyPct: 48.0, defaultPin: "pin-babylon-ur" }
-      };
-      const pr = presets[regionKey] || presets.all;
-      mapScale = pr.scale;
-      mapTx = sw / 2 - (sw * (pr.cxPct / 100)) * mapScale;
-      mapTy = sh / 2 - (sh * (pr.cyPct / 100)) * mapScale;
-      applyMapTransform();
-      if (pr.defaultPin) selectAtlasPin(pr.defaultPin);
-    }
-
-    function initAtlasMap() {
-      const pins = LIB.atlasPins || [];
-      const layer = document.getElementById("mapPinsLayer");
-      const stage = document.getElementById("mapStage");
-      const canvas = document.getElementById("mapCanvas");
-      if (!layer || !pins.length) return;
-
-      layer.innerHTML = "";
-
-      pins.forEach((p, idx) => {
-        const cnt = p.storyCount || 1;
-        // 이야기 수에 비례하되 주변 점을 가리지 않는 세련된 원 크기 (15px ~ 26px)
-        const dotSize = Math.round(13 + Math.min(13, Math.sqrt(cnt) * 2.7));
-        const isMajor = cnt >= 8;
-        const lblPos = p.labelPos || "bottom";
-
-        const pinEl = document.createElement("div");
-        pinEl.className = `map-pin lbl-${lblPos} ${isMajor ? "major" : ""} ${idx === 0 ? "active" : ""}`;
-        pinEl.id = `map-pin-${p.id}`;
-        pinEl.style.width = `${dotSize}px`;
-        pinEl.style.height = `${dotSize}px`;
-        pinEl.style.left = `${p.ux !== undefined ? p.ux : p.x}%`;
-        pinEl.style.top = `${p.uy !== undefined ? p.uy : p.y}%`;
-
-        const shortName = p.shortLabel || p.name.split("·")[0].split("(")[0].trim();
-        pinEl.innerHTML = `
-          <div class="pin-dot" style="width:${dotSize}px; height:${dotSize}px; font-size:${dotSize >= 22 ? 10.5 : 9.5}px;" title="${p.name} (문헌 ${cnt}편)">
-            ${cnt}
-          </div>
-          <div class="pin-label">${shortName}</div>
-        `;
-        pinEl.onclick = (e) => {
-          e.stopPropagation();
-          selectAtlasPin(p.id);
-        };
-        layer.appendChild(pinEl);
-      });
-
-      // 마우스 휠 확대/축소 및 드래그 이동 이벤트 바인딩
-      if (stage && canvas && !stage._boundEvents) {
-        stage._boundEvents = true;
-        stage.addEventListener("wheel", (e) => {
-          e.preventDefault();
-          const rect = stage.getBoundingClientRect();
-          const mx = e.clientX - rect.left;
-          const my = e.clientY - rect.top;
-          const factor = e.deltaY < 0 ? 1.22 : (1 / 1.22);
-          stepMapZoom(factor, mx, my);
-        }, { passive: false });
-
-        stage.addEventListener("mousedown", (e) => {
-          if (e.target.closest(".map-pin") || e.target.closest(".map-controls-float")) return;
-          isDraggingMap = true;
-          dragStartX = e.clientX - mapTx;
-          dragStartY = e.clientY - mapTy;
-          canvas.classList.add("dragging");
-        });
-
-        window.addEventListener("mousemove", (e) => {
-          if (!isDraggingMap) return;
-          mapTx = e.clientX - dragStartX;
-          mapTy = e.clientY - dragStartY;
-          applyMapTransform();
-        });
-
-        window.addEventListener("mouseup", () => {
-          if (isDraggingMap) {
-            isDraggingMap = false;
-            canvas.classList.remove("dragging");
-          }
-        });
-      }
-
-      applyMapTransform();
-      selectAtlasPin(pins[0].id);
-    }
-
-    function selectAtlasPin(pinId) {
-      const pins = LIB.atlasPins || [];
-      const p = pins.find(x => x.id === pinId);
-      if (!p) return;
-
-      document.querySelectorAll(".map-pin").forEach(el => el.classList.remove("active"));
-      const activePin = document.getElementById(`map-pin-${p.id}`);
-      if (activePin) {
-        activePin.classList.add("active");
-        const lbl = activePin.querySelector(".pin-label");
-        if (lbl) lbl.style.display = "block";
-      }
-
-      document.getElementById("pinEra").textContent = `${p.era} · ${p.region}`;
-      document.getElementById("pinTitle").textContent = p.name;
-      document.getElementById("pinScripture").textContent = `📖 ${p.scripture}`;
-      document.getElementById("pinDesc").textContent = p.desc;
-
-      // 해당 도시에 연결된 모든 문헌 카드 뷰 렌더링
-      const relIds = new Set(p.relatedDocIds || [p.linkedDocId]);
-      const cityDocs = (LIB.items || []).filter(it => relIds.has(it.id));
-
-      document.getElementById("pinStoryCountBadge").textContent = `📚 수록 문헌 ${cityDocs.length}편`;
-      document.getElementById("cityDocsHeader").textContent =
-        `📂 이 도시에 담긴 성경 이야기 · 문헌 뷰 (${cityDocs.length}편)`;
-
-      const listEl = document.getElementById("cityDocsList");
-      listEl.innerHTML = cityDocs.map(doc => `
-        <div class="city-doc-item" onclick="openReaderModal('${doc.id}')">
-          ${doc.cover ? `<img class="city-doc-thumb" src="${doc.cover}" alt="${doc.title}" />` : ""}
-          <div class="city-doc-info">
-            <div class="c-meta">${doc.categoryLabel} · ${doc.scripture}</div>
-            <div class="c-title">${doc.title}</div>
-          </div>
-          <span style="font-size:12px; font-weight:700; color:var(--gold-light); flex-shrink:0;">열람 →</span>
-        </div>
-      `).join("");
-
-      const filterBtn = document.getElementById("filterGridByCityBtn");
-      if (filterBtn) {
-        filterBtn.onclick = () => {
-          const shortKw = p.name.split("·")[0].split("(")[0].trim();
-          setQuickSearch(shortKw);
-          document.querySelector(".controls-wrap").scrollIntoView({ behavior: "smooth" });
-        };
-      }
-    }
-
-    function toggleAtlasDrawer() {
-      const dr = document.getElementById("atlasDrawer");
-      dr.style.display = dr.style.display === "none" ? "block" : "none";
     }
 
     let currentPlayingVideoId = null;
@@ -6319,7 +6054,7 @@ body.dark-theme .knb-card-link {
       navigator.clipboard.writeText(text).then(() => {
         const btn = document.getElementById("copyDocBtn");
         btn.textContent = "✅ 복사 완료!";
-        setTimeout(() => { btn.textContent = "🪪 도서관 이용증"; }, 1800);
+        setTimeout(() => { btn.textContent = "📋 원고 전문 복사"; }, 1800);
       });
     }
 
@@ -6328,29 +6063,6 @@ body.dark-theme .knb-card-link {
       const isDark = document.body.classList.contains("dark-theme");
       document.getElementById("themeBtn").textContent = isDark ? "📜 양피지 서재" : "🌙 밤의 서재";
     }
-
-    function toggleStudiosDrawer(e) {
-      if (e) e.stopPropagation();
-      const drawer = document.getElementById("kkumdidoStudiosDrawer");
-      const btn = document.getElementById("studioDrawerBtn");
-      if (!drawer) return;
-      const isOpen = drawer.classList.toggle("open");
-      if (btn) {
-        btn.classList.toggle("active", isOpen);
-        btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
-        btn.textContent = isOpen ? "👑 사역 스튜디오 ▴" : "👑 사역 스튜디오 ▾";
-      }
-    }
-
-    document.addEventListener("click", e => {
-      const drawer = document.getElementById("kkumdidoStudiosDrawer");
-      const btn = document.getElementById("studioDrawerBtn");
-      if (drawer && drawer.classList.contains("open")) {
-        if (!drawer.contains(e.target) && (!btn || !btn.contains(e.target))) {
-          toggleStudiosDrawer();
-        }
-      }
-    });
 
     function openQuickSearchModal() {
       const modal = document.getElementById("kkumdidoQuickSearchModal");
@@ -6409,15 +6121,20 @@ body.dark-theme .knb-card-link {
         </a>`;
       }
 
-      // 1) 성경 지도 도시 검색 (window.CITIES_DATA)
-      if (Array.isArray(window.CITIES_DATA)) {
-        const cities = window.CITIES_DATA.filter(c => {
+      // 1) 성경 지도 도시 검색 (window.CITIES_DATA / window.DREAMBAON_ATLAS.places)
+      const allCities = Array.isArray(window.CITIES_DATA)
+        ? window.CITIES_DATA
+        : ((window.DREAMBAON_ATLAS && Array.isArray(window.DREAMBAON_ATLAS.places)) ? window.DREAMBAON_ATLAS.places : []);
+      if (allCities.length) {
+        const cities = allCities.filter(c => {
           if (!q) return false;
-          const hay = `${c.name || ""} ${c.en || ""} ${c.region || ""} ${c.summary || ""} ${c.Verses || ""}`.toLowerCase();
+          const evStr = Array.isArray(c.events) ? c.events.map(e => `${e.title || ""} ${e.ref || ""}`).join(" ") : "";
+          const pplStr = Array.isArray(c.people) ? c.people.join(" ") : "";
+          const hay = `${c.name || ""} ${c.en || ""} ${c.region || ""} ${c.period || ""} ${c.subtitle || ""} ${c.summary || ""} ${c.verses || ""} ${evStr} ${pplStr}`.toLowerCase();
           return hay.includes(q);
         }).slice(0, 4);
         cities.forEach(c => {
-          html += `<button type="button" class="kkd-qsearch-item" onclick="closeQuickSearchModal(); navigateToHall('atlas'); setTimeout(()=>{ const m=document.querySelector('[data-city-id=\\'${c.id}\\']'); if(m)m.click(); },120);">
+          html += `<button type="button" class="kkd-qsearch-item" onclick="closeQuickSearchModal(); navigateToHall('atlas'); setTimeout(()=>{ if(window.AtlasHall && typeof window.AtlasHall.select==='function'){ window.AtlasHall.select('${c.id}'); } else { const m=document.querySelector('[data-place=\\'${c.id}\\'], [data-city-id=\\'${c.id}\\']'); if(m)m.click(); } },120);">
             <div>
               <strong>🗺️ [성경 지도] ${c.name} (${c.en || ""})</strong>
               <small>${(c.summary || "").slice(0, 75)}...</small>
@@ -6427,24 +6144,28 @@ body.dark-theme .knb-card-link {
         });
       }
 
-      // 2) 본관 문헌 및 영상 검색 (allDocs)
-      if (typeof allDocs !== "undefined" && Array.isArray(allDocs)) {
+      // 2) 본관 문헌 및 영상 검색 (allDocs = LIB.items + LIB.videos)
+      const allDocs = (typeof LIB !== "undefined" && LIB)
+        ? [...(LIB.items || []), ...(LIB.videos || [])]
+        : (Array.isArray(window.allDocs) ? window.allDocs : []);
+      if (allDocs.length) {
         const docs = allDocs.filter(d => {
           if (!q) return false;
-          const hay = `${d.title || ""} ${d.scripture || ""} ${d.summary || ""} ${(d.tags || []).join(" ")}`.toLowerCase();
+          const hay = `${d.title || ""} ${d.subtitle || ""} ${d.scripture || ""} ${d.person || ""} ${d.summary || ""} ${(d.tags || []).join(" ")}`.toLowerCase();
           return hay.includes(q);
         }).slice(0, 8);
         docs.forEach(d => {
-          const isVid = d.category === "cinema" || d.category === "praise" || d.videoId;
+          const isVid = d.category === "cinema" || d.category === "praise" || Boolean(d.videoId);
+          const safeId = String(d.id || d.videoId || "").replace(/'/g, "\\'");
           const action = isVid
-            ? `closeQuickSearchModal(); navigateToHall('cinema');`
-            : `closeQuickSearchModal(); openReaderModal('${d.id}');`;
+            ? `closeQuickSearchModal(); navigateToHall('cinema'); if(typeof playInKkumbaonCinema==='function' && '${d.videoId || ""}') setTimeout(()=>playInKkumbaonCinema('${d.videoId}', true, true), 120);`
+            : `closeQuickSearchModal(); openReaderModal('${safeId}');`;
           html += `<button type="button" class="kkd-qsearch-item" onclick="${action}">
             <div>
               <strong>${isVid ? "🎬" : "📖"} ${d.title}</strong>
               <small>${d.scripture ? d.scripture + " · " : ""}${(d.summary || "").slice(0, 68)}</small>
             </div>
-            <span class="kkd-qsearch-badge">${d.categoryLabel || "본관 서가"}</span>
+            <span class="kkd-qsearch-badge">${d.categoryLabel || (isVid ? "꿈디도 영상실" : "본관 서가")}</span>
           </button>`;
         });
       }
@@ -6460,8 +6181,6 @@ body.dark-theme .knb-card-link {
       }
       if (e.key === "Escape") {
         closeQuickSearchModal();
-        const drawer = document.getElementById("kkumdidoStudiosDrawer");
-        if (drawer && drawer.classList.contains("open")) toggleStudiosDrawer();
         closeReaderModal();
         closeBlueprintModal();
         if (currentCinemaLayout === "fullscreen") {
@@ -6496,7 +6215,7 @@ body.dark-theme .knb-card-link {
       setTimeout(checkHashAndOpenDoc, 150);
     });
   </script>
-  <script src="cities-data.js?v=20261027f"></script>
+  <script src="cities-data.js?v=20261108b"></script>
   <script src="city-photo-expansion.js?v=20261101f"></script>
   <script src="paul-route-intro.js?v=20261101c"></script>
   <script src="atrium.js?v=20261101a"></script>
@@ -6956,7 +6675,7 @@ body.dark-theme .knb-card-link {
   </script>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="kkumdido_mobile.js?v=20261108b"></script>
 </body>
 </html>
 

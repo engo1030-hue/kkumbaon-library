@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261107e"/>
+  <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
   <style>
     :root, [data-theme="light"] {
       --bg: #F9F6F0;
@@ -1185,7 +1185,7 @@
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
 
-  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭) -->
+  <!-- 🏛️ 꿈디도 모바일 전용 고정 엄지 탭바 (5대 탭: 홈·지도 / 12대관 / 자료검색 / 별관 / 3D둘러보기) -->
   <nav id="kkumdidoMobileTabBar" class="kkumdido-mobile-tab-bar" aria-label="모바일 하단 탐색">
     <a href="index.html" class="kkumdido-mobile-tab-item" data-tab-action="home">
       <span class="tab-icon">🏛️</span>
@@ -1195,21 +1195,21 @@
       <span class="tab-icon">📚</span>
       <span>12대관</span>
     </button>
-    <a href="꿈디도_말씀설교스튜디오.html" target="_blank" class="kkumdido-mobile-tab-item" data-tab-action="sermon">
-      <span class="tab-icon">📖</span>
-      <span>강해·주석</span>
+    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
+      <span class="tab-icon">🔍</span>
+      <span>자료검색</span>
+    </button>
+    <a href="kkumdido_church_support_annex.html" class="kkumdido-mobile-tab-item" data-tab-action="annex">
+      <span class="tab-icon">🏛️</span>
+      <span>별관</span>
     </a>
     <a href="online_chapel_kkumdido.html" class="kkumdido-mobile-tab-item" data-tab-action="chapel">
       <span class="tab-icon">⛪</span>
-      <span>채플</span>
+      <span>3D둘러보기</span>
     </a>
-    <button type="button" class="kkumdido-mobile-tab-item" data-tab-action="search" onclick="var el=document.getElementById('searchInput'); if(el) el.focus();">
-      <span class="tab-icon">🔍</span>
-      <span>검색</span>
-    </button>
   </nav>
 
   <script src="kkumdido-shield.js"></script>
-  <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="kkumdido_mobile.js?v=20261108b"></script>
 </body>
 </html>

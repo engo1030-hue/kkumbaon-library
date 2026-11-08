@@ -2206,7 +2206,6 @@
     var card = getCard();
     var fab = document.getElementById('kkumdido-pass-fab');
     var certHeader = document.getElementById('kkumdido-print-cert-header');
-    var copyBtn = document.getElementById('copyDocBtn');
 
     if (card) {
       document.body.classList.add('kkumdido-member-verified');
@@ -2219,9 +2218,6 @@
       if (certHeader) {
         certHeader.innerHTML = '<span>🏛️ <b>꿈바온 디지털도서관(꿈디도) 공식 열람본</b> · 무단 복제 및 상업적 재배포 금지</span><span>도서관 이용증: <b>' + card.cardNo + '</b> · 열람자: <b>' + card.name + ' (' + card.church + ')</b></span>';
       }
-      if (copyBtn) {
-        copyBtn.textContent = '🪪 이용증 #' + card.cardNo;
-      }
     } else {
       document.body.classList.remove('kkumdido-member-verified');
       if (fab) {
@@ -2230,9 +2226,6 @@
       }
       if (certHeader) {
         certHeader.innerHTML = '';
-      }
-      if (copyBtn) {
-        copyBtn.textContent = '🪪 도서관 이용증 발급';
       }
     }
 
@@ -2282,17 +2275,6 @@
   }
 
   function patchPageButtons() {
-    window.copyCurrentManuscript = function () {
-      openCardModal(null, '🔒 저작권 보호를 위해 원고 전문 복사는 제한되어 있습니다. 도서관 이용증 발급 후 [🖨️ A4 유인물 인쇄]를 이용해 주세요.');
-    };
-    var copyBtn = document.getElementById('copyDocBtn');
-    if (copyBtn) {
-      copyBtn.onclick = function (e) {
-        e.preventDefault();
-        openCardModal(null);
-      };
-    }
-
     // index.html 의 enterMosesSanctuary 도 간편 로그인 확인 후 로컬/웹 지팡이 스튜디오로 연결
     if (typeof window.enterMosesSanctuary === 'function' && !window.__kkdPatchedMoses) {
       window.__kkdPatchedMoses = true;
