@@ -2345,7 +2345,8 @@
       'sermonScriptureInput', // kkumdido_sermon_studio.html
       'inScripture',          // kkumdido_sermon_ai_studio.html
       'sermPassage',          // kkumdido_pastoral_secretary_studio.html
-      'bulSermonPassage',     // kkumdido_pastoral_secretary_studio.html (주보)
+      'bulSermonPassage',     // kkumdido_pastoral_secretary_studio.html (주보 구버전)
+      'jbSermonScripture',    // kkumdido_pastoral_secretary_studio.html (A4 주보)
       'editScriptureInput',   // kkumdido_gotgan_studio.html
       'inputBibleVerse',      // kkumdido_jipangi_studio.html
       'pubRef'                // kkumdido_sunday_school_studio.html
@@ -2355,6 +2356,7 @@
       'inTitle',              // kkumdido_sermon_ai_studio.html
       'sermTheme',            // kkumdido_pastoral_secretary_studio.html
       'bulSermonTitle',       // kkumdido_pastoral_secretary_studio.html
+      'jbSermonTitle',        // kkumdido_pastoral_secretary_studio.html (A4 주보)
       'editTitleInput',       // kkumdido_gotgan_studio.html
       'step3TitleLine1Input', // kkumdido_jipangi_studio.html
       'pubTitle'              // kkumdido_sunday_school_studio.html
@@ -2364,7 +2366,8 @@
       'inDate',
       'editDateInput',
       'pubDate',
-      'bulDate'
+      'bulDate',
+      'jbDate'
     ];
 
     var hasUrlRef = false;
@@ -2404,6 +2407,26 @@
         window.generateAll7Materials(false);
       }
       filledCount++;
+    }
+
+    // 아론의 지팡이 (목회비서 6석) 연동
+    if (shouldForce && typeof window.generateSermonOutline === 'function') {
+      try { window.generateSermonOutline(); } catch (e) {}
+      if (typeof window.renderJuboPreview === 'function') {
+        try { window.renderJuboPreview(); } catch (e) {}
+      }
+      filledCount++;
+    }
+
+    // 설교 연구 스튜디오 (12대 아카이브 서랍) 연동
+    if (shouldForce && typeof window.parseScriptureRef === 'function' && typeof window.selectBookChapter === 'function') {
+      try {
+        var parsedRef = window.parseScriptureRef(w.ref);
+        if (parsedRef && parsedRef.book && parsedRef.chapter) {
+          window.selectBookChapter(parsedRef.book, parsedRef.chapter);
+          filledCount++;
+        }
+      } catch (e) {}
     }
 
     // 번역 스튜디오인 경우

@@ -773,8 +773,8 @@
   }
 </style>
 <link rel="manifest" href="manifest.json">
-<script src="kkumdido_moses_archive_db.js?v=20261108"></script>
-<script src="kkumdido_grand_encyclopedia_db.js"></script>
+<script src="kkumdido_moses_archive_db.js?v=20261108b" onerror="this.onerror=null;this.src='https://kkumbaon.com/kkumbaon-library/kkumdido_moses_archive_db.js?v=20261108b';"></script>
+<script src="kkumdido_grand_encyclopedia_db.js?v=20261108b" onerror="this.onerror=null;this.src='https://kkumbaon.com/kkumbaon-library/kkumdido_grand_encyclopedia_db.js?v=20261108b';"></script>
 </head>
 <body data-theme="beige" data-kkd-studio="true">
 
@@ -1126,7 +1126,10 @@
   }
 
   function shortLine(s, maxLen) {
-    var clean = String(s || '').replace(/^(첫째|둘째|셋째|넷째|1\.|2\.|3\.|일,|이,|삼,)\s*,?\s*/, '').trim();
+    var clean = String(s || '')
+      .replace(/^(첫째|둘째|셋째|넷째|1\.|2\.|3\.|일,|이,|삼,)\s*,?\s*/, '')
+      .replace(/^\[[^\]]+\]\s*/, '')
+      .trim();
     var firstSent = clean.split(/[.!?]\s+/)[0] || clean;
     firstSent = firstSent.replace(/[.!?]+$/, '').trim();
     var limit = maxLen || 95;
@@ -1821,7 +1824,14 @@
     }
     matchedMods = matchedMods.slice(0, 4);
 
-    var displayRef = (parsed.mode === 'passage' && /\d+\s*:\s*\d+/.test(q)) ? q : (b.name + ' ' + chNo + '장 (' + (ch.r || (b.name + ' ' + chNo + ':1~끝')) + ')');
+    var chUnit = (b.name === '시편') ? '편' : '장';
+    var displayRef;
+    if (parsed.mode === 'passage' && /\d+\s*:\s*\d+/.test(q)) {
+      var vMatch = q.match(/(\d+\s*:\s*\d+(?:\s*[-~–]\s*\d+)?)/);
+      displayRef = b.name + ' ' + (vMatch ? vMatch[1].replace(/\s+/g, '') : (chNo + ':1'));
+    } else {
+      displayRef = b.name + ' ' + chNo + chUnit + ' (' + (ch.r || (b.name + ' ' + chNo + ':1~끝')) + ')';
+    }
 
     CURRENT_SUMMONED = {
       query: q,
@@ -1983,8 +1993,9 @@
       document.getElementById('inTitle').value = cleanTitle;
       document.getElementById('inScripture').value = cs.displayRef;
       document.getElementById('inBibleText').value = ch.kv || b.key_verse || '';
+      var ctxBase = String(ch.ctx || ch.th || b.christ_profile || '').trim().replace(/[.!?]+$/, '');
       document.getElementById('inManuscript').value =
-        '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀은 ' + (ch.ctx || ch.th || b.christ_profile) + '의 현장을 우리에게 생생히 열어 보여 줍니다.';
+        '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀은 ' + ctxBase + '의 현장을 우리에게 생생히 열어 보여 줍니다.';
       document.getElementById('inPoint1').value = buildPointLineFromPair(cs.pts && cs.pts[0], ch.th || '');
       document.getElementById('inPoint2').value = buildPointLineFromPair(cs.pts && cs.pts[1], ch.theo || '');
       document.getElementById('inPoint3').value = buildPointLineFromPair(cs.pts && cs.pts[2], ch.pr || '');
@@ -2037,7 +2048,8 @@
       labelName = '강단 3대지 설교 골격';
       addText = (cs.pts || []).map(function(p, i) {
         var prefix = i === 0 ? '첫째, ' : (i === 1 ? '둘째, ' : '셋째, ');
-        return prefix + p[0].replace(/^제\d대지:\s*/, '') + '. ' + p[1];
+        var headClean = String(p[0] || '').replace(/^제\d대지:\s*/, '').trim();
+        return '[' + prefix.replace(/,\s*$/, '') + ' 대지 · ' + headClean + ']\n' + prefix + (p[1] || '');
       }).join('\n\n') + (ch.pr ? '\n\n' + ch.pr : '');
       document.getElementById('inPoint1').value = buildPointLineFromPair(cs.pts && cs.pts[0], ch.th || '');
       document.getElementById('inPoint2').value = buildPointLineFromPair(cs.pts && cs.pts[1], ch.theo || '');
@@ -2078,16 +2090,18 @@
     document.getElementById('inScripture').value = cs.displayRef;
     document.getElementById('inBibleText').value = ch.kv || b.key_verse || '';
 
+    var wDesc = (cs.words && cs.words[0]) ? ensurePeriod(cs.words[0][4] || cs.words[0][3] || '') : '';
     var wLine = (cs.words && cs.words[0])
-      ? '특별히 본문의 핵심 원어인 ' + cs.words[0][0] + '(' + cs.words[0][1] + ', ' + cs.words[0][2] + ')는 ' + (cs.words[0][4] || cs.words[0][3] || '') + '의 깊은 은혜를 보여 줍니다.'
+      ? '특별히 본문의 핵심 원어인 ' + cs.words[0][0] + '(' + cs.words[0][1] + ', ' + cs.words[0][2] + ')를 주목해 보십시오. ' + wDesc
       : '';
 
-    var p1Text = (cs.pts && cs.pts[0]) ? (cs.pts[0][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[0][1]) : (ch.th || '');
-    var p2Text = (cs.pts && cs.pts[1]) ? (cs.pts[1][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[1][1]) : (ch.theo || '');
-    var p3Text = (cs.pts && cs.pts[2]) ? (cs.pts[2][0].replace(/^제\d대지:\s*/, '') + '. ' + cs.pts[2][1]) : (ch.pr || '');
+    var p1Text = (cs.pts && cs.pts[0]) ? ('[' + cs.pts[0][0].replace(/^제\d대지:\s*/, '') + '] ' + cs.pts[0][1]) : (ch.th || '');
+    var p2Text = (cs.pts && cs.pts[1]) ? ('[' + cs.pts[1][0].replace(/^제\d대지:\s*/, '') + '] ' + cs.pts[1][1]) : (ch.theo || '');
+    var p3Text = (cs.pts && cs.pts[2]) ? ('[' + cs.pts[2][0].replace(/^제\d대지:\s*/, '') + '] ' + cs.pts[2][1]) : (ch.pr || '');
 
+    var ctxSentence = ensurePeriod(ch.ctx || ch.th || b.christ_profile);
     var fullDraft = [
-      '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀은 ' + (ch.ctx || ch.th || b.christ_profile) + '의 현장을 우리에게 생생히 열어 보여 줍니다. ' + (ch.kp ? ('원어의 호흡을 살려 풀어 읽으면 "' + ch.kp + '"라고 말씀하십니다.') : ''),
+      '사랑하는 성도 여러분, 오늘 우리가 함께 읽은 ' + cs.displayRef + ' 말씀의 배경과 흐름을 먼저 살펴보겠습니다. ' + ctxSentence + ' ' + (ch.kp ? ('원어의 호흡을 살려 풀어 읽으면 "' + ch.kp + '"라고 말씀하십니다.') : ''),
       '첫째, ' + p1Text + (wLine ? (' ' + wLine) : ''),
       '둘째, ' + p2Text + (ch.theo ? (' ' + ch.theo) : ''),
       '셋째, ' + p3Text,
