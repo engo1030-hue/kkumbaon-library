@@ -1201,17 +1201,19 @@
     } catch (e) {}
 
     // 로컬 데스크톱 서버(/api/state) 확인
-    fetch('/api/state', { method: 'GET' })
-      .then(function(r) { return r.ok ? r.json() : null; })
-      .then(function(dbState) {
-        if (dbState && dbState.offerings && dbState.expenses) {
-          state = dbState;
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-          syncConfigInputs();
-          renderAll();
-        }
-      })
-      .catch(function() {});
+    if (window.location.protocol.indexOf('http') === 0 && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')) {
+      fetch('/api/state', { method: 'GET' })
+        .then(function(r) { return r.ok ? r.json() : null; })
+        .then(function(dbState) {
+          if (dbState && dbState.offerings && dbState.expenses) {
+            state = dbState;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            syncConfigInputs();
+            renderAll();
+          }
+        })
+        .catch(function() {});
+    }
 
     syncConfigInputs();
     renderAll();
@@ -1221,11 +1223,13 @@
     try {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     } catch (e) {}
-    fetch('/api/state', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(state)
-    }).catch(function() {});
+    if (window.location.protocol.indexOf('http') === 0 && (window.location.hostname === '127.0.0.1' || window.location.hostname === 'localhost')) {
+      fetch('/api/state', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(state)
+      }).catch(function() {});
+    }
   }
 
   function syncConfigInputs() {
