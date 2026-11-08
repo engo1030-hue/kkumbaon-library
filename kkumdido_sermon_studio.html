@@ -1919,8 +1919,8 @@ let state = {
   currentModalModuleId: null,
   isPreviewMode: false,
   theme: 'sepia',
-  proUnlocked: false,
-  proOwner: ''
+  proUnlocked: true,
+  proOwner: '한국교회 목회자 무료 개방'
 };
 
 // Master 1:1 License Generator Formula (Unified with 00_목사님전용_사용권발급기.html)
@@ -2040,12 +2040,23 @@ window.addEventListener('DOMContentLoaded', async () => {
 
   loadFromLocalStorage();
 
-  // Check if Pro License (KB-XXXX-XXXX) is already saved in this browser
+  // 모든 목회자·성도님께 성경 66권(3,650모듈) 전체 무료 개방 기본 적용
   try {
-    const savedOwner = (localStorage.getItem('kkumbaon_sermon_pro_owner') || '').trim();
-    const savedKey = (localStorage.getItem('kkumbaon_sermon_pro_key') || '').trim().toUpperCase();
-    if (savedOwner && savedKey && savedKey === computeLicenseCode(savedOwner)) {
-      await applyProUnlockUI(savedOwner, false);
+    const savedOwner = (localStorage.getItem('kkumbaon_sermon_pro_owner') || '').trim() || '한국교회 목회자 무료 개방';
+    await applyProUnlockUI(savedOwner, false);
+  } catch (_) {}
+
+  // URL ?kkd_ref= 파라미터 연동 (모세의 지팡이 등에서 넘어온 장절 자동 선택)
+  try {
+    const urlRef = new URLSearchParams(window.location.search || '').get('kkd_ref');
+    if (urlRef) {
+      const parsed = parseScriptureRef(urlRef);
+      if (parsed && parsed.book && parsed.chapter) {
+        state.selectedBook = parsed.book;
+        state.selectedChapter = parsed.chapter;
+        state.bibleScope = 'CHAPTER';
+        state.expandedBooks.add(parsed.book);
+      }
     }
   } catch (_) {}
 
@@ -2087,10 +2098,15 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 // Try automatic fetch of local kkumbaon_12archives_3650modules.json if served in same folder
 async function tryAutoFetchLocalJson(notify = false) {
-  const paths = [
-    './kkumbaon_12archives_3650modules.json',
-    './00_통합웹뷰어_및_마스터DB/kkumbaon_12archives_3650modules.json'
-  ];
+  const isHttp = window.location.protocol.indexOf('http') === 0;
+  const paths = isHttp
+    ? [
+        './kkumbaon_12archives_3650modules.json',
+        'https://kkumbaon.com/kkumbaon-library/kkumbaon_12archives_3650modules.json'
+      ]
+    : [
+        'https://kkumbaon.com/kkumbaon-library/kkumbaon_12archives_3650modules.json'
+      ];
   for (const p of paths) {
     try {
       const res = await fetch(p);
