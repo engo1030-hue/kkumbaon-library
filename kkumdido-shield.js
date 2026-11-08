@@ -237,11 +237,170 @@
 
   function isPastorAdmin() {
     var c = getCard();
-    if (c && (c.cardNo === 'KKD-2026-6903' || (c.name && c.name.indexOf('꿈바온') !== -1))) return true;
+    if (c && (c.cardNo === 'KKD-2026-6903' || c.cardNo === 'KKD-2026-1640' || (c.name && (c.name.indexOf('꿈바온') !== -1 || c.name.indexOf('한범수') !== -1)))) {
+      try { localStorage.setItem('kkumdido_is_pastor_device', '1'); } catch (e0) {}
+      return true;
+    }
     try {
-      if (sessionStorage.getItem('kkumdido_admin_unlocked') === '1') return true;
+      if (sessionStorage.getItem('kkumdido_admin_unlocked') === '1') {
+        localStorage.setItem('kkumdido_is_pastor_device', '1');
+        return true;
+      }
     } catch (e) {}
     return false;
+  }
+
+  // ── 1-1b. 우리들(목사님·안간사 자동점검 봇·로컬 테스트) 영구 제외 필터 ──
+  var INTERNAL_CARD_NOS = {
+    'KKD-2026-6903': 1,
+    'KKD-2026-1640': 1,
+    'KKD-2026-7777': 1,
+    'KKD-2026-0000': 1,
+    'KKD-2026-9999': 1,
+    'KKD-2026-8888': 1,
+    'KKD-2026-1234': 1
+  };
+
+  var INTERNAL_BOT_VIDS = {
+    'VIS-2026-VXV2555': 1, 'VIS-2026-ZV6R603': 1, 'VIS-2026-19VG676': 1, 'VIS-2026-5UFG766': 1,
+    'VIS-2026-ZQS9879': 1, 'VIS-2026-2LDT756': 1, 'VIS-2026-JKUA478': 1, 'VIS-2026-BNCO955': 1,
+    'VIS-2026-SQ11121': 1, 'VIS-2026-RFY8231': 1, 'VIS-2026-HNT1586': 1, 'VIS-2026-7ZC1584': 1,
+    'VIS-2026-0WMU448': 1, 'VIS-2026-AK08231': 1, 'VIS-2026-EEWG405': 1, 'VIS-2026-P7NQ434': 1,
+    'VIS-2026-2RHU516': 1, 'VIS-2026-0JGV271': 1, 'VIS-2026-M0LP589': 1, 'VIS-2026-BNM3829': 1,
+    'VIS-2026-IPAS734': 1, 'VIS-2026-73KV343': 1, 'VIS-2026-OE9C596': 1, 'VIS-2026-7SR4422': 1,
+    'VIS-2026-QDGG296': 1, 'VIS-2026-5DIR242': 1, 'VIS-2026-80OX354': 1, 'VIS-2026-CAUI672': 1,
+    'VIS-2026-TIY6439': 1, 'VIS-2026-QPV9663': 1, 'VIS-2026-NKKY379': 1, 'VIS-2026-ACPS769': 1,
+    'VIS-2026-2ISL677': 1, 'VIS-2026-53JT977': 1, 'VIS-2026-7Z2R832': 1, 'VIS-2026-TXSY869': 1,
+    'VIS-2026-SULQ580': 1, 'VIS-2026-15SJ631': 1, 'VIS-2026-E1DN249': 1, 'VIS-2026-7RO8523': 1,
+    'VIS-2026-6YQF673': 1, 'VIS-2026-71WZ186': 1, 'VIS-2026-HGHI995': 1, 'VIS-2026-P72T453': 1,
+    'VIS-2026-GUEST': 1
+  };
+
+  function getExcludedIdsMap() {
+    try {
+      var raw = localStorage.getItem('kkumdido_excluded_ids_v1');
+      if (raw) return JSON.parse(raw) || {};
+    } catch (e) {}
+    return {};
+  }
+
+  function addExcludedId(id) {
+    if (!id) return;
+    try {
+      var map = getExcludedIdsMap();
+      map[id] = 1;
+      localStorage.setItem('kkumdido_excluded_ids_v1', JSON.stringify(map));
+    } catch (e) {}
+  }
+
+  function parseTsSeconds(tsStr) {
+    if (!tsStr || typeof tsStr !== 'string') return NaN;
+    var iso = tsStr.trim().slice(0, 19).replace(' ', 'T');
+    var ms = Date.parse(iso);
+    return isNaN(ms) ? NaN : (ms / 1000);
+  }
+
+  function isInternalOrBotRecord(item) {
+    if (!item || typeof item !== 'object') return false;
+    var excluded = getExcludedIdsMap();
+    var vid = String(item.visitorId || '').trim();
+    var cno = String(item.cardNo || '').trim();
+    if ((vid && excluded[vid]) || (cno && excluded[cno])) return true;
+    if (cno && INTERNAL_CARD_NOS[cno]) return true;
+    if (vid && INTERNAL_BOT_VIDS[vid]) return true;
+
+    // 현재 기기가 목사님 관리자 기기인 경우 본인 visitorId 도 자동 제외
+    try {
+      if (localStorage.getItem('kkumdido_is_pastor_device') === '1' || sessionStorage.getItem('kkumdido_admin_unlocked') === '1') {
+        var myVid = localStorage.getItem(VISITOR_ID_KEY);
+        if (myVid && vid === myVid) return true;
+      }
+    } catch (e0) {}
+
+    var name = String(item.name || '').trim();
+    if (name && /한범수|한\*수|꿈바온|꿈\*온|안간사|클간사|제간사|워크간사|지간사|테스트|점검|관리자/i.test(name)) return true;
+
+    var acc = String(item.account || '').trim().toLowerCase();
+    if (acc && /en\*\*\*@naver\.com|en\*\*\*@nvar\.com|engo1030|kkumbaon\.org|pa\*\*\*@|test@|example\.com|admin@/i.test(acc)) return true;
+
+    var church = String(item.church || '').trim();
+    if (church && /^(꿈바온교회|꿈바온 은혜교회|테스트교회)$/.test(church)) return true;
+
+    var pages = Array.isArray(item.pagesVisited) ? item.pagesVisited : [];
+    var pageTitle = String(item.pageTitle || '');
+    if (pageTitle.indexOf('목사님 전용 발급') !== -1) return true;
+    for (var p = 0; p < pages.length; p++) {
+      if (String(pages[p] || '').indexOf('목사님 전용 발급') !== -1) return true;
+    }
+
+    var dev = String(item.device || '');
+    var tFirst = String(item.firstSeenAt || item.ts || '');
+    var tLast = String(item.lastSeenAt || item.ts || '');
+
+    // 2026-11-08 22:00 이전까지 작업실 맥(PC Mac)에서 발생한 목사님·안간사 테스트 기록 일괄 제거
+    if (dev === 'PC (Mac)' && ((tFirst && tFirst <= '2026-11-08 22:00:00') || (tLast && tLast <= '2026-11-08 22:00:00'))) {
+      return true;
+    }
+
+    // 초고속 다중 페이지 스캔 봇 (35초 이내에 4회/4페이지 이상 연속 스캔)
+    var s1 = parseTsSeconds(tFirst);
+    var s2 = parseTsSeconds(tLast);
+    if (!isNaN(s1) && !isNaN(s2)) {
+      var dur = Math.abs(s2 - s1);
+      if (dur <= 35 && ((item.visitCount || 1) >= 4 || pages.length >= 4)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  function shouldSkipSelfTelemetry(explicitCard) {
+    try {
+      if (window.location && (window.location.protocol === 'file:' || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')) {
+        return true;
+      }
+      if (navigator && (navigator.webdriver === true || /HeadlessChrome|Playwright|Puppeteer|PhantomJS/i.test(navigator.userAgent || ''))) {
+        return true;
+      }
+      if (isPastorAdmin() || localStorage.getItem('kkumdido_is_pastor_device') === '1') {
+        return true;
+      }
+      var card = explicitCard || getCard();
+      if (card && isInternalOrBotRecord(card)) {
+        return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  function pruneInternalRecordsFromVault(vault) {
+    if (!vault || typeof vault !== 'object') return false;
+    var changed = false;
+    if (vault.members && typeof vault.members === 'object') {
+      Object.keys(vault.members).forEach(function (k) {
+        if (isInternalOrBotRecord(vault.members[k])) {
+          delete vault.members[k];
+          changed = true;
+        }
+      });
+    }
+    if (vault.visitors && typeof vault.visitors === 'object') {
+      Object.keys(vault.visitors).forEach(function (k) {
+        if (isInternalOrBotRecord(vault.visitors[k])) {
+          delete vault.visitors[k];
+          changed = true;
+        }
+      });
+    }
+    if (Array.isArray(vault.logs)) {
+      var beforeLen = vault.logs.length;
+      vault.logs = vault.logs.filter(function (l) {
+        return !isInternalOrBotRecord(l);
+      });
+      if (vault.logs.length !== beforeLen) changed = true;
+    }
+    return changed;
   }
 
   function generateCardNo(seedStr) {
@@ -287,6 +446,12 @@
           parsed.members = parsed.members || {};
           parsed.visitors = parsed.visitors || {};
           parsed.logs = Array.isArray(parsed.logs) ? parsed.logs : [];
+          if (pruneInternalRecordsFromVault(parsed)) {
+            try {
+              parsed.updatedAt = formatNowTs();
+              localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(parsed));
+            } catch (eSave) {}
+          }
           return parsed;
         }
       }
@@ -296,6 +461,7 @@
 
   function saveLocalVault(vault) {
     try {
+      pruneInternalRecordsFromVault(vault);
       // 로그 최대 350건 유지
       if (Array.isArray(vault.logs) && vault.logs.length > 350) {
         vault.logs.sort(function (a, b) { return String(b.ts || '').localeCompare(String(a.ts || '')); });
@@ -318,7 +484,7 @@
   }
 
   function mergeMemberEntry(vault, m) {
-    if (!m || !m.cardNo) return;
+    if (!m || !m.cardNo || isInternalOrBotRecord(m)) return;
     var key = m.cardNo;
     var cur = vault.members[key] || {
       cardNo: m.cardNo,
@@ -351,11 +517,15 @@
       }
     }
     if (m.lastAction) cur.lastAction = m.lastAction;
+    if (isInternalOrBotRecord(cur)) {
+      delete vault.members[key];
+      return;
+    }
     vault.members[key] = cur;
   }
 
   function mergeVisitorEntry(vault, v) {
-    if (!v || !v.visitorId) return;
+    if (!v || !v.visitorId || isInternalOrBotRecord(v)) return;
     var key = v.visitorId;
     var cur = vault.visitors[key] || {
       visitorId: v.visitorId,
@@ -388,6 +558,10 @@
       }
     }
     if (v.lastAction) cur.lastAction = v.lastAction;
+    if (isInternalOrBotRecord(cur)) {
+      delete vault.visitors[key];
+      return;
+    }
     vault.visitors[key] = cur;
   }
 
@@ -399,14 +573,18 @@
     if (ev.kind === 'vault_snapshot') {
       if (ev.members && typeof ev.members === 'object') {
         Object.keys(ev.members).forEach(function (k) {
-          mergeMemberEntry(vault, ev.members[k]);
-          changed = true;
+          if (!isInternalOrBotRecord(ev.members[k])) {
+            mergeMemberEntry(vault, ev.members[k]);
+            changed = true;
+          }
         });
       }
       if (ev.visitors && typeof ev.visitors === 'object') {
         Object.keys(ev.visitors).forEach(function (k) {
-          mergeVisitorEntry(vault, ev.visitors[k]);
-          changed = true;
+          if (!isInternalOrBotRecord(ev.visitors[k])) {
+            mergeVisitorEntry(vault, ev.visitors[k]);
+            changed = true;
+          }
         });
       }
       if (Array.isArray(ev.logs)) {
@@ -416,17 +594,22 @@
         }
         for (var j = 0; j < ev.logs.length; j++) {
           var l = ev.logs[j];
-          if (l && l.id && !existingIds[l.id]) {
+          if (l && l.id && !existingIds[l.id] && !isInternalOrBotRecord(l)) {
             vault.logs.push(l);
             existingIds[l.id] = true;
             changed = true;
           }
         }
       }
+      if (pruneInternalRecordsFromVault(vault)) changed = true;
       return changed;
     }
 
-    // 2) 단일 이벤트인 경우
+    // 2) 단일 이벤트인 경우 — 우리들(목사님·안간사 봇·내부 테스트) 이벤트는 즉시 차단
+    if (isInternalOrBotRecord(ev)) {
+      if (pruneInternalRecordsFromVault(vault)) return true;
+      return false;
+    }
     var ts = ev.ts || formatNowTs();
     var page = ev.pageTitle || '🏛️ 꿈디도 도서관';
     var detail = ev.detail || '';
@@ -464,8 +647,10 @@
       if (ev.type === 'print' || ev.type === 'pdf') {
         mem.printCount = (mem.printCount || 0) + 1;
       }
-      vault.members[ev.cardNo] = mem;
-      changed = true;
+      if (!isInternalOrBotRecord(mem)) {
+        vault.members[ev.cardNo] = mem;
+        changed = true;
+      }
     }
 
     if (vid) {
@@ -500,11 +685,15 @@
       if (ev.type === 'print' || ev.type === 'pdf') {
         vis.printCount = (vis.printCount || 0) + 1;
       }
-      vault.visitors[vid] = vis;
-      changed = true;
+      if (!isInternalOrBotRecord(vis)) {
+        vault.visitors[vid] = vis;
+        changed = true;
+      } else {
+        delete vault.visitors[vid];
+      }
     }
 
-    if (ev.id) {
+    if (ev.id && !isInternalOrBotRecord(ev)) {
       var exists = false;
       for (var k = 0; k < vault.logs.length; k++) {
         if (vault.logs[k] && vault.logs[k].id === ev.id) {
@@ -534,12 +723,16 @@
     return changed;
   }
 
-  // 기존 localStorage 에 저장되어 있던 이용증/로그도 볼트에 자동 편입
+  // 기존 localStorage 에 저장되어 있던 이용증/로그도 볼트에 자동 편입 (단, 우리들/테스트 기록은 제외)
   function migrateLocalRegistryToVault() {
     var vault = getLocalVault();
-    var changed = false;
+    var changed = pruneInternalRecordsFromVault(vault);
+    if (shouldSkipSelfTelemetry(getCard())) {
+      if (changed) saveLocalVault(vault);
+      return;
+    }
     var currentCard = getCard();
-    if (currentCard && currentCard.cardNo) {
+    if (currentCard && currentCard.cardNo && !isInternalOrBotRecord(currentCard)) {
       if (!vault.members[currentCard.cardNo]) {
         mergeMemberEntry(vault, {
           cardNo: currentCard.cardNo,
@@ -563,7 +756,7 @@
       if (Array.isArray(oldReg)) {
         for (var i = 0; i < oldReg.length; i++) {
           var item = oldReg[i];
-          if (item && item.cardNo && !vault.members[item.cardNo]) {
+          if (item && item.cardNo && !isInternalOrBotRecord(item) && !vault.members[item.cardNo]) {
             mergeMemberEntry(vault, {
               cardNo: item.cardNo,
               name: item.name,
@@ -789,6 +982,10 @@
   function recordTelemetryEvent(eventType, detailText, explicitCard) {
     try {
       migrateLocalRegistryToVault();
+      if (shouldSkipSelfTelemetry(explicitCard)) {
+        if (adminModalOpen) renderAdminDashboard();
+        return;
+      }
       var card = explicitCard || getCard();
       var vid = getVisitorId();
       var ts = formatNowTs();
@@ -821,6 +1018,11 @@
 
   function recordAutoPageVisit() {
     try {
+      if (shouldSkipSelfTelemetry(getCard())) {
+        migrateLocalRegistryToVault();
+        ensureMqttClient();
+        return;
+      }
       var page = getCurrentPageLabel();
       var card = getCard();
       var sessionKey = page + '::' + (card ? card.cardNo : 'GUEST');
@@ -1574,16 +1776,19 @@
   }
 
   function openAdminModal() {
+    try { localStorage.setItem('kkumdido_is_pastor_device', '1'); } catch (e0) {}
     buildDOM();
     adminModalOpen = true;
     var admBg = document.getElementById('kkumdido-admin-modal-bg');
     if (admBg) admBg.classList.add('on');
+    var vInit = getLocalVault();
+    saveLocalVault(vInit);
     renderAdminDashboard();
     var st = document.getElementById('kkd-adm-sync-status');
-    if (st) st.textContent = '🔄 클라우드에서 최신 가입·방문 기록을 동기화하는 중...';
+    if (st) st.textContent = '🔄 클라우드에서 순수 외부 가입·방문 기록을 동기화하는 중...';
     syncFromCloudAll(function () {
       renderAdminDashboard();
-      if (st) st.textContent = '🟢 클라우드 실시간 동기화 완료 (' + formatNowTs() + ')';
+      if (st) st.textContent = '🟢 클라우드 순수 방문자 동기화 완료 (' + formatNowTs() + ' · 관리자/테스트 봇 자동 제외됨)';
     });
   }
 

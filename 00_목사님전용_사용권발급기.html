@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[목사님 전용] 꿈바온 디지털 도서관 — 수령인 전용 인증코드 발급기 &amp; 가입자·방문자·사용기록 관제실</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&family=Pretendard:wght@400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    background: radial-gradient(circle at 50% 0%, #261f18 0%, #100e0c 75%);
+    color: #f4eee1;
+    font-family: 'Pretendard', sans-serif;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+    margin: 0;
+  }
+  .container {
+    width: min(1160px, 100%);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+  }
+  .card {
+    width: 100%;
+    background: linear-gradient(160deg, #221c15 0%, #15110d 100%);
+    border: 1.5px solid #d8b26e;
+    border-radius: 20px;
+    padding: 34px 32px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.8);
+    text-align: center;
+  }
+  .badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(216,178,110,0.4);
+    background: rgba(216,178,110,0.1);
+    color: #f0d290;
+    font-size: 12.5px;
+    font-family: 'Noto Serif KR', serif;
+    margin-bottom: 10px;
+  }
+  h1 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 25px;
+    margin: 0 0 10px;
+    color: #f4eee1;
+  }
+  p.lead {
+    font-size: 14px;
+    color: #b8ab96;
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    max-width: 720px;
+  }
+  .gen-form-row {
+    display: flex;
+    gap: 10px;
+    max-width: 620px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+  }
+  .gen-form-row input {
+    flex: 1 1 280px;
+    padding: 14px 18px;
+    border-radius: 10px;
+    border: 1px solid rgba(216,178,110,0.4);
+    background: #120f0c;
+    color: #f4eee1;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+  }
+  .gen-form-row input:focus { border-color: #f3c969; }
+  .btn {
+    cursor: pointer;
+    padding: 14px 24px;
+    border-radius: 10px;
+    border: 1px solid #d8b26e;
+    background: linear-gradient(135deg, #d8b26e 0%, #b58d46 100%);
+    color: #19130c;
+    font-weight: 800;
+    font-size: 15.5px;
+    white-space: nowrap;
+  }
+  .result-box {
+    max-width: 680px;
+    margin: 20px auto 0;
+    padding: 20px;
+    border-radius: 14px;
+    background: rgba(216,178,110,0.08);
+    border: 1px dashed rgba(216,178,110,0.5);
+    display: none;
+  }
+  .code-display {
+    font-family: monospace;
+    font-size: 28px;
+    font-weight: 900;
+    color: #f0d290;
+    letter-spacing: 0.1em;
+    margin: 10px 0 14px;
+  }
+  .copy-btn {
+    cursor: pointer;
+    padding: 9px 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(216,178,110,0.5);
+    background: rgba(255,255,255,0.06);
+    color: #f0d290;
+    font-weight: 700;
+    font-size: 13px;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .copy-btn:hover { background: #d8b26e; color: #19130c; }
+
+  /* ── 하단 가입자 명부 · 방문자 · 사용기록 대시보드 ── */
+  .console-card {
+    text-align: left;
+    padding: 30px 28px;
+  }
+  .console-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+  }
+  .console-head h2 {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    margin: 4px 0 6px;
+    color: #f4eee1;
+  }
+  .console-head p {
+    margin: 0;
+    font-size: 13.5px;
+    color: #b8ab96;
+    line-height: 1.55;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  @media (max-width: 780px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  .stat-box {
+    background: rgba(216,178,110,0.07);
+    border: 1px solid rgba(216,178,110,0.3);
+    border-radius: 14px;
+    padding: 14px 16px;
+  }
+  .stat-box small {
+    display: block;
+    font-size: 12px;
+    color: #b8ab96;
+    margin-bottom: 5px;
+  }
+  .stat-box strong {
+    font-size: 24px;
+    font-weight: 900;
+    color: #f0d290;
+  }
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 14px;
+  }
+  .tabs {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+  }
+  .tab-btn {
+    cursor: pointer;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(216,178,110,0.35);
+    background: rgba(255,255,255,0.04);
+    color: #d5cab6;
+    font-size: 13.2px;
+    font-weight: 800;
+  }
+  .tab-btn.active {
+    background: linear-gradient(135deg, #d8b26e 0%, #b58d46 100%);
+    color: #19130c;
+    border-color: #f0d290;
+  }
+  .tool-actions {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .search-input {
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(216,178,110,0.4);
+    background: #100d0a;
+    color: #f4eee1;
+    font-size: 13.5px;
+    min-width: 240px;
+    outline: none;
+  }
+  .search-input:focus { border-color: #f0d290; }
+  .tool-btn {
+    cursor: pointer;
+    padding: 9px 14px;
+    border-radius: 10px;
+    border: 1px solid rgba(216,178,110,0.45);
+    background: rgba(216,178,110,0.12);
+    color: #f0d290;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .tool-btn:hover { background: rgba(216,178,110,0.25); color: #fff; }
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid rgba(216,178,110,0.28);
+    border-radius: 14px;
+    background: rgba(0,0,0,0.32);
+    max-height: 540px;
+    overflow-y: auto;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.2px;
+    text-align: left;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    background: #221b13;
+    color: #f0d290;
+    font-weight: 800;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(216,178,110,0.35);
+    white-space: nowrap;
+    z-index: 2;
+    font-size: 12.5px;
+  }
+  td {
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    color: #ece3d2;
+    vertical-align: middle;
+    line-height: 1.45;
+  }
+  tr:hover td { background: rgba(216,178,110,0.06); }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 2.5px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    margin: 1px 2px;
+    border: 1px solid rgba(216,178,110,0.35);
+    background: rgba(216,178,110,0.11);
+    color: #f0d290;
+    white-space: nowrap;
+    line-height: 1.35;
+  }
+  .pill.green {
+    border-color: rgba(52,211,153,0.45);
+    background: rgba(52,211,153,0.12);
+    color: #6ee7b7;
+    white-space: nowrap;
+  }
+  .pill.blue {
+    border-color: rgba(96,165,250,0.45);
+    background: rgba(96,165,250,0.12);
+    color: #93c5fd;
+    white-space: nowrap;
+  }
+  .pill.gray {
+    border-color: rgba(255,255,255,0.18);
+    background: rgba(255,255,255,0.06);
+    color: #e2dac9;
+    white-space: nowrap;
+  }
+  .mini-kb-btn {
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(216,178,110,0.55);
+    background: rgba(216,178,110,0.14);
+    color: #ffd97d;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .mini-kb-btn:hover { background: #d8b26e; color: #19130c; }
+  .status-bar {
+    margin-top: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 12.2px;
+    color: #9d907b;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- 1. 상단 1:1 정식판 인증코드 발급기 -->
+    <div class="card" id="topGeneratorCard">
+      <div class="badge">🔑 MASTER LICENSE GENERATOR · 한범수 목사님 전용</div>
+      <h1>꿈바온 설교 프로그램 &amp; 곳간 &amp; 모세의 지팡이 통합 발급기</h1>
+      <p class="lead">선물·발급하실 목사님이나 성도님의 성함을 입력하시거나 아래 <b>[🪪 가입자 명부]</b>에서 클릭하시면,<br><strong>👑 꿈바온 설교 프로그램(66권 전체 정식판)</strong> · <strong>🏺 설교 곳간</strong> · <strong>🪄 모세의 지팡이</strong>를 모두 열 수 있는<br><strong>1:1 영구 귀속 인증번호(KB-XXXX-XXXX)</strong>가 즉시 생성됩니다.<br><span style="font-size:12.5px; color:#d8b26e;">(수령인이 나중에 컴퓨터를 바꿔도 다시 연락할 필요 없이 본인 코드로 직접 이전 가능 · 타인 재배포 불가)</span></p>
+      <div class="gen-form-row">
+        <input type="text" id="ownerInput" placeholder="선물 받으실 분 성함 입력 (예: 최승환 목사)" oninput="generateKey()">
+        <button class="btn" onclick="generateKey()">✨ 전용 입장코드 생성하기</button>
+      </div>
+
+      <div class="result-box" id="resultBox">
+        <div style="font-size:13px; color:#b8ab96;">발급된 1:1 전용 인증번호 (<b id="ownerLabel" style="color:#f0d290;">-</b> 님 전용 · 설교 프로그램 · 곳간 · 모세의 지팡이 공용)</div>
+        <div class="code-display" id="codeDisplay">KB-0000-0000</div>
+        <div style="display:flex; gap:8px; justify-content:center; flex-wrap:wrap;">
+          <button class="copy-btn" onclick="copyKakaoMsg('both')">📋 통합 안내 문구 복사</button>
+          <button class="copy-btn" onclick="copyKakaoMsg('sermon')">👑 설교 프로그램(66권) 문구 복사</button>
+          <button class="copy-btn" onclick="copyKakaoMsg('gotgan')">📚 곳간 전용 문구 복사</button>
+          <button class="copy-btn" onclick="copyKakaoMsg('moses')">🪄 모세의 지팡이 문구 복사</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. 하단 꿈디도 가입자 명부 · 다녀간 방문자 · 스튜디오 사용기록 관제 대시보드 -->
+    <div class="card console-card">
+      <div class="console-head">
+        <div>
+          <span class="badge" style="margin-bottom:6px;">🏛️ KKUMDIDO CLOUD MEMBER &amp; USAGE VAULT</span>
+          <h2>꿈디도 도서관 이용증 가입자 명부 · 다녀간 방문자 · 사용 기록 관제실</h2>
+          <p>목사님께서 매일 들어오지 않으셔도 클라우드(MQTT Retained &amp; HTTPS Stream)에 기록이 자동 누적됩니다.<br>누가 다녀갔는지, 가입했는지, <b>이메일 주소 · 적은 이름(직분) · 소속 교회 · 사용한 스튜디오 및 인쇄 기록</b>을 한눈에 보실 수 있습니다.</p>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <button class="tool-btn" onclick="syncCloudNow()">🔄 지금 클라우드 새로고침</button>
+          <button class="tool-btn" onclick="exportCSV()">📥 엑셀(CSV) 다운로드</button>
+          <button class="tool-btn" onclick="promptManualMember()">➕ 수동 명단 등록</button>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-box">
+          <small>🪪 도서관 이용증 가입자</small>
+          <strong id="statMembers">0명</strong>
+        </div>
+        <div class="stat-box">
+          <small>👣 다녀간 고유 방문자 (비로그인 포함)</small>
+          <strong id="statVisitors">0명</strong>
+        </div>
+        <div class="stat-box">
+          <small>🧰 스튜디오 · 예배당 누적 열람</small>
+          <strong id="statVisits">0회</strong>
+        </div>
+        <div class="stat-box">
+          <small>🖨️ 유인물 인쇄 · 전자책 PDF 열람</small>
+          <strong id="statPrints">0회</strong>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <div class="tabs">
+          <button class="tab-btn active" id="tabBtn-members" onclick="switchTab('members')">🪪 가입자 명부 (이메일·성함·교회·사용기록)</button>
+          <button class="tab-btn" id="tabBtn-visitors" onclick="switchTab('visitors')">👣 다녀간 방문자 현황 (비로그인 포함)</button>
+          <button class="tab-btn" id="tabBtn-logs" onclick="switchTab('logs')">📜 시간순 상세 사용 기록</button>
+        </div>
+        <div class="tool-actions">
+          <input type="text" class="search-input" id="searchInput" placeholder="🔍 성함, 이메일, 교회명, 스튜디오 검색..." oninput="renderTable()">
+        </div>
+      </div>
+
+      <div class="table-wrap" id="tableContainer"></div>
+
+      <div class="status-bar">
+        <span id="cloudStatusText">🟢 클라우드(MQTT + HTTPS) 장부 연결 중...</span>
+        <span>※ 목회자 개인이 작성한 [내 설교 곳간] 원고 본문은 수집하지 않으며, 이용증 가입 정보와 스튜디오 사용 이력만 안전하게 기록됩니다.</span>
+      </div>
+    </div>
+  </div>
+
+<script>
+const VAULT_STORAGE_KEY = 'kkumdido_admin_vault_v2';
+const STORAGE_KEY = 'kkumdido_library_card_v1';
+const MEMBER_LOG_KEY = 'kkumdido_member_registry_v1';
+const NTFY_TOPIC = 'kkumdido_vault_v2_9c84a7e2b1';
+const NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
+const MQTT_BROKER_URL = 'wss://broker.emqx.io:8084/mqtt';
+const MQTT_PREFIX = 'kkumbaon/kkumdido/v2';
+
+let currentOwner = '';
+let currentCode = '';
+let activeTab = 'members';
+let mqttClient = null;
+
+function computeLicenseCode(ownerName) {
+  const clean = (ownerName || '').replace(/\s+/g, '').trim();
+  if (!clean) return '';
+  const salt = "KKUMBAON-PASTOR-STUDY-2026-SECRET";
+  const str = clean + "::" + salt;
+  let h1 = 0xdeadbeef ^ str.length, h2 = 0x41c6ce57 ^ str.length;
+  for (let i = 0, ch; i < str.length; i++) {
+    ch = str.charCodeAt(i);
+    h1 = Math.imul(h1 ^ ch, 2654435761);
+    h2 = Math.imul(h2 ^ ch, 1597334677);
+  }
+  h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+  h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+  const hex1 = ((h1 >>> 0).toString(16).toUpperCase()).padStart(8, '0').slice(0, 4);
+  const hex2 = ((h2 >>> 0).toString(16).toUpperCase()).padStart(8, '0').slice(0, 4);
+  return `KB-${hex1}-${hex2}`;
+}
+
+function generateKey() {
+  const val = document.getElementById('ownerInput').value.trim();
+  const box = document.getElementById('resultBox');
+  if (!val) {
+    box.style.display = 'none';
+    return;
+  }
+  currentOwner = val;
+  currentCode = computeLicenseCode(val);
+  document.getElementById('ownerLabel').textContent = currentOwner;
+  document.getElementById('codeDisplay').textContent = currentCode;
+  box.style.display = 'block';
+}
+
+function issueForMember(name) {
+  const input = document.getElementById('ownerInput');
+  input.value = name;
+  generateKey();
+  document.getElementById('topGeneratorCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function copyKakaoMsg(mode = 'both') {
+  let msg = '';
+  if (mode === 'sermon') {
+    msg = `[꿈바온 설교 프로그램 — 성경 66권(3,650모듈) 정식판]\n\n` +
+          `• 등록 성함: ${currentOwner}\n` +
+          `• 1:1 전용 인증번호: ${currentCode}\n\n` +
+          `꿈바온 설교 스튜디오 우측 상단의 [🔑 정식판 번호 입력 (66권 열기)] 버튼을 누르시고 위 성함과 전용 인증번호를 입력하시면 성경 66권(1,189장) × 12대 아카이브(3,650모듈) 전체가 즉시 열립니다.`;
+  } else if (mode === 'gotgan') {
+    msg = `[꿈바온 목회자 전용 설교 곳간]\n\n` +
+          `• 등록 성함: ${currentOwner}\n` +
+          `• 1:1 전용 입장코드: ${currentCode}\n\n` +
+          `전달해 드린 곳간 파일을 여신 뒤 위 성함과 전용 입장코드를 입력하시면 열립니다.\n` +
+          `나중에 컴퓨터를 바꾸실 때도 [💾 내 곳간 파일 저장] 버튼으로 백업해 두셨다가 새 컴퓨터에서 위 코드로 바로 여실 수 있습니다.`;
+  } else if (mode === 'moses') {
+    msg = `[모세의 지팡이 — 목회·미디어 통합 스튜디오]\n\n` +
+          `• 등록 성함: ${currentOwner}\n` +
+          `• 1:1 전용 입장코드: ${currentCode}\n\n` +
+          `프로그램 첫 화면에서 섬기시는 교회 이름과 [${currentOwner}], 그리고 위 전용 입장코드를 입력하시면 모든 기능이 영구 활성화됩니다.\n` +
+          `나중에 새 컴퓨터로 바꾸실 때도 다시 연락하실 필요 없이 상단 [💾 컴퓨터 이전 백업] 파일과 위 코드로 직접 이전하실 수 있습니다.`;
+  } else {
+    msg = `[꿈바온 설교 프로그램(66권) & 설교 곳간 & 모세의 지팡이 통합 사용권]\n\n` +
+          `• 등록 성함: ${currentOwner}\n` +
+          `• 1:1 전용 인증번호: ${currentCode}\n\n` +
+          `위 성함과 전용 인증번호 하나로 [👑 꿈바온 설교 프로그램(66권 전체 정식판)], [🏺 내 설교 곳간], [🪄 모세의 지팡이]를 모두 여실 수 있습니다.\n` +
+          `나중에 컴퓨터를 바꾸실 때도 다시 연락하실 필요 없이 백업 파일과 위 코드로 새 컴퓨터에서 바로 이어 쓰실 수 있습니다.`;
+  }
+  navigator.clipboard.writeText(msg).then(() => {
+    alert(`[${currentOwner}] 님의 카톡 전달용 안내 문구(${currentCode})가 클립보드에 복사되었습니다!`);
+  });
+}
+
+function formatNowTs() {
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mi = String(d.getMinutes()).padStart(2, '0');
+  const ss = String(d.getSeconds()).padStart(2, '0');
+  return `${yyyy}-${mm}-${dd} ${hh}:${mi}:${ss}`;
+}
+
+const INTERNAL_CARD_NOS = {
+  'KKD-2026-6903': 1, 'KKD-2026-1640': 1, 'KKD-2026-7777': 1,
+  'KKD-2026-0000': 1, 'KKD-2026-9999': 1, 'KKD-2026-8888': 1, 'KKD-2026-1234': 1
+};
+
+const INTERNAL_BOT_VIDS = {
+  'VIS-2026-VXV2555': 1, 'VIS-2026-ZV6R603': 1, 'VIS-2026-19VG676': 1, 'VIS-2026-5UFG766': 1,
+  'VIS-2026-ZQS9879': 1, 'VIS-2026-2LDT756': 1, 'VIS-2026-JKUA478': 1, 'VIS-2026-BNCO955': 1,
+  'VIS-2026-SQ11121': 1, 'VIS-2026-RFY8231': 1, 'VIS-2026-HNT1586': 1, 'VIS-2026-7ZC1584': 1,
+  'VIS-2026-0WMU448': 1, 'VIS-2026-AK08231': 1, 'VIS-2026-EEWG405': 1, 'VIS-2026-P7NQ434': 1,
+  'VIS-2026-2RHU516': 1, 'VIS-2026-0JGV271': 1, 'VIS-2026-M0LP589': 1, 'VIS-2026-BNM3829': 1,
+  'VIS-2026-IPAS734': 1, 'VIS-2026-73KV343': 1, 'VIS-2026-OE9C596': 1, 'VIS-2026-7SR4422': 1,
+  'VIS-2026-QDGG296': 1, 'VIS-2026-5DIR242': 1, 'VIS-2026-80OX354': 1, 'VIS-2026-CAUI672': 1,
+  'VIS-2026-TIY6439': 1, 'VIS-2026-QPV9663': 1, 'VIS-2026-NKKY379': 1, 'VIS-2026-ACPS769': 1,
+  'VIS-2026-2ISL677': 1, 'VIS-2026-53JT977': 1, 'VIS-2026-7Z2R832': 1, 'VIS-2026-TXSY869': 1,
+  'VIS-2026-SULQ580': 1, 'VIS-2026-15SJ631': 1, 'VIS-2026-E1DN249': 1, 'VIS-2026-7RO8523': 1,
+  'VIS-2026-6YQF673': 1, 'VIS-2026-71WZ186': 1, 'VIS-2026-HGHI995': 1, 'VIS-2026-P72T453': 1,
+  'VIS-2026-GUEST': 1
+};
+
+function isInternalOrBotRecord(item) {
+  if (!item || typeof item !== 'object') return false;
+  const vid = String(item.visitorId || '').trim();
+  const cno = String(item.cardNo || '').trim();
+  if (cno && INTERNAL_CARD_NOS[cno]) return true;
+  if (vid && INTERNAL_BOT_VIDS[vid]) return true;
+  try {
+    const myVid = localStorage.getItem('kkumdido_visitor_id_v1');
+    if (myVid && vid === myVid) return true;
+  } catch (e) {}
+  const name = String(item.name || '').trim();
+  if (name && /한범수|한\*수|꿈바온|꿈\*온|안간사|클간사|제간사|워크간사|지간사|테스트|점검|관리자/i.test(name)) return true;
+  const acc = String(item.account || '').trim().toLowerCase();
+  if (acc && /en\*\*\*@naver\.com|en\*\*\*@nvar\.com|engo1030|kkumbaon\.org|pa\*\*\*@|test@|example\.com|admin@/i.test(acc)) return true;
+  const church = String(item.church || '').trim();
+  if (church && /^(꿈바온교회|꿈바온 은혜교회|테스트교회)$/.test(church)) return true;
+  const pages = Array.isArray(item.pagesVisited) ? item.pagesVisited : [];
+  if (String(item.pageTitle || '').includes('목사님 전용 발급') || pages.some(p => String(p || '').includes('목사님 전용 발급'))) return true;
+  const dev = String(item.device || '');
+  const tFirst = String(item.firstSeenAt || item.ts || '');
+  const tLast = String(item.lastSeenAt || item.ts || '');
+  if (dev === 'PC (Mac)' && ((tFirst && tFirst <= '2026-11-08 22:00:00') || (tLast && tLast <= '2026-11-08 22:00:00'))) return true;
+  const s1 = Date.parse(tFirst.slice(0, 19).replace(' ', 'T')) / 1000;
+  const s2 = Date.parse(tLast.slice(0, 19).replace(' ', 'T')) / 1000;
+  if (!isNaN(s1) && !isNaN(s2) && Math.abs(s2 - s1) <= 35 && ((item.visitCount || 1) >= 4 || pages.length >= 4)) return true;
+  return false;
+}
+
+function pruneInternalRecordsFromVault(vault) {
+  if (!vault || typeof vault !== 'object') return false;
+  let changed = false;
+  Object.keys(vault.members || {}).forEach(k => {
+    if (isInternalOrBotRecord(vault.members[k])) { delete vault.members[k]; changed = true; }
+  });
+  Object.keys(vault.visitors || {}).forEach(k => {
+    if (isInternalOrBotRecord(vault.visitors[k])) { delete vault.visitors[k]; changed = true; }
+  });
+  if (Array.isArray(vault.logs)) {
+    const before = vault.logs.length;
+    vault.logs = vault.logs.filter(l => !isInternalOrBotRecord(l));
+    if (vault.logs.length !== before) changed = true;
+  }
+  return changed;
+}
+
+function getVault() {
+  try {
+    localStorage.setItem('kkumdido_is_pastor_device', '1');
+    const raw = localStorage.getItem(VAULT_STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed && typeof parsed === 'object') {
+        parsed.members = parsed.members || {};
+        parsed.visitors = parsed.visitors || {};
+        parsed.logs = Array.isArray(parsed.logs) ? parsed.logs : [];
+        if (pruneInternalRecordsFromVault(parsed)) {
+          parsed.updatedAt = formatNowTs();
+          localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(parsed));
+        }
+        return parsed;
+      }
+    }
+  } catch (e) {}
+  return { members: {}, visitors: {}, logs: [], updatedAt: '' };
+}
+
+function saveVault(vault) {
+  try {
+    pruneInternalRecordsFromVault(vault);
+    if (Array.isArray(vault.logs) && vault.logs.length > 350) {
+      vault.logs.sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
+      vault.logs = vault.logs.slice(0, 350);
+    }
+    vault.updatedAt = formatNowTs();
+    localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(vault));
+  } catch (e) {}
+}
+
+function addUnique(arr, item, maxLen = 20) {
+  const list = Array.isArray(arr) ? arr.slice() : [];
+  if (item && !list.includes(item)) list.push(item);
+  return list.slice(-maxLen);
+}
+
+function mergeMemberEntry(vault, m) {
+  if (!m || !m.cardNo || isInternalOrBotRecord(m)) return;
+  const cur = vault.members[m.cardNo] || {
+    cardNo: m.cardNo,
+    name: m.name || '',
+    account: m.account || '-',
+    church: m.church || '꿈바온 가족',
+    provider: m.provider || 'Google',
+    issuedAt: m.issuedAt || formatNowTs().slice(0, 10).replace(/-/g, '.'),
+    firstSeenAt: m.firstSeenAt || m.ts || formatNowTs(),
+    lastSeenAt: m.lastSeenAt || m.ts || formatNowTs(),
+    visitCount: 0,
+    printCount: 0,
+    pagesVisited: [],
+    lastAction: '',
+    device: m.device || ''
+  };
+  if (m.name) cur.name = m.name;
+  if (m.account) cur.account = m.account;
+  if (m.church) cur.church = m.church;
+  if (m.provider) cur.provider = m.provider;
+  if (m.issuedAt) cur.issuedAt = m.issuedAt;
+  if (m.device) cur.device = m.device;
+  if (m.firstSeenAt && (!cur.firstSeenAt || m.firstSeenAt < cur.firstSeenAt)) cur.firstSeenAt = m.firstSeenAt;
+  if (m.lastSeenAt && (!cur.lastSeenAt || m.lastSeenAt > cur.lastSeenAt)) cur.lastSeenAt = m.lastSeenAt;
+  if (typeof m.visitCount === 'number' && m.visitCount > (cur.visitCount || 0)) cur.visitCount = m.visitCount;
+  if (typeof m.printCount === 'number' && m.printCount > (cur.printCount || 0)) cur.printCount = m.printCount;
+  if (Array.isArray(m.pagesVisited)) {
+    m.pagesVisited.forEach(p => { cur.pagesVisited = addUnique(cur.pagesVisited, p); });
+  }
+  if (m.lastAction) cur.lastAction = m.lastAction;
+  vault.members[m.cardNo] = cur;
+}
+
+function mergeVisitorEntry(vault, v) {
+  if (!v || !v.visitorId || isInternalOrBotRecord(v)) return;
+  const cur = vault.visitors[v.visitorId] || {
+    visitorId: v.visitorId,
+    cardNo: v.cardNo || '',
+    name: v.name || '비로그인 방문자',
+    account: v.account || '-',
+    church: v.church || '-',
+    provider: v.provider || '-',
+    firstSeenAt: v.firstSeenAt || v.ts || formatNowTs(),
+    lastSeenAt: v.lastSeenAt || v.ts || formatNowTs(),
+    visitCount: 0,
+    printCount: 0,
+    pagesVisited: [],
+    lastAction: '',
+    device: v.device || ''
+  };
+  if (v.cardNo) cur.cardNo = v.cardNo;
+  if (v.name && v.name !== '비로그인 방문자') cur.name = v.name;
+  if (v.account && v.account !== '-') cur.account = v.account;
+  if (v.church && v.church !== '-') cur.church = v.church;
+  if (v.provider && v.provider !== '-') cur.provider = v.provider;
+  if (v.device) cur.device = v.device;
+  if (v.firstSeenAt && (!cur.firstSeenAt || v.firstSeenAt < cur.firstSeenAt)) cur.firstSeenAt = v.firstSeenAt;
+  if (v.lastSeenAt && (!cur.lastSeenAt || v.lastSeenAt > cur.lastSeenAt)) cur.lastSeenAt = v.lastSeenAt;
+  if (typeof v.visitCount === 'number' && v.visitCount > (cur.visitCount || 0)) cur.visitCount = v.visitCount;
+  if (typeof v.printCount === 'number' && v.printCount > (cur.printCount || 0)) cur.printCount = v.printCount;
+  if (Array.isArray(v.pagesVisited)) {
+    v.pagesVisited.forEach(p => { cur.pagesVisited = addUnique(cur.pagesVisited, p); });
+  }
+  if (v.lastAction) cur.lastAction = v.lastAction;
+  if (isInternalOrBotRecord(cur)) { delete vault.visitors[v.visitorId]; return; }
+  vault.visitors[v.visitorId] = cur;
+}
+
+function applyEventToVault(vault, ev) {
+  if (!ev || typeof ev !== 'object') return false;
+  let changed = false;
+
+  if (ev.kind === 'vault_snapshot') {
+    if (ev.members && typeof ev.members === 'object') {
+      Object.values(ev.members).forEach(m => { if (!isInternalOrBotRecord(m)) { mergeMemberEntry(vault, m); changed = true; } });
+    }
+    if (ev.visitors && typeof ev.visitors === 'object') {
+      Object.values(ev.visitors).forEach(v => { if (!isInternalOrBotRecord(v)) { mergeVisitorEntry(vault, v); changed = true; } });
+    }
+    if (Array.isArray(ev.logs)) {
+      const ids = new Set(vault.logs.map(l => l && l.id));
+      ev.logs.forEach(l => {
+        if (l && l.id && !ids.has(l.id) && !isInternalOrBotRecord(l)) {
+          vault.logs.push(l);
+          ids.add(l.id);
+          changed = true;
+        }
+      });
+    }
+    if (pruneInternalRecordsFromVault(vault)) changed = true;
+    return changed;
+  }
+
+  if (isInternalOrBotRecord(ev)) {
+    return pruneInternalRecordsFromVault(vault);
+  }
+
+  const ts = ev.ts || formatNowTs();
+  const page = ev.pageTitle || '🏛️ 꿈디도 도서관';
+  const detail = ev.detail || '';
+  const vid = ev.visitorId || 'VIS-2026-GUEST';
+
+  if (ev.cardNo && ev.name) {
+    const mem = vault.members[ev.cardNo] || {
+      cardNo: ev.cardNo,
+      name: ev.name,
+      account: ev.account || '-',
+      church: ev.church || '꿈바온 가족',
+      provider: ev.provider || 'Google',
+      issuedAt: ev.issuedAt || ts.slice(0, 10).replace(/-/g, '.'),
+      firstSeenAt: ts,
+      lastSeenAt: ts,
+      visitCount: 0,
+      printCount: 0,
+      pagesVisited: [],
+      lastAction: detail,
+      device: ev.device || ''
+    };
+    if (ev.name) mem.name = ev.name;
+    if (ev.account) mem.account = ev.account;
+    if (ev.church) mem.church = ev.church;
+    if (ev.provider) mem.provider = ev.provider;
+    if (ev.issuedAt) mem.issuedAt = ev.issuedAt;
+    if (ev.device) mem.device = ev.device;
+    if (ts > (mem.lastSeenAt || '')) mem.lastSeenAt = ts;
+    if (ts < (mem.firstSeenAt || ts)) mem.firstSeenAt = ts;
+    mem.pagesVisited = addUnique(mem.pagesVisited, page);
+    if (detail) mem.lastAction = `${page} · ${detail}`;
+    if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') mem.visitCount = (mem.visitCount || 0) + 1;
+    if (ev.type === 'print' || ev.type === 'pdf') mem.printCount = (mem.printCount || 0) + 1;
+    vault.members[ev.cardNo] = mem;
+    changed = true;
+  }
+
+  if (vid) {
+    const vis = vault.visitors[vid] || {
+      visitorId: vid,
+      cardNo: ev.cardNo || '',
+      name: ev.name || '비로그인 방문자',
+      account: ev.account || '-',
+      church: ev.church || '-',
+      provider: ev.provider || '-',
+      firstSeenAt: ts,
+      lastSeenAt: ts,
+      visitCount: 0,
+      printCount: 0,
+      pagesVisited: [],
+      lastAction: detail,
+      device: ev.device || ''
+    };
+    if (ev.cardNo) vis.cardNo = ev.cardNo;
+    if (ev.name) vis.name = ev.name;
+    if (ev.account) vis.account = ev.account;
+    if (ev.church) vis.church = ev.church;
+    if (ev.provider) vis.provider = ev.provider;
+    if (ev.device) vis.device = ev.device;
+    if (ts > (vis.lastSeenAt || '')) vis.lastSeenAt = ts;
+    if (ts < (vis.firstSeenAt || ts)) vis.firstSeenAt = ts;
+    vis.pagesVisited = addUnique(vis.pagesVisited, page);
+    if (detail) vis.lastAction = `${page} · ${detail}`;
+    if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') vis.visitCount = (vis.visitCount || 0) + 1;
+    if (ev.type === 'print' || ev.type === 'pdf') vis.printCount = (vis.printCount || 0) + 1;
+    vault.visitors[vid] = vis;
+    changed = true;
+  }
+
+  if (ev.id && !vault.logs.some(l => l && l.id === ev.id)) {
+    vault.logs.unshift({
+      id: ev.id,
+      ts: ts,
+      type: ev.type || 'visit',
+      visitorId: vid,
+      cardNo: ev.cardNo || '',
+      name: ev.name || '비로그인 방문자',
+      account: ev.account || '-',
+      church: ev.church || '-',
+      provider: ev.provider || '-',
+      pageTitle: page,
+      detail: detail,
+      device: ev.device || ''
+    });
+    changed = true;
+  }
+  return changed;
+}
+
+function escapeHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function switchTab(tab) {
+  activeTab = tab;
+  ['members', 'visitors', 'logs'].forEach(t => {
+    const btn = document.getElementById('tabBtn-' + t);
+    if (btn) btn.classList.toggle('active', t === tab);
+  });
+  renderTable();
+}
+
+function renderTable() {
+  const vault = getVault();
+  const q = (document.getElementById('searchInput').value || '').trim().toLowerCase();
+  const wrap = document.getElementById('tableContainer');
+
+  const membersArr = Object.values(vault.members || {}).sort((a, b) => String(b.lastSeenAt || '').localeCompare(String(a.lastSeenAt || '')));
+  const visitorsArr = Object.values(vault.visitors || {}).sort((a, b) => String(b.lastSeenAt || '').localeCompare(String(a.lastSeenAt || '')));
+  const logsArr = (vault.logs || []).slice().sort((a, b) => String(b.ts || '').localeCompare(String(a.ts || '')));
+
+  let totalVisits = 0, totalPrints = 0;
+  visitorsArr.forEach(v => {
+    totalVisits += (v.visitCount || 1);
+    totalPrints += (v.printCount || 0);
+  });
+  if (totalVisits < membersArr.length) totalVisits = membersArr.length;
+
+  document.getElementById('statMembers').textContent = `${membersArr.length}명`;
+  document.getElementById('statVisitors').textContent = `${Math.max(visitorsArr.length, membersArr.length)}명`;
+  document.getElementById('statVisits').textContent = `${totalVisits}회`;
+  document.getElementById('statPrints').textContent = `${totalPrints}회`;
+
+  if (activeTab === 'members') {
+    const filtered = membersArr.filter(m => {
+      if (!q) return true;
+      return [m.cardNo, m.name, m.account, m.church, m.provider, (m.pagesVisited || []).join(' '), m.lastAction].join(' ').toLowerCase().includes(q);
+    });
+    if (!filtered.length) {
+      wrap.innerHTML = `<div style="padding:42px 20px; text-align:center; color:#9d907b;">아직 클라우드에 동기화된 도서관 이용증 가입자가 없거나 검색어와 일치하는 분이 없습니다.</div>`;
+      return;
+    }
+    const rows = filtered.map(m => {
+      const pills = (m.pagesVisited || []).map(p => `<span class="pill">${escapeHtml(p)}</span>`).join(' ');
+      const kbCode = computeLicenseCode(m.name);
+      return `<tr>
+        <td style="white-space:nowrap; width:135px;"><div><b>${escapeHtml(m.issuedAt || '-')}</b></div><div style="font-size:11px; color:#9d907b;">최근: ${escapeHtml((m.lastSeenAt || '').slice(5, 16))}</div></td>
+        <td style="font-family:monospace; font-weight:800; color:#f0d290; white-space:nowrap; width:125px;">${escapeHtml(m.cardNo)}</td>
+        <td style="font-weight:800; color:#fff; white-space:nowrap; font-size:13.5px;">${escapeHtml(m.name)}</td>
+        <td style="white-space:nowrap; color:#e0d8ca;">${escapeHtml(m.church || '꿈바온 가족')}</td>
+        <td style="white-space:nowrap;"><span class="pill ${m.provider === '카카오' ? '' : 'blue'}">${escapeHtml(m.provider || 'Google')}</span> <b style="color:#ffd97d;">${escapeHtml(m.account || '-')}</b></td>
+        <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ${m.visitCount || 1}회</span><div style="font-size:11px; color:#a89a78;">인쇄 ${m.printCount || 0}회</div></td>
+        <td><div style="display:flex; flex-wrap:wrap; gap:3px;">${pills || '<span style="color:#888;">-</span>'}</div>${m.lastAction ? `<div style="font-size:11.5px; color:#a89a78; margin-top:3px;">최근활동: ${escapeHtml(m.lastAction)}</div>` : ''}</td>
+        <td style="white-space:nowrap; width:110px; text-align:center;"><button class="mini-kb-btn" onclick="issueForMember('${escapeHtml(m.name).replace(/'/g, "\\'")}')">⚡ ${escapeHtml(kbCode)} 발급</button></td>
+      </tr>`;
+    }).join('');
+    wrap.innerHTML = `<table>
+      <thead><tr>
+        <th style="white-space:nowrap; width:135px;">가입일 / 최근방문</th><th style="white-space:nowrap; width:125px;">이용증 번호</th><th style="white-space:nowrap;">성함 · 직분</th><th style="white-space:nowrap;">소속 교회</th><th style="white-space:nowrap;">이메일 / 로그인 계정</th><th style="white-space:nowrap; width:110px; text-align:center;">이용 횟수</th><th>다녀간 스튜디오 · 사용 기록</th><th style="white-space:nowrap; width:110px; text-align:center;">1:1 정식판 코드</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+    return;
+  }
+
+  if (activeTab === 'visitors') {
+    const filtered = visitorsArr.filter(v => {
+      if (!q) return true;
+      return [v.visitorId, v.cardNo, v.name, v.account, v.church, v.device, (v.pagesVisited || []).join(' '), v.lastAction].join(' ').toLowerCase().includes(q);
+    });
+    if (!filtered.length) {
+      wrap.innerHTML = `<div style="padding:42px 20px; text-align:center; color:#9d907b;">기록된 방문자 내역이 없습니다.</div>`;
+      return;
+    }
+    const rows = filtered.map(v => {
+      const isMem = !!(v.cardNo && v.name && v.name !== '비로그인 방문자');
+      const pills = (v.pagesVisited || []).map(p => `<span class="pill">${escapeHtml(p)}</span>`).join(' ');
+
+      // Clean lastAction if it duplicates page name
+      let cleanLastAction = v.lastAction || '';
+      if (cleanLastAction) {
+        cleanLastAction = cleanLastAction.replace(/^([^·]+)·\s*\1\s*/, '$1 ');
+      }
+
+      // Device Icon & Badge
+      const dev = v.device || '웹 브라우저';
+      let devIcon = '💻';
+      if (/Android/i.test(dev)) devIcon = '📱';
+      else if (/iPhone/i.test(dev)) devIcon = '🍎';
+      else if (/iPad|태블릿/i.test(dev)) devIcon = '📟';
+      else if (/Mac/i.test(dev)) devIcon = '🍏';
+      else if (/Windows/i.test(dev)) devIcon = '🪟';
+
+      // Visitor column: Member gets Name + Church/Account, Visitor gets Badge + ID
+      let identityHtml = '';
+      if (isMem) {
+        identityHtml = `<div style="font-weight:800; color:#fff; font-size:13.5px; white-space:nowrap;">${escapeHtml(v.name)}</div>` +
+          `<div style="font-size:11.5px; color:#ffd97d; margin-top:2px; white-space:nowrap;">${escapeHtml(v.church || '소속 미지정')} · ${escapeHtml(v.account || '-')}</div>` +
+          `<div style="font-size:10.5px; color:#9a8f7c; font-family:monospace; margin-top:1px; white-space:nowrap;">${escapeHtml(v.cardNo)}</div>`;
+      } else {
+        identityHtml = `<div style="font-weight:700; color:#e0d8ca; font-size:13px; white-space:nowrap;">비로그인 방문자</div>` +
+          `<div style="font-size:11px; color:#a89a78; font-family:monospace; margin-top:2px; white-space:nowrap;">${escapeHtml(v.visitorId || '-')}</div>`;
+      }
+
+      return `<tr>
+        <td style="white-space:nowrap; width:135px;"><div><b>${escapeHtml((v.lastSeenAt || '').slice(0, 16))}</b></div><div style="font-size:11px; color:#9a8f7c;">최초: ${escapeHtml((v.firstSeenAt || '').slice(0, 16))}</div></td>
+        <td style="white-space:nowrap; width:95px; text-align:center;">${isMem ? `<span class="pill green">🪪 이용증 회원</span>` : `<span class="pill gray">👣 일반 방문</span>`}</td>
+        <td style="white-space:nowrap;">${identityHtml}</td>
+        <td style="white-space:nowrap; width:130px;"><span class="pill gray">${devIcon} ${escapeHtml(dev)}</span></td>
+        <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ${v.visitCount || 1}회</span>${v.printCount ? `<div style="font-size:11px; color:#6ee7b7;">인쇄 ${v.printCount}회</div>` : `<div style="font-size:11px; color:#888;">인쇄 0회</div>`}</td>
+        <td><div style="display:flex; flex-wrap:wrap; gap:3px;">${pills || '-'}</div>${cleanLastAction ? `<div style="font-size:11.5px; color:#a89a78; margin-top:4px;">최근: ${escapeHtml(cleanLastAction)}</div>` : ''}</td>
+      </tr>`;
+    }).join('');
+    wrap.innerHTML = `<table>
+      <thead><tr>
+        <th style="white-space:nowrap; width:135px;">최근 방문 / 최초</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">방문자 정보 (성함·ID / 소속)</th><th style="white-space:nowrap; width:130px;">접속 기기</th><th style="white-space:nowrap; width:110px; text-align:center;">누적 활동</th><th>다녀간 페이지 · 스튜디오 여정</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+    return;
+  }
+
+  const filtered = logsArr.filter(l => {
+    if (!q) return true;
+    return [l.ts, l.name, l.account, l.church, l.pageTitle, l.detail, l.cardNo, l.visitorId].join(' ').toLowerCase().includes(q);
+  });
+  if (!filtered.length) {
+    wrap.innerHTML = `<div style="padding:42px 20px; text-align:center; color:#9d907b;">상세 사용 기록이 없습니다.</div>`;
+    return;
+  }
+  const rows = filtered.map(l => {
+    let badge = `<span class="pill gray">👣 일반 방문</span>`;
+    if (l.type === 'signup') badge = `<span class="pill green">🪪 이용증 발급</span>`;
+    else if (l.type === 'studio') badge = `<span class="pill blue">🧰 스튜디오 사용</span>`;
+    else if (l.type === 'print') badge = `<span class="pill">🖨️ 인쇄 실행</span>`;
+    else if (l.type === 'pdf') badge = `<span class="pill">📕 PDF 열람</span>`;
+    return `<tr>
+      <td style="white-space:nowrap; font-family:monospace; color:#d8c390; width:135px;">${escapeHtml(l.ts || '-')}</td>
+      <td style="white-space:nowrap; width:95px; text-align:center;">${badge}</td>
+      <td style="font-weight:800; color:#fff; white-space:nowrap;">${escapeHtml(l.name || '비로그인 방문자')}${l.church && l.church !== '-' ? `<div style="font-size:11px; color:#a89a78; font-weight:normal;">${escapeHtml(l.church)}</div>` : ''}</td>
+      <td style="white-space:nowrap; color:#ffd97d;">${escapeHtml(l.account || '-')}</td>
+      <td style="white-space:nowrap;"><span class="pill">${escapeHtml(l.pageTitle || '-')}</span></td>
+      <td>${escapeHtml(l.detail || '-')}${l.device ? ` <span style="font-size:11.5px; color:#9d907b;">(${escapeHtml(l.device)})</span>` : ''}</td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `<table>
+    <thead><tr>
+      <th style="white-space:nowrap; width:135px;">일시</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">성함 · 직분 / 소속</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap;">머문 공간 (스튜디오)</th><th>상세 사용 내용</th>
+    </tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
+function initMqttConsole() {
+  if (typeof window.mqtt === 'undefined') return;
+  try {
+    mqttClient = window.mqtt.connect(MQTT_BROKER_URL, {
+      clientId: 'kkd_pastor_console_' + Math.random().toString(16).substring(2, 9),
+      clean: true,
+      connectTimeout: 5000,
+      reconnectPeriod: 6000
+    });
+    mqttClient.on('connect', () => {
+      mqttClient.subscribe(MQTT_PREFIX + '/master_vault', { qos: 1 });
+      mqttClient.subscribe(MQTT_PREFIX + '/members/+', { qos: 1 });
+      mqttClient.subscribe(MQTT_PREFIX + '/visitors/+', { qos: 1 });
+      mqttClient.subscribe(MQTT_PREFIX + '/events', { qos: 0 });
+      document.getElementById('cloudStatusText').textContent = `🟢 실시간 클라우드 장부 연결됨 (마지막 동기화: ${formatNowTs()})`;
+    });
+    mqttClient.on('message', (topic, message) => {
+      try {
+        const data = JSON.parse(message.toString());
+        const vault = getVault();
+        let updated = false;
+        if (topic === MQTT_PREFIX + '/master_vault' || data.kind === 'vault_snapshot') {
+          updated = applyEventToVault(vault, data);
+        } else if (topic.startsWith(MQTT_PREFIX + '/members/')) {
+          mergeMemberEntry(vault, data);
+          updated = true;
+        } else if (topic.startsWith(MQTT_PREFIX + '/visitors/')) {
+          mergeVisitorEntry(vault, data);
+          updated = true;
+        } else if (topic === MQTT_PREFIX + '/events') {
+          updated = applyEventToVault(vault, data);
+        }
+        if (updated) {
+          saveVault(vault);
+          renderTable();
+          document.getElementById('cloudStatusText').textContent = `🟢 실시간 클라우드 수신 완료 (${formatNowTs()})`;
+        }
+      } catch (e) {}
+    });
+  } catch (e) {}
+}
+
+function syncCloudNow() {
+  const st = document.getElementById('cloudStatusText');
+  st.textContent = '🔄 클라우드(HTTPS Stream + MQTT Retained)에서 가입자·방문 기록을 불러오는 중...';
+
+  // 로컬 레지스트리 자동 편입
+  try {
+    const oldReg = JSON.parse(localStorage.getItem(MEMBER_LOG_KEY) || '[]');
+    if (Array.isArray(oldReg) && oldReg.length) {
+      const vault = getVault();
+      oldReg.forEach(item => {
+        if (item && item.cardNo) mergeMemberEntry(vault, item);
+      });
+      saveVault(vault);
+    }
+  } catch (e) {}
+
+  fetch(NTFY_URL + '/json?poll=1&since=all', { cache: 'no-store' })
+    .then(r => r.text())
+    .then(txt => {
+      const vault = getVault();
+      let changed = false;
+      (txt || '').split('\n').forEach(line => {
+        if (!line.trim()) return;
+        try {
+          const outer = JSON.parse(line.trim());
+          if (outer && outer.event === 'message' && outer.message) {
+            const inner = JSON.parse(outer.message);
+            if (applyEventToVault(vault, inner)) changed = true;
+          }
+        } catch (e2) {}
+      });
+      if (changed) saveVault(vault);
+      renderTable();
+      st.textContent = `🟢 클라우드 최신 동기화 완료 (${formatNowTs()})`;
+      if (mqttClient && mqttClient.connected) {
+        mqttClient.publish(MQTT_PREFIX + '/master_vault', JSON.stringify({
+          kind: 'vault_snapshot',
+          updatedAt: formatNowTs(),
+          members: vault.members || {},
+          visitors: vault.visitors || {},
+          logs: (vault.logs || []).slice(0, 180)
+        }), { qos: 1, retain: true });
+      }
+    })
+    .catch(() => {
+      renderTable();
+      st.textContent = `🟢 로컬 및 MQTT 장부 표시 중 (${formatNowTs()})`;
+    });
+}
+
+function promptManualMember() {
+  const name = prompt('등록하실 성함·직분을 입력해 주세요 (예: 김은혜 목사):');
+  if (!name || !name.trim()) return;
+  const church = prompt('소속 교회를 입력해 주세요 (예: 새오름교회):', '꿈바온 가족') || '꿈바온 가족';
+  const email = prompt('이메일 또는 연락처를 입력해 주세요:', '-') || '-';
+  let hash = 0;
+  const s = 'Manual:' + email + ':' + name;
+  for (let i = 0; i < s.length; i++) { hash = ((hash << 5) - hash) + s.charCodeAt(i); hash |= 0; }
+  const cardNo = 'KKD-' + new Date().getFullYear() + '-' + (Math.abs(hash % 9000) + 1000);
+  const now = formatNowTs();
+  const ev = {
+    id: 'EV-' + Date.now(),
+    ts: now,
+    type: 'signup',
+    visitorId: 'VIS-MANUAL-' + cardNo,
+    cardNo: cardNo,
+    name: name.trim(),
+    account: email.trim(),
+    church: church.trim(),
+    provider: '직접등록',
+    issuedAt: now.slice(0, 10).replace(/-/g, '.'),
+    pageTitle: '🔑 목사님 전용 발급·관제실',
+    detail: '목사님 수동 회원 등록 및 코드 발급',
+    device: '목사님 관제실'
+  };
+  const vault = getVault();
+  applyEventToVault(vault, ev);
+  saveVault(vault);
+  renderTable();
+  issueForMember(name.trim());
+  fetch(NTFY_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain; charset=utf-8' }, body: JSON.stringify(ev) }).catch(() => {});
+  if (mqttClient && mqttClient.connected) {
+    mqttClient.publish(MQTT_PREFIX + '/members/' + cardNo, JSON.stringify(vault.members[cardNo]), { qos: 1, retain: true });
+  }
+}
+
+function exportCSV() {
+  const vault = getVault();
+  const lines = ['\uFEFF구분,발급일/최근방문,이용증번호/ID,성함_직분,소속교회,이메일_계정,인증방식,방문횟수,인쇄횟수,사용한_스튜디오_목록,최근활동,1대1_정식판코드'];
+  const esc = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+  Object.values(vault.members || {}).forEach(m => {
+    lines.push([
+      esc('가입회원'),
+      esc((m.issuedAt || '') + ' / ' + (m.lastSeenAt || '')),
+      esc(m.cardNo),
+      esc(m.name),
+      esc(m.church),
+      esc(m.account),
+      esc(m.provider),
+      esc(m.visitCount || 1),
+      esc(m.printCount || 0),
+      esc((m.pagesVisited || []).join(' | ')),
+      esc(m.lastAction || ''),
+      esc(computeLicenseCode(m.name))
+    ].join(','));
+  });
+  Object.values(vault.visitors || {}).forEach(v => {
+    if (v.cardNo && vault.members[v.cardNo]) return;
+    lines.push([
+      esc('일반방문자'),
+      esc((v.firstSeenAt || '') + ' / ' + (v.lastSeenAt || '')),
+      esc(v.visitorId),
+      esc(v.name || '비로그인 방문자'),
+      esc(v.church || '-'),
+      esc(v.account || '-'),
+      esc(v.device || '-'),
+      esc(v.visitCount || 1),
+      esc(v.printCount || 0),
+      esc((v.pagesVisited || []).join(' | ')),
+      esc(v.lastAction || ''),
+      esc('')
+    ].join(','));
+  });
+  const blob = new Blob([lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `꿈디도_가입자명부_및_사용기록_${formatNowTs().slice(0, 10).replace(/-/g, '')}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderTable();
+  initMqttConsole();
+  syncCloudNow();
+});
+</script>
+</body>
+</html>
