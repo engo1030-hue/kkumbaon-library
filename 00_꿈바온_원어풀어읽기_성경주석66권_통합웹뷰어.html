@@ -838,75 +838,55 @@ function renderChapterCommentary() {
 function getFormattedSectionText(secType) {
     const b = window.BOOKS_66.find(x => x.no === currentBookNo);
     const ch = hydrateChapter(b, window.CHAPTERS_1189[`${currentBookNo}_${currentChapterNo}`]);
-    if (!b || !ch) return '';
-    if (secType === 'CTX') {
-        return `[${b.name} ${ch.ch}장] ${ch.title} (${ch.range})
-• 핵심 테마: ${ch.theme}
-• 대표 요절(${ch.key_verse_ref}): ${ch.key_verse_krv}
-• 꿈바온 풀어읽기 요절: ${ch.key_verse_para}
-• 배경: ${ch.context}`;
+    if (!b || !ch) return "";
+    if (secType === "CTX") {
+        return `[${b.name} ${ch.ch}장] ${ch.title} (${ch.range})\n• 핵심 테마: ${ch.theme}\n• 대표 요절(${ch.key_verse_ref}): ${ch.key_verse_krv}\n• 꿈바온 풀어읽기 요절: ${ch.key_verse_para}\n• 배경: ${ch.context}`;
     }
-    if (secType === 'PARA') {
-        return `[${b.name} ${ch.ch}장 꿈바온 풀어읽기]
-` + (ch.para || []).map(p => `▸ ${p[0]}
-${p[1]}`).join('
-
-');
+    if (secType === "PARA") {
+        return `[${b.name} ${ch.ch}장 꿈바온 풀어읽기]\n` + (ch.para || []).map(p => `▸ ${p[0]}\n${p[1]}`).join("\n\n");
     }
-    if (secType === 'WORDS') {
-        return `[${b.name} ${ch.ch}장 원어 심층 연구]
-` + (Array.isArray(ch.words) ? ch.words : (window.OT_GROUP_WORDS[ch.words] || [])).map(w => `• ${w[0]} (${w[1]}, ${w[2]}, ${w[3]}): ${w[4]}`).join('
-');
+    if (secType === "WORDS") {
+        return `[${b.name} ${ch.ch}장 원어 심층 연구]\n` + (Array.isArray(ch.words) ? ch.words : (window.OT_GROUP_WORDS[ch.words] || [])).map(w => `• ${w[0]} (${w[1]}, ${w[2]}, ${w[3]}): ${w[4]}`).join("\n");
     }
-    if (secType === 'THEO') {
-        return `[${b.name} ${ch.ch}장 교부·종교개혁·웨슬리 주해]
-${ch.theology}`;
+    if (secType === "THEO") {
+        return `[${b.name} ${ch.ch}장 교부·종교개혁·웨슬리 주해]\n${ch.theology}`;
     }
-    if (secType === 'SERMON') {
-        return `[${b.name} ${ch.ch}장 설교 아웃라인] 「${ch.sermon_title}」
-` + (ch.sermon_pts || []).map(pt => `- ${pt[0]}: ${pt[1]}`).join('
-') + `
-• 적용 기도: ${ch.prayer}`;
+    if (secType === "SERMON") {
+        return `[${b.name} ${ch.ch}장 설교 아웃라인] 「${ch.sermon_title}」\n` + (ch.sermon_pts || []).map(pt => `- ${pt[0]}: ${pt[1]}`).join("\n") + `\n• 적용 기도: ${ch.prayer}`;
     }
-    return '';
+    return "";
 }
 
 function copyTextSection(secType) {
     const txt = getFormattedSectionText(secType);
     navigator.clipboard.writeText(txt);
-    showToast('선택한 섹션이 클립보드에 복사되었습니다!');
+    showToast("선택한 섹션이 클립보드에 복사되었습니다!");
 }
 
 function copyCurrentChapterAll() {
-    const full = ['CTX', 'PARA', 'WORDS', 'THEO', 'SERMON'].map(k => getFormattedSectionText(k)).join('
-
-====================
-
-');
+    const full = ["CTX", "PARA", "WORDS", "THEO", "SERMON"].map(k => getFormattedSectionText(k)).join("\n\n====================\n\n");
     navigator.clipboard.writeText(full);
-    showToast('현재 장 전체 주석이 클립보드에 복사되었습니다!');
+    showToast("현재 장 전체 주석이 클립보드에 복사되었습니다!");
 }
 
 function appendSectionToPad(secType) {
-    const pad = document.getElementById('sermonPad');
+    const pad = document.getElementById("sermonPad");
     const txt = getFormattedSectionText(secType);
-    pad.value = (pad.value ? pad.value + '
-
-' : '') + txt;
-    showToast('설교 노트패드에 추가되었습니다!');
+    pad.value = (pad.value ? pad.value + "\n\n" : "") + txt;
+    showToast("설교 노트패드에 추가되었습니다!");
 }
 
 function copyNotepad() {
-    const pad = document.getElementById('sermonPad');
+    const pad = document.getElementById("sermonPad");
     navigator.clipboard.writeText(pad.value);
-    showToast('설교 노트패드 원고가 복사되었습니다!');
+    showToast("설교 노트패드 원고가 복사되었습니다!");
 }
 
 function handleSearch(q) {
-    const box = document.getElementById('searchResultsBox');
-    const clean = (q || '').trim().toLowerCase();
+    const box = document.getElementById("searchResultsBox");
+    const clean = (q || "").trim().toLowerCase();
     if (clean.length < 2) {
-        box.style.display = 'none';
+        box.style.display = "none";
         return;
     }
     const hits = [];
@@ -914,7 +894,7 @@ function handleSearch(q) {
         for (let c = 1; c <= b.chapters; c++) {
             const ch = hydrateChapter(b, window.CHAPTERS_1189[`${b.no}_${c}`]);
             if (!ch) continue;
-            const hay = `${b.name} ${c}장 ${ch.title} ${ch.theme} ${ch.key_verse_krv} ${ch.key_verse_para} ${ch.theology} ${ch.sermon_title} ${(Array.isArray(ch.words)?ch.words:[]).map(w=>w.join(' ')).join(' ')}`.toLowerCase();
+            const hay = `${b.name} ${c}장 ${ch.title} ${ch.theme} ${ch.key_verse_krv} ${ch.key_verse_para} ${ch.theology} ${ch.sermon_title} ${(Array.isArray(ch.words)?ch.words:[]).map(w=>w.join(" ")).join(" ")}`.toLowerCase();
             if (hay.includes(clean)) {
                 hits.push({ b, c, ch });
                 if (hits.length >= 40) break;
@@ -922,19 +902,49 @@ function handleSearch(q) {
         }
         if (hits.length >= 40) break;
     }
-    box.style.display = 'block';
-    box.innerHTML = `<div class="sec-title"><span>🔍 '${q}' 통합 검색 결과 (${hits.length}건)</span><button class="btn" style="padding:2px 8px; font-size:11px; color:var(--text-main);" onclick="document.getElementById('searchResultsBox').style.display='none'">닫기</button></div>` +
+    box.style.display = "block";
+    box.innerHTML = `<div class="sec-title"><span>🔍 "${q}" 통합 검색 결과 (${hits.length}건)</span><button class="btn" style="padding:2px 8px; font-size:11px; color:var(--text-main);" onclick="document.getElementById('searchResultsBox').style.display='none'">닫기</button></div>` +
         (hits.length === 0 ? `<div>일치하는 장이 없습니다.</div>` : hits.map(h => `
             <div style="padding:8px 10px; border-bottom:1px solid var(--border-col); cursor:pointer;" onclick="selectBook(${h.b.no}, ${h.c})">
                 <strong style="color:var(--gold);">[제${h.b.no}권 ${h.b.name} ${h.c}장] ${h.ch.title}</strong>
                 <div style="font-size:12.5px; color:var(--text-muted);">${h.ch.theme}</div>
             </div>
-        `).join(''));
+        `).join(""));
 }
 
-window.addEventListener('DOMContentLoaded', () => {
+function resolveRefBookAndChapter(refStr) {
+    if (!refStr || !window.BOOKS_66) return null;
+    const s = String(refStr).trim();
+    for (const b of window.BOOKS_66) {
+        if (s.startsWith(b.name) || (b.abbr && s.startsWith(b.abbr + " "))) {
+            const m = s.match(/(\d+)\s*[:장]/);
+            const ch = m ? Math.min(Math.max(1, parseInt(m[1], 10)), b.chapters) : 1;
+            return { bookNo: b.no, chNo: ch };
+        }
+    }
+    return null;
+}
+
+window.addEventListener("DOMContentLoaded", () => {
     renderBookList();
-    selectBook(45, 1);
+    let target = null;
+    try {
+        const params = new URLSearchParams(window.location.search || "");
+        let ref = (params.get("kkd_ref") || "").trim();
+        if (!ref) {
+            const raw = localStorage.getItem("kkumdido_annex_well_v1");
+            if (raw) {
+                const w = JSON.parse(raw);
+                if (w && w.ref) ref = w.ref;
+            }
+        }
+        if (ref) target = resolveRefBookAndChapter(ref);
+    } catch (e) {}
+    if (target) {
+        selectBook(target.bookNo, target.chNo);
+    } else {
+        selectBook(45, 1);
+    }
 });
 </script>
 
@@ -972,5 +982,6 @@ window.addEventListener('DOMContentLoaded', () => {
 </div>
 
   <script src="kkumdido_mobile.js?v=20261107e"></script>
+  <script src="kkumdido-shield.js"></script>
 </body>
 </html>

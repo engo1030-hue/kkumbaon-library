@@ -161,7 +161,7 @@
 
   function getCurrentPageLabel() {
     var path = (window.location.pathname || '').toLowerCase();
-    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·우물가)';
+    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·말씀등불)';
     if (path.indexOf('kkumdido_pastoral_secretary') !== -1) return '🕊️ 꿈바온 목회 비서 스튜디오';
     if (path.indexOf('kkumdido_sermon_ai') !== -1) return '⚡ 꿈바온 설교AI (7종 변환)';
     if (path.indexOf('kkumdido_finance') !== -1) return '💰 무료 헌금·재정 (청지기장부)';
@@ -2072,7 +2072,21 @@
     }, true);
   }
 
-  // ── 8. 🪣 별관 「우물 규약 (한 말씀 한 주)」 전 스튜디오 자동 연동 브릿지 ──
+  // ── 8. 🕯️ 별관 「말씀 등불 (한 말씀 한 주)」 전 스튜디오 자동 연동 브릿지 ──
+  function isStudioRoomForLamp() {
+    var path = '';
+    try { path = decodeURIComponent(window.location.pathname || '').toLowerCase(); } catch (e) { path = (window.location.pathname || '').toLowerCase(); }
+    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('annex_proposal') !== -1) {
+      return false;
+    }
+    for (var i = 0; i < STUDIO_PATTERNS.length; i++) {
+      if (path.indexOf(STUDIO_PATTERNS[i]) !== -1) return true;
+    }
+    if (path.indexOf('원어풀어읽기') !== -1 || path.indexOf('00_꿈바온') !== -1) return true;
+    if (document.body && document.body.getAttribute('data-kkd-studio') === 'true') return true;
+    return false;
+  }
+
   function getAnnexWell() {
     var w = null;
     try {
@@ -2083,12 +2097,14 @@
       var params = new URLSearchParams(window.location.search || '');
       var urlRef = (params.get('kkd_ref') || '').trim();
       var urlGist = (params.get('kkd_gist') || '').trim();
+      var urlSun = (params.get('kkd_sunday') || '').trim();
       if (urlRef) {
         if (!w || typeof w !== 'object') {
-          w = { ref: urlRef, gist: urlGist || '', sunday: '', savedAt: new Date().toISOString() };
+          w = { ref: urlRef, gist: urlGist || '', sunday: urlSun || '', savedAt: new Date().toISOString() };
         } else {
           w.ref = urlRef;
           if (urlGist) w.gist = urlGist;
+          if (urlSun) w.sunday = urlSun;
         }
         try { localStorage.setItem(ANNEX_WELL_KEY, JSON.stringify(w)); } catch (e2) {}
       }
@@ -2114,11 +2130,7 @@
   function fillStudioFieldsFromWell(forceOverwrite) {
     var w = getAnnexWell();
     if (!w || !w.ref) return false;
-    var path = (window.location.pathname || '').toLowerCase();
-    // 별관 자체 페이지에서는 자동 입력 제외
-    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('annex_proposal') !== -1) {
-      return false;
-    }
+    if (!isStudioRoomForLamp()) return false;
 
     var filledCount = 0;
     // 각 스튜디오별 본문(ref), 제목/한줄(gist), 주일날짜(sunday) 입력칸 매핑
@@ -2185,11 +2197,7 @@
   function renderStudioWellCarryBanner() {
     var w = getAnnexWell();
     if (!w || !w.ref) return;
-    var path = (window.location.pathname || '').toLowerCase();
-    if (!isStudioPage()) return;
-    if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1 || path.indexOf('annex_proposal') !== -1) {
-      return;
-    }
+    if (!isStudioRoomForLamp()) return;
     if (document.getElementById('kkd-well-carry-bar')) return;
 
     var bar = document.createElement('div');
@@ -2198,9 +2206,9 @@
       'background:linear-gradient(90deg, #1E3A5F 0%, #14294A 100%);',
       'color:#F3EFE4;',
       'border-bottom:1.5px solid rgba(197,155,56,0.65);',
-      'padding:7px 18px;',
+      'padding:8px 20px;',
       'font-family:"Pretendard","Noto Sans KR",sans-serif;',
-      'font-size:13.5px;',
+      'font-size:14.5px;',
       'display:flex;',
       'align-items:center;',
       'justify-content:space-between;',
@@ -2212,12 +2220,12 @@
     var pfx = getRootPrefix();
     bar.innerHTML = [
       '<div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">',
-      '  <span style="background:rgba(197,155,56,0.22);border:1px solid rgba(197,155,56,0.65);color:#F7E29E;padding:2px 9px;border-radius:999px;font-weight:800;font-size:12px;">🪣 이번 주의 우물</span>',
-      '  <span>별관 우물가에서 길어 올린 말씀 <b style="color:#FFD97D;font-family:serif;font-size:14.5px;">' + escapeHtml(w.ref) + '</b>' + (w.gist ? ' <span style="opacity:0.88;">(' + escapeHtml(w.gist) + ')</span>' : '') + '을 들고 열었습니다.</span>',
+      '  <span style="background:rgba(197,155,56,0.22);border:1px solid rgba(197,155,56,0.65);color:#F7E29E;padding:3px 10px;border-radius:999px;font-weight:800;font-size:12.5px;">🕯️ 이번 주의 말씀 등불</span>',
+      '  <span>별관에서 밝혀 둔 본문 <b style="color:#FFD97D;font-family:serif;font-size:15.5px;">' + escapeHtml(w.ref) + '</b>' + (w.gist ? ' <span style="opacity:0.92;">(' + escapeHtml(w.gist) + ')</span>' : '') + '을 들고 열었습니다.</span>',
       '</div>',
       '<div style="display:flex;align-items:center;gap:6px;">',
-      '  <button type="button" id="kkd-well-fill-btn" style="background:#C59B38;color:#161209;border:0;border-radius:6px;padding:4px 10px;font-size:12px;font-weight:800;cursor:pointer;">본문 칸에 채우기</button>',
-      '  <a href="' + pfx + 'kkumdido_church_support_annex.html#well" style="color:#F3EFE4;text-decoration:none;border:1px solid rgba(243,239,228,0.4);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:700;">별관 우물가로 ↗</a>',
+      '  <button type="button" id="kkd-well-fill-btn" style="background:#C59B38;color:#161209;border:0;border-radius:6px;padding:5px 11px;font-size:12.5px;font-weight:800;cursor:pointer;">본문 칸에 채우기</button>',
+      '  <a href="' + pfx + 'kkumdido_annex.html#well" style="color:#F3EFE4;text-decoration:none;border:1px solid rgba(243,239,228,0.45);border-radius:6px;padding:4px 10px;font-size:12.5px;font-weight:700;">별관 말씀 등불로 ↗</a>',
       '</div>'
     ].join('');
 
@@ -2232,12 +2240,12 @@
       fillBtn.addEventListener('click', function () {
         var ok = fillStudioFieldsFromWell(true);
         if (ok) {
-          showToast('🪣 이번 주 우물 말씀 「' + w.ref + '」을 이 방의 입력칸에 채웠습니다.');
+          showToast('🕯️ 이번 주 말씀 등불 「' + w.ref + '」을 이 방의 입력칸에 채웠습니다.');
         } else {
           if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(w.ref + (w.gist ? ' ' + w.gist : ''));
           }
-          showToast('📋 이번 주 우물 말씀 「' + w.ref + '」이 클립보드에 복사되었습니다. 원하는 칸에 붙여넣으실 수 있습니다.');
+          showToast('📋 이번 주 말씀 「' + w.ref + '」이 클립보드에 복사되었습니다. 원하는 칸에 붙여넣으실 수 있습니다.');
         }
       });
     }
@@ -2250,7 +2258,7 @@
       var w = getAnnexWell();
       if (w && w.ref) {
         setTimeout(function () {
-          showToast('🪣 우물가에서 길어 올린 「' + w.ref + '」 말씀을 본문 칸에 담았습니다.');
+          showToast('🕯️ 별관 말씀 등불에서 밝혀 둔 「' + w.ref + '」 본문을 입력칸에 담았습니다.');
         }, 450);
       }
     }

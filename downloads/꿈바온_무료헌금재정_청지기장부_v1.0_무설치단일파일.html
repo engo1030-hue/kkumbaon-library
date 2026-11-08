@@ -249,9 +249,43 @@
   }
   .hero-grid {
     display: grid;
-    grid-template-columns: 1.3fr 0.7fr;
-    gap: 20px;
+    grid-template-columns: 1.08fr 0.48fr 0.78fr;
+    gap: 18px;
     align-items: center;
+  }
+  .hero-art-card {
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1.5px solid var(--border-gold);
+    box-shadow: var(--shadow-card);
+    background: #1A140E;
+    aspect-ratio: 16 / 9;
+    position: relative;
+  }
+  .hero-art-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .hero-art-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 6px 10px;
+    background: linear-gradient(180deg, transparent, rgba(18, 14, 10, 0.86));
+    color: #F7E29E;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  .seal-emblem-img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    vertical-align: middle;
+    margin-left: 10px;
   }
   .hero-bar h1 {
     font-size: clamp(1.55rem, 2.6vw, 2.15rem);
@@ -661,6 +695,10 @@
       <div>
         <h1 class="serif">선한 청지기 재정·헌금 장부 <span style="font-size:0.9rem; color:var(--gold-main); font-weight:800;">(무료 다운로드 &amp; 로컬 전용)</span></h1>
         <p>“맡은 자들에게 구할 것은 충성이니라 (고전 4:2)” — 주일 헌금 봉투 초고속 입력부터 주보 헌금자 명단, 지출결의서, 제직회 결산 보고서, 국세청 표준 연말정산 기부금영수증까지 한 번에 해결합니다.</p>
+      </div>
+      <div class="hero-art-card" data-visual-card>
+        <img src="assets/church_support/hero_faithful_steward_16x9.png" alt="두 렙돈과 정성스러운 봉헌의 손길 성화" onerror="this.closest('.hero-art-card').style.display='none'">
+        <div class="hero-art-caption">두 렙돈의 정성을 기억하시는 주님 앞의 선한 청지기</div>
       </div>
       <div class="church-info-box">
         <div>
@@ -1597,6 +1635,7 @@
         '위와 같이 기부금을 기부받았음을 증명합니다.<br>' +
         '<div style="text-align:center; margin-top:14px; font-size:1rem;"><b>' + today + '</b><br><br>' +
         '<strong style="font-size:1.2rem;">' + escapeHtml(c.churchName || '꿈바온 은혜교회') + ' 당회장(대표자)</strong>' +
+        '<img src="assets/church_support/seal_steward_receipt_1x1.png" alt="청지기 인장" class="seal-emblem-img" onerror="this.style.display=\'none\'">' +
         '<span class="stamp-circle">교회<br>직인</span></div>' +
       '</div>';
   }

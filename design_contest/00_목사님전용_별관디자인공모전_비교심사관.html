@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🏛️ 꿈디도 별관 UI/UX 디자인 공모전 — 목사님 전용 원클릭 비교 심사관</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #141210;
+    color: #F4EFE4;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .jury-bar {
+    background: linear-gradient(180deg, #221C15 0%, #17130E 100%);
+    border-bottom: 2px solid #C59B38;
+    padding: 10px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    z-index: 100;
+  }
+  .jury-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .jury-brand strong {
+    font-size: 1.05rem;
+    color: #F7E29E;
+  }
+  .jury-brand span {
+    font-size: 0.8rem;
+    color: #B8AB96;
+  }
+  .jury-tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .jtab {
+    appearance: none;
+    border: 1.5px solid rgba(197,155,56,0.38);
+    background: #251F18;
+    color: #E5DAC8;
+    padding: 8px 14px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .jtab:hover {
+    border-color: #C59B38;
+    color: #FFFFFF;
+  }
+  .jtab.active {
+    background: linear-gradient(135deg, #C59B38, #9A721C);
+    color: #16120B;
+    border-color: #F5DF98;
+    box-shadow: 0 4px 14px rgba(197,155,56,0.35);
+  }
+  .jury-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .jbtn {
+    text-decoration: none;
+    padding: 8px 13px;
+    border-radius: 9px;
+    font-size: 0.82rem;
+    font-weight: 800;
+    background: rgba(255,255,255,0.08);
+    color: #F5DF98;
+    border: 1px solid rgba(197,155,56,0.45);
+  }
+  .jbtn:hover {
+    background: rgba(197,155,56,0.22);
+  }
+  .jury-note {
+    background: #1D1812;
+    border-bottom: 1px solid rgba(197,155,56,0.25);
+    padding: 7px 18px;
+    font-size: 0.83rem;
+    color: #D8CBB8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+  }
+  .jury-note b { color: #F5DF98; }
+  .frame-wrap {
+    flex: 1;
+    width: 100%;
+    background: #F4F2EB;
+  }
+  iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+</style>
+</head>
+<body>
+  <header class="jury-bar">
+    <div class="jury-brand">
+      <strong>🏛️ 꿈디도 교회지원 별관 UI 디자인 공모전 심사관</strong>
+      <span>탭을 눌러 각 시안을 실시간으로 조작·비교해 보세요</span>
+    </div>
+    <div class="jury-tabs" role="tablist">
+      <button type="button" class="jtab active" onclick="switchProposal('master_hybrid_annex_proposal.html', '🏆 [추천 · 3대 간사 장점 대통합 마스터] 클간사의 주보 현관·우물가·ㅁ자 별채 + 지간사의 빠른 사역 길찾기·실시간 검색 + 안간사의 12종 전 프로그램 실전 작동 & PC보안 다운로드', this)">
+        🏆 1. 3대 간사 대통합 마스터안 (추천)
+      </button>
+      <button type="button" class="jtab" onclick="switchProposal('claude_annex_proposal.html', '🏺 [클간사(Claude) 원본 시안] 「뜰을 둘러싼 ㅁ자 별채 & 우물가」 — 한지 주보 순서지 현관 + 한 말씀 우물가 & 월~주일 징검다리 + 쪽빛 도면 안내도', this)">
+        🏺 2. 클간사(Claude) 원본 시안
+      </button>
+      <button type="button" class="jtab" onclick="switchProposal('codex_annex_proposal.html', '🌲 [지간사(Codex) 원본 시안] 「사역의 길, 도구 서가」 — 도서관 숲빛 히어로 + 바로 시작 4카드 + 사역 4걸음 도우미 + 실시간 도구 검색 서가', this)">
+        🌲 3. 지간사(Codex) 원본 시안
+      </button>
+      <button type="button" class="jtab" onclick="switchProposal('../../../16_꿈바온_디지털도서관/kkumdido_church_support_annex.html', '🏛️ [안간사 기존 시안] 「12종 전수조사 & 4대 주력 쇼케이스 허브」 — 웹 전용 2종 + 민감정보 PC 다운로드 2종 대형 카드 + 상용 프로그램 비교표', this)">
+        🏛️ 4. 안간사 기존 쇼케이스안
+      </button>
+    </div>
+    <div class="jury-actions">
+      <a id="openNewTabBtn" class="jbtn" href="master_hybrid_annex_proposal.html" target="_blank">↗ 현재 시안 새 창으로 크게 열기</a>
+    </div>
+  </header>
+  <div class="jury-note">
+    <span id="proposalDesc">🏆 <b>[추천 · 3대 간사 장점 대통합 마스터]</b> 클간사의 주보 현관·우물가·ㅁ자 별채 + 지간사의 빠른 사역 길찾기·실시간 검색 + 안간사의 12종 전 프로그램 실전 작동 &amp; PC보안 다운로드</span>
+    <span>💡 모든 시안은 도서관 이용증(kkumdido-shield.js)과 연동되어 있습니다.</span>
+  </div>
+  <div class="frame-wrap">
+    <iframe id="previewFrame" src="master_hybrid_annex_proposal.html" title="공모전 시안 미리보기"></iframe>
+  </div>
+  <script>
+    function switchProposal(url, desc, btn) {
+      document.getElementById('previewFrame').src = url;
+      document.getElementById('openNewTabBtn').href = url;
+      document.getElementById('proposalDesc').innerHTML = desc;
+      document.querySelectorAll('.jtab').forEach(function(b) {
+        b.classList.toggle('active', b === btn);
+      });
+    }
+  </script>
+</body>
+</html>
