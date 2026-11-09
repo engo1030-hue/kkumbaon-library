@@ -2746,15 +2746,15 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1280, 높이 900px)
-    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
+    // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1250, 높이 870px — 하단 82pt 2줄 자막이 금선과 절대 겹치지 않도록 정밀 배치)
+    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 870);
 
-    // 뷰포트 상단(y=378) & 하단(y=1281) 2px 앤틱 골드 정갈한 구분선
+    // 뷰포트 상단(y=378) & 하단(y=1251) 2.5px 앤틱 골드 정갈한 구분선
     ctx.strokeStyle = "rgb(198, 160, 92)";
     ctx.lineWidth = 2.5;
     ctx.beginPath();
     ctx.moveTo(0, 378); ctx.lineTo(W, 378);
-    ctx.moveTo(0, 1281); ctx.lineTo(W, 1281);
+    ctx.moveTo(0, 1251); ctx.lineTo(W, 1251);
     ctx.stroke();
 
     if (!isEndingHold) {
@@ -2825,18 +2825,22 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
         rawLines = splitKoreanIntoBreathLines(rawLines.join(" "), balancedTarget).split("\n");
       }
 
-      // MarginV 540: 하단에서 540px 위인 y = 1380px가 자막 블록 하단 기준선
-      const bottomLineY = 1380;
-      const lineGap = Math.round(98 * Math.min(1.18, state.canvasFontScale || 1.00));
+      // 중앙정갈형(center_video)은 금선(y=1251) 아래 여백(y=1375 / 1478)에 정갈하게 배치하고,
+      // 9:16 세로쇼츠형(vertical_916)은 등잔 밑 MarginV 540(하단 기준선 y=1380)에 배치
+      const lineGap = Math.round(100 * Math.min(1.18, state.canvasFontScale || 1.00));
+      const isCenterVideo = state.style === "center_video";
 
       if (rawLines.length === 1) {
+        const singleY = isCenterVideo ? 1425 : 1380;
         drawHighlightedSubtitleLine(
-          ctx, rawLines[0], W / 2, bottomLineY,
+          ctx, rawLines[0], W / 2, singleY,
           "#FFFAF2", "#F5C868", "#141010", 10, 82
         );
       } else {
         rawLines.slice(0, 2).forEach((ln, idx) => {
-          const yPos = idx === 0 ? (bottomLineY - lineGap) : bottomLineY;
+          const yPos = isCenterVideo
+            ? (idx === 0 ? 1378 : 1378 + lineGap)
+            : (idx === 0 ? (1380 - lineGap) : 1380);
           drawHighlightedSubtitleLine(
             ctx, ln, W / 2, yPos,
             "#FFFAF2", "#F5C868", "#141010", 10, 82
