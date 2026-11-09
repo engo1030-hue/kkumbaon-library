@@ -2736,42 +2736,49 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   }
 
   // =========================================================================
-  // 스타일 2: 🎬 영상 중앙정갈형 (영상을 중간에 두고 위아래로 정갈하게 — 20261108 주일설교 쇼츠 표준)
+  // 스타일 2: 🎬 영상 중앙정갈형 (20261108 / 20261101 설교 쇼츠 황금 표준 1:1 동기화)
   // =========================================================================
   else if (state.style === "center_video") {
-    const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
-    bgGrad.addColorStop(0, "rgb(18, 14, 11)");
-    bgGrad.addColorStop(0.5, "rgb(25, 19, 14)");
-    bgGrad.addColorStop(1, "rgb(16, 12, 9)");
-    ctx.fillStyle = bgGrad;
+    // 다크 세피아 방사형 그라데이션 (중심 RGB(25,19,15) -> 외곽 0.65배)
+    ctx.fillStyle = "rgb(16, 12, 10)";
+    ctx.fillRect(0, 0, W, H);
+    const radGrad = ctx.createRadialGradient(W / 2, H / 2, 120, W / 2, H / 2, 1100);
+    radGrad.addColorStop(0, "rgb(25, 19, 15)");
+    radGrad.addColorStop(1, "rgb(16, 12, 10)");
+    ctx.fillStyle = radGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1250, 높이 870px — 하단 82pt 2줄 자막이 금선과 절대 겹치지 않도록 정밀 배치)
-    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 870);
+    // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1280, 1080×900)
+    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
 
-    // 뷰포트 상단(y=378) & 하단(y=1251) 2.5px 앤틱 골드 정갈한 구분선
-    ctx.strokeStyle = "rgb(198, 160, 92)";
-    ctx.lineWidth = 2.5;
+    // 상단 이중 앤틱 골드 라인: y=374 (1px, RGB(108,82,55)) & y=378 (2px, RGB(204,158,105))
+    // 하단 이중 앤틱 골드 라인: y=1280 (2px, RGB(204,158,105)) & y=1284 (1px, RGB(108,82,55))
+    ctx.strokeStyle = "rgb(108, 82, 55)";
+    ctx.lineWidth = 1;
+    ctx.beginPath();
+    ctx.moveTo(0, 374.5); ctx.lineTo(W, 374.5);
+    ctx.moveTo(0, 1284.5); ctx.lineTo(W, 1284.5);
+    ctx.stroke();
+
+    ctx.strokeStyle = "rgb(204, 158, 105)";
+    ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.moveTo(0, 378); ctx.lineTo(W, 378);
-    ctx.moveTo(0, 1251); ctx.lineTo(W, 1251);
+    ctx.moveTo(0, 1280); ctx.lineTo(W, 1280);
     ctx.stroke();
 
     if (!isEndingHold) {
-      // 상단 정갈한 세리프 헤더 (자극적인 형광색 없이 품격 있는 양피지 아이보리 & 샴페인 골드)
-      drawAutoFitLine(ctx, `───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 118, 920, 30, 24, 700, "rgb(212, 175, 106)");
-      drawAutoFitLine(ctx, line2, W / 2, 196, 920, 60, 42, 700, "rgb(250, 245, 235)", "#080604", 5);
-      drawAutoFitLine(ctx, line3, W / 2, 286, 940, 66, 46, 800, "rgb(234, 198, 122)", "#080604", 6);
+      // 상단 배지: y_top=122 (y_baseline=144), 26pt, 앤틱 골드 RGB(204, 162, 102)
+      drawAutoFitLine(ctx, `───  ${line3} · ${line1}  ───`, W / 2, 144, 920, 26, 22, 600, "rgb(204, 162, 102)");
+      // 본제목 1열: y_top=182 (y_baseline=232), KoPubWorld-Batang-Bold 60pt, 웜 아이보리 RGB(245, 240, 230)
+      drawAutoFitLine(ctx, line2, W / 2, 232, 920, 60, 42, 700, "rgb(245, 240, 230)", "rgb(8, 6, 5)", 6);
+      // 본제목 2열: y_top=262 (y_baseline=312), KoPubWorld-Batang-Bold 60pt, 샴페인 골드 RGB(238, 198, 132)
+      drawAutoFitLine(ctx, line3, W / 2, 312, 920, 60, 42, 700, "rgb(238, 198, 132)", "rgb(8, 6, 5)", 6);
     } else {
-      // 3.0초 수미상관 엔딩 카드
-      drawAutoFitLine(ctx, `───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 145, 920, 34, 26, 700, "rgb(212, 175, 106)");
-      drawAutoFitLine(ctx, line3, W / 2, 265, 940, 74, 48, 800, "rgb(250, 245, 235)", "#080604", 6);
-      drawAutoFitLine(ctx, line1, W / 2, 1470, 920, 46, 32, 700, "rgb(212, 175, 106)");
-    }
-
-    // 최하단 은은한 서명
-    if (line4 && !isEndingHold) {
-      drawAutoFitLine(ctx, `───  ${line4}  ───`, W / 2, 1815, 860, 26, 22, 600, "rgba(212, 175, 106, 0.52)");
+      // 마지막 3.0초 수미상관 엔딩 카드 (최하단 푸터 없이 깔끔한 여백 유지)
+      drawAutoFitLine(ctx, `───  ${line4 || "꿈바온"} · 성경 말씀 묵상  ───`, W / 2, 178, 920, 27, 22, 600, "rgb(204, 162, 102)");
+      drawAutoFitLine(ctx, line3, W / 2, 282, 920, 70, 46, 700, "rgb(248, 242, 230)", "rgb(8, 6, 5)", 6);
+      drawAutoFitLine(ctx, line1, W / 2, 1448, 920, 34, 26, 700, "rgb(218, 178, 115)");
     }
   }
 
@@ -2803,7 +2810,9 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   }
 
   // =========================================================================
-  // 하단 자막 렌더링 (스타일 2 & 스타일 3 공통) — 『등잔 밑』 황금 표준 일괄 통일 (Fontsize 82, MarginV 540 -> y=1380)
+  // 하단 자막 렌더링:
+  // - 스타일 2 (center_video): 20261108 설교 쇼츠 황금 표준 56pt (1줄 y_baseline=1388 / 2줄 y_baseline=1362, 1438 — y=1280 골드라인 침범 0%)
+  // - 스타일 3 (vertical_916): 『등잔 밑』 황금 표준 82pt, MarginV 540 (하단 기준선 y=1380)
   // =========================================================================
   if (includeSubtitles && !isEndingHold) {
     const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
@@ -2815,7 +2824,6 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
       ctx.save();
       ctx.globalAlpha = alpha;
 
-      // 한 줄 12자 내외 · 2줄 균형 분할 (등잔 밑 82pt 황금 표준 + 튀어나감 0% 보장)
       let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
       const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
       if (rawLines.length === 1 && joinedPlain.length >= 12) {
@@ -2825,27 +2833,40 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
         rawLines = splitKoreanIntoBreathLines(rawLines.join(" "), balancedTarget).split("\n");
       }
 
-      // 중앙정갈형(center_video)은 금선(y=1251) 아래 여백(y=1375 / 1478)에 정갈하게 배치하고,
-      // 9:16 세로쇼츠형(vertical_916)은 등잔 밑 MarginV 540(하단 기준선 y=1380)에 배치
-      const lineGap = Math.round(100 * Math.min(1.18, state.canvasFontScale || 1.00));
-      const isCenterVideo = state.style === "center_video";
-
-      if (rawLines.length === 1) {
-        const singleY = isCenterVideo ? 1425 : 1380;
-        drawHighlightedSubtitleLine(
-          ctx, rawLines[0], W / 2, singleY,
-          "#FFFAF2", "#F5C868", "#141010", 10, 82
-        );
-      } else {
-        rawLines.slice(0, 2).forEach((ln, idx) => {
-          const yPos = isCenterVideo
-            ? (idx === 0 ? 1378 : 1378 + lineGap)
-            : (idx === 0 ? (1380 - lineGap) : 1380);
+      if (state.style === "center_video") {
+        // 스타일 2: KoPubWorld-Batang-Bold 56pt (1줄 y_baseline=1388 / 2줄 y_baseline=1362, 1438)
+        if (rawLines.length === 1) {
           drawHighlightedSubtitleLine(
-            ctx, ln, W / 2, yPos,
+            ctx, rawLines[0], W / 2, 1388,
+            "rgb(252, 249, 242)", "rgb(245, 200, 104)", "rgb(15, 11, 8)", 6, 56
+          );
+        } else {
+          rawLines.slice(0, 2).forEach((ln, idx) => {
+            const yPos = idx === 0 ? 1362 : 1438;
+            drawHighlightedSubtitleLine(
+              ctx, ln, W / 2, yPos,
+              "rgb(252, 249, 242)", "rgb(245, 200, 104)", "rgb(15, 11, 8)", 6, 56
+            );
+          });
+        }
+      } else {
+        // 스타일 3 (9:16 세로쇼츠형): 등잔 밑 82pt 황금 표준 (MarginV 540 -> y_baseline=1380)
+        const bottomLineY = 1380;
+        const lineGap = Math.round(98 * Math.min(1.18, state.canvasFontScale || 1.00));
+        if (rawLines.length === 1) {
+          drawHighlightedSubtitleLine(
+            ctx, rawLines[0], W / 2, bottomLineY,
             "#FFFAF2", "#F5C868", "#141010", 10, 82
           );
-        });
+        } else {
+          rawLines.slice(0, 2).forEach((ln, idx) => {
+            const yPos = idx === 0 ? (bottomLineY - lineGap) : bottomLineY;
+            drawHighlightedSubtitleLine(
+              ctx, ln, W / 2, yPos,
+              "#FFFAF2", "#F5C868", "#141010", 10, 82
+            );
+          });
+        }
       }
       ctx.restore();
     }
