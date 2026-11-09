@@ -813,17 +813,17 @@
 
     <!-- 3대 시그니처 화풍 선택 (입력 소스에 맞춰 자동 선택 + 언제든 1클릭 전환) -->
     <div class="style-tabs">
-      <button type="button" class="style-tab active" data-style="textmotion" onclick="selectShortsStyle('textmotion')">
-        📝 텍스트 모션형
-        <small>그림 없이 말씀만 · 형광펜</small>
+      <button type="button" class="style-tab active" data-style="vertical_916" onclick="selectShortsStyle('vertical_916')">
+        📱 등잔 밑 9:16 쇼츠형
+        <small>위·아래 82pt 동일 · 추천</small>
       </button>
       <button type="button" class="style-tab" data-style="center_video" onclick="selectShortsStyle('center_video')">
         🎬 영상 중앙정갈형
-        <small>위·아래 여백 · 등잔밑 82pt</small>
+        <small>위·아래 82pt 동일 · 중앙영상</small>
       </button>
-      <button type="button" class="style-tab" data-style="vertical_916" onclick="selectShortsStyle('vertical_916')">
-        📱 9:16 세로쇼츠형
-        <small>9:16 전체화면 · 등잔밑 82pt</small>
+      <button type="button" class="style-tab" data-style="textmotion" onclick="selectShortsStyle('textmotion')">
+        📝 텍스트 모션형
+        <small>그림 없이 말씀만 · 82pt</small>
       </button>
     </div>
 
@@ -1087,13 +1087,13 @@ const ARTWORK_PATHS = {
   art_12: "artworks/art_12_chains_freed.jpg"
 };
 
-const AUTO_4CUT_KEYS = ["art_04", "art_10", "art_08", "art_01"];
+const AUTO_4CUT_KEYS = ["art_07", "art_04", "art_06", "art_01"];
 
 // 모션 시퀀스 (Rule 7: 줌인·줌아웃·좌우패닝 교차 & 첫 화면 리셋 금지 + 마지막 1.6초 쿠션 홀드)
 const MOTION_MODES = ["zoom_in", "pan_right", "zoom_out", "pan_left"];
 
 const state = {
-  style: "textmotion", // 'textmotion' (그림 없이 텍스트만) | 'center_video' (가로영상 중앙정갈형) | 'vertical_916' (9:16 세로영상 쇼츠형)
+  style: "vertical_916", // 기본값: 등잔 밑 9:16 쇼츠형 (위·아래 82pt 동일) | 'center_video' | 'textmotion'
   canvasFontScale: 1.00, // 등잔 밑 황금 표준 82px (100% 기준)
   canvasFontFamily: "serif", // 'serif' (등잔 밑 KoPubWorld바탕 Bold 표준) | 'gothic'
   mediaType: "none", // 'none' | 'video' | 'audio'
@@ -1107,7 +1107,7 @@ const state = {
   cropZoom: 1.08,
   bgmUrl: "bgm/bgm_02_measured_breath.mp3",
   bgmVolume: 0.20,
-  artworkMode: "text_cycle",
+  artworkMode: "auto_4cuts",
   loadedImages: {}, // key -> HTMLImageElement
   customSlideImages: [], // array of HTMLImageElement
   subtitles: [
@@ -2436,10 +2436,10 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   if (state.customSlideImages.length > 0) {
     slideList = state.customSlideImages;
   } else if (!state.forceProceduralArt) {
-    if (state.artworkMode === "auto_4cuts") {
-      slideList = AUTO_4CUT_KEYS.map(k => state.loadedImages[k]).filter(Boolean);
-    } else if (state.loadedImages[state.artworkMode]) {
+    if (state.loadedImages[state.artworkMode]) {
       slideList = [state.loadedImages[state.artworkMode]];
+    } else {
+      slideList = AUTO_4CUT_KEYS.map(k => state.loadedImages[k]).filter(Boolean);
     }
   }
 
@@ -2521,8 +2521,21 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   ctx.restore();
 }
 
-// 등잔 밑 황금 표준 자막 렌더러 (Fontsize 82, MarginV 540, 본문 웜화이트 #FFFAF2, 강조 샴페인골드 #F5C868, 외곽선 먹빛차콜 #141010)
-function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 82) {
+// 등잔 밑 황금 표준 자막 렌더러 (위·아래 모든 줄을 동일한 82pt 글자 크기로 통일!)
+function computeUniformBlockFontPx(ctx, linesArr, fontStack, weightStr, safeMaxW, targetPx = 82) {
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
+  ctx.font = `${weightStr} ${px}px ${fontStack}`;
+  for (const ln of linesArr) {
+    const plain = String(ln || "").replace(/\*/g, "");
+    while (ctx.measureText(plain).width > safeMaxW && px > 54) {
+      px -= 2;
+      ctx.font = `${weightStr} ${px}px ${fontStack}`;
+    }
+  }
+  return px;
+}
+
+function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 82, fixedPx = null) {
   const segments = [];
   const regex = /\*(.+?)\*/g;
   let lastIndex = 0;
@@ -2543,12 +2556,14 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
 
   const fontStack = getCanvasFontStack();
   const safeMaxW = 920 - outlineWidth; // 테두리 포함 최대 920px (좌 x>=80, 우 x<=1000 보장)
-  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
+  let px = fixedPx ? fixedPx : Math.round(targetPx * (state.canvasFontScale || 1.00));
   const plainJoined = segments.map(s => s.text).join("");
   ctx.font = `700 ${px}px ${fontStack}`;
-  while (ctx.measureText(plainJoined).width > safeMaxW && px > 42) {
-    px -= 2;
-    ctx.font = `700 ${px}px ${fontStack}`;
+  if (!fixedPx) {
+    while (ctx.measureText(plainJoined).width > safeMaxW && px > 54) {
+      px -= 2;
+      ctx.font = `700 ${px}px ${fontStack}`;
+    }
   }
 
   let totalW = 0;
@@ -2590,27 +2605,27 @@ const TEXT_MOTION_PALETTES = {
 const TEXT_PALETTE_CYCLE = ["cream", "mint", "card", "gold"];
 
 // 텍스트 모션형 1줄(형광펜 마커 애니메이션 + 페이드업) 그리기
-function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx, inkColor, markColor, markProgress, lineAlpha, alignCenter = false) {
+function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx, inkColor, markColor, markProgress, lineAlpha, alignCenter = false, fixedPx = null) {
   const segments = [];
   const regex = /\*([^*]+)\*/g;
   let lastIndex = 0;
   let m;
-  let hasExplicitHighlight = false;
   while ((m = regex.exec(lineStr)) !== null) {
     if (m.index > lastIndex) segments.push({ text: lineStr.slice(lastIndex, m.index), highlight: false });
     segments.push({ text: m[1], highlight: true });
-    hasExplicitHighlight = true;
     lastIndex = regex.lastIndex;
   }
   if (lastIndex < lineStr.length) segments.push({ text: lineStr.slice(lastIndex), highlight: false });
 
   const fontStack = "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif";
-  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
+  let px = fixedPx ? fixedPx : Math.round(targetPx * (state.canvasFontScale || 1.00));
   ctx.font = `800 ${px}px ${fontStack}`;
   const fullPlain = segments.map(s => s.text).join("");
-  while (ctx.measureText(fullPlain).width > maxW && px > 44) {
-    px -= 2;
-    ctx.font = `800 ${px}px ${fontStack}`;
+  if (!fixedPx) {
+    while (ctx.measureText(fullPlain).width > maxW && px > 54) {
+      px -= 2;
+      ctx.font = `800 ${px}px ${fontStack}`;
+    }
   }
 
   let totalW = 0;
@@ -2654,7 +2669,7 @@ function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx
   ctx.restore();
 }
 
-// 메인 1080×1920 프레임 그리기 (3대 시그니처 스타일: ① 옛날 텍스트 모션형 / ② 영상 중앙정갈형 / ③ 9:16 세로쇼츠형)
+// 메인 1080×1920 프레임 그리기 (위쪽도 등잔밑 82pt = 아래쪽도 등잔밑 82pt = 윗줄·아랫줄 100% 동일 크기!)
 function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   const ctx = targetCanvas.getContext("2d");
   const W = 1080;
@@ -2668,10 +2683,43 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
 
   const isEndingHold = endingHold > 0 && sec >= voiceDur;
 
+  // 위쪽(상단 제목) 줄바꿈: 한 줄 9~10자 호흡으로 나누어 82pt 그대로 들어가게 준비
+  let topTitleLines = splitKoreanIntoBreathLines(line3, 9).split("\n").map(l => l.trim()).filter(Boolean);
+  if (topTitleLines.length >= 2) {
+    topTitleLines = [topTitleLines[0], `*${topTitleLines.slice(1).join(" ").replace(/\*/g, "")}*`];
+  } else if (topTitleLines.length === 1) {
+    topTitleLines = [`*${topTitleLines[0].replace(/\*/g, "")}*`];
+  }
+
+  // 아래쪽(하단 자막) 줄바꿈: 한 줄 9~10자 호흡으로 나누어 위쪽과 똑같이 82pt로 들어가게 준비
+  const activeSub = (!isEndingHold ? state.subtitles.find(s => sec >= s.start && sec <= s.end) : null) || state.subtitles[0];
+  let bottomSubLines = [];
+  if (activeSub && activeSub.text) {
+    bottomSubLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
+    const joinedPlain = bottomSubLines.join(" ").replace(/\*/g, "").trim();
+    if (bottomSubLines.length === 1 && joinedPlain.length >= 10) {
+      bottomSubLines = splitKoreanIntoBreathLines(bottomSubLines[0], 9).split("\n");
+    } else if (bottomSubLines.length >= 2 && bottomSubLines.some(l => l.replace(/\*/g, "").length >= 11)) {
+      const balancedTarget = Math.max(8, Math.ceil(joinedPlain.length / 2));
+      bottomSubLines = splitKoreanIntoBreathLines(bottomSubLines.join(" "), balancedTarget).split("\n");
+    }
+  }
+
+  // 위쪽·아래쪽·윗줄·아랫줄 전체 단일 통일 폰트 크기 계산 (기본 등잔 밑 82pt!)
+  const fontStack = getCanvasFontStack();
+  const unifiedSerifPx = computeUniformBlockFontPx(
+    ctx,
+    [...topTitleLines, ...bottomSubLines],
+    fontStack,
+    "700",
+    910,
+    82
+  );
+
   ctx.clearRect(0, 0, W, H);
 
   // =========================================================================
-  // 스타일 1: 📝 텍스트 모션형 (그림 없이 텍스트만 나오는 우리 옛날 스타일 — scene_template.html 복원)
+  // 스타일 1: 📝 텍스트 모션형 (위쪽 제목도 82pt = 아래쪽 본문도 82pt 100% 동일 크기!)
   // =========================================================================
   if (state.style === "textmotion") {
     const activeIdx = Math.max(0, state.subtitles.findIndex(s => sec >= s.start && sec <= s.end));
@@ -2690,7 +2738,7 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.fillStyle = pal.bg;
     ctx.fillRect(0, 0, W, H);
 
-    // 2) 좌하단 & 우하단 부드러운 원형 장식 (#corner, #corner2)
+    // 2) 좌하단 & 우하단 부드러운 원형 장식
     ctx.save();
     ctx.globalAlpha = 0.16;
     ctx.fillStyle = pal.accent;
@@ -2703,43 +2751,18 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.fill();
     ctx.restore();
 
-    // 3) 우상단 회전 링 애니메이션 (#ring-wrap: right=52, top=44, r=100, stroke=16)
+    // 3) 우상단 회전 링 애니메이션
     ctx.save();
-    const ringCx = W - 172;
-    const ringCy = 164;
+    const ringCx = W - 150;
+    const ringCy = 155;
     ctx.translate(ringCx, ringCy);
     ctx.rotate(sec * 0.42);
     ctx.strokeStyle = pal.ring;
-    ctx.lineWidth = 16;
+    ctx.lineWidth = 14;
     ctx.lineCap = "round";
     ctx.beginPath();
-    ctx.arc(0, 0, 96, 0, Math.PI * 1.48);
+    ctx.arc(0, 0, 78, 0, Math.PI * 1.48);
     ctx.stroke();
-    ctx.restore();
-
-    // 4) 좌상단 설교 헤더 (#top: 모바일에서도 또렷하게 보이도록 50px / 36px 대폭 확대!)
-    const uiFont = "'Pretendard', 'Apple SD Gothic Neo', sans-serif";
-    ctx.save();
-    ctx.textAlign = "left";
-    ctx.fillStyle = pal.ink;
-    ctx.font = `800 50px ${uiFont}`;
-    ctx.fillText(line3, 78, 138);
-
-    ctx.fillStyle = pal.sub;
-    ctx.font = `700 36px ${uiFont}`;
-    ctx.fillText(`${line1} · ${line2}`, 78, 194);
-
-    // 액센트 언더바
-    ctx.fillStyle = pal.accent;
-    ctx.beginPath();
-    ctx.roundRect(78, 218, 104, 8, 4);
-    ctx.fill();
-
-    // 큰 따옴표 장식 (#quote-mark: left=78, top=250, 165px, opacity 0.13)
-    ctx.globalAlpha = 0.13;
-    ctx.fillStyle = pal.ink;
-    ctx.font = `900 165px 'Hahmlet', 'Noto Serif KR', serif`;
-    ctx.fillText("“", 70, 395);
     ctx.restore();
 
     // 화이트 라운드 카드 모드일 때 중앙 카드 박스
@@ -2750,105 +2773,107 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
       ctx.shadowOffsetY = 12;
       ctx.fillStyle = "#FFFFFF";
       ctx.beginPath();
-      ctx.roundRect(64, 450, W - 128, 980, 38);
+      ctx.roundRect(56, 520, W - 112, 920, 38);
       ctx.fill();
       ctx.restore();
     }
 
-    // 5) 중앙 본문 텍스트 모션 스테이지 (#stage: 2~3줄 순차 페이드업 + 형광펜 밑줄 스윕)
-    if (!isEndingHold) {
-      const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end) || state.subtitles[0];
-      if (activeSub && activeSub.text) {
-        const localElapsed = Math.max(0, sec - activeSub.start);
-        let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
-        const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
-        if (rawLines.length === 1 && joinedPlain.length >= 11) {
-          rawLines = splitKoreanIntoBreathLines(rawLines[0], 10).split("\n");
-        }
-        // 별표가 하나도 없으면 마지막 줄(핵심 어구)에 자동으로 형광펜 마커 부여
-        if (!rawLines.some(l => l.includes("*")) && rawLines.length > 0) {
-          const lastIdx = rawLines.length - 1;
-          rawLines[lastIdx] = `*${rawLines[lastIdx]}*`;
-        }
+    const sansStack = "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif";
+    const unifiedSansPx = computeUniformBlockFontPx(
+      ctx,
+      [...topTitleLines, ...bottomSubLines],
+      sansStack,
+      "800",
+      W - 168,
+      82
+    );
 
-        const lineCount = rawLines.length;
-        const baseFontPx = lineCount >= 3 ? 76 : 82; // 등잔 밑 82pt 사이즈 통일 (3줄일 때 76pt)
-        const lineGap = Math.round((lineCount >= 3 ? 114 : 122) * (state.canvasFontScale || 1.00));
-        const blockStartY = 930 - Math.round(((lineCount - 1) * lineGap) / 2);
+    // 4) 위쪽(상단 제목): 아래쪽 본문과 똑같은 82pt 글자 크기로 통일!
+    topTitleLines.forEach((tLn, idx) => {
+      const yBase = topTitleLines.length === 1 ? 230 : (185 + idx * 104);
+      drawTextMotionLineWithMarker(
+        ctx, tLn.replace(/\*/g, ""), 84, yBase,
+        W - 168, 82, pal.ink, pal.mark, 0, 1.0, false, unifiedSansPx
+      );
+    });
 
-        rawLines.forEach((ln, idx) => {
-          const lineDelay = idx * 0.16;
-          const lineT = Math.max(0, localElapsed - lineDelay);
-          const lineAlpha = Math.min(1.0, lineT / 0.28);
-          const markProg = Math.min(1.0, Math.max(0.0, (lineT - 0.12) / 0.42));
-          drawTextMotionLineWithMarker(
-            ctx, ln, 96, blockStartY + idx * lineGap,
-            W - 192, baseFontPx, pal.ink, pal.mark, markProg, lineAlpha, false
-          );
-        });
+    // 액센트 구분선
+    ctx.save();
+    ctx.fillStyle = pal.accent;
+    ctx.beginPath();
+    ctx.roundRect(84, 338, 130, 10, 5);
+    ctx.fill();
+    ctx.restore();
+
+    // 5) 아래쪽(본문 텍스트 모션 스테이지): 위쪽과 똑같은 82pt 글자 크기 + 형광펜 스윕!
+    if (!isEndingHold && bottomSubLines.length > 0) {
+      const localElapsed = Math.max(0, sec - (activeSub ? activeSub.start : 0));
+      const rawLines = [...bottomSubLines];
+      if (!rawLines.some(l => l.includes("*")) && rawLines.length > 0) {
+        const lastIdx = rawLines.length - 1;
+        rawLines[lastIdx] = `*${rawLines[lastIdx]}*`;
       }
-    } else {
-      // 마지막 3초 엔딩 카드 (모바일 시인성 강화: 64px / 82px / 48px)
-      drawTextMotionLineWithMarker(ctx, line2, 96, 855, W - 192, 64, pal.sub, pal.mark, 0, 1.0, true);
-      drawTextMotionLineWithMarker(ctx, `*${line3}*`, 96, 980, W - 192, 82, pal.ink, pal.mark, 1.0, 1.0, true);
-      drawTextMotionLineWithMarker(ctx, line1, 96, 1095, W - 192, 48, pal.sub, pal.mark, 0, 1.0, true);
+
+      const lineCount = rawLines.length;
+      const lineGap = Math.round(118 * (state.canvasFontScale || 1.00));
+      const blockStartY = 1020 - Math.round(((lineCount - 1) * lineGap) / 2);
+
+      rawLines.forEach((ln, idx) => {
+        const lineDelay = idx * 0.16;
+        const lineT = Math.max(0, localElapsed - lineDelay);
+        const lineAlpha = Math.min(1.0, lineT / 0.28);
+        const markProg = Math.min(1.0, Math.max(0.0, (lineT - 0.12) / 0.42));
+        drawTextMotionLineWithMarker(
+          ctx, ln, 84, blockStartY + idx * lineGap,
+          W - 168, 82, pal.ink, pal.mark, markProg, lineAlpha, false, unifiedSansPx
+        );
+      });
+    } else if (isEndingHold) {
+      const endLines = splitKoreanIntoBreathLines(line2, 9).split("\n");
+      endLines.forEach((ln, idx) => {
+        drawTextMotionLineWithMarker(
+          ctx, idx === endLines.length - 1 ? `*${ln}*` : ln, 84, 960 + idx * 114,
+          W - 168, 82, pal.ink, pal.mark, 1.0, 1.0, false, unifiedSansPx
+        );
+      });
     }
 
-    // 6) 하단 배지(34px) + 18밴드 실시간 음성 파형(.wave) + 서명(38px) + 프로그레스 바(#prog 10px)
+    // 6) 하단 오디오 파형 바 + 프로그레스 바 (작은 글씨 없이 깔끔한 시각 파형만 배치하여 위·아래 글자크기 82pt 100% 통일)
     ctx.save();
-    // 좌측 배지 (모바일 가독성을 위해 232×64px 알약 배지 + 34px 굵은 글씨)
-    ctx.fillStyle = "rgba(255, 255, 255, 0.88)";
-    ctx.beginPath();
-    ctx.roundRect(78, 1724, 232, 64, 999);
-    ctx.fill();
-    ctx.fillStyle = pal.ink;
-    ctx.textAlign = "center";
-    ctx.font = `800 34px ${uiFont}`;
-    ctx.fillText("설교 한 대목", 78 + 116, 1768);
-
-    // 중앙 18밴드 오디오 파형 바
-    const barCount = 18;
-    const barW = 7;
-    const barGap = 8;
+    const barCount = 24;
+    const barW = 8;
+    const barGap = 10;
     const totalWaveW = barCount * barW + (barCount - 1) * barGap;
-    const waveStartX = (W - totalWaveW) / 2 + 18;
-    const waveCenterY = 1756;
+    const waveStartX = (W - totalWaveW) / 2;
+    const waveCenterY = 1745;
     ctx.fillStyle = pal.accent;
     for (let i = 0; i < barCount; i++) {
       const env = isEndingHold ? 0.18 : (0.35 + 0.65 * Math.abs(Math.sin(sec * 6.2 + i * 0.65) * Math.cos(sec * 3.4 - i * 0.4)));
-      const bh = Math.max(10, Math.round(52 * env));
+      const bh = Math.max(12, Math.round(56 * env));
       ctx.beginPath();
       ctx.roundRect(waveStartX + i * (barW + barGap), waveCenterY - bh / 2, barW, bh, 99);
       ctx.fill();
     }
 
-    // 우측 채널/교회 서명 (26px -> 38px 대폭 확대!)
-    ctx.textAlign = "right";
-    ctx.fillStyle = pal.sub;
-    ctx.font = `800 38px ${uiFont}`;
-    ctx.fillText(line4, W - 78, 1770);
-
-    // 하단 프로그레스 바 (#prog: 6px -> 10px)
-    const progW = W - 156;
+    const progW = W - 168;
     const ratio = Math.min(1.0, Math.max(0.0, sec / Math.max(1, totalDur)));
     ctx.fillStyle = "rgba(0, 0, 0, 0.10)";
     ctx.beginPath();
-    ctx.roundRect(78, 1820, progW, 10, 99);
+    ctx.roundRect(84, 1815, progW, 10, 99);
     ctx.fill();
 
     ctx.fillStyle = pal.accent;
     ctx.beginPath();
-    ctx.roundRect(78, 1820, Math.max(12, progW * ratio), 10, 99);
+    ctx.roundRect(84, 1815, Math.max(12, progW * ratio), 10, 99);
     ctx.fill();
     ctx.restore();
-    return; // 텍스트 모션형은 자체 중앙 타이포그래피를 그리므로 하단 중복 자막 생략
+    return;
   }
 
   // =========================================================================
-  // 스타일 2: 🎬 영상 중앙정갈형 (20261108 / 20261101 설교 쇼츠 황금 표준 + 모바일 최소 폰트 38pt 이상 강화)
+  // 스타일 2: 🎬 영상 중앙정갈형 (위쪽 상단 제목도 등잔밑 82pt = 아래쪽 하단 자막도 등잔밑 82pt 100% 동일!)
   // =========================================================================
   else if (state.style === "center_video") {
-    // 다크 세피아 방사형 그라데이션 (중심 RGB(25,19,15) -> 외곽 0.65배)
     ctx.fillStyle = "rgb(16, 12, 10)";
     ctx.fillRect(0, 0, W, H);
     const radGrad = ctx.createRadialGradient(W / 2, H / 2, 120, W / 2, H / 2, 1100);
@@ -2860,8 +2885,7 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1280, 1080×900)
     drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
 
-    // 상단 이중 앤틱 골드 라인: y=374 (1px, RGB(108,82,55)) & y=378 (2px, RGB(204,158,105))
-    // 하단 이중 앤틱 골드 라인: y=1280 (2px, RGB(204,158,105)) & y=1284 (1px, RGB(108,82,55))
+    // 상단·하단 이중 앤틱 골드 라인
     ctx.strokeStyle = "rgb(108, 82, 55)";
     ctx.lineWidth = 1;
     ctx.beginPath();
@@ -2876,108 +2900,121 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.moveTo(0, 1280); ctx.lineTo(W, 1280);
     ctx.stroke();
 
-    if (!isEndingHold) {
-      // 상단 배지: 모바일에서도 선명하도록 26pt -> 38pt 확대 (y_baseline=126), 앤틱 골드 RGB(218, 178, 115)
-      drawAutoFitLine(ctx, `───  ${line3} · ${line1}  ───`, W / 2, 126, 920, 38, 36, 700, "rgb(218, 178, 115)", "rgb(8, 6, 5)", 5);
-      // 본제목 1열: y_baseline=214, KoPubWorld-Batang-Bold 62pt, 웜 아이보리 RGB(245, 240, 230)
-      drawAutoFitLine(ctx, line2, W / 2, 214, 920, 62, 46, 700, "rgb(245, 240, 230)", "rgb(8, 6, 5)", 6);
-      // 본제목 2열: y_baseline=304, KoPubWorld-Batang-Bold 66pt, 샴페인 골드 RGB(238, 198, 132)
-      drawAutoFitLine(ctx, line3, W / 2, 304, 920, 66, 48, 700, "rgb(238, 198, 132)", "rgb(8, 6, 5)", 6);
+    // 위쪽(상단 영역 y=0~374): 아래쪽 자막과 똑같은 등잔밑 82pt (unifiedSerifPx)!
+    if (topTitleLines.length === 1) {
+      drawHighlightedSubtitleLine(
+        ctx, topTitleLines[0], W / 2, 232,
+        "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+      );
     } else {
-      // 마지막 3.0초 수미상관 엔딩 카드 (모바일 시인성 강화: 38pt / 72pt / 44pt)
-      drawAutoFitLine(ctx, `───  ${line4 || "꿈바온"} · 성경 말씀 묵상  ───`, W / 2, 170, 920, 38, 36, 700, "rgb(218, 178, 115)", "rgb(8, 6, 5)", 5);
-      drawAutoFitLine(ctx, line3, W / 2, 278, 920, 72, 50, 700, "rgb(248, 242, 230)", "rgb(8, 6, 5)", 6);
-      drawAutoFitLine(ctx, line1, W / 2, 1448, 920, 44, 38, 700, "rgb(225, 188, 124)", "rgb(8, 6, 5)", 5);
+      topTitleLines.slice(0, 2).forEach((tLn, idx) => {
+        const yPos = idx === 0 ? 176 : 276;
+        drawHighlightedSubtitleLine(
+          ctx, tLn, W / 2, yPos,
+          "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+        );
+      });
     }
   }
 
   // =========================================================================
-  // 스타일 3: 📱 9:16 세로쇼츠형 (9:16 세로 영상 전체화면 + 등잔 밑 82pt 황금 자막 + 최소 폰트 38pt 이상)
+  // 스타일 3: 📱 등잔 밑 9:16 쇼츠형 (위쪽 상단 제목도 등잔밑 82pt = 아래쪽 하단 자막도 등잔밑 82pt 100% 동일!)
   // =========================================================================
   else {
     drawViewportContent(ctx, sec, voiceDur, 0, 0, W, H);
 
-    const topV = ctx.createLinearGradient(0, 0, 0, 340);
-    topV.addColorStop(0, "rgba(8, 6, 5, 0.82)");
-    topV.addColorStop(0.65, "rgba(8, 6, 5, 0.36)");
+    const topV = ctx.createLinearGradient(0, 0, 0, 380);
+    topV.addColorStop(0, "rgba(8, 6, 5, 0.84)");
+    topV.addColorStop(0.65, "rgba(8, 6, 5, 0.42)");
     topV.addColorStop(1, "rgba(8, 6, 5, 0)");
     ctx.fillStyle = topV;
-    ctx.fillRect(0, 0, W, 340);
+    ctx.fillRect(0, 0, W, 380);
 
-    const botV = ctx.createLinearGradient(0, 1180, 0, H);
+    const botV = ctx.createLinearGradient(0, 1150, 0, H);
     botV.addColorStop(0, "rgba(8, 6, 5, 0)");
-    botV.addColorStop(0.55, "rgba(8, 6, 5, 0.68)");
+    botV.addColorStop(0.55, "rgba(8, 6, 5, 0.70)");
     botV.addColorStop(1, "rgba(8, 6, 5, 0.90)");
     ctx.fillStyle = botV;
-    ctx.fillRect(0, 1180, W, H - 1180);
+    ctx.fillRect(0, 1150, W, H - 1150);
 
-    drawAutoFitLine(ctx, `───  ${line1}  ───`, W / 2, 122, 920, 40, 36, 700, "rgb(224, 188, 118)", "#080604", 6);
-    drawAutoFitLine(ctx, line3, W / 2, 206, 920, 64, 46, 800, "rgb(250, 245, 235)", "#080604", 8);
-    if (line4) {
-      drawAutoFitLine(ctx, line4, W / 2, 1815, 860, 38, 36, 700, "rgba(232, 198, 128, 0.90)", "#080604", 6);
+    // 위쪽(상단 제목): 아래쪽 자막과 똑같은 등잔밑 82pt (unifiedSerifPx)!
+    if (topTitleLines.length === 1) {
+      drawHighlightedSubtitleLine(
+        ctx, topTitleLines[0], W / 2, 225,
+        "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+      );
+    } else {
+      topTitleLines.slice(0, 2).forEach((tLn, idx) => {
+        const yPos = idx === 0 ? 172 : 272;
+        drawHighlightedSubtitleLine(
+          ctx, tLn, W / 2, yPos,
+          "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+        );
+      });
     }
   }
 
   // =========================================================================
-  // 하단 자막 렌더링:
-  // - 스타일 2 (center_video): 모바일 가독성 극대화 72pt (1줄 y_baseline=1435 / 2줄 y_baseline=1395, 1490 — y=1280 골드라인과 56px 여유 확보!)
-  // - 스타일 3 (vertical_916): 『등잔 밑』 황금 표준 82pt, MarginV 540 (하단 기준선 y=1380)
+  // 아래쪽(하단 자막) 렌더링:
+  // 위쪽(상단 제목)과 단 1px의 차이도 없이 똑같은 등잔 밑 82pt (unifiedSerifPx)!
   // =========================================================================
-  if (includeSubtitles && !isEndingHold) {
-    const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
-    if (activeSub && activeSub.text) {
-      let alpha = 1.0;
+  if (includeSubtitles && !isEndingHold && bottomSubLines.length > 0) {
+    let alpha = 1.0;
+    if (activeSub) {
       if (sec - activeSub.start < 0.15) alpha = Math.max(0.15, (sec - activeSub.start) / 0.15);
       else if (activeSub.end - sec < 0.15) alpha = Math.max(0.15, (activeSub.end - sec) / 0.15);
+    }
 
-      ctx.save();
-      ctx.globalAlpha = alpha;
+    ctx.save();
+    ctx.globalAlpha = alpha;
 
-      let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
-      const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
-      if (rawLines.length === 1 && joinedPlain.length >= 12) {
-        rawLines = splitKoreanIntoBreathLines(rawLines[0], 11).split("\n");
-      } else if (rawLines.length >= 2 && rawLines.some(l => l.replace(/\*/g, "").length >= 14)) {
-        const balancedTarget = Math.max(10, Math.ceil(joinedPlain.length / 2));
-        rawLines = splitKoreanIntoBreathLines(rawLines.join(" "), balancedTarget).split("\n");
-      }
-
-      if (state.style === "center_video") {
-        // 스타일 2: KoPubWorld-Batang-Bold 72pt 대자막 (1줄 y_baseline=1435 / 2줄 y_baseline=1395, 1490)
-        if (rawLines.length === 1) {
-          drawHighlightedSubtitleLine(
-            ctx, rawLines[0], W / 2, 1435,
-            "rgb(252, 249, 242)", "rgb(245, 200, 104)", "rgb(15, 11, 8)", 8, 72
-          );
-        } else {
-          rawLines.slice(0, 2).forEach((ln, idx) => {
-            const yPos = idx === 0 ? 1395 : 1490;
-            drawHighlightedSubtitleLine(
-              ctx, ln, W / 2, yPos,
-              "rgb(252, 249, 242)", "rgb(245, 200, 104)", "rgb(15, 11, 8)", 8, 72
-            );
-          });
-        }
+    if (state.style === "center_video") {
+      // 스타일 2 하단: 위쪽과 똑같은 등잔밑 82pt (unifiedSerifPx), y=1415 / 1515
+      if (bottomSubLines.length === 1) {
+        drawHighlightedSubtitleLine(
+          ctx, bottomSubLines[0], W / 2, 1465,
+          "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+        );
       } else {
-        // 스타일 3 (9:16 세로쇼츠형): 등잔 밑 82pt 황금 표준 (MarginV 540 -> y_baseline=1380)
-        const bottomLineY = 1380;
-        const lineGap = Math.round(98 * Math.min(1.18, state.canvasFontScale || 1.00));
-        if (rawLines.length === 1) {
+        bottomSubLines.slice(0, 2).forEach((ln, idx) => {
+          const yPos = idx === 0 ? 1415 : 1515;
           drawHighlightedSubtitleLine(
-            ctx, rawLines[0], W / 2, bottomLineY,
-            "#FFFAF2", "#F5C868", "#141010", 10, 82
+            ctx, ln, W / 2, yPos,
+            "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
           );
-        } else {
-          rawLines.slice(0, 2).forEach((ln, idx) => {
-            const yPos = idx === 0 ? (bottomLineY - lineGap) : bottomLineY;
-            drawHighlightedSubtitleLine(
-              ctx, ln, W / 2, yPos,
-              "#FFFAF2", "#F5C868", "#141010", 10, 82
-            );
-          });
-        }
+        });
       }
-      ctx.restore();
+    } else {
+      // 스타일 3 (등잔 밑 9:16 쇼츠형) 하단: 등잔 밑 82pt 황금 표준 (MarginV 540 -> y_baseline=1380)
+      const bottomLineY = 1380;
+      const lineGap = Math.round(100 * Math.min(1.18, state.canvasFontScale || 1.00));
+      if (bottomSubLines.length === 1) {
+        drawHighlightedSubtitleLine(
+          ctx, bottomSubLines[0], W / 2, bottomLineY,
+          "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+        );
+      } else {
+        bottomSubLines.slice(0, 2).forEach((ln, idx) => {
+          const yPos = idx === 0 ? (bottomLineY - lineGap) : bottomLineY;
+          drawHighlightedSubtitleLine(
+            ctx, ln, W / 2, yPos,
+            "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx
+          );
+        });
+      }
+    }
+    ctx.restore();
+  } else if (isEndingHold && state.style !== "textmotion") {
+    // 엔딩 홀드 시에도 아래쪽 글자 크기를 위쪽과 똑같은 82pt로 표시
+    const endLines = splitKoreanIntoBreathLines(line2, 9).split("\n");
+    const baseY = state.style === "center_video" ? 1465 : 1380;
+    if (endLines.length === 1) {
+      drawHighlightedSubtitleLine(ctx, endLines[0], W / 2, baseY, "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx);
+    } else {
+      endLines.slice(0, 2).forEach((ln, idx) => {
+        const yPos = state.style === "center_video" ? (idx === 0 ? 1415 : 1515) : (idx === 0 ? 1280 : 1380);
+        drawHighlightedSubtitleLine(ctx, ln, W / 2, yPos, "#FFFAF2", "#F5C868", "#141010", 10, 82, unifiedSerifPx);
+      });
     }
   }
 }
