@@ -891,11 +891,10 @@
         <div>
           <label class="field-label">텍스트 모션 색감 · 배경 설정</label>
           <select id="artworkSelect" onchange="onArtworkSelectChange()">
-            <option value="text_cycle" selected>🎨 옛날 텍스트 모션 (크림·민트·카드·골드 자동교차)</option>
-            <option value="text_cream">📝 따뜻한 크림 양피지 (#FBF4E4 · 형광펜)</option>
-            <option value="text_mint">🌿 차분한 소프트 민트 (#DCEDE6 · 형광펜)</option>
-            <option value="text_card">🤍 화이트 라운드 카드 (#FAF3E8 · 형광펜)</option>
-            <option value="text_gold">✨ 웜 골드 포인트 (#F5C542 · 형광펜)</option>
+            <option value="text_cream" selected>🤍 모던 한지 아이보리 (#F8F5EF · 정갈한 여백)</option>
+            <option value="text_sand">📜 웜 리넨 샌드 (#F4EFE6 · 차분한 북카페)</option>
+            <option value="text_dark">🌙 모던 생추어리 다크 (#161412 · 묵상 다크)</option>
+            <option value="text_stone">🪨 차분한 스톤 그레이 (#EEF0ED · 미니멀)</option>
             <option value="auto_4cuts">🖼️ 꿈바온 성화 4컷 (영상 없을 때 보조)</option>
           </select>
         </div>
@@ -2671,17 +2670,16 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   });
 }
 
-// 옛날 텍스트 모션 팔레트 (2026-09-27 scene_template.html 정밀 복원)
+// 깔끔한 모던 한지 에디토리얼 팔레트 (조잡한 원형 장식·회전 링·이퀄라이저 제거, 정갈한 여백과 82pt 타이포그래피)
 const TEXT_MOTION_PALETTES = {
-  cream: { bg: "#FBF4E4", accent: "#E9A825", ink: "#232B36", sub: "#596573", mark: "#F6D77A", ring: "#F2C94C", card: false },
-  mint:  { bg: "#DCEDE6", accent: "#3FAE8E", ink: "#1F2F2B", sub: "#4E6B63", mark: "#8FD8C2", ring: "#5CC2A3", card: false },
-  card:  { bg: "#FAF3E8", accent: "#D89B28", ink: "#232B36", sub: "#596573", mark: "#F8DE8C", ring: "#E9A825", card: true  },
-  gold:  { bg: "#F5C542", accent: "#2F8F74", ink: "#2A2410", sub: "#5B4F24", mark: "#FFE79A", ring: "#FFFFFF", card: false }
+  ivory: { bgCenter: "#F8F5EF", bgEdge: "#EDE7DC", ink: "#1C1917", titleHi: "#8A5C2A", accent: "#9C7440", rule: "rgba(206, 194, 174, 0.85)", mark: "rgba(230, 213, 184, 0.92)" },
+  sand:  { bgCenter: "#F4EFE6", bgEdge: "#E8E0D2", ink: "#1C1917", titleHi: "#8A5C2A", accent: "#9C7440", rule: "rgba(200, 188, 168, 0.85)", mark: "rgba(226, 208, 176, 0.92)" },
+  dark:  { bgCenter: "#1B1815", bgEdge: "#12100E", ink: "#F8F5EF", titleHi: "#E5C178", accent: "#C89D54", rule: "rgba(140, 115, 82, 0.42)",  mark: "rgba(180, 140, 72, 0.34)" },
+  stone: { bgCenter: "#F2F3F0", bgEdge: "#E5E7E2", ink: "#181C1A", titleHi: "#6E5A38", accent: "#7C6A46", rule: "rgba(186, 190, 182, 0.85)", mark: "rgba(214, 210, 194, 0.92)" }
 };
-const TEXT_PALETTE_CYCLE = ["cream", "mint", "card", "gold"];
 
-// 텍스트 모션형 1줄(형광펜 마커 애니메이션 + 페이드업) 그리기
-function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx, inkColor, markColor, markProgress, lineAlpha, alignCenter = false, fixedPx = null) {
+// 모던 에디토리얼 텍스트 모션 1줄 (중앙 정렬 82pt + 은은한 샴페인 언더라인 하이라이트)
+function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx, inkColor, markColor, markProgress, lineAlpha, alignCenter = true, fixedPx = null, hiTextColor = null) {
   const segments = [];
   const regex = /\*([^*]+)\*/g;
   let lastIndex = 0;
@@ -2693,16 +2691,9 @@ function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx
   }
   if (lastIndex < lineStr.length) segments.push({ text: lineStr.slice(lastIndex), highlight: false });
 
-  const fontStack = "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif";
+  const fontStack = getCanvasFontStack();
   let px = fixedPx ? fixedPx : Math.round(targetPx * (state.canvasFontScale || 1.00));
-  ctx.font = `800 ${px}px ${fontStack}`;
-  const fullPlain = segments.map(s => s.text).join("");
-  if (!fixedPx) {
-    while (ctx.measureText(fullPlain).width > maxW && px > 54) {
-      px -= 2;
-      ctx.font = `800 ${px}px ${fontStack}`;
-    }
-  }
+  ctx.font = `700 ${px}px ${fontStack}`;
 
   let totalW = 0;
   segments.forEach(seg => {
@@ -2711,35 +2702,34 @@ function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx
   });
 
   const startX = alignCenter ? (540 - totalW / 2) : xLeft;
-  const slideOffsetY = Math.round((1.0 - lineAlpha) * 24);
 
   ctx.save();
-  ctx.globalAlpha = lineAlpha;
+  ctx.globalAlpha = 1.0;
   ctx.textAlign = "left";
-  ctx.font = `800 ${px}px ${fontStack}`;
+  ctx.font = `700 ${px}px ${fontStack}`;
 
-  // 1) 형광펜 마커 바 먼저 그리기 (좌->우 스윕 애니메이션)
+  // 1) 정갈한 샴페인 골드 언더라인 하이라이트 바 (글자 하단 30% 높이에 은은하게 스윕)
   let curX = startX;
   segments.forEach(seg => {
     if (seg.highlight && markProgress > 0.01) {
-      const barW = Math.max(0, (seg.w + 16) * Math.min(1.0, markProgress));
-      const barH = Math.round(px * 0.44);
-      const barY = yBase + slideOffsetY - Math.round(px * 0.34);
+      const barW = Math.max(0, (seg.w + 12) * Math.min(1.0, markProgress));
+      const barH = Math.round(px * 0.30);
+      const barY = yBase - Math.round(px * 0.22);
       ctx.save();
       ctx.fillStyle = markColor;
       ctx.beginPath();
-      ctx.roundRect(curX - 8, barY, barW, barH, 8);
+      ctx.roundRect(curX - 6, barY, barW, barH, 4);
       ctx.fill();
       ctx.restore();
     }
     curX += seg.w;
   });
 
-  // 2) 본문 텍스트 그리기
+  // 2) 본문 텍스트 그리기 (100% 선명한 먹색 & 강조어는 브론즈 골드)
   curX = startX;
-  ctx.fillStyle = inkColor;
   segments.forEach(seg => {
-    ctx.fillText(seg.text, curX, yBase + slideOffsetY);
+    ctx.fillStyle = (seg.highlight && hiTextColor) ? hiTextColor : inkColor;
+    ctx.fillText(seg.text, curX, yBase);
     curX += seg.w;
   });
   ctx.restore();
@@ -2795,93 +2785,54 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   ctx.clearRect(0, 0, W, H);
 
   // =========================================================================
-  // 스타일 1: 📝 텍스트 모션형 (위쪽 제목도 82pt = 아래쪽 본문도 82pt 100% 동일 크기!)
+  // 스타일 1: 📝 텍스트 모션형 (조잡한 옛날 원형/회전링 제거 -> 깔끔한 모던 한지 에디토리얼 82pt 중앙 정렬)
   // =========================================================================
   if (state.style === "textmotion") {
-    const activeIdx = Math.max(0, state.subtitles.findIndex(s => sec >= s.start && sec <= s.end));
-    const sceneGroupIdx = Math.floor(activeIdx / 2);
+    let palKey = "ivory";
+    if (state.artworkMode === "text_sand") palKey = "sand";
+    else if (state.artworkMode === "text_dark") palKey = "dark";
+    else if (state.artworkMode === "text_stone") palKey = "stone";
 
-    let palKey = "cream";
-    if (state.artworkMode === "text_cream") palKey = "cream";
-    else if (state.artworkMode === "text_mint") palKey = "mint";
-    else if (state.artworkMode === "text_card") palKey = "card";
-    else if (state.artworkMode === "text_gold") palKey = "gold";
-    else palKey = TEXT_PALETTE_CYCLE[sceneGroupIdx % TEXT_PALETTE_CYCLE.length];
+    const pal = TEXT_MOTION_PALETTES[palKey] || TEXT_MOTION_PALETTES.ivory;
 
-    const pal = TEXT_MOTION_PALETTES[palKey] || TEXT_MOTION_PALETTES.cream;
-
-    // 1) 단색 배경 (그림 전혀 없음!)
-    ctx.fillStyle = pal.bg;
+    // 1) 정갈한 모던 한지 배경 (중심에서 가장자리로 은은하게 번지는 종이 여백 그라데이션)
+    const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 120, W / 2, H / 2, 1120);
+    bgGrad.addColorStop(0, pal.bgCenter);
+    bgGrad.addColorStop(1, pal.bgEdge);
+    ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // 2) 좌하단 & 우하단 부드러운 원형 장식
+    // 2) 깔끔한 에디토리얼 프레임 (여백 44px 외곽선 + 상·하단 얇은 수평 구분선)
     ctx.save();
-    ctx.globalAlpha = 0.16;
+    ctx.strokeStyle = pal.rule;
+    ctx.lineWidth = 2;
+    ctx.strokeRect(44, 44, W - 88, H - 88);
+
+    ctx.beginPath();
+    ctx.moveTo(120, 415);
+    ctx.lineTo(W - 120, 415);
+    ctx.moveTo(120, 1660);
+    ctx.lineTo(W - 120, 1660);
+    ctx.stroke();
+
     ctx.fillStyle = pal.accent;
     ctx.beginPath();
-    ctx.arc(30, H - 30, 210, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.globalAlpha = 0.11;
-    ctx.beginPath();
-    ctx.arc(W - 60, H - 520, 74, 0, Math.PI * 2);
+    ctx.roundRect(W / 2 - 28, 413, 56, 4, 2);
     ctx.fill();
     ctx.restore();
 
-    // 3) 우상단 회전 링 애니메이션
-    ctx.save();
-    const ringCx = W - 150;
-    const ringCy = 155;
-    ctx.translate(ringCx, ringCy);
-    ctx.rotate(sec * 0.42);
-    ctx.strokeStyle = pal.ring;
-    ctx.lineWidth = 14;
-    ctx.lineCap = "round";
-    ctx.beginPath();
-    ctx.arc(0, 0, 78, 0, Math.PI * 1.48);
-    ctx.stroke();
-    ctx.restore();
-
-    // 화이트 라운드 카드 모드일 때 중앙 카드 박스
-    if (pal.card) {
-      ctx.save();
-      ctx.shadowColor = "rgba(35, 43, 54, 0.08)";
-      ctx.shadowBlur = 36;
-      ctx.shadowOffsetY = 12;
-      ctx.fillStyle = "#FFFFFF";
-      ctx.beginPath();
-      ctx.roundRect(56, 520, W - 112, 920, 38);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    const sansStack = "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif";
-    const unifiedSansPx = computeUniformBlockFontPx(
-      ctx,
-      [...topTitleLines, ...bottomSubLines],
-      sansStack,
-      "800",
-      W - 168,
-      82
-    );
-
-    // 4) 위쪽(상단 제목): 아래쪽 본문과 똑같은 82pt 글자 크기로 통일!
+    // 3) 위쪽(상단 제목): 아래쪽 본문과 똑같은 82pt 중앙 정렬! (첫 줄 먹색, 둘째 줄 브론즈 골드)
     topTitleLines.forEach((tLn, idx) => {
-      const yBase = topTitleLines.length === 1 ? 230 : (185 + idx * 104);
+      const cleanTitleLn = tLn.replace(/\*/g, "");
+      const yBase = topTitleLines.length === 1 ? 255 : (205 + idx * 105);
+      const tColor = (topTitleLines.length >= 2 && idx === 1) ? pal.titleHi : pal.ink;
       drawTextMotionLineWithMarker(
-        ctx, tLn.replace(/\*/g, ""), 84, yBase,
-        W - 168, 82, pal.ink, pal.mark, 0, 1.0, false, unifiedSansPx
+        ctx, cleanTitleLn, 84, yBase,
+        W - 160, 82, tColor, pal.mark, 0, 1.0, true, unifiedSerifPx, pal.titleHi
       );
     });
 
-    // 액센트 구분선
-    ctx.save();
-    ctx.fillStyle = pal.accent;
-    ctx.beginPath();
-    ctx.roundRect(84, 338, 130, 10, 5);
-    ctx.fill();
-    ctx.restore();
-
-    // 5) 아래쪽(본문 텍스트 모션 스테이지): 위쪽과 똑같은 82pt 글자 크기 + 형광펜 스윕!
+    // 4) 아래쪽(본문 텍스트 모션 스테이지): 위쪽과 똑같은 82pt 중앙 정렬 + 은은한 샴페인 언더라인 스윕!
     if (!isEndingHold && bottomSubLines.length > 0) {
       const localElapsed = Math.max(0, sec - (activeSub ? activeSub.start : 0));
       const rawLines = [...bottomSubLines];
@@ -2891,57 +2842,43 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
       }
 
       const lineCount = rawLines.length;
-      const lineGap = Math.round(118 * (state.canvasFontScale || 1.00));
+      const lineGap = Math.round(116 * (state.canvasFontScale || 1.00));
       const blockStartY = 1020 - Math.round(((lineCount - 1) * lineGap) / 2);
 
       rawLines.forEach((ln, idx) => {
         const lineDelay = idx * 0.12;
         const lineT = Math.max(0, localElapsed - lineDelay);
-        const lineAlpha = 1.0; // 항상 100% 선명하고 또렷하게 표시 (뿌옇게 흐려지는 반투명 제거)
         const isStaticPreview = !state.isPlayingPreview && !state.isRendering;
         const markProg = isStaticPreview ? 1.0 : Math.min(1.0, Math.max(0.0, lineT / 0.32));
         drawTextMotionLineWithMarker(
           ctx, ln, 84, blockStartY + idx * lineGap,
-          W - 168, 82, pal.ink, pal.mark, markProg, lineAlpha, false, unifiedSansPx
+          W - 160, 82, pal.ink, pal.mark, markProg, 1.0, true, unifiedSerifPx, pal.titleHi
         );
       });
     } else if (isEndingHold) {
       const endLines = splitKoreanIntoBreathLines(line2, 9).split("\n");
       endLines.forEach((ln, idx) => {
         drawTextMotionLineWithMarker(
-          ctx, idx === endLines.length - 1 ? `*${ln}*` : ln, 84, 960 + idx * 114,
-          W - 168, 82, pal.ink, pal.mark, 1.0, 1.0, false, unifiedSansPx
+          ctx, idx === endLines.length - 1 ? `*${ln}*` : ln, 84, 960 + idx * 116,
+          W - 160, 82, pal.ink, pal.mark, 1.0, 1.0, true, unifiedSerifPx, pal.titleHi
         );
       });
     }
 
-    // 6) 하단 오디오 파형 바 + 프로그레스 바 (작은 글씨 없이 깔끔한 시각 파형만 배치하여 위·아래 글자크기 82pt 100% 통일)
+    // 5) 하단 미니멀 진행 바 (조잡한 24개 막대 이퀄라이저 제거 -> 정갈한 4px 슬림 라인)
     ctx.save();
-    const barCount = 24;
-    const barW = 8;
-    const barGap = 10;
-    const totalWaveW = barCount * barW + (barCount - 1) * barGap;
-    const waveStartX = (W - totalWaveW) / 2;
-    const waveCenterY = 1745;
-    ctx.fillStyle = pal.accent;
-    for (let i = 0; i < barCount; i++) {
-      const env = isEndingHold ? 0.18 : (0.35 + 0.65 * Math.abs(Math.sin(sec * 6.2 + i * 0.65) * Math.cos(sec * 3.4 - i * 0.4)));
-      const bh = Math.max(12, Math.round(56 * env));
-      ctx.beginPath();
-      ctx.roundRect(waveStartX + i * (barW + barGap), waveCenterY - bh / 2, barW, bh, 99);
-      ctx.fill();
-    }
-
-    const progW = W - 168;
+    const progW = 640;
+    const progX = (W - progW) / 2;
+    const progY = 1750;
     const ratio = Math.min(1.0, Math.max(0.0, sec / Math.max(1, totalDur)));
-    ctx.fillStyle = "rgba(0, 0, 0, 0.10)";
+    ctx.fillStyle = pal.rule;
     ctx.beginPath();
-    ctx.roundRect(84, 1815, progW, 10, 99);
+    ctx.roundRect(progX, progY, progW, 4, 2);
     ctx.fill();
 
     ctx.fillStyle = pal.accent;
     ctx.beginPath();
-    ctx.roundRect(84, 1815, Math.max(12, progW * ratio), 10, 99);
+    ctx.roundRect(progX, progY, Math.max(8, progW * ratio), 4, 2);
     ctx.fill();
     ctx.restore();
     return;
