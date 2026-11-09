@@ -180,8 +180,26 @@
     return '웹 브라우저';
   }
 
+  function normalizeLegacyLabel(str) {
+    var s = String(str || '').trim();
+    if (!s) return s;
+    s = s.replace(/꿈디도 제1관\s*·\s*성경 인물대백과 350인\s*&\s*구속(사\s*관계망)?/g, '👑 제1관 · 성경 인물대백과 350인');
+    s = s.replace(/꿈바온 설교 쇼츠 공방\s*—\s*영상이나 원고를 넣으면\s*/g, '🎬 꿈바온 설교 쇼츠 공방');
+    s = s.replace(/꿈바온 디지털 도서관 \(꿈디도\)\s*—\s*12대 아카이브/g, '🏛️ 꿈디도 도서관 본관');
+    if (s === '👑 제1관 · 성경 인물대백과 350인 유인물·자료 인쇄 실행' || s === '👑 제1관 · 성경 인물대백과 350인 · 👑 제1관 · 성경 인물대백과 350인 유인물·자료 인쇄 실행') {
+      s = '👑 제1관 · 성경 인물대백과 350인 · [인물가계도 · 언약의 계보] 유인물·자료 인쇄 실행';
+    }
+    return s;
+  }
+
   function getCurrentPageLabel() {
     var path = getDecodedPathLower();
+    if (path.indexOf('figures_encyclopedia') !== -1) return '👑 제1관 · 성경 인물대백과 350인';
+    if (path.indexOf('events_encyclopedia') !== -1) return '📜 제2관 · 성경 사건대백과';
+    if (path.indexOf('behinds_encyclopedia') !== -1) return '💡 제3관 · 성경 비하인드 300선';
+    if (path.indexOf('kkumdido_encyclopedia') !== -1) return '🏛️ 성경 3대 대백과 통합 허브';
+    if (path.indexOf('shorts.html') !== -1 || path.indexOf('kkumdido_shorts') !== -1 || path.indexOf('설교쇼츠') !== -1) return '🎬 꿈바온 설교 쇼츠 공방';
+    if (path.indexOf('통계서기') !== -1 || path.indexOf('statistics') !== -1) return '📊 감리교 통계서기 자동취합실';
     if (path.indexOf('kkumdido_annex') !== -1 || path.indexOf('kkumdido_church_support_annex') !== -1) return '🏛️ 꿈디도 별관 (교회지원·말씀등불)';
     if (path.indexOf('kkumdido_pastoral_secretary') !== -1 || path.indexOf('꿈바온_목회비서') !== -1) return '🌿 아론의 지팡이 (목양·심방·주보)';
     if (path.indexOf('kkumdido_sermon_ai') !== -1 || path.indexOf('꿈바온_설교ai') !== -1) return '🪄 모세의 지팡이 (본문카드대령·7종변환)';
@@ -203,9 +221,125 @@
     if (path.indexOf('hall2') !== -1) return '👑 제2관 성경 인물 열전';
     if (path.indexOf('hall3') !== -1) return '🏺 제3관 등잔 밑 사물·문화';
     if (path.indexOf('00_목사님전용') !== -1) return '🔑 목사님 전용 발급·관제실';
-    if (path.endsWith('/') || path.indexOf('index.html') !== -1) return '🏛️ 꿈디도 도서관 본관';
+    if (path.endsWith('/') || path.indexOf('index.html') !== -1 || path.indexOf('kkumdido.html') !== -1 || path.indexOf('compact.html') !== -1) return '🏛️ 꿈디도 도서관 본관';
     var t = (document.title || '').replace(/\s+/g, ' ').trim();
-    return t ? t.slice(0, 28) : '🏛️ 꿈디도 도서관';
+    t = t.split('—')[0].split('|')[0].trim();
+    return normalizeLegacyLabel(t ? t.slice(0, 36) : '🏛️ 꿈디도 도서관');
+  }
+
+  // 현재 화면에 열려 있는 세부 인물·사건·비하인드·아카이브 모듈·문헌·성경 본문 제목을 정밀 추출
+  function getActiveContentContext() {
+    try {
+      // 1) 제1관 성경 인물대백과 (figures_encyclopedia_preview.html)
+      var figDrw = document.getElementById('figureDrawer');
+      if (figDrw && figDrw.classList.contains('open')) {
+        var figName = ((document.getElementById('drwName') || {}).textContent || '').trim();
+        var activeDTab = figDrw.querySelector('.d-tab.active');
+        var dTabLabel = activeDTab ? (activeDTab.textContent || '').trim() : '';
+        if (figName) {
+          return '[' + figName + (dTabLabel ? ' · ' + dTabLabel : '') + ']';
+        }
+      }
+
+      // 2) 제2관 성경 사건대백과 (events_encyclopedia_preview.html)
+      var evModal = document.getElementById('eventModal');
+      if (evModal && (evModal.classList.contains('open') || evModal.style.display === 'flex' || evModal.style.display === 'block')) {
+        var evTitle = ((document.getElementById('modalTitle') || {}).textContent || '').trim();
+        if (evTitle && evTitle !== '사건 제목') return '[성경 사건: ' + evTitle + ']';
+      }
+      var compModal = document.getElementById('compModal');
+      if (compModal && (compModal.classList.contains('open') || compModal.style.display === 'flex' || compModal.style.display === 'block')) {
+        var compTitle = ((document.getElementById('compModalTitle') || {}).textContent || '').trim();
+        if (compTitle) return '[사건 비교표: ' + compTitle + ']';
+      }
+
+      // 3) 제3관 성경 비하인드 (behinds_encyclopedia_preview.html)
+      var bhModal = document.getElementById('behindModal');
+      if (bhModal && (bhModal.classList.contains('open') || bhModal.style.display === 'flex' || bhModal.style.display === 'block')) {
+        var bhTitle = ((document.getElementById('modalTitle') || {}).textContent || '').trim();
+        if (bhTitle && bhTitle !== '비하인드 제목') return '[성경 비하인드: ' + bhTitle + ']';
+      }
+
+      // 4) 12대 아카이브 3,650모듈 서고 (꿈디도_12대아카이브_3650모듈_통합웹뷰어.html / kkumdido_12archives_viewer.html)
+      var mb = document.getElementById('modalBackdrop');
+      if (mb && mb.classList.contains('open')) {
+        var mc = document.getElementById('modalContent');
+        if (mc) {
+          var badge = mc.querySelector('.badge-id');
+          var h2 = mc.querySelector('h2');
+          var bTxt = badge ? (badge.textContent || '').trim() : '';
+          var hTxt = h2 ? (h2.textContent || '').trim() : '';
+          if (hTxt) return '[' + (bTxt ? bTxt + ' · ' : '') + hTxt + ']';
+        }
+      }
+
+      // 5) 도서관 본관 리더 모달 (index.html)
+      var rModal = document.getElementById('readerModal');
+      if (rModal && rModal.classList.contains('open')) {
+        var rTitle = ((document.getElementById('readerTitle') || {}).textContent || '').trim();
+        var rBread = ((document.getElementById('readerBreadcrumb') || {}).textContent || '').trim();
+        if (rTitle) return '[' + rTitle + (rBread ? ' (' + rBread + ')' : '') + ']';
+      }
+
+      // 6) 66권 원어·풀어읽기 주석 서고 (00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html)
+      var chCont = document.getElementById('chapterCommentaryContainer');
+      if (chCont) {
+        var chBan = chCont.querySelector('.ch-banner');
+        if (chBan) {
+          var subDiv = chBan.querySelector('div > div');
+          var h2El = chBan.querySelector('h2');
+          var sTxt = subDiv ? (subDiv.textContent || '').trim() : '';
+          var tTxt = h2El ? (h2El.textContent || '').trim() : '';
+          if (sTxt || tTxt) return '[' + sTxt + (tTxt ? ' — ' + tTxt : '') + ']';
+        }
+      }
+
+      // 7) 사역 스튜디오 본문·제목 입력칸 감지 (설교준비실·모세의지팡이·아론의지팡이·곳간·교회학교 등)
+      var refIds = ['sermonScriptureInput', 'inScripture', 'sermPassage', 'jbSermonScripture', 'editScriptureInput', 'inputBibleVerse', 'pubRef', 'mosesQueryInput'];
+      var titleIds = ['sermonTitleInput', 'inTitle', 'sermTheme', 'jbSermonTitle', 'editTitleInput', 'step3TitleLine1Input', 'pubTitle'];
+      var foundRef = '';
+      var foundTitle = '';
+      for (var i = 0; i < refIds.length; i++) {
+        var rEl = document.getElementById(refIds[i]);
+        if (rEl && rEl.value && rEl.value.trim()) {
+          foundRef = rEl.value.trim();
+          break;
+        }
+      }
+      for (var j = 0; j < titleIds.length; j++) {
+        var tEl = document.getElementById(titleIds[j]);
+        if (tEl && tEl.value && tEl.value.trim()) {
+          foundTitle = tEl.value.trim();
+          break;
+        }
+      }
+      if (foundRef || foundTitle) {
+        return '[' + [foundRef, foundTitle].filter(Boolean).join(' · ') + ']';
+      }
+
+      // 8) 대백과/스튜디오 내 현재 활성 탭(.axis-tab.active 등) 감지
+      var axisTab = document.querySelector('.axis-tab.active');
+      if (axisTab) {
+        var clone = axisTab.cloneNode(true);
+        var badges = clone.querySelectorAll('.axis-badge');
+        for (var b = 0; b < badges.length; b++) {
+          if (badges[b].parentNode) badges[b].parentNode.removeChild(badges[b]);
+        }
+        var axTxt = (clone.textContent || '').replace(/\s+/g, ' ').trim();
+        if (axTxt) return '[' + axTxt.slice(0, 38) + ']';
+      }
+    } catch (e) {}
+    return '';
+  }
+
+  function getActivePrintTargetLabel(isShortcut) {
+    var page = getCurrentPageLabel();
+    var ctx = getActiveContentContext();
+    var suffix = isShortcut ? ' 인쇄 단축키(Ctrl/Cmd+P) 실행' : ' 유인물·자료 인쇄 실행';
+    if (ctx) {
+      return page + ' · ' + ctx + suffix;
+    }
+    return page + suffix;
   }
 
   function getVisitorId() {
@@ -462,6 +596,189 @@
   }
 
   // ── 1-2. 클라우드 가입자 명부 · 방문자 · 사용기록 볼트(Vault) 엔진 ──
+  function extractCleanItemLabel(detail, pageTitle) {
+    var d = normalizeLegacyLabel(detail || '');
+    var p = normalizeLegacyLabel(pageTitle || '');
+    if (!d) return p || '-';
+    // [ ... ] 대괄호 안의 핵심 자료명이 있으면 우선 추출
+    var mBracket = d.match(/\[([^\]]+)\]/);
+    if (mBracket && mBracket[1]) {
+      var shortPage = p.replace(/^([^\s]+)\s*(제\d관\s*·\s*)?/, '$1 $2').split('(')[0].trim();
+      if (shortPage.length > 18) shortPage = shortPage.slice(0, 18);
+      return (shortPage ? shortPage + ' · ' : '') + mBracket[1].trim();
+    }
+    var mParen = d.match(/\(([^)]+)\)/);
+    if (mParen && mParen[1] && (d.indexOf('PDF') !== -1 || d.indexOf('내려받기') !== -1)) {
+      return mParen[1].trim();
+    }
+    return d.replace(/\s*(유인물·자료 인쇄 실행|인쇄 단축키\(Ctrl\/Cmd\+P\) 실행|방문·열람|입장 및 사역도구 실행)\s*$/g, '').trim() || p;
+  }
+
+  function reconcileVaultWithLogs(vault) {
+    if (!vault || typeof vault !== 'object') return false;
+    var changed = false;
+    vault.members = vault.members || {};
+    vault.visitors = vault.visitors || {};
+    vault.logs = Array.isArray(vault.logs) ? vault.logs : [];
+
+    // 1) 로그 중복 제거 및 구버전 잘린 라벨 정규화
+    var seenIds = {};
+    var seenSigs = {};
+    var cleanLogs = [];
+    // 오래된 순으로 정렬 후 중복 제거하여 최신순으로 다시 배치
+    var sortedAsc = vault.logs.slice().sort(function (a, b) {
+      return String(a.ts || '').localeCompare(String(b.ts || ''));
+    });
+    var vidToCard = {};
+    for (var i = 0; i < sortedAsc.length; i++) {
+      var lg = sortedAsc[i];
+      if (!lg || typeof lg !== 'object' || isInternalOrBotRecord(lg)) {
+        changed = true;
+        continue;
+      }
+      var normPage = normalizeLegacyLabel(lg.pageTitle || '🏛️ 꿈디도 도서관');
+      var normDetail = normalizeLegacyLabel(lg.detail || '');
+      if (normPage !== lg.pageTitle || normDetail !== lg.detail) {
+        lg.pageTitle = normPage;
+        lg.detail = normDetail;
+        changed = true;
+      }
+      var sig = [lg.visitorId || '', lg.cardNo || '', lg.ts || '', lg.type || '', lg.pageTitle || '', lg.detail || ''].join('|');
+      if ((lg.id && seenIds[lg.id]) || seenSigs[sig]) {
+        changed = true;
+        continue;
+      }
+      if (lg.id) seenIds[lg.id] = true;
+      seenSigs[sig] = true;
+      if (lg.visitorId && lg.cardNo) {
+        vidToCard[lg.visitorId] = lg.cardNo;
+      }
+      cleanLogs.push(lg);
+    }
+
+    // 2) 회원(cardNo) 및 방문자(visitorId)별 실제 로그 기반 집계 재산출 (3배 중복 합산 버그 완벽 교정)
+    var logsByCard = {};
+    var logsByVid = {};
+    for (var j = 0; j < cleanLogs.length; j++) {
+      var item = cleanLogs[j];
+      var cno = item.cardNo || (item.visitorId ? vidToCard[item.visitorId] : '') || '';
+      var vid = item.visitorId || '';
+      if (cno) {
+        if (!logsByCard[cno]) logsByCard[cno] = [];
+        logsByCard[cno].push(item);
+      }
+      if (vid) {
+        if (!logsByVid[vid]) logsByVid[vid] = [];
+        logsByVid[vid].push(item);
+      }
+    }
+
+    Object.keys(vault.members).forEach(function (cno) {
+      var m = vault.members[cno];
+      if (!m) return;
+      m.pagesVisited = (m.pagesVisited || []).map(normalizeLegacyLabel);
+      m.itemsViewed = Array.isArray(m.itemsViewed) ? m.itemsViewed.map(normalizeLegacyLabel) : [];
+      m.itemsPrinted = Array.isArray(m.itemsPrinted) ? m.itemsPrinted.map(normalizeLegacyLabel) : [];
+      if (m.lastAction) m.lastAction = normalizeLegacyLabel(m.lastAction);
+
+      var mLogs = logsByCard[cno];
+      if (mLogs && mLogs.length > 0) {
+        var vCnt = 0;
+        var cCnt = 0;
+        var pCnt = 0;
+        var pages = [];
+        var viewed = [];
+        var printed = [];
+        var lastAct = m.lastAction || '';
+        for (var k = 0; k < mLogs.length; k++) {
+          var l = mLogs[k];
+          pages = addUniqueItem(pages, l.pageTitle, 20);
+          if (l.type === 'print' || l.type === 'pdf') {
+            pCnt++;
+            printed = addUniqueItem(printed, extractCleanItemLabel(l.detail, l.pageTitle), 25);
+          } else if (l.type === 'content') {
+            cCnt++;
+            viewed = addUniqueItem(viewed, extractCleanItemLabel(l.detail, l.pageTitle), 30);
+          } else {
+            vCnt++;
+          }
+          if (l.detail) lastAct = l.detail;
+        }
+        var trueVisit = Math.max(1, vCnt);
+        if (m.visitCount !== trueVisit || m.printCount !== pCnt || m.contentCount !== cCnt) {
+          changed = true;
+        }
+        m.visitCount = trueVisit;
+        m.contentCount = cCnt;
+        m.printCount = pCnt;
+        m.pagesVisited = pages;
+        m.itemsViewed = viewed;
+        m.itemsPrinted = printed;
+        m.lastAction = lastAct;
+      }
+    });
+
+    Object.keys(vault.visitors).forEach(function (vid) {
+      var v = vault.visitors[vid];
+      if (!v) return;
+      if (!v.cardNo && vidToCard[vid] && vault.members[vidToCard[vid]]) {
+        var linkedM = vault.members[vidToCard[vid]];
+        v.cardNo = linkedM.cardNo;
+        v.name = linkedM.name;
+        v.account = linkedM.account;
+        v.church = linkedM.church;
+        v.provider = linkedM.provider;
+      }
+      v.pagesVisited = (v.pagesVisited || []).map(normalizeLegacyLabel);
+      v.itemsViewed = Array.isArray(v.itemsViewed) ? v.itemsViewed.map(normalizeLegacyLabel) : [];
+      v.itemsPrinted = Array.isArray(v.itemsPrinted) ? v.itemsPrinted.map(normalizeLegacyLabel) : [];
+      if (v.lastAction) v.lastAction = normalizeLegacyLabel(v.lastAction);
+
+      var vLogs = logsByVid[vid];
+      if (vLogs && vLogs.length > 0) {
+        var vCnt = 0;
+        var cCnt = 0;
+        var pCnt = 0;
+        var pages = [];
+        var viewed = [];
+        var printed = [];
+        var lastAct = v.lastAction || '';
+        for (var k = 0; k < vLogs.length; k++) {
+          var l = vLogs[k];
+          pages = addUniqueItem(pages, l.pageTitle, 20);
+          if (l.type === 'print' || l.type === 'pdf') {
+            pCnt++;
+            printed = addUniqueItem(printed, extractCleanItemLabel(l.detail, l.pageTitle), 25);
+          } else if (l.type === 'content') {
+            cCnt++;
+            viewed = addUniqueItem(viewed, extractCleanItemLabel(l.detail, l.pageTitle), 30);
+          } else {
+            vCnt++;
+          }
+          if (l.detail) lastAct = l.detail;
+        }
+        var trueVisit = Math.max(1, vCnt);
+        if (v.visitCount !== trueVisit || v.printCount !== pCnt || v.contentCount !== cCnt) {
+          changed = true;
+        }
+        v.visitCount = trueVisit;
+        v.contentCount = cCnt;
+        v.printCount = pCnt;
+        v.pagesVisited = pages;
+        v.itemsViewed = viewed;
+        v.itemsPrinted = printed;
+        v.lastAction = lastAct;
+      }
+    });
+
+    // 최신순 정렬
+    cleanLogs.sort(function (a, b) {
+      return String(b.ts || '').localeCompare(String(a.ts || ''));
+    });
+    vault.logs = cleanLogs.slice(0, 450);
+    return changed;
+  }
+
   function getLocalVault() {
     var empty = { members: {}, visitors: {}, logs: [], updatedAt: '' };
     try {
@@ -472,7 +789,9 @@
           parsed.members = parsed.members || {};
           parsed.visitors = parsed.visitors || {};
           parsed.logs = Array.isArray(parsed.logs) ? parsed.logs : [];
-          if (pruneInternalRecordsFromVault(parsed)) {
+          var pruned = pruneInternalRecordsFromVault(parsed);
+          var reconciled = reconcileVaultWithLogs(parsed);
+          if (pruned || reconciled) {
             try {
               parsed.updatedAt = formatNowTs();
               localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(parsed));
@@ -488,11 +807,7 @@
   function saveLocalVault(vault) {
     try {
       pruneInternalRecordsFromVault(vault);
-      // 로그 최대 350건 유지
-      if (Array.isArray(vault.logs) && vault.logs.length > 350) {
-        vault.logs.sort(function (a, b) { return String(b.ts || '').localeCompare(String(a.ts || '')); });
-        vault.logs = vault.logs.slice(0, 350);
-      }
+      reconcileVaultWithLogs(vault);
       vault.updatedAt = formatNowTs();
       localStorage.setItem(VAULT_STORAGE_KEY, JSON.stringify(vault));
     } catch (e) {}
@@ -522,8 +837,11 @@
       firstSeenAt: m.firstSeenAt || m.ts || formatNowTs(),
       lastSeenAt: m.lastSeenAt || m.ts || formatNowTs(),
       visitCount: 0,
+      contentCount: 0,
       printCount: 0,
       pagesVisited: [],
+      itemsViewed: [],
+      itemsPrinted: [],
       lastAction: '',
       device: m.device || ''
     };
@@ -536,13 +854,24 @@
     if (m.firstSeenAt && (!cur.firstSeenAt || m.firstSeenAt < cur.firstSeenAt)) cur.firstSeenAt = m.firstSeenAt;
     if (m.lastSeenAt && (!cur.lastSeenAt || m.lastSeenAt > cur.lastSeenAt)) cur.lastSeenAt = m.lastSeenAt;
     if (typeof m.visitCount === 'number' && m.visitCount > (cur.visitCount || 0)) cur.visitCount = m.visitCount;
+    if (typeof m.contentCount === 'number' && m.contentCount > (cur.contentCount || 0)) cur.contentCount = m.contentCount;
     if (typeof m.printCount === 'number' && m.printCount > (cur.printCount || 0)) cur.printCount = m.printCount;
     if (Array.isArray(m.pagesVisited)) {
       for (var i = 0; i < m.pagesVisited.length; i++) {
-        cur.pagesVisited = addUniqueItem(cur.pagesVisited, m.pagesVisited[i], 20);
+        cur.pagesVisited = addUniqueItem(cur.pagesVisited, normalizeLegacyLabel(m.pagesVisited[i]), 20);
       }
     }
-    if (m.lastAction) cur.lastAction = m.lastAction;
+    if (Array.isArray(m.itemsViewed)) {
+      for (var iv = 0; iv < m.itemsViewed.length; iv++) {
+        cur.itemsViewed = addUniqueItem(cur.itemsViewed, normalizeLegacyLabel(m.itemsViewed[iv]), 30);
+      }
+    }
+    if (Array.isArray(m.itemsPrinted)) {
+      for (var ip = 0; ip < m.itemsPrinted.length; ip++) {
+        cur.itemsPrinted = addUniqueItem(cur.itemsPrinted, normalizeLegacyLabel(m.itemsPrinted[ip]), 25);
+      }
+    }
+    if (m.lastAction) cur.lastAction = normalizeLegacyLabel(m.lastAction);
     if (isInternalOrBotRecord(cur)) {
       delete vault.members[key];
       return;
@@ -563,8 +892,11 @@
       firstSeenAt: v.firstSeenAt || v.ts || formatNowTs(),
       lastSeenAt: v.lastSeenAt || v.ts || formatNowTs(),
       visitCount: 0,
+      contentCount: 0,
       printCount: 0,
       pagesVisited: [],
+      itemsViewed: [],
+      itemsPrinted: [],
       lastAction: '',
       device: v.device || ''
     };
@@ -577,13 +909,24 @@
     if (v.firstSeenAt && (!cur.firstSeenAt || v.firstSeenAt < cur.firstSeenAt)) cur.firstSeenAt = v.firstSeenAt;
     if (v.lastSeenAt && (!cur.lastSeenAt || v.lastSeenAt > cur.lastSeenAt)) cur.lastSeenAt = v.lastSeenAt;
     if (typeof v.visitCount === 'number' && v.visitCount > (cur.visitCount || 0)) cur.visitCount = v.visitCount;
+    if (typeof v.contentCount === 'number' && v.contentCount > (cur.contentCount || 0)) cur.contentCount = v.contentCount;
     if (typeof v.printCount === 'number' && v.printCount > (cur.printCount || 0)) cur.printCount = v.printCount;
     if (Array.isArray(v.pagesVisited)) {
       for (var i = 0; i < v.pagesVisited.length; i++) {
-        cur.pagesVisited = addUniqueItem(cur.pagesVisited, v.pagesVisited[i], 20);
+        cur.pagesVisited = addUniqueItem(cur.pagesVisited, normalizeLegacyLabel(v.pagesVisited[i]), 20);
       }
     }
-    if (v.lastAction) cur.lastAction = v.lastAction;
+    if (Array.isArray(v.itemsViewed)) {
+      for (var iv = 0; iv < v.itemsViewed.length; iv++) {
+        cur.itemsViewed = addUniqueItem(cur.itemsViewed, normalizeLegacyLabel(v.itemsViewed[iv]), 30);
+      }
+    }
+    if (Array.isArray(v.itemsPrinted)) {
+      for (var ip = 0; ip < v.itemsPrinted.length; ip++) {
+        cur.itemsPrinted = addUniqueItem(cur.itemsPrinted, normalizeLegacyLabel(v.itemsPrinted[ip]), 25);
+      }
+    }
+    if (v.lastAction) cur.lastAction = normalizeLegacyLabel(v.lastAction);
     if (isInternalOrBotRecord(cur)) {
       delete vault.visitors[key];
       return;
@@ -628,6 +971,7 @@
         }
       }
       if (pruneInternalRecordsFromVault(vault)) changed = true;
+      if (reconcileVaultWithLogs(vault)) changed = true;
       return changed;
     }
 
@@ -636,10 +980,21 @@
       if (pruneInternalRecordsFromVault(vault)) return true;
       return false;
     }
+
+    // 이미 반영된 이벤트 ID 이면 중복 카운트하지 않고 즉시 반환 (새로고침 시 3배 중복 합산 원천 차단!)
+    if (ev.id && Array.isArray(vault.logs)) {
+      for (var dupIdx = 0; dupIdx < vault.logs.length; dupIdx++) {
+        if (vault.logs[dupIdx] && vault.logs[dupIdx].id === ev.id) {
+          return false;
+        }
+      }
+    }
+
     var ts = ev.ts || formatNowTs();
-    var page = ev.pageTitle || '🏛️ 꿈디도 도서관';
-    var detail = ev.detail || '';
+    var page = normalizeLegacyLabel(ev.pageTitle || '🏛️ 꿈디도 도서관');
+    var detail = normalizeLegacyLabel(ev.detail || '');
     var vid = ev.visitorId || 'VIS-2026-GUEST';
+    var cleanItem = extractCleanItemLabel(detail, page);
 
     if (ev.cardNo && ev.name) {
       var mem = vault.members[ev.cardNo] || {
@@ -652,8 +1007,11 @@
         firstSeenAt: ts,
         lastSeenAt: ts,
         visitCount: 0,
+        contentCount: 0,
         printCount: 0,
         pagesVisited: [],
+        itemsViewed: [],
+        itemsPrinted: [],
         lastAction: detail,
         device: ev.device || ''
       };
@@ -666,12 +1024,15 @@
       if (ts > (mem.lastSeenAt || '')) mem.lastSeenAt = ts;
       if (ts < (mem.firstSeenAt || ts)) mem.firstSeenAt = ts;
       mem.pagesVisited = addUniqueItem(mem.pagesVisited, page, 20);
-      if (detail) mem.lastAction = page + ' · ' + detail;
-      if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') {
-        mem.visitCount = (mem.visitCount || 0) + 1;
-      }
+      if (detail) mem.lastAction = detail;
       if (ev.type === 'print' || ev.type === 'pdf') {
         mem.printCount = (mem.printCount || 0) + 1;
+        mem.itemsPrinted = addUniqueItem(mem.itemsPrinted || [], cleanItem, 25);
+      } else if (ev.type === 'content') {
+        mem.contentCount = (mem.contentCount || 0) + 1;
+        mem.itemsViewed = addUniqueItem(mem.itemsViewed || [], cleanItem, 30);
+      } else if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') {
+        mem.visitCount = (mem.visitCount || 0) + 1;
       }
       if (!isInternalOrBotRecord(mem)) {
         vault.members[ev.cardNo] = mem;
@@ -690,8 +1051,11 @@
         firstSeenAt: ts,
         lastSeenAt: ts,
         visitCount: 0,
+        contentCount: 0,
         printCount: 0,
         pagesVisited: [],
+        itemsViewed: [],
+        itemsPrinted: [],
         lastAction: detail,
         device: ev.device || ''
       };
@@ -704,12 +1068,15 @@
       if (ts > (vis.lastSeenAt || '')) vis.lastSeenAt = ts;
       if (ts < (vis.firstSeenAt || ts)) vis.firstSeenAt = ts;
       vis.pagesVisited = addUniqueItem(vis.pagesVisited, page, 20);
-      if (detail) vis.lastAction = page + ' · ' + detail;
-      if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') {
-        vis.visitCount = (vis.visitCount || 0) + 1;
-      }
+      if (detail) vis.lastAction = detail;
       if (ev.type === 'print' || ev.type === 'pdf') {
         vis.printCount = (vis.printCount || 0) + 1;
+        vis.itemsPrinted = addUniqueItem(vis.itemsPrinted || [], cleanItem, 25);
+      } else if (ev.type === 'content') {
+        vis.contentCount = (vis.contentCount || 0) + 1;
+        vis.itemsViewed = addUniqueItem(vis.itemsViewed || [], cleanItem, 30);
+      } else if (ev.type === 'visit' || ev.type === 'studio' || ev.type === 'signup') {
+        vis.visitCount = (vis.visitCount || 0) + 1;
       }
       if (!isInternalOrBotRecord(vis)) {
         vault.visitors[vid] = vis;
@@ -720,32 +1087,24 @@
     }
 
     if (ev.id && !isInternalOrBotRecord(ev)) {
-      var exists = false;
-      for (var k = 0; k < vault.logs.length; k++) {
-        if (vault.logs[k] && vault.logs[k].id === ev.id) {
-          exists = true;
-          break;
-        }
-      }
-      if (!exists) {
-        vault.logs.unshift({
-          id: ev.id,
-          ts: ts,
-          type: ev.type || 'visit',
-          visitorId: vid,
-          cardNo: ev.cardNo || '',
-          name: ev.name || '비로그인 방문자',
-          account: ev.account || '-',
-          church: ev.church || '-',
-          provider: ev.provider || '-',
-          pageTitle: page,
-          detail: detail,
-          device: ev.device || ''
-        });
-        changed = true;
-      }
+      vault.logs.unshift({
+        id: ev.id,
+        ts: ts,
+        type: ev.type || 'visit',
+        visitorId: vid,
+        cardNo: ev.cardNo || '',
+        name: ev.name || '비로그인 방문자',
+        account: ev.account || '-',
+        church: ev.church || '-',
+        provider: ev.provider || '-',
+        pageTitle: page,
+        detail: detail,
+        device: ev.device || ''
+      });
+      changed = true;
     }
 
+    reconcileVaultWithLogs(vault);
     return changed;
   }
 
@@ -1466,7 +1825,7 @@
         }, '🖨️ 자료 인쇄는 「꿈디도 도서관 이용증」 간편 로그인(구글·카카오) 후 이용하실 수 있습니다.');
         return false;
       }
-      recordTelemetryEvent('print', getCurrentPageLabel() + ' 인쇄 단축키(Ctrl/Cmd+P) 실행');
+      recordTelemetryEvent('print', getActivePrintTargetLabel(true));
       return;
     }
 
@@ -1503,7 +1862,7 @@
 
   function executeAuthorizedPrint() {
     syncAuthState();
-    recordTelemetryEvent('print', getCurrentPageLabel() + ' 유인물·자료 인쇄 실행');
+    recordTelemetryEvent('print', getActivePrintTargetLabel(false));
     setTimeout(function () {
       origPrint();
     }, 120);
@@ -1728,6 +2087,7 @@
       '    <div class="kkd-adm-tabs">',
       '      <button type="button" class="kkd-adm-tab on" data-tab="members">🪪 가입자 명부 (이메일·성함·교회)</button>',
       '      <button type="button" class="kkd-adm-tab" data-tab="visitors">👣 다녀간 방문자 현황</button>',
+      '      <button type="button" class="kkd-adm-tab" data-tab="popular">🔥 인기 자료 · 인쇄 순위</button>',
       '      <button type="button" class="kkd-adm-tab" data-tab="logs">📜 상세 사용 기록 (시간순)</button>',
       '    </div>',
       '    <div class="kkd-adm-actions">',
@@ -1864,7 +2224,7 @@
     if (currentAdminTab === 'members') {
       var filteredM = membersArr.filter(function (m) {
         if (!q) return true;
-        var hay = [m.cardNo, m.name, m.account, m.church, m.provider, (m.pagesVisited || []).join(' '), m.lastAction].join(' ').toLowerCase();
+        var hay = [m.cardNo, m.name, m.account, m.church, m.provider, (m.pagesVisited || []).join(' '), (m.itemsViewed || []).join(' '), (m.itemsPrinted || []).join(' '), m.lastAction].join(' ').toLowerCase();
         return hay.indexOf(q) !== -1;
       });
       if (filteredM.length === 0) {
@@ -1875,6 +2235,12 @@
         var pagesHtml = (m.pagesVisited || []).map(function (p) {
           return '<span class="kkd-pill">' + escapeHtml(p) + '</span>';
         }).join(' ');
+        var printedHtml = (m.itemsPrinted || []).map(function (ip) {
+          return '<span class="kkd-pill green">🖨️ ' + escapeHtml(ip) + '</span>';
+        }).join(' ');
+        var viewedHtml = (m.itemsViewed || []).map(function (iv) {
+          return '<span class="kkd-pill blue">📖 ' + escapeHtml(iv) + '</span>';
+        }).join(' ');
         var kbCode = computeLicenseCode(m.name);
         return [
           '<tr>',
@@ -1883,8 +2249,11 @@
           '  <td style="font-weight:800; color:#fff; white-space:nowrap; font-size:13.5px;">' + escapeHtml(m.name) + '</td>',
           '  <td style="white-space:nowrap; color:#e0d8ca;">' + escapeHtml(m.church || '꿈바온 가족') + '</td>',
           '  <td style="white-space:nowrap;"><span class="kkd-pill ' + (m.provider === '카카오' ? '' : 'blue') + '">' + escapeHtml(m.provider || 'Google') + '</span> <b style="color:#ffd97d;">' + escapeHtml(m.account || '-') + '</b></td>',
-          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (m.visitCount || 1) + '회</span><div style="font-size:11px; color:#a89a78;">인쇄 ' + (m.printCount || 0) + '회</div></td>',
-          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '<span style="color:#888;">-</span>') + '</div>' + (m.lastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:3px;">최근활동: ' + escapeHtml(m.lastAction) + '</div>' : '') + '</td>',
+          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (m.visitCount || 1) + '회</span>' + (m.contentCount ? '<div style="font-size:11px; color:#93c5fd;">열람 ' + m.contentCount + '건</div>' : '') + '<div style="font-size:11px; color:' + (m.printCount ? '#6ee7b7; font-weight:700;' : '#a89a78;') + '">인쇄 ' + (m.printCount || 0) + '회</div></td>',
+          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '<span style="color:#888;">-</span>') + '</div>' +
+            (printedHtml ? '<div style="margin-top:4px; display:flex; flex-wrap:wrap; gap:3px; align-items:center;"><span style="font-size:11px; color:#6ee7b7; font-weight:800; margin-right:2px;">인쇄한 자료:</span>' + printedHtml + '</div>' : '') +
+            (viewedHtml ? '<div style="margin-top:4px; display:flex; flex-wrap:wrap; gap:3px; align-items:center;"><span style="font-size:11px; color:#93c5fd; font-weight:800; margin-right:2px;">찾아본 자료:</span>' + viewedHtml + '</div>' : '') +
+            (m.lastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:4px;">최근활동: ' + escapeHtml(m.lastAction) + '</div>' : '') + '</td>',
           '  <td style="white-space:nowrap; width:110px; text-align:center;"><button type="button" class="kkd-kb-btn" data-kb-name="' + escapeHtml(m.name) + '" data-kb-code="' + escapeHtml(kbCode) + '">🔑 ' + escapeHtml(kbCode) + ' 복사</button></td>',
           '</tr>'
         ].join('');
@@ -1892,7 +2261,7 @@
       wrap.innerHTML = [
         '<table class="kkd-adm-table">',
         '  <thead><tr>',
-        '    <th style="white-space:nowrap; width:135px;">가입일 / 최근방문</th><th style="white-space:nowrap; width:125px;">이용증 번호</th><th style="white-space:nowrap;">성함 · 직분</th><th style="white-space:nowrap;">소속 교회</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap; width:110px; text-align:center;">이용 횟수</th><th>다녀간 스튜디오 · 사용 기록</th><th style="white-space:nowrap; width:110px; text-align:center;">1:1 정식판 코드</th>',
+        '    <th style="white-space:nowrap; width:135px;">가입일 / 최근방문</th><th style="white-space:nowrap; width:125px;">이용증 번호</th><th style="white-space:nowrap;">성함 · 직분</th><th style="white-space:nowrap;">소속 교회</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap; width:110px; text-align:center;">이용 횟수</th><th>다녀간 스튜디오 · 찾아본/인쇄한 자료 기록</th><th style="white-space:nowrap; width:110px; text-align:center;">1:1 정식판 코드</th>',
         '  </tr></thead>',
         '  <tbody>' + rowsM + '</tbody>',
         '</table>'
@@ -1919,7 +2288,7 @@
     if (currentAdminTab === 'visitors') {
       var filteredV = visitorsArr.filter(function (v) {
         if (!q) return true;
-        var hay = [v.visitorId, v.cardNo, v.name, v.account, v.church, v.device, (v.pagesVisited || []).join(' '), v.lastAction].join(' ').toLowerCase();
+        var hay = [v.visitorId, v.cardNo, v.name, v.account, v.church, v.device, (v.pagesVisited || []).join(' '), (v.itemsViewed || []).join(' '), (v.itemsPrinted || []).join(' '), v.lastAction].join(' ').toLowerCase();
         return hay.indexOf(q) !== -1;
       });
       if (filteredV.length === 0) {
@@ -1930,6 +2299,12 @@
         var isMem = !!(v.cardNo && v.name && v.name !== '비로그인 방문자');
         var pagesHtml = (v.pagesVisited || []).map(function (p) {
           return '<span class="kkd-pill">' + escapeHtml(p) + '</span>';
+        }).join(' ');
+        var printedHtml = (v.itemsPrinted || []).map(function (ip) {
+          return '<span class="kkd-pill green">🖨️ ' + escapeHtml(ip) + '</span>';
+        }).join(' ');
+        var viewedHtml = (v.itemsViewed || []).map(function (iv) {
+          return '<span class="kkd-pill blue">📖 ' + escapeHtml(iv) + '</span>';
         }).join(' ');
 
         // Clean lastAction if it duplicates page name
@@ -1964,18 +2339,131 @@
           '  <td style="white-space:nowrap; width:95px; text-align:center;">' + (isMem ? '<span class="kkd-pill green">🪪 이용증 회원</span>' : '<span class="kkd-pill gray">👣 일반 방문</span>') + '</td>',
           '  <td style="white-space:nowrap;">' + identityHtml + '</td>',
           '  <td style="white-space:nowrap; width:130px;"><span class="kkd-pill gray">' + devIcon + ' ' + escapeHtml(dev) + '</span></td>',
-          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (v.visitCount || 1) + '회</span>' + (v.printCount ? '<div style="font-size:11px; color:#6ee7b7;">인쇄 ' + v.printCount + '회</div>' : '<div style="font-size:11px; color:#888;">인쇄 0회</div>') + '</td>',
-          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '-') + '</div>' + (cleanLastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:4px;">최근: ' + escapeHtml(cleanLastAction) + '</div>' : '') + '</td>',
+          '  <td style="white-space:nowrap; width:110px; text-align:center;"><span style="color:#f3c969; font-weight:800;">방문 ' + (v.visitCount || 1) + '회</span>' + (v.contentCount ? '<div style="font-size:11px; color:#93c5fd;">열람 ' + v.contentCount + '건</div>' : '') + (v.printCount ? '<div style="font-size:11px; color:#6ee7b7; font-weight:700;">인쇄 ' + v.printCount + '회</div>' : '<div style="font-size:11px; color:#888;">인쇄 0회</div>') + '</td>',
+          '  <td><div style="display:flex; flex-wrap:wrap; gap:3px;">' + (pagesHtml || '-') + '</div>' +
+            (printedHtml ? '<div style="margin-top:4px; display:flex; flex-wrap:wrap; gap:3px; align-items:center;"><span style="font-size:11px; color:#6ee7b7; font-weight:800; margin-right:2px;">인쇄한 자료:</span>' + printedHtml + '</div>' : '') +
+            (viewedHtml ? '<div style="margin-top:4px; display:flex; flex-wrap:wrap; gap:3px; align-items:center;"><span style="font-size:11px; color:#93c5fd; font-weight:800; margin-right:2px;">찾아본 자료:</span>' + viewedHtml + '</div>' : '') +
+            (cleanLastAction ? '<div style="font-size:11.5px; color:#a89a78; margin-top:4px;">최근: ' + escapeHtml(cleanLastAction) + '</div>' : '') + '</td>',
           '</tr>'
         ].join('');
       }).join('');
       wrap.innerHTML = [
         '<table class="kkd-adm-table">',
         '  <thead><tr>',
-        '    <th style="white-space:nowrap; width:135px;">최근 방문 / 최초</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">방문자 정보 (성함·ID / 소속)</th><th style="white-space:nowrap; width:130px;">접속 기기</th><th style="white-space:nowrap; width:110px; text-align:center;">누적 활동</th><th>다녀간 페이지 · 스튜디오 여정</th>',
+        '    <th style="white-space:nowrap; width:135px;">최근 방문 / 최초</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">방문자 정보 (성함·ID / 소속)</th><th style="white-space:nowrap; width:130px;">접속 기기</th><th style="white-space:nowrap; width:110px; text-align:center;">누적 활동</th><th>다녀간 페이지 · 찾아본/인쇄한 자료 여정</th>',
         '  </tr></thead>',
         '  <tbody>' + rowsV + '</tbody>',
         '</table>'
+      ].join('');
+      return;
+    }
+
+    if (currentAdminTab === 'popular') {
+      var printStats = {};
+      var contentStats = {};
+      var pageStats = {};
+
+      for (var pIdx = 0; pIdx < logsArr.length; pIdx++) {
+        var lg = logsArr[pIdx];
+        if (!lg) continue;
+        if (q) {
+          var h = [lg.pageTitle, lg.detail, lg.name, lg.church].join(' ').toLowerCase();
+          if (h.indexOf(q) === -1) continue;
+        }
+        var pg = lg.pageTitle || '🏛️ 꿈디도 도서관';
+        if (!pageStats[pg]) pageStats[pg] = { title: pg, visits: 0, contents: 0, prints: 0, lastTs: lg.ts || '' };
+        if ((lg.ts || '') > pageStats[pg].lastTs) pageStats[pg].lastTs = lg.ts || '';
+
+        if (lg.type === 'print' || lg.type === 'pdf') {
+          pageStats[pg].prints++;
+          var pKey = extractCleanItemLabel(lg.detail, pg);
+          if (!printStats[pKey]) {
+            printStats[pKey] = { item: pKey, page: pg, count: 0, lastUser: lg.name || '방문자', lastTs: lg.ts || '' };
+          }
+          printStats[pKey].count++;
+          if ((lg.ts || '') >= printStats[pKey].lastTs) {
+            printStats[pKey].lastTs = lg.ts || '';
+            printStats[pKey].lastUser = (lg.name && lg.name !== '비로그인 방문자') ? (lg.name + (lg.church && lg.church !== '-' ? ' (' + lg.church + ')' : '')) : '방문자';
+          }
+        } else if (lg.type === 'content') {
+          pageStats[pg].contents++;
+          var cKey = extractCleanItemLabel(lg.detail, pg);
+          if (!contentStats[cKey]) {
+            contentStats[cKey] = { item: cKey, page: pg, count: 0, lastUser: lg.name || '방문자', lastTs: lg.ts || '' };
+          }
+          contentStats[cKey].count++;
+          if ((lg.ts || '') >= contentStats[cKey].lastTs) {
+            contentStats[cKey].lastTs = lg.ts || '';
+            contentStats[cKey].lastUser = (lg.name && lg.name !== '비로그인 방문자') ? (lg.name + (lg.church && lg.church !== '-' ? ' (' + lg.church + ')' : '')) : '방문자';
+          }
+        } else {
+          pageStats[pg].visits++;
+        }
+      }
+
+      var printList = Object.keys(printStats).map(function (k) { return printStats[k]; }).sort(function (a, b) {
+        return (b.count - a.count) || String(b.lastTs).localeCompare(String(a.lastTs));
+      });
+      var contentList = Object.keys(contentStats).map(function (k) { return contentStats[k]; }).sort(function (a, b) {
+        return (b.count - a.count) || String(b.lastTs).localeCompare(String(a.lastTs));
+      });
+      var pageList = Object.keys(pageStats).map(function (k) { return pageStats[k]; }).sort(function (a, b) {
+        return ((b.visits + b.contents + b.prints) - (a.visits + a.contents + a.prints)) || String(b.lastTs).localeCompare(String(a.lastTs));
+      });
+
+      var printRowsHtml = printList.length === 0
+        ? '<tr><td colspan="5" style="text-align:center; color:#9a8f7c; padding:18px;">아직 인쇄·PDF 출력된 세부 자료 기록이 없습니다.</td></tr>'
+        : printList.map(function (it, idx) {
+            return '<tr>' +
+              '<td style="width:60px; text-align:center; font-weight:800; color:#f3c969;">' + (idx + 1) + '위</td>' +
+              '<td><span class="kkd-pill green">🖨️ ' + escapeHtml(it.item) + '</span></td>' +
+              '<td><span class="kkd-pill">' + escapeHtml(it.page) + '</span></td>' +
+              '<td style="width:95px; text-align:center; font-weight:800; color:#6ee7b7;">' + it.count + '회 인쇄</td>' +
+              '<td style="width:210px; font-size:12px; color:#d8c390;">' + escapeHtml(it.lastUser) + ' <span style="color:#9a8f7c;">(' + escapeHtml((it.lastTs || '').slice(5, 16)) + ')</span></td>' +
+              '</tr>';
+          }).join('');
+
+      var contentRowsHtml = contentList.length === 0
+        ? '<tr><td colspan="5" style="text-align:center; color:#9a8f7c; padding:18px;">세부 자료(인물·사건·문헌·주석 본문) 열람 기록이 이곳에 실시간 집계됩니다.</td></tr>'
+        : contentList.map(function (it, idx) {
+            return '<tr>' +
+              '<td style="width:60px; text-align:center; font-weight:800; color:#f3c969;">' + (idx + 1) + '위</td>' +
+              '<td><span class="kkd-pill blue">📖 ' + escapeHtml(it.item) + '</span></td>' +
+              '<td><span class="kkd-pill">' + escapeHtml(it.page) + '</span></td>' +
+              '<td style="width:95px; text-align:center; font-weight:800; color:#93c5fd;">' + it.count + '회 열람</td>' +
+              '<td style="width:210px; font-size:12px; color:#d8c390;">' + escapeHtml(it.lastUser) + ' <span style="color:#9a8f7c;">(' + escapeHtml((it.lastTs || '').slice(5, 16)) + ')</span></td>' +
+              '</tr>';
+          }).join('');
+
+      var pageRowsHtml = pageList.map(function (pg, idx) {
+        return '<tr>' +
+          '<td style="width:60px; text-align:center; font-weight:800; color:#f3c969;">' + (idx + 1) + '위</td>' +
+          '<td><span class="kkd-pill">' + escapeHtml(pg.title) + '</span></td>' +
+          '<td style="width:110px; text-align:center; font-weight:800; color:#f3c969;">방문 ' + pg.visits + '회</td>' +
+          '<td style="width:110px; text-align:center; color:#93c5fd;">열람 ' + pg.contents + '건</td>' +
+          '<td style="width:110px; text-align:center; color:' + (pg.prints ? '#6ee7b7; font-weight:800;' : '#888;') + '">인쇄 ' + pg.prints + '회</td>' +
+          '<td style="width:150px; font-size:12px; color:#9a8f7c;">최근: ' + escapeHtml((pg.lastTs || '').slice(5, 16)) + '</td>' +
+          '</tr>';
+      }).join('');
+
+      wrap.innerHTML = [
+        '<div style="padding:14px 16px;">',
+        '  <div style="font-size:14px; font-weight:800; color:#6ee7b7; margin-bottom:8px;">🖨️ 1. 방문자들이 실제 인쇄 · PDF 출력해 간 자료 순위</div>',
+        '  <table class="kkd-adm-table" style="margin-bottom:20px;">',
+        '    <thead><tr><th style="width:60px; text-align:center;">순위</th><th>인쇄 · 출력한 세부 자료명</th><th>소속 스튜디오 / 전시관</th><th style="width:95px; text-align:center;">인쇄 횟수</th><th style="width:210px;">최근 인쇄한 분</th></tr></thead>',
+        '    <tbody>' + printRowsHtml + '</tbody>',
+        '  </table>',
+        '  <div style="font-size:14px; font-weight:800; color:#93c5fd; margin-bottom:8px;">📖 2. 방문자들이 클릭해서 가장 많이 찾아본 세부 자료 (인물·사건·문헌·성경본문)</div>',
+        '  <table class="kkd-adm-table" style="margin-bottom:20px;">',
+        '    <thead><tr><th style="width:60px; text-align:center;">순위</th><th>클릭하여 열람한 세부 자료명</th><th>소속 스튜디오 / 전시관</th><th style="width:95px; text-align:center;">열람 횟수</th><th style="width:210px;">최근 열람자</th></tr></thead>',
+        '    <tbody>' + contentRowsHtml + '</tbody>',
+        '  </table>',
+        '  <div style="font-size:14px; font-weight:800; color:#f3c969; margin-bottom:8px;">🏛️ 3. 가장 많이 찾은 스튜디오 · 전시관 순위</div>',
+        '  <table class="kkd-adm-table">',
+        '    <thead><tr><th style="width:60px; text-align:center;">순위</th><th>스튜디오 · 전시관 이름</th><th style="width:110px; text-align:center;">방문 횟수</th><th style="width:110px; text-align:center;">세부자료 열람</th><th style="width:110px; text-align:center;">유인물 인쇄</th><th style="width:150px;">최근 활동 시각</th></tr></thead>',
+        '    <tbody>' + pageRowsHtml + '</tbody>',
+        '  </table>',
+        '</div>'
       ].join('');
       return;
     }
@@ -1994,8 +2482,9 @@
       var badge = '<span class="kkd-pill gray">👣 일반 방문</span>';
       if (l.type === 'signup') badge = '<span class="kkd-pill green">🪪 이용증 발급</span>';
       else if (l.type === 'studio') badge = '<span class="kkd-pill blue">🧰 스튜디오 사용</span>';
-      else if (l.type === 'print') badge = '<span class="kkd-pill">🖨️ 인쇄 실행</span>';
-      else if (l.type === 'pdf') badge = '<span class="kkd-pill">📕 PDF 열람</span>';
+      else if (l.type === 'content') badge = '<span class="kkd-pill blue">📖 자료 열람</span>';
+      else if (l.type === 'print') badge = '<span class="kkd-pill green">🖨️ 인쇄 실행</span>';
+      else if (l.type === 'pdf') badge = '<span class="kkd-pill green">📕 PDF 열람</span>';
       return [
         '<tr>',
         '  <td style="white-space:nowrap; font-family:monospace; color:#d8c390; width:135px;">' + escapeHtml(l.ts || '-') + '</td>',
@@ -2010,7 +2499,7 @@
     wrap.innerHTML = [
       '<table class="kkd-adm-table">',
       '  <thead><tr>',
-      '    <th style="white-space:nowrap; width:135px;">일시</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">성함 · 직분 / 소속</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap;">머문 공간 (스튜디오)</th><th>상세 사용 내용</th>',
+      '    <th style="white-space:nowrap; width:135px;">일시</th><th style="white-space:nowrap; width:95px; text-align:center;">구분</th><th style="white-space:nowrap;">성함 · 직분 / 소속</th><th style="white-space:nowrap;">이메일 / 계정</th><th style="white-space:nowrap;">머문 공간 (스튜디오)</th><th>상세 사용 · 열람 · 인쇄 내용</th>',
       '  </tr></thead>',
       '  <tbody>' + rowsL + '</tbody>',
       '</table>'
@@ -2020,7 +2509,7 @@
   function exportVaultToCSV() {
     if (!isPastorAdmin()) return;
     var vault = getLocalVault();
-    var lines = ['\uFEFF구분,발급일/최근방문,이용증번호/ID,성함_직분,소속교회,이메일_계정,인증방식,방문횟수,인쇄횟수,사용한_스튜디오_목록,최근활동,1대1_정식판코드'];
+    var lines = ['\uFEFF구분,발급일/최근방문,이용증번호/ID,성함_직분,소속교회,이메일_계정,인증방식,방문횟수,자료열람수,인쇄횟수,사용한_스튜디오_목록,인쇄한_자료_목록,찾아본_자료_목록,최근활동,1대1_정식판코드'];
     var esc = function (v) {
       var s = String(v == null ? '' : v).replace(/"/g, '""');
       return '"' + s + '"';
@@ -2036,8 +2525,11 @@
         esc(m.account),
         esc(m.provider),
         esc(m.visitCount || 1),
+        esc(m.contentCount || 0),
         esc(m.printCount || 0),
         esc((m.pagesVisited || []).join(' | ')),
+        esc((m.itemsPrinted || []).join(' | ')),
+        esc((m.itemsViewed || []).join(' | ')),
         esc(m.lastAction || ''),
         esc(computeLicenseCode(m.name))
       ].join(','));
@@ -2054,8 +2546,11 @@
         esc(v.account || '-'),
         esc(v.device || '-'),
         esc(v.visitCount || 1),
+        esc(v.contentCount || 0),
         esc(v.printCount || 0),
         esc((v.pagesVisited || []).join(' | ')),
+        esc((v.itemsPrinted || []).join(' | ')),
+        esc((v.itemsViewed || []).join(' | ')),
         esc(v.lastAction || ''),
         esc('')
       ].join(','));
@@ -2281,7 +2776,188 @@
     return false;
   }
 
+  var lastLoggedContentSig = '';
+  var lastLoggedContentAt = 0;
+  var initialPageReadyForHooks = false;
+  setTimeout(function () { initialPageReadyForHooks = true; }, 1400);
+
+  function logContentViewDebounced(labelText) {
+    if (!labelText) return;
+    var now = Date.now();
+    if (labelText === lastLoggedContentSig && (now - lastLoggedContentAt) < 3500) return;
+    lastLoggedContentSig = labelText;
+    lastLoggedContentAt = now;
+    recordTelemetryEvent('content', labelText);
+  }
+
+  function installContentViewHooks() {
+    // 1) 본관(index.html) 및 성경지도(atrium.js)의 trackKkumbaonAction 연동
+    if (typeof window.trackKkumbaonAction === 'function' && !window.__kkdPatchedTrackAction) {
+      var origTrack = window.trackKkumbaonAction;
+      window.__kkdPatchedTrackAction = true;
+      window.trackKkumbaonAction = function (actionType, id, title) {
+        try { origTrack.apply(this, arguments); } catch (e0) {}
+        var t = String(title || id || '').trim();
+        if (!t) return;
+        if (actionType === 'read') logContentViewDebounced('📜 본관 문헌 열람: [' + t + ']');
+        else if (actionType === 'city') logContentViewDebounced('🗺️ 성경지도 도시 열람: [' + t + ']');
+        else if (actionType === 'video') logContentViewDebounced('🎬 성경 영상 시청: [' + t + ']');
+        else if (actionType === 'ebook') recordTelemetryEvent('pdf', '📕 화보·전자책 열람: [' + t + ']');
+        else logContentViewDebounced('📖 자료 열람: [' + t + ']');
+      };
+    }
+
+    // 2) 제1관 성경 인물대백과 350인 (figures_encyclopedia_preview.html)
+    if (typeof window.openFigure === 'function' && !window.__kkdPatchedOpenFigure) {
+      var origOpenFigure = window.openFigure;
+      window.__kkdPatchedOpenFigure = true;
+      window.openFigure = function (pid) {
+        var res = origOpenFigure.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          setTimeout(function () {
+            var n = ((document.getElementById('drwName') || {}).textContent || '').trim();
+            if (n) logContentViewDebounced('👑 인물 열전 열람: [' + n + ']');
+          }, 60);
+        }
+        return res;
+      };
+    }
+    if (typeof window.openOverviewModal === 'function' && !window.__kkdPatchedOpenOverview) {
+      var origOpenOverview = window.openOverviewModal;
+      window.__kkdPatchedOpenOverview = true;
+      window.openOverviewModal = function (kind) {
+        var res = origOpenOverview.apply(this, arguments);
+        setTimeout(function () {
+          var n = ((document.getElementById('drwName') || {}).textContent || '').trim();
+          if (n) logContentViewDebounced('👑 왕조 대조표 열람: [' + n + ']');
+        }, 60);
+        return res;
+      };
+    }
+
+    // 3) 제2관 성경 사건대백과 (events_encyclopedia_preview.html)
+    if (typeof window.openEventModal === 'function' && !window.__kkdPatchedOpenEvent) {
+      var origOpenEvent = window.openEventModal;
+      window.__kkdPatchedOpenEvent = true;
+      window.openEventModal = function (eventId) {
+        var res = origOpenEvent.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          setTimeout(function () {
+            var n = ((document.getElementById('modalTitle') || {}).textContent || '').trim();
+            if (n) logContentViewDebounced('📜 구속사 사건 열람: [' + n + ']');
+          }, 60);
+        }
+        return res;
+      };
+    }
+    if (typeof window.openComparison === 'function' && !window.__kkdPatchedOpenComp) {
+      var origOpenComp = window.openComparison;
+      window.__kkdPatchedOpenComp = true;
+      window.openComparison = function (key) {
+        var res = origOpenComp.apply(this, arguments);
+        setTimeout(function () {
+          var n = ((document.getElementById('compModalTitle') || {}).textContent || '').trim();
+          if (n) logContentViewDebounced('📜 사건 비교표 열람: [' + n + ']');
+        }, 60);
+        return res;
+      };
+    }
+
+    // 4) 제3관 성경 비하인드 300선 (behinds_encyclopedia_preview.html)
+    if (typeof window.openBehindModal === 'function' && !window.__kkdPatchedOpenBehind) {
+      var origOpenBehind = window.openBehindModal;
+      window.__kkdPatchedOpenBehind = true;
+      window.openBehindModal = function (behindId) {
+        var res = origOpenBehind.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          setTimeout(function () {
+            var n = ((document.getElementById('modalTitle') || {}).textContent || '').trim();
+            if (n) logContentViewDebounced('💡 성경 비하인드 열람: [' + n + ']');
+          }, 60);
+        }
+        return res;
+      };
+    }
+
+    // 5) 12대 아카이브 3,650모듈 서고 (꿈디도_12대아카이브_3650모듈_통합웹뷰어.html)
+    if (typeof window.openModal === 'function' && !window.__kkdPatchedOpen12Modal) {
+      var origOpen12Modal = window.openModal;
+      window.__kkdPatchedOpen12Modal = true;
+      window.openModal = function (id, fromBack) {
+        var res = origOpen12Modal.apply(this, arguments);
+        var recordAfter = function () {
+          var ctx = getActiveContentContext();
+          if (ctx) logContentViewDebounced('🏛️ 12대 아카이브 열람: ' + ctx);
+        };
+        if (res && typeof res.then === 'function') {
+          res.then(function () { setTimeout(recordAfter, 60); }).catch(function () {});
+        } else {
+          setTimeout(recordAfter, 120);
+        }
+        return res;
+      };
+    }
+
+    // 6) 66권 원어·풀어읽기 주석 서고 (00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html)
+    if (typeof window.selectBook === 'function' && !window.__kkdPatchedSelectBook66) {
+      var origSelectBook = window.selectBook;
+      window.__kkdPatchedSelectBook66 = true;
+      window.selectBook = function (bookNo, chNo) {
+        var res = origSelectBook.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          setTimeout(function () {
+            var ctx = getActiveContentContext();
+            if (ctx) logContentViewDebounced('📖 원어주석 장 열람: ' + ctx);
+          }, 80);
+        }
+        return res;
+      };
+    }
+    if (typeof window.selectChapter === 'function' && !window.__kkdPatchedSelectChap66) {
+      var origSelectChap = window.selectChapter;
+      window.__kkdPatchedSelectChap66 = true;
+      window.selectChapter = function (chNo) {
+        var res = origSelectChap.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          setTimeout(function () {
+            var ctx = getActiveContentContext();
+            if (ctx) logContentViewDebounced('📖 원어주석 장 열람: ' + ctx);
+          }, 80);
+        }
+        return res;
+      };
+    }
+
+    // 7) 모세의 지팡이(설교 AI) 및 66권 원어 설교준비실 본문 열람·소환
+    if (typeof window.summonKkumdidoCards === 'function' && !window.__kkdPatchedSummonCards) {
+      var origSummon = window.summonKkumdidoCards;
+      window.__kkdPatchedSummonCards = true;
+      window.summonKkumdidoCards = function (query, showAlert) {
+        var res = origSummon.apply(this, arguments);
+        if (initialPageReadyForHooks) {
+          var qStr = String(query || ((document.getElementById('mosesQueryInput') || {}).value) || '').trim();
+          if (qStr) logContentViewDebounced('🪄 모세의 지팡이 본문 소환: [' + qStr + ']');
+        }
+        return res;
+      };
+    }
+    if (typeof window.selectBookChapter === 'function' && !window.__kkdPatchedSelectBookChapStudio) {
+      var origSelBC = window.selectBookChapter;
+      window.__kkdPatchedSelectBookChapStudio = true;
+      window.selectBookChapter = function (book, chapter) {
+        var res = origSelBC.apply(this, arguments);
+        if (initialPageReadyForHooks && book) {
+          logContentViewDebounced('👑 설교준비실 본문 연구: [' + book + ' ' + (chapter || 1) + '장]');
+        }
+        return res;
+      };
+    }
+  }
+
   function patchPageButtons() {
+    installContentViewHooks();
+    setTimeout(installContentViewHooks, 900);
+
     // index.html 의 enterMosesSanctuary 도 간편 로그인 확인 후 로컬/웹 지팡이 스튜디오로 연결
     if (typeof window.enterMosesSanctuary === 'function' && !window.__kkdPatchedMoses) {
       window.__kkdPatchedMoses = true;
@@ -2302,14 +2978,16 @@
       var origOpenPrintModal = window.openPrintPdfModal;
       window.__kkdPatchedStudioPrint = true;
       window.openPrintPdfModal = function () {
+        var ctx = getActiveContentContext();
+        var printLabel = getCurrentPageLabel() + (ctx ? ' · ' + ctx : '') + ' 강단 설교노트·유인물 인쇄창 열기';
         if (!isVerified()) {
           openCardModal(function () {
-            recordTelemetryEvent('print', getCurrentPageLabel() + ' 강단 설교노트·유인물 인쇄창 열기');
+            recordTelemetryEvent('print', printLabel);
             origOpenPrintModal();
           }, '🖨️ 강단 설교 노트 인쇄 및 PDF 저장은 「도서관 이용증」 간편 로그인 후 이용하실 수 있습니다.');
           return;
         }
-        recordTelemetryEvent('print', getCurrentPageLabel() + ' 강단 설교노트·유인물 인쇄창 열기');
+        recordTelemetryEvent('print', printLabel);
         origOpenPrintModal();
       };
     }
