@@ -627,6 +627,32 @@
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
+  /* 휴대폰(390px 등) 가로 넘침 방지: 격자 칸이 내용 때문에 늘어나지 않게 하고 긴 글은 줄바꿈 */
+  .studio-grid > * { min-width: 0; }
+  .panel-card, .sub-box, .panel-head, .btn-row { min-width: 0; max-width: 100%; }
+  html, body { max-width: 100%; overflow-x: hidden; }
+  textarea, select, input { max-width: 100%; box-sizing: border-box; }
+  .panel-card, .panel-card * { overflow-wrap: anywhere; }
+  .btn-row { flex-wrap: wrap; }
+  @media (max-width: 1280px) {
+    .studio-grid { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .studio-grid { padding: 0 10px; gap: 14px; }
+    .panel-card { padding: 14px; }
+    .panel-head { flex-wrap: wrap; }
+    .style-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
+    .style-tab { padding: 9px 4px; font-size: 0.86rem; }
+    .top-actions { flex-wrap: wrap; }
+    .top-actions .top-btn { flex: 1 1 calc(50% - 8px); }
+    canvas { max-width: 100%; height: auto; }
+    .slider-row { grid-template-columns: 70px minmax(0, 1fr) 52px !important; gap: 6px; padding: 8px !important; }
+    .slider-row input[type="range"] { min-width: 0; width: 100%; }
+    .time-badge { min-width: 0 !important; font-size: 0.82rem; white-space: nowrap; }
+    .panel-card [style*="display:flex"], .panel-card [style*="display: flex"] { flex-wrap: wrap; }
+    .panel-card [style*="grid-template-columns"] { grid-template-columns: minmax(0, 1fr) !important; }
+  }
 </style>
 </head>
 <body data-theme="parchment">
@@ -1671,14 +1697,49 @@ async function extractThreeShortsFromManuscript(useRemoteAi = false) {
   }
 }
 
+// 후보 길이를 실제로 만들어질 쇼츠 길이로 맞춘다 (카드 표시 = 미리보기 = 결과물 길이)
+function normalizeCandidatesToMedia(candidates) {
+  const bounds = getTargetDurationBounds();
+  const hasMedia = state.mediaType !== "none" && state.mediaTotalDur > 0;
+  (candidates || []).forEach(c => {
+    const want = Math.min(176, Math.max(8, Number(c.recDur) || 60));
+    if (!hasMedia) {
+      c.recDur = want; c.clipStart = 0; c.clipEnd = want; c.mediaLimited = false;
+      return;
+    }
+    let cs = Math.max(0, Number(c.clipStart) || 0);
+    if (state.mediaTotalDur - cs < Math.min(want, 15)) cs = Math.max(0, state.mediaTotalDur - want);
+    const avail = Math.max(4, state.mediaTotalDur - cs);
+    const dur = Math.round(Math.min(want, avail, 176) * 10) / 10;
+    c.clipStart = cs;
+    c.clipEnd = Math.min(state.mediaTotalDur, cs + dur);
+    c.mediaLimited = dur < want - 0.5;
+    if (c.mediaLimited) {
+      // 올린 영상이 후보보다 짧으면, 자막이 너무 빨리 지나가지 않도록 영상 길이에 들어가는 만큼만 문장 단위로 담는다
+      const cap = Math.floor(dur * bounds.charsPerSec);
+      const sents = String(c.text || "").split(/(?<=[.?!])\s+/).filter(Boolean);
+      let acc = "";
+      for (const sn of sents) {
+        if (acc && (acc + " " + sn).replace(/\s/g, "").length > cap) break;
+        acc = acc ? acc + " " + sn : sn;
+      }
+      if (acc) c.text = acc;
+    }
+    c.recDur = dur;
+  });
+  return candidates;
+}
+
 function renderCandidateCardsUI(candidates, bannerText) {
+  normalizeCandidatesToMedia(candidates);
   const wrap = document.getElementById("extractedCandidatesWrap");
   const listEl = document.getElementById("candidateListContainer");
   const banner = document.getElementById("aiExtractStatusBanner");
   wrap.style.display = "block";
   if (banner && bannerText) banner.textContent = bannerText;
   listEl.innerHTML = candidates.map((c, idx) => {
-    const totalWithEnding = Math.min(179, (c.recDur || 110) + 3);
+    const holdSec = (document.getElementById("endingHoldCheck") && document.getElementById("endingHoldCheck").checked) ? 3 : 0;
+    const totalWithEnding = Math.min(179, Math.round(((c.recDur || 110) + holdSec) * 10) / 10);
     const mm = Math.floor(totalWithEnding / 60);
     const ss = String(Math.round(totalWithEnding % 60)).padStart(2, "0");
     return `
@@ -1687,7 +1748,7 @@ function renderCandidateCardsUI(candidates, bannerText) {
           <span>${c.label}</span>
           <span>길이 약 ${totalWithEnding}초 (${mm}분 ${ss}초 · 179초 이내)</span>
         </div>
-        <div class="c-title">${c.line2} — 「${c.line3}」</div>
+        <div class="c-title">${c.line2} — 「${c.line3}」${c.mediaLimited ? ' <small>(올린 영상 길이에 맞춤)</small>' : ''}</div>
         <div class="c-preview">${c.text.replace(/\*/g, "")}</div>
       </button>
     `;
@@ -3602,13 +3663,14 @@ function loadSampleSermon() {
     state.clipEnd = 38;
     updateMediaLoadedUI("견본_설교영상.mp4", state.mediaTotalDur, true);
     vid.currentTime = 0.2;
+    // 영상 길이(예: 58초)를 알게 된 뒤에 후보를 계산해야 카드·미리보기 길이가 일치한다
+    extractThreeShortsFromManuscript(false);
   };
   vid.onerror = () => {
     state.mediaType = "none";
     renderSinglePreviewFrame();
+    extractThreeShortsFromManuscript(false);
   };
-
-  extractThreeShortsFromManuscript(false);
 }
 
 function toggleTheme() {
