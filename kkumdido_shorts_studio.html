@@ -1111,14 +1111,14 @@ const state = {
   loadedImages: {}, // key -> HTMLImageElement
   customSlideImages: [], // array of HTMLImageElement
   subtitles: [
-    { start: 0.0, end: 4.8, text: "사랑하는 성도 여러분,\n*떨면서도 말하는* 사람들" },
-    { start: 4.8, end: 9.8, text: "오히려 사역의 문이\n*활짝 열리기* 시작할 때" },
-    { start: 9.8, end: 14.6, text: "마음 깊은 곳에는\n*뜻밖의 두려움*이 찾아옵니다" },
-    { start: 14.6, end: 19.6, text: "그러나 우리 주님은\n다 무너진 뒤가 아니라" },
-    { start: 19.6, end: 24.4, text: "*밤의 끝자락*을 먼저\n붙들어 주시는 분입니다" },
-    { start: 24.4, end: 29.2, text: "떨림이 다 멈춰서\n*담대한 것*이 아닙니다" },
-    { start: 29.2, end: 33.8, text: "*주님의 손*에 붙들려\n다시 입을 여는 것입니다" },
-    { start: 33.8, end: 38.0, text: "홀로 두지 않으시는\n*주님의 약속*을 붙드십시오" }
+    { start: 0.0, end: 4.8, text: "사랑하는 성도님,\n*떨며 말하는* 사람" },
+    { start: 4.8, end: 9.8, text: "사역의 문이\n*활짝 열릴 때*" },
+    { start: 9.8, end: 14.6, text: "마음 깊은 곳엔\n*두려움이* 옵니다" },
+    { start: 14.6, end: 19.6, text: "그러나 우리 주님은\n무너진 뒤가 아닌" },
+    { start: 19.6, end: 24.4, text: "*밤의 끝자락*을\n먼저 붙드십니다" },
+    { start: 24.4, end: 29.2, text: "떨림이 다 멈춰서\n*담대한 게* 아닙니다" },
+    { start: 29.2, end: 33.8, text: "*주님의 손*에 붙들려\n다시 입을 엽니다" },
+    { start: 33.8, end: 38.0, text: "홀로 두지 않으시는\n*약속을* 붙드십시오" }
   ],
   extractedCandidates: [],
   isPlayingPreview: false,
@@ -1283,7 +1283,7 @@ function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
   const usableDur = Math.max(5.0, Number(totalDurationSec) || 38.0);
 
   let cursor = 0.0;
-  return highlightedPieces.map((text, idx) => {
+  const rawSubs = highlightedPieces.map((text, idx) => {
     const share = (weights[idx] / totalWeight) * usableDur;
     const start = Math.round(cursor * 10) / 10;
     const end = (idx === highlightedPieces.length - 1)
@@ -1292,6 +1292,7 @@ function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
     cursor += share;
     return { start, end: Math.max(start + 1.2, end), text };
   });
+  return paginateLongSubtitleEntries(rawSubs);
 }
 
 // ============================================================================
@@ -2833,10 +2834,11 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
       const blockStartY = 1020 - Math.round(((lineCount - 1) * lineGap) / 2);
 
       rawLines.forEach((ln, idx) => {
-        const lineDelay = idx * 0.16;
+        const lineDelay = idx * 0.12;
         const lineT = Math.max(0, localElapsed - lineDelay);
-        const lineAlpha = Math.min(1.0, lineT / 0.28);
-        const markProg = Math.min(1.0, Math.max(0.0, (lineT - 0.12) / 0.42));
+        const lineAlpha = 1.0; // 항상 100% 선명하고 또렷하게 표시 (뿌옇게 흐려지는 반투명 제거)
+        const isStaticPreview = !state.isPlayingPreview && !state.isRendering;
+        const markProg = isStaticPreview ? 1.0 : Math.min(1.0, Math.max(0.0, lineT / 0.32));
         drawTextMotionLineWithMarker(
           ctx, ln, 84, blockStartY + idx * lineGap,
           W - 168, 82, pal.ink, pal.mark, markProg, lineAlpha, false, unifiedSansPx
@@ -2973,14 +2975,10 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   // 위쪽(상단 제목)과 단 1px의 차이도 없이 똑같은 등잔 밑 82pt (unifiedSerifPx)!
   // =========================================================================
   if (includeSubtitles && !isEndingHold && bottomSubLines.length > 0) {
-    let alpha = 1.0;
-    if (activeSub) {
-      if (sec - activeSub.start < 0.15) alpha = Math.max(0.15, (sec - activeSub.start) / 0.15);
-      else if (activeSub.end - sec < 0.15) alpha = Math.max(0.15, (activeSub.end - sec) / 0.15);
-    }
-
+    // ⚠️ Canvas 2D에서 globalAlpha < 1.0을 걸면 검은 외곽선(strokeText)과 흰 글자(fillText)가 반투명하게 섞여
+    // 아래 문구가 회색빛으로 뿌옇게 흐려지므로, 위쪽 제목과 똑같이 항상 100% 선명한 불투명도(1.0)로 렌더링!
     ctx.save();
-    ctx.globalAlpha = alpha;
+    ctx.globalAlpha = 1.0;
 
     if (state.style === "center_video") {
       // 스타일 2 하단: 위쪽과 똑같은 등잔밑 82pt (unifiedSerifPx), y=1415 / 1515
