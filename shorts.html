@@ -811,19 +811,19 @@
       <span style="font-size:0.92rem; font-weight:800; color:var(--gold);">9:16 세로 (1080×1920)</span>
     </div>
 
-    <!-- 3대 시그니처 화풍 선택 -->
+    <!-- 3대 시그니처 화풍 선택 (입력 소스에 맞춰 자동 선택 + 언제든 1클릭 전환) -->
     <div class="style-tabs">
-      <button type="button" class="style-tab active" data-style="signet" onclick="selectShortsStyle('signet')">
-        🏛️ 꿈바온 인장반지
-        <small>상단 4열 · 등잔 밑 82pt 자막</small>
+      <button type="button" class="style-tab active" data-style="textmotion" onclick="selectShortsStyle('textmotion')">
+        📝 텍스트 모션형
+        <small>그림 없이 말씀만 · 형광펜</small>
       </button>
-      <button type="button" class="style-tab" data-style="archaeology" onclick="selectShortsStyle('archaeology')">
-        📜 고고학 미술관 도판
-        <small>세피아 금선 · 82pt 자막</small>
+      <button type="button" class="style-tab" data-style="center_video" onclick="selectShortsStyle('center_video')">
+        🎬 영상 중앙정갈형
+        <small>위·아래 여백 · 등잔밑 82pt</small>
       </button>
-      <button type="button" class="style-tab" data-style="fullbleed" onclick="selectShortsStyle('fullbleed')">
-        🕯️ 등잔 밑 전체화면
-        <small>9:16 가득 · 82pt 황금자막</small>
+      <button type="button" class="style-tab" data-style="vertical_916" onclick="selectShortsStyle('vertical_916')">
+        📱 9:16 세로쇼츠형
+        <small>9:16 전체화면 · 등잔밑 82pt</small>
       </button>
     </div>
 
@@ -863,21 +863,14 @@
 
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
         <div>
-          <label class="field-label">배경 성화·도판 (영상 없을 때)</label>
+          <label class="field-label">텍스트 모션 색감 · 배경 설정</label>
           <select id="artworkSelect" onchange="onArtworkSelectChange()">
-            <option value="auto_4cuts">✨ 꿈바온 성화 4컷 자동 교차 (쿠션 홀드)</option>
-            <option value="art_04">04. 양피지 성경 두루마리와 등불</option>
-            <option value="art_10">10. 새벽 묵상 책상과 호롱불</option>
-            <option value="art_01">01. 창살 너머 구원의 새벽빛</option>
-            <option value="art_02">02. 광야 길목과 은혜의 빛줄기</option>
-            <option value="art_03">03. 황혼녘 평화로운 감람산</option>
-            <option value="art_05">05. 열린 예루살렘 성문과 돌길</option>
-            <option value="art_06">06. 다락방 기도하는 성도들</option>
-            <option value="art_07">07. 간절한 중보기도의 손길</option>
-            <option value="art_08">08. 믿음의 동행 (돌담길 발걸음)</option>
-            <option value="art_09">09. 소망의 바다와 출항</option>
-            <option value="art_11">11. 순례자의 샌들 발걸음</option>
-            <option value="art_12">12. 매임을 푸시는 해방의 열쇠</option>
+            <option value="text_cycle" selected>🎨 옛날 텍스트 모션 (크림·민트·카드·골드 자동교차)</option>
+            <option value="text_cream">📝 따뜻한 크림 양피지 (#FBF4E4 · 형광펜)</option>
+            <option value="text_mint">🌿 차분한 소프트 민트 (#DCEDE6 · 형광펜)</option>
+            <option value="text_card">🤍 화이트 라운드 카드 (#FAF3E8 · 형광펜)</option>
+            <option value="text_gold">✨ 웜 골드 포인트 (#F5C542 · 형광펜)</option>
+            <option value="auto_4cuts">🖼️ 꿈바온 성화 4컷 (영상 없을 때 보조)</option>
           </select>
         </div>
         <div>
@@ -1069,7 +1062,7 @@ const AUTO_4CUT_KEYS = ["art_04", "art_10", "art_08", "art_01"];
 const MOTION_MODES = ["zoom_in", "pan_right", "zoom_out", "pan_left"];
 
 const state = {
-  style: "signet", // 'signet' | 'archaeology' | 'fullbleed'
+  style: "textmotion", // 'textmotion' (그림 없이 텍스트만) | 'center_video' (가로영상 중앙정갈형) | 'vertical_916' (9:16 세로영상 쇼츠형)
   canvasFontScale: 1.00, // 등잔 밑 황금 표준 82px (100% 기준)
   canvasFontFamily: "serif", // 'serif' (등잔 밑 KoPubWorld바탕 Bold 표준) | 'gothic'
   mediaType: "none", // 'none' | 'video' | 'audio'
@@ -1083,7 +1076,7 @@ const state = {
   cropZoom: 1.08,
   bgmUrl: "bgm/bgm_02_measured_breath.mp3",
   bgmVolume: 0.20,
-  artworkMode: "auto_4cuts",
+  artworkMode: "text_cycle",
   loadedImages: {}, // key -> HTMLImageElement
   customSlideImages: [], // array of HTMLImageElement
   subtitles: [
@@ -1864,6 +1857,12 @@ function handleMediaFileSelect(files) {
       state.clipStart = 0;
       // 60초로 짧게 자르지 않고 최대 176초(+3초 엔딩 = 179초 이내)까지 유연하게 수용
       state.clipEnd = Math.min(dur, 176);
+      // 9:16 세로 영상이면 'vertical_916', 16:9 가로 영상이면 'center_video'로 자동 전환!
+      if (vid.videoHeight > vid.videoWidth * 1.08) {
+        selectShortsStyle("vertical_916");
+      } else {
+        selectShortsStyle("center_video");
+      }
       updateMediaLoadedUI(file.name, dur, true);
       vid.currentTime = 0.05;
     };
@@ -1882,6 +1881,8 @@ function handleMediaFileSelect(files) {
       state.mediaTotalDur = dur;
       state.clipStart = 0;
       state.clipEnd = Math.min(dur, 176);
+      // 음성/원고만 있을 때는 그림 없이 텍스트만 나오는 'textmotion'으로 자동 전환!
+      selectShortsStyle("textmotion");
       updateMediaLoadedUI(file.name, dur, false);
       renderSinglePreviewFrame();
     };
@@ -1910,7 +1911,8 @@ function clearLoadedMedia() {
   state.mediaName = "";
   state.clipStart = 0;
   state.clipEnd = 118;
-  document.getElementById("mediaStatusLabel").textContent = "아직 올린 파일 없음 (성화 배경 모드)";
+  selectShortsStyle("textmotion");
+  document.getElementById("mediaStatusLabel").textContent = "아직 올린 파일 없음 (그림 없이 텍스트 모션 모드)";
   document.getElementById("dropZoneMainText").textContent = "📂 여기를 누르시거나 설교 영상(MP4, MOV)·음성(M4A, MP3, WAV)을 끌어다 놓으십시오";
   document.getElementById("clearMediaBtn").style.display = "none";
   document.getElementById("clipTrimBox").style.display = "none";
@@ -2469,75 +2471,274 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   });
 }
 
-// 메인 1080×1920 프레임 그리기 (분당우리·꿈바온 표준 대형 타이포그래피 규격)
+// 옛날 텍스트 모션 팔레트 (2026-09-27 scene_template.html 정밀 복원)
+const TEXT_MOTION_PALETTES = {
+  cream: { bg: "#FBF4E4", accent: "#E9A825", ink: "#232B36", sub: "#596573", mark: "#F6D77A", ring: "#F2C94C", card: false },
+  mint:  { bg: "#DCEDE6", accent: "#3FAE8E", ink: "#1F2F2B", sub: "#4E6B63", mark: "#8FD8C2", ring: "#5CC2A3", card: false },
+  card:  { bg: "#FAF3E8", accent: "#D89B28", ink: "#232B36", sub: "#596573", mark: "#F8DE8C", ring: "#E9A825", card: true  },
+  gold:  { bg: "#F5C542", accent: "#2F8F74", ink: "#2A2410", sub: "#5B4F24", mark: "#FFE79A", ring: "#FFFFFF", card: false }
+};
+const TEXT_PALETTE_CYCLE = ["cream", "mint", "card", "gold"];
+
+// 텍스트 모션형 1줄(형광펜 마커 애니메이션 + 페이드업) 그리기
+function drawTextMotionLineWithMarker(ctx, lineStr, xLeft, yBase, maxW, targetPx, inkColor, markColor, markProgress, lineAlpha, alignCenter = false) {
+  const segments = [];
+  const regex = /\*([^*]+)\*/g;
+  let lastIndex = 0;
+  let m;
+  let hasExplicitHighlight = false;
+  while ((m = regex.exec(lineStr)) !== null) {
+    if (m.index > lastIndex) segments.push({ text: lineStr.slice(lastIndex, m.index), highlight: false });
+    segments.push({ text: m[1], highlight: true });
+    hasExplicitHighlight = true;
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < lineStr.length) segments.push({ text: lineStr.slice(lastIndex), highlight: false });
+
+  const fontStack = "'Pretendard', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif";
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
+  ctx.font = `800 ${px}px ${fontStack}`;
+  const fullPlain = segments.map(s => s.text).join("");
+  while (ctx.measureText(fullPlain).width > maxW && px > 44) {
+    px -= 2;
+    ctx.font = `800 ${px}px ${fontStack}`;
+  }
+
+  let totalW = 0;
+  segments.forEach(seg => {
+    seg.w = ctx.measureText(seg.text).width;
+    totalW += seg.w;
+  });
+
+  const startX = alignCenter ? (540 - totalW / 2) : xLeft;
+  const slideOffsetY = Math.round((1.0 - lineAlpha) * 24);
+
+  ctx.save();
+  ctx.globalAlpha = lineAlpha;
+  ctx.textAlign = "left";
+  ctx.font = `800 ${px}px ${fontStack}`;
+
+  // 1) 형광펜 마커 바 먼저 그리기 (좌->우 스윕 애니메이션)
+  let curX = startX;
+  segments.forEach(seg => {
+    if (seg.highlight && markProgress > 0.01) {
+      const barW = Math.max(0, (seg.w + 16) * Math.min(1.0, markProgress));
+      const barH = Math.round(px * 0.44);
+      const barY = yBase + slideOffsetY - Math.round(px * 0.34);
+      ctx.save();
+      ctx.fillStyle = markColor;
+      ctx.beginPath();
+      ctx.roundRect(curX - 8, barY, barW, barH, 8);
+      ctx.fill();
+      ctx.restore();
+    }
+    curX += seg.w;
+  });
+
+  // 2) 본문 텍스트 그리기
+  curX = startX;
+  ctx.fillStyle = inkColor;
+  segments.forEach(seg => {
+    ctx.fillText(seg.text, curX, yBase + slideOffsetY);
+    curX += seg.w;
+  });
+  ctx.restore();
+}
+
+// 메인 1080×1920 프레임 그리기 (3대 시그니처 스타일: ① 옛날 텍스트 모션형 / ② 영상 중앙정갈형 / ③ 9:16 세로쇼츠형)
 function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   const ctx = targetCanvas.getContext("2d");
   const W = 1080;
   const H = 1920;
-  const { voiceDur, endingHold } = getTotalRenderDuration();
+  const { voiceDur, endingHold, totalDur } = getTotalRenderDuration();
 
   const line1 = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
   const line2 = document.getElementById("line2Sub").value.trim() || "떨림이 다 멈춰서 담대한 것이 아니라";
   const line3 = document.getElementById("line3Main").value.trim() || "밤의 끝자락을 붙드시는 주님";
-  const line4 = document.getElementById("line4Brand").value.trim();
+  const line4 = document.getElementById("line4Brand").value.trim() || "꿈바온";
 
   const isEndingHold = endingHold > 0 && sec >= voiceDur;
 
   ctx.clearRect(0, 0, W, H);
 
   // =========================================================================
-  // 화풍 1: 🏛️ 꿈바온 인장반지 · 설교 방송 표준 (y=0~510 상단 대형 3줄 + y=1660~1920 하단 서명)
+  // 스타일 1: 📝 텍스트 모션형 (그림 없이 텍스트만 나오는 우리 옛날 스타일 — scene_template.html 복원)
   // =========================================================================
-  if (state.style === "signet") {
-    ctx.fillStyle = "#050507";
+  if (state.style === "textmotion") {
+    const activeIdx = Math.max(0, state.subtitles.findIndex(s => sec >= s.start && sec <= s.end));
+    const sceneGroupIdx = Math.floor(activeIdx / 2);
+
+    let palKey = "cream";
+    if (state.artworkMode === "text_cream") palKey = "cream";
+    else if (state.artworkMode === "text_mint") palKey = "mint";
+    else if (state.artworkMode === "text_card") palKey = "card";
+    else if (state.artworkMode === "text_gold") palKey = "gold";
+    else palKey = TEXT_PALETTE_CYCLE[sceneGroupIdx % TEXT_PALETTE_CYCLE.length];
+
+    const pal = TEXT_MOTION_PALETTES[palKey] || TEXT_MOTION_PALETTES.cream;
+
+    // 1) 단색 배경 (그림 전혀 없음!)
+    ctx.fillStyle = pal.bg;
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙 뷰포트 (y = 510 ~ 1660: 설교자/성화 집중 구간)
-    drawViewportContent(ctx, sec, voiceDur, 0, 510, W, 1150);
-
-    // 하단 자막 보호 그라데이션
-    const botFade = ctx.createLinearGradient(0, 1260, 0, 1665);
-    botFade.addColorStop(0, "rgba(5,5,7,0)");
-    botFade.addColorStop(0.55, "rgba(5,5,7,0.52)");
-    botFade.addColorStop(1, "rgba(5,5,7,0.92)");
-    ctx.fillStyle = botFade;
-    ctx.fillRect(0, 1260, W, 405);
-
-    // 상단 y=0~510 순수 블랙 헤더
-    ctx.fillStyle = "#040406";
-    ctx.fillRect(0, 0, W, 510);
-
-    // 하단 y=1660~1920 순수 블랙 서명 바
-    ctx.fillStyle = "#040406";
-    ctx.fillRect(0, 1660, W, 260);
-
-    // 1열 (y=142): 성경 본문 장절 / 예배명 (큼직한 48px)
-    drawAutoFitLine(ctx, line1, W / 2, 142, 940, 48, 34, 700, "#F4EFE6");
-
-    // 2열 (y=282): 여는 제목 줄 (화면 가로를  시원하게 채우는 88px 대형 타이틀)
-    drawAutoFitLine(ctx, line2, W / 2, 282, 950, 88, 52, 900, "#7CE8FF", "#000000", 6);
-
-    // 3열 (y=432): 본제목 핵심 줄 (가장 강렬하게 들어오는 110px 황금 타이틀)
-    drawAutoFitLine(ctx, line3, W / 2, 432, 980, 110, 62, 900, "#FFF05A", "#000000", 8);
-
-    // 상단-영상 경계 은은한 골드 라인
-    ctx.strokeStyle = "rgba(212, 175, 106, 0.45)";
-    ctx.lineWidth = 2;
+    // 2) 좌하단 & 우하단 부드러운 원형 장식 (#corner, #corner2)
+    ctx.save();
+    ctx.globalAlpha = 0.16;
+    ctx.fillStyle = pal.accent;
     ctx.beginPath();
-    ctx.moveTo(0, 510);
-    ctx.lineTo(W, 510);
-    ctx.stroke();
+    ctx.arc(30, H - 30, 210, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.globalAlpha = 0.11;
+    ctx.beginPath();
+    ctx.arc(W - 60, H - 520, 74, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
 
-    // 4열 (y=1755): 하단 채널/교회 이름 서명
-    if (line4) {
-      drawAutoFitLine(ctx, line4, W / 2, 1755, 860, 44, 28, 800, "rgba(228, 214, 185, 0.78)");
+    // 3) 우상단 회전 링 애니메이션 (#ring-wrap: right=52, top=44, r=100, stroke=16)
+    ctx.save();
+    const ringCx = W - 172;
+    const ringCy = 164;
+    ctx.translate(ringCx, ringCy);
+    ctx.rotate(sec * 0.42);
+    ctx.strokeStyle = pal.ring;
+    ctx.lineWidth = 16;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.arc(0, 0, 96, 0, Math.PI * 1.48);
+    ctx.stroke();
+    ctx.restore();
+
+    // 4) 좌상단 설교 헤더 (#top: left=78, top=96)
+    const uiFont = "'Pretendard', 'Apple SD Gothic Neo', sans-serif";
+    ctx.save();
+    ctx.textAlign = "left";
+    ctx.fillStyle = pal.ink;
+    ctx.font = `800 35px ${uiFont}`;
+    ctx.fillText(line3, 78, 134);
+
+    ctx.fillStyle = pal.sub;
+    ctx.font = `600 25px ${uiFont}`;
+    ctx.fillText(`${line1} · ${line2}`, 78, 178);
+
+    // 액센트 언더바
+    ctx.fillStyle = pal.accent;
+    ctx.beginPath();
+    ctx.roundRect(78, 200, 88, 6, 3);
+    ctx.fill();
+
+    // 큰 따옴표 장식 (#quote-mark: left=78, top=250, 150px, opacity 0.13)
+    ctx.globalAlpha = 0.13;
+    ctx.fillStyle = pal.ink;
+    ctx.font = `900 165px 'Hahmlet', 'Noto Serif KR', serif`;
+    ctx.fillText("“", 70, 385);
+    ctx.restore();
+
+    // 화이트 라운드 카드 모드일 때 중앙 카드 박스
+    if (pal.card) {
+      ctx.save();
+      ctx.shadowColor = "rgba(35, 43, 54, 0.08)";
+      ctx.shadowBlur = 36;
+      ctx.shadowOffsetY = 12;
+      ctx.fillStyle = "#FFFFFF";
+      ctx.beginPath();
+      ctx.roundRect(64, 450, W - 128, 980, 38);
+      ctx.fill();
+      ctx.restore();
     }
+
+    // 5) 중앙 본문 텍스트 모션 스테이지 (#stage: 2~3줄 순차 페이드업 + 형광펜 밑줄 스윕)
+    if (!isEndingHold) {
+      const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end) || state.subtitles[0];
+      if (activeSub && activeSub.text) {
+        const localElapsed = Math.max(0, sec - activeSub.start);
+        let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
+        const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
+        if (rawLines.length === 1 && joinedPlain.length >= 11) {
+          rawLines = splitKoreanIntoBreathLines(rawLines[0], 10).split("\n");
+        }
+        // 별표가 하나도 없으면 마지막 줄(핵심 어구)에 자동으로 형광펜 마커 부여
+        if (!rawLines.some(l => l.includes("*")) && rawLines.length > 0) {
+          const lastIdx = rawLines.length - 1;
+          rawLines[lastIdx] = `*${rawLines[lastIdx]}*`;
+        }
+
+        const lineCount = rawLines.length;
+        const baseFontPx = 82; // 등잔 밑 82pt 사이즈 통일
+        const lineGap = Math.round(122 * (state.canvasFontScale || 1.00));
+        const blockStartY = 930 - Math.round(((lineCount - 1) * lineGap) / 2);
+
+        rawLines.forEach((ln, idx) => {
+          const lineDelay = idx * 0.16;
+          const lineT = Math.max(0, localElapsed - lineDelay);
+          const lineAlpha = Math.min(1.0, lineT / 0.28);
+          const markProg = Math.min(1.0, Math.max(0.0, (lineT - 0.12) / 0.42));
+          drawTextMotionLineWithMarker(
+            ctx, ln, 96, blockStartY + idx * lineGap,
+            W - 192, baseFontPx, pal.ink, pal.mark, markProg, lineAlpha, false
+          );
+        });
+      }
+    } else {
+      // 마지막 3초 엔딩 카드
+      drawTextMotionLineWithMarker(ctx, line2, 96, 860, W - 192, 62, pal.sub, pal.mark, 0, 1.0, true);
+      drawTextMotionLineWithMarker(ctx, `*${line3}*`, 96, 980, W - 192, 82, pal.ink, pal.mark, 1.0, 1.0, true);
+      drawTextMotionLineWithMarker(ctx, line1, 96, 1090, W - 192, 46, pal.sub, pal.mark, 0, 1.0, true);
+    }
+
+    // 6) 하단 배지 + 18밴드 실시간 음성 파형(.wave) + 서명 + 프로그레스 바(#prog)
+    ctx.save();
+    // 좌측 배지
+    ctx.fillStyle = "rgba(255, 255, 255, 0.78)";
+    ctx.beginPath();
+    ctx.roundRect(78, 1736, 178, 50, 999);
+    ctx.fill();
+    ctx.fillStyle = pal.ink;
+    ctx.textAlign = "center";
+    ctx.font = `700 23px ${uiFont}`;
+    ctx.fillText("설교 한 대목", 78 + 89, 1769);
+
+    // 중앙 18밴드 오디오 파형 바
+    const barCount = 18;
+    const barW = 6;
+    const barGap = 7;
+    const totalWaveW = barCount * barW + (barCount - 1) * barGap;
+    const waveStartX = (W - totalWaveW) / 2;
+    const waveCenterY = 1761;
+    ctx.fillStyle = pal.accent;
+    for (let i = 0; i < barCount; i++) {
+      const env = isEndingHold ? 0.18 : (0.35 + 0.65 * Math.abs(Math.sin(sec * 6.2 + i * 0.65) * Math.cos(sec * 3.4 - i * 0.4)));
+      const bh = Math.max(8, Math.round(44 * env));
+      ctx.beginPath();
+      ctx.roundRect(waveStartX + i * (barW + barGap), waveCenterY - bh / 2, barW, bh, 99);
+      ctx.fill();
+    }
+
+    // 우측 채널/교회 서명
+    ctx.textAlign = "right";
+    ctx.fillStyle = pal.sub;
+    ctx.font = `700 26px ${uiFont}`;
+    ctx.fillText(line4, W - 78, 1770);
+
+    // 하단 프로그레스 바 (#prog)
+    const progW = W - 156;
+    const ratio = Math.min(1.0, Math.max(0.0, sec / Math.max(1, totalDur)));
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.beginPath();
+    ctx.roundRect(78, 1822, progW, 6, 99);
+    ctx.fill();
+
+    ctx.fillStyle = pal.accent;
+    ctx.beginPath();
+    ctx.roundRect(78, 1822, Math.max(8, progW * ratio), 6, 99);
+    ctx.fill();
+    ctx.restore();
+    return; // 텍스트 모션형은 자체 중앙 타이포그래피를 그리므로 하단 중복 자막 생략
   }
 
   // =========================================================================
-  // 화풍 2: 📜 고고학 미술관 도판형 (kkumbaon-archaeology-shorts 표준 대형화)
+  // 스타일 2: 🎬 영상 중앙정갈형 (영상을 중간에 두고 위아래로 정갈하게 — 20261108 주일설교 쇼츠 표준)
   // =========================================================================
-  else if (state.style === "archaeology") {
+  else if (state.style === "center_video") {
     const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
     bgGrad.addColorStop(0, "rgb(18, 14, 11)");
     bgGrad.addColorStop(0.5, "rgb(25, 19, 14)");
@@ -2545,59 +2746,64 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙 뷰포트 (y = 430 ~ 1330)
-    drawViewportContent(ctx, sec, voiceDur, 0, 430, W, 900);
+    // 중앙 정갈한 영상 뷰포트 (y = 380 ~ 1280, 높이 900px)
+    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
 
-    // 뷰포트 상단(y=428) & 하단(y=1331) 앤틱 골드 선
+    // 뷰포트 상단(y=378) & 하단(y=1281) 2px 앤틱 골드 정갈한 구분선
     ctx.strokeStyle = "rgb(198, 160, 92)";
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 2.5;
     ctx.beginPath();
-    ctx.moveTo(0, 428); ctx.lineTo(W, 428);
-    ctx.moveTo(0, 1331); ctx.lineTo(W, 1331);
+    ctx.moveTo(0, 378); ctx.lineTo(W, 378);
+    ctx.moveTo(0, 1281); ctx.lineTo(W, 1281);
     ctx.stroke();
 
     if (!isEndingHold) {
-      drawAutoFitLine(ctx, `───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 122, 940, 42, 30, 700, "rgb(218, 182, 112)");
-      drawAutoFitLine(ctx, line2, W / 2, 238, 950, 78, 48, 800, "rgb(250, 245, 235)", "#080604", 6);
-      drawAutoFitLine(ctx, line3, W / 2, 368, 980, 98, 56, 900, "rgb(245, 208, 122)", "#080604", 8);
+      // 상단 정갈한 세리프 헤더 (자극적인 형광색 없이 품격 있는 양피지 아이보리 & 샴페인 골드)
+      drawAutoFitLine(ctx, `───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 118, 920, 30, 24, 700, "rgb(212, 175, 106)");
+      drawAutoFitLine(ctx, line2, W / 2, 196, 920, 60, 42, 700, "rgb(250, 245, 235)", "#080604", 5);
+      drawAutoFitLine(ctx, line3, W / 2, 286, 940, 66, 46, 800, "rgb(234, 198, 122)", "#080604", 6);
     } else {
       // 3.0초 수미상관 엔딩 카드
-      drawAutoFitLine(ctx, `───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 155, 920, 44, 30, 700, "rgb(218, 182, 112)");
-      drawAutoFitLine(ctx, line3, W / 2, 310, 960, 102, 58, 900, "rgb(250, 245, 235)", "#080604", 8);
-      drawAutoFitLine(ctx, line1, W / 2, 1490, 920, 56, 36, 800, "rgb(218, 182, 112)");
+      drawAutoFitLine(ctx, `───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 145, 920, 34, 26, 700, "rgb(212, 175, 106)");
+      drawAutoFitLine(ctx, line3, W / 2, 265, 940, 74, 48, 800, "rgb(250, 245, 235)", "#080604", 6);
+      drawAutoFitLine(ctx, line1, W / 2, 1470, 920, 46, 32, 700, "rgb(212, 175, 106)");
+    }
+
+    // 최하단 은은한 서명
+    if (line4 && !isEndingHold) {
+      drawAutoFitLine(ctx, `───  ${line4}  ───`, W / 2, 1815, 860, 26, 22, 600, "rgba(212, 175, 106, 0.52)");
     }
   }
 
   // =========================================================================
-  // 화풍 3: 🕯️ 등잔 밑 전체화면형 (9:16 풀스크린 + 대형 상단제호 & 대자막)
+  // 스타일 3: 📱 9:16 세로쇼츠형 (9:16 세로 영상 전체화면 + 등잔 밑 82pt 황금 자막)
   // =========================================================================
   else {
     drawViewportContent(ctx, sec, voiceDur, 0, 0, W, H);
 
-    const topV = ctx.createLinearGradient(0, 0, 0, 480);
-    topV.addColorStop(0, "rgba(6, 5, 4, 0.88)");
-    topV.addColorStop(0.7, "rgba(6, 5, 4, 0.45)");
-    topV.addColorStop(1, "rgba(6, 5, 4, 0)");
+    const topV = ctx.createLinearGradient(0, 0, 0, 340);
+    topV.addColorStop(0, "rgba(8, 6, 5, 0.78)");
+    topV.addColorStop(0.65, "rgba(8, 6, 5, 0.32)");
+    topV.addColorStop(1, "rgba(8, 6, 5, 0)");
     ctx.fillStyle = topV;
-    ctx.fillRect(0, 0, W, 480);
+    ctx.fillRect(0, 0, W, 340);
 
-    const botV = ctx.createLinearGradient(0, 1120, 0, H);
-    botV.addColorStop(0, "rgba(6, 5, 4, 0)");
-    botV.addColorStop(0.5, "rgba(6, 5, 4, 0.76)");
-    botV.addColorStop(1, "rgba(6, 5, 4, 0.95)");
+    const botV = ctx.createLinearGradient(0, 1180, 0, H);
+    botV.addColorStop(0, "rgba(8, 6, 5, 0)");
+    botV.addColorStop(0.55, "rgba(8, 6, 5, 0.68)");
+    botV.addColorStop(1, "rgba(8, 6, 5, 0.90)");
     ctx.fillStyle = botV;
-    ctx.fillRect(0, 1120, W, H - 1120);
+    ctx.fillRect(0, 1180, W, H - 1180);
 
-    drawAutoFitLine(ctx, `✦  ${line1}  ✦`, W / 2, 145, 920, 46, 32, 800, "#F2D078", "#050507", 10);
-    drawAutoFitLine(ctx, line2, W / 2, 255, 940, 74, 46, 800, "#FFFDF8", "#050507", 14);
-    drawAutoFitLine(ctx, line3, W / 2, 380, 970, 98, 56, 900, "#FFE46B", "#050507", 16);
+    drawAutoFitLine(ctx, `───  ${line1}  ───`, W / 2, 118, 920, 32, 24, 700, "rgb(218, 182, 112)", "#080604", 6);
+    drawAutoFitLine(ctx, line3, W / 2, 192, 920, 54, 38, 800, "rgb(250, 245, 235)", "#080604", 8);
     if (line4) {
-      drawAutoFitLine(ctx, line4, W / 2, 1760, 860, 42, 28, 700, "rgba(242, 208, 120, 0.82)", "#050507", 8);
+      drawAutoFitLine(ctx, line4, W / 2, 1815, 860, 28, 22, 700, "rgba(218, 182, 112, 0.68)", "#080604", 5);
     }
   }
 
   // =========================================================================
-  // 하단 자막 렌더링 — 『등잔 밑』 황금 표준 일괄 통일 (Fontsize 82, MarginV 540 -> 하단 기준선 y=1380)
+  // 하단 자막 렌더링 (스타일 2 & 스타일 3 공통) — 『등잔 밑』 황금 표준 일괄 통일 (Fontsize 82, MarginV 540 -> y=1380)
   // =========================================================================
   if (includeSubtitles && !isEndingHold) {
     const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
@@ -3030,21 +3236,26 @@ function downloadShortsCover(coverType) {
   const line4 = document.getElementById("line4Brand").value.trim() || "꿈바온";
 
   if (coverType === "signet") {
-    // 인장반지 · 설교 방송 대형 3줄 세로 쇼츠 대표 커버
-    ctx.fillStyle = "#040406";
+    // Rule 64 인장반지 4열 표준 커버 (y=0~480 순수 블랙 + 샴페인골드·웜아이보리 정통 세리프)
+    ctx.fillStyle = "#080605";
     ctx.fillRect(0, 0, 1080, 1920);
 
-    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 0, 510, 1080, 1150);
+    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 0, 480, 1080, 1440);
 
-    ctx.fillStyle = "#040406";
-    ctx.fillRect(0, 0, 1080, 510);
-    ctx.fillRect(0, 1660, 1080, 260);
+    const topGrad = ctx.createLinearGradient(0, 440, 0, 620);
+    topGrad.addColorStop(0, "#000000");
+    topGrad.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = topGrad;
+    ctx.fillRect(0, 440, 1080, 180);
 
-    drawAutoFitLine(ctx, line1, 540, 142, 940, 48, 34, 700, "#F4EFE6");
-    drawAutoFitLine(ctx, line2, 540, 282, 950, 88, 52, 900, "#7CE8FF", "#000000", 6);
-    drawAutoFitLine(ctx, line3, 540, 432, 980, 110, 62, 900, "#FFF05A", "#000000", 8);
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, 1080, 480);
+
+    drawAutoFitLine(ctx, `───  ${line1}  ───`, 540, 200, 920, 32, 24, 700, "#D8BC82");
+    drawAutoFitLine(ctx, line2, 540, 267, 920, 44, 32, 700, "#F5F2EB");
+    drawAutoFitLine(ctx, line3, 540, 394, 940, 104, 58, 800, "#F2D28B", "#000000", 6);
     if (line4) {
-      drawAutoFitLine(ctx, line4, 540, 1755, 860, 44, 28, 800, "rgba(228, 214, 185, 0.85)");
+      drawAutoFitLine(ctx, line4, 540, 482, 860, 30, 22, 700, "#CBB282");
     }
   } else {
     // 고고학 양피지 도판 포스터형 커버 (kkumbaon-archaeology-shorts 5장 규격 대형화)
@@ -3195,7 +3406,7 @@ function loadSampleSermon() {
   document.getElementById("line3Main").value = "밤의 끝자락을 붙드시는 주님";
   document.getElementById("line4Brand").value = "꿈바온";
 
-  // 내장 샘플 영상이 있으면 불러오고, 없으면 성화 4컷 모드로 즉시 작동
+  // 견본 설교 버튼을 누르면 현재 선택된 화풍에 맞춰 시연
   const vid = document.getElementById("hiddenSourceVideo");
   vid.src = "sample_data/sample_sermon_demo.mp4";
   vid.load();
@@ -3214,7 +3425,7 @@ function loadSampleSermon() {
     renderSinglePreviewFrame();
   };
 
-  extractThreeShortsFromManuscript();
+  extractThreeShortsFromManuscript(false);
 }
 
 function toggleTheme() {
