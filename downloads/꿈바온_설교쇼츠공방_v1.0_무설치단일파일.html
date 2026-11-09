@@ -1344,7 +1344,7 @@ function clearSavedAiKey() {
   } catch (e) {}
 }
 
-// 긴 SRT 자막이나 긴 문장을 화면 밖으로 절대 튀어나가지 않게 2줄(줄당 8~10자) 카드로 자동 분할
+// 긴 SRT 자막이나 긴 문장을 82pt 고정 크기에서 단 1pt도 줄어들지 않도록 2줄(줄당 8~9자) 카드로 최적 분할
 function paginateLongSubtitleEntries(subList) {
   const out = [];
   (subList || []).forEach(item => {
@@ -1354,43 +1354,66 @@ function paginateLongSubtitleEntries(subList) {
     const cleanFlat = String(item.text || "").replace(/\s+/g, " ").trim();
     if (!cleanFlat) return;
 
-    const plainLen = cleanFlat.replace(/\*/g, "").length;
+    const plainLen = cleanFlat.replace(/[\*\s]/g, "").length;
     const lines = String(item.text || "").split("\n").map(l => l.trim()).filter(Boolean);
     const maxSingleLine = Math.max(...lines.map(l => l.replace(/\*/g, "").length), 0);
 
-    // 이미 2줄 이내이고 각 줄이 11자 이하이면 그대로 유지
-    if (lines.length <= 2 && maxSingleLine <= 11 && plainLen <= 21) {
+    // 이미 2줄 이내이고 각 줄이 9자 이하이면 82pt 고정 크기에서 여유 있게 들어가므로 그대로 유지
+    if (lines.length <= 2 && maxSingleLine <= 9 && plainLen <= 16) {
       out.push({ start: Math.round(start * 10) / 10, end: Math.round(end * 10) / 10, text: lines.join("\n") });
       return;
     }
 
-    // 문장이 길면 어절 단위로 16~18자씩 나누어 시간 비례 분할
-    const words = cleanFlat.split(" ");
-    const chunks = [];
-    let acc = [];
-    let accLen = 0;
-    words.forEach((w, idx) => {
-      const wLen = w.replace(/\*/g, "").length;
-      acc.push(w);
-      accLen += wLen + 1;
-      const isLast = idx === words.length - 1;
-      const pauseEnd = /[,，.?!]|(지만|으나|는데|면서|하고|하며|이라|니라|니다|소서|시오)$/.test(w.replace(/\*/g, ""));
-      if (!isLast && ((accLen >= 13 && pauseEnd) || accLen >= 17)) {
-        chunks.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
-        acc = [];
-        accLen = 0;
-      }
-    });
-    if (acc.length > 0) {
-      if (acc.join(" ").replace(/\*/g, "").length <= 4 && chunks.length > 0) {
-        chunks[chunks.length - 1] = splitKoreanIntoBreathLines(
-          chunks[chunks.length - 1].replace(/\n/g, " ") + " " + acc.join(" "),
-          10
-        );
-      } else {
-        chunks.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
+    // DP(동적 계획법)로 문장을 10~15자(줄당 7~9자) 단위의 2줄 카드들로 균형 분할 (외톨이 단어 0건)
+    const words = cleanFlat.split(" ").filter(Boolean);
+    const n = words.length;
+    const dp = new Array(n + 1).fill(1e12);
+    const parent = new Array(n + 1).fill(-1);
+    dp[0] = 0;
+
+    for (let i = 0; i < n; i++) {
+      if (dp[i] >= 1e11) continue;
+      for (let j = i + 1; j <= Math.min(n, i + 8); j++) {
+        const segStr = words.slice(i, j).join(" ");
+        const twoLines = splitKoreanIntoBreathLines(segStr, 8).split("\n");
+        const maxLnLen = Math.max(...twoLines.map(l => l.replace(/\*/g, "").length));
+        const noSpaceLen = segStr.replace(/[\*\s]/g, "").length;
+        if (maxLnLen > 10 && j > i + 1) continue;
+
+        let cost = 25 + Math.pow(noSpaceLen - 12.0, 2) * 1.8;
+        if (noSpaceLen < 6 && j < n) cost += 120;
+        if (noSpaceLen <= 4) cost += 250;
+        if (twoLines.length === 2) {
+          const l1 = twoLines[0].replace(/\*/g, "").length;
+          const l2 = twoLines[1].replace(/\*/g, "").length;
+          cost += Math.abs(l1 - l2) * 2.5;
+        }
+        if (j < n) {
+          const nextW = (words[j] || "").replace(/[\*.,?!]/g, "");
+          if (/^(때|때에|때가|수|것|줄|데|바|채|듯|뿐|있기에|아니라|않으시고)$/.test(nextW)) {
+            cost += 160;
+          }
+        }
+        const lastW = (words[j - 1] || "").replace(/\*/g, "");
+        if (/[,，]|(때|때에|면|서|라|지만|는데)$/.test(lastW)) cost -= 28;
+        else if (/(나|니|고|며|에|는|은|을|를|이|가)$/.test(lastW)) cost -= 8;
+
+        if (dp[i] + cost < dp[j]) {
+          dp[j] = dp[i] + cost;
+          parent[j] = i;
+        }
       }
     }
+
+    let idx = n;
+    const chunks = [];
+    while (idx > 0) {
+      let p = parent[idx];
+      if (p < 0) p = 0;
+      chunks.push(splitKoreanIntoBreathLines(words.slice(p, idx).join(" "), 8));
+      idx = p;
+    }
+    chunks.reverse();
 
     const weights = chunks.map(c => Math.max(3, c.replace(/[\*\s]/g, "").length));
     const totalW = weights.reduce((a, b) => a + b, 0);
@@ -2521,18 +2544,9 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   ctx.restore();
 }
 
-// 등잔 밑 황금 표준 자막 렌더러 (위·아래 모든 줄을 동일한 82pt 글자 크기로 통일!)
+// 등잔 밑 황금 표준 자막 렌더러 (처음부터 끝까지 모든 프레임에서 글자 크기가 절대 변하지 않도록 82pt 고정!)
 function computeUniformBlockFontPx(ctx, linesArr, fontStack, weightStr, safeMaxW, targetPx = 82) {
-  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
-  ctx.font = `${weightStr} ${px}px ${fontStack}`;
-  for (const ln of linesArr) {
-    const plain = String(ln || "").replace(/\*/g, "");
-    while (ctx.measureText(plain).width > safeMaxW && px > 54) {
-      px -= 2;
-      ctx.font = `${weightStr} ${px}px ${fontStack}`;
-    }
-  }
-  return px;
+  return Math.round(targetPx * (state.canvasFontScale || 1.00));
 }
 
 function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 82, fixedPx = null) {
