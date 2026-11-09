@@ -815,15 +815,15 @@
     <div class="style-tabs">
       <button type="button" class="style-tab active" data-style="signet" onclick="selectShortsStyle('signet')">
         🏛️ 꿈바온 인장반지
-        <small>상단 대형제목 · 대자막</small>
+        <small>상단 4열 · 등잔 밑 82pt 자막</small>
       </button>
       <button type="button" class="style-tab" data-style="archaeology" onclick="selectShortsStyle('archaeology')">
         📜 고고학 미술관 도판
-        <small>세피아 금선 · 3초 엔딩</small>
+        <small>세피아 금선 · 82pt 자막</small>
       </button>
       <button type="button" class="style-tab" data-style="fullbleed" onclick="selectShortsStyle('fullbleed')">
         🕯️ 등잔 밑 전체화면
-        <small>9:16 가득 · 94pt 자막</small>
+        <small>9:16 가득 · 82pt 황금자막</small>
       </button>
     </div>
 
@@ -848,16 +848,16 @@
       <input type="file" id="customImagesInput" accept="image/*" multiple style="display:none" onchange="handleCustomImagesSelect(this.files)">
 
       <div class="slider-row" style="margin-top:0; margin-bottom:10px; background:var(--gold-soft); padding:8px 12px; border-radius:10px;">
-        <span>🔠 쇼츠 글자 크기</span>
-        <input type="range" id="canvasFontScaleSlider" min="85" max="135" value="108" oninput="onCanvasFontScaleChange(this.value)">
-        <span id="canvasFontScaleLabel">108%</span>
+        <span>🔠 자막 크기(82pt)</span>
+        <input type="range" id="canvasFontScaleSlider" min="85" max="125" value="100" oninput="onCanvasFontScaleChange(this.value)">
+        <span id="canvasFontScaleLabel">82pt</span>
       </div>
 
       <div style="margin-bottom:10px;">
-        <label class="field-label">✒️ 쇼츠 영상 글꼴 선택</label>
+        <label class="field-label">✒️ 쇼츠 자막 글꼴 (등잔 밑 표준 통일)</label>
         <select id="canvasFontFamilySelect" onchange="onCanvasFontFamilyChange(this.value)">
-          <option value="gothic">굵은 고딕 — 한눈에 들어오는 설교 방송형 대자막</option>
-          <option value="serif">굵은 명조 — 꿈바온 성경 바탕체</option>
+          <option value="serif" selected>등잔 밑 표준 바탕체 — KoPubWorld바탕 Bold (82pt · MarginV 540)</option>
+          <option value="gothic">굵은 고딕 — 설교 방송형 고딕체 (82pt · MarginV 540)</option>
         </select>
       </div>
 
@@ -1070,8 +1070,8 @@ const MOTION_MODES = ["zoom_in", "pan_right", "zoom_out", "pan_left"];
 
 const state = {
   style: "signet", // 'signet' | 'archaeology' | 'fullbleed'
-  canvasFontScale: 1.08, // 쇼츠 결과물 글자 크기 배율 (기본 108% 대자막)
-  canvasFontFamily: "gothic", // 'gothic' (설교 방송형 굵은 고딕) | 'serif' (꿈바온 바탕)
+  canvasFontScale: 1.00, // 등잔 밑 황금 표준 82px (100% 기준)
+  canvasFontFamily: "serif", // 'serif' (등잔 밑 KoPubWorld바탕 Bold 표준) | 'gothic'
   mediaType: "none", // 'none' | 'video' | 'audio'
   mediaUrl: "",
   mediaName: "",
@@ -2066,23 +2066,24 @@ function selectShortsStyle(styleKey) {
 }
 
 function onCanvasFontScaleChange(val) {
-  const pct = Number(val) || 108;
+  const pct = Number(val) || 100;
   state.canvasFontScale = pct / 100;
-  document.getElementById("canvasFontScaleLabel").textContent = `${pct}%`;
+  const pt = Math.round(82 * state.canvasFontScale);
+  document.getElementById("canvasFontScaleLabel").textContent = `${pt}pt`;
   verifySubtitleSafetyBadge();
   renderSinglePreviewFrame();
 }
 
 function onCanvasFontFamilyChange(val) {
-  state.canvasFontFamily = val || "gothic";
+  state.canvasFontFamily = val || "serif";
   verifySubtitleSafetyBadge();
   renderSinglePreviewFrame();
 }
 
 function getCanvasFontStack() {
-  return state.canvasFontFamily === "serif"
-    ? "'Hahmlet', 'Noto Serif KR', serif"
-    : "'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif";
+  return state.canvasFontFamily === "gothic"
+    ? "'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif"
+    : "'KoPubWorldBatang_Pro Bold', 'KoPubWorldBatang_Pro', 'KoPubWorld-Batang-Bold', 'Hahmlet', 'Noto Serif KR', serif";
 }
 
 // 화면 폭(Safe Zone 920px: 좌우 최소 80px 여백 보장) 안에 꽉 차면서도 절대 튀어나가지 않게 글자 크기를 자동 맞춤하여 그리는 함수
@@ -2091,7 +2092,7 @@ function drawAutoFitLine(ctx, text, centerX, y, maxW, targetPx, minPx, weight, f
   if (!str) return;
   const fontStack = getCanvasFontStack();
   const safeMaxW = Math.min(maxW, 920 - strokeW);
-  let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
   const floorPx = Math.max(26, Math.round(minPx * 0.78));
 
   ctx.font = `${weight} ${px}px ${fontStack}`;
@@ -2117,7 +2118,7 @@ function drawAutoFitLine(ctx, text, centerX, y, maxW, targetPx, minPx, weight, f
   ctx.restore();
 }
 
-// 자막 전 구간 좌우 튀어나감 0% 실시간 검증 배지 업데이트
+// 자막 전 구간 좌우 튀어나감 0% 실시간 검증 배지 업데이트 (등잔 밑 82pt 기준)
 function verifySubtitleSafetyBadge() {
   const badge = document.getElementById("subtitleSafetyBadge");
   if (!badge) return;
@@ -2125,26 +2126,26 @@ function verifySubtitleSafetyBadge() {
   const c = document.getElementById("shortsCanvas");
   const ctx = c ? c.getContext("2d") : null;
   const fontStack = getCanvasFontStack();
-  const targetPx = Math.round(88 * (state.canvasFontScale || 1.08));
+  const targetPx = Math.round(82 * (state.canvasFontScale || 1.00));
 
   state.subtitles.forEach(s => {
     const lines = String(s.text || "").split("\n").map(l => l.replace(/\*/g, "").trim()).filter(Boolean);
     lines.forEach(ln => {
       if (ctx) {
-        ctx.font = `900 ${targetPx}px ${fontStack}`;
-        if (ctx.measureText(ln).width + 20 > 920) {
+        ctx.font = `700 ${targetPx}px ${fontStack}`;
+        if (ctx.measureText(ln).width + 16 > 920) {
           autoScaledCount++;
         }
-      } else if (ln.length > 11) {
+      } else if (ln.length > 12) {
         autoScaledCount++;
       }
     });
   });
 
   if (autoScaledCount === 0) {
-    badge.textContent = `🛡️ 자막 안전 폭(좌우 80px 여백) 점검 완료 · 전 구간(${state.subtitles.length}컷) 튀어나감 0건`;
+    badge.textContent = `🛡️ 등잔 밑 표준 자막(82pt · MarginV 540) 점검 완료 · 전 구간(${state.subtitles.length}컷) 튀어나감 0건`;
   } else {
-    badge.textContent = `🛡️ 긴 줄 ${autoScaledCount}곳 자동 줄바꿈·폭 맞춤 작동 중 · 좌우 튀어나감 0건 보장`;
+    badge.textContent = `🛡️ 등잔 밑 표준(82pt) · 긴 줄 ${autoScaledCount}곳 자동 폭 맞춤 작동 중 (튀어나감 0건)`;
   }
 }
 
@@ -2409,8 +2410,8 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   ctx.restore();
 }
 
-// *별표* 강조 어구를 황금색/연두빛으로 렌더링하되, 테두리 포함 전체 폭이 920px(좌우 최소 80px 안전 여백)을 절대 넘지 않게 자동 맞춤하는 대자막 헬퍼
-function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 88) {
+// 등잔 밑 황금 표준 자막 렌더러 (Fontsize 82, MarginV 540, 본문 웜화이트 #FFFAF2, 강조 샴페인골드 #F5C868, 외곽선 먹빛차콜 #141010)
+function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 82) {
   const segments = [];
   const regex = /\*(.+?)\*/g;
   let lastIndex = 0;
@@ -2431,12 +2432,12 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
 
   const fontStack = getCanvasFontStack();
   const safeMaxW = 920 - outlineWidth; // 테두리 포함 최대 920px (좌 x>=80, 우 x<=1000 보장)
-  let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.00));
   const plainJoined = segments.map(s => s.text).join("");
-  ctx.font = `900 ${px}px ${fontStack}`;
+  ctx.font = `700 ${px}px ${fontStack}`;
   while (ctx.measureText(plainJoined).width > safeMaxW && px > 42) {
     px -= 2;
-    ctx.font = `900 ${px}px ${fontStack}`;
+    ctx.font = `700 ${px}px ${fontStack}`;
   }
 
   let totalW = 0;
@@ -2450,12 +2451,13 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   ctx.lineJoin = "round";
   ctx.miterLimit = 2;
 
-  // 1) 두꺼운 외곽선 + 깊은 그림자 (어떤 배경 위에서도 100% 선명하게)
+  // 등잔 밑 황금 표준: Outline 3.8 (Canvas 양방향 10px), Shadow 4.0, 먹빛 차콜 #141010
   segments.forEach(seg => {
     ctx.save();
-    ctx.shadowColor = "rgba(0, 0, 0, 0.92)";
-    ctx.shadowBlur = 16;
-    ctx.shadowOffsetY = 5;
+    ctx.shadowColor = "rgba(16, 16, 20, 0.90)";
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetX = 2;
+    ctx.shadowOffsetY = 4;
     ctx.strokeStyle = outlineColor;
     ctx.lineWidth = outlineWidth;
     ctx.strokeText(seg.text, curX, y);
@@ -2595,41 +2597,43 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   }
 
   // =========================================================================
-  // 하단 대자막 렌더링 (y = 1390 ~ 1515, 글자 크기 88~96px + 두꺼운 검정 테두리 20px)
+  // 하단 자막 렌더링 — 『등잔 밑』 황금 표준 일괄 통일 (Fontsize 82, MarginV 540 -> 하단 기준선 y=1380)
   // =========================================================================
   if (includeSubtitles && !isEndingHold) {
     const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
     if (activeSub && activeSub.text) {
       let alpha = 1.0;
-      if (sec - activeSub.start < 0.12) alpha = Math.max(0.15, (sec - activeSub.start) / 0.12);
-      else if (activeSub.end - sec < 0.12) alpha = Math.max(0.15, (activeSub.end - sec) / 0.12);
+      if (sec - activeSub.start < 0.15) alpha = Math.max(0.15, (sec - activeSub.start) / 0.15);
+      else if (activeSub.end - sec < 0.15) alpha = Math.max(0.15, (activeSub.end - sec) / 0.15);
 
       ctx.save();
       ctx.globalAlpha = alpha;
 
-      // 한 줄이 11자 초과이거나 두 줄의 길이가 불균형하게 길면 자동으로 2줄 균형 분할하여 95px 대자막 유지 + 튀어나감 0% 보장
+      // 한 줄 12자 내외 · 2줄 균형 분할 (등잔 밑 82pt 황금 표준 + 튀어나감 0% 보장)
       let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
       const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
-      if (rawLines.length === 1 && joinedPlain.length >= 11) {
-        rawLines = splitKoreanIntoBreathLines(rawLines[0], 10).split("\n");
+      if (rawLines.length === 1 && joinedPlain.length >= 12) {
+        rawLines = splitKoreanIntoBreathLines(rawLines[0], 11).split("\n");
       } else if (rawLines.length >= 2 && rawLines.some(l => l.replace(/\*/g, "").length >= 14)) {
         const balancedTarget = Math.max(10, Math.ceil(joinedPlain.length / 2));
         rawLines = splitKoreanIntoBreathLines(rawLines.join(" "), balancedTarget).split("\n");
       }
 
-      const baseY = state.style === "archaeology" ? 1425 : 1405;
-      const lineGap = Math.round(112 * Math.min(1.18, state.canvasFontScale || 1.08));
+      // MarginV 540: 하단에서 540px 위인 y = 1380px가 자막 블록 하단 기준선
+      const bottomLineY = 1380;
+      const lineGap = Math.round(98 * Math.min(1.18, state.canvasFontScale || 1.00));
 
       if (rawLines.length === 1) {
         drawHighlightedSubtitleLine(
-          ctx, rawLines[0], W / 2, baseY + 52,
-          "#FFFDF5", "#8CFF66", "#050508", 20, 90
+          ctx, rawLines[0], W / 2, bottomLineY,
+          "#FFFAF2", "#F5C868", "#141010", 10, 82
         );
       } else {
         rawLines.slice(0, 2).forEach((ln, idx) => {
+          const yPos = idx === 0 ? (bottomLineY - lineGap) : bottomLineY;
           drawHighlightedSubtitleLine(
-            ctx, ln, W / 2, baseY + idx * lineGap,
-            idx === 0 ? "#FFFDF5" : "#FFF266", "#7CFF6B", "#050508", 20, 88
+            ctx, ln, W / 2, yPos,
+            "#FFFAF2", "#F5C868", "#141010", 10, 82
           );
         });
       }
