@@ -25,10 +25,15 @@
   --plan-text:#F5F1E6; --plan-text-2:rgba(245,241,230,.84);
   --serif:'Hahmlet','AppleMyungjo','Batang','Noto Serif KR',serif;
   --sans:'Pretendard Variable','Pretendard',-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  /* 상단 헤더 및 카테고리 최소 폰트 크기 하한선 고정 */
+  --top-brand-min-font:24px;
+  --top-sub-min-font:14.5px;
+  --top-cat-min-font:20px;
+  --top-btn-min-font:16px;
   color-scheme:light;
 }
 @media (prefers-color-scheme: dark){
-  :root{
+  :root:not([data-theme="light"]){
     --paper:#161513; --paper-2:#22201C; --paper-3:#1C1B18;
     --ink:#F2EEE4; --ink-2:#D6CFC1; --ink-3:#AEA696;
     --rule:#3A3630; --rule-strong:#625B50;
@@ -39,7 +44,7 @@
     color-scheme:dark;
   }
 }
-html[data-theme="dark"]{
+html[data-theme="dark"],body[data-theme="dark"]{
   --paper:#161513; --paper-2:#22201C; --paper-3:#1C1B18;
   --ink:#F2EEE4; --ink-2:#D6CFC1; --ink-3:#AEA696;
   --rule:#3A3630; --rule-strong:#625B50;
@@ -48,6 +53,19 @@ html[data-theme="dark"]{
   --stone:#4C473F; --stone-edge:#7A7264; --water:#173252; --water-deep:#091524;
   --plan-bg:#12263E; --plan-yard:#17304D;
   color-scheme:dark;
+}
+html[data-theme="light"],body[data-theme="light"]{
+  --paper:#F4F2EB; --paper-2:#E8E3D5; --paper-3:#FCFBF7;
+  --ink:#1B1916; --ink-2:#332F2A; --ink-3:#4E4840;
+  --rule:#CFC7B4; --rule-strong:#9E947E;
+  --indigo:#1E3A5F; --indigo-deep:#14294A; --indigo-link:#1B4472; --on-indigo:#F6F3EA;
+  --gold:#C59B38; --gold-ink:#6B4F10;
+  --moss:#355440;
+  --brook:rgba(30,58,95,.10);
+  --stone:#D8D0BE; --stone-edge:#8E846C; --water:#1E3A5F; --water-deep:#0D1F33;
+  --plan-bg:#1E3A5F; --plan-yard:#244470; --plan-line:rgba(242,238,227,.72); --plan-line-soft:rgba(242,238,227,.30);
+  --plan-text:#F5F1E6; --plan-text-2:rgba(245,241,230,.84);
+  color-scheme:light;
 }
 /* 기본 글자 크기를 20px(125%)로 시원하게 상향 */
 html{font-size:125%;scroll-behavior:smooth}
@@ -67,26 +85,26 @@ h1,h2,h3,h4{margin:0}
 .preview{display:none;background:var(--indigo-deep);color:var(--on-indigo);font-size:.9rem;padding:.55rem 16px;text-align:center}
 .is-preview .preview{display:block}
 
-/* 머리띠 (글자 크기를 키워도 상단바는 항상 1줄에 단정하게 고정) */
-.mast{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1.5px solid var(--rule);font-size:16px}
-.mast__inner{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:66px;flex-wrap:nowrap;padding-top:6px;padding-bottom:6px}
-.brand{display:flex;flex-direction:column;line-height:1.2;text-decoration:none;color:var(--ink);flex-shrink:0}
-.brand b{font-family:var(--serif);font-weight:700;font-size:22px;letter-spacing:-.01em}
-.brand span{font-size:13px;font-weight:500;color:var(--ink-3)}
-.mast__nav{display:flex;gap:4px;flex-wrap:nowrap;align-items:center}
-.mast__nav a{padding:7px 11px;border-radius:6px;color:var(--ink-2);text-decoration:none;font-weight:700;font-size:16px;white-space:nowrap}
+/* 머리띠 (상단 카테고리 및 버튼 최소 폰트 크기 하한선 보장 + 시원한 가독성) */
+.mast{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1.5px solid var(--rule)}
+.mast__inner{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:72px;flex-wrap:nowrap;padding-top:8px;padding-bottom:8px}
+.brand{display:flex;flex-direction:column;line-height:1.22;text-decoration:none;color:var(--ink);flex-shrink:0}
+.brand b{font-family:var(--serif);font-weight:700;font-size:max(var(--top-brand-min-font,24px),1.25rem);letter-spacing:-.01em}
+.brand span{font-size:max(var(--top-sub-min-font,14.5px),.76rem);font-weight:600;color:var(--ink-3);margin-top:2px}
+.mast__nav{display:flex;gap:8px;flex-wrap:nowrap;align-items:center}
+.mast__nav a{padding:9px 14px;min-height:42px;display:inline-flex;align-items:center;border-radius:8px;color:var(--ink-2);text-decoration:none;font-weight:800;font-size:max(var(--top-cat-min-font,20px),1.04rem);letter-spacing:-.015em;white-space:nowrap}
 .mast__nav a:hover{background:var(--paper-2);color:var(--ink)}
-.mast__tools{display:flex;align-items:center;gap:7px;flex-wrap:nowrap;flex-shrink:0}
-.home-link{font-size:15px;font-weight:700;color:var(--ink-2);text-decoration:none;padding:7px 10px;border-radius:6px;white-space:nowrap}
+.mast__tools{display:flex;align-items:center;gap:8px;flex-wrap:nowrap;flex-shrink:0}
+.home-link{font-size:max(var(--top-btn-min-font,16px),.84rem);font-weight:700;color:var(--ink-2);text-decoration:none;padding:7px 12px;min-height:40px;display:inline-flex;align-items:center;border-radius:8px;white-space:nowrap}
 .home-link:hover{background:var(--paper-2);color:var(--ink)}
 .scale{display:flex;border:1.5px solid var(--rule-strong);border-radius:8px;overflow:hidden}
-.scale button{appearance:none;border:0;background:transparent;color:var(--ink-2);font-family:var(--serif);font-weight:700;padding:0 11px;min-height:36px;cursor:pointer;line-height:1}
+.scale button{appearance:none;border:0;background:transparent;color:var(--ink-2);font-family:var(--serif);font-weight:700;padding:0 12px;min-height:40px;cursor:pointer;line-height:1}
 .scale button+button{border-left:1px solid var(--rule-strong)}
 .scale button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.scale [data-scale="1"]{font-size:14px}.scale [data-scale="2"]{font-size:17px}.scale [data-scale="3"]{font-size:20px}
-.theme-btn{appearance:none;font:inherit;font-size:14.5px;font-weight:700;border:1.5px solid var(--rule-strong);background:transparent;color:var(--ink-2);padding:6px 11px;border-radius:8px;cursor:pointer;min-height:36px;white-space:nowrap}
+.scale [data-scale="1"]{font-size:max(15.5px,.8rem)}.scale [data-scale="2"]{font-size:max(18.5px,.95rem)}.scale [data-scale="3"]{font-size:max(21.5px,1.1rem)}
+.theme-btn{appearance:none;font:inherit;font-size:max(var(--top-btn-min-font,16px),.84rem);font-weight:700;border:1.5px solid var(--rule-strong);background:var(--paper-3);color:var(--ink);padding:7px 13px;border-radius:8px;cursor:pointer;min-height:40px;white-space:nowrap}
 .theme-btn:hover{background:var(--paper-2);color:var(--ink)}
-.pass{appearance:none;font:inherit;font-size:14.5px;font-weight:700;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:6px 14px;border-radius:999px;cursor:pointer;min-height:36px;white-space:nowrap}
+.pass{appearance:none;font:inherit;font-size:max(var(--top-btn-min-font,16px),.84rem);font-weight:700;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:7px 15px;border-radius:999px;cursor:pointer;min-height:40px;white-space:nowrap}
 .pass:hover{background:var(--ink);color:var(--paper)}
 
 /* 현관 */
@@ -117,6 +135,24 @@ h1,h2,h3,h4{margin:0}
 .order__room{font-size:1.04rem;font-weight:700;color:var(--ink-2);white-space:nowrap}
 .order__tag{font-size:.82rem;font-weight:700;color:var(--gold-ink);border:1.5px solid var(--rule-strong);padding:.1rem .5rem;border-radius:5px;margin-left:.4rem;background:var(--paper-3)}
 .order-empty{padding:1.4rem .6rem;color:var(--ink-3);font-size:1.02rem}
+.urgent-bar{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;padding:.75rem 1rem;margin-bottom:.85rem;background:var(--paper-3);border:1.5px solid var(--gold);border-left:5px solid var(--gold);border-radius:8px}
+.urgent-bar__txt{font-family:var(--serif);font-size:1.06rem;font-weight:700;color:var(--ink)}
+.urgent-bar__txt small{display:block;font-family:var(--sans);font-size:.88rem;font-weight:500;color:var(--ink-2);margin-top:.12rem}
+.urgent-bar__go{font-family:var(--serif);font-size:.98rem;font-weight:700;color:var(--indigo-link);text-decoration:none;padding:.42rem .85rem;border:1.5px solid var(--indigo-link);border-radius:6px;background:var(--paper);white-space:nowrap}
+.urgent-bar__go:hover{background:var(--indigo);color:var(--on-indigo);border-color:var(--indigo)}
+.seasonal-wrap{margin-top:.9rem;border:1.5px dashed var(--rule-strong);border-radius:8px;background:var(--paper-3);padding:.55rem .9rem}
+.seasonal-wrap summary{cursor:pointer;font-family:var(--serif);font-weight:700;font-size:1.05rem;color:var(--ink-2);padding:.3rem .1rem}
+.seasonal-wrap summary small{font-family:var(--sans);font-weight:500;font-size:.88rem;color:var(--ink-3);margin-left:.45rem}
+.seasonal-wrap .order{border-top:1.5px solid var(--rule);border-bottom:0;margin-top:.45rem}
+.gate-plaque{margin-top:1rem;padding:.65rem 1rem;border-radius:8px;background:var(--paper-3);border:1px solid var(--rule-strong);font-size:.94rem;color:var(--ink-2);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem}
+.gate-plaque b{font-family:var(--serif);color:var(--ink)}
+.room__subs{display:flex;flex-wrap:wrap;gap:.28rem;margin-top:.32rem}
+.room__sub{font-size:.74rem;font-weight:600;color:var(--plan-text);background:rgba(255,255,255,.11);border:1px solid rgba(242,238,227,.32);padding:.08rem .42rem;border-radius:4px}
+.door__subs{margin-top:.9rem;padding:.75rem .9rem;background:var(--paper);border:1px solid var(--rule-strong);border-radius:6px}
+.door__subs-title{font-size:.88rem;font-weight:700;color:var(--ink-3);margin:0 0 .45rem}
+.door__subs-list{display:flex;flex-wrap:wrap;gap:.45rem}
+.door__subs-list a{font-size:.9rem;font-weight:700;padding:.35rem .7rem;border-radius:6px;border:1.5px solid var(--rule-strong);background:var(--paper-3);color:var(--ink);text-decoration:none}
+.door__subs-list a:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 
 /* 말씀 등불 (목양 사역 도우미) */
 .well-sec{padding:3.8rem 0 4.4rem;border-top:1.5px solid var(--rule)}
@@ -219,12 +255,12 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 .plan{display:grid;grid-template-columns:minmax(11.5rem,1.05fr) minmax(0,2.1fr) minmax(11.5rem,1.05fr);grid-template-areas:"n n n" "w y e" "s s s";border:4px double var(--plan-line)}
 .wing{display:grid}
 .wing__head{display:none}
-.wing--n{grid-area:n;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);border-bottom:1.5px solid var(--plan-line)}
+.wing--n{grid-area:n;grid-template-columns:repeat(4,minmax(0,1fr));border-bottom:1.5px solid var(--plan-line)}
 .wing--s{grid-area:s;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);border-top:1.5px solid var(--plan-line)}
 .wing--w{grid-area:w;grid-auto-rows:1fr;border-right:1.5px solid var(--plan-line)}
 .wing--e{grid-area:e;grid-auto-rows:1fr;border-left:1.5px solid var(--plan-line)}
-.wing--n .room+.room,.wing--s .room+.room{border-left:1px solid var(--plan-line-soft)}
-.wing--w .room+.room,.wing--e .room+.room{border-top:1px solid var(--plan-line-soft)}
+.wing--n .room:not(:nth-of-type(4n+1)),.wing--s .room+.room{border-left:1px solid var(--plan-line-soft)}
+.wing--n .room:nth-of-type(n+5),.wing--w .room+.room,.wing--e .room+.room{border-top:1px solid var(--plan-line-soft)}
 .room{appearance:none;position:relative;background:transparent;border:0;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:1.1rem 1.2rem 1.65rem;min-height:7.6rem;display:flex;flex-direction:column;gap:.3rem}
 .room:hover{background:rgba(255,255,255,.08)}
 .room:focus-visible{outline-offset:-4px}
@@ -291,28 +327,46 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 .foot__contest{margin-top:1.05rem;padding-top:.95rem;border-top:1px dashed var(--rule-strong);display:flex;gap:.95rem;flex-wrap:wrap;align-items:center;font-size:.9rem}
 .foot__contest a{color:var(--ink-2);font-weight:700;text-decoration:underline;text-underline-offset:3px}
 
+.mast .wrap{max-width:1380px}
+html[data-scale="2"] .mast__inner,html[data-scale="3"] .mast__inner{flex-wrap:wrap;gap:8px 12px;min-height:auto;padding-top:10px;padding-bottom:8px}
+html[data-scale="2"] .brand,html[data-scale="3"] .brand{flex:1 1 auto;min-width:0}
+html[data-scale="2"] .mast__nav,html[data-scale="3"] .mast__nav{order:3;width:100%;gap:10px;padding-top:8px;padding-bottom:2px;border-top:1px solid var(--rule)}
+@media (max-width:1340px){
+  .mast__inner{flex-wrap:wrap;gap:8px 12px;min-height:auto;padding-top:10px;padding-bottom:8px}
+  .brand{flex:1 1 auto;min-width:0}
+  .mast__tools{gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
+  .mast__nav{order:3;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:10px;padding-top:8px;padding-bottom:2px;border-top:1px solid var(--rule)}
+  .mast__nav::-webkit-scrollbar{display:none}
+  .mast__nav a{flex-shrink:0}
+}
 @media (max-width:980px){
   .entry-top,.well-grid,.chest-grid{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:820px){
-  html{font-size:100%}
-  html[data-scale="2"]{font-size:112.5%}
-  html[data-scale="3"]{font-size:125%}
+  :root{
+    --top-brand-min-font:22px;
+    --top-sub-min-font:14px;
+    --top-cat-min-font:20px;
+    --top-btn-min-font:15.5px;
+  }
+  html{font-size:106.25%}
+  html[data-scale="2"]{font-size:118.75%}
+  html[data-scale="3"]{font-size:131.25%}
   html,body{max-width:100vw;overflow-x:hidden}
   .wrap{padding:0 14px;max-width:100%;min-width:0}
-  .mast__inner{flex-wrap:wrap;gap:6px 8px;min-height:auto;padding-top:8px;padding-bottom:8px}
+  .mast__inner{flex-wrap:wrap;gap:8px 10px;min-height:auto;padding-top:10px;padding-bottom:8px}
   .brand{flex:1 1 auto;min-width:0}
-  .brand b{font-size:17px}
-  .brand span{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .mast__tools{gap:4px;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
+  .brand b{font-size:max(var(--top-brand-min-font,22px),1.25rem)}
+  .brand span{font-size:max(var(--top-sub-min-font,14px),.82rem);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .mast__tools{gap:6px;flex-wrap:wrap;justify-content:flex-end;max-width:100%}
   .home-link{display:none}
-  #homeLink{display:inline-flex;align-items:center;font-size:12px;padding:4px 8px;min-height:30px;border:1px solid var(--rule-strong);border-radius:6px;background:var(--paper-3)}
-  .scale button{padding:0 7px;min-height:30px}
-  .scale [data-scale="1"]{font-size:12px}.scale [data-scale="2"]{font-size:14px}.scale [data-scale="3"]{font-size:16px}
-  .theme-btn,.pass{font-size:12px;padding:4px 8px;min-height:30px}
-  .mast__nav{order:3;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:4px;padding-top:5px;border-top:1px solid var(--rule)}
+  #homeLink{display:inline-flex;align-items:center;font-size:max(var(--top-btn-min-font,15.5px),.9rem);padding:6px 12px;min-height:38px;border:1.5px solid var(--rule-strong);border-radius:8px;background:var(--paper-3)}
+  .scale button{padding:0 10px;min-height:38px}
+  .scale [data-scale="1"]{font-size:max(15px,.88rem)}.scale [data-scale="2"]{font-size:max(17.5px,1.02rem)}.scale [data-scale="3"]{font-size:max(20px,1.16rem)}
+  .theme-btn,.pass{font-size:max(var(--top-btn-min-font,15.5px),.9rem);padding:6px 12px;min-height:38px}
+  .mast__nav{order:3;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;gap:8px;padding-top:8px;padding-bottom:2px;border-top:1px solid var(--rule)}
   .mast__nav::-webkit-scrollbar{display:none}
-  .mast__nav a{font-size:13px;padding:5px 9px;flex-shrink:0}
+  .mast__nav a{font-size:max(var(--top-cat-min-font,20px),1.08rem);padding:8px 13px;min-height:40px;flex-shrink:0}
   .entry{padding:1.25rem 0 2rem}
   .greet{font-size:1.48rem}
   .today{font-size:.96rem}
@@ -338,7 +392,7 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   .frame{padding:0;margin-top:1.2rem}
   .tag,.compass,.gate{display:none}
   .plan{grid-template-columns:minmax(0,1fr);grid-template-areas:"y" "n" "e" "s" "w";border-width:3px}
-  .wing{grid-auto-flow:row!important;grid-auto-rows:auto!important;border:0!important;border-top:1.5px solid var(--plan-line)!important}
+  .wing{grid-template-columns:minmax(0,1fr)!important;grid-auto-flow:row!important;grid-auto-rows:auto!important;border:0!important;border-top:1.5px solid var(--plan-line)!important}
   .wing__head{display:block;font-family:var(--serif);font-size:1.05rem;font-weight:700;padding:.8rem 1rem .25rem;color:var(--plan-text)}
   .wing__head small{font-family:var(--sans);font-weight:500;font-size:.82rem;color:var(--plan-text-2);margin-left:.4rem}
   .wing .room+.room{border-left:0!important;border-top:1px solid var(--plan-line-soft)!important}
@@ -353,6 +407,16 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   .door__body{padding:1rem 1.1rem 1.25rem}
   #kkumdido-pass-fab{right:8px!important;bottom:10px!important;max-width:calc(100vw - 16px)!important;transform:scale(.85)!important;transform-origin:bottom right!important}
 }
+@media (max-width:480px){
+  :root{
+    --top-brand-min-font:20px;
+    --top-sub-min-font:13.5px;
+    --top-cat-min-font:18px;
+    --top-btn-min-font:14.5px;
+  }
+  .mast__nav a{font-size:max(var(--top-cat-min-font,18px),1.04rem);padding:7px 11px;min-height:38px}
+  #homeLink,.theme-btn,.pass{font-size:max(var(--top-btn-min-font,14.5px),.86rem);padding:5px 10px;min-height:36px}
+}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -361,8 +425,19 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   .mast,.preview,.plan-sec,.toast,.names__form,.drawform,.chest-sec{display:none!important}
 }
 </style>
+<script>
+(function(){
+  try {
+    var raw = localStorage.getItem('kkumdido_annex_theme_v1');
+    var t = raw ? JSON.parse(raw) : 'light';
+    document.documentElement.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+  } catch (e) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+})();
+</script>
 </head>
-<body data-kkd-studio="true">
+<body data-kkd-studio="true" data-theme="light">
 
 <div class="preview" role="note">디자인 시안입니다. 방에 들어가는 버튼은 배포한 뒤에 실제 프로그램을 엽니다.</div>
 
@@ -398,6 +473,9 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
           <h1 class="greet" id="greet">평안하십니까.</h1>
           <p class="today" id="today"></p>
           <a class="carry-pill" id="entryWellPill" href="#well" hidden></a>
+          <div class="gate-plaque">
+            <span>🪪 <b>도서관 이용증 하나로 모든 방이 열립니다</b> — “너희 목마른 자들아 물로 나아오라 돈 없는 자도 오라” (이사야 55:1)</span>
+          </div>
         </div>
         <figure class="entry-art" style="margin:0;">
           <img src="assets/church_support/hero_church_support_center_16x9.png" alt="언덕 위 예배당과 빛나는 도서관 별관 회랑 원화" onerror="if(!this.dataset.tried){this.dataset.tried='1';this.src='../../12_꿈바온_설교AI_주간사역변환스튜디오/assets/hero_church_support_center_16x9.png';}else{this.closest('.entry-art').style.display='none';}">
@@ -408,14 +486,25 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
         <div class="ask__head">
           <div>
             <h2>무엇을 하시렵니까?</h2>
-            <p>문장을 누르시면 그 방으로 바로 갑니다.</p>
+            <p>한 주의 일과 때를 따라 하는 일입니다. 문장을 누르시면 그 방으로 바로 갑니다.</p>
           </div>
           <div class="ask__search">
             <label class="sr" for="errandSearch">하려는 일 찾기</label>
-            <input type="search" id="errandSearch" placeholder="하려는 일 찾기 (예: 심방, 주보, 헌금 · / 키)" autocomplete="off">
+            <input type="search" id="errandSearch" placeholder="하려는 일 찾기 (예: 심방, 주보, 장례, 요람 · / 키)" autocomplete="off">
           </div>
         </div>
+        <div class="urgent-bar" id="urgentCeremonyBar">
+          <div class="urgent-bar__txt">
+            🕯️ 예식 말씀이 급하십니까? — 슬픔과 기쁨의 여덟 자리
+            <small>장례 · 임종 · 하관 · 추모 · 결혼 · 유아세례 · 입원 · 심방 예식문 (주일 본문을 부르지 않고 바로 열립니다 · 당사자 이름과 형편은 저장하지 않습니다)</small>
+          </div>
+          <a class="urgent-bar__go" href="kkumdido_sermon_ai_studio.html?kkd_tab=ceremony" data-room="ceremony" data-kkd-studio-link="1">슬픔과 기쁨의 여덟 자리 →</a>
+        </div>
         <ul class="order" id="errands"></ul>
+        <details class="seasonal-wrap" id="seasonalDetails">
+          <summary>때를 따라 하는 일 펴기 <small>“범사에 기한이 있고 천하 만사가 다 때가 있나니” (전도서 3:1) · 말씀 밭 · 전교인 요람 · 살림 돌봄첩 · 동역자 사랑방 · 설교집 엮기</small></summary>
+          <ul class="order" id="seasonalErrands"></ul>
+        </details>
         <p class="order-empty" id="errandsEmpty" hidden>찾으시는 문장이 없습니다. 다른 낱말로 찾아보시거나 아래 별관 안내도를 눌러 보십시오.</p>
       </div>
     </div>
@@ -582,13 +671,14 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
 
 <footer class="foot">
   <div class="wrap">
-    <p><b>꿈바온 디지털 도서관 별관</b>. 모든 방은 값없이 엽니다.</p>
-    <p>이 화면에 적으신 말씀과 이름과 메모는 이 컴퓨터의 브라우저에만 남고, 어디로도 보내지 않습니다.</p>
-    <p>편찬과 운영 꿈바온 사역팀</p>
+    <p><b>꿈디도는 값없이 엽니다</b> — “너희가 값없이 받았으니 값없이 주라” (마태복음 10:8)</p>
+    <p>성도 명부와 헌금 장부, 이 화면에 적으신 말씀과 이름과 메모는 이 서재로 오지 않고, 목사님 컴퓨터에만 남습니다.</p>
+    <p>편찬과 운영 꿈바온 사역팀 · <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="font-weight:700; text-decoration:underline; text-underline-offset:3px;">📺 꿈바온 유튜브 채널 · 매일말씀과 성경이야기 ↗</a></p>
     <div class="foot__contest">
       <span>별관 건축 설계 기록:</span>
-      <a href="design_contest/claude_annex_proposal.html" target="_blank" rel="noopener">클간사 시안 원본(뜰을 둘러싼 ㅁ자 별채)</a>
-      <a href="design_contest/codex_annex_proposal.html" target="_blank" rel="noopener">지간사 시안 원본(사역의 길·도구 서가)</a>
+      <a href="design_contest/00_목사님전용_별관디자인공모전_비교심사관.html" target="_blank" rel="noopener">제1·2차 별관 건축 비교 심사관</a>
+      <a href="design_contest/20261109_클간사_제2차시안_안내도와문패.html" target="_blank" rel="noopener">클간사 제2차 시안(안내도와 세 문패)</a>
+      <a href="design_contest/20261109_지간사_꿈디도_제2차_인터랙티브_프로토타입.html" target="_blank" rel="noopener">지간사 제2차 프로토타입(6대 워크플로우)</a>
       <a href="index.html">도서관 본관으로 돌아가기</a>
     </div>
   </div>
@@ -603,6 +693,10 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     <p class="door__prog" id="doorProg"></p>
     <p class="door__line" id="doorLine"></p>
     <ul class="door__does" id="doorDoes"></ul>
+    <div class="door__subs" id="doorSubs" hidden>
+      <p class="door__subs-title">◇ 이 방 안의 쪽방 바로 열기</p>
+      <div class="door__subs-list" id="doorSubsList"></div>
+    </div>
     <p class="door__carry" id="doorCarry" hidden></p>
     <div class="door__dl" id="doorDl" hidden></div>
     <div class="door__actions">
@@ -640,7 +734,7 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     { id: 'w', name: '살림채', desc: '🌿 아론의 지팡이 — 목양·심방·주보와 교회 살림을 꾸리는 곳' }
   ];
 
-  /* ── 방 목록 (13개 정식 개통 방 + 3개 짓는 터) ── */
+  /* ── 방 목록 (제2차 증축: 새 방 4곳 + 문턱 + 쪽방 8곳 통합) ── */
   var ROOMS = [
     { id: 'encyclopedia', wing: 'n', name: '설교 자료 대백과', program: '📚 성경 대족보 · 왕조별 연대기 · 비하인드 대백과', file: 'kkumdido_encyclopedia.html', status: 'open',
       badge: '족보·왕조·이야기',
@@ -648,29 +742,57 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
       does: ['한눈에 보는 성경 대족보 열람', '남북 열왕·선지자·제국 연대기 열람', '신나는 성경 비하인드 & 66권 원어 백과 열람'] },
     { id: 'sermon', wing: 'n', name: '설교 준비실', program: '🪄 모세의 지팡이 · 66권 원어 설교 연구실', file: 'kkumdido_sermon_studio.html', status: 'open',
       badge: '목회자 무료 개방',
-      line: '성경 66권을 원어와 주석, 강해와 함께 펴 놓고 설교를 세웁니다. (요한복음 기본 열람 · 신원 확인 목회자 66권 전체 무료 개방)',
+      line: '성경 66권을 원어와 주석, 강해와 함께 펴 놓고 설교를 세웁니다. (도서관 이용증 하나로 66권 전체 무료 개방)',
       does: ['본문을 원어와 주석으로 펴 보기', '강해 자료 살피기', '설교 원고 세우기 및 강단 노트 인쇄'] },
-    { id: 'sermon_ai', wing: 'n', name: '모세의 지팡이', program: '🪄 본문 카드 대령 & 주간 사역 7종 변환', file: 'kkumdido_sermon_ai_studio.html', status: 'open',
-      badge: '본문 치면 꿈디도 카드 대령',
+    { id: 'sermon_ai', wing: 'n', name: '모세의 지팡이', program: '🪄 말씀 연구실 · 본문 카드 대령 & 주간 사역 7종 변환', file: 'kkumdido_sermon_ai_studio.html', status: 'open',
+      badge: '본문 카드 대령 · 쪽방 3곳',
       dlHtml: 'downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_설교AI_주간사역7종변환스튜디오_v1.0_Mac_Windows_포터블.zip',
-      line: '설교 본문을 입력하면 꿈디도 12대 아카이브에서 원어·배경·신학·설교 카드를 즉시 대령하고, 설교 원고 한 편으로 주보 요약·소그룹 나눔지·6일 묵상집·가정예배지를 함께 빚어냅니다.',
-      does: ['설교 본문 입력 시 꿈디도 6대 아카이브 카드 즉시 대령', '주보 요약과 카톡 말씀 안내문 만들기', '속회·구역·셀 나눔 질문지(A4)와 6일 묵상집·쇼츠·PPT 만들기'] },
+      line: '설교 본문을 입력하면 꿈디도 12대 아카이브에서 원어·배경·신학·설교 카드를 즉시 대령하고, 주보 요약·소그룹 나눔지·6일 묵상집·가정예배지·두 언어 주보·말씀 메아리 쪽지를 함께 빚어냅니다.',
+      does: ['설교 본문 입력 시 꿈디도 6대 아카이브 카드 즉시 대령 (웨슬리안·복음주의 포함)', '주보 요약·속회 나눔지·6일 묵상집·쇼츠·PPT 만들기', '◇ 쪽방: 본문의 걸음걸이(지리·여정) · 말씀 메아리 쪽지(QR) · 두 언어 주보(ESV/개역개정)'],
+      subs: [
+        { name: '◇ 본문의 걸음걸이', href: 'kkumdido_sermon_ai_studio.html?kkd_tab=geo-coverage' },
+        { name: '◇ 말씀 메아리 쪽지', href: 'kkumdido_sermon_ai_studio.html?kkd_tab=verify-timer' },
+        { name: '◇ 두 언어 주보', href: 'kkumdido_sermon_ai_studio.html?kkd_tab=bilingual-epub' }
+      ] },
+    { id: 'verify_timer', wing: 'n', name: '베뢰아 살피기 · 모래시계', program: '🕯️ 강단 오르기 전, 베뢰아처럼 살피기 & 강단 원고첩 (사도행전 17:11)', file: 'kkumdido_sermon_ai_studio.html?kkd_tab=verify-timer', status: 'open',
+      badge: '문턱 · 강단 점검 & 타이머',
+      line: '“간절한 마음으로 말씀을 받고 이것이 그러한가 하여 날마다 성경을 상고하므로” (행 17:11). 원고 속 인용 성구와 히브리어·헬라어 원어, 숫자·연대를 자동 추출해 직접 대조하고, 큰 글씨 강단 원고첩과 모래시계를 폅니다.',
+      does: ['원고 속 인용 성구·원어·숫자 자동 추출 및 목사님 직접 대조 확인', '강단 모래시계(예배 시간 카운트다운)와 큰 글씨 강단 원고첩', '인쇄용 주보에 넣는 말씀 메아리 쪽지(QR·절취선) 만들기'] },
+    { id: 'field', wing: 'n', name: '예순여섯 권 말씀 밭', program: '🌱 뒤뜰 텃밭 · 씨 뿌린 장과 빈 이랑 살피기 (누가복음 8:11)', file: 'kkumdido_sermon_ai_studio.html?kkd_tab=geo-coverage', status: 'open',
+      badge: '★ 새 방 · 씨 뿌린 장 / 빈 이랑',
+      line: '“씨는 하나님의 말씀이요” (누가복음 8:11). 성경 66권 1,189장 가운데 내가 설교한 ‘씨 뿌린 장’과 아직 다루지 않은 ‘빈 이랑’을 한눈에 살피고, 장 칸을 눌러 이번 주 말씀 등불로 바로 올립니다.',
+      does: ['66권 1,189장 씨 뿌린 장 / 빈 이랑 한눈에 보기', '장 칸을 눌러 말씀 등불로 올리거나 씨 뿌린 장으로 기록하기', '본문의 걸음걸이(성경 지리·고고학 여정, 약 거리·고도) 함께 살피기'] },
+    { id: 'ceremony', wing: 'n', name: '슬픔과 기쁨의 여덟 자리', program: '🕯️ 북동 모퉁이방 · 8대 목회 예식 집례집 (로마서 12:15)', file: 'kkumdido_sermon_ai_studio.html?kkd_tab=ceremony', status: 'open', useWell: false,
+      badge: '★ 새 방 · 주일 본문 안 부름',
+      line: '“즐거워하는 자들과 함께 즐거워하고 우는 자들과 함께 울라” (로마서 12:15). 장례·임종·하관·추모·결혼·유아세례·입원·심방 여덟 자리의 성구와 집례식순, 설교·기도문을 주일 본문과 섞이지 않게 바로 폅니다.',
+      does: ['장례·임종·하관·추모·결혼·유아세례·병상·심방(시 121:8·신 28:6) 8대 예식문', '주일 본문(말씀 등불)을 부르지 않고 독립된 예식 자리로 즉시 열림', '개인정보 보호: 당사자 성함과 가정 형편은 브라우저에 저장하지 않고 인쇄 후 즉시 비움'] },
     { id: 'commentary', wing: 'n', name: '주석 서고', program: '🪄 모세의 지팡이 · 66권 원어 풀어읽기 주석관', file: '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', status: 'open',
       line: '66권을 원어로 풀어 읽은 주석을 권과 장으로 찾아 읽습니다.',
       does: ['권과 장으로 주석 찾기', '원어 낱말 풀이 깊이 읽기'] },
-    { id: 'gotgan', wing: 'n', name: '내 설교 곳간', program: '🪄 모세의 지팡이 · 개인 설교 서재 (내 컴퓨터 보관)', file: 'kkumdido_gotgan_studio.html', status: 'open',
-      line: '지금까지 전한 설교를 66권 순서로 내 컴퓨터에 차곡차곡 쌓아 둡니다.',
-      does: ['전한 설교 넣어 두기', '본문별로 지난 설교 꺼내 보기', '외부 전송 없이 내 컴퓨터에만 보관하기'] },
-    { id: 'gyojeok', wing: 'e', name: '성도 명부실', program: '🌿 아론의 지팡이 · 무료 교적 양떼 수첩', file: 'kkumdido_gyojeok_studio.html', status: 'open',
-      badge: '내 PC 보관 가능',
+    { id: 'gotgan', wing: 'n', name: '내 설교 곳간', program: '🪄 모세의 지팡이 · 개인 설교 서재 & 한 권으로 엮기 (출애굽기 17:14)', file: 'kkumdido_gotgan_studio.html', status: 'open',
+      badge: '◇ 설교집 한 권으로 엮기',
+      line: '지금까지 전한 설교를 66권 순서로 내 컴퓨터에 차곡차곡 쌓아 두고, 때가 되면 한 권의 전자책(.epub)과 인쇄본 설교집으로 엮어 냅니다.',
+      does: ['전한 설교 넣어 두기 (씨 뿌린 장 자동 기록)', '본문별로 지난 설교 꺼내 보기', '◇ 쪽방: 한 권으로 엮기 (.epub 전자책 · A4 제본 인쇄본)'],
+      subs: [
+        { name: '◇ 한 권으로 엮기 (.epub · 인쇄본)', href: 'kkumdido_sermon_ai_studio.html?kkd_tab=bilingual-epub' }
+      ] },
+    { id: 'gyojeok', wing: 'e', name: '성도 명부실 (양떼 수첩)', program: '🌿 아론의 지팡이 · 무료 교적 & 전교인 요람 엮기 (에베소서 2:19)', file: 'kkumdido_gyojeok_studio.html', status: 'open',
+      badge: '내 PC 보관 · ◇ 전교인 요람',
       dlHtml: 'downloads/꿈바온_무료교적_양떼수첩_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_무료교적프로그램_양떼수첩_v1.0_Mac_Windows_포터블.zip',
-      line: '성도 한 분 한 분의 교적과 가정 가계도, 심방과 출석을 내 컴퓨터에 안전하게 적어 둡니다.',
-      does: ['교적과 가족 가계도 적기', '심방 기록과 기도제목 남기기', '새가족 4주 정착과 출석 살피기', '교인증명서·세례증서 뽑기'] },
+      line: '성도 한 분 한 분의 교적과 가정 가계도, 심방과 출석을 내 컴퓨터에 안전하게 적어 두고, 동의하신 성도님 가정을 한 권의 요람 책자로 엮습니다.',
+      does: ['교적과 가족 가계도 적기 (6대 교적 프로그램 CSV 1초 이사)', '심방 기록과 기도제목 남기기 · 새가족 4주 정착 살피기', '◇ 쪽방: 전교인 요람 엮기 (요람 싣기 허락한 분만 / 연락처·주소 표시 선택)'],
+      subs: [
+        { name: '◇ 전교인 요람 엮기', href: 'kkumdido_gyojeok_studio.html?kkd_tab=yoram' }
+      ] },
     { id: 'translation', wing: 'e', name: '번역실', program: '8개국어 기독교 번역 스튜디오', file: 'kkumdido_translation_studio.html', status: 'open',
       line: '말이 다른 성도와 이웃을 위해 설교와 교회 소식을 여덟 나라 말로 바르게 옮깁니다.',
-      does: ['공인 성경 역본으로 성구 옮기기', '신학 용어와 교회 용어를 바르게 옮기기'] },
+      does: ['공인 성경 역본으로 성구 옮기기', '신학 용어와 교회 용어를 바르게 옮기기', '두 언어 주보와 연동하여 다국어 주보 인쇄하기'] },
+    { id: 'association', wing: 'e', name: '동역자 사랑방', program: '🏛️ 대문 곁 사랑방 · 지방회·노회·연합회 수첩 (빌립보서 1:5)', file: 'kkumdido_finance_studio.html?kkd_tab=association', status: 'open', useWell: false,
+      badge: '★ 새 방 · 지방회·노회 섬김',
+      line: '“첫날부터 이제까지 복음을 위한 너희의 교제에서 참예함을 인함이라” (빌립보서 1:5). 감리교(지방회·감리사·부담금), 장로교(노회·노회장·상회비), 성결교·연합회 명칭에 맞추어 동역 교회 명부와 회비·인수인계 보따리를 챙깁니다.',
+      does: ['교단별 맞춤 명칭(감리교 지방회 / 장로교 노회 / 성결교 / 연합회) 자동 전환', '소속교회 · 개척·지원 교회 연락망과 월례회·회비 수납 정리', '다음 임원에게 넘길 인수인계 보따리(.json)와 명부(.csv) 한 번에 싸기'] },
     { id: 'school', wing: 's', name: '교회학교 교사실', program: '교회학교 교사 스튜디오', file: 'kkumdido_sunday_school_studio.html', status: 'open',
       line: '전도사가 없어도 선생님 한 분이 부서 예배와 공과를 이끌 수 있게 돕습니다.',
       does: ['부서별 눈높이 설교 펴 보기', '분반 공과와 활동지 준비하기'] },
@@ -683,19 +805,28 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     { id: 'jipangi', wing: 'w', name: '주보·전도지 공방', program: '🌿 아론의 지팡이 · 주보·전도지·기도문 공방', file: 'kkumdido_jipangi_studio.html', status: 'open',
       line: '전도지와 주보, 대표기도문과 교회 행정 서식을 만듭니다.',
       does: ['주보 만들기', '계절·절기 전도지 만들기', '대표기도문 준비하기', '행정 서식 뽑기'] },
-    { id: 'finance', wing: 'w', name: '헌금·재정 장부실', program: '🌿 아론의 지팡이 · 무료 헌금·재정 청지기 장부', file: 'kkumdido_finance_studio.html', status: 'open',
-      badge: '내 PC 보관 가능',
+    { id: 'finance', wing: 'w', name: '헌금·재정 장부실 (청지기 장부)', program: '🌿 아론의 지팡이 · 무료 헌금·재정 청지기 장부', file: 'kkumdido_finance_studio.html', status: 'open',
+      badge: '내 PC 보관 · ◇ 쪽방 3곳',
       dlHtml: 'downloads/꿈바온_무료헌금재정_청지기장부_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_무료헌금재정프로그램_청지기장부_v1.0_Mac_Windows_포터블.zip',
       line: '작은 교회의 주일 헌금과 지출결의서, 연말정산 기부금영수증을 내 컴퓨터에만 투명하고 안전하게 적어 둡니다.',
-      does: ['주일 헌금 봉투 기록 및 주보 명단 복사', '3단 결재란 지출결의서와 제직회 결산서 인쇄', '국세청 표준 연말정산 기부금영수증 발급'] },
+      does: ['주일 헌금 봉투 기록 및 주보 명단 복사', '3단 결재란 지출결의서와 제직회 결산서 · 국세청 기부금영수증 발급', '◇ 쪽방: 금액으로 찾기(눅 15:8) · 한 분의 여러 봉투 · 부서 주머니'],
+      subs: [
+        { name: '◇ 금액으로 찾기', href: 'kkumdido_finance_studio.html?kkd_tab=search' },
+        { name: '◇ 한 분의 여러 봉투', href: 'kkumdido_finance_studio.html?kkd_tab=search' },
+        { name: '◇ 부서 주머니', href: 'kkumdido_finance_studio.html?kkd_tab=search' }
+      ] },
+    { id: 'assets', wing: 'w', name: '교회 살림 돌봄첩', program: '🚐 예배당 차량·악기·방송·비품 대장 & 수리 이력 (고린도전서 14:40)', file: 'kkumdido_finance_studio.html?kkd_tab=assets', status: 'open', useWell: false,
+      badge: '★ 새 방 · 살림·차량·악기 돌봄',
+      line: '“모든 것을 품위 있게 하고 질서 있게 하라” (고린도전서 14:40). 예배당 승합차와 피아노·앰프·컴퓨터·냉난방기의 구입일과 수리 내역, 다가오는 정기점검·보험 만기일(30일 내)을 챙깁니다.',
+      does: ['차량·악기·방송음향·컴퓨터·냉난방기 비품 대장 기록', '점검 날이 다가오는 살림(30일 내) 자동 알림', '살림 하나 적기 · 손본 일(수리·정기점검) 이력 적기 및 A4 대장 인쇄'] },
     { id: 'secretary', wing: 'w', name: '아론의 지팡이', program: '🌿 목양 · 심방 · 주보 · 행정 스튜디오', file: 'kkumdido_pastoral_secretary_studio.html', status: 'open',
       dlHtml: 'downloads/꿈바온_목회비서_v1.0_무설치단일파일.html',
       dlZip: 'downloads/꿈바온_목회비서_v1.0_Mac_Windows_포터블.zip',
       line: '우리 교회의 한 주간 목양 흐름을 살피며 설교 개요와 심방 위로문, A4 주보 초안을 함께 다듬습니다.',
       does: ['설교 개요와 심방 위로 말씀 초안 세우기', 'A4 주보와 회의록·공문 바로 인쇄하기'] },
-    { id: 'bulletin', wing: '', name: '모바일 주보실', program: '우리 교회 모바일 주보·홈페이지 빌더', file: '', status: 'building',
-      line: '휴대전화로 보는 주보와 작은 홈페이지를 만듭니다.', does: [] },
+    { id: 'bulletin', wing: '', name: '모바일 주보실', program: '우리 교회 모바일 주보 한 장 · 예배 안내', file: '', status: 'building',
+      line: '휴대전화로 보는 주보 한 장과 예배 안내를 만듭니다.', does: [] },
     { id: 'banner', wing: '', name: '절기 현수막실', program: '절기 현수막·배너 디자인실', file: '', status: 'building',
       line: '절기마다 거는 현수막과 배너를 꾸밉니다.', does: [] },
     { id: 'calendar', wing: '', name: '목회력 달력실', program: '연간 목회력 플래너', file: '', status: 'building',
@@ -704,16 +835,17 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   var ROOM = {};
   ROOMS.forEach(function (r) { ROOM[r.id] = r; });
 
-  /* ── 현관의 문장들 (주보 순서지처럼) ── */
+  /* ── 현관의 문장들: ① 한 주의 일 + ② 때를 따라 하는 일 (전도서 3:1) ── */
   var ERRANDS = [
-    { text: '설교 본문을 쳐서 꿈디도 카드를 대령받고 주간 사역 자료를 만듭니다', room: 'sermon_ai', kw: '모세의 지팡이 설교 본문 카드 대령 주보요약 속회 구역 셀 소그룹 나눔지 큐티 QT 쇼츠 PPT' },
+    { text: '설교 본문을 쳐서 꿈디도 카드를 대령받고 주간 사역 자료·두 언어 주보·말씀 메아리 쪽지를 만듭니다', room: 'sermon_ai', kw: '모세의 지팡이 설교 본문 카드 대령 주보요약 속회 구역 셀 소그룹 나눔지 큐티 QT 쇼츠 PPT 두언어주보 메아리쪽지 QR 본문의걸음걸이 지리' },
+    { text: '강단에 오르기 전, 베뢰아처럼 원고의 성구·원어를 살피고 강단 모래시계를 맞춥니다', room: 'verify_timer', kw: '베뢰아 살피기 강단 모래시계 타이머 원고첩 큰글씨 성구 원어 점검 말씀 메아리 쪽지', tag: '사도행전 17:11' },
     { text: '성경 대족보와 남북 왕조 연대기, 신나는 설교 자료 대백과를 펼쳐 봅니다', room: 'encyclopedia', kw: '설교 자료 대백과 족보 가계도 왕조 연대기 비하인드 등잔 밑' },
     { text: '성경 66권 원어와 강해로 주일 설교를 준비합니다', room: 'sermon', kw: '모세의 지팡이 설교 준비 성경 66권 원어 강해' },
     { text: '원어와 주석으로 말씀을 깊이 읽습니다', room: 'commentary', kw: '모세의 지팡이 원어 히브리어 헬라어 주석 성경 연구' },
     { text: '지난 설교를 곳간에서 꺼내 봅니다', room: 'gotgan', kw: '모세의 지팡이 내 설교 곳간 서재 원고 보관 백업' },
     { text: '아론의 지팡이로 한 주간 목양과 심방·주보 초안을 세웁니다', room: 'secretary', kw: '아론의 지팡이 목양 심방 위로문 주보 회의록 공문' },
     { text: '성도 한 분을 찾아뵙고 교적을 기록합니다', room: 'gyojeok', kw: '아론의 지팡이 교적 양떼수첩 심방 가계도 새가족 출석 증명서 세례', tag: '내 PC 보관 가능' },
-    { text: '헌금과 재정 장부를 투명하게 정리합니다', room: 'finance', kw: '아론의 지팡이 헌금 재정 청지기장부 십일조 감사헌금 지출결의서 기부금영수증 결산', tag: '내 PC 보관 가능' },
+    { text: '헌금과 재정 장부를 정리하고, 금액으로 찾기·여러 봉투·부서 주머니를 살핍니다', room: 'finance', kw: '아론의 지팡이 헌금 재정 청지기장부 십일조 감사헌금 지출결의서 기부금영수증 결산 금액으로찾기 여러봉투 부서주머니', tag: '내 PC 보관 가능' },
     { text: '주보와 전도지, 대표기도문과 서식을 만듭니다', room: 'jipangi', kw: '아론의 지팡이 주보 전도지 대표기도문 행정 서식' },
     { text: '아이들 공과와 부서 예배를 준비합니다', room: 'school', kw: '교회학교 주일학교 교사 공과 활동지 유치부 아동부 청소년부' },
     { text: '부서별 한 해 교육과정을 펼쳐 봅니다', room: 'curriculum', kw: '13부서 52주 표준 커리큘럼 교육과정 구속사' },
@@ -721,14 +853,22 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     { text: '말씀과 교회 소식을 다른 나라 말로 옮깁니다', room: 'translation', kw: '8개국어 기독교 번역 영어 중국어 일본어 베트남어 스페인어' }
   ];
 
+  var SEASONAL_ERRANDS = [
+    { text: '예순여섯 권 말씀 밭에서 내가 씨 뿌린 장과 아직 안 다룬 빈 이랑을 살핍니다', room: 'field', kw: '예순여섯권 말씀밭 씨뿌린장 빈이랑 66권 1189장 강해 편식 본문의걸음걸이 지리', tag: '★ 새 방 · 눅 8:11' },
+    { text: '전교인 요람 엮기 — 요람 싣기 허락한 성도님 가정을 한 권의 책자로 엮습니다', room: 'gyojeok', customHref: 'kkumdido_gyojeok_studio.html?kkd_tab=yoram', kw: '전교인 요람 엮기 주소록 비상연락망 가정카드 개인정보 동의', tag: '◇ 쪽방 · 엡 2:19' },
+    { text: '교회 살림 돌봄첩에 차량·악기·방송장비 수리 이력과 정기점검 날을 적어 둡니다', room: 'assets', kw: '교회 살림 돌봄첩 차량 승합차 악기 피아노 방송 음향 비품 수리 점검 보험', tag: '★ 새 방 · 고전 14:40' },
+    { text: '동역자 사랑방에서 지방회·노회·연합회 교회 명부와 회비·인수인계 보따리를 챙깁니다', room: 'association', kw: '동역자 사랑방 지방회 노회 연합회 감리사 노회장 부담금 상회비 회비 인수인계 보따리', tag: '★ 새 방 · 빌 1:5' },
+    { text: '설교 곳간에 쌓인 설교들을 한 권의 전자책(.epub)과 제본용 설교집으로 엮습니다', room: 'gotgan', customHref: 'kkumdido_sermon_ai_studio.html?kkd_tab=bilingual-epub', kw: '설교집 한권으로 엮기 전자책 epub 출판 제본 인쇄본', tag: '◇ 쪽방 · 출 17:14' }
+  ];
+
   /* ── 징검다리: 월요일에서 주일로 (한 줄에 시원하게 읽히는 이름) ── */
   var WEEK = [
-    { dow: 1, label: '월', shortTitle: '쉼과 돌아봄', title: '쉼과 돌아봄', line: '지난 주일의 원고를 곳간에 넣어 두고, 몸과 마음을 쉬게 합니다.', rooms: ['gotgan', 'sermon_ai'] },
-    { dow: 2, label: '화', shortTitle: '심방과 돌봄', title: '찾아뵙는 날', line: '마음에 품은 이름을 따라 성도를 찾아뵙고, 다녀온 일을 명부에 적습니다.', rooms: ['gyojeok', 'secretary'] },
-    { dow: 3, label: '수', shortTitle: '말씀 연구', title: '말씀을 깊이 읽는 날', line: '이번 주 말씀을 원어와 주석으로 천천히 읽습니다.', rooms: ['commentary', 'sermon'] },
-    { dow: 4, label: '목', shortTitle: '주보와 살림', title: '주보와 살림', line: '주보와 광고, 서식과 장부를 정리합니다.', rooms: ['jipangi', 'finance'] },
-    { dow: 5, label: '금', shortTitle: '원고 쓰는 날', title: '원고를 쓰는 날', line: '밝혀 둔 말씀으로 설교 원고를 세우고 주간 나눔 자료를 준비합니다.', rooms: ['sermon', 'sermon_ai', 'translation'] },
-    { dow: 6, label: '토', shortTitle: '다음세대·가정', title: '다음 세대와 가정', line: '교회학교 공과와 가정예배지를 살피고, 주일을 기도로 준비합니다.', rooms: ['school', 'curriculum', 'family'] },
+    { dow: 1, label: '월', shortTitle: '쉼과 말씀 밭', title: '쉼과 말씀 밭 살피기', line: '지난 주일의 원고를 곳간에 넣어 두고, 예순여섯 권 말씀 밭에서 빈 이랑을 살피며 이번 주 말씀 등불을 밝힙니다.', rooms: ['gotgan', 'field', 'sermon_ai'] },
+    { dow: 2, label: '화', shortTitle: '심방과 돌봄', title: '찾아뵙는 날', line: '마음에 품은 이름을 따라 성도를 찾아뵙고, 슬픔과 기쁨의 여덟 자리 말씀으로 위로하며 명부에 적습니다.', rooms: ['gyojeok', 'ceremony', 'secretary'] },
+    { dow: 3, label: '수', shortTitle: '말씀과 살림', title: '말씀을 깊이 읽고 살림 살피는 날', line: '이번 주 말씀을 원어·주석과 본문의 걸음걸이로 깊이 읽고, 교회 살림 돌봄첩의 점검 날을 확인합니다.', rooms: ['commentary', 'sermon', 'assets'] },
+    { dow: 4, label: '목', shortTitle: '주보와 나눔지', title: '주보와 나눔지 · 장부 정리', line: '주간 7종 자료와 두 언어 주보, 말씀 메아리 쪽지를 찍고 헌금·재정 장부를 정리합니다.', rooms: ['sermon_ai', 'jipangi', 'finance'] },
+    { dow: 5, label: '금', shortTitle: '원고 쓰는 날', title: '원고를 쓰는 날', line: '밝혀 둔 말씀으로 설교 원고를 세우고 8개국어 번역과 주간 나눔 자료를 다듬습니다.', rooms: ['sermon', 'sermon_ai', 'translation'] },
+    { dow: 6, label: '토', shortTitle: '베뢰아 점검', title: '강단 오르기 전 베뢰아처럼 살피는 날', line: '강단 오르기 전 베뢰아처럼 살피기로 인용 성구와 원어를 점검하고, 강단 모래시계와 교회학교·가정예배지를 준비합니다.', rooms: ['verify_timer', 'school', 'family'] },
     { dow: 0, label: '주일', shortTitle: '말씀 전하는 날', title: '말씀을 전하는 날', line: '오늘은 도구를 내려놓고 예배로 모입니다. 별관도 함께 쉬어 갑니다.', rooms: [],
       verse: { ref: '시편 118:24', text: '이 날은 여호와께서 정하신 것이라 이 날에 우리가 즐거워하고 기뻐하리로다' } }
   ];
@@ -864,13 +1004,11 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   });
 
   function applyTheme(t) {
-    if (t === 'dark') {
-      document.documentElement.setAttribute('data-theme', 'dark');
-      $('themeBtn').textContent = '밝은 한지';
-    } else {
-      document.documentElement.removeAttribute('data-theme');
-      $('themeBtn').textContent = '밤의 서재';
-    }
+    var mode = (t === 'dark') ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', mode);
+    if (document.body) document.body.setAttribute('data-theme', mode);
+    $('themeBtn').textContent = (mode === 'dark') ? '밝은 한지' : '밤의 서재';
+    $('themeBtn').setAttribute('aria-pressed', mode === 'dark' ? 'true' : 'false');
   }
   $('themeBtn').addEventListener('click', function () {
     var cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -883,15 +1021,18 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   function wellIsCurrent(w) { return !!(w && w.ref && w.sunday && w.sunday >= ymd(targetSunday())); }
   function currentRef() { var w = getWell(); return wellIsCurrent(w) ? w.ref : ''; }
 
-  function hrefFor(room) {
-    if (!room || room.status !== 'open' || !room.file) return null;
-    var u = BASE + encodeURI(room.file);
+  function hrefFor(room, customFile) {
+    if (!room || room.status !== 'open') return null;
+    var rawFile = customFile || room.file;
+    if (!rawFile) return null;
+    var u = BASE + encodeURI(rawFile);
+    if (room.useWell === false) return u;
     var w = getWell();
     if (wellIsCurrent(w)) {
       var q = 'kkd_ref=' + encodeURIComponent(w.ref);
       if (w.gist) q += '&kkd_gist=' + encodeURIComponent(w.gist);
       if (w.sunday) q += '&kkd_sunday=' + encodeURIComponent(w.sunday);
-      return u + '?' + q;
+      return u + (u.indexOf('?') === -1 ? '?' : '&') + q;
     }
     return u;
   }
@@ -1018,12 +1159,12 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
   });
   $('drawCancel').addEventListener('click', function () { $('drawForm').hidden = true; });
 
-  /* ── 현관 순서지 + 빠른 일 찾기 (지간사 '/' 검색 결합) ── */
-  function renderErrands() {
-    var ul = $('errands'); ul.innerHTML = '';
-    var q = ($('errandSearch').value || '').trim().toLowerCase();
+  /* ── 현관 순서지 + 때를 따라 하는 일 + 빠른 일 찾기 (지간사 '/' 검색 결합) ── */
+  function renderErrandList(items, ulEl, q) {
     var count = 0;
-    ERRANDS.forEach(function (it) {
+    if (!ulEl) return 0;
+    ulEl.innerHTML = '';
+    items.forEach(function (it) {
       var r = ROOM[it.room];
       if (!r) return;
       var hay = (it.text + ' ' + r.name + ' ' + r.program + ' ' + (it.kw || '')).toLowerCase();
@@ -1031,14 +1172,25 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
       count++;
       var roomSpan = el('span', { class: 'order__room' }, [r.name]);
       if (it.tag) roomSpan.appendChild(el('span', { class: 'order__tag', text: it.tag }));
-      var a = el('a', { href: hrefFor(r) || '#', 'data-room': r.id, 'data-kkd-studio-link': '1' }, [
+      var attrs = { href: hrefFor(r, it.customHref) || '#', 'data-room': r.id, 'data-kkd-studio-link': '1' };
+      if (it.customHref) attrs['data-custom-href'] = it.customHref;
+      var a = el('a', attrs, [
         el('span', { class: 'order__text', text: it.text }),
         el('span', { class: 'order__dots', 'aria-hidden': 'true' }),
         roomSpan
       ]);
-      ul.appendChild(el('li', null, [a]));
+      ulEl.appendChild(el('li', null, [a]));
     });
-    $('errandsEmpty').hidden = count > 0;
+    return count;
+  }
+
+  function renderErrands() {
+    var q = ($('errandSearch').value || '').trim().toLowerCase();
+    var c1 = renderErrandList(ERRANDS, $('errands'), q);
+    var c2 = renderErrandList(SEASONAL_ERRANDS, $('seasonalErrands'), q);
+    var sd = $('seasonalDetails');
+    if (sd && q && c2 > 0) sd.open = true;
+    $('errandsEmpty').hidden = (c1 + c2) > 0;
   }
   $('errandSearch').addEventListener('input', renderErrands);
   document.addEventListener('keydown', function (e) {
@@ -1157,10 +1309,17 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
         var stateEl = null;
         if (r.status === 'soon') stateEl = el('span', { class: 'room__state', text: '곧 문 엶' });
         else if (r.badge) stateEl = el('span', { class: 'room__state room__state--pc', text: r.badge });
+        var subsEl = null;
+        if (r.subs && r.subs.length) {
+          subsEl = el('div', { class: 'room__subs' }, r.subs.map(function (s) {
+            return el('span', { class: 'room__sub', text: s.name });
+          }));
+        }
         var b = el('button', { type: 'button', class: 'room' + (r.status === 'open' ? '' : ' is-closed'), 'data-door': r.id }, [
           el('span', { class: 'room__name', text: r.name }),
           el('span', { class: 'room__prog', text: r.program }),
-          stateEl
+          stateEl,
+          subsEl
         ]);
         wing.appendChild(b);
       });
@@ -1198,9 +1357,27 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     var ul = $('doorDoes'); ul.innerHTML = '';
     r.does.forEach(function (t) { ul.appendChild(el('li', { text: t })); });
     ul.hidden = !r.does.length;
+    var subsWrap = $('doorSubs'), subsList = $('doorSubsList');
+    if (subsWrap && subsList) {
+      subsList.innerHTML = '';
+      if (r.subs && r.subs.length) {
+        subsWrap.hidden = false;
+        r.subs.forEach(function (s) {
+          var subA = el('a', { href: hrefFor(r, s.href) || s.href, 'data-room': r.id, 'data-custom-href': s.href, 'data-kkd-studio-link': '1', text: s.name + ' ↗' });
+          subsList.appendChild(subA);
+        });
+      } else {
+        subsWrap.hidden = true;
+      }
+    }
     var go = $('doorGo'), href = hrefFor(r), ref = currentRef();
-    $('doorCarry').hidden = !(href && ref);
-    if (href && ref) $('doorCarry').textContent = '🕯️ 가지고 들어갈 이번 주 말씀 등불: ' + ref;
+    if (r.useWell === false && href) {
+      $('doorCarry').hidden = false;
+      $('doorCarry').textContent = '🕯️ 이 방은 주일 본문(말씀 등불)을 부르지 않고 독립된 예식·돌봄 자리로 바로 열립니다.';
+    } else {
+      $('doorCarry').hidden = !(href && ref);
+      if (href && ref) $('doorCarry').textContent = '🕯️ 가지고 들어갈 이번 주 말씀 등불: ' + ref;
+    }
 
     // 내 컴퓨터 다운로드 파일이 있는 방인 경우 문패 안에 다운로드 단추 표시
     var dlBox = $('doorDl');
@@ -1244,7 +1421,8 @@ a.plate:hover{border-color:var(--indigo-link);color:var(--indigo-link)}
     }
     var r = ROOM[t.getAttribute('data-room')];
     if (!r) return;
-    var targetHref = hrefFor(r);
+    var customHref = t.getAttribute('data-custom-href') || '';
+    var targetHref = hrefFor(r, customHref);
     if (!targetHref) { e.preventDefault(); return; }
     t.setAttribute('href', targetHref);
     if (PREVIEW) {

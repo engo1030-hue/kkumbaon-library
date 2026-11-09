@@ -1564,9 +1564,9 @@
     modalBg.innerHTML = [
       '<div class="kkd-modal">',
       '  <button type="button" class="kkd-close" id="kkd-modal-close" aria-label="닫기">✕ 닫기</button>',
-      '  <span class="kkd-eyebrow">KKUMBAON DIGITAL LIBRARY & STUDIO PASS</span>',
-      '  <h3 id="kkd-modal-title">🏛️ 꿈디도 도서관 이용증 · 간편 로그인</h3>',
-      '  <p class="kkd-sub" id="kkd-modal-desc">구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 내 설교 곳간 · 무료 교적 프로그램(양떼 수첩) · 모세의 지팡이 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 무료로 바로 쓰실 수 있습니다.</p>',
+      '  <span class="kkd-eyebrow">이사야 55:1 — 목마른 자들아 물로 나아오라 돈 없는 자도 오라</span>',
+      '  <h3 id="kkd-modal-title">🏛️ 꿈디도 도서관 이용증 · 간편 회원가입 및 로그인</h3>',
+      '  <p class="kkd-sub" id="kkd-modal-desc">꿈디도는 값을 받지 않는 말씀 서재입니다. 구글(Google) 또는 카카오(Kakao) 계정으로 <b>도서관 이용증(회원가입·로그인)</b> 한 장만 받으시면 별관의 모든 방(<b>모세의 지팡이 · 설교 준비실 · 내 설교 곳간 · 양떼 수첩 · 청지기 장부 · 아론의 지팡이 · 교회학교 · 가정예배 · 번역실</b>)과 인쇄·내려받기 기능이 열리며, 앞으로도 값을 받지 않습니다.</p>',
       '  <div class="kkd-vip-card" id="kkd-vip-card">',
       '    <div class="kkd-vip-top">',
       '      <strong>🏛️ 꿈바온 디지털도서관 & 스튜디오 이용증</strong>',
@@ -1623,7 +1623,7 @@
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 8개국어 기독교 번역 스튜디오</a>',
       '  </div>',
-      '  <p class="kkd-foot-note">※ 한 번 로그인하시면 모든 꿈바온 교회지원 프로그램이 무료로 바로 열립니다. 특히 [🏺 내 설교 곳간]과 [🐑 무료 교적 스튜디오]에 입력하시는 설교 원고 및 성도 교적 개인정보는 외부 서버로 절대 전송되지 않고 오직 본인 컴퓨터에만 안전하게 보관됩니다.</p>',
+      '  <p class="kkd-foot-note">※ 값없이 받은 말씀을 값없이 나눕니다 (마태복음 10:8). 성도 명부(양떼 수첩)와 헌금·재정 장부(청지기 장부), 내 설교 곳간에 적으시는 기록은 이 서재 서버로 오지 않고 목사님 컴퓨터에만 남습니다.<br><span style="display:inline-block; margin-top:6px;"><a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener noreferrer" style="color:#f3c969; font-weight:800; text-decoration:underline; text-underline-offset:3px;">📺 꿈바온 유튜브 채널</a> · 매일말씀과 성경이야기도 유튜브 채널에서 나누고 있습니다.</span></p>',
       '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
       '</div>'
     ].join('\n');
@@ -2334,6 +2334,27 @@
         }
         return;
       }
+      if (a.hasAttribute('download') || href.indexOf('downloads/') !== -1) {
+        var dlLabel = (a.textContent || href).replace(/\s+/g, ' ').trim().slice(0, 32);
+        if (!isVerified()) {
+          e.preventDefault();
+          e.stopPropagation();
+          var dlHref = a.href;
+          var dlAttr = a.getAttribute('download') || '';
+          openCardModal(function () {
+            recordTelemetryEvent('studio', '단일파일 내려받기 (' + dlLabel + ')');
+            var tempA = document.createElement('a');
+            tempA.href = dlHref;
+            tempA.setAttribute('download', dlAttr);
+            document.body.appendChild(tempA);
+            tempA.click();
+            setTimeout(function () { document.body.removeChild(tempA); }, 200);
+          }, '🔐 꿈디도 서재의 모든 프로그램과 내 컴퓨터 보관용 단일파일은 「도서관 이용증」 회원가입(로그인) 후 값없이 내려받으실 수 있습니다.');
+        } else {
+          recordTelemetryEvent('studio', '단일파일 내려받기 (' + dlLabel + ')');
+        }
+        return;
+      }
       if (a.hasAttribute('data-kkd-studio-link') || isStudioHref(href)) {
         var studioLabel = (a.textContent || href).replace(/\s+/g, ' ').trim().slice(0, 32);
         if (!isVerified()) {
@@ -2343,7 +2364,7 @@
           openCardModal(function () {
             recordTelemetryEvent('studio', '스튜디오 이동 (' + studioLabel + ')');
             window.location.href = targetHref;
-          }, '🔐 꿈바온 사역 프로그램·스튜디오는 「도서관 이용증」 간편 로그인(구글·카카오) 후 다운로드 없이 바로 이용하실 수 있습니다.');
+          }, '🔐 꿈디도의 모든 방은 「도서관 이용증」 회원가입(로그인) 한 장이면 값없이 바로 열립니다.');
         }
       }
     }, true);

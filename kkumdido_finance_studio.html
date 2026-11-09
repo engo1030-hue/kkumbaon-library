@@ -344,7 +344,7 @@
     border: 1px solid transparent;
     background: transparent;
     color: var(--text-muted);
-    font-size: 0.93rem;
+    font-size: max(15.5px, 0.97rem);
     font-weight: 800;
     cursor: pointer;
     transition: all 0.16s ease;
@@ -723,7 +723,7 @@
 </section>
 
 <main class="wrap">
-  <!-- 6대 메인 탭 -->
+  <!-- 메인 탭 -->
   <nav class="main-tabs" role="tablist">
     <button type="button" class="tab-btn active" onclick="switchTab('tab-dashboard', this)">📊 1. 이번 주 총괄 대시보드</button>
     <button type="button" class="tab-btn" onclick="switchTab('tab-offering', this)">🙏 2. 헌금 봉투 입력 · 주보명단</button>
@@ -731,6 +731,9 @@
     <button type="button" class="tab-btn" onclick="switchTab('tab-tax', this)">🧾 4. 연말정산 기부금영수증</button>
     <button type="button" class="tab-btn" onclick="switchTab('tab-report', this)">📋 5. 제직회·당회 결산보고서</button>
     <button type="button" class="tab-btn" onclick="switchTab('tab-backup', this)">💾 6. 엑셀이사 · 내PC 다운로드</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-assets', this)">🚐 7. 교회 살림 돌봄첩</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-association', this)">🏛️ 8. 동역자 사랑방 (지방회·노회)</button>
+    <button type="button" class="tab-btn" onclick="switchTab('tab-search-dept', this)">🔍 9. 금액으로 찾기 · 여러 봉투 · 부서 주머니</button>
   </nav>
 
   <!-- ==================== TAB 1: 총괄 대시보드 ==================== -->
@@ -1143,7 +1146,279 @@
       </div>
     </div>
   </section>
+
+  <!-- ==================== TAB 7: 교회 살림 돌봄첩 ==================== -->
+  <section id="tab-assets" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>🚐 교회 살림 돌봄첩 — 살림 하나 적기 · 손본 일 적기</span>
+          <span style="font-size:0.78rem; color:var(--gold-main); font-weight:700;">고린도전서 14:40 — 모든 것을 품위 있게 하고 질서대로 하라</span>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+          교회 승합차 엔진오일 교환, 피아노 조율, 방송장비·냉난방기 손본 일과 다음 점검 날짜를 적어 두면 맡은 일꾼이 바뀌어도 기록이 교회에 그대로 남습니다.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>살림 번호 / 분류</label>
+            <input type="text" id="astCode" class="form-control" value="AST-0004 · 방송/음향장비" placeholder="예: AST-0001 · 차량">
+          </div>
+          <div class="form-group">
+            <label>살림 이름 / 모델명</label>
+            <input type="text" id="astName" class="form-control" placeholder="예: 예배당 디지털 콘솔 / 스타렉스 12인승">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>둔 곳 (보관 장소)</label>
+            <input type="text" id="astLocation" class="form-control" value="예배당 방송실" placeholder="예: 교회 주차장 / 예배당 강단">
+          </div>
+          <div class="form-group">
+            <label>들인 값 / 최근 수리비 (원)</label>
+            <input type="number" id="astCost" class="form-control" value="350000" step="1000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>손본 일 구분</label>
+            <select id="astAction" class="form-control">
+              <option value="점검·정비">🔧 점검·정비 (오일교환·조율 등)</option>
+              <option value="구입·신규">🆕 새로 들임·비치</option>
+              <option value="수리·교체">🛠️ 수리·부품교체</option>
+              <option value="대여·반납">📦 성도/부서 빌려줌·돌려받음</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>보증만료일 / 다음 점검 날</label>
+            <input type="date" id="astWarranty" class="form-control">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:12px;">
+          <label>손봐 준 곳·연락처 및 상세 기록 (빌려간 이/돌려받을 날 등)</label>
+          <input type="text" id="astNote" class="form-control" placeholder="예: 은혜음향(02-555-1234) 채널 점검 완료 / 청년부 수련회 빌려줌">
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button type="button" class="btn-primary" style="flex:1;" onclick="addChurchAsset()">+ 살림 하나 적기 · 손본 일 적기</button>
+          <button type="button" class="btn-secondary" onclick="window.print()">🖨️ 살림 돌봄첩 &amp; 이름표 인쇄</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">📋 우리 교회 살림 돌봄첩 (차량·악기·냉난방·방송장비)</div>
+        <div id="assetSummaryBadges" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;"></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>번호·분류</th>
+                <th>살림 이름 (둔 곳)</th>
+                <th>손본 일</th>
+                <th style="text-align:right;">비용</th>
+                <th>다음 점검 날</th>
+                <th>손봐 준 곳·메모</th>
+                <th class="no-print">관리</th>
+              </tr>
+            </thead>
+            <tbody id="assetTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 8: 동역자 사랑방 (지방회·노회·연합회) ==================== -->
+  <section id="tab-association" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">
+          <span>🏛️ 동역자 사랑방 (지방회 · 노회 · 연합회)</span>
+          <span style="font-size:0.78rem; color:var(--gold-main); font-weight:700;">빌립보서 1:5 — 첫날부터 이제까지 복음을 위한 너희의 교제로 말미암음이라</span>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:12px;">
+          감리교·성결교 지방회, 장로교 노회, 지역 기독교연합회 등 함께 사역하는 이웃 교회 명부와 정기모임 출석, 회비(상회비·부담금), 다음 서기·회계 인수인계를 한 곳에서 돌봅니다.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>교단 / 모임 갈래 고르기 (호칭 자동 맞춤)</label>
+            <select id="assocDenomSelect" class="form-control" onchange="applyAssocDenomLabels()">
+              <option value="methodist">감리교 (지방회 · 감리사 · 부담금)</option>
+              <option value="presbyterian">장로교 (노회 · 노회장 · 상회비)</option>
+              <option value="holiness">성결교 (지방회 · 지방회장 · 부담금)</option>
+              <option value="union">지역 연합회 (연합회 · 회장 · 회비)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label id="lblAssocOrgName">지방회 명칭 및 회기</label>
+            <input type="text" id="assocOrgName" class="form-control" value="꿈바온 서부지방회 (제42회기)" oninput="saveAssociationMeta()">
+          </div>
+        </div>
+        <div class="form-group">
+          <label id="lblAssocOfficers">섬기는 임원 (감리사 · 총무 · 서기 · 회계)</label>
+          <input type="text" id="assocOfficers" class="form-control" value="감리사 김은혜 목사 · 총무 이충성 목사 · 서기 박사랑 목사 · 회계 최소망 장로" oninput="saveAssociationMeta()">
+        </div>
+        <hr style="border:none; border-top:1px dashed var(--border-soft); margin:12px 0;">
+        <div class="form-row">
+          <div class="form-group">
+            <label>교회번호 / 구분</label>
+            <input type="text" id="assocChurchNo" class="form-control" value="26-0005 · 소속교회" placeholder="예: 26-0001 · 소속교회 / 개척·지원 교회">
+          </div>
+          <div class="form-group">
+            <label>소속 교회명</label>
+            <input type="text" id="assocChurchName" class="form-control" placeholder="예: 새소망교회">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>담임목사 / 연락처</label>
+            <input type="text" id="assocPastor" class="form-control" placeholder="예: 최믿음 목사 (010-1234-5678)">
+          </div>
+          <div class="form-group">
+            <label id="lblAssocDues">부담금·상회비 납부액 (원)</label>
+            <input type="number" id="assocDues" class="form-control" value="450000" step="10000">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>정기모임(월례회·정기회) 출석 여부</label>
+            <select id="assocAttend" class="form-control">
+              <option value="출석">✅ 정기모임 출석 (회비 완납)</option>
+              <option value="출석(미납)">🟡 출석 (추후 납부)</option>
+              <option value="위임출석">📨 위임장 제출 (회비 납부)</option>
+              <option value="결석">⬜ 미참석</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>창립기념일 / 비고</label>
+            <input type="text" id="assocMemo" class="form-control" placeholder="예: 창립 10.15 / 선교후원 별도">
+          </div>
+        </div>
+        <button type="button" id="btnAddAssocChurch" class="btn-primary" style="width:100%; margin-bottom:14px;" onclick="addAssocChurch()">+ 소속 교회 및 부담금·출석 올리기 (회계장부 자동 연동)</button>
+
+        <div class="form-group">
+          <label>📝 다음 서기·회계에게 넘기는 글 (인수인계 노트)</label>
+          <textarea id="assocHandoverNote" class="form-control" rows="3" oninput="saveAssociationMeta()">1. 정기모임 회비(부담금·상회비)는 매월 15일 기준으로 집계합니다.
+2. 개척·지원 교회 2곳은 회비 면제 및 선교비 지원 대상입니다.
+3. 아래 [다음 임원에게 넘길 보따리 싸기]를 누르면 다음 서기·회계 목사님께 모든 명부와 장부가 파일 하나로 전달됩니다.</textarea>
+        </div>
+        <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;">
+          <button type="button" class="btn-secondary" style="flex:1;" onclick="exportAssocHandoverBundle()">📦 다음 임원에게 넘길 보따리 싸기 (.json)</button>
+          <button type="button" class="btn-secondary" onclick="exportAssocChurchesCSV()">📊 교회 명부·출석 엑셀(.csv)</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+          <div class="card-title" style="margin:0; border:none; padding:0;" id="assocBoardTitle">🏛️ 동역자 사랑방 — 소속 교회 명부 · 회비 · 정기모임 출석표</div>
+          <button type="button" class="btn-secondary no-print" onclick="window.print()">🖨️ 모임 보고서 A4 인쇄</button>
+        </div>
+        <div id="assocKpiRow" style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;"></div>
+        <div class="table-wrap">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>번호·구분</th>
+                <th>교회명</th>
+                <th>담임목사 (연락처)</th>
+                <th id="thAssocDues" style="text-align:right;">부담금·상회비</th>
+                <th style="text-align:center;">모임출석</th>
+                <th>창립·비고</th>
+                <th class="no-print">관리</th>
+              </tr>
+            </thead>
+            <tbody id="assocTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 9: 금액으로 찾기 · 여러 봉투 · 부서 주머니 ==================== -->
+  <section id="tab-search-dept" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-title">🙏 한 분의 여러 헌금 봉투 한 번에 적기 (십일조·주일·감사·선교·건축)</div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:10px;">
+          한 성도님이 여러 헌금 봉투를 내셨을 때 이름을 여러 번 칠 필요 없이, 아래 칸에 금액만 적으면 한꺼번에 장부에 올라갑니다.
+        </p>
+        <div class="form-row">
+          <div class="form-group">
+            <label>성도 성명</label>
+            <input type="text" id="multiDonorName" class="form-control" value="김은혜" placeholder="성도 이름">
+          </div>
+          <div class="form-group">
+            <label>직분 / 교구 · 부서 주머니</label>
+            <input type="text" id="multiDonorRole" class="form-control" value="권사 / 본재정" placeholder="예: 장로 / 선교부">
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; background:var(--bg-parchment); padding:12px; border-radius:10px; border:1px solid var(--border-soft); margin-bottom:10px;">
+          <div class="form-group"><label>① 십일조</label><input type="number" id="multiAmt1" class="form-control" value="300000" step="10000" oninput="calcMultiTotal()"></div>
+          <div class="form-group"><label>② 주일헌금</label><input type="number" id="multiAmt2" class="form-control" value="50000" step="5000" oninput="calcMultiTotal()"></div>
+          <div class="form-group"><label>③ 감사헌금</label><input type="number" id="multiAmt3" class="form-control" value="100000" step="10000" oninput="calcMultiTotal()"></div>
+          <div class="form-group"><label>④ 선교헌금 (선교부)</label><input type="number" id="multiAmt4" class="form-control" value="50000" step="10000" oninput="calcMultiTotal()"></div>
+          <div class="form-group"><label>⑤ 구제·장학 (구제부)</label><input type="number" id="multiAmt5" class="form-control" value="0" step="10000" oninput="calcMultiTotal()"></div>
+          <div class="form-group"><label>⑥ 건축·절기헌금</label><input type="number" id="multiAmt6" class="form-control" value="0" step="10000" oninput="calcMultiTotal()"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <strong id="multiTotalLabel" style="font-size:1.05rem; color:var(--gold-main);">합계: 500,000원</strong>
+          <button type="button" class="btn-primary" onclick="submitMultiOffering()">🙏 한꺼번에 장부에 올리기</button>
+        </div>
+
+        <hr style="border:none; border-top:1px solid var(--border-soft); margin:16px 0;">
+        <div class="card-title">🏦 부서 주머니 (본재정 · 선교부 · 구제장학부 · 교육부) &amp; 회기 시작월</div>
+        <div class="form-row" style="margin-bottom:10px;">
+          <div class="form-group">
+            <label>교회 회기 시작월 (세무 영수증은 1~12월 고정)</label>
+            <select id="fiscalStartMonth" class="form-control" onchange="saveFiscalConfig()">
+              <option value="1">1월 시작 (1.1 ~ 12.31)</option>
+              <option value="3">3월 시작 (3.1 ~ 익년 2.28)</option>
+              <option value="11">11월 시작 (11.1 ~ 익년 10.31)</option>
+              <option value="12">12월 시작 (12.1 ~ 익년 11.30 · 당회 기준)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>통화 표시 (한국 KRW / 미주 USD)</label>
+            <select id="currencyModeSelect" class="form-control" onchange="saveFiscalConfig()">
+              <option value="KRW">🇰🇷 원화 (KRW · 원)</option>
+              <option value="USD">🇺🇸 미주 달러 (USD · $)</option>
+            </select>
+          </div>
+        </div>
+        <div id="deptBalanceGrid" style="display:grid; grid-template-columns:repeat(2, 1fr); gap:8px;"></div>
+      </div>
+
+      <div class="card">
+        <div class="card-title">
+          <span>🔍 금액으로 찾기 (헌금 · 지출 통합 조회)</span>
+          <span style="font-size:0.76rem; color:var(--gold-main); font-weight:700;">누가복음 15:8 — 등불을 켜고 집을 쓸며 찾아내기까지</span>
+        </div>
+        <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:10px;">
+          정확한 날짜나 이름이 떠오르지 않아도 <code>50,000 ~ 600,000</code>처럼 금액 범위나 지불처·메모·무명을 넣으면 헌금과 지출을 한 자리에서 찾아냅니다.
+        </p>
+        <div class="form-row" style="margin-bottom:10px;">
+          <div class="form-group">
+            <label>최소 금액 (원)</label>
+            <input type="number" id="searchMinAmt" class="form-control" value="50000" step="10000" oninput="runReverseSearch()">
+          </div>
+          <div class="form-group">
+            <label>최대 금액 (비워두면 제한없음)</label>
+            <input type="number" id="searchMaxAmt" class="form-control" value="600000" step="10000" oninput="runReverseSearch()">
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:10px;">
+          <label>찾을 말 (성도 이름 · 지급처 · 적요 · 무명)</label>
+          <input type="text" id="searchKeyword" class="form-control" placeholder="예: 선교 / 인쇄 / 무명" oninput="runReverseSearch()">
+        </div>
+        <div id="reverseSearchResultBox" class="table-wrap"></div>
+      </div>
+    </div>
+  </section>
+
 </main>
+
+<footer class="no-print" style="max-width:1360px; margin:16px auto 34px; padding:16px 22px; border-top:1px solid var(--border-gold); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-size:0.83rem; color:var(--text-muted);">
+  <div>꿈디도는 값없이 엽니다 — <i class="serif">너희가 값없이 받았으니 값없이 주라</i> (마태복음 10:8) · 도서관 이용증(회원가입) 한 장으로 모든 방이 열립니다</div>
+  <div>성도 명부와 헌금 장부는 목사님 컴퓨터에만 남습니다 · <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:var(--gold-main); font-weight:700; text-decoration:none; border-bottom:1px dotted var(--gold-main);">꿈바온 유튜브 채널</a> (매일말씀과 성경이야기)</div>
+</footer>
 
 <script id="embeddedStateScript">
   window.__EMBEDDED_FINANCE_STATE__ = null;
@@ -1795,12 +2070,401 @@
     localStorage.setItem('kkd_finance_theme', theme);
   }
 
+
+  function formatMoney(n) {
+    var num = Number(n) || 0;
+    return num.toLocaleString('ko-KR');
+  }
+
+  var ASSOC_DENOM_MAP = {
+    methodist: { orgLabel: '지방회 명칭 및 회기', officerLabel: '섬기는 임원 (감리사 · 총무 · 서기 · 회계)', duesLabel: '부담금 납부액 (원)', duesShort: '부담금', sampleOrg: '꿈바온 서부지방회 (제42회기)', sampleOfficers: '감리사 김은혜 목사 · 총무 이충성 목사 · 서기 박사랑 목사 · 회계 최소망 장로' },
+    presbyterian: { orgLabel: '노회(시찰회) 명칭 및 회기', officerLabel: '섬기는 임원 (노회장 · 서기 · 회록서기 · 회계)', duesLabel: '상회비 납부액 (원)', duesShort: '상회비', sampleOrg: '꿈바온 서부노회 (제42회기)', sampleOfficers: '노회장 김은혜 목사 · 서기 이충성 목사 · 회록서기 박사랑 목사 · 회계 최소망 장로' },
+    holiness: { orgLabel: '지방회 명칭 및 회기', officerLabel: '섬기는 임원 (지방회장 · 부회장 · 서기 · 회계)', duesLabel: '부담금 납부액 (원)', duesShort: '부담금', sampleOrg: '꿈바온 서부지방회 (제42회기)', sampleOfficers: '지방회장 김은혜 목사 · 서기 이충성 목사 · 회계 박사랑 장로' },
+    union: { orgLabel: '지역 기독교연합회 명칭 및 회기', officerLabel: '섬기는 임원 (회장 · 총무 · 서기 · 회계)', duesLabel: '연회비·회비 납부액 (원)', duesShort: '회비', sampleOrg: '꿈바온 기독교연합회 (2026회기)', sampleOfficers: '회장 김은혜 목사 · 총무 이충성 목사 · 서기 박사랑 목사 · 회계 최소망 장로' }
+  };
+
+  function ensureExtendedFinanceState() {
+    if (!state.assets) {
+      state.assets = [
+        { id: 'ast_1', code: 'AST-0001 · 차량', name: '교회 승합차 (스타렉스 12인승)', location: '교회 주차장', action: '점검·정비', cost: 145000, warranty: '2026-11-28', note: '엔진오일 및 브레이크 패드 교환 (은혜카센터 02-333-4567)' },
+        { id: 'ast_2', code: 'AST-0002 · 악기', name: '예배당 그랜드 피아노 (야마하 G3)', location: '예배당 강단 좌측', action: '점검·정비', cost: 150000, warranty: '2027-04-15', note: '추수감사절 맞이 정기 조율 완료 (다윗피아노조율)' },
+        { id: 'ast_3', code: 'AST-0003 · 냉난방', name: '예배당 대형 냉난방기 2대', location: '예배당 양측면', action: '수리·교체', cost: 280000, warranty: '2026-12-01', note: '필터 세척 및 냉매 가스 보충 완료 · 다음 점검일 다가옴' }
+      ];
+    }
+    if (!state.association) {
+      state.association = {
+        denom: 'methodist',
+        orgName: '꿈바온 서부지방회 (제42회기)',
+        officers: '감리사 김은혜 목사 · 총무 이충성 목사 · 서기 박사랑 목사 · 회계 최소망 장로',
+        handoverNote: '1. 정기모임 회비(부담금·상회비)는 매월 15일 기준으로 집계하며 회계장부에 자동 연동됩니다.\n2. 개척·지원 교회 2곳은 회비 면제 및 선교비 지원 대상입니다.\n3. 아래 [다음 임원에게 넘길 보따리 싸기] 버튼으로 전체 명부와 장부를 한 번에 인계합니다.',
+        churches: [
+          { id: 'asc_1', no: '26-0001 · 소속교회', name: '꿈바온 은혜교회', pastor: '김은혜 목사 (010-2345-6789)', dues: 450000, attend: '출석', memo: '창립 05.12 · 정기 회비 완납' },
+          { id: 'asc_2', no: '26-0002 · 소속교회', name: '새소망교회', pastor: '이충성 목사 (010-3456-7890)', dues: 450000, attend: '출석', memo: '창립 09.03 · 선교헌금 30만원 별도' },
+          { id: 'asc_3', no: '26-0003 · 소속교회', name: '빛과소금교회', pastor: '박사랑 목사 (010-4567-8901)', dues: 300000, attend: '위임출석', memo: '창립 11.20 · 정기 회비 납부' },
+          { id: 'asc_4', no: '26-0004 · 개척·지원', name: '광야샘터개척교회', pastor: '최소망 목사 (010-5678-9012)', dues: 0, attend: '출석', memo: '개척·지원 교회 회비 면제 · 선교지원 대상' }
+        ]
+      };
+    } else {
+      if (!state.association.denom) state.association.denom = 'methodist';
+      if (state.association.handoverNote) {
+        state.association.handoverNote = state.association.handoverNote.replace(/미자립 개척교회\(준회원\)/g, '개척·지원 교회');
+      }
+      if (Array.isArray(state.association.churches)) {
+        state.association.churches.forEach(function(ch) {
+          if (ch.no) {
+            ch.no = ch.no.replace(/정회원/g, '소속교회').replace(/준회원/g, '개척·지원');
+          }
+        });
+      }
+    }
+    if (!state.config.fiscalStartMonth) state.config.fiscalStartMonth = '1';
+    if (!state.config.currency) state.config.currency = 'KRW';
+  }
+
+  function renderAssetsTab() {
+    ensureExtendedFinanceState();
+    var tbody = document.getElementById('assetTableBody');
+    var badgeBox = document.getElementById('assetSummaryBadges');
+    if (!tbody) return;
+    var totalCost = 0;
+    var soonCount = 0;
+    var nowMs = Date.now();
+    tbody.innerHTML = state.assets.map(function(a) {
+      totalCost += (Number(a.cost) || 0);
+      var daysLeft = a.warranty ? Math.ceil((new Date(a.warranty).getTime() - nowMs) / 86400000) : 999;
+      var warnBadge = '';
+      if (daysLeft <= 30) {
+        soonCount++;
+        warnBadge = ' <span style="background:#FEE2E2; color:#B91C1C; font-size:0.74rem; padding:2px 6px; border-radius:99px; font-weight:700;">⚠️ 점검 날 ' + (daysLeft >= 0 ? 'D-' + daysLeft : '지남') + '</span>';
+      }
+      return '<tr>' +
+        '<td style="font-weight:700;">' + escapeHtml(a.code) + '</td>' +
+        '<td><strong>' + escapeHtml(a.name) + '</strong><br><small style="color:var(--text-muted);">📍 ' + escapeHtml(a.location) + '</small></td>' +
+        '<td>' + escapeHtml(a.action) + '</td>' +
+        '<td style="text-align:right; font-weight:700;">' + formatMoney(a.cost) + '원</td>' +
+        '<td>' + escapeHtml(a.warranty || '-') + warnBadge + '</td>' +
+        '<td>' + escapeHtml(a.note || '') + '</td>' +
+        '<td class="no-print"><button type="button" class="btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteChurchAsset(\'' + a.id + '\')">삭제</button></td>' +
+      '</tr>';
+    }).join('');
+    if (badgeBox) {
+      badgeBox.innerHTML =
+        '<span class="badge-pill">적어 둔 교회 살림: <strong>' + state.assets.length + '건</strong></span>' +
+        '<span class="badge-pill">누적 돌봄·수리 비용: <strong>' + formatMoney(totalCost) + '원</strong></span>' +
+        '<span class="badge-pill" style="background:#FEF3C7; color:#92400E;">점검 날이 다가오는 살림(30일 내): <strong>' + soonCount + '건</strong></span>';
+    }
+  }
+
+  function addChurchAsset() {
+    ensureExtendedFinanceState();
+    var name = (document.getElementById('astName').value || '').trim();
+    if (!name) { alert('살림 이름이나 차량명을 입력해 주세요.'); return; }
+    state.assets.unshift({
+      id: 'ast_' + Date.now(),
+      code: (document.getElementById('astCode').value || 'AST-신규').trim(),
+      name: name,
+      location: (document.getElementById('astLocation').value || '').trim(),
+      action: document.getElementById('astAction').value,
+      cost: Number(document.getElementById('astCost').value) || 0,
+      warranty: document.getElementById('astWarranty').value || '',
+      note: (document.getElementById('astNote').value || '').trim()
+    });
+    document.getElementById('astName').value = '';
+    saveFinanceState();
+    renderAssetsTab();
+  }
+
+  function deleteChurchAsset(id) {
+    ensureExtendedFinanceState();
+    state.assets = state.assets.filter(function(a) { return a.id !== id; });
+    saveFinanceState();
+    renderAssetsTab();
+  }
+
+  function applyAssocDenomLabels() {
+    ensureExtendedFinanceState();
+    var sel = document.getElementById('assocDenomSelect');
+    var denom = (sel && sel.value) || state.association.denom || 'methodist';
+    state.association.denom = denom;
+    var info = ASSOC_DENOM_MAP[denom] || ASSOC_DENOM_MAP.methodist;
+    var lOrg = document.getElementById('lblAssocOrgName');
+    var lOff = document.getElementById('lblAssocOfficers');
+    var lDues = document.getElementById('lblAssocDues');
+    var thDues = document.getElementById('thAssocDues');
+    var btnAdd = document.getElementById('btnAddAssocChurch');
+    if (lOrg) lOrg.textContent = info.orgLabel;
+    if (lOff) lOff.textContent = info.officerLabel;
+    if (lDues) lDues.textContent = info.duesLabel;
+    if (thDues) thDues.textContent = info.duesShort;
+    if (btnAdd) btnAdd.textContent = '+ 소속 교회 및 ' + info.duesShort + '·출석 올리기 (회계장부 자동 연동)';
+    saveFinanceState();
+    renderAssociationTab();
+  }
+
+  function saveAssociationMeta() {
+    ensureExtendedFinanceState();
+    var o = document.getElementById('assocOrgName');
+    var f = document.getElementById('assocOfficers');
+    var h = document.getElementById('assocHandoverNote');
+    if (o) state.association.orgName = o.value;
+    if (f) state.association.officers = f.value;
+    if (h) state.association.handoverNote = h.value;
+    saveFinanceState();
+    var bt = document.getElementById('assocBoardTitle');
+    if (bt && o) bt.textContent = '🏛️ ' + o.value + ' — 소속 교회 명부 · 회비 · 정기모임 출석표';
+  }
+
+  function renderAssociationTab() {
+    ensureExtendedFinanceState();
+    var asc = state.association;
+    var sel = document.getElementById('assocDenomSelect');
+    if (sel && asc.denom) sel.value = asc.denom;
+    var info = ASSOC_DENOM_MAP[asc.denom || 'methodist'] || ASSOC_DENOM_MAP.methodist;
+    var lOrg = document.getElementById('lblAssocOrgName');
+    var lOff = document.getElementById('lblAssocOfficers');
+    var lDues = document.getElementById('lblAssocDues');
+    var thDues = document.getElementById('thAssocDues');
+    if (lOrg) lOrg.textContent = info.orgLabel;
+    if (lOff) lOff.textContent = info.officerLabel;
+    if (lDues) lDues.textContent = info.duesLabel;
+    if (thDues) thDues.textContent = info.duesShort;
+
+    if (document.getElementById('assocOrgName')) document.getElementById('assocOrgName').value = asc.orgName || '';
+    if (document.getElementById('assocOfficers')) document.getElementById('assocOfficers').value = asc.officers || '';
+    if (document.getElementById('assocHandoverNote')) document.getElementById('assocHandoverNote').value = asc.handoverNote || '';
+    var tbody = document.getElementById('assocTableBody');
+    var kpi = document.getElementById('assocKpiRow');
+    if (!tbody) return;
+    var totalDues = 0;
+    var attendCnt = 0;
+    tbody.innerHTML = (asc.churches || []).map(function(c) {
+      totalDues += (Number(c.dues) || 0);
+      if (c.attend && c.attend.indexOf('출석') >= 0) attendCnt++;
+      return '<tr>' +
+        '<td style="font-weight:700;">' + escapeHtml(c.no) + '</td>' +
+        '<td><strong>' + escapeHtml(c.name) + '</strong></td>' +
+        '<td>' + escapeHtml(c.pastor) + '</td>' +
+        '<td style="text-align:right; font-weight:700;">' + formatMoney(c.dues) + '원</td>' +
+        '<td style="text-align:center;">' + escapeHtml(c.attend) + '</td>' +
+        '<td>' + escapeHtml(c.memo || '') + '</td>' +
+        '<td class="no-print"><button type="button" class="btn-danger" style="padding:4px 8px; font-size:0.75rem;" onclick="deleteAssocChurch(\'' + c.id + '\')">삭제</button></td>' +
+      '</tr>';
+    }).join('');
+    if (kpi) {
+      var rate = asc.churches.length ? Math.round((attendCnt / asc.churches.length) * 100) : 0;
+      kpi.innerHTML =
+        '<span class="badge-pill">소속 교회: <strong>' + asc.churches.length + '개 교회</strong></span>' +
+        '<span class="badge-pill">' + escapeHtml(info.duesShort) + ' 누계: <strong>' + formatMoney(totalDues) + '원</strong></span>' +
+        '<span class="badge-pill">정기모임 출석률: <strong>' + attendCnt + '/' + asc.churches.length + ' (' + rate + '%)</strong></span>';
+    }
+  }
+
+  function addAssocChurch() {
+    ensureExtendedFinanceState();
+    var cname = (document.getElementById('assocChurchName').value || '').trim();
+    if (!cname) { alert('소속 교회명을 입력해 주세요.'); return; }
+    var dues = Number(document.getElementById('assocDues').value) || 0;
+    var pastor = (document.getElementById('assocPastor').value || '').trim();
+    var info = ASSOC_DENOM_MAP[state.association.denom || 'methodist'] || ASSOC_DENOM_MAP.methodist;
+    state.association.churches.push({
+      id: 'asc_' + Date.now(),
+      no: (document.getElementById('assocChurchNo').value || '26-신규 · 소속교회').trim(),
+      name: cname,
+      pastor: pastor,
+      dues: dues,
+      attend: document.getElementById('assocAttend').value,
+      memo: (document.getElementById('assocMemo').value || '').trim()
+    });
+    if (dues > 0) {
+      state.offerings.unshift({
+        id: 'off_' + Date.now(),
+        date: new Date().toISOString().slice(0, 10),
+        service: '동역자 사랑방 (' + info.duesShort + ')',
+        category: '기타헌금',
+        method: '계좌이체',
+        name: cname,
+        role: pastor || '소속교회',
+        amount: dues,
+        note: (state.association.orgName || '지방회/노회') + ' 정기 ' + info.duesShort + ' 자동 전기'
+      });
+    }
+    document.getElementById('assocChurchName').value = '';
+    saveFinanceState();
+    renderAll();
+  }
+
+  function deleteAssocChurch(id) {
+    ensureExtendedFinanceState();
+    state.association.churches = state.association.churches.filter(function(c) { return c.id !== id; });
+    saveFinanceState();
+    renderAssociationTab();
+  }
+
+  function exportAssocHandoverBundle() {
+    ensureExtendedFinanceState();
+    var bundle = {
+      exportedAt: new Date().toISOString(),
+      association: state.association,
+      config: state.config,
+      offerings: state.offerings,
+      expenses: state.expenses
+    };
+    var orgSafe = (state.association.orgName || '동역자사랑방').replace(/\s+/g, '_');
+    downloadBlob(JSON.stringify(bundle, null, 2), 'application/json;charset=utf-8;', orgSafe + '_인수인계보따리_' + new Date().toISOString().slice(0, 10) + '.json');
+  }
+
+  function exportAssocChurchesCSV() {
+    ensureExtendedFinanceState();
+    var rows = ['\uFEFF번호구분,소속교회명,담임목사연락처,회비납부액,정기모임출석,창립비고'];
+    (state.association.churches || []).forEach(function(c) {
+      rows.push([
+        '"' + String(c.no || '').replace(/"/g, '""') + '"',
+        '"' + String(c.name || '').replace(/"/g, '""') + '"',
+        '"' + String(c.pastor || '').replace(/"/g, '""') + '"',
+        Number(c.dues) || 0,
+        '"' + String(c.attend || '').replace(/"/g, '""') + '"',
+        '"' + String(c.memo || '').replace(/"/g, '""') + '"'
+      ].join(','));
+    });
+    var orgSafe = (state.association.orgName || '동역자사랑방').replace(/\s+/g, '_');
+    downloadBlob(rows.join('\n'), 'text/csv;charset=utf-8;', orgSafe + '_소속교회명부_' + new Date().toISOString().slice(0, 10) + '.csv');
+  }
+
+  function calcMultiTotal() {
+    var sum = 0;
+    for (var i = 1; i <= 6; i++) {
+      var el = document.getElementById('multiAmt' + i);
+      if (el) sum += (Number(el.value) || 0);
+    }
+    var lbl = document.getElementById('multiTotalLabel');
+    if (lbl) lbl.textContent = '합계: ' + formatMoney(sum) + (state.config && state.config.currency === 'USD' ? ' USD' : '원');
+    return sum;
+  }
+
+  function submitMultiOffering() {
+    var name = (document.getElementById('multiDonorName').value || '').trim() || '무명';
+    var role = (document.getElementById('multiDonorRole').value || '').trim() || '성도';
+    var today = new Date().toISOString().slice(0, 10);
+    var cats = ['십일조', '주일헌금', '감사헌금', '선교헌금', '구제/장학헌금', '건축/절기헌금'];
+    var added = 0;
+    for (var i = 1; i <= 6; i++) {
+      var amt = Number(document.getElementById('multiAmt' + i).value) || 0;
+      if (amt > 0) {
+        state.offerings.unshift({
+          id: 'off_' + Date.now() + '_' + i,
+          date: today,
+          service: '주일예배',
+          category: cats[i - 1],
+          method: '현금봉투',
+          name: name,
+          role: role,
+          amount: amt,
+          note: '한 분의 여러 헌금 봉투 한 번에 적기 (' + cats[i - 1] + ')'
+        });
+        document.getElementById('multiAmt' + i).value = 0;
+        added++;
+      }
+    }
+    if (!added) { alert('1개 이상의 헌금 항목에 금액을 입력해 주세요.'); return; }
+    saveFinanceState();
+    renderAll();
+    alert(name + ' 성도님의 헌금 봉투 ' + added + '건이 장부에 한꺼번에 올라갔습니다.');
+  }
+
+  function saveFiscalConfig() {
+    ensureExtendedFinanceState();
+    var fm = document.getElementById('fiscalStartMonth');
+    var cm = document.getElementById('currencyModeSelect');
+    if (fm) state.config.fiscalStartMonth = fm.value;
+    if (cm) state.config.currency = cm.value;
+    saveFinanceState();
+    renderSearchDeptTab();
+  }
+
+  function renderSearchDeptTab() {
+    ensureExtendedFinanceState();
+    calcMultiTotal();
+    var fm = document.getElementById('fiscalStartMonth');
+    var cm = document.getElementById('currencyModeSelect');
+    if (fm) fm.value = state.config.fiscalStartMonth || '1';
+    if (cm) cm.value = state.config.currency || 'KRW';
+    var unit = state.config.currency === 'USD' ? ' USD' : '원';
+
+    // 부서 주머니별 수입·지출·잔액 분리 계산
+    var depts = {
+      '본재정 주머니 (일반)': { inc: Number(state.config.carryOver) || 0, exp: 0 },
+      '선교부 주머니': { inc: 0, exp: 0 },
+      '구제·장학부 주머니': { inc: 0, exp: 0 },
+      '교육·다음세대부 주머니': { inc: 0, exp: 0 }
+    };
+    (state.offerings || []).forEach(function(o) {
+      var a = Number(o.amount) || 0;
+      if (o.category && o.category.indexOf('선교') >= 0) depts['선교부 주머니'].inc += a;
+      else if (o.category && (o.category.indexOf('구제') >= 0 || o.category.indexOf('장학') >= 0)) depts['구제·장학부 주머니'].inc += a;
+      else depts['본재정 주머니 (일반)'].inc += a;
+    });
+    (state.expenses || []).forEach(function(e) {
+      var a = Number(e.amount) || 0;
+      if (e.category && e.category.indexOf('선교') >= 0) depts['선교부 주머니'].exp += a;
+      else if (e.category && (e.category.indexOf('구제') >= 0 || e.category.indexOf('심방') >= 0)) depts['구제·장학부 주머니'].exp += a;
+      else if (e.category && e.category.indexOf('교육') >= 0) depts['교육·다음세대부 주머니'].exp += a;
+      else depts['본재정 주머니 (일반)'].exp += a;
+    });
+
+    var grid = document.getElementById('deptBalanceGrid');
+    if (grid) {
+      grid.innerHTML = Object.keys(depts).map(function(k) {
+        var d = depts[k];
+        var bal = d.inc - d.exp;
+        return '<div style="padding:10px 12px; border-radius:8px; border:1px solid var(--border-soft); background:var(--bg-card);">' +
+          '<div style="font-weight:700; font-size:0.86rem; margin-bottom:4px;">🏦 ' + escapeHtml(k) + '</div>' +
+          '<div style="font-size:0.78rem; color:var(--text-muted);">들어온 돈 ' + formatMoney(d.inc) + ' / 나간 돈 ' + formatMoney(d.exp) + '</div>' +
+          '<div style="font-size:0.95rem; font-weight:800; color:var(--gold-main); margin-top:3px;">남은 돈: ' + formatMoney(bal) + unit + '</div>' +
+        '</div>';
+      }).join('');
+    }
+    runReverseSearch();
+  }
+
+  function runReverseSearch() {
+    ensureExtendedFinanceState();
+    var minA = Number(document.getElementById('searchMinAmt') ? document.getElementById('searchMinAmt').value : 0) || 0;
+    var maxRaw = document.getElementById('searchMaxAmt') ? document.getElementById('searchMaxAmt').value : '';
+    var maxA = maxRaw === '' ? Infinity : (Number(maxRaw) || Infinity);
+    var kw = (document.getElementById('searchKeyword') ? document.getElementById('searchKeyword').value : '').trim().toLowerCase();
+    var rows = [];
+    (state.offerings || []).forEach(function(o) {
+      var a = Number(o.amount) || 0;
+      var hay = [o.date, o.name, o.role, o.category, o.service, o.note].join(' ').toLowerCase();
+      if (a >= minA && a <= maxA && (!kw || hay.indexOf(kw) >= 0)) {
+        rows.push({ type: '🙏 헌금수입', date: o.date, who: o.name + ' (' + (o.role || '') + ')', cat: o.category, amount: a, memo: o.note || '' });
+      }
+    });
+    (state.expenses || []).forEach(function(e) {
+      var a = Number(e.amount) || 0;
+      var hay = [e.date, e.payee, e.requester, e.category, e.memo].join(' ').toLowerCase();
+      if (a >= minA && a <= maxA && (!kw || hay.indexOf(kw) >= 0)) {
+        rows.push({ type: '💸 지출결의', date: e.date, who: e.payee + ' (' + (e.requester || '') + ')', cat: e.category, amount: a, memo: e.memo || '' });
+      }
+    });
+    var box = document.getElementById('reverseSearchResultBox');
+    if (!box) return;
+    box.innerHTML = '<table class="data-table"><thead><tr><th>구분</th><th>일자</th><th>성명/지급처</th><th>항목</th><th style="text-align:right;">금액</th><th>적요/메모</th></tr></thead><tbody>' +
+      (rows.length ? rows.map(function(r) {
+        return '<tr><td><strong>' + r.type + '</strong></td><td>' + escapeHtml(r.date) + '</td><td>' + escapeHtml(r.who) + '</td><td>' + escapeHtml(r.cat) + '</td><td style="text-align:right; font-weight:700;">' + formatMoney(r.amount) + '원</td><td>' + escapeHtml(r.memo) + '</td></tr>';
+      }).join('') : '<tr><td colspan="6" style="text-align:center; padding:18px;">해당 금액 범위나 찾을 말에 맞는 내역이 없습니다.</td></tr>') +
+      '</tbody></table>';
+  }
+
   function renderAll() {
     renderDashboard();
     renderOfferingTable();
     renderExpenseTable();
     populateTaxDonorList();
     renderFinancialReport();
+    renderAssetsTab();
+    renderAssociationTab();
+    renderSearchDeptTab();
   }
 
   window.addEventListener('DOMContentLoaded', function() {
@@ -1815,6 +2479,33 @@
     if (document.getElementById('expDate')) document.getElementById('expDate').value = today;
     if (document.getElementById('repDateInput')) document.getElementById('repDateInput').value = today;
     loadFinanceState();
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var kkdTab = params.get('kkd_tab');
+      if (kkdTab) {
+        var aliasMap = {
+          'assets': 'tab-assets',
+          'association': 'tab-association',
+          'search': 'tab-search-dept',
+          'search-dept': 'tab-search-dept',
+          'offering': 'tab-offering',
+          'expense': 'tab-expense',
+          'tax': 'tab-tax',
+          'report': 'tab-report',
+          'backup': 'tab-backup',
+          'dashboard': 'tab-dashboard'
+        };
+        var targetId = aliasMap[kkdTab] || (kkdTab.indexOf('tab-') === 0 ? kkdTab : ('tab-' + kkdTab));
+        var matchedBtn = null;
+        document.querySelectorAll('.tab-btn').forEach(function(b) {
+          var oc = b.getAttribute('onclick') || '';
+          if (oc.indexOf("'" + targetId + "'") !== -1) matchedBtn = b;
+        });
+        if (document.getElementById(targetId)) {
+          switchTab(targetId, matchedBtn);
+        }
+      }
+    } catch (e) {}
   });
 </script>
   <script src="kkumdido-shield.js"></script>

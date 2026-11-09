@@ -339,12 +339,12 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 11px;
+    font-size: max(12.5px, 0.78rem);
     font-weight: 800;
     color: var(--gold-main);
   }
   .tab-btn .t-title {
-    font-size: 13.5px;
+    font-size: max(15.5px, 0.96rem);
     font-weight: 800;
     color: var(--text-cream);
     white-space: nowrap;
@@ -1047,7 +1047,7 @@
     </button>
     <button type="button" class="tab-btn" data-tab="certificates" onclick="switchTab('certificates')">
       <div class="t-top"><span>07 · CERTIFICATES</span><span>A4 인쇄</span></div>
-      <div class="t-title">📜 증명서 · 주소록 인쇄</div>
+      <div class="t-title">📜 증명서 · 전교인 요람</div>
     </button>
     <button type="button" class="tab-btn" data-tab="backup" onclick="switchTab('backup')">
       <div class="t-top"><span>08 · DOWNLOAD &amp; EXCEL</span><span>PC·백업</span></div>
@@ -1247,8 +1247,9 @@
   <section id="panel-certificates" class="tab-panel">
     <div style="display:grid; grid-template-columns: 360px 1fr; gap:20px;">
       <div class="panel-card">
-        <div class="panel-head">
-          <h3>📜 증명서 · 주소록 발급 설정</h3>
+        <div class="panel-head" style="flex-direction:column; align-items:flex-start; gap:4px;">
+          <h3>📜 증명서 · 주소록 · 전교인 요람 발급 설정</h3>
+          <div style="font-size:12px; color:#8A6220; font-family:'Noto Serif KR',serif;">“오직 성도들과 동일한 시민이요 하나님의 권속이라” (에베소서 2:19)</div>
         </div>
         <div style="display:flex; flex-direction:column; gap:13px;">
           <div class="form-group">
@@ -1259,7 +1260,20 @@
               <option value="appointment_cert">③ 직분 · 봉사 임명장</option>
               <option value="transfer_cert">④ 교인 이명(전출) 증명서</option>
               <option value="all_directory">⑤ 전교인 비상연락망 &amp; 주소록 (A4 표)</option>
+              <option value="family_yoram_book">⑥ 📖 전교인 요람 엮기 — 한 권 책자 (표지+세대주 가정카드+부록)</option>
+              <option value="family_yoram_group">⑦ 📖 전교인 요람 — 속회/구역/목장별 묶음 책자</option>
             </select>
+          </div>
+          <div class="form-group" id="yoramPrivacyWrap" style="display:none; padding:11px 13px; border-radius:10px; background:var(--bg-parchment); border:1px solid var(--border-gold); gap:8px;">
+            <div style="font-size:12px; font-weight:800; color:#8A6220;">🔒 전교인 요람 · 주소록 개인정보 보호 설정</div>
+            <label style="display:flex; align-items:center; gap:7px; font-size:12.5px; cursor:pointer; font-weight:600; color:var(--text-main);">
+              <input type="checkbox" id="chkYoramConsentOnly" checked onchange="renderCertificatePreview()" style="accent-color:#8A6220;">
+              <span>요람 싣기 허락한 분만 엮기 (미동의 성도 제외)</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:7px; font-size:12.5px; cursor:pointer; font-weight:600; color:var(--text-main);">
+              <input type="checkbox" id="chkYoramIncludeContact" checked onchange="renderCertificatePreview()" style="accent-color:#8A6220;">
+              <span>연락처·주소 함께 인쇄하기 <small style="color:var(--text-muted); font-weight:400;">(해제 시 이름·직분·구절만 인쇄)</small></span>
+            </label>
           </div>
           <div class="form-group" id="certMemberSelectWrap">
             <label>2. 대상 성도 선택</label>
@@ -1364,6 +1378,15 @@
   </section>
 
 </main>
+
+<!-- 발치 문패: 마태복음 10:8 & 내 컴퓨터 보관 안내 & 꿈바온 유튜브 채널 조용한 안내 -->
+<footer style="max-width:1440px; margin:28px auto 36px; padding:18px 24px; border-top:1px solid rgba(184,137,46,0.28); text-align:center; font-family:'Noto Serif KR',serif; color:#6E583B; font-size:12.5px; line-height:1.8;">
+  <div style="font-weight:700; color:#4A3518;">꿈디도는 값없이 엽니다 — “너희가 값없이 받았으니 값없이 주라” (마태복음 10:8)</div>
+  <div style="font-family:'Pretendard',sans-serif; font-size:12px; color:#7A6448; margin-top:2px;">
+    성도 명부와 헌금 장부는 이 서재로 오지 않고, 목사님 컴퓨터에만 남습니다 ·
+    <a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener" style="color:#8A6220; text-decoration:underline; text-underline-offset:3px; font-weight:600;">꿈바온 유튜브 채널 · 매일말씀과 성경이야기 ↗</a>
+  </div>
+</footer>
 
 <!-- 모달 1: 성도 360° 상세 교적 카드 모달 -->
 <div class="modal-backdrop" id="memberDetailModal" onclick="if(event.target===this)closeMemberDetailModal()">
@@ -1513,6 +1536,12 @@
         <div class="form-group full">
           <label>🙏 핵심 기도제목 &amp; 목양 노트</label>
           <textarea id="fmPrayerTopic" class="form-control" rows="3" placeholder="가정과 자녀, 건강, 일터를 위한 기도제목 및 목회 돌봄 참고사항을 적어주세요."></textarea>
+        </div>
+        <div class="form-group full" style="padding:10px 14px; border-radius:10px; background:var(--bg-parchment); border:1px solid var(--border-gold);">
+          <label style="display:flex; align-items:center; gap:8px; cursor:pointer; font-weight:700; color:var(--text-main); margin:0;">
+            <input type="checkbox" id="fmYoramConsent" checked style="width:16px; height:16px; accent-color:#8A6220;">
+            <span>📖 전교인 요람 책자에 이름·연락처 싣기 허락 (개인정보 동의 · 해제 시 요람 인쇄에서 자동 제외)</span>
+          </label>
         </div>
       </div>
     </div>
@@ -3692,6 +3721,7 @@ function openMemberDetailModal(memberId) {
             '<div><strong>• 봉사 부서:</strong> ' + esc(m.ministry || '-') + '</div>' +
             '<div><strong>• 차량 번호:</strong> ' + esc(m.carNumber || '-') + '</div>' +
             '<div><strong>• 자택 주소:</strong> ' + esc(m.address || '-') + '</div>' +
+            '<div><strong>• 전교인 요람 수록 동의:</strong> ' + (m.yoramConsent === false ? '<span style="color:#B42318;font-weight:700;">미동의 (요람 인쇄 제외)</span>' : '<span style="color:#1B7A43;font-weight:700;">동의함</span>') + '</div>' +
           '</div>' +
         '</div>' +
 
@@ -3776,6 +3806,8 @@ function openMemberFormModal(editId) {
   document.getElementById('fmTags').value = m ? (m.tags || []).join(', ') : '';
   document.getElementById('fmAddress').value = m ? (m.address || '') : '';
   document.getElementById('fmPrayerTopic').value = m ? (m.prayerTopic || '') : '';
+  var ycEl = document.getElementById('fmYoramConsent');
+  if (ycEl) ycEl.checked = m ? (m.yoramConsent !== false) : true;
   document.getElementById('memberFormModal').classList.add('open');
 }
 
@@ -3795,6 +3827,8 @@ function saveMemberFromModal() {
   var roleVal = document.getElementById('fmRole').value;
   var tagsRaw = document.getElementById('fmTags').value;
   var tagsArr = tagsRaw.split(',').map(function(s) { return s.trim().replace(/^#/, ''); }).filter(Boolean);
+  var ycEl = document.getElementById('fmYoramConsent');
+  var yoramConsentVal = ycEl ? !!ycEl.checked : true;
 
   var obj = {
     id: id,
@@ -3821,6 +3855,7 @@ function saveMemberFromModal() {
     tags: tagsArr,
     address: document.getElementById('fmAddress').value.trim(),
     prayerTopic: document.getElementById('fmPrayerTopic').value.trim(),
+    yoramConsent: yoramConsentVal,
     newcomerStage: existing ? (existing.newcomerStage || (statusVal === '새가족' ? 1 : 4)) : (statusVal === '새가족' ? 1 : 4),
     newcomerWeeks: existing ? (existing.newcomerWeeks || [false,false,false,false]) : [false,false,false,false]
   };
@@ -4206,32 +4241,136 @@ function copyAbsentCareMessage() {
 function renderCertificatePreview() {
   var cType = document.getElementById('certTypeSelect') ? document.getElementById('certTypeSelect').value : 'member_cert';
   var mWrap = document.getElementById('certMemberSelectWrap');
+  var pWrap = document.getElementById('yoramPrivacyWrap');
   var dInp = document.getElementById('certIssueDate');
   if (dInp && !dInp.value) dInp.value = new Date().toISOString().slice(0, 10);
   var issueDate = dInp ? dInp.value : new Date().toISOString().slice(0, 10);
   var issueNote = document.getElementById('certIssueNote') ? document.getElementById('certIssueNote').value : '제 2026-001 호';
+  var consentOnly = document.getElementById('chkYoramConsentOnly') ? document.getElementById('chkYoramConsentOnly').checked : true;
+  var includeContact = document.getElementById('chkYoramIncludeContact') ? document.getElementById('chkYoramIncludeContact').checked : true;
 
   var box = document.getElementById('certificatePreviewContainer');
   if (!box) return;
 
+  if (pWrap) {
+    pWrap.style.display = (cType === 'family_yoram_book' || cType === 'family_yoram_group' || cType === 'all_directory') ? 'flex' : 'none';
+    pWrap.style.flexDirection = 'column';
+  }
+
+  if (cType === 'family_yoram_book' || cType === 'family_yoram_group') {
+    if (mWrap) mWrap.style.display = 'none';
+    var gTerm = STATE.config.groupTerm || '속회';
+    var hMap = {};
+    var gMap = {};
+    var roleMap = {};
+    var includedCount = 0;
+    STATE.members.forEach(function(m) {
+      if (m.status === '이명' || m.status === '별세') return;
+      if (consentOnly && m.yoramConsent === false) return;
+      includedCount++;
+      var h = m.householdHead || m.name;
+      if (!hMap[h]) hMap[h] = [];
+      hMap[h].push(m);
+      var g = m.group || '미배정';
+      if (!gMap[g]) gMap[g] = [];
+      gMap[g].push(m);
+      var r = m.role || '성도';
+      if (!roleMap[r]) roleMap[r] = [];
+      roleMap[r].push(m);
+    });
+    var heads = Object.keys(hMap).sort(function(a, b) {
+      if (cType === 'family_yoram_group') {
+        var ga = (hMap[a][0] && hMap[a][0].group) || 'ㅎ';
+        var gb = (hMap[b][0] && hMap[b][0].group) || 'ㅎ';
+        if (ga !== gb) return ga.localeCompare(gb, 'ko');
+      }
+      return a.localeCompare(b, 'ko');
+    });
+    var cardsHtml = heads.map(function(head) {
+      var fam = hMap[head].slice().sort(function(x, y) {
+        var rx = x.name === head || x.familyRel === '세대주' || x.familyRel === '본인' ? 0 : (x.familyRel === '배우자' || x.familyRel === '처' || x.familyRel === '남편' ? 1 : 2);
+        var ry = y.name === head || y.familyRel === '세대주' || y.familyRel === '본인' ? 0 : (y.familyRel === '배우자' || y.familyRel === '처' || y.familyRel === '남편' ? 1 : 2);
+        return rx - ry;
+      });
+      var grp = (fam[0] && fam[0].group) || '-';
+      var addr = includeContact ? ((fam[0] && fam[0].address) || '') : '';
+      var chosung = getFirstChosungGroup(head);
+      return '<div style="border:1.5px solid #C9AD7C; border-radius:10px; padding:12px 14px; background:#FFFCF5; break-inside:avoid;">' +
+        '<div style="display:flex; justify-content:space-between; align-items:center; border-bottom:1px dashed #D8C39E; padding-bottom:6px; margin-bottom:8px;">' +
+          '<strong style="font-size:14.5px; color:#2B1E12;">[' + esc(chosung) + '] ' + esc(head) + ' 가정</strong>' +
+          '<span style="font-size:11.5px; font-weight:700; color:#8A6220; background:#F5EBD6; padding:2px 8px; border-radius:99px;">' + esc(grp) + '</span>' +
+        '</div>' +
+        fam.map(function(f) {
+          var rel = f.familyRel || (f.name === head ? '세대주' : '가족');
+          var bStr = f.birth ? f.birth.slice(5) + (f.birthType === '음력' ? '(음)' : '') : '';
+          var rightInfo = includeContact
+            ? (esc(f.phone || '') + (bStr ? ' · 🎂' + esc(bStr) : ''))
+            : (esc(f.ministry || '') + (bStr ? (f.ministry ? ' · ' : '') + '🎂' + esc(bStr) : ''));
+          return '<div style="display:flex; justify-content:space-between; font-size:12.5px; padding:2px 0; color:#3B2A1A;">' +
+            '<span><strong>' + esc(f.name) + '</strong> <span style="color:#6E5636;">' + esc(f.role || '') + ' · ' + esc(rel) + '</span></span>' +
+            '<span style="font-family:monospace; color:#4A3722;">' + rightInfo + '</span>' +
+          '</div>';
+        }).join('') +
+        (addr ? '<div style="margin-top:6px; padding-top:5px; border-top:1px dotted #E6D7BC; font-size:11.5px; color:#6E5636;">📍 ' + esc(addr) + '</div>' : '') +
+      '</div>';
+    }).join('');
+
+    var groupAppendix = Object.keys(gMap).sort().map(function(g) {
+      return '<div style="padding:8px 10px; border:1px solid #DFCDAE; border-radius:8px; background:#FAF4E8;">' +
+        '<div style="font-weight:700; font-size:12.5px; color:#5A3E1B; margin-bottom:4px;">🌿 ' + esc(g) + ' (' + gMap[g].length + '명)</div>' +
+        '<div style="font-size:12px; color:#3B2A1A; line-height:1.5;">' + gMap[g].map(function(m){ return esc(m.name) + '(' + esc(m.role||'성도') + ')'; }).join(', ') + '</div>' +
+      '</div>';
+    }).join('');
+
+    var roleOrder = ['목사', '전도사', '장로', '권사', '안수집사', '집사', '청년', '성도'];
+    var roleKeys = Object.keys(roleMap).sort(function(a,b){
+      var ia = roleOrder.indexOf(a); if(ia<0) ia=99;
+      var ib = roleOrder.indexOf(b); if(ib<0) ib=99;
+      return ia - ib;
+    });
+    var roleAppendix = roleKeys.map(function(r) {
+      return '<div style="margin-bottom:6px; font-size:12px;"><strong>[' + esc(r) + ' · ' + roleMap[r].length + '명]</strong> ' +
+        roleMap[r].map(function(m){ return esc(m.name); }).join(', ') + '</div>';
+    }).join('');
+
+    box.innerHTML = '<div class="cert-preview-sheet" style="max-width:940px; padding:34px;">' +
+      '<div style="text-align:center; padding:24px 16px; margin-bottom:22px; border:2px double #B89352; border-radius:12px; background:linear-gradient(180deg,#FDF8EC 0%,#F7EEDB 100%);">' +
+        '<div style="font-size:12px; letter-spacing:2px; color:#8A6220; font-weight:700; font-family:\'Noto Serif KR\',serif;">“오직 성도들과 동일한 시민이요 하나님의 권속이라” (에베소서 2:19)</div>' +
+        '<h2 style="margin:8px 0 6px; font-size:26px;">' + esc(STATE.config.churchName) + ' 전교인 요람</h2>' +
+        '<div style="font-size:13px; color:#5A442A;">총 ' + heads.length + '가정 · 수록 ' + includedCount + '명' + (consentOnly ? ' (동의 성도 기준)' : '') + (includeContact ? '' : ' · 연락처·주소 비표시본') + ' | 발행일: ' + esc(issueDate) + ' | 담임목사: ' + esc(STATE.config.pastorName || '') + '</div>' +
+      '</div>' +
+      '<h3 style="font-size:15px; color:#4A3520; margin:0 0 10px; border-left:4px solid #B89352; padding-left:8px;">Ⅰ. 세대주 가정별 카드 (' + (cType === 'family_yoram_group' ? esc(gTerm) + '별 정렬' : '가나다순 정렬') + ')</h3>' +
+      '<div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:12px; margin-bottom:24px;">' + cardsHtml + '</div>' +
+      '<h3 style="font-size:15px; color:#4A3520; margin:18px 0 10px; border-left:4px solid #B89352; padding-left:8px;">Ⅱ. 부록 1 — ' + esc(gTerm) + ' 편성표</h3>' +
+      '<div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; margin-bottom:20px;">' + groupAppendix + '</div>' +
+      '<h3 style="font-size:15px; color:#4A3520; margin:18px 0 10px; border-left:4px solid #B89352; padding-left:8px;">Ⅲ. 부록 2 — 직분별 명단</h3>' +
+      '<div style="padding:12px 14px; border:1px solid #DFCDAE; border-radius:8px; background:#FFFCF5; margin-bottom:14px;">' + roleAppendix + '</div>' +
+      '<div style="text-align:center; font-size:11.5px; color:#6E5636;">※ 본 요람은 교회 내부 교제 및 심방 전용이며 외부 공유를 금합니다.</div>' +
+    '</div>';
+    return;
+  }
   if (cType === 'all_directory') {
     if (mWrap) mWrap.style.display = 'none';
     var gTerm = STATE.config.groupTerm || '속회';
+    var dirMembers = STATE.members.filter(function(m) {
+      if (consentOnly && m.yoramConsent === false) return false;
+      return true;
+    });
     box.innerHTML = '<div class="cert-preview-sheet" style="max-width:920px; padding:32px;">' +
       '<h2>전교인 교적 비상연락망 &amp; 주소록</h2>' +
-      '<div class="cert-sub-verse">' + esc(STATE.config.churchName) + ' · 기준일: ' + esc(issueDate) + ' · 총원: ' + STATE.members.length + '명</div>' +
+      '<div class="cert-sub-verse">' + esc(STATE.config.churchName) + ' · 기준일: ' + esc(issueDate) + ' · 수록: ' + dirMembers.length + '명</div>' +
       '<table class="cert-table" style="font-size:12.5px;">' +
-        '<thead><tr><th style="width:45px;">번호</th><th style="width:85px;">성명</th><th style="width:75px;">직분</th><th style="width:110px;">' + esc(gTerm) + '</th><th style="width:120px;">연락처</th><th style="width:95px;">생년월일</th><th>자택 주소 / 봉사부서</th></tr></thead>' +
+        '<thead><tr><th style="width:45px;">번호</th><th style="width:85px;">성명</th><th style="width:75px;">직분</th><th style="width:110px;">' + esc(gTerm) + '</th><th style="width:120px;">' + (includeContact ? '연락처' : '봉사부서') + '</th><th style="width:95px;">생년월일</th><th>' + (includeContact ? '자택 주소 / 봉사부서' : '비고') + '</th></tr></thead>' +
         '<tbody>' +
-          STATE.members.map(function(m, idx) {
+          dirMembers.map(function(m, idx) {
             return '<tr>' +
               '<td style="text-align:center;">' + (idx+1) + '</td>' +
               '<td style="text-align:center; font-weight:700;">' + esc(m.name) + '</td>' +
               '<td style="text-align:center;">' + esc(m.role || '') + '</td>' +
               '<td style="text-align:center;">' + esc(m.group || '') + '</td>' +
-              '<td style="text-align:center;">' + esc(m.phone || '') + '</td>' +
+              '<td style="text-align:center;">' + esc(includeContact ? (m.phone || '') : (m.ministry || '')) + '</td>' +
               '<td style="text-align:center;">' + esc(m.birth || '') + '</td>' +
-              '<td>' + esc(m.address || '') + (m.ministry ? ' (' + esc(m.ministry) + ')' : '') + '</td>' +
+              '<td>' + (includeContact ? (esc(m.address || '') + (m.ministry ? ' (' + esc(m.ministry) + ')' : '')) : esc(m.familyRel || '')) + '</td>' +
             '</tr>';
           }).join('') +
         '</tbody>' +
@@ -4686,6 +4825,20 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   refreshAllViews();
   tryConnectDesktopServer();
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var targetTab = params.get('kkd_tab');
+    if (targetTab === 'yoram') {
+      switchTab('certificates');
+      var sel = document.getElementById('certTypeSelect');
+      if (sel) {
+        sel.value = 'family_yoram_book';
+        renderCertificatePreview();
+      }
+    } else if (targetTab) {
+      switchTab(targetTab);
+    }
+  } catch (e) {}
 });
 </script>
   <script src="kkumdido-shield.js"></script>
