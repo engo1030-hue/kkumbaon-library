@@ -1,0 +1,2777 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>꿈바온 설교 쇼츠 공방 — 영상이나 원고를 넣으면 바로 만들어지는 세로 쇼츠</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hahmlet:wght@500;600;700;800&family=Noto+Serif+KR:wght@500;600;700;900&family=Pretendard:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root, body[data-theme="parchment"] {
+    --bg-page: #F5F1E7;
+    --bg-sub: #ECE5D5;
+    --bg-card: #FCFBF7;
+    --bg-input: #FFFFFF;
+    --ink-1: #1B1915;
+    --ink-2: #3A342B;
+    --ink-3: #655C4E;
+    --gold: #8C621E;
+    --gold-bright: #C59B38;
+    --gold-soft: rgba(197, 155, 56, 0.15);
+    --indigo: #1E3A5F;
+    --indigo-hover: #152B49;
+    --terracotta: #8E2E18;
+    --green: #166534;
+    --green-soft: rgba(22, 101, 52, 0.12);
+    --rule: #D6CEBC;
+    --rule-strong: #B5AA92;
+    --shadow: 0 12px 32px rgba(27, 25, 21, 0.08);
+    --font-scale: 1;
+  }
+
+  body[data-theme="dark"] {
+    --bg-page: #13110E;
+    --bg-sub: #1C1814;
+    --bg-card: #211C17;
+    --bg-input: #17130F;
+    --ink-1: #F4EFE4;
+    --ink-2: #D7CEC0;
+    --ink-3: #A49988;
+    --gold: #DFB968;
+    --gold-bright: #F2D28B;
+    --gold-soft: rgba(223, 185, 104, 0.16);
+    --indigo: #2B5282;
+    --indigo-hover: #3867A1;
+    --terracotta: #D96B4E;
+    --green: #4ADE80;
+    --green-soft: rgba(74, 222, 128, 0.14);
+    --rule: #352F27;
+    --rule-strong: #544A3D;
+    --shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
+  body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+    background: var(--bg-page);
+    color: var(--ink-1);
+    line-height: 1.6;
+    min-height: 100vh;
+    word-break: keep-all;
+  }
+  .serif { font-family: 'Hahmlet', 'Noto Serif KR', 'Batang', serif; }
+
+  /* 상단 머리띠 */
+  .top-bar {
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: var(--bg-card);
+    border-bottom: 1.5px solid var(--rule-strong);
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  }
+  .brand-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink-1);
+  }
+  .brand-seal {
+    width: 42px;
+    height: 42px;
+    border-radius: 11px;
+    background: linear-gradient(135deg, #231A11, #46331F);
+    border: 1.5px solid #C59B38;
+    color: #F6DF9D;
+    display: grid;
+    place-items: center;
+    font-family: 'Hahmlet', 'Noto Serif KR', serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    flex-shrink: 0;
+  }
+  .brand-title strong {
+    display: block;
+    font-family: 'Hahmlet', 'Noto Serif KR', serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+  .brand-title span {
+    display: block;
+    font-size: 0.78rem;
+    color: var(--gold);
+    font-weight: 700;
+  }
+  .top-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .top-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 9px;
+    font-size: 0.86rem;
+    font-weight: 700;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-page);
+    color: var(--ink-1);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .top-btn:hover { border-color: var(--gold-bright); }
+  .top-btn.primary {
+    background: var(--indigo);
+    color: #FAF7F0;
+    border-color: var(--indigo);
+  }
+  .top-btn.primary:hover { background: var(--indigo-hover); }
+  .top-btn.gold {
+    background: linear-gradient(135deg, #8C621E, #B5842B);
+    color: #FFFDF8;
+    border-color: #C59B38;
+  }
+
+  /* 안내 문패 배너 */
+  .intro-plaque {
+    max-width: 1540px;
+    margin: 20px auto 16px;
+    padding: 0 20px;
+  }
+  .intro-inner {
+    background: var(--bg-card);
+    border: 1px solid var(--rule-strong);
+    border-left: 6px solid var(--gold-bright);
+    border-radius: 14px;
+    padding: 18px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    box-shadow: var(--shadow);
+  }
+  .intro-text h1 {
+    font-family: 'Hahmlet', 'Noto Serif KR', serif;
+    font-size: 1.38rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: var(--ink-1);
+  }
+  .intro-text p {
+    font-size: 0.94rem;
+    color: var(--ink-2);
+  }
+  .intro-text .promise {
+    font-size: 0.82rem;
+    color: var(--ink-3);
+    margin-top: 4px;
+  }
+  .intro-steps {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .step-pill {
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: var(--gold-soft);
+    border: 1px solid var(--rule-strong);
+    font-size: 0.85rem;
+    font-weight: 800;
+    color: var(--ink-1);
+  }
+  .step-pill b { color: var(--gold); margin-right: 4px; }
+
+  /* 3단 본체 레이아웃 */
+  .studio-grid {
+    max-width: 1540px;
+    margin: 0 auto 48px;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1.12fr 0.92fr 1.08fr;
+    gap: 20px;
+    align-items: start;
+  }
+  @media (max-width: 1220px) {
+    .studio-grid { grid-template-columns: 1fr; }
+  }
+
+  .panel-card {
+    background: var(--bg-card);
+    border: 1px solid var(--rule-strong);
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+  }
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    border-bottom: 1.5px solid var(--rule);
+  }
+  .panel-head h2 {
+    font-family: 'Hahmlet', 'Noto Serif KR', serif;
+    font-size: 1.18rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .step-num {
+    display: inline-grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: var(--indigo);
+    color: #FFF;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 900;
+  }
+  .panel-sub {
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    margin-bottom: 14px;
+  }
+
+  /* 섹션 박스 */
+  .sub-box {
+    background: var(--bg-page);
+    border: 1px solid var(--rule);
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 16px;
+  }
+  .sub-box-title {
+    font-size: 0.95rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  .sub-box-title small {
+    font-size: 0.78rem;
+    color: var(--ink-3);
+    font-weight: 600;
+  }
+
+  /* 드래그 앤 드롭 업로드 */
+  .drop-zone {
+    border: 2px dashed var(--rule-strong);
+    border-radius: 12px;
+    background: var(--bg-input);
+    padding: 20px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.16s ease;
+  }
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--gold-bright);
+    background: var(--gold-soft);
+  }
+  .drop-zone strong {
+    display: block;
+    font-size: 0.98rem;
+    margin-bottom: 4px;
+    color: var(--ink-1);
+  }
+  .drop-zone span {
+    display: block;
+    font-size: 0.82rem;
+    color: var(--ink-3);
+  }
+
+  /* 입력 폼 공통 */
+  label.field-label {
+    display: block;
+    font-size: 0.83rem;
+    font-weight: 700;
+    color: var(--ink-2);
+    margin-bottom: 5px;
+  }
+  input[type="text"], input[type="number"], select, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 9px;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-input);
+    color: var(--ink-1);
+    font-family: inherit;
+    font-size: 0.92rem;
+    line-height: 1.5;
+  }
+  input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    outline: 2px solid var(--gold-bright);
+    border-color: transparent;
+  }
+  textarea {
+    resize: vertical;
+    min-height: 145px;
+  }
+
+  .btn-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 800;
+    border: 1px solid var(--rule-strong);
+    background: var(--bg-card);
+    color: var(--ink-1);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { border-color: var(--gold-bright); transform: translateY(-1px); }
+  .btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; }
+  .btn.indigo {
+    background: var(--indigo);
+    color: #FAF7F0;
+    border-color: var(--indigo);
+  }
+  .btn.indigo:hover { background: var(--indigo-hover); }
+  .btn.gold {
+    background: linear-gradient(135deg, #8C621E, #B6852D);
+    color: #FFFDF8;
+    border-color: #C59B38;
+  }
+  .btn.terracotta {
+    background: var(--terracotta);
+    color: #FFF;
+    border-color: var(--terracotta);
+  }
+  .btn.sm {
+    padding: 6px 11px;
+    font-size: 0.8rem;
+    border-radius: 8px;
+  }
+  .btn.full { width: 100%; padding: 13px 18px; font-size: 0.98rem; }
+
+  /* 원고에서 뽑은 쇼츠 3편 추천 카드 */
+  .candidate-list {
+    display: grid;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .candidate-card {
+    background: var(--bg-card);
+    border: 1.5px solid var(--rule-strong);
+    border-radius: 10px;
+    padding: 11px 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+  }
+  .candidate-card:hover, .candidate-card.active {
+    border-color: var(--gold-bright);
+    background: var(--gold-soft);
+  }
+  .candidate-card .c-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 3px;
+  }
+  .candidate-card .c-title {
+    font-family: 'Hahmlet', 'Noto Serif KR', serif;
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--ink-1);
+    margin-bottom: 4px;
+  }
+  .candidate-card .c-preview {
+    font-size: 0.81rem;
+    color: var(--ink-2);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* 중앙 9:16 캔버스 미리보기 */
+  .canvas-stage {
+    position: relative;
+    width: 100%;
+    max-width: 360px;
+    margin: 0 auto 14px;
+    aspect-ratio: 9 / 16;
+    background: #0E0C0A;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 2px solid var(--gold-bright);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+  }
+  #shortsCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .player-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--bg-page);
+    border: 1px solid var(--rule);
+    border-radius: 11px;
+    padding: 9px 12px;
+    margin-bottom: 14px;
+  }
+  .player-bar input[type="range"] {
+    flex: 1;
+    accent-color: var(--gold-bright);
+    cursor: pointer;
+  }
+  .time-badge {
+    font-size: 0.8rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    color: var(--ink-2);
+    min-width: 78px;
+    text-align: right;
+  }
+
+  /* 화풍 3종 탭 */
+  .style-tabs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+  }
+  .style-tab {
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1.5px solid var(--rule-strong);
+    background: var(--bg-page);
+    color: var(--ink-1);
+    text-align: center;
+    cursor: pointer;
+    font-size: 0.83rem;
+    font-weight: 800;
+    transition: all 0.15s ease;
+  }
+  .style-tab small {
+    display: block;
+    font-size: 0.72rem;
+    color: var(--ink-3);
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .style-tab.active {
+    border-color: var(--gold-bright);
+    background: var(--gold-soft);
+    color: var(--ink-1);
+    box-shadow: inset 0 0 0 1px var(--gold-bright);
+  }
+
+  /* 자막 줄별 편집 리스트 */
+  .sub-list-wrap {
+    max-height: 290px;
+    overflow-y: auto;
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    background: var(--bg-input);
+    padding: 8px;
+  }
+  .sub-row {
+    display: grid;
+    grid-template-columns: 92px 1fr auto;
+    gap: 6px;
+    align-items: center;
+    padding: 6px;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .sub-row:last-child { border-bottom: none; }
+  .sub-row .t-pair {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.75rem;
+  }
+  .sub-row .t-pair input {
+    width: 42px;
+    padding: 4px 5px;
+    font-size: 0.76rem;
+    text-align: center;
+  }
+  .sub-row input.sub-text-in {
+    padding: 6px 8px;
+    font-size: 0.85rem;
+  }
+
+  /* 진행률 바 */
+  .progress-wrap {
+    display: none;
+    margin-top: 12px;
+    background: var(--bg-page);
+    border: 1.5px solid var(--gold-bright);
+    border-radius: 12px;
+    padding: 12px 14px;
+  }
+  .progress-bar-outer {
+    width: 100%;
+    height: 12px;
+    background: var(--rule);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 8px 0 6px;
+  }
+  .progress-bar-inner {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8C621E, #D8A848);
+    transition: width 0.15s linear;
+  }
+
+  /* 완성 결과 보관함 */
+  .result-box {
+    display: none;
+    margin-top: 14px;
+    background: var(--green-soft);
+    border: 1.5px solid var(--green);
+    border-radius: 12px;
+    padding: 14px;
+  }
+  .result-box h4 {
+    font-size: 0.95rem;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* 슬라이더 그리드 */
+  .slider-row {
+    display: grid;
+    grid-template-columns: 82px 1fr 48px;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.81rem;
+    margin-top: 6px;
+  }
+  .slider-row input[type="range"] { accent-color: var(--gold-bright); }
+
+  /* 발치 문패 (2026.11.09 확정 표준) */
+  footer.kkd-footer {
+    max-width: 1540px;
+    margin: 0 auto;
+    padding: 22px 20px 44px;
+    border-top: 1px solid var(--rule-strong);
+    font-size: 0.85rem;
+    color: var(--ink-3);
+    line-height: 1.85;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  footer.kkd-footer a {
+    color: var(--gold);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>
+</head>
+<body data-theme="parchment">
+
+<!-- 상단 머리띠 -->
+<header class="top-bar">
+  <a href="index.html" class="brand-wrap">
+    <div class="brand-seal">꿈</div>
+    <div class="brand-title">
+      <strong>꿈바온 설교 쇼츠 공방</strong>
+      <span>영상이나 원고를 넣으면 바로 엮어 드리는 세로 쇼츠</span>
+    </div>
+  </a>
+  <div class="top-actions">
+    <button type="button" class="top-btn gold" onclick="loadSampleSermon()">🎬 견본 설교 불러오기</button>
+    <button type="button" class="top-btn" onclick="toggleTheme()" id="themeBtn">🌙 어두운 화면</button>
+    <button type="button" class="top-btn" onclick="toggleFontScale()" id="fontBtn">🔍 큰 글씨</button>
+    <span style="width:1px; height:22px; background:var(--rule-strong); margin:0 4px;"></span>
+    <a href="index.html" class="top-btn" style="font-size:0.82rem; opacity:0.92;">🏛️ 꿈디도 가기</a>
+    <a href="kkumdido_annex.html" class="top-btn primary" style="font-size:0.82rem;">🏡 꿈바온 목회지원센터 가기</a>
+  </div>
+</header>
+
+<!-- 첫 문장 안내 문패 -->
+<section class="intro-plaque">
+  <div class="intro-inner">
+    <div class="intro-text">
+      <h1>설교 영상이나 원고를 넣으시면, 세로 쇼츠와 표지를 바로 엮어 드립니다.</h1>
+      <p>복잡한 편집 프로그램 없이, 안간사에게 영상이나 대본을 건네주듯 넣으시면 꿈바온 황금 비율 자막과 배경 음악이 입혀집니다.</p>
+      <div class="promise">🔒 올리신 설교 영상·음성·원고는 밖으로 전송되지 않고, 지금 보고 계신 컴퓨터 안에서만 안전하게 만들어집니다.</div>
+    </div>
+    <div class="intro-steps">
+      <span class="step-pill"><b>1단계</b> 영상·음성 또는 원고 넣기</span>
+      <span class="step-pill"><b>2단계</b> 꿈바온 화풍 고르기</span>
+      <span class="step-pill"><b>3단계</b> 영상·표지·자막 내려받기</span>
+    </div>
+  </div>
+</section>
+
+<!-- 본체 3단 작업대 -->
+<main class="studio-grid">
+
+  <!-- ==================== [1단계] 영상·음성 또는 원고 넣기 ==================== -->
+  <section class="panel-card">
+    <div class="panel-head">
+      <h2><span class="step-num">1</span> 설교 영상·음성 또는 원고 넣기</h2>
+      <button type="button" class="btn sm gold" onclick="loadSampleSermon()">견본 채우기</button>
+    </div>
+    <p class="panel-sub">설교 영상(또는 녹음 음성)과 설교 원고 가운데 있는 것을 넣으십시오. 둘 다 넣으셔도 좋고, 원고만 넣으셔도 성화 배경으로 쇼츠가 만들어집니다.</p>
+
+    <!-- 1-A. 설교 영상 또는 음성 올리기 -->
+    <div class="sub-box">
+      <div class="sub-box-title">
+        <span>① 설교 영상 또는 음성 올리기</span>
+        <small id="mediaStatusLabel">아직 올린 파일 없음 (성화 배경 모드)</small>
+      </div>
+      <div class="drop-zone" id="mediaDropZone" onclick="document.getElementById('mediaFileInput').click()">
+        <strong id="dropZoneMainText">📂 여기를 누르시거나 설교 영상(MP4, MOV)·음성(M4A, MP3, WAV)을 끌어다 놓으십시오</strong>
+        <span>1GB 이상 긴 주일 설교 영상도 필요한 30~60초 구간만 바로 잘라 씁니다</span>
+      </div>
+      <input type="file" id="mediaFileInput" accept="video/*,audio/*,.mp4,.mov,.webm,.m4a,.mp3,.wav,.aac" style="display:none" onchange="handleMediaFileSelect(this.files)">
+
+      <div class="btn-row">
+        <button type="button" class="btn sm" id="micRecordBtn" onclick="toggleMicRecording()">🎙️ 내 마이크로 바로 녹음하기</button>
+        <button type="button" class="btn sm" id="clearMediaBtn" onclick="clearLoadedMedia()" style="display:none">✕ 올린 영상·음성 빼기</button>
+      </div>
+
+      <!-- 영상/음성 구간 자르기 및 화면 중심 맞추기 (파일 로드 시 표시) -->
+      <div id="clipTrimBox" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed var(--rule);">
+        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+          <strong style="font-size:0.84rem;">✂️ 쇼츠로 쓸 구간 고르기 (<span id="clipDurBadge">38.0</span>초)</strong>
+          <div style="display:flex; gap:4px;">
+            <button type="button" class="btn sm" onclick="setQuickClipLength(30)">30초</button>
+            <button type="button" class="btn sm" onclick="setQuickClipLength(45)">45초</button>
+            <button type="button" class="btn sm" onclick="setQuickClipLength(58)">58초</button>
+          </div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+          <div>
+            <label class="field-label">시작 시각(초) <button type="button" class="btn sm" style="padding:1px 6px; font-size:0.72rem;" onclick="markClipBoundary('start')">지금 위치</button></label>
+            <input type="number" id="clipStartInput" value="0" min="0" step="0.5" onchange="onClipRangeChange()">
+          </div>
+          <div>
+            <label class="field-label">끝 시각(초) <button type="button" class="btn sm" style="padding:1px 6px; font-size:0.72rem;" onclick="markClipBoundary('end')">지금 위치</button></label>
+            <input type="number" id="clipEndInput" value="38" min="3" step="0.5" onchange="onClipRangeChange()">
+          </div>
+        </div>
+
+        <!-- 가로 설교 영상 강단 초점 맞추기 -->
+        <div id="videoCropControlBox" style="margin-top:10px;">
+          <strong style="font-size:0.82rem; display:block; margin-bottom:4px;">🎯 가로 설교 영상 화면 중심 맞추기 (강단·인물 위치)</strong>
+          <div class="slider-row">
+            <span>좌우 이동</span>
+            <input type="range" id="cropPanX" min="-100" max="100" value="0" oninput="onCropChange()">
+            <span id="cropPanXVal">중앙</span>
+          </div>
+          <div class="slider-row">
+            <span>상하 이동</span>
+            <input type="range" id="cropPanY" min="-100" max="100" value="0" oninput="onCropChange()">
+            <span id="cropPanYVal">중앙</span>
+          </div>
+          <div class="slider-row">
+            <span>화면 확대</span>
+            <input type="range" id="cropZoom" min="100" max="185" value="108" oninput="onCropChange()">
+            <span id="cropZoomVal">1.08x</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1-B. 설교 원고(대본) 넣기 & 쇼츠 3편 자동 발췌 -->
+    <div class="sub-box" style="margin-bottom:0;">
+      <div class="sub-box-title">
+        <span>② 설교 원고(대본) 넣기</span>
+        <button type="button" class="btn sm" onclick="document.getElementById('scriptFileInput').click()">📄 원고·자막 파일(.txt, .srt) 열기</button>
+      </div>
+      <input type="file" id="scriptFileInput" accept=".txt,.srt,.md" style="display:none" onchange="handleScriptFileSelect(this.files)">
+
+      <textarea id="sermonScriptInput" placeholder="주일 설교 원고 전체를 통째로 붙여넣으셔도 되고, 쇼츠로 만들 한 대목(5~10문장)만 붙여넣으셔도 됩니다.&#10;&#10;• 긴 원고를 넣으신 뒤 [원고에서 쇼츠 세 편 골라내기]를 누르시면 가장 울림이 깊은 세 대목을 골라 드립니다.&#10;• 강조하고 싶은 단어 앞뒤에 *별표*를 붙이시면 화면에서 따뜻한 금빛으로 빛납니다."></textarea>
+
+      <div class="btn-row">
+        <button type="button" class="btn gold" onclick="extractThreeShortsFromManuscript()">✨ 원고에서 쇼츠 세 편 골라내기</button>
+        <button type="button" class="btn indigo" onclick="applyCurrentScriptToSubtitles()">📏 이 대본으로 12~13자 호흡 자막 맞출래요</button>
+      </div>
+
+      <!-- 자동 발췌된 쇼츠 3편 카드 영역 -->
+      <div id="extractedCandidatesWrap" style="display:none;">
+        <div style="font-size:0.82rem; font-weight:800; color:var(--gold); margin-top:12px;">
+          💡 안간사가 원고에서 골라낸 쇼츠 세 편입니다 (누르시면 바로 적용됩니다):
+        </div>
+        <div class="candidate-list" id="candidateListContainer"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== [2단계] 꿈바온 화풍 고르기 & 실시간 미리보기 ==================== -->
+  <section class="panel-card">
+    <div class="panel-head">
+      <h2><span class="step-num">2</span> 꿈바온 화풍 고르기 · 미리보기</h2>
+      <span style="font-size:0.78rem; font-weight:800; color:var(--gold);">9:16 세로 (1080×1920)</span>
+    </div>
+
+    <!-- 3대 시그니처 화풍 선택 -->
+    <div class="style-tabs">
+      <button type="button" class="style-tab active" data-style="signet" onclick="selectShortsStyle('signet')">
+        🏛️ 꿈바온 인장반지
+        <small>상단 4열 · 하단 황금자막</small>
+      </button>
+      <button type="button" class="style-tab" data-style="archaeology" onclick="selectShortsStyle('archaeology')">
+        📜 고고학 미술관 도판
+        <small>세피아 금선 · 3초 엔딩</small>
+      </button>
+      <button type="button" class="style-tab" data-style="fullbleed" onclick="selectShortsStyle('fullbleed')">
+        🕯️ 등잔 밑 전체화면
+        <small>9:16 가득 · 82pt 자막</small>
+      </button>
+    </div>
+
+    <!-- 실시간 1080x1920 캔버스 -->
+    <div class="canvas-stage">
+      <canvas id="shortsCanvas" width="1080" height="1920"></canvas>
+    </div>
+
+    <!-- 재생 컨트롤 바 -->
+    <div class="player-bar">
+      <button type="button" class="btn sm indigo" id="playPreviewBtn" onclick="togglePreviewPlay()" style="min-width:74px;">▶ 미리보기</button>
+      <input type="range" id="previewSeekSlider" min="0" max="38" step="0.05" value="0" oninput="onSeekPreview(this.value)">
+      <span class="time-badge" id="previewTimeLabel">00:00 / 00:38</span>
+    </div>
+
+    <!-- 배경 그림 및 배경 음악 설정 -->
+    <div class="sub-box" style="margin-bottom:0;">
+      <div class="sub-box-title">
+        <span>🎨 배경 화면 & 스튜디오 시네마 음향</span>
+        <button type="button" class="btn sm" onclick="document.getElementById('customImagesInput').click()">🖼️ 내 사진·성화 여러 장 넣기</button>
+      </div>
+      <input type="file" id="customImagesInput" accept="image/*" multiple style="display:none" onchange="handleCustomImagesSelect(this.files)">
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+        <div>
+          <label class="field-label">배경 성화·도판 (영상 없을 때 자동 무빙)</label>
+          <select id="artworkSelect" onchange="onArtworkSelectChange()">
+            <option value="auto_4cuts">✨ 꿈바온 성화 4컷 자동 교차 (쿠션 홀드)</option>
+            <option value="art_04">04. 양피지 성경 두루마리와 등불</option>
+            <option value="art_10">10. 새벽 묵상 책상과 호롱불</option>
+            <option value="art_01">01. 창살 너머 구원의 새벽빛</option>
+            <option value="art_02">02. 광야 길목과 은혜의 빛줄기</option>
+            <option value="art_03">03. 황혼녘 평화로운 감람산</option>
+            <option value="art_05">05. 열린 예루살렘 성문과 돌길</option>
+            <option value="art_06">06. 다락방 기도하는 성도들</option>
+            <option value="art_07">07. 간절한 중보기도의 손길</option>
+            <option value="art_08">08. 믿음의 동행 (돌담길 발걸음)</option>
+            <option value="art_09">09. 소망의 바다와 출항</option>
+            <option value="art_11">11. 순례자의 샌들 발걸음</option>
+            <option value="art_12">12. 매임을 푸시는 해방의 열쇠</option>
+          </select>
+        </div>
+        <div>
+          <label class="field-label">배경 피아노 음악 (음성 8 : BGM 2)</label>
+          <select id="bgmSelect" onchange="onBgmSelectChange()">
+            <option value="bgm/bgm_02_measured_breath.mp3">🌿 02. 광야의 숨결 (깊은 묵상 피아노)</option>
+            <option value="bgm/bgm_01_amazing_grace_pd.mp3">🎹 01. 나 같은 죄인 살리신 (피아노)</option>
+            <option value="bgm/bgm_04_nearer_my_god_pd.mp3">🙏 04. 내 주를 가까이 하게 함은</option>
+            <option value="bgm/bgm_03_wilderness_letter.mp3">📜 03. 광야의 편지 (서정 피아노)</option>
+            <option value="bgm/bgm_08_dawn_meditation_orig.mp3">🌅 08. 새벽 제단의 고요한 기도</option>
+            <option value="bgm/bgm_06_holy_holy_holy_pd.mp3">✨ 06. 거룩 거룩 거룩 (피아노)</option>
+            <option value="bgm/bgm_05_doxology_old100th_pd.mp3">📖 05. 만복의 근원 하나님</option>
+            <option value="">🔇 배경 음악 없음 (설교 원음만)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="slider-row">
+        <span>BGM 크기</span>
+        <input type="range" id="bgmVolSlider" min="0" max="45" value="20" oninput="onBgmVolChange()">
+        <span id="bgmVolLabel">20%</span>
+      </div>
+
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:0.82rem;">
+        <label style="display:flex; align-items:center; gap:5px; cursor:pointer; font-weight:700;">
+          <input type="checkbox" id="cinemaGlueCheck" checked>
+          🎙️ 스튜디오 시네마 보컬 다듬기 (실내 울림 제거·명료도 보강)
+        </label>
+        <label style="display:flex; align-items:center; gap:5px; cursor:pointer; font-weight:700;">
+          <input type="checkbox" id="endingHoldCheck" checked onchange="renderSinglePreviewFrame()">
+          🕯️ 마지막 3초 여운 머물기 (수미상관 엔딩)
+        </label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== [3단계] 표지 네 줄 · 자막 확인 & 내려받기 ==================== -->
+  <section class="panel-card">
+    <div class="panel-head">
+      <h2><span class="step-num">3</span> 제목·자막 다듬기 & 내려받기</h2>
+    </div>
+
+    <!-- 상단 표지 네 줄 (인장반지 4열 & 고고학 도판 공통) -->
+    <div class="sub-box">
+      <div class="sub-box-title">
+        <span>📌 상단 표지 네 줄 (화면에 바로 반영됩니다)</span>
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+        <div>
+          <label class="field-label">1열 · 성경 본문 장절</label>
+          <input type="text" id="line1Verse" value="사도행전 18:9–10" oninput="renderSinglePreviewFrame()">
+        </div>
+        <div>
+          <label class="field-label">4열 · 하단 이름 (비워두기 가능)</label>
+          <input type="text" id="line4Brand" value="꿈바온" placeholder="예: 꿈바온 또는 교회 이름" oninput="renderSinglePreviewFrame()">
+        </div>
+      </div>
+      <div style="margin-bottom:8px;">
+        <label class="field-label">2열 · 여는 줄 (작은 제목)</label>
+        <input type="text" id="line2Sub" value="떨림이 다 멈춰서 담대한 것이 아니라" oninput="renderSinglePreviewFrame()">
+      </div>
+      <div>
+        <label class="field-label">3열 · 본제목 한 줄 (가장 크게 들어가는 핵심 제목)</label>
+        <input type="text" id="line3Main" value="밤의 끝자락을 붙드시는 주님" oninput="renderSinglePreviewFrame()">
+      </div>
+    </div>
+
+    <!-- 자막 줄별 편집 & 스페이스바 박자 맞추기 -->
+    <div class="sub-box">
+      <div class="sub-box-title">
+        <span>💬 자막 줄별 확인 (<span id="subCountBadge">6</span>줄)</span>
+        <div style="display:flex; gap:5px;">
+          <button type="button" class="btn sm" id="tapSyncBtn" onclick="toggleTapSyncMode()" title="영상을 들으며 이 단추를 누를 때마다 다음 자막으로 넘어갑니다">⏱️ 들으며 자막 넘기기</button>
+          <button type="button" class="btn sm" onclick="addSubtitleRow()">+ 한 줄 추가</button>
+        </div>
+      </div>
+      <div style="font-size:0.78rem; color:var(--ink-3); margin-bottom:8px;">
+        • 단어 앞뒤에 <b>*별표*</b>를 넣으시면(예: <code>*주님의 손*</code>) 화면에서 샴페인 골드 색으로 강조됩니다.
+      </div>
+      <div class="sub-list-wrap" id="subtitleRowsContainer"></div>
+    </div>
+
+    <!-- 내려받기 단추 모음 -->
+    <div class="sub-box" style="margin-bottom:0; background:var(--gold-soft); border-color:var(--gold-bright);">
+      <div class="sub-box-title">
+        <span>🎁 완성본 바로 만들어 내려받기</span>
+      </div>
+
+      <button type="button" class="btn gold full" id="renderVideoBtn" onclick="startFullShortsRender(true)" style="margin-bottom:8px;">
+        🎬 지금 설교 쇼츠 영상 만들기 (자막 포함 완성본)
+      </button>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+        <button type="button" class="btn indigo" onclick="downloadShortsCover('signet')">
+          🖼️ 인장반지 표지 내려받기 (PNG)
+        </button>
+        <button type="button" class="btn indigo" onclick="downloadShortsCover('archaeology')">
+          📜 양피지 도판 표지 내려받기 (PNG)
+        </button>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
+        <button type="button" class="btn sm" onclick="startFullShortsRender(false)">
+          🎞️ 무자막 클린본 영상
+        </button>
+        <button type="button" class="btn sm" onclick="downloadSrtFile()">
+          📝 자막 파일(.srt)
+        </button>
+        <button type="button" class="btn sm" onclick="copyYoutubeUploadGuide()">
+          📋 유튜브 업로드 글 복사
+        </button>
+      </div>
+
+      <!-- 렌더링 진행 표시줄 -->
+      <div class="progress-wrap" id="renderProgressWrap">
+        <div style="display:flex; justify-content:space-between; font-size:0.84rem; font-weight:800;">
+          <span id="renderProgressText">쇼츠 영상을 한 프레임씩 정성껏 엮고 있습니다...</span>
+          <span id="renderProgressPct">0%</span>
+        </div>
+        <div class="progress-bar-outer">
+          <div class="progress-bar-inner" id="renderProgressBar"></div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.78rem; color:var(--ink-3);">
+          <span>소리와 화면을 실시간으로 맞물려 녹화합니다. 잠시만 기다려 주십시오.</span>
+          <button type="button" class="btn sm terracotta" onclick="cancelActiveRender()">중단</button>
+        </div>
+      </div>
+
+      <!-- 완성 후 즉시 다운로드 박스 -->
+      <div class="result-box" id="renderResultBox">
+        <h4 id="renderResultTitle">✅ 설교 쇼츠 제작이 완료되었습니다!</h4>
+        <div style="font-size:0.83rem; color:var(--ink-2); margin-bottom:10px;" id="renderResultMeta"></div>
+        <div class="btn-row" style="margin-top:0;">
+          <a id="downloadRenderedVideoLink" class="btn gold" href="#" download="설교쇼츠.mp4">⬇️ 완성된 쇼츠 영상 다시 내려받기</a>
+          <button type="button" class="btn" onclick="copyYoutubeUploadGuide()">📋 유튜브 제목·설명란 복사</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 발치 문패 (2026.11.09 확정 표준) -->
+<footer class="kkd-footer">
+  <div>
+    <strong>꿈디도는 값없이 엽니다 — 너희가 값없이 받았으니 값없이 주라 (마태복음 10:8)</strong><br>
+    값없이 받은 말씀을 값없이 나눕니다. 도구는 서재에 놓아 두고, 기록은 내 컴퓨터 안에 둡니다.
+  </div>
+  <div style="text-align:right; line-height:1.75;">
+    <a href="index.html">🏛️ 꿈디도 가기</a> &nbsp;·&nbsp;
+    <a href="kkumdido_annex.html">🏡 꿈바온 목회지원센터 가기</a> &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@dreamingondal" target="_blank" rel="noopener">꿈바온 유튜브 채널</a><br>
+    <span>편찬과 운영 꿈바온 사역팀</span>
+  </div>
+</footer>
+
+<!-- 숨김 미디어 엘리먼트 -->
+<video id="hiddenSourceVideo" playsinline crossorigin="anonymous" style="display:none;"></video>
+<audio id="hiddenSourceAudio" crossorigin="anonymous" style="display:none;"></audio>
+<audio id="hiddenBgmAudio" loop crossorigin="anonymous" style="display:none;"></audio>
+
+<script>
+// ============================================================================
+// 꿈바온 설교 쇼츠 공방 코어 엔진 (v1.0 — 1080x1920 30fps 풀 렌더러)
+// ============================================================================
+
+const ARTWORK_PATHS = {
+  art_01: "artworks/art_01_morning_light.jpg",
+  art_02: "artworks/art_02_damascus_light.jpg",
+  art_03: "artworks/art_03_olive_hill.jpg",
+  art_04: "artworks/art_04_scroll_lamp.jpg",
+  art_05: "artworks/art_05_open_gate.jpg",
+  art_06: "artworks/art_06_prayer_window.jpg",
+  art_07: "artworks/art_07_paul_prayer.jpg",
+  art_08: "artworks/art_08_footsteps.jpg",
+  art_09: "artworks/art_09_voyage_hope.jpg",
+  art_10: "artworks/art_10_desk_lamp.jpg",
+  art_11: "artworks/art_11_sandal_road.jpg",
+  art_12: "artworks/art_12_chains_freed.jpg"
+};
+
+const AUTO_4CUT_KEYS = ["art_04", "art_10", "art_08", "art_01"];
+
+// 모션 시퀀스 (Rule 7: 줌인·줌아웃·좌우패닝 교차 & 첫 화면 리셋 금지 + 마지막 1.6초 쿠션 홀드)
+const MOTION_MODES = ["zoom_in", "pan_right", "zoom_out", "pan_left"];
+
+const state = {
+  style: "signet", // 'signet' | 'archaeology' | 'fullbleed'
+  mediaType: "none", // 'none' | 'video' | 'audio'
+  mediaUrl: "",
+  mediaName: "",
+  mediaTotalDur: 38.0,
+  clipStart: 0.0,
+  clipEnd: 38.0,
+  cropPanX: 0,
+  cropPanY: 0,
+  cropZoom: 1.08,
+  bgmUrl: "bgm/bgm_02_measured_breath.mp3",
+  bgmVolume: 0.20,
+  artworkMode: "auto_4cuts",
+  loadedImages: {}, // key -> HTMLImageElement
+  customSlideImages: [], // array of HTMLImageElement
+  subtitles: [
+    { start: 0.0, end: 6.2, text: "사랑하는 성도 여러분,\n오늘 우리는 *떨면서도 말하는* 사람들의 이야기를 나눕니다." },
+    { start: 6.2, end: 13.0, text: "때로 사역의 문이 열릴 때\n오히려 마음에 *뜻밖의 두려움*과 밤이 찾아옵니다." },
+    { start: 13.0, end: 20.0, text: "그러나 주님께서는 사람이 다 무너진 뒤가 아니라\n*밤의 끝자락*을 먼저 붙들어 주십니다." },
+    { start: 20.0, end: 26.8, text: "떨림이 다 멈춰서 담대한 것이 아니라\n*주님의 손*에 붙들려 있기에 다시 입을 엽니다." },
+    { start: 26.8, end: 33.0, text: "로뎀나무 아래 지친 영혼을 책망하지 않으시고\n먼저 *따뜻한 손길*로 어루만지시는 주님," },
+    { start: 33.0, end: 38.0, text: "우리를 결코 홀로 두지 않으시는\n*주님의 약속*을 의지하며 평안히 걸어가십시오." }
+  ],
+  extractedCandidates: [],
+  isPlayingPreview: false,
+  previewSec: 0.0,
+  previewRafId: null,
+  lastFrameTimestamp: 0,
+  isRendering: false,
+  cancelRenderRequested: false,
+  forceProceduralArt: false,
+  tapSyncActive: false,
+  tapSyncIndex: 0,
+  micRecorder: null,
+  micChunks: []
+};
+
+const SAMPLE_FULL_MANUSCRIPT = `[본문: 사도행전 18장 9절~10절]
+밤에 주께서 환상 가운데 바울에게 말씀하시되 두려워하지 말며 침묵하지 말고 말하라 내가 너와 함께 있으매 어떤 사람도 너를 대적하여 해롭게 할 자가 없을 것이니 이는 이 성중에 내 백성이 많음이라 하시더라.
+
+사랑하는 성도 여러분, 성경에는 하루 종일 송곳과 바늘을 쥐느라 손바닥에 굳은살이 박인 한 사람이 어느 항구 도시에서 지내던 시절을 두고 스스로 이렇게 고백한 이야기가 있습니다. "내가 너희 가운데 거할 때에 약하고 두려워하고 심히 떨었노라." 그 사람의 이름은 사도 바울입니다. 그가 심히 떨었다고 고백한 그 도시에서 일 년 반을 머물며 세운 교회가 우리가 잘 아는 고린도 교회입니다.
+
+오랜 신앙생활을 하신 여러분은 아실 것입니다. 두려움은 일이 안 될 때만 찾아오지 않습니다. 오히려 기도가 응답되고 일이 풀리기 시작할 때, 회당장이 돌아서고 열매가 보이기 시작할 때, '이 귀한 것이 내 부족함 때문에 무너지면 어쩌나' 하는 마음에 잠 못 드는 깊은 밤이 찾아옵니다. 일이 풀리기 시작한 바로 그 무렵에 바울은 떨고 있었습니다.
+
+그러나 주님은 그런 바울을 꾸짖지 않으셨습니다. 사람이 다 무너진 뒤에야 찾아오시는 분이 아니라, 밤의 끝자락을 먼저 붙들어 주시는 분이십니다. 주님은 밤에 찾아오셔서 말씀하십니다. "두려워하지 말며 침묵하지 말고 말하라. 내가 너와 함께 있으매 이 성중에 내 백성이 많음이라."
+
+성도 여러분, 떨림이 다 멈춰서 담대한 것이 아닙니다. 두려움이 완전히 사라져서 강단에 서고 삶의 자리로 나아가는 것이 아닙니다. 여전히 손끝은 떨리지만, 주님의 손에 붙들려 있기에 다시 입을 여는 것입니다. 로뎀나무 아래 지친 영혼을 책망하지 않으시고 먼저 따뜻한 떡과 물로 어루만지시는 주님을 기억하십시오. 이번 한 주간도 우리를 결코 홀로 두지 않으시는 주님의 손길을 의지하며 각자의 작은 식탁과 일터에서 평안히 걸어가시기를 축복합니다.`;
+
+// 초기 이미지 프리로드
+function preloadBuiltInArtworks() {
+  const isHttp = window.location.protocol.startsWith("http");
+  Object.keys(ARTWORK_PATHS).forEach(key => {
+    const img = new Image();
+    if (isHttp) img.crossOrigin = "anonymous";
+    img.src = ARTWORK_PATHS[key];
+    img.onload = () => {
+      state.loadedImages[key] = img;
+      renderSinglePreviewFrame();
+    };
+  });
+}
+
+// 유틸: 시간 포맷
+function formatMMSS(sec) {
+  const s = Math.max(0, Math.floor(sec || 0));
+  const mm = String(Math.floor(s / 60)).padStart(2, "0");
+  const ss = String(s % 60).padStart(2, "0");
+  return `${mm}:${ss}`;
+}
+
+function formatSrtTime(sec) {
+  const totalMs = Math.max(0, Math.round((Number(sec) || 0) * 1000));
+  const hh = String(Math.floor(totalMs / 3600000)).padStart(2, "0");
+  const mm = String(Math.floor((totalMs % 3600000) / 60000)).padStart(2, "0");
+  const ss = String(Math.floor((totalMs % 60000) / 1000)).padStart(2, "0");
+  const ms = String(totalMs % 1000).padStart(3, "0");
+  return `${hh}:${mm}:${ss},${ms}`;
+}
+
+// ============================================================================
+// 1. 한국어 12~13자 황금 호흡 줄바꿈 엔진 (외톨이 단어 방지)
+// ============================================================================
+function splitKoreanIntoBreathLines(sentence, maxLineChars = 13) {
+  const clean = String(sentence || "").replace(/\s+/g, " ").trim();
+  if (!clean) return "";
+  const plainLen = clean.replace(/\*/g, "").length;
+  if (plainLen <= maxLineChars + 1) return clean;
+
+  const words = clean.split(" ");
+  if (words.length === 1) {
+    const mid = Math.ceil(clean.length / 2);
+    return clean.slice(0, mid) + "\n" + clean.slice(mid);
+  }
+
+  // 의미 호흡이 가장 균형 잡히는 분할 지점 탐색 (2줄 균형)
+  let bestSplitIdx = 1;
+  let bestScore = 9999;
+  const totalPlain = plainLen;
+
+  for (let i = 1; i < words.length; i++) {
+    const line1 = words.slice(0, i).join(" ");
+    const line2 = words.slice(i).join(" ");
+    const l1Len = line1.replace(/\*/g, "").length;
+    const l2Len = line2.replace(/\*/g, "").length;
+
+    // 외톨이 1~2글자 단어 방지
+    let penalty = Math.abs(l1Len - l2Len) * 1.2;
+    if (l1Len > maxLineChars + 3) penalty += (l1Len - maxLineChars) * 4;
+    if (l2Len > maxLineChars + 3) penalty += (l2Len - maxLineChars) * 4;
+    if (l2Len <= 2) penalty += 25;
+    if (/[,，·…]|[은는이가을를에의도만며고서]$/.test(line1.replace(/\*/g, ""))) {
+      penalty -= 2.5; // 자연스러운 조사/쉼표 뒤 줄바꿈 우대
+    }
+
+    if (penalty < bestScore) {
+      bestScore = penalty;
+      bestSplitIdx = i;
+    }
+  }
+
+  return words.slice(0, bestSplitIdx).join(" ") + "\n" + words.slice(bestSplitIdx).join(" ");
+}
+
+// 문단을 쇼츠 호흡 단위 자막 배열로 분해
+function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
+  const raw = String(paragraphText || "").trim();
+  if (!raw) return [];
+
+  // 이미 줄바꿈으로 나뉜 자막이거나 문장부호 기준 분리
+  const rawChunks = raw
+    .replace(/([.?!。？！]+)\s*/g, "$1\n")
+    .split(/\n+/)
+    .map(s => s.trim())
+    .filter(Boolean);
+
+  const pieces = [];
+  rawChunks.forEach(chunk => {
+    const plain = chunk.replace(/\*/g, "");
+    if (plain.length <= 26) {
+      pieces.push(splitKoreanIntoBreathLines(chunk, 13));
+    } else {
+      // 긴 문장은 쉼표나 접속사·조사 호흡에서 24~26자 안팎으로 나눔
+      const tokens = chunk.split(/\s+/);
+      let acc = [];
+      let accLen = 0;
+      tokens.forEach((tk, idx) => {
+        const tkLen = tk.replace(/\*/g, "").length;
+        const isLast = idx === tokens.length - 1;
+        acc.push(tk);
+        accLen += tkLen + 1;
+        const endsWithPause = /[,，]|(지만|으나|는데|면서|하고|하며|이라|니라|니다|소서|시오)$/.test(tk.replace(/\*/g, ""));
+        if (!isLast && ((accLen >= 18 && endsWithPause) || accLen >= 24)) {
+          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 13));
+          acc = [];
+          accLen = 0;
+        }
+      });
+      if (acc.length > 0) {
+        if (acc.join(" ").replace(/\*/g, "").length <= 5 && pieces.length > 0) {
+          pieces[pieces.length - 1] = splitKoreanIntoBreathLines(
+            pieces[pieces.length - 1].replace(/\n/g, " ") + " " + acc.join(" "),
+            13
+          );
+        } else {
+          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 13));
+        }
+      }
+    }
+  });
+
+  if (pieces.length === 0) return [];
+
+  // 핵심 단어 자동 강조 (*별표*가 하나도 없을 때만 자연스럽게 1개 어구 강조)
+  const highlightedPieces = pieces.map(p => {
+    if (p.includes("*")) return p;
+    return p.replace(/(주님의 손길|주님의 손|밤의 끝자락|두려워하지 말|따뜻한 손길|주님의 약속|하나님의 은혜|작은 식탁|다시 입을 여는|함께 있으매)/, "*$1*");
+  });
+
+  // 글자 수 + 문장 끝 여백(0.58초 호흡 원칙)에 비례하여 시간 배분
+  const weights = highlightedPieces.map(p => Math.max(4, p.replace(/[\*\s]/g, "").length + 2.5));
+  const totalWeight = weights.reduce((a, b) => a + b, 0);
+  const usableDur = Math.max(5.0, Number(totalDurationSec) || 38.0);
+
+  let cursor = 0.0;
+  return highlightedPieces.map((text, idx) => {
+    const share = (weights[idx] / totalWeight) * usableDur;
+    const start = Math.round(cursor * 10) / 10;
+    const end = (idx === highlightedPieces.length - 1)
+      ? Math.round(usableDur * 10) / 10
+      : Math.round((cursor + share) * 10) / 10;
+    cursor += share;
+    return { start, end: Math.max(start + 1.2, end), text };
+  });
+}
+
+// ============================================================================
+// 2. 긴 설교 원고에서 쇼츠 3편 자동 발췌기 (도입 물음 / 말씀 중심 / 삶의 위로)
+// ============================================================================
+function extractThreeShortsFromManuscript() {
+  let raw = document.getElementById("sermonScriptInput").value.trim();
+  if (!raw) {
+    raw = SAMPLE_FULL_MANUSCRIPT;
+    document.getElementById("sermonScriptInput").value = raw;
+  }
+
+  // 본문 장절 자동 추출
+  let detectedVerse = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
+  const verseMatch = raw.match(/(?:본문\s*[:：]?\s*)?([가-힣]{1,6}(?:전서|후서|복음|행전|계시록|기|상|하|서|편|언|도서|가)?\s*\d+\s*(?:장|:|편)\s*\d+(?:\s*[-~–]\s*\d+)?(?:\s*절)?)/);
+  if (verseMatch && verseMatch[1]) {
+    detectedVerse = verseMatch[1]
+      .replace(/\s*장\s*/, ":")
+      .replace(/\s*편\s*/, ":")
+      .replace(/\s*절/g, "")
+      .replace(/[-~]/g, "–")
+      .trim();
+  }
+
+  // 문단 분리
+  const paragraphs = raw
+    .split(/\n\s*\n+/)
+    .map(p => p.replace(/^\[.*?\]\s*/g, "").trim())
+    .filter(p => p.length >= 45);
+
+  let p1 = "", p2 = "", p3 = "";
+  if (paragraphs.length >= 3) {
+    p1 = paragraphs[0];
+    p2 = paragraphs[Math.floor(paragraphs.length / 2)];
+    p3 = paragraphs[paragraphs.length - 1];
+  } else {
+    const allSentences = raw.replace(/\n+/g, " ").split(/(?<=[.?!])\s+/).filter(Boolean);
+    const third = Math.max(1, Math.ceil(allSentences.length / 3));
+    p1 = allSentences.slice(0, third).join(" ");
+    p2 = allSentences.slice(third, third * 2).join(" ") || p1;
+    p3 = allSentences.slice(third * 2).join(" ") || p2;
+  }
+
+  function makeTitlePair(para, roleIdx) {
+    const sents = para.split(/(?<=[.?!])\s+/).map(s => s.trim()).filter(Boolean);
+    const keySent = sents.find(s => /그러나|오히려|주님|하나님|두려워|사랑|은혜|마음|밤/.test(s)) || sents[0] || "오늘의 말씀";
+    const cleaned = keySent.replace(/["'“”‘’*]/g, "").replace(/사랑하는 성도 여러분,?\s*/g, "").trim();
+    const clauses = cleaned.split(/[,，]|(?<=고|며|나|니|면|때)\s+/).map(c => c.trim()).filter(Boolean);
+
+    let sub = clauses[0] ? clauses[0].slice(0, 18) : "오늘 우리에게 주시는";
+    let main = (clauses[1] || clauses[0] || "생명의 말씀").replace(/(입니다|습니다|하십니다|있었습니다|것입니다)\.?$/, "").slice(0, 15).trim();
+    if (!main || main.length < 4) {
+      main = roleIdx === 0 ? "떨면서도 걸어가는 사람" : roleIdx === 1 ? "밤의 끝자락을 붙드시는 주님" : "홀로 두지 않으시는 약속";
+    }
+    return { sub, main };
+  }
+
+  const t1 = makeTitlePair(p1, 0);
+  const t2 = makeTitlePair(p2, 1);
+  const t3 = makeTitlePair(p3, 2);
+
+  const totalMedia = state.mediaType !== "none" ? state.mediaTotalDur : 114;
+  const thirdTime = Math.max(30, Math.round(totalMedia / 3));
+
+  state.extractedCandidates = [
+    {
+      label: "쇼츠 ① [여는 물음 · 도입 명장면]",
+      verse: detectedVerse,
+      line2: t1.sub,
+      line3: t1.main,
+      text: p1,
+      clipStart: 0,
+      clipEnd: Math.min(state.mediaTotalDur || 38, 38)
+    },
+    {
+      label: "쇼츠 ② [말씀의 중심 · 복음의 반전]",
+      verse: detectedVerse,
+      line2: t2.sub,
+      line3: t2.main,
+      text: p2,
+      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 75 ? thirdTime : 0,
+      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 75 ? Math.min(state.mediaTotalDur, thirdTime + 40) : 38
+    },
+    {
+      label: "쇼츠 ③ [삶으로 맺는 위로 · 축복]",
+      verse: detectedVerse,
+      line2: t3.sub,
+      line3: t3.main,
+      text: p3,
+      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 90 ? Math.max(0, state.mediaTotalDur - 42) : 0,
+      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 90 ? state.mediaTotalDur : 38
+    }
+  ];
+
+  const wrap = document.getElementById("extractedCandidatesWrap");
+  const listEl = document.getElementById("candidateListContainer");
+  wrap.style.display = "block";
+  listEl.innerHTML = state.extractedCandidates.map((c, idx) => `
+    <button type="button" class="candidate-card ${idx === 1 ? 'active' : ''}" onclick="applyCandidateShorts(${idx}, this)">
+      <div class="c-head">
+        <span>${c.label}</span>
+        <span>권장 약 ${Math.max(25, Math.min(55, Math.round(c.text.length / 6.2)))}초</span>
+      </div>
+      <div class="c-title">${c.line2} — 「${c.line3}」</div>
+      <div class="c-preview">${c.text}</div>
+    </button>
+  `).join("");
+
+  // 기본으로 가장 핵심인 쇼츠 ② 또는 쇼츠 ① 즉시 적용
+  applyCandidateShorts(0, listEl.querySelector(".candidate-card"));
+}
+
+function applyCandidateShorts(idx, cardEl) {
+  const c = state.extractedCandidates[idx];
+  if (!c) return;
+  document.querySelectorAll(".candidate-card").forEach(el => el.classList.remove("active"));
+  if (cardEl) cardEl.classList.add("active");
+
+  document.getElementById("line1Verse").value = c.verse;
+  document.getElementById("line2Sub").value = c.line2;
+  document.getElementById("line3Main").value = c.line3;
+
+  const estDur = (state.mediaType !== "none")
+    ? Math.max(10, c.clipEnd - c.clipStart)
+    : Math.max(24, Math.min(56, Math.round(c.text.length / 5.8)));
+
+  if (state.mediaType === "none") {
+    state.clipStart = 0;
+    state.clipEnd = estDur;
+    state.mediaTotalDur = estDur;
+  } else {
+    state.clipStart = c.clipStart;
+    state.clipEnd = c.clipEnd;
+    document.getElementById("clipStartInput").value = state.clipStart;
+    document.getElementById("clipEndInput").value = state.clipEnd;
+    document.getElementById("clipDurBadge").textContent = (state.clipEnd - state.clipStart).toFixed(1);
+  }
+
+  state.subtitles = buildSubtitlesFromParagraph(c.text, state.clipEnd - state.clipStart);
+  renderSubtitleEditorRows();
+  syncSliderBounds();
+  state.previewSec = 0;
+  renderSinglePreviewFrame();
+}
+
+function applyCurrentScriptToSubtitles() {
+  const raw = document.getElementById("sermonScriptInput").value.trim();
+  if (!raw) {
+    alert("먼저 설교 원고나 쇼츠 대본을 입력 칸에 적어 주십시오.");
+    return;
+  }
+
+  // SRT 형식인지 자동 판별
+  if (/\d{2}:\d{2}:\d{2}[,\.]\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}[,\.]\d{3}/.test(raw)) {
+    const parsed = parseSrtString(raw);
+    if (parsed.length > 0) {
+      state.subtitles = parsed;
+      const lastEnd = parsed[parsed.length - 1].end;
+      if (state.mediaType === "none") {
+        state.clipStart = 0;
+        state.clipEnd = Math.max(10, lastEnd);
+      }
+      renderSubtitleEditorRows();
+      syncSliderBounds();
+      renderSinglePreviewFrame();
+      return;
+    }
+  }
+
+  const clipDur = (state.mediaType !== "none")
+    ? Math.max(8, state.clipEnd - state.clipStart)
+    : Math.max(18, Math.min(58, Math.round(raw.length / 5.8)));
+
+  if (state.mediaType === "none") {
+    state.clipStart = 0;
+    state.clipEnd = clipDur;
+  }
+
+  state.subtitles = buildSubtitlesFromParagraph(raw, clipDur);
+  renderSubtitleEditorRows();
+  syncSliderBounds();
+  state.previewSec = 0;
+  renderSinglePreviewFrame();
+}
+
+function parseSrtString(srtText) {
+  const blocks = String(srtText || "").trim().split(/\r?\n\r?\n+/);
+  const out = [];
+  blocks.forEach(b => {
+    const lines = b.split(/\r?\n/).map(l => l.trim()).filter(Boolean);
+    const timeLineIdx = lines.findIndex(l => l.includes("-->"));
+    if (timeLineIdx >= 0) {
+      const m = lines[timeLineIdx].match(/(\d{2}):(\d{2}):(\d{2})[,\.](\d{3})\s*-->\s*(\d{2}):(\d{2}):(\d{2})[,\.](\d{3})/);
+      if (m) {
+        const s = Number(m[1]) * 3600 + Number(m[2]) * 60 + Number(m[3]) + Number(m[4]) / 1000;
+        const e = Number(m[5]) * 3600 + Number(m[6]) * 60 + Number(m[7]) + Number(m[8]) / 1000;
+        const txt = lines.slice(timeLineIdx + 1).join("\n");
+        if (txt) out.push({ start: Math.round(s * 10) / 10, end: Math.round(e * 10) / 10, text: txt });
+      }
+    }
+  });
+  return out;
+}
+
+// ============================================================================
+// 3. 파일 업로드 (설교 영상·음성 / 원고 파일 / 내 사진 여러 장 / 마이크 녹음)
+// ============================================================================
+function setupDragAndDrop() {
+  const dz = document.getElementById("mediaDropZone");
+  if (!dz) return;
+  ["dragenter", "dragover"].forEach(ev => {
+    dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.add("dragover"); });
+  });
+  ["dragleave", "drop"].forEach(ev => {
+    dz.addEventListener(ev, e => { e.preventDefault(); dz.classList.remove("dragover"); });
+  });
+  dz.addEventListener("drop", e => {
+    if (e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      handleMediaFileSelect(e.dataTransfer.files);
+    }
+  });
+}
+
+function handleMediaFileSelect(files) {
+  if (!files || !files.length) return;
+  const file = files[0];
+  const url = URL.createObjectURL(file);
+  const isVideo = file.type.startsWith("video/") || /\.(mp4|mov|webm|mkv|m4v)$/i.test(file.name);
+
+  stopPreviewPlay();
+
+  if (isVideo) {
+    const vid = document.getElementById("hiddenSourceVideo");
+    vid.src = url;
+    vid.muted = false;
+    vid.load();
+    vid.onloadedmetadata = () => {
+      const dur = Math.max(5, Math.round((vid.duration || 45) * 10) / 10);
+      state.mediaType = "video";
+      state.mediaUrl = url;
+      state.mediaName = file.name;
+      state.mediaTotalDur = dur;
+      state.clipStart = 0;
+      state.clipEnd = Math.min(dur, 55);
+      updateMediaLoadedUI(file.name, dur, true);
+      vid.currentTime = 0.05;
+    };
+    vid.onseeked = () => {
+      if (!state.isPlayingPreview && !state.isRendering) renderSinglePreviewFrame();
+    };
+  } else {
+    const aud = document.getElementById("hiddenSourceAudio");
+    aud.src = url;
+    aud.load();
+    aud.onloadedmetadata = () => {
+      const dur = Math.max(5, Math.round((aud.duration || 45) * 10) / 10);
+      state.mediaType = "audio";
+      state.mediaUrl = url;
+      state.mediaName = file.name;
+      state.mediaTotalDur = dur;
+      state.clipStart = 0;
+      state.clipEnd = Math.min(dur, 58);
+      updateMediaLoadedUI(file.name, dur, false);
+      renderSinglePreviewFrame();
+    };
+  }
+}
+
+function updateMediaLoadedUI(filename, totalDur, isVideo) {
+  document.getElementById("mediaStatusLabel").textContent = `${isVideo ? "🎬 설교 영상" : "🎙️ 설교 음성"} (${formatMMSS(totalDur)})`;
+  document.getElementById("dropZoneMainText").textContent = `✅ 불러온 파일: ${filename} (전체 ${totalDur}초)`;
+  document.getElementById("clearMediaBtn").style.display = "inline-flex";
+  document.getElementById("clipTrimBox").style.display = "block";
+  document.getElementById("videoCropControlBox").style.display = isVideo ? "block" : "none";
+
+  document.getElementById("clipStartInput").value = state.clipStart;
+  document.getElementById("clipEndInput").value = state.clipEnd;
+  document.getElementById("clipDurBadge").textContent = (state.clipEnd - state.clipStart).toFixed(1);
+
+  // 기존 자막 시간표를 새 구간 길이에 맞게 비례 재조정
+  rescaleSubtitlesToDuration(state.clipEnd - state.clipStart);
+  syncSliderBounds();
+}
+
+function clearLoadedMedia() {
+  stopPreviewPlay();
+  state.mediaType = "none";
+  state.mediaUrl = "";
+  state.mediaName = "";
+  state.clipStart = 0;
+  state.clipEnd = 38;
+  document.getElementById("mediaStatusLabel").textContent = "아직 올린 파일 없음 (성화 배경 모드)";
+  document.getElementById("dropZoneMainText").textContent = "📂 여기를 누르시거나 설교 영상(MP4, MOV)·음성(M4A, MP3, WAV)을 끌어다 놓으십시오";
+  document.getElementById("clearMediaBtn").style.display = "none";
+  document.getElementById("clipTrimBox").style.display = "none";
+  syncSliderBounds();
+  renderSinglePreviewFrame();
+}
+
+async function toggleMicRecording() {
+  const btn = document.getElementById("micRecordBtn");
+  if (state.micRecorder && state.micRecorder.state === "recording") {
+    state.micRecorder.stop();
+    btn.textContent = "🎙️ 내 마이크로 바로 녹음하기";
+    btn.classList.remove("terracotta");
+    return;
+  }
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    state.micChunks = [];
+    const rec = new MediaRecorder(stream);
+    state.micRecorder = rec;
+    rec.ondataavailable = e => { if (e.data && e.data.size > 0) state.micChunks.push(e.data); };
+    rec.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const blob = new Blob(state.micChunks, { type: "audio/webm" });
+      const file = new File([blob], "내_마이크_설교녹음.webm", { type: "audio/webm" });
+      handleMediaFileSelect([file]);
+    };
+    rec.start();
+    btn.textContent = "⏹️ 녹음 마치고 적용하기 (녹음 중...)";
+    btn.classList.add("terracotta");
+  } catch (err) {
+    alert("마이크 권한을 허용해 주시거나 녹음된 음성 파일을 올려 주십시오.");
+  }
+}
+
+function handleScriptFileSelect(files) {
+  if (!files || !files.length) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    const text = String(e.target.result || "");
+    document.getElementById("sermonScriptInput").value = text;
+    if (text.length > 400) {
+      extractThreeShortsFromManuscript();
+    } else {
+      applyCurrentScriptToSubtitles();
+    }
+  };
+  reader.readAsText(files[0], "utf-8");
+}
+
+function handleCustomImagesSelect(files) {
+  if (!files || !files.length) return;
+  state.customSlideImages = [];
+  Array.from(files).forEach(file => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      state.customSlideImages.push(img);
+      renderSinglePreviewFrame();
+    };
+    img.src = url;
+  });
+}
+
+function onClipRangeChange() {
+  let s = Math.max(0, Number(document.getElementById("clipStartInput").value) || 0);
+  let e = Math.max(s + 3, Number(document.getElementById("clipEndInput").value) || (s + 30));
+  if (state.mediaType !== "none" && state.mediaTotalDur > 0) {
+    e = Math.min(state.mediaTotalDur, e);
+  }
+  state.clipStart = s;
+  state.clipEnd = e;
+  const dur = Math.max(3, e - s);
+  document.getElementById("clipDurBadge").textContent = dur.toFixed(1);
+  rescaleSubtitlesToDuration(dur);
+  syncSliderBounds();
+  renderSinglePreviewFrame();
+}
+
+function setQuickClipLength(sec) {
+  const s = state.clipStart;
+  const maxEnd = state.mediaType !== "none" ? state.mediaTotalDur : s + sec;
+  const e = Math.min(maxEnd, s + sec);
+  document.getElementById("clipEndInput").value = e;
+  onClipRangeChange();
+}
+
+function markClipBoundary(which) {
+  const curMediaSec = state.clipStart + state.previewSec;
+  if (which === "start") {
+    document.getElementById("clipStartInput").value = Math.round(curMediaSec * 10) / 10;
+  } else {
+    document.getElementById("clipEndInput").value = Math.max(state.clipStart + 3, Math.round(curMediaSec * 10) / 10);
+  }
+  onClipRangeChange();
+}
+
+function rescaleSubtitlesToDuration(newDur) {
+  if (!state.subtitles.length) return;
+  const oldMax = Math.max(1, state.subtitles[state.subtitles.length - 1].end);
+  const ratio = newDur / oldMax;
+  state.subtitles = state.subtitles.map((s, idx) => ({
+    start: Math.round(s.start * ratio * 10) / 10,
+    end: idx === state.subtitles.length - 1
+      ? Math.round(newDur * 10) / 10
+      : Math.max(Math.round(s.start * ratio * 10) / 10 + 0.8, Math.round(s.end * ratio * 10) / 10),
+    text: s.text
+  }));
+  renderSubtitleEditorRows();
+}
+
+function onCropChange() {
+  state.cropPanX = Number(document.getElementById("cropPanX").value) || 0;
+  state.cropPanY = Number(document.getElementById("cropPanY").value) || 0;
+  state.cropZoom = (Number(document.getElementById("cropZoom").value) || 108) / 100;
+  document.getElementById("cropPanXVal").textContent = state.cropPanX === 0 ? "중앙" : (state.cropPanX > 0 ? `+${state.cropPanX}` : `${state.cropPanX}`);
+  document.getElementById("cropPanYVal").textContent = state.cropPanY === 0 ? "중앙" : (state.cropPanY > 0 ? `+${state.cropPanY}` : `${state.cropPanY}`);
+  document.getElementById("cropZoomVal").textContent = `${state.cropZoom.toFixed(2)}x`;
+  renderSinglePreviewFrame();
+}
+
+function onArtworkSelectChange() {
+  state.artworkMode = document.getElementById("artworkSelect").value;
+  state.customSlideImages = [];
+  renderSinglePreviewFrame();
+}
+
+function onBgmSelectChange() {
+  state.bgmUrl = document.getElementById("bgmSelect").value;
+  const bgmEl = document.getElementById("hiddenBgmAudio");
+  if (state.bgmUrl) {
+    bgmEl.src = state.bgmUrl;
+  } else {
+    bgmEl.pause();
+    bgmEl.removeAttribute("src");
+  }
+}
+
+function onBgmVolChange() {
+  const v = Number(document.getElementById("bgmVolSlider").value) || 0;
+  state.bgmVolume = v / 100;
+  document.getElementById("bgmVolLabel").textContent = `${v}%`;
+  const bgmEl = document.getElementById("hiddenBgmAudio");
+  if (bgmEl) bgmEl.volume = state.bgmVolume;
+}
+
+function selectShortsStyle(styleKey) {
+  state.style = styleKey;
+  document.querySelectorAll(".style-tab").forEach(btn => {
+    btn.classList.toggle("active", btn.getAttribute("data-style") === styleKey);
+  });
+  renderSinglePreviewFrame();
+}
+
+// ============================================================================
+// 4. 자막 줄별 편집 UI & 들으며 자막 넘기기(Tap Sync)
+// ============================================================================
+function renderSubtitleEditorRows() {
+  const container = document.getElementById("subtitleRowsContainer");
+  document.getElementById("subCountBadge").textContent = state.subtitles.length;
+
+  container.innerHTML = state.subtitles.map((s, idx) => `
+    <div class="sub-row" data-idx="${idx}">
+      <div class="t-pair">
+        <input type="number" step="0.2" value="${s.start}" onchange="updateSubRowTime(${idx}, 'start', this.value)" title="시작 시각(초)">
+        <span>~</span>
+        <input type="number" step="0.2" value="${s.end}" onchange="updateSubRowTime(${idx}, 'end', this.value)" title="끝 시각(초)">
+      </div>
+      <input type="text" class="sub-text-in" value="${s.text.replace(/\n/g, ' / ').replace(/"/g, '&quot;')}"
+             oninput="updateSubRowText(${idx}, this.value)"
+             onfocus="jumpPreviewToSecond(${s.start})"
+             title="줄바꿈은 ' / '로 표시됩니다. 단어 앞뒤에 *별표*를 넣으면 금빛으로 강조됩니다.">
+      <div style="display:flex; gap:3px;">
+        <button type="button" class="btn sm" style="padding:4px 7px;" onclick="wrapHighlightOnRow(${idx})" title="핵심 어구 금빛 강조">✨</button>
+        <button type="button" class="btn sm" style="padding:4px 7px;" onclick="deleteSubtitleRow(${idx})" title="이 줄 지우기">✕</button>
+      </div>
+    </div>
+  `).join("");
+}
+
+function updateSubRowTime(idx, field, val) {
+  if (!state.subtitles[idx]) return;
+  state.subtitles[idx][field] = Math.max(0, Math.round((Number(val) || 0) * 10) / 10);
+  renderSinglePreviewFrame();
+}
+
+function updateSubRowText(idx, val) {
+  if (!state.subtitles[idx]) return;
+  state.subtitles[idx].text = String(val || "").replace(/\s*\/\s*/g, "\n");
+  renderSinglePreviewFrame();
+}
+
+function wrapHighlightOnRow(idx) {
+  if (!state.subtitles[idx]) return;
+  const cur = state.subtitles[idx].text;
+  if (cur.includes("*")) {
+    // 별표 제거 토글
+    state.subtitles[idx].text = cur.replace(/\*/g, "");
+  } else {
+    const lines = cur.split("\n");
+    const lastIdx = lines.length - 1;
+    const words = lines[lastIdx].trim().split(" ");
+    if (words.length >= 2) {
+      const target = words.slice(-2).join(" ");
+      lines[lastIdx] = lines[lastIdx].replace(target, `*${target}*`);
+    } else {
+      lines[lastIdx] = `*${lines[lastIdx]}*`;
+    }
+    state.subtitles[idx].text = lines.join("\n");
+  }
+  renderSubtitleEditorRows();
+  renderSinglePreviewFrame();
+}
+
+function deleteSubtitleRow(idx) {
+  if (state.subtitles.length <= 1) return;
+  state.subtitles.splice(idx, 1);
+  renderSubtitleEditorRows();
+  renderSinglePreviewFrame();
+}
+
+function addSubtitleRow() {
+  const last = state.subtitles[state.subtitles.length - 1] || { start: 0, end: 4 };
+  const s = last.end;
+  const e = Math.round((s + 4.5) * 10) / 10;
+  state.subtitles.push({ start: s, end: e, text: "새 자막 문장을 적어 주십시오." });
+  if (state.clipEnd < e) state.clipEnd = e;
+  renderSubtitleEditorRows();
+  syncSliderBounds();
+  renderSinglePreviewFrame();
+}
+
+function jumpPreviewToSecond(sec) {
+  if (state.isPlayingPreview) return;
+  state.previewSec = Math.max(0, Number(sec) || 0);
+  document.getElementById("previewSeekSlider").value = state.previewSec;
+  syncMediaElementToPreviewSec();
+  renderSinglePreviewFrame();
+}
+
+// 들으며 자막 넘기기 (Tap Sync)
+function toggleTapSyncMode() {
+  const btn = document.getElementById("tapSyncBtn");
+  if (!state.tapSyncActive) {
+    state.tapSyncActive = true;
+    state.tapSyncIndex = 0;
+    state.previewSec = 0;
+    if (state.subtitles.length > 0) state.subtitles[0].start = 0.0;
+    btn.textContent = `⏭️ 다음 자막 넘기기 (1/${state.subtitles.length})`;
+    btn.classList.add("gold");
+    if (!state.isPlayingPreview) togglePreviewPlay();
+  } else {
+    const nowSec = Math.round(state.previewSec * 10) / 10;
+    const curIdx = state.tapSyncIndex;
+    if (state.subtitles[curIdx]) {
+      state.subtitles[curIdx].end = Math.max(state.subtitles[curIdx].start + 0.5, nowSec);
+    }
+    state.tapSyncIndex++;
+    if (state.tapSyncIndex < state.subtitles.length) {
+      state.subtitles[state.tapSyncIndex].start = nowSec;
+      if (state.subtitles[state.tapSyncIndex].end <= nowSec) {
+        state.subtitles[state.tapSyncIndex].end = Math.round((nowSec + 4.0) * 10) / 10;
+      }
+      btn.textContent = `⏭️ 다음 자막 넘기기 (${state.tapSyncIndex + 1}/${state.subtitles.length})`;
+      renderSubtitleEditorRows();
+    } else {
+      state.tapSyncActive = false;
+      btn.textContent = "⏱️ 들으며 자막 넘기기";
+      btn.classList.remove("gold");
+      renderSubtitleEditorRows();
+    }
+  }
+}
+
+// ============================================================================
+// 5. 1080×1920 9:16 캔버스 렌더러 (Rule 7 쿠션 홀드 + 3대 화풍 + 샴페인골드 자막)
+// ============================================================================
+function getTotalRenderDuration() {
+  const voiceDur = Math.max(4, state.clipEnd - state.clipStart);
+  const endingHold = document.getElementById("endingHoldCheck").checked ? 3.0 : 0.0;
+  return { voiceDur, endingHold, totalDur: voiceDur + endingHold };
+}
+
+function syncSliderBounds() {
+  const { totalDur } = getTotalRenderDuration();
+  const slider = document.getElementById("previewSeekSlider");
+  slider.max = totalDur.toFixed(1);
+  updatePreviewTimeBadge();
+}
+
+function updatePreviewTimeBadge() {
+  const { totalDur } = getTotalRenderDuration();
+  document.getElementById("previewTimeLabel").textContent = `${formatMMSS(state.previewSec)} / ${formatMMSS(totalDur)}`;
+}
+
+// 현재 초(sec)에 그릴 이미지/영상과 Ken Burns + Cushion Hold 계산
+function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(vx, vy, vw, vh);
+  ctx.clip();
+
+  const vid = document.getElementById("hiddenSourceVideo");
+  if (state.mediaType === "video" && vid && vid.readyState >= 2 && vid.videoWidth > 0) {
+    // 설교 영상 렌더링 (스마트 리프레이밍 좌우/상하/줌 반영)
+    const sw = vid.videoWidth;
+    const sh = vid.videoHeight;
+    const baseScale = Math.max(vw / sw, vh / sh) * state.cropZoom;
+    const drawW = sw * baseScale;
+    const drawH = sh * baseScale;
+    const maxOffsetX = Math.max(0, (drawW - vw) / 2);
+    const maxOffsetY = Math.max(0, (drawH - vh) / 2);
+    const dx = vx + (vw - drawW) / 2 - (state.cropPanX / 100) * maxOffsetX;
+    const dy = vy + (vh - drawH) / 2 - (state.cropPanY / 100) * maxOffsetY;
+    ctx.drawImage(vid, dx, dy, drawW, drawH);
+    ctx.restore();
+    return;
+  }
+
+  // 성화/도판 슬라이드 결정
+  let slideList = [];
+  if (state.customSlideImages.length > 0) {
+    slideList = state.customSlideImages;
+  } else if (!state.forceProceduralArt) {
+    if (state.artworkMode === "auto_4cuts") {
+      slideList = AUTO_4CUT_KEYS.map(k => state.loadedImages[k]).filter(Boolean);
+    } else if (state.loadedImages[state.artworkMode]) {
+      slideList = [state.loadedImages[state.artworkMode]];
+    }
+  }
+
+  if (slideList.length === 0) {
+    // 따뜻한 성경 시대 황혼·등불 시네마틱 배경 (이미지 미로드 또는 로컬 보안 격리 시에도 품격 유지)
+    const g = ctx.createLinearGradient(vx, vy, vx, vy + vh);
+    g.addColorStop(0, "#1C1510");
+    g.addColorStop(0.55, "#2F2217");
+    g.addColorStop(1, "#140F0A");
+    ctx.fillStyle = g;
+    ctx.fillRect(vx, vy, vw, vh);
+
+    const glowX = vx + vw * (0.5 + 0.08 * Math.sin(sec * 0.35));
+    const glowY = vy + vh * 0.42;
+    const rg = ctx.createRadialGradient(glowX, glowY, 20, glowX, glowY, vw * 0.65);
+    rg.addColorStop(0, "rgba(232, 188, 108, 0.34)");
+    rg.addColorStop(0.5, "rgba(180, 126, 56, 0.12)");
+    rg.addColorStop(1, "rgba(20, 15, 10, 0)");
+    ctx.fillStyle = rg;
+    ctx.fillRect(vx, vy, vw, vh);
+    ctx.restore();
+    return;
+  }
+
+  const cutCount = slideList.length;
+  const cutDur = Math.max(3.5, voiceDur / cutCount);
+  const clampedSec = Math.min(voiceDur - 0.001, Math.max(0, sec));
+  const cutIdx = Math.min(cutCount - 1, Math.floor(clampedSec / cutDur));
+  const localT = clampedSec - cutIdx * cutDur;
+
+  // Rule 7: 마지막 1.6초 쿠션 홀드 (Cushion Hold)
+  const holdSec = Math.min(1.6, cutDur * 0.28);
+  const moveDur = Math.max(1.0, cutDur - holdSec);
+  const uRaw = Math.min(1.0, Math.max(0.0, localT / moveDur));
+  // 코사인 이징 (0.5 * (1 - cos(pi * u)))
+  const u = 0.5 * (1 - Math.cos(Math.PI * uRaw));
+
+  function drawSingleSlideWithMotion(img, modeIdx, progress, alpha) {
+    if (!img) return;
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const mode = MOTION_MODES[modeIdx % MOTION_MODES.length];
+    let scale = 1.08;
+    let panX = 0;
+    let panY = 0;
+
+    if (mode === "zoom_in") {
+      scale = 1.03 + 0.11 * progress;
+      panY = -12 * progress;
+    } else if (mode === "zoom_out") {
+      scale = 1.15 - 0.10 * progress;
+      panY = 10 * (1 - progress);
+    } else if (mode === "pan_right") {
+      scale = 1.12;
+      panX = -38 + 76 * progress;
+    } else {
+      scale = 1.12;
+      panX = 38 - 76 * progress;
+    }
+
+    const baseScale = Math.max(vw / img.width, vh / img.height) * scale;
+    const dw = img.width * baseScale;
+    const dh = img.height * baseScale;
+    const dx = vx + (vw - dw) / 2 + panX;
+    const dy = vy + (vh - dh) / 2 + panY;
+    ctx.drawImage(img, dx, dy, dw, dh);
+    ctx.restore();
+  }
+
+  const curImg = slideList[cutIdx];
+  drawSingleSlideWithMotion(curImg, cutIdx, u, 1.0);
+
+  // 컷 전환 시 0.55초 부드러운 크로스디졸브
+  const fadeDur = 0.55;
+  if (cutIdx < cutCount - 1 && cutDur - localT <= fadeDur) {
+    const nextAlpha = 1.0 - (cutDur - localT) / fadeDur;
+    drawSingleSlideWithMotion(slideList[cutIdx + 1], cutIdx + 1, 0.0, Math.min(1, Math.max(0, nextAlpha)));
+  }
+
+  ctx.restore();
+}
+
+// *별표* 강조 어구를 샴페인 골드(#F5C868)로 렌더링하는 헬퍼
+function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth) {
+  const segments = [];
+  const regex = /\*(.+?)\*/g;
+  let lastIndex = 0;
+  let match;
+  while ((match = regex.exec(lineStr)) !== null) {
+    if (match.index > lastIndex) {
+      segments.push({ text: lineStr.slice(lastIndex, match.index), highlight: false });
+    }
+    segments.push({ text: match[1], highlight: true });
+    lastIndex = regex.lastIndex;
+  }
+  if (lastIndex < lineStr.length) {
+    segments.push({ text: lineStr.slice(lastIndex), highlight: false });
+  }
+  if (segments.length === 0) {
+    segments.push({ text: lineStr, highlight: false });
+  }
+
+  // 전체 폭 계산
+  let totalW = 0;
+  segments.forEach(seg => {
+    seg.w = ctx.measureText(seg.text).width;
+    totalW += seg.w;
+  });
+
+  let curX = centerX - totalW / 2;
+  ctx.textAlign = "left";
+  ctx.lineJoin = "round";
+  ctx.miterLimit = 2;
+
+  // 1) 깊은 그림자 + 외곽선
+  segments.forEach(seg => {
+    ctx.save();
+    ctx.shadowColor = "rgba(0, 0, 0, 0.82)";
+    ctx.shadowBlur = 12;
+    ctx.shadowOffsetY = 4;
+    ctx.strokeStyle = outlineColor;
+    ctx.lineWidth = outlineWidth;
+    ctx.strokeText(seg.text, curX, y);
+    ctx.restore();
+
+    ctx.fillStyle = seg.highlight ? goldColor : baseColor;
+    ctx.fillText(seg.text, curX, y);
+    curX += seg.w;
+  });
+}
+
+// 메인 1080×1920 프레임 그리기
+function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
+  const ctx = targetCanvas.getContext("2d");
+  const W = 1080;
+  const H = 1920;
+  const { voiceDur, endingHold } = getTotalRenderDuration();
+
+  const line1 = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
+  const line2 = document.getElementById("line2Sub").value.trim() || "떨림이 다 멈춰서 담대한 것이 아니라";
+  const line3 = document.getElementById("line3Main").value.trim() || "밤의 끝자락을 붙드시는 주님";
+  const line4 = document.getElementById("line4Brand").value.trim();
+
+  const isEndingHold = endingHold > 0 && sec >= voiceDur;
+
+  ctx.clearRect(0, 0, W, H);
+
+  // =========================================================================
+  // 화풍 1: 🏛️ 꿈바온 인장반지 표준 (Rule 64 + Rule 69)
+  // =========================================================================
+  if (state.style === "signet") {
+    ctx.fillStyle = "#08080A";
+    ctx.fillRect(0, 0, W, H);
+
+    // 중앙~하단 뷰포트 (y = 480 ~ 1920)
+    drawViewportContent(ctx, sec, voiceDur, 0, 480, W, H - 480);
+
+    // 상단 경계 그라데이션 & 하단 자막 보호 비네팅
+    const topFade = ctx.createLinearGradient(0, 460, 0, 580);
+    topFade.addColorStop(0, "#050507");
+    topFade.addColorStop(1, "rgba(5,5,7,0)");
+    ctx.fillStyle = topFade;
+    ctx.fillRect(0, 460, W, 120);
+
+    const botFade = ctx.createLinearGradient(0, 1220, 0, H);
+    botFade.addColorStop(0, "rgba(6,6,8,0)");
+    botFade.addColorStop(0.55, "rgba(6,6,8,0.68)");
+    botFade.addColorStop(1, "rgba(5,5,7,0.92)");
+    ctx.fillStyle = botFade;
+    ctx.fillRect(0, 1220, W, H - 1220);
+
+    // 상단 y=0~480 순수 블랙 헤더 (Rule 64 인장반지 4열 표준)
+    ctx.fillStyle = "#040406";
+    ctx.fillRect(0, 0, W, 480);
+
+    ctx.textAlign = "center";
+    // 1열 (y=155): 성경 장절
+    ctx.fillStyle = "#D8B467";
+    ctx.font = "700 33px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(`───  ${line1}  ───`, W / 2, 155);
+
+    // 2열 (y=232): 여는 부제
+    ctx.fillStyle = "#EAE4D7";
+    ctx.font = "600 40px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line2.slice(0, 22), W / 2, 232);
+
+    // 3열 (y=350): 본제목 한 줄 (길이에 따라 74~92pt 자동 맞춤)
+    const mainLen = line3.length;
+    const mainPt = mainLen <= 9 ? 90 : mainLen <= 12 ? 78 : mainLen <= 15 ? 66 : 56;
+    ctx.fillStyle = "#F6D588";
+    ctx.font = `800 ${mainPt}px 'Hahmlet', 'Noto Serif KR', serif`;
+    ctx.fillText(line3, W / 2, 350);
+
+    // 4열 (y=432): 하단 서명
+    if (line4) {
+      ctx.fillStyle = "rgba(216, 180, 103, 0.85)";
+      ctx.font = "700 30px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(line4, W / 2, 432);
+    }
+
+    // 구분 골드 라인
+    ctx.strokeStyle = "rgba(212, 175, 106, 0.55)";
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(90, 478);
+    ctx.lineTo(W - 90, 478);
+    ctx.stroke();
+  }
+
+  // =========================================================================
+  // 화풍 2: 📜 고고학 미술관 도판형 (kkumbaon-archaeology-shorts 표준)
+  // =========================================================================
+  else if (state.style === "archaeology") {
+    // 다크 세피아/에스프레소 미술관 캔버스
+    const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, "rgb(18, 14, 11)");
+    bgGrad.addColorStop(0.5, "rgb(25, 19, 14)");
+    bgGrad.addColorStop(1, "rgb(16, 12, 9)");
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // 중앙 뷰포트 (y = 380 ~ 1280)
+    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
+
+    // 뷰포트 상단(y=378) & 하단(y=1281) 2px 앤틱 골드 선
+    ctx.strokeStyle = "rgb(198, 160, 92)";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(0, 378); ctx.lineTo(W, 378);
+    ctx.moveTo(0, 1281); ctx.lineTo(W, 1281);
+    ctx.stroke();
+
+    ctx.textAlign = "center";
+    if (!isEndingHold) {
+      // 상단 배지 (y = 118)
+      ctx.fillStyle = "rgb(212, 175, 106)";
+      ctx.font = "700 29px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(`───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 118);
+
+      // 2줄 메인 타이틀 (y = 195, y = 285)
+      ctx.fillStyle = "rgb(250, 245, 235)";
+      ctx.font = "700 50px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(line2.slice(0, 20), W / 2, 198);
+
+      const mPt = line3.length <= 11 ? 66 : line3.length <= 14 ? 58 : 50;
+      ctx.fillStyle = "rgb(234, 198, 122)";
+      ctx.font = `800 ${mPt}px 'Hahmlet', 'Noto Serif KR', serif`;
+      ctx.fillText(line3, W / 2, 292);
+    } else {
+      // 3.0초 수미상관 엔딩 카드
+      ctx.fillStyle = "rgb(212, 175, 106)";
+      ctx.font = "700 29px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(`───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 145);
+
+      ctx.fillStyle = "rgb(250, 245, 235)";
+      ctx.font = "800 72px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(line3, W / 2, 265);
+
+      ctx.fillStyle = "rgb(212, 175, 106)";
+      ctx.font = "700 38px 'Hahmlet', 'Noto Serif KR', serif";
+      ctx.fillText(line1, W / 2, 1450);
+    }
+  }
+
+  // =========================================================================
+  // 화풍 3: 🕯️ 등잔 밑 전체화면형 (9:16 풀스크린 + MarginV 540 자막)
+  // =========================================================================
+  else {
+    drawViewportContent(ctx, sec, voiceDur, 0, 0, W, H);
+
+    // 상단 & 하단 가독성 그라데이션
+    const topV = ctx.createLinearGradient(0, 0, 0, 420);
+    topV.addColorStop(0, "rgba(8, 7, 6, 0.82)");
+    topV.addColorStop(1, "rgba(8, 7, 6, 0)");
+    ctx.fillStyle = topV;
+    ctx.fillRect(0, 0, W, 420);
+
+    const botV = ctx.createLinearGradient(0, 1120, 0, H);
+    botV.addColorStop(0, "rgba(8, 7, 6, 0)");
+    botV.addColorStop(0.55, "rgba(8, 7, 6, 0.72)");
+    botV.addColorStop(1, "rgba(8, 7, 6, 0.94)");
+    ctx.fillStyle = botV;
+    ctx.fillRect(0, 1120, W, H - 1120);
+
+    ctx.textAlign = "center";
+    ctx.fillStyle = "#E8C67A";
+    ctx.font = "700 32px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(`✦  ${line1}  ✦`, W / 2, 140);
+
+    ctx.fillStyle = "#FFFDF8";
+    ctx.font = "800 58px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line3, W / 2, 225);
+  }
+
+  // =========================================================================
+  // 하단 자막 렌더링 (Rule 69: MarginV 540 -> y = 1320 ~ 1410 안전 영역)
+  // =========================================================================
+  if (includeSubtitles && !isEndingHold) {
+    const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
+    if (activeSub && activeSub.text) {
+      // 등장/퇴장 0.14초 소프트 페이드
+      let alpha = 1.0;
+      if (sec - activeSub.start < 0.14) alpha = Math.max(0.1, (sec - activeSub.start) / 0.14);
+      else if (activeSub.end - sec < 0.14) alpha = Math.max(0.1, (activeSub.end - sec) / 0.14);
+
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.font = "800 58px 'Hahmlet', 'Noto Serif KR', serif";
+
+      const rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
+      const baseY = state.style === "archaeology" ? 1365 : 1345; // 유튜브 하단 UI(y=1480~1920) 완벽 회피
+      const lineGap = 80;
+
+      if (rawLines.length === 1) {
+        drawHighlightedSubtitleLine(
+          ctx, rawLines[0], W / 2, baseY + 32,
+          "#FFFDF8", "#F5C868", "#101014", 11
+        );
+      } else {
+        rawLines.slice(0, 2).forEach((ln, idx) => {
+          drawHighlightedSubtitleLine(
+            ctx, ln, W / 2, baseY + idx * lineGap,
+            "#FFFDF8", "#F5C868", "#101014", 11
+          );
+        });
+      }
+      ctx.restore();
+    }
+  }
+}
+
+function renderSinglePreviewFrame() {
+  const canvas = document.getElementById("shortsCanvas");
+  if (!canvas) return;
+  drawShortsFrameOnCanvas(canvas, state.previewSec, true);
+  updatePreviewTimeBadge();
+}
+
+// ============================================================================
+// 6. 실시간 미리보기 재생 컨트롤
+// ============================================================================
+function syncMediaElementToPreviewSec() {
+  const targetMediaTime = state.clipStart + state.previewSec;
+  if (state.mediaType === "video") {
+    const vid = document.getElementById("hiddenSourceVideo");
+    if (vid && Math.abs((vid.currentTime || 0) - targetMediaTime) > 0.25) {
+      try { vid.currentTime = targetMediaTime; } catch (e) {}
+    }
+  } else if (state.mediaType === "audio") {
+    const aud = document.getElementById("hiddenSourceAudio");
+    if (aud && Math.abs((aud.currentTime || 0) - targetMediaTime) > 0.25) {
+      try { aud.currentTime = targetMediaTime; } catch (e) {}
+    }
+  }
+}
+
+function onSeekPreview(val) {
+  state.previewSec = Math.max(0, Number(val) || 0);
+  syncMediaElementToPreviewSec();
+  renderSinglePreviewFrame();
+}
+
+function togglePreviewPlay() {
+  if (state.isRendering) return;
+  if (state.isPlayingPreview) {
+    stopPreviewPlay();
+    return;
+  }
+
+  const { totalDur } = getTotalRenderDuration();
+  if (state.previewSec >= totalDur - 0.1) {
+    state.previewSec = 0;
+  }
+
+  state.isPlayingPreview = true;
+  document.getElementById("playPreviewBtn").textContent = "⏸ 일시정지";
+
+  const targetMediaTime = state.clipStart + state.previewSec;
+  if (state.mediaType === "video") {
+    const vid = document.getElementById("hiddenSourceVideo");
+    try { vid.currentTime = targetMediaTime; vid.play().catch(() => {}); } catch (e) {}
+  } else if (state.mediaType === "audio") {
+    const aud = document.getElementById("hiddenSourceAudio");
+    try { aud.currentTime = targetMediaTime; aud.play().catch(() => {}); } catch (e) {}
+  }
+
+  const bgmEl = document.getElementById("hiddenBgmAudio");
+  if (state.bgmUrl && bgmEl) {
+    if (!bgmEl.src || !bgmEl.src.endsWith(state.bgmUrl)) bgmEl.src = state.bgmUrl;
+    bgmEl.volume = state.bgmVolume;
+    bgmEl.play().catch(() => {});
+  }
+
+  state.lastFrameTimestamp = performance.now();
+  const step = (now) => {
+    if (!state.isPlayingPreview) return;
+    const dt = Math.min(0.1, (now - state.lastFrameTimestamp) / 1000);
+    state.lastFrameTimestamp = now;
+
+    const { voiceDur, totalDur } = getTotalRenderDuration();
+    if (state.mediaType === "video" && state.previewSec < voiceDur) {
+      const vid = document.getElementById("hiddenSourceVideo");
+      if (vid && !vid.paused) {
+        state.previewSec = Math.max(0, vid.currentTime - state.clipStart);
+      } else {
+        state.previewSec += dt;
+      }
+    } else if (state.mediaType === "audio" && state.previewSec < voiceDur) {
+      const aud = document.getElementById("hiddenSourceAudio");
+      if (aud && !aud.paused) {
+        state.previewSec = Math.max(0, aud.currentTime - state.clipStart);
+      } else {
+        state.previewSec += dt;
+      }
+    } else {
+      state.previewSec += dt;
+    }
+
+    // 음성 종료 후 엔딩 홀드 구간 진입 시 원본 미디어 일시정지 & BGM 소프트 페이드
+    if (state.previewSec >= voiceDur) {
+      if (state.mediaType === "video") document.getElementById("hiddenSourceVideo").pause();
+      if (state.mediaType === "audio") document.getElementById("hiddenSourceAudio").pause();
+      if (bgmEl && totalDur > voiceDur) {
+        const remain = Math.max(0, totalDur - state.previewSec);
+        bgmEl.volume = state.bgmVolume * Math.min(1, remain / 1.8);
+      }
+    }
+
+    if (state.previewSec >= totalDur) {
+      state.previewSec = totalDur;
+      renderSinglePreviewFrame();
+      stopPreviewPlay();
+      return;
+    }
+
+    document.getElementById("previewSeekSlider").value = state.previewSec;
+    renderSinglePreviewFrame();
+    state.previewRafId = requestAnimationFrame(step);
+  };
+  state.previewRafId = requestAnimationFrame(step);
+}
+
+function stopPreviewPlay() {
+  state.isPlayingPreview = false;
+  if (state.previewRafId) cancelAnimationFrame(state.previewRafId);
+  const btn = document.getElementById("playPreviewBtn");
+  if (btn) btn.textContent = "▶ 미리보기";
+  try { document.getElementById("hiddenSourceVideo").pause(); } catch (e) {}
+  try { document.getElementById("hiddenSourceAudio").pause(); } catch (e) {}
+  try { document.getElementById("hiddenBgmAudio").pause(); } catch (e) {}
+}
+
+// ============================================================================
+// 7. 전체 길이 풀 렌더링 & 스튜디오 시네마 보컬 마스터링 (MediaRecorder 30fps)
+// ============================================================================
+async function startFullShortsRender(includeSubtitles = true) {
+  if (state.isRendering) return;
+  stopPreviewPlay();
+
+  const { voiceDur, endingHold, totalDur } = getTotalRenderDuration();
+  state.isRendering = true;
+  state.cancelRenderRequested = false;
+
+  const progWrap = document.getElementById("renderProgressWrap");
+  const progBar = document.getElementById("renderProgressBar");
+  const progPct = document.getElementById("renderProgressPct");
+  const progTxt = document.getElementById("renderProgressText");
+  const resBox = document.getElementById("renderResultBox");
+  const renderBtn = document.getElementById("renderVideoBtn");
+
+  progWrap.style.display = "block";
+  resBox.style.display = "none";
+  renderBtn.disabled = true;
+  progBar.style.width = "0%";
+  progPct.textContent = "0%";
+  progTxt.textContent = includeSubtitles
+    ? `쇼츠 완성본(${totalDur.toFixed(1)}초)을 엮고 있습니다...`
+    : `무자막 클린본(${totalDur.toFixed(1)}초)을 엮고 있습니다...`;
+
+  let canvas = document.getElementById("shortsCanvas");
+  let stream = null;
+  try {
+    // 로컬 file:// 환경에서 상대경로 이미지가 캔버스를 오염시켰는지 사전 점검
+    canvas.getContext("2d").getImageData(0, 0, 1, 1);
+    stream = canvas.captureStream(30);
+  } catch (secErr) {
+    // 캔버스 교체 및 Untainted 렌더링 활성화
+    state.forceProceduralArt = true;
+    const freshCanvas = canvas.cloneNode(false);
+    canvas.parentNode.replaceChild(freshCanvas, canvas);
+    canvas = freshCanvas;
+    drawShortsFrameOnCanvas(canvas, 0, includeSubtitles);
+    stream = canvas.captureStream(30);
+  }
+
+  // WebAudio 스튜디오 시네마 체인 구성
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  let audioCtx = null;
+  let recVideoEl = null;
+  let recAudioEl = null;
+  let recBgmEl = null;
+  let bgmGainNode = null;
+
+  if (AudioCtx) {
+    try {
+      audioCtx = new AudioCtx();
+      const dest = audioCtx.createMediaStreamDestination();
+      const applyCinemaGlue = document.getElementById("cinemaGlueCheck").checked;
+
+      // 보컬 체인 생성 함수 (78Hz HP -> 135Hz Body -> 480Hz BoxCut -> 2850Hz Presence -> 6800Hz De-ess -> Compressor)
+      const connectVocalChain = (sourceNode) => {
+        if (!applyCinemaGlue) {
+          sourceNode.connect(dest);
+          return;
+        }
+        const hp = audioCtx.createBiquadFilter();
+        hp.type = "highpass"; hp.frequency.value = 78; hp.Q.value = 0.707;
+
+        const body = audioCtx.createBiquadFilter();
+        body.type = "peaking"; body.frequency.value = 135; body.Q.value = 1.0; body.gain.value = 1.8;
+
+        const boxCut = audioCtx.createBiquadFilter();
+        boxCut.type = "peaking"; boxCut.frequency.value = 480; boxCut.Q.value = 1.4; boxCut.gain.value = -2.2;
+
+        const pres = audioCtx.createBiquadFilter();
+        pres.type = "peaking"; pres.frequency.value = 2850; pres.Q.value = 1.2; pres.gain.value = 1.8;
+
+        const deEss = audioCtx.createBiquadFilter();
+        deEss.type = "peaking"; deEss.frequency.value = 6800; deEss.Q.value = 1.6; deEss.gain.value = -1.6;
+
+        const comp = audioCtx.createDynamicsCompressor();
+        comp.threshold.value = -21;
+        comp.knee.value = 10;
+        comp.ratio.value = 2.6;
+        comp.attack.value = 0.008;
+        comp.release.value = 0.16;
+
+        const outGain = audioCtx.createGain();
+        outGain.gain.value = 1.12;
+
+        sourceNode.connect(hp);
+        hp.connect(body);
+        body.connect(boxCut);
+        boxCut.connect(pres);
+        pres.connect(deEss);
+        deEss.connect(comp);
+        comp.connect(outGain);
+        outGain.connect(dest);
+      };
+
+      if (state.mediaType === "video" && state.mediaUrl) {
+        recVideoEl = document.getElementById("hiddenSourceVideo");
+        recVideoEl.currentTime = state.clipStart;
+        if (!recVideoEl._webAudioSource) {
+          recVideoEl._webAudioSource = audioCtx.createMediaElementSource(recVideoEl);
+        } else {
+          try { recVideoEl._webAudioSource.disconnect(); } catch (e) {}
+        }
+        connectVocalChain(recVideoEl._webAudioSource);
+        recVideoEl._webAudioSource.connect(audioCtx.destination);
+      } else if (state.mediaType === "audio" && state.mediaUrl) {
+        recAudioEl = new Audio(state.mediaUrl);
+        recAudioEl.crossOrigin = "anonymous";
+        recAudioEl.currentTime = state.clipStart;
+        const vSrc = audioCtx.createMediaElementSource(recAudioEl);
+        connectVocalChain(vSrc);
+      }
+
+      if (state.bgmUrl) {
+        recBgmEl = new Audio(state.bgmUrl);
+        recBgmEl.crossOrigin = "anonymous";
+        recBgmEl.loop = true;
+        const bSrc = audioCtx.createMediaElementSource(recBgmEl);
+        // 보컬 포켓 카빙 (1.8kHz -3.2dB)
+        const pocket = audioCtx.createBiquadFilter();
+        pocket.type = "peaking"; pocket.frequency.value = 1800; pocket.Q.value = 1.2; pocket.gain.value = -3.2;
+        bgmGainNode = audioCtx.createGain();
+        // 음성 있을 때는 음성 8 : BGM 2 비율(기본 0.20), 음성 없을 때는 0.42
+        bgmGainNode.gain.value = (state.mediaType !== "none") ? state.bgmVolume : Math.max(0.35, state.bgmVolume * 1.8);
+        bSrc.connect(pocket);
+        pocket.connect(bgmGainNode);
+        bgmGainNode.connect(dest);
+      }
+
+      dest.stream.getAudioTracks().forEach(t => stream.addTrack(t));
+    } catch (err) {
+      console.warn("WebAudio graph notice:", err);
+    }
+  }
+
+  const mimeCandidates = [
+    "video/mp4;codecs=avc1,mp4a.40.2",
+    "video/mp4",
+    "video/webm;codecs=vp9,opus",
+    "video/webm;codecs=vp8,opus",
+    "video/webm"
+  ];
+  let chosenMime = "";
+  if (typeof MediaRecorder !== "undefined" && typeof MediaRecorder.isTypeSupported === "function") {
+    for (const m of mimeCandidates) {
+      if (MediaRecorder.isTypeSupported(m)) {
+        chosenMime = m;
+        break;
+      }
+    }
+  }
+  const outExt = (!chosenMime || chosenMime.includes("mp4")) ? "mp4" : "webm";
+
+  const recorderOpts = chosenMime
+    ? { mimeType: chosenMime, videoBitsPerSecond: 8000000, audioBitsPerSecond: 192000 }
+    : { videoBitsPerSecond: 8000000 };
+  const recorder = new MediaRecorder(stream, recorderOpts);
+  const chunks = [];
+  recorder.ondataavailable = e => {
+    if (e.data && e.data.size > 0) chunks.push(e.data);
+  };
+
+  const startWall = performance.now();
+  drawShortsFrameOnCanvas(canvas, 0, includeSubtitles);
+
+  recorder.start(200);
+  if (recVideoEl) recVideoEl.play().catch(() => {});
+  if (recAudioEl) recAudioEl.play().catch(() => {});
+  if (recBgmEl) recBgmEl.play().catch(() => {});
+
+  const renderBlob = await new Promise(resolve => {
+    let voiceStopped = false;
+    const timer = setInterval(() => {
+      if (state.cancelRenderRequested) {
+        clearInterval(timer);
+        if (recorder.state !== "inactive") recorder.stop();
+        return;
+      }
+
+      const elapsed = (performance.now() - startWall) / 1000;
+      const curSec = Math.min(totalDur, elapsed);
+      state.previewSec = curSec;
+      drawShortsFrameOnCanvas(canvas, curSec, includeSubtitles);
+
+      const pct = Math.min(100, Math.round((curSec / totalDur) * 100));
+      progBar.style.width = `${pct}%`;
+      progPct.textContent = `${pct}%`;
+      const remain = Math.max(0, Math.ceil(totalDur - curSec));
+      progTxt.textContent = `${includeSubtitles ? "설교 쇼츠 완성본" : "무자막 클린본"} 제작 중... (남은 시간 약 ${remain}초)`;
+
+      if (curSec >= voiceDur && !voiceStopped) {
+        voiceStopped = true;
+        if (recVideoEl) { try { recVideoEl.pause(); } catch (e) {} }
+        if (recAudioEl) { try { recAudioEl.pause(); } catch (e) {} }
+      }
+
+      // 엔딩 1.8초 소프트 페이드아웃
+      if (bgmGainNode && endingHold > 0 && curSec >= totalDur - 1.8) {
+        const fadeRatio = Math.max(0, (totalDur - curSec) / 1.8);
+        const baseVol = (state.mediaType !== "none") ? state.bgmVolume : Math.max(0.35, state.bgmVolume * 1.8);
+        bgmGainNode.gain.value = baseVol * fadeRatio;
+      }
+
+      if (elapsed >= totalDur) {
+        clearInterval(timer);
+        if (recVideoEl) { try { recVideoEl.pause(); } catch (e) {} }
+        if (recAudioEl) { try { recAudioEl.pause(); } catch (e) {} }
+        if (recBgmEl) { try { recBgmEl.pause(); } catch (e) {} }
+        if (recorder.state !== "inactive") recorder.stop();
+      }
+    }, 33);
+
+    recorder.onstop = () => {
+      if (audioCtx && typeof audioCtx.close === "function" && state.mediaType !== "video") {
+        audioCtx.close().catch(() => {});
+      }
+      resolve(new Blob(chunks, { type: chosenMime || "video/mp4" }));
+    };
+  });
+
+  state.isRendering = false;
+  renderBtn.disabled = false;
+  progWrap.style.display = "none";
+
+  if (state.cancelRenderRequested) return;
+
+  const videoUrl = URL.createObjectURL(renderBlob);
+  const safeTitle = (document.getElementById("line3Main").value.trim() || "설교쇼츠").replace(/[^\w가-힣]/g, "_");
+  const suffix = includeSubtitles ? "완성본" : "클린본";
+  const filename = `${safeTitle}_설교쇼츠_${suffix}.${outExt}`;
+  const sizeMb = Math.max(0.2, (renderBlob.size / (1024 * 1024))).toFixed(1);
+
+  // 즉시 자동 다운로드 실행 + 결과 박스에 다시 받기 링크 표시
+  const dlLink = document.getElementById("downloadRenderedVideoLink");
+  dlLink.href = videoUrl;
+  dlLink.download = filename;
+  dlLink.click();
+
+  resBox.style.display = "block";
+  document.getElementById("renderResultTitle").textContent = `✅ ${filename} 제작 완료!`;
+  document.getElementById("renderResultMeta").textContent = `길이: ${totalDur.toFixed(1)}초 · 해상도: 1080×1920 (9:16 Full HD) · 용량: ${sizeMb}MB`;
+}
+
+function cancelActiveRender() {
+  state.cancelRenderRequested = true;
+  try { document.getElementById("hiddenSourceVideo").pause(); } catch (e) {}
+  try { document.getElementById("hiddenSourceAudio").pause(); } catch (e) {}
+}
+
+// ============================================================================
+// 8. 대표 표지(커버) 2종 PNG 생성기 (Rule 64 인장반지 4열 & 고고학 양피지 도판)
+// ============================================================================
+function downloadShortsCover(coverType) {
+  const c = document.createElement("canvas");
+  c.width = 1080;
+  c.height = 1920;
+  const ctx = c.getContext("2d");
+
+  const line1 = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
+  const line2 = document.getElementById("line2Sub").value.trim() || "떨림이 다 멈춰서 담대한 것이 아니라";
+  const line3 = document.getElementById("line3Main").value.trim() || "밤의 끝자락을 붙드시는 주님";
+  const line4 = document.getElementById("line4Brand").value.trim() || "꿈바온";
+
+  if (coverType === "signet") {
+    // Rule 64 인장반지 스타일 4열 104pt 세로 쇼츠 대표 커버
+    ctx.fillStyle = "#040406";
+    ctx.fillRect(0, 0, 1080, 1920);
+
+    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 0, 480, 1080, 1440);
+
+    const topGrad = ctx.createLinearGradient(0, 450, 0, 620);
+    topGrad.addColorStop(0, "#040406");
+    topGrad.addColorStop(1, "rgba(4,4,6,0)");
+    ctx.fillStyle = topGrad;
+    ctx.fillRect(0, 450, 1080, 170);
+
+    ctx.fillStyle = "#040406";
+    ctx.fillRect(0, 0, 1080, 480);
+
+    ctx.textAlign = "center";
+    // 1열 y=200 (31pt)
+    ctx.fillStyle = "#D4AF6A";
+    ctx.font = "700 32px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line1, 540, 200);
+
+    // 2열 y=267 (38pt)
+    ctx.fillStyle = "#F0ECE1";
+    ctx.font = "600 38px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line2.slice(0, 22), 540, 267);
+
+    // 3열 y=394 (본제목 한 줄 104pt, 길이에 따라 폭 자동 맞춤)
+    const pt = line3.length <= 8 ? 104 : line3.length <= 11 ? 86 : line3.length <= 14 ? 70 : 58;
+    ctx.fillStyle = "#F5D07A";
+    ctx.font = `800 ${pt}px 'Hahmlet', 'Noto Serif KR', serif`;
+    ctx.fillText(line3, 540, 394);
+
+    // 4열 y=468 (31pt)
+    ctx.fillStyle = "rgba(212, 175, 106, 0.88)";
+    ctx.font = "700 31px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line4, 540, 468);
+  } else {
+    // 고고학 양피지 도판 포스터형 커버 (kkumbaon-archaeology-shorts 5장 규격)
+    const pGrad = ctx.createLinearGradient(0, 0, 0, 1920);
+    pGrad.addColorStop(0, "#F3E8D2");
+    pGrad.addColorStop(0.5, "#EADBC0");
+    pGrad.addColorStop(1, "#DFCCA9");
+    ctx.fillStyle = pGrad;
+    ctx.fillRect(0, 0, 1080, 1920);
+
+    // 외곽 이중 제도선
+    ctx.strokeStyle = "rgb(128, 102, 74)";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(28, 28, 1024, 1864);
+    ctx.strokeStyle = "rgb(162, 134, 102)";
+    ctx.lineWidth = 1.5;
+    ctx.strokeRect(38, 38, 1004, 1844);
+
+    ctx.textAlign = "center";
+    // 상단 테라코타 배지 (y=96)
+    ctx.fillStyle = "rgb(138, 62, 38)";
+    ctx.beginPath();
+    ctx.roundRect(180, 82, 720, 56, 28);
+    ctx.fill();
+    ctx.fillStyle = "#FAF3E6";
+    ctx.font = "700 28px 'Pretendard', sans-serif";
+    ctx.fillText(`${line1} · ${line4}`, 540, 119);
+
+    // 2단 대형 타이틀 (y=215, y=325)
+    ctx.fillStyle = "rgb(42, 28, 18)";
+    ctx.font = "800 54px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(line2.slice(0, 18), 540, 222);
+
+    const pt2 = line3.length <= 10 ? 78 : line3.length <= 13 ? 66 : 54;
+    ctx.fillStyle = "rgb(142, 46, 24)";
+    ctx.font = `800 ${pt2}px 'Hahmlet', 'Noto Serif KR', serif`;
+    ctx.fillText(line3, 540, 330);
+
+    // 중앙 메인 복원화 (y=420 ~ 1260)
+    ctx.strokeStyle = "rgb(135, 106, 76)";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.moveTo(55, 412); ctx.lineTo(1025, 412);
+    ctx.moveTo(55, 1272); ctx.lineTo(1025, 1272);
+    ctx.stroke();
+
+    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 55, 422, 970, 840);
+
+    // 하단 이중 테두리 명언 콜아웃 박스 (y=1335 ~ 1680)
+    ctx.fillStyle = "rgba(248, 239, 220, 0.92)";
+    ctx.strokeStyle = "rgb(138, 108, 76)";
+    ctx.lineWidth = 2.5;
+    ctx.beginPath();
+    ctx.roundRect(68, 1335, 944, 330, 16);
+    ctx.fill();
+    ctx.stroke();
+
+    const quoteSub = (state.subtitles[0] && state.subtitles[0].text.replace(/\*/g, "")) || `${line2}\n${line3}`;
+    const qLines = quoteSub.split("\n");
+    ctx.fillStyle = "rgb(42, 28, 18)";
+    ctx.font = "700 38px 'Hahmlet', 'Noto Serif KR', serif";
+    qLines.slice(0, 2).forEach((ql, i) => {
+      ctx.fillText(ql, 540, 1445 + i * 62);
+    });
+
+    ctx.fillStyle = "rgb(142, 46, 24)";
+    ctx.font = "700 26px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText("───  ◆  ───", 540, 1575);
+
+    ctx.fillStyle = "rgb(88, 66, 46)";
+    ctx.font = "600 30px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(`${line1} 말씀 묵상`, 540, 1628);
+
+    // 최하단 서명 (y=1805)
+    ctx.fillStyle = "rgb(92, 70, 48)";
+    ctx.font = "700 28px 'Hahmlet', 'Noto Serif KR', serif";
+    ctx.fillText(`${line4} · 성경 말씀 쇼츠`, 540, 1805);
+  }
+
+  const exportCoverBlob = (targetC) => {
+    targetC.toBlob(blob => {
+      if (!blob) return;
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const safeTitle = line3.replace(/[^\w가-힣]/g, "_");
+      a.href = url;
+      a.download = `${safeTitle}_쇼츠표지_${coverType === "signet" ? "인장반지형" : "양피지도판형"}.png`;
+      a.click();
+    }, "image/png");
+  };
+
+  try {
+    c.getContext("2d").getImageData(0, 0, 1, 1);
+    exportCoverBlob(c);
+  } catch (secErr) {
+    state.forceProceduralArt = true;
+    downloadShortsCover(coverType);
+    state.forceProceduralArt = false;
+  }
+}
+
+// ============================================================================
+// 9. 자막(.srt) 내려받기 & 유튜브 업로드 원터치 글 복사
+// ============================================================================
+function downloadSrtFile() {
+  const srtContent = state.subtitles.map((s, idx) => {
+    const cleanText = String(s.text || "").replace(/\*/g, "");
+    return `${idx + 1}\n${formatSrtTime(s.start)} --> ${formatSrtTime(s.end)}\n${cleanText}`;
+  }).join("\n\n") + "\n";
+
+  const blob = new Blob([srtContent], { type: "text/plain;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  const safeTitle = (document.getElementById("line3Main").value.trim() || "설교쇼츠").replace(/[^\w가-힣]/g, "_");
+  a.href = url;
+  a.download = `${safeTitle}_자막.srt`;
+  a.click();
+}
+
+function copyYoutubeUploadGuide() {
+  const line1 = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
+  const line2 = document.getElementById("line2Sub").value.trim() || "";
+  const line3 = document.getElementById("line3Main").value.trim() || "오늘의 말씀";
+  const fullBody = state.subtitles.map(s => s.text.replace(/\*/g, "").replace(/\n/g, " ")).join(" ");
+
+  // Rule 14: 설명란 첫 줄 공식 제목 시작 필수 & 금지어 없는 해시태그
+  const officialTitle = `${line3} I ${line1}`;
+  const guideText = `${officialTitle}
+
+1. 오늘의 말씀
+${line1} (${line2})
+
+2. 말씀 나눔
+${fullBody}
+
+3. 묵상 질문
+1) 오늘 말씀 가운데 내 마음에 가장 깊이 머무는 한 문장은 무엇입니까?
+2) 이번 한 주간 삶의 자리에서 붙들고 걸어갈 주님의 약속은 무엇입니까?
+
+#꿈바온 #말씀쇼츠 #성경묵상 #오늘의말씀`;
+
+  navigator.clipboard.writeText(guideText).then(() => {
+    alert("📋 유튜브 업로드용 제목과 설명란 글이 복사되었습니다!\n유튜브 스튜디오 설명란에 바로 붙여넣으시면 됩니다.");
+  }).catch(() => {
+    prompt("아래 글을 복사하여 유튜브 설명란에 붙여넣으십시오:", guideText);
+  });
+}
+
+// ============================================================================
+// 10. 견본 설교 1클릭 불러오기 & 테마/글씨 크기 전환
+// ============================================================================
+function loadSampleSermon() {
+  document.getElementById("sermonScriptInput").value = SAMPLE_FULL_MANUSCRIPT;
+  document.getElementById("line1Verse").value = "사도행전 18:9–10";
+  document.getElementById("line2Sub").value = "떨림이 다 멈춰서 담대한 것이 아니라";
+  document.getElementById("line3Main").value = "밤의 끝자락을 붙드시는 주님";
+  document.getElementById("line4Brand").value = "꿈바온";
+
+  // 내장 샘플 영상이 있으면 불러오고, 없으면 성화 4컷 모드로 즉시 작동
+  const vid = document.getElementById("hiddenSourceVideo");
+  vid.src = "sample_data/sample_sermon_demo.mp4";
+  vid.load();
+  vid.onloadedmetadata = () => {
+    state.mediaType = "video";
+    state.mediaUrl = "sample_data/sample_sermon_demo.mp4";
+    state.mediaName = "sample_sermon_demo.mp4";
+    state.mediaTotalDur = Math.max(38, Math.round(vid.duration || 58));
+    state.clipStart = 0;
+    state.clipEnd = 38;
+    updateMediaLoadedUI("견본_설교영상.mp4", state.mediaTotalDur, true);
+    vid.currentTime = 0.2;
+  };
+  vid.onerror = () => {
+    state.mediaType = "none";
+    renderSinglePreviewFrame();
+  };
+
+  extractThreeShortsFromManuscript();
+}
+
+function toggleTheme() {
+  const cur = document.body.getAttribute("data-theme");
+  const next = cur === "dark" ? "parchment" : "dark";
+  document.body.setAttribute("data-theme", next);
+  document.getElementById("themeBtn").textContent = next === "dark" ? "☀️ 밝은 양피지 화면" : "🌙 어두운 화면";
+}
+
+function toggleFontScale() {
+  const cur = document.documentElement.style.getPropertyValue("--font-scale") || "1";
+  const next = cur === "1.14" ? "1" : "1.14";
+  document.documentElement.style.setProperty("--font-scale", next);
+  document.getElementById("fontBtn").textContent = next === "1.14" ? "🔍 기본 글씨" : "🔍 큰 글씨";
+}
+
+// 스페이스바 탭 싱크 단축키 지원
+window.addEventListener("keydown", e => {
+  if (state.tapSyncActive && e.code === "Space" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+    e.preventDefault();
+    toggleTapSyncMode();
+  }
+});
+
+// 별관 말씀 등불(?kkd_ref=) 파라미터 연동
+function applyUrlParamsIfPresent() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("kkd_ref");
+    const title = params.get("kkd_title");
+    if (ref) document.getElementById("line1Verse").value = ref;
+    if (title) document.getElementById("line3Main").value = title;
+  } catch (e) {}
+}
+
+window.addEventListener("DOMContentLoaded", () => {
+  preloadBuiltInArtworks();
+  setupDragAndDrop();
+  applyUrlParamsIfPresent();
+  renderSubtitleEditorRows();
+  syncSliderBounds();
+  renderSinglePreviewFrame();
+});
+</script>
+<script src="kkumdido-shield.js"></script>
+</body>
+</html>
