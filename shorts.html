@@ -13,20 +13,20 @@
     --bg-sub: #ECE5D5;
     --bg-card: #FCFBF7;
     --bg-input: #FFFFFF;
-    --ink-1: #1B1915;
-    --ink-2: #3A342B;
-    --ink-3: #655C4E;
-    --gold: #8C621E;
-    --gold-bright: #C59B38;
-    --gold-soft: rgba(197, 155, 56, 0.15);
+    --ink-1: #16110C;
+    --ink-2: #241C14;
+    --ink-3: #46392B;
+    --gold: #7A5416;
+    --gold-bright: #B8862D;
+    --gold-soft: rgba(184, 134, 45, 0.15);
     --indigo: #1E3A5F;
     --indigo-hover: #152B49;
     --terracotta: #8E2E18;
     --green: #166534;
     --green-soft: rgba(22, 101, 52, 0.12);
-    --rule: #D6CEBC;
-    --rule-strong: #B5AA92;
-    --shadow: 0 12px 32px rgba(27, 25, 21, 0.08);
+    --rule: #CFC2AE;
+    --rule-strong: #AD9B80;
+    --shadow: 0 12px 32px rgba(27, 25, 21, 0.09);
     --font-scale: 1;
   }
 
@@ -35,31 +35,33 @@
     --bg-sub: #1C1814;
     --bg-card: #211C17;
     --bg-input: #17130F;
-    --ink-1: #F4EFE4;
-    --ink-2: #D7CEC0;
-    --ink-3: #A49988;
-    --gold: #DFB968;
-    --gold-bright: #F2D28B;
-    --gold-soft: rgba(223, 185, 104, 0.16);
+    --ink-1: #F8F4EC;
+    --ink-2: #E5DDD0;
+    --ink-3: #C2B6A3;
+    --gold: #E5C170;
+    --gold-bright: #F5D78E;
+    --gold-soft: rgba(229, 193, 112, 0.18);
     --indigo: #2B5282;
     --indigo-hover: #3867A1;
     --terracotta: #D96B4E;
     --green: #4ADE80;
     --green-soft: rgba(74, 222, 128, 0.14);
-    --rule: #352F27;
-    --rule-strong: #544A3D;
+    --rule: #3D362D;
+    --rule-strong: #635748;
     --shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { font-size: calc(16px * var(--font-scale)); scroll-behavior: smooth; }
+  /* 어르신들도 돋보기 없이 한눈에 보시도록 기본 글씨 크기를 18.5px로 큼직하게 설정 */
+  html { font-size: calc(18.5px * var(--font-scale)); scroll-behavior: smooth; }
   body {
     font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
     background: var(--bg-page);
     color: var(--ink-1);
-    line-height: 1.6;
+    line-height: 1.62;
     min-height: 100vh;
     word-break: keep-all;
+    font-weight: 500;
   }
   .serif { font-family: 'Hahmlet', 'Noto Serif KR', 'Batang', serif; }
 
@@ -69,64 +71,64 @@
     top: 0;
     z-index: 200;
     background: var(--bg-card);
-    border-bottom: 1.5px solid var(--rule-strong);
-    padding: 12px 24px;
+    border-bottom: 2px solid var(--rule-strong);
+    padding: 14px 26px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 12px;
+    gap: 14px;
     flex-wrap: wrap;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
   }
   .brand-wrap {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
     text-decoration: none;
     color: var(--ink-1);
   }
   .brand-seal {
-    width: 42px;
-    height: 42px;
-    border-radius: 11px;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
     background: linear-gradient(135deg, #231A11, #46331F);
-    border: 1.5px solid #C59B38;
+    border: 2px solid #C59B38;
     color: #F6DF9D;
     display: grid;
     place-items: center;
     font-family: 'Hahmlet', 'Noto Serif KR', serif;
     font-weight: 800;
-    font-size: 1.15rem;
+    font-size: 1.28rem;
     flex-shrink: 0;
   }
   .brand-title strong {
     display: block;
     font-family: 'Hahmlet', 'Noto Serif KR', serif;
-    font-size: 1.2rem;
+    font-size: 1.32rem;
     font-weight: 800;
     letter-spacing: -0.02em;
   }
   .brand-title span {
     display: block;
-    font-size: 0.78rem;
+    font-size: 0.92rem;
     color: var(--gold);
-    font-weight: 700;
+    font-weight: 800;
   }
   .top-actions {
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
   }
   .top-btn {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    padding: 8px 14px;
-    border-radius: 9px;
-    font-size: 0.86rem;
-    font-weight: 700;
-    border: 1px solid var(--rule-strong);
+    gap: 7px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 0.96rem;
+    font-weight: 800;
+    border: 1.5px solid var(--rule-strong);
     background: var(--bg-page);
     color: var(--ink-1);
     text-decoration: none;
@@ -148,16 +150,16 @@
 
   /* 안내 문패 배너 */
   .intro-plaque {
-    max-width: 1540px;
-    margin: 20px auto 16px;
-    padding: 0 20px;
+    max-width: 1620px;
+    margin: 20px auto 18px;
+    padding: 0 22px;
   }
   .intro-inner {
     background: var(--bg-card);
-    border: 1px solid var(--rule-strong);
-    border-left: 6px solid var(--gold-bright);
-    border-radius: 14px;
-    padding: 18px 24px;
+    border: 1.5px solid var(--rule-strong);
+    border-left: 7px solid var(--gold-bright);
+    border-radius: 16px;
+    padding: 20px 26px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -167,19 +169,21 @@
   }
   .intro-text h1 {
     font-family: 'Hahmlet', 'Noto Serif KR', serif;
-    font-size: 1.38rem;
+    font-size: 1.48rem;
     font-weight: 800;
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     color: var(--ink-1);
   }
   .intro-text p {
-    font-size: 0.94rem;
+    font-size: 1.04rem;
+    font-weight: 600;
     color: var(--ink-2);
   }
   .intro-text .promise {
-    font-size: 0.82rem;
+    font-size: 0.94rem;
+    font-weight: 700;
     color: var(--ink-3);
-    margin-top: 4px;
+    margin-top: 6px;
   }
   .intro-steps {
     display: flex;
@@ -188,35 +192,35 @@
     flex-wrap: wrap;
   }
   .step-pill {
-    padding: 8px 14px;
+    padding: 10px 16px;
     border-radius: 999px;
     background: var(--gold-soft);
-    border: 1px solid var(--rule-strong);
-    font-size: 0.85rem;
+    border: 1.5px solid var(--rule-strong);
+    font-size: 0.96rem;
     font-weight: 800;
     color: var(--ink-1);
   }
-  .step-pill b { color: var(--gold); margin-right: 4px; }
+  .step-pill b { color: var(--gold); margin-right: 5px; }
 
   /* 3단 본체 레이아웃 */
   .studio-grid {
-    max-width: 1540px;
+    max-width: 1620px;
     margin: 0 auto 48px;
-    padding: 0 20px;
+    padding: 0 22px;
     display: grid;
-    grid-template-columns: 1.12fr 0.92fr 1.08fr;
-    gap: 20px;
+    grid-template-columns: 1.08fr 0.96fr 1.12fr;
+    gap: 22px;
     align-items: start;
   }
-  @media (max-width: 1220px) {
+  @media (max-width: 1280px) {
     .studio-grid { grid-template-columns: 1fr; }
   }
 
   .panel-card {
     background: var(--bg-card);
-    border: 1px solid var(--rule-strong);
-    border-radius: 16px;
-    padding: 20px;
+    border: 1.5px solid var(--rule-strong);
+    border-radius: 18px;
+    padding: 22px;
     box-shadow: var(--shadow);
   }
   .panel-head {
@@ -224,65 +228,68 @@
     align-items: center;
     justify-content: space-between;
     gap: 10px;
-    padding-bottom: 12px;
+    padding-bottom: 14px;
     margin-bottom: 16px;
-    border-bottom: 1.5px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
   }
   .panel-head h2 {
     font-family: 'Hahmlet', 'Noto Serif KR', serif;
-    font-size: 1.18rem;
+    font-size: 1.3rem;
     font-weight: 800;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
   }
   .step-num {
     display: inline-grid;
     place-items: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 8px;
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
     background: var(--indigo);
     color: #FFF;
     font-family: 'Pretendard', sans-serif;
-    font-size: 0.88rem;
+    font-size: 1.02rem;
     font-weight: 900;
   }
   .panel-sub {
-    font-size: 0.85rem;
-    color: var(--ink-3);
-    margin-bottom: 14px;
+    font-size: 0.98rem;
+    font-weight: 600;
+    color: var(--ink-2);
+    margin-bottom: 16px;
+    line-height: 1.55;
   }
 
   /* 섹션 박스 */
   .sub-box {
     background: var(--bg-page);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    padding: 15px;
+    border: 1.5px solid var(--rule);
+    border-radius: 14px;
+    padding: 16px;
     margin-bottom: 16px;
   }
   .sub-box-title {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     font-weight: 800;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 8px;
+    flex-wrap: wrap;
   }
   .sub-box-title small {
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     color: var(--ink-3);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* 드래그 앤 드롭 업로드 */
   .drop-zone {
-    border: 2px dashed var(--rule-strong);
-    border-radius: 12px;
+    border: 2.5px dashed var(--rule-strong);
+    border-radius: 14px;
     background: var(--bg-input);
-    padding: 20px 16px;
+    padding: 22px 16px;
     text-align: center;
     cursor: pointer;
     transition: all 0.16s ease;
@@ -293,60 +300,64 @@
   }
   .drop-zone strong {
     display: block;
-    font-size: 0.98rem;
-    margin-bottom: 4px;
+    font-size: 1.08rem;
+    font-weight: 800;
+    margin-bottom: 6px;
     color: var(--ink-1);
   }
   .drop-zone span {
     display: block;
-    font-size: 0.82rem;
+    font-size: 0.94rem;
+    font-weight: 600;
     color: var(--ink-3);
   }
 
-  /* 입력 폼 공통 */
+  /* 입력 폼 공통 (어르신 가독성 최우선 큼직한 글씨) */
   label.field-label {
     display: block;
-    font-size: 0.83rem;
-    font-weight: 700;
-    color: var(--ink-2);
-    margin-bottom: 5px;
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--ink-1);
+    margin-bottom: 6px;
   }
   input[type="text"], input[type="number"], select, textarea {
     width: 100%;
-    padding: 10px 12px;
-    border-radius: 9px;
-    border: 1px solid var(--rule-strong);
+    padding: 11px 14px;
+    border-radius: 10px;
+    border: 1.5px solid var(--rule-strong);
     background: var(--bg-input);
     color: var(--ink-1);
     font-family: inherit;
-    font-size: 0.92rem;
+    font-size: 1.04rem;
+    font-weight: 700;
     line-height: 1.5;
   }
   input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
-    outline: 2px solid var(--gold-bright);
+    outline: 2.5px solid var(--gold-bright);
     border-color: transparent;
   }
   textarea {
     resize: vertical;
-    min-height: 145px;
+    min-height: 165px;
+    font-weight: 600;
   }
 
   .btn-row {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 12px;
   }
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    padding: 10px 15px;
-    border-radius: 10px;
-    font-size: 0.88rem;
+    gap: 7px;
+    padding: 12px 17px;
+    border-radius: 11px;
+    font-size: 0.98rem;
     font-weight: 800;
-    border: 1px solid var(--rule-strong);
+    border: 1.5px solid var(--rule-strong);
     background: var(--bg-card);
     color: var(--ink-1);
     cursor: pointer;
@@ -371,23 +382,23 @@
     border-color: var(--terracotta);
   }
   .btn.sm {
-    padding: 6px 11px;
-    font-size: 0.8rem;
-    border-radius: 8px;
+    padding: 8px 13px;
+    font-size: 0.92rem;
+    border-radius: 9px;
   }
-  .btn.full { width: 100%; padding: 13px 18px; font-size: 0.98rem; }
+  .btn.full { width: 100%; padding: 15px 20px; font-size: 1.1rem; font-weight: 900; }
 
   /* 원고에서 뽑은 쇼츠 3편 추천 카드 */
   .candidate-list {
     display: grid;
-    gap: 8px;
+    gap: 10px;
     margin-top: 12px;
   }
   .candidate-card {
     background: var(--bg-card);
-    border: 1.5px solid var(--rule-strong);
-    border-radius: 10px;
-    padding: 11px 13px;
+    border: 2px solid var(--rule-strong);
+    border-radius: 12px;
+    padding: 13px 15px;
     cursor: pointer;
     transition: all 0.15s ease;
     text-align: left;
@@ -400,20 +411,20 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 0.92rem;
     font-weight: 800;
     color: var(--gold);
-    margin-bottom: 3px;
+    margin-bottom: 4px;
   }
   .candidate-card .c-title {
     font-family: 'Hahmlet', 'Noto Serif KR', serif;
-    font-size: 0.96rem;
+    font-size: 1.08rem;
     font-weight: 800;
     color: var(--ink-1);
-    margin-bottom: 4px;
+    margin-bottom: 5px;
   }
   .candidate-card .c-preview {
-    font-size: 0.81rem;
+    font-size: 0.94rem;
     color: var(--ink-2);
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -421,17 +432,17 @@
     overflow: hidden;
   }
 
-  /* 중앙 9:16 캔버스 미리보기 */
+  /* 중앙 9:16 캔버스 미리보기 (더 큼직하게 400px 폭) */
   .canvas-stage {
     position: relative;
     width: 100%;
-    max-width: 360px;
+    max-width: 400px;
     margin: 0 auto 14px;
     aspect-ratio: 9 / 16;
     background: #0E0C0A;
     border-radius: 18px;
     overflow: hidden;
-    border: 2px solid var(--gold-bright);
+    border: 2.5px solid var(--gold-bright);
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
   }
   #shortsCanvas {
@@ -444,9 +455,9 @@
     align-items: center;
     gap: 10px;
     background: var(--bg-page);
-    border: 1px solid var(--rule);
-    border-radius: 11px;
-    padding: 9px 12px;
+    border: 1.5px solid var(--rule);
+    border-radius: 12px;
+    padding: 10px 14px;
     margin-bottom: 14px;
   }
   .player-bar input[type="range"] {
@@ -455,11 +466,11 @@
     cursor: pointer;
   }
   .time-badge {
-    font-size: 0.8rem;
+    font-size: 0.94rem;
     font-weight: 800;
     font-variant-numeric: tabular-nums;
     color: var(--ink-2);
-    min-width: 78px;
+    min-width: 92px;
     text-align: right;
   }
 
@@ -471,23 +482,23 @@
     margin-bottom: 14px;
   }
   .style-tab {
-    padding: 10px 8px;
-    border-radius: 10px;
-    border: 1.5px solid var(--rule-strong);
+    padding: 11px 8px;
+    border-radius: 11px;
+    border: 2px solid var(--rule-strong);
     background: var(--bg-page);
     color: var(--ink-1);
     text-align: center;
     cursor: pointer;
-    font-size: 0.83rem;
+    font-size: 0.96rem;
     font-weight: 800;
     transition: all 0.15s ease;
   }
   .style-tab small {
     display: block;
-    font-size: 0.72rem;
+    font-size: 0.84rem;
     color: var(--ink-3);
-    font-weight: 600;
-    margin-top: 2px;
+    font-weight: 700;
+    margin-top: 3px;
   }
   .style-tab.active {
     border-color: var(--gold-bright);
@@ -496,39 +507,53 @@
     box-shadow: inset 0 0 0 1px var(--gold-bright);
   }
 
-  /* 자막 줄별 편집 리스트 */
+  /* 자막 줄별 편집 리스트 (2단 와이드 구조로 문장이 잘리지 않고 한눈에 보임) */
   .sub-list-wrap {
-    max-height: 290px;
+    max-height: 360px;
     overflow-y: auto;
-    border: 1px solid var(--rule);
-    border-radius: 10px;
+    border: 1.5px solid var(--rule-strong);
+    border-radius: 12px;
     background: var(--bg-input);
-    padding: 8px;
+    padding: 10px;
   }
   .sub-row {
-    display: grid;
-    grid-template-columns: 92px 1fr auto;
+    display: flex;
+    flex-direction: column;
     gap: 6px;
-    align-items: center;
-    padding: 6px;
-    border-bottom: 1px dashed var(--rule);
+    padding: 10px;
+    border-bottom: 1.5px dashed var(--rule);
+    background: var(--bg-card);
+    border-radius: 10px;
+    margin-bottom: 8px;
   }
-  .sub-row:last-child { border-bottom: none; }
+  .sub-row:last-child { border-bottom: none; margin-bottom: 0; }
+  .sub-row-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
   .sub-row .t-pair {
     display: flex;
     align-items: center;
-    gap: 3px;
-    font-size: 0.75rem;
+    gap: 5px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--ink-2);
   }
   .sub-row .t-pair input {
-    width: 42px;
-    padding: 4px 5px;
-    font-size: 0.76rem;
+    width: 64px;
+    padding: 5px 6px;
+    font-size: 0.94rem;
+    font-weight: 800;
     text-align: center;
   }
   .sub-row input.sub-text-in {
-    padding: 6px 8px;
-    font-size: 0.85rem;
+    width: 100%;
+    padding: 9px 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
   }
 
   /* 진행률 바 */
@@ -536,13 +561,13 @@
     display: none;
     margin-top: 12px;
     background: var(--bg-page);
-    border: 1.5px solid var(--gold-bright);
+    border: 2px solid var(--gold-bright);
     border-radius: 12px;
-    padding: 12px 14px;
+    padding: 14px 16px;
   }
   .progress-bar-outer {
     width: 100%;
-    height: 12px;
+    height: 14px;
     background: var(--rule);
     border-radius: 999px;
     overflow: hidden;
@@ -560,12 +585,12 @@
     display: none;
     margin-top: 14px;
     background: var(--green-soft);
-    border: 1.5px solid var(--green);
+    border: 2px solid var(--green);
     border-radius: 12px;
-    padding: 14px;
+    padding: 16px;
   }
   .result-box h4 {
-    font-size: 0.95rem;
+    font-size: 1.08rem;
     color: var(--green);
     margin-bottom: 8px;
   }
@@ -573,22 +598,23 @@
   /* 슬라이더 그리드 */
   .slider-row {
     display: grid;
-    grid-template-columns: 82px 1fr 48px;
+    grid-template-columns: 105px 1fr 58px;
     align-items: center;
-    gap: 8px;
-    font-size: 0.81rem;
-    margin-top: 6px;
+    gap: 10px;
+    font-size: 0.94rem;
+    font-weight: 700;
+    margin-top: 8px;
   }
   .slider-row input[type="range"] { accent-color: var(--gold-bright); }
 
   /* 발치 문패 (2026.11.09 확정 표준) */
   footer.kkd-footer {
-    max-width: 1540px;
+    max-width: 1620px;
     margin: 0 auto;
-    padding: 22px 20px 44px;
-    border-top: 1px solid var(--rule-strong);
-    font-size: 0.85rem;
-    color: var(--ink-3);
+    padding: 24px 22px 48px;
+    border-top: 1.5px solid var(--rule-strong);
+    font-size: 0.96rem;
+    color: var(--ink-2);
     line-height: 1.85;
     display: flex;
     justify-content: space-between;
@@ -723,12 +749,12 @@
 
       <div class="btn-row">
         <button type="button" class="btn gold" onclick="extractThreeShortsFromManuscript()">✨ 원고에서 쇼츠 세 편 골라내기</button>
-        <button type="button" class="btn indigo" onclick="applyCurrentScriptToSubtitles()">📏 이 대본으로 12~13자 호흡 자막 맞출래요</button>
+        <button type="button" class="btn indigo" onclick="applyCurrentScriptToSubtitles()">📏 이 대본으로 큼직한 대자막 맞출래요</button>
       </div>
 
       <!-- 자동 발췌된 쇼츠 3편 카드 영역 -->
       <div id="extractedCandidatesWrap" style="display:none;">
-        <div style="font-size:0.82rem; font-weight:800; color:var(--gold); margin-top:12px;">
+        <div style="font-size:0.96rem; font-weight:800; color:var(--gold); margin-top:12px;">
           💡 안간사가 원고에서 골라낸 쇼츠 세 편입니다 (누르시면 바로 적용됩니다):
         </div>
         <div class="candidate-list" id="candidateListContainer"></div>
@@ -740,14 +766,14 @@
   <section class="panel-card">
     <div class="panel-head">
       <h2><span class="step-num">2</span> 꿈바온 화풍 고르기 · 미리보기</h2>
-      <span style="font-size:0.78rem; font-weight:800; color:var(--gold);">9:16 세로 (1080×1920)</span>
+      <span style="font-size:0.92rem; font-weight:800; color:var(--gold);">9:16 세로 (1080×1920)</span>
     </div>
 
     <!-- 3대 시그니처 화풍 선택 -->
     <div class="style-tabs">
       <button type="button" class="style-tab active" data-style="signet" onclick="selectShortsStyle('signet')">
         🏛️ 꿈바온 인장반지
-        <small>상단 4열 · 하단 황금자막</small>
+        <small>상단 대형제목 · 대자막</small>
       </button>
       <button type="button" class="style-tab" data-style="archaeology" onclick="selectShortsStyle('archaeology')">
         📜 고고학 미술관 도판
@@ -755,7 +781,7 @@
       </button>
       <button type="button" class="style-tab" data-style="fullbleed" onclick="selectShortsStyle('fullbleed')">
         🕯️ 등잔 밑 전체화면
-        <small>9:16 가득 · 82pt 자막</small>
+        <small>9:16 가득 · 94pt 자막</small>
       </button>
     </div>
 
@@ -766,7 +792,7 @@
 
     <!-- 재생 컨트롤 바 -->
     <div class="player-bar">
-      <button type="button" class="btn sm indigo" id="playPreviewBtn" onclick="togglePreviewPlay()" style="min-width:74px;">▶ 미리보기</button>
+      <button type="button" class="btn sm indigo" id="playPreviewBtn" onclick="togglePreviewPlay()" style="min-width:92px;">▶ 미리보기</button>
       <input type="range" id="previewSeekSlider" min="0" max="38" step="0.05" value="0" oninput="onSeekPreview(this.value)">
       <span class="time-badge" id="previewTimeLabel">00:00 / 00:38</span>
     </div>
@@ -774,14 +800,28 @@
     <!-- 배경 그림 및 배경 음악 설정 -->
     <div class="sub-box" style="margin-bottom:0;">
       <div class="sub-box-title">
-        <span>🎨 배경 화면 & 스튜디오 시네마 음향</span>
+        <span>🎨 화면 글자 크기 · 배경 · 음향</span>
         <button type="button" class="btn sm" onclick="document.getElementById('customImagesInput').click()">🖼️ 내 사진·성화 여러 장 넣기</button>
       </div>
       <input type="file" id="customImagesInput" accept="image/*" multiple style="display:none" onchange="handleCustomImagesSelect(this.files)">
 
+      <div class="slider-row" style="margin-top:0; margin-bottom:10px; background:var(--gold-soft); padding:8px 12px; border-radius:10px;">
+        <span>🔠 쇼츠 글자 크기</span>
+        <input type="range" id="canvasFontScaleSlider" min="85" max="135" value="108" oninput="onCanvasFontScaleChange(this.value)">
+        <span id="canvasFontScaleLabel">108%</span>
+      </div>
+
+      <div style="margin-bottom:10px;">
+        <label class="field-label">✒️ 쇼츠 영상 글꼴 선택</label>
+        <select id="canvasFontFamilySelect" onchange="onCanvasFontFamilyChange(this.value)">
+          <option value="gothic">굵은 고딕 — 한눈에 들어오는 설교 방송형 대자막</option>
+          <option value="serif">굵은 명조 — 꿈바온 성경 바탕체</option>
+        </select>
+      </div>
+
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
         <div>
-          <label class="field-label">배경 성화·도판 (영상 없을 때 자동 무빙)</label>
+          <label class="field-label">배경 성화·도판 (영상 없을 때)</label>
           <select id="artworkSelect" onchange="onArtworkSelectChange()">
             <option value="auto_4cuts">✨ 꿈바온 성화 4컷 자동 교차 (쿠션 홀드)</option>
             <option value="art_04">04. 양피지 성경 두루마리와 등불</option>
@@ -819,13 +859,13 @@
         <span id="bgmVolLabel">20%</span>
       </div>
 
-      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:10px; font-size:0.82rem;">
-        <label style="display:flex; align-items:center; gap:5px; cursor:pointer; font-weight:700;">
-          <input type="checkbox" id="cinemaGlueCheck" checked>
+      <div style="display:flex; gap:14px; flex-wrap:wrap; margin-top:12px; font-size:0.94rem;">
+        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800;">
+          <input type="checkbox" id="cinemaGlueCheck" checked style="width:18px; height:18px;">
           🎙️ 스튜디오 시네마 보컬 다듬기 (실내 울림 제거·명료도 보강)
         </label>
-        <label style="display:flex; align-items:center; gap:5px; cursor:pointer; font-weight:700;">
-          <input type="checkbox" id="endingHoldCheck" checked onchange="renderSinglePreviewFrame()">
+        <label style="display:flex; align-items:center; gap:6px; cursor:pointer; font-weight:800;">
+          <input type="checkbox" id="endingHoldCheck" checked onchange="renderSinglePreviewFrame()" style="width:18px; height:18px;">
           🕯️ 마지막 3초 여운 머물기 (수미상관 엔딩)
         </label>
       </div>
@@ -841,11 +881,11 @@
     <!-- 상단 표지 네 줄 (인장반지 4열 & 고고학 도판 공통) -->
     <div class="sub-box">
       <div class="sub-box-title">
-        <span>📌 상단 표지 네 줄 (화면에 바로 반영됩니다)</span>
+        <span>📌 상단 표지 제목과 하단 서명 (화면에 바로 반영됩니다)</span>
       </div>
-      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:8px;">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
         <div>
-          <label class="field-label">1열 · 성경 본문 장절</label>
+          <label class="field-label">1열 · 성경 본문 장절 (또는 예배명)</label>
           <input type="text" id="line1Verse" value="사도행전 18:9–10" oninput="renderSinglePreviewFrame()">
         </div>
         <div>
@@ -853,8 +893,8 @@
           <input type="text" id="line4Brand" value="꿈바온" placeholder="예: 꿈바온 또는 교회 이름" oninput="renderSinglePreviewFrame()">
         </div>
       </div>
-      <div style="margin-bottom:8px;">
-        <label class="field-label">2열 · 여는 줄 (작은 제목)</label>
+      <div style="margin-bottom:10px;">
+        <label class="field-label">2열 · 여는 제목 줄 (화면 상단 첫째 큰 줄)</label>
         <input type="text" id="line2Sub" value="떨림이 다 멈춰서 담대한 것이 아니라" oninput="renderSinglePreviewFrame()">
       </div>
       <div>
@@ -866,14 +906,14 @@
     <!-- 자막 줄별 편집 & 스페이스바 박자 맞추기 -->
     <div class="sub-box">
       <div class="sub-box-title">
-        <span>💬 자막 줄별 확인 (<span id="subCountBadge">6</span>줄)</span>
-        <div style="display:flex; gap:5px;">
+        <span>💬 자막 줄별 확인 (<span id="subCountBadge">8</span>줄)</span>
+        <div style="display:flex; gap:6px;">
           <button type="button" class="btn sm" id="tapSyncBtn" onclick="toggleTapSyncMode()" title="영상을 들으며 이 단추를 누를 때마다 다음 자막으로 넘어갑니다">⏱️ 들으며 자막 넘기기</button>
           <button type="button" class="btn sm" onclick="addSubtitleRow()">+ 한 줄 추가</button>
         </div>
       </div>
-      <div style="font-size:0.78rem; color:var(--ink-3); margin-bottom:8px;">
-        • 단어 앞뒤에 <b>*별표*</b>를 넣으시면(예: <code>*주님의 손*</code>) 화면에서 샴페인 골드 색으로 강조됩니다.
+      <div style="font-size:0.94rem; font-weight:600; color:var(--ink-2); margin-bottom:10px;">
+        • 단어 앞뒤에 <b>*별표*</b>를 넣으시면(예: <code>*주님의 손*</code>) 화면에서 금빛·연둣빛 강조색으로 환하게 빛납니다.
       </div>
       <div class="sub-list-wrap" id="subtitleRowsContainer"></div>
     </div>
@@ -984,6 +1024,8 @@ const MOTION_MODES = ["zoom_in", "pan_right", "zoom_out", "pan_left"];
 
 const state = {
   style: "signet", // 'signet' | 'archaeology' | 'fullbleed'
+  canvasFontScale: 1.08, // 쇼츠 결과물 글자 크기 배율 (기본 108% 대자막)
+  canvasFontFamily: "gothic", // 'gothic' (설교 방송형 굵은 고딕) | 'serif' (꿈바온 바탕)
   mediaType: "none", // 'none' | 'video' | 'audio'
   mediaUrl: "",
   mediaName: "",
@@ -999,12 +1041,14 @@ const state = {
   loadedImages: {}, // key -> HTMLImageElement
   customSlideImages: [], // array of HTMLImageElement
   subtitles: [
-    { start: 0.0, end: 6.2, text: "사랑하는 성도 여러분,\n오늘 우리는 *떨면서도 말하는* 사람들의 이야기를 나눕니다." },
-    { start: 6.2, end: 13.0, text: "때로 사역의 문이 열릴 때\n오히려 마음에 *뜻밖의 두려움*과 밤이 찾아옵니다." },
-    { start: 13.0, end: 20.0, text: "그러나 주님께서는 사람이 다 무너진 뒤가 아니라\n*밤의 끝자락*을 먼저 붙들어 주십니다." },
-    { start: 20.0, end: 26.8, text: "떨림이 다 멈춰서 담대한 것이 아니라\n*주님의 손*에 붙들려 있기에 다시 입을 엽니다." },
-    { start: 26.8, end: 33.0, text: "로뎀나무 아래 지친 영혼을 책망하지 않으시고\n먼저 *따뜻한 손길*로 어루만지시는 주님," },
-    { start: 33.0, end: 38.0, text: "우리를 결코 홀로 두지 않으시는\n*주님의 약속*을 의지하며 평안히 걸어가십시오." }
+    { start: 0.0, end: 4.8, text: "사랑하는 성도 여러분,\n*떨면서도 말하는* 사람들" },
+    { start: 4.8, end: 9.8, text: "오히려 사역의 문이\n*활짝 열리기* 시작할 때" },
+    { start: 9.8, end: 14.6, text: "마음 깊은 곳에는\n*뜻밖의 두려움*이 찾아옵니다" },
+    { start: 14.6, end: 19.6, text: "그러나 우리 주님은\n다 무너진 뒤가 아니라" },
+    { start: 19.6, end: 24.4, text: "*밤의 끝자락*을 먼저\n붙들어 주시는 분입니다" },
+    { start: 24.4, end: 29.2, text: "떨림이 다 멈춰서\n*담대한 것*이 아닙니다" },
+    { start: 29.2, end: 33.8, text: "*주님의 손*에 붙들려\n다시 입을 여는 것입니다" },
+    { start: 33.8, end: 38.0, text: "홀로 두지 않으시는\n*주님의 약속*을 붙드십시오" }
   ],
   extractedCandidates: [],
   isPlayingPreview: false,
@@ -1063,9 +1107,9 @@ function formatSrtTime(sec) {
 }
 
 // ============================================================================
-// 1. 한국어 12~13자 황금 호흡 줄바꿈 엔진 (외톨이 단어 방지)
+// 1. 한국어 8~10자 대자막 호흡 줄바꿈 엔진 (한 줄 9자 내외 · 2줄 18자 내외)
 // ============================================================================
-function splitKoreanIntoBreathLines(sentence, maxLineChars = 13) {
+function splitKoreanIntoBreathLines(sentence, maxLineChars = 9) {
   const clean = String(sentence || "").replace(/\s+/g, " ").trim();
   if (!clean) return "";
   const plainLen = clean.replace(/\*/g, "").length;
@@ -1080,7 +1124,6 @@ function splitKoreanIntoBreathLines(sentence, maxLineChars = 13) {
   // 의미 호흡이 가장 균형 잡히는 분할 지점 탐색 (2줄 균형)
   let bestSplitIdx = 1;
   let bestScore = 9999;
-  const totalPlain = plainLen;
 
   for (let i = 1; i < words.length; i++) {
     const line1 = words.slice(0, i).join(" ");
@@ -1088,13 +1131,12 @@ function splitKoreanIntoBreathLines(sentence, maxLineChars = 13) {
     const l1Len = line1.replace(/\*/g, "").length;
     const l2Len = line2.replace(/\*/g, "").length;
 
-    // 외톨이 1~2글자 단어 방지
-    let penalty = Math.abs(l1Len - l2Len) * 1.2;
-    if (l1Len > maxLineChars + 3) penalty += (l1Len - maxLineChars) * 4;
-    if (l2Len > maxLineChars + 3) penalty += (l2Len - maxLineChars) * 4;
+    let penalty = Math.abs(l1Len - l2Len) * 1.3;
+    if (l1Len > maxLineChars + 2) penalty += (l1Len - maxLineChars) * 5;
+    if (l2Len > maxLineChars + 2) penalty += (l2Len - maxLineChars) * 5;
     if (l2Len <= 2) penalty += 25;
     if (/[,，·…]|[은는이가을를에의도만며고서]$/.test(line1.replace(/\*/g, ""))) {
-      penalty -= 2.5; // 자연스러운 조사/쉼표 뒤 줄바꿈 우대
+      penalty -= 2.5;
     }
 
     if (penalty < bestScore) {
@@ -1106,12 +1148,11 @@ function splitKoreanIntoBreathLines(sentence, maxLineChars = 13) {
   return words.slice(0, bestSplitIdx).join(" ") + "\n" + words.slice(bestSplitIdx).join(" ");
 }
 
-// 문단을 쇼츠 호흡 단위 자막 배열로 분해
+// 문단을 쇼츠 대자막 단위(컷당 16~19자, 2줄) 배열로 분해
 function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
   const raw = String(paragraphText || "").trim();
   if (!raw) return [];
 
-  // 이미 줄바꿈으로 나뉜 자막이거나 문장부호 기준 분리
   const rawChunks = raw
     .replace(/([.?!。？！]+)\s*/g, "$1\n")
     .split(/\n+/)
@@ -1121,10 +1162,10 @@ function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
   const pieces = [];
   rawChunks.forEach(chunk => {
     const plain = chunk.replace(/\*/g, "");
-    if (plain.length <= 26) {
-      pieces.push(splitKoreanIntoBreathLines(chunk, 13));
+    if (plain.length <= 19) {
+      pieces.push(splitKoreanIntoBreathLines(chunk, 9));
     } else {
-      // 긴 문장은 쉼표나 접속사·조사 호흡에서 24~26자 안팎으로 나눔
+      // 긴 문장은 15~18자 호흡마다 나누어 한 화면에 큰 글씨 2줄로 들어오게 함
       const tokens = chunk.split(/\s+/);
       let acc = [];
       let accLen = 0;
@@ -1133,21 +1174,21 @@ function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
         const isLast = idx === tokens.length - 1;
         acc.push(tk);
         accLen += tkLen + 1;
-        const endsWithPause = /[,，]|(지만|으나|는데|면서|하고|하며|이라|니라|니다|소서|시오)$/.test(tk.replace(/\*/g, ""));
-        if (!isLast && ((accLen >= 18 && endsWithPause) || accLen >= 24)) {
-          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 13));
+        const endsWithPause = /[,，]|(지만|으나|는데|면서|하고|하며|이라|니라|니다|소서|시오|때에|에서|에게)$/.test(tk.replace(/\*/g, ""));
+        if (!isLast && ((accLen >= 13 && endsWithPause) || accLen >= 17)) {
+          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
           acc = [];
           accLen = 0;
         }
       });
       if (acc.length > 0) {
-        if (acc.join(" ").replace(/\*/g, "").length <= 5 && pieces.length > 0) {
+        if (acc.join(" ").replace(/\*/g, "").length <= 4 && pieces.length > 0) {
           pieces[pieces.length - 1] = splitKoreanIntoBreathLines(
             pieces[pieces.length - 1].replace(/\n/g, " ") + " " + acc.join(" "),
-            13
+            10
           );
         } else {
-          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 13));
+          pieces.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
         }
       }
     }
@@ -1622,6 +1663,55 @@ function selectShortsStyle(styleKey) {
   renderSinglePreviewFrame();
 }
 
+function onCanvasFontScaleChange(val) {
+  const pct = Number(val) || 108;
+  state.canvasFontScale = pct / 100;
+  document.getElementById("canvasFontScaleLabel").textContent = `${pct}%`;
+  renderSinglePreviewFrame();
+}
+
+function onCanvasFontFamilyChange(val) {
+  state.canvasFontFamily = val || "gothic";
+  renderSinglePreviewFrame();
+}
+
+function getCanvasFontStack() {
+  return state.canvasFontFamily === "serif"
+    ? "'Hahmlet', 'Noto Serif KR', serif"
+    : "'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif";
+}
+
+// 화면 폭(maxW) 안에 꽉 차면서도 절대 넘치지 않게 글자 크기를 자동 맞춤하여 그리는 함수
+function drawAutoFitLine(ctx, text, centerX, y, maxW, targetPx, minPx, weight, fillStyle, strokeStyle = "", strokeW = 0) {
+  const str = String(text || "").trim();
+  if (!str) return;
+  const fontStack = getCanvasFontStack();
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
+  const floorPx = Math.round(minPx * 0.9);
+
+  ctx.font = `${weight} ${px}px ${fontStack}`;
+  while (ctx.measureText(str).width > maxW && px > floorPx) {
+    px -= 2;
+    ctx.font = `${weight} ${px}px ${fontStack}`;
+  }
+
+  ctx.save();
+  ctx.textAlign = "center";
+  ctx.lineJoin = "round";
+  ctx.miterLimit = 2;
+  if (strokeStyle && strokeW > 0) {
+    ctx.shadowColor = "rgba(0, 0, 0, 0.85)";
+    ctx.shadowBlur = 14;
+    ctx.shadowOffsetY = 4;
+    ctx.strokeStyle = strokeStyle;
+    ctx.lineWidth = strokeW;
+    ctx.strokeText(str, centerX, y);
+  }
+  ctx.fillStyle = fillStyle;
+  ctx.fillText(str, centerX, y);
+  ctx.restore();
+}
+
 // ============================================================================
 // 4. 자막 줄별 편집 UI & 들으며 자막 넘기기(Tap Sync)
 // ============================================================================
@@ -1631,19 +1721,23 @@ function renderSubtitleEditorRows() {
 
   container.innerHTML = state.subtitles.map((s, idx) => `
     <div class="sub-row" data-idx="${idx}">
-      <div class="t-pair">
-        <input type="number" step="0.2" value="${s.start}" onchange="updateSubRowTime(${idx}, 'start', this.value)" title="시작 시각(초)">
-        <span>~</span>
-        <input type="number" step="0.2" value="${s.end}" onchange="updateSubRowTime(${idx}, 'end', this.value)" title="끝 시각(초)">
+      <div class="sub-row-top">
+        <div class="t-pair">
+          <span style="color:var(--gold); margin-right:4px;">#${idx + 1}</span>
+          <input type="number" step="0.2" value="${s.start}" onchange="updateSubRowTime(${idx}, 'start', this.value)" title="시작 시각(초)">
+          <span>초 ~</span>
+          <input type="number" step="0.2" value="${s.end}" onchange="updateSubRowTime(${idx}, 'end', this.value)" title="끝 시각(초)">
+          <span>초</span>
+        </div>
+        <div style="display:flex; gap:5px;">
+          <button type="button" class="btn sm" style="padding:5px 10px;" onclick="wrapHighlightOnRow(${idx})" title="핵심 어구 금빛 강조">✨ 강조</button>
+          <button type="button" class="btn sm" style="padding:5px 10px;" onclick="deleteSubtitleRow(${idx})" title="이 줄 지우기">✕ 삭제</button>
+        </div>
       </div>
       <input type="text" class="sub-text-in" value="${s.text.replace(/\n/g, ' / ').replace(/"/g, '&quot;')}"
              oninput="updateSubRowText(${idx}, this.value)"
              onfocus="jumpPreviewToSecond(${s.start})"
              title="줄바꿈은 ' / '로 표시됩니다. 단어 앞뒤에 *별표*를 넣으면 금빛으로 강조됩니다.">
-      <div style="display:flex; gap:3px;">
-        <button type="button" class="btn sm" style="padding:4px 7px;" onclick="wrapHighlightOnRow(${idx})" title="핵심 어구 금빛 강조">✨</button>
-        <button type="button" class="btn sm" style="padding:4px 7px;" onclick="deleteSubtitleRow(${idx})" title="이 줄 지우기">✕</button>
-      </div>
     </div>
   `).join("");
 }
@@ -1693,7 +1787,7 @@ function addSubtitleRow() {
   const last = state.subtitles[state.subtitles.length - 1] || { start: 0, end: 4 };
   const s = last.end;
   const e = Math.round((s + 4.5) * 10) / 10;
-  state.subtitles.push({ start: s, end: e, text: "새 자막 문장을 적어 주십시오." });
+  state.subtitles.push({ start: s, end: e, text: "새 자막 문장을\n적어 주십시오" });
   if (state.clipEnd < e) state.clipEnd = e;
   renderSubtitleEditorRows();
   syncSliderBounds();
@@ -1743,7 +1837,7 @@ function toggleTapSyncMode() {
 }
 
 // ============================================================================
-// 5. 1080×1920 9:16 캔버스 렌더러 (Rule 7 쿠션 홀드 + 3대 화풍 + 샴페인골드 자막)
+// 5. 1080×1920 9:16 캔버스 렌더러 (설교 방송형 대자막 + Rule 7 쿠션 홀드 + 3대 화풍)
 // ============================================================================
 function getTotalRenderDuration() {
   const voiceDur = Math.max(4, state.clipEnd - state.clipStart);
@@ -1800,7 +1894,7 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   }
 
   if (slideList.length === 0) {
-    // 따뜻한 성경 시대 황혼·등불 시네마틱 배경 (이미지 미로드 또는 로컬 보안 격리 시에도 품격 유지)
+    // 따뜻한 성경 시대 황혼·등불 시네마틱 배경
     const g = ctx.createLinearGradient(vx, vy, vx, vy + vh);
     g.addColorStop(0, "#1C1510");
     g.addColorStop(0.55, "#2F2217");
@@ -1830,7 +1924,6 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   const holdSec = Math.min(1.6, cutDur * 0.28);
   const moveDur = Math.max(1.0, cutDur - holdSec);
   const uRaw = Math.min(1.0, Math.max(0.0, localT / moveDur));
-  // 코사인 이징 (0.5 * (1 - cos(pi * u)))
   const u = 0.5 * (1 - Math.cos(Math.PI * uRaw));
 
   function drawSingleSlideWithMotion(img, modeIdx, progress, alpha) {
@@ -1878,8 +1971,8 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   ctx.restore();
 }
 
-// *별표* 강조 어구를 샴페인 골드(#F5C868)로 렌더링하는 헬퍼
-function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth) {
+// *별표* 강조 어구를 황금색/연두빛으로 렌더링하되, 폭이 980px을 넘으면 자동 축소하는 대자막 헬퍼
+function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 88) {
   const segments = [];
   const regex = /\*(.+?)\*/g;
   let lastIndex = 0;
@@ -1898,7 +1991,15 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
     segments.push({ text: lineStr, highlight: false });
   }
 
-  // 전체 폭 계산
+  const fontStack = getCanvasFontStack();
+  let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
+  const plainJoined = segments.map(s => s.text).join("");
+  ctx.font = `900 ${px}px ${fontStack}`;
+  while (ctx.measureText(plainJoined).width > 970 && px > 54) {
+    px -= 2;
+    ctx.font = `900 ${px}px ${fontStack}`;
+  }
+
   let totalW = 0;
   segments.forEach(seg => {
     seg.w = ctx.measureText(seg.text).width;
@@ -1910,12 +2011,12 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   ctx.lineJoin = "round";
   ctx.miterLimit = 2;
 
-  // 1) 깊은 그림자 + 외곽선
+  // 1) 두꺼운 외곽선 + 깊은 그림자 (어떤 배경 위에서도 100% 선명하게)
   segments.forEach(seg => {
     ctx.save();
-    ctx.shadowColor = "rgba(0, 0, 0, 0.82)";
-    ctx.shadowBlur = 12;
-    ctx.shadowOffsetY = 4;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.92)";
+    ctx.shadowBlur = 18;
+    ctx.shadowOffsetY = 5;
     ctx.strokeStyle = outlineColor;
     ctx.lineWidth = outlineWidth;
     ctx.strokeText(seg.text, curX, y);
@@ -1927,7 +2028,7 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   });
 }
 
-// 메인 1080×1920 프레임 그리기
+// 메인 1080×1920 프레임 그리기 (분당우리·꿈바온 표준 대형 타이포그래피 규격)
 function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   const ctx = targetCanvas.getContext("2d");
   const W = 1080;
@@ -1944,72 +2045,58 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
   ctx.clearRect(0, 0, W, H);
 
   // =========================================================================
-  // 화풍 1: 🏛️ 꿈바온 인장반지 표준 (Rule 64 + Rule 69)
+  // 화풍 1: 🏛️ 꿈바온 인장반지 · 설교 방송 표준 (y=0~510 상단 대형 3줄 + y=1660~1920 하단 서명)
   // =========================================================================
   if (state.style === "signet") {
-    ctx.fillStyle = "#08080A";
+    ctx.fillStyle = "#050507";
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙~하단 뷰포트 (y = 480 ~ 1920)
-    drawViewportContent(ctx, sec, voiceDur, 0, 480, W, H - 480);
+    // 중앙 뷰포트 (y = 510 ~ 1660: 설교자/성화 집중 구간)
+    drawViewportContent(ctx, sec, voiceDur, 0, 510, W, 1150);
 
-    // 상단 경계 그라데이션 & 하단 자막 보호 비네팅
-    const topFade = ctx.createLinearGradient(0, 460, 0, 580);
-    topFade.addColorStop(0, "#050507");
-    topFade.addColorStop(1, "rgba(5,5,7,0)");
-    ctx.fillStyle = topFade;
-    ctx.fillRect(0, 460, W, 120);
-
-    const botFade = ctx.createLinearGradient(0, 1220, 0, H);
-    botFade.addColorStop(0, "rgba(6,6,8,0)");
-    botFade.addColorStop(0.55, "rgba(6,6,8,0.68)");
+    // 하단 자막 보호 그라데이션
+    const botFade = ctx.createLinearGradient(0, 1260, 0, 1665);
+    botFade.addColorStop(0, "rgba(5,5,7,0)");
+    botFade.addColorStop(0.55, "rgba(5,5,7,0.52)");
     botFade.addColorStop(1, "rgba(5,5,7,0.92)");
     ctx.fillStyle = botFade;
-    ctx.fillRect(0, 1220, W, H - 1220);
+    ctx.fillRect(0, 1260, W, 405);
 
-    // 상단 y=0~480 순수 블랙 헤더 (Rule 64 인장반지 4열 표준)
+    // 상단 y=0~510 순수 블랙 헤더
     ctx.fillStyle = "#040406";
-    ctx.fillRect(0, 0, W, 480);
+    ctx.fillRect(0, 0, W, 510);
 
-    ctx.textAlign = "center";
-    // 1열 (y=155): 성경 장절
-    ctx.fillStyle = "#D8B467";
-    ctx.font = "700 33px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(`───  ${line1}  ───`, W / 2, 155);
+    // 하단 y=1660~1920 순수 블랙 서명 바
+    ctx.fillStyle = "#040406";
+    ctx.fillRect(0, 1660, W, 260);
 
-    // 2열 (y=232): 여는 부제
-    ctx.fillStyle = "#EAE4D7";
-    ctx.font = "600 40px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line2.slice(0, 22), W / 2, 232);
+    // 1열 (y=142): 성경 본문 장절 / 예배명 (큼직한 48px)
+    drawAutoFitLine(ctx, line1, W / 2, 142, 940, 48, 34, 700, "#F4EFE6");
 
-    // 3열 (y=350): 본제목 한 줄 (길이에 따라 74~92pt 자동 맞춤)
-    const mainLen = line3.length;
-    const mainPt = mainLen <= 9 ? 90 : mainLen <= 12 ? 78 : mainLen <= 15 ? 66 : 56;
-    ctx.fillStyle = "#F6D588";
-    ctx.font = `800 ${mainPt}px 'Hahmlet', 'Noto Serif KR', serif`;
-    ctx.fillText(line3, W / 2, 350);
+    // 2열 (y=282): 여는 제목 줄 (화면 가로를  시원하게 채우는 88px 대형 타이틀)
+    drawAutoFitLine(ctx, line2, W / 2, 282, 950, 88, 52, 900, "#7CE8FF", "#000000", 6);
 
-    // 4열 (y=432): 하단 서명
-    if (line4) {
-      ctx.fillStyle = "rgba(216, 180, 103, 0.85)";
-      ctx.font = "700 30px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(line4, W / 2, 432);
-    }
+    // 3열 (y=432): 본제목 핵심 줄 (가장 강렬하게 들어오는 110px 황금 타이틀)
+    drawAutoFitLine(ctx, line3, W / 2, 432, 980, 110, 62, 900, "#FFF05A", "#000000", 8);
 
-    // 구분 골드 라인
-    ctx.strokeStyle = "rgba(212, 175, 106, 0.55)";
+    // 상단-영상 경계 은은한 골드 라인
+    ctx.strokeStyle = "rgba(212, 175, 106, 0.45)";
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(90, 478);
-    ctx.lineTo(W - 90, 478);
+    ctx.moveTo(0, 510);
+    ctx.lineTo(W, 510);
     ctx.stroke();
+
+    // 4열 (y=1755): 하단 채널/교회 이름 서명
+    if (line4) {
+      drawAutoFitLine(ctx, line4, W / 2, 1755, 860, 44, 28, 800, "rgba(228, 214, 185, 0.78)");
+    }
   }
 
   // =========================================================================
-  // 화풍 2: 📜 고고학 미술관 도판형 (kkumbaon-archaeology-shorts 표준)
+  // 화풍 2: 📜 고고학 미술관 도판형 (kkumbaon-archaeology-shorts 표준 대형화)
   // =========================================================================
   else if (state.style === "archaeology") {
-    // 다크 세피아/에스프레소 미술관 캔버스
     const bgGrad = ctx.createLinearGradient(0, 0, 0, H);
     bgGrad.addColorStop(0, "rgb(18, 14, 11)");
     bgGrad.addColorStop(0.5, "rgb(25, 19, 14)");
@@ -2017,108 +2104,89 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
     ctx.fillStyle = bgGrad;
     ctx.fillRect(0, 0, W, H);
 
-    // 중앙 뷰포트 (y = 380 ~ 1280)
-    drawViewportContent(ctx, sec, voiceDur, 0, 380, W, 900);
+    // 중앙 뷰포트 (y = 430 ~ 1330)
+    drawViewportContent(ctx, sec, voiceDur, 0, 430, W, 900);
 
-    // 뷰포트 상단(y=378) & 하단(y=1281) 2px 앤틱 골드 선
+    // 뷰포트 상단(y=428) & 하단(y=1331) 앤틱 골드 선
     ctx.strokeStyle = "rgb(198, 160, 92)";
     ctx.lineWidth = 3;
     ctx.beginPath();
-    ctx.moveTo(0, 378); ctx.lineTo(W, 378);
-    ctx.moveTo(0, 1281); ctx.lineTo(W, 1281);
+    ctx.moveTo(0, 428); ctx.lineTo(W, 428);
+    ctx.moveTo(0, 1331); ctx.lineTo(W, 1331);
     ctx.stroke();
 
-    ctx.textAlign = "center";
     if (!isEndingHold) {
-      // 상단 배지 (y = 118)
-      ctx.fillStyle = "rgb(212, 175, 106)";
-      ctx.font = "700 29px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(`───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 118);
-
-      // 2줄 메인 타이틀 (y = 195, y = 285)
-      ctx.fillStyle = "rgb(250, 245, 235)";
-      ctx.font = "700 50px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(line2.slice(0, 20), W / 2, 198);
-
-      const mPt = line3.length <= 11 ? 66 : line3.length <= 14 ? 58 : 50;
-      ctx.fillStyle = "rgb(234, 198, 122)";
-      ctx.font = `800 ${mPt}px 'Hahmlet', 'Noto Serif KR', serif`;
-      ctx.fillText(line3, W / 2, 292);
+      drawAutoFitLine(ctx, `───  ${line1}${line4 ? " · " + line4 : ""}  ───`, W / 2, 122, 940, 42, 30, 700, "rgb(218, 182, 112)");
+      drawAutoFitLine(ctx, line2, W / 2, 238, 950, 78, 48, 800, "rgb(250, 245, 235)", "#080604", 6);
+      drawAutoFitLine(ctx, line3, W / 2, 368, 980, 98, 56, 900, "rgb(245, 208, 122)", "#080604", 8);
     } else {
       // 3.0초 수미상관 엔딩 카드
-      ctx.fillStyle = "rgb(212, 175, 106)";
-      ctx.font = "700 29px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(`───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 145);
-
-      ctx.fillStyle = "rgb(250, 245, 235)";
-      ctx.font = "800 72px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(line3, W / 2, 265);
-
-      ctx.fillStyle = "rgb(212, 175, 106)";
-      ctx.font = "700 38px 'Hahmlet', 'Noto Serif KR', serif";
-      ctx.fillText(line1, W / 2, 1450);
+      drawAutoFitLine(ctx, `───  ${line4 || "성경 말씀 묵상"}  ───`, W / 2, 155, 920, 44, 30, 700, "rgb(218, 182, 112)");
+      drawAutoFitLine(ctx, line3, W / 2, 310, 960, 102, 58, 900, "rgb(250, 245, 235)", "#080604", 8);
+      drawAutoFitLine(ctx, line1, W / 2, 1490, 920, 56, 36, 800, "rgb(218, 182, 112)");
     }
   }
 
   // =========================================================================
-  // 화풍 3: 🕯️ 등잔 밑 전체화면형 (9:16 풀스크린 + MarginV 540 자막)
+  // 화풍 3: 🕯️ 등잔 밑 전체화면형 (9:16 풀스크린 + 대형 상단제호 & 대자막)
   // =========================================================================
   else {
     drawViewportContent(ctx, sec, voiceDur, 0, 0, W, H);
 
-    // 상단 & 하단 가독성 그라데이션
-    const topV = ctx.createLinearGradient(0, 0, 0, 420);
-    topV.addColorStop(0, "rgba(8, 7, 6, 0.82)");
-    topV.addColorStop(1, "rgba(8, 7, 6, 0)");
+    const topV = ctx.createLinearGradient(0, 0, 0, 480);
+    topV.addColorStop(0, "rgba(6, 5, 4, 0.88)");
+    topV.addColorStop(0.7, "rgba(6, 5, 4, 0.45)");
+    topV.addColorStop(1, "rgba(6, 5, 4, 0)");
     ctx.fillStyle = topV;
-    ctx.fillRect(0, 0, W, 420);
+    ctx.fillRect(0, 0, W, 480);
 
     const botV = ctx.createLinearGradient(0, 1120, 0, H);
-    botV.addColorStop(0, "rgba(8, 7, 6, 0)");
-    botV.addColorStop(0.55, "rgba(8, 7, 6, 0.72)");
-    botV.addColorStop(1, "rgba(8, 7, 6, 0.94)");
+    botV.addColorStop(0, "rgba(6, 5, 4, 0)");
+    botV.addColorStop(0.5, "rgba(6, 5, 4, 0.76)");
+    botV.addColorStop(1, "rgba(6, 5, 4, 0.95)");
     ctx.fillStyle = botV;
     ctx.fillRect(0, 1120, W, H - 1120);
 
-    ctx.textAlign = "center";
-    ctx.fillStyle = "#E8C67A";
-    ctx.font = "700 32px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(`✦  ${line1}  ✦`, W / 2, 140);
-
-    ctx.fillStyle = "#FFFDF8";
-    ctx.font = "800 58px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line3, W / 2, 225);
+    drawAutoFitLine(ctx, `✦  ${line1}  ✦`, W / 2, 145, 920, 46, 32, 800, "#F2D078", "#050507", 10);
+    drawAutoFitLine(ctx, line2, W / 2, 255, 940, 74, 46, 800, "#FFFDF8", "#050507", 14);
+    drawAutoFitLine(ctx, line3, W / 2, 380, 970, 98, 56, 900, "#FFE46B", "#050507", 16);
+    if (line4) {
+      drawAutoFitLine(ctx, line4, W / 2, 1760, 860, 42, 28, 700, "rgba(242, 208, 120, 0.82)", "#050507", 8);
+    }
   }
 
   // =========================================================================
-  // 하단 자막 렌더링 (Rule 69: MarginV 540 -> y = 1320 ~ 1410 안전 영역)
+  // 하단 대자막 렌더링 (y = 1390 ~ 1515, 글자 크기 88~96px + 두꺼운 검정 테두리 20px)
   // =========================================================================
   if (includeSubtitles && !isEndingHold) {
     const activeSub = state.subtitles.find(s => sec >= s.start && sec <= s.end);
     if (activeSub && activeSub.text) {
-      // 등장/퇴장 0.14초 소프트 페이드
       let alpha = 1.0;
-      if (sec - activeSub.start < 0.14) alpha = Math.max(0.1, (sec - activeSub.start) / 0.14);
-      else if (activeSub.end - sec < 0.14) alpha = Math.max(0.1, (activeSub.end - sec) / 0.14);
+      if (sec - activeSub.start < 0.12) alpha = Math.max(0.15, (sec - activeSub.start) / 0.12);
+      else if (activeSub.end - sec < 0.12) alpha = Math.max(0.15, (activeSub.end - sec) / 0.12);
 
       ctx.save();
       ctx.globalAlpha = alpha;
-      ctx.font = "800 58px 'Hahmlet', 'Noto Serif KR', serif";
 
-      const rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
-      const baseY = state.style === "archaeology" ? 1365 : 1345; // 유튜브 하단 UI(y=1480~1920) 완벽 회피
-      const lineGap = 80;
+      // 한 줄이 12자 이상으로 길게 들어오면 자동으로 2줄 균형 분할하여 큰 글씨 유지
+      let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
+      if (rawLines.length === 1 && rawLines[0].replace(/\*/g, "").length >= 12) {
+        rawLines = splitKoreanIntoBreathLines(rawLines[0], 9).split("\n");
+      }
+
+      const baseY = state.style === "archaeology" ? 1425 : 1405;
+      const lineGap = Math.round(112 * Math.min(1.18, state.canvasFontScale || 1.08));
 
       if (rawLines.length === 1) {
         drawHighlightedSubtitleLine(
-          ctx, rawLines[0], W / 2, baseY + 32,
-          "#FFFDF8", "#F5C868", "#101014", 11
+          ctx, rawLines[0], W / 2, baseY + 52,
+          "#FFFDF5", "#8CFF66", "#050508", 20, 90
         );
       } else {
         rawLines.slice(0, 2).forEach((ln, idx) => {
           drawHighlightedSubtitleLine(
             ctx, ln, W / 2, baseY + idx * lineGap,
-            "#FFFDF8", "#F5C868", "#101014", 11
+            idx === 0 ? "#FFFDF5" : "#FFF266", "#7CFF6B", "#050508", 20, 88
           );
         });
       }
@@ -2515,44 +2583,24 @@ function downloadShortsCover(coverType) {
   const line4 = document.getElementById("line4Brand").value.trim() || "꿈바온";
 
   if (coverType === "signet") {
-    // Rule 64 인장반지 스타일 4열 104pt 세로 쇼츠 대표 커버
+    // 인장반지 · 설교 방송 대형 3줄 세로 쇼츠 대표 커버
     ctx.fillStyle = "#040406";
     ctx.fillRect(0, 0, 1080, 1920);
 
-    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 0, 480, 1080, 1440);
-
-    const topGrad = ctx.createLinearGradient(0, 450, 0, 620);
-    topGrad.addColorStop(0, "#040406");
-    topGrad.addColorStop(1, "rgba(4,4,6,0)");
-    ctx.fillStyle = topGrad;
-    ctx.fillRect(0, 450, 1080, 170);
+    drawViewportContent(ctx, Math.min(2.5, state.previewSec || 1.0), 30, 0, 510, 1080, 1150);
 
     ctx.fillStyle = "#040406";
-    ctx.fillRect(0, 0, 1080, 480);
+    ctx.fillRect(0, 0, 1080, 510);
+    ctx.fillRect(0, 1660, 1080, 260);
 
-    ctx.textAlign = "center";
-    // 1열 y=200 (31pt)
-    ctx.fillStyle = "#D4AF6A";
-    ctx.font = "700 32px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line1, 540, 200);
-
-    // 2열 y=267 (38pt)
-    ctx.fillStyle = "#F0ECE1";
-    ctx.font = "600 38px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line2.slice(0, 22), 540, 267);
-
-    // 3열 y=394 (본제목 한 줄 104pt, 길이에 따라 폭 자동 맞춤)
-    const pt = line3.length <= 8 ? 104 : line3.length <= 11 ? 86 : line3.length <= 14 ? 70 : 58;
-    ctx.fillStyle = "#F5D07A";
-    ctx.font = `800 ${pt}px 'Hahmlet', 'Noto Serif KR', serif`;
-    ctx.fillText(line3, 540, 394);
-
-    // 4열 y=468 (31pt)
-    ctx.fillStyle = "rgba(212, 175, 106, 0.88)";
-    ctx.font = "700 31px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line4, 540, 468);
+    drawAutoFitLine(ctx, line1, 540, 142, 940, 48, 34, 700, "#F4EFE6");
+    drawAutoFitLine(ctx, line2, 540, 282, 950, 88, 52, 900, "#7CE8FF", "#000000", 6);
+    drawAutoFitLine(ctx, line3, 540, 432, 980, 110, 62, 900, "#FFF05A", "#000000", 8);
+    if (line4) {
+      drawAutoFitLine(ctx, line4, 540, 1755, 860, 44, 28, 800, "rgba(228, 214, 185, 0.85)");
+    }
   } else {
-    // 고고학 양피지 도판 포스터형 커버 (kkumbaon-archaeology-shorts 5장 규격)
+    // 고고학 양피지 도판 포스터형 커버 (kkumbaon-archaeology-shorts 5장 규격 대형화)
     const pGrad = ctx.createLinearGradient(0, 0, 0, 1920);
     pGrad.addColorStop(0, "#F3E8D2");
     pGrad.addColorStop(0.5, "#EADBC0");
@@ -2572,21 +2620,13 @@ function downloadShortsCover(coverType) {
     // 상단 테라코타 배지 (y=96)
     ctx.fillStyle = "rgb(138, 62, 38)";
     ctx.beginPath();
-    ctx.roundRect(180, 82, 720, 56, 28);
+    ctx.roundRect(140, 78, 800, 64, 32);
     ctx.fill();
-    ctx.fillStyle = "#FAF3E6";
-    ctx.font = "700 28px 'Pretendard', sans-serif";
-    ctx.fillText(`${line1} · ${line4}`, 540, 119);
+    drawAutoFitLine(ctx, `${line1} · ${line4}`, 540, 122, 760, 34, 24, 700, "#FAF3E6");
 
-    // 2단 대형 타이틀 (y=215, y=325)
-    ctx.fillStyle = "rgb(42, 28, 18)";
-    ctx.font = "800 54px 'Hahmlet', 'Noto Serif KR', serif";
-    ctx.fillText(line2.slice(0, 18), 540, 222);
-
-    const pt2 = line3.length <= 10 ? 78 : line3.length <= 13 ? 66 : 54;
-    ctx.fillStyle = "rgb(142, 46, 24)";
-    ctx.font = `800 ${pt2}px 'Hahmlet', 'Noto Serif KR', serif`;
-    ctx.fillText(line3, 540, 330);
+    // 2단 대형 타이틀 (y=225, y=348)
+    drawAutoFitLine(ctx, line2, 540, 228, 940, 68, 44, 800, "rgb(42, 28, 18)");
+    drawAutoFitLine(ctx, line3, 540, 348, 960, 92, 54, 900, "rgb(142, 46, 24)");
 
     // 중앙 메인 복원화 (y=420 ~ 1260)
     ctx.strokeStyle = "rgb(135, 106, 76)";
