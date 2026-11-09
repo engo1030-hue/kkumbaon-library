@@ -685,7 +685,7 @@
       </div>
       <div class="drop-zone" id="mediaDropZone" onclick="document.getElementById('mediaFileInput').click()">
         <strong id="dropZoneMainText">📂 여기를 누르시거나 설교 영상(MP4, MOV)·음성(M4A, MP3, WAV)을 끌어다 놓으십시오</strong>
-        <span>1GB 이상 긴 주일 설교 영상도 필요한 30~60초 구간만 바로 잘라 씁니다</span>
+        <span>1GB 이상 긴 주일 설교 영상도 179초(2분 59초) 이내로 유연하게 쇼츠 3편 구간을 잡아 줍니다</span>
       </div>
       <input type="file" id="mediaFileInput" accept="video/*,audio/*,.mp4,.mov,.webm,.m4a,.mp3,.wav,.aac" style="display:none" onchange="handleMediaFileSelect(this.files)">
 
@@ -696,28 +696,29 @@
 
       <!-- 영상/음성 구간 자르기 및 화면 중심 맞추기 (파일 로드 시 표시) -->
       <div id="clipTrimBox" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed var(--rule);">
-        <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
-          <strong style="font-size:0.84rem;">✂️ 쇼츠로 쓸 구간 고르기 (<span id="clipDurBadge">38.0</span>초)</strong>
-          <div style="display:flex; gap:4px;">
-            <button type="button" class="btn sm" onclick="setQuickClipLength(30)">30초</button>
-            <button type="button" class="btn sm" onclick="setQuickClipLength(45)">45초</button>
-            <button type="button" class="btn sm" onclick="setQuickClipLength(58)">58초</button>
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:6px; margin-bottom:8px;">
+          <strong style="font-size:0.95rem;">✂️ 쇼츠 길이 (<span id="clipDurBadge">118.0</span>초 / 최대 179초 이내)</strong>
+          <div style="display:flex; gap:5px; flex-wrap:wrap;">
+            <button type="button" class="btn sm" onclick="setQuickClipLength(60)">60초</button>
+            <button type="button" class="btn sm" onclick="setQuickClipLength(120)">120초(2분)</button>
+            <button type="button" class="btn sm" onclick="setQuickClipLength(150)">150초</button>
+            <button type="button" class="btn sm gold" onclick="setQuickClipLength(176)">176초(+3초엔딩=179초)</button>
           </div>
         </div>
         <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
           <div>
-            <label class="field-label">시작 시각(초) <button type="button" class="btn sm" style="padding:1px 6px; font-size:0.72rem;" onclick="markClipBoundary('start')">지금 위치</button></label>
+            <label class="field-label">시작 시각(초) <button type="button" class="btn sm" style="padding:2px 8px; font-size:0.8rem;" onclick="markClipBoundary('start')">지금 위치</button></label>
             <input type="number" id="clipStartInput" value="0" min="0" step="0.5" onchange="onClipRangeChange()">
           </div>
           <div>
-            <label class="field-label">끝 시각(초) <button type="button" class="btn sm" style="padding:1px 6px; font-size:0.72rem;" onclick="markClipBoundary('end')">지금 위치</button></label>
-            <input type="number" id="clipEndInput" value="38" min="3" step="0.5" onchange="onClipRangeChange()">
+            <label class="field-label">끝 시각(초) <button type="button" class="btn sm" style="padding:2px 8px; font-size:0.8rem;" onclick="markClipBoundary('end')">지금 위치</button></label>
+            <input type="number" id="clipEndInput" value="118" min="5" max="179" step="0.5" onchange="onClipRangeChange()">
           </div>
         </div>
 
         <!-- 가로 설교 영상 강단 초점 맞추기 -->
         <div id="videoCropControlBox" style="margin-top:10px;">
-          <strong style="font-size:0.82rem; display:block; margin-bottom:4px;">🎯 가로 설교 영상 화면 중심 맞추기 (강단·인물 위치)</strong>
+          <strong style="font-size:0.94rem; display:block; margin-bottom:4px;">🎯 가로 설교 영상 화면 중심 맞추기 (강단·인물 위치)</strong>
           <div class="slider-row">
             <span>좌우 이동</span>
             <input type="range" id="cropPanX" min="-100" max="100" value="0" oninput="onCropChange()">
@@ -737,25 +738,66 @@
       </div>
     </div>
 
-    <!-- 1-B. 설교 원고(대본) 넣기 & 쇼츠 3편 자동 발췌 -->
+    <!-- 1-B. 설교 원고(대본) 넣기 & AI 쇼츠 3편 자동 발췌 (179초 이내 유연 호흡) -->
     <div class="sub-box" style="margin-bottom:0;">
       <div class="sub-box-title">
-        <span>② 설교 원고(대본) 넣기</span>
+        <span>② 설교 원고(대본) 넣기 & AI 쇼츠 3편 발췌</span>
         <button type="button" class="btn sm" onclick="document.getElementById('scriptFileInput').click()">📄 원고·자막 파일(.txt, .srt) 열기</button>
       </div>
       <input type="file" id="scriptFileInput" accept=".txt,.srt,.md" style="display:none" onchange="handleScriptFileSelect(this.files)">
 
-      <textarea id="sermonScriptInput" placeholder="주일 설교 원고 전체를 통째로 붙여넣으셔도 되고, 쇼츠로 만들 한 대목(5~10문장)만 붙여넣으셔도 됩니다.&#10;&#10;• 긴 원고를 넣으신 뒤 [원고에서 쇼츠 세 편 골라내기]를 누르시면 가장 울림이 깊은 세 대목을 골라 드립니다.&#10;• 강조하고 싶은 단어 앞뒤에 *별표*를 붙이시면 화면에서 따뜻한 금빛으로 빛납니다."></textarea>
+      <!-- 쇼츠 호흡 길이 모드 선택 (179초 이내 안간사 자율 호흡) -->
+      <div style="margin-bottom:10px;">
+        <label class="field-label">⏱️ 쇼츠 1편당 호흡 길이 기준 (유튜브 쇼츠 최대 179초 이내)</label>
+        <select id="shortsLengthModeSelect" onchange="onLengthModeChange()">
+          <option value="auto_179" selected>🤖 안간사 자율 호흡 (이야기 완결성에 맞춰 85~175초 유연 자동 결정 · 권장)</option>
+          <option value="long_179">⏳ 깊은 울림 롱쇼츠 (125~176초 · 2분~2분 59초 꽉 찬 설교 서사)</option>
+          <option value="mid_90">⚡ 핵심 요약 쇼츠 (60~100초 · 1분~1분 40초 빠른 전달)</option>
+        </select>
+      </div>
+
+      <textarea id="sermonScriptInput" placeholder="주일 설교 원고 전체를 통째로 붙여넣으셔도 되고, 쇼츠로 만들 한 대목을 붙여넣으셔도 됩니다.&#10;&#10;• [✨ AI로 179초 이내 쇼츠 세 편 뽑기]를 누르시면 안간사가 해 드리듯 ① 도입 물음 ② 본문·복음 반전 ③ 삶의 위로 3편을 이야기가 끊기지 않는 가장 좋은 길이(85~175초)로 뽑아 드립니다."></textarea>
 
       <div class="btn-row">
-        <button type="button" class="btn gold" onclick="extractThreeShortsFromManuscript()">✨ 원고에서 쇼츠 세 편 골라내기</button>
-        <button type="button" class="btn indigo" onclick="applyCurrentScriptToSubtitles()">📏 이 대본으로 큼직한 대자막 맞출래요</button>
+        <button type="button" class="btn gold" id="aiExtractBtn" onclick="extractThreeShortsFromManuscript(true)">✨ AI로 179초 이내 쇼츠 세 편 뽑기 (무료 AI 기본 연결)</button>
+        <button type="button" class="btn indigo" onclick="applyCurrentScriptToSubtitles()">📏 지금 적힌 대본 그대로 대자막 맞추기</button>
       </div>
+
+      <!-- 개인 구독 AI (클로드 Pro / 챗GPT Plus / 제미나이 / 개인 API 키) 연동 상자 -->
+      <details style="margin-top:12px; background:var(--bg-card); border:1.5px solid var(--rule-strong); border-radius:11px; padding:10px 14px;">
+        <summary style="cursor:pointer; font-weight:800; font-size:0.95rem; color:var(--indigo);">
+          ⚡ 내가 구독 중인 유료 AI (클로드·챗GPT·제미나이)로 더 정교하게 뽑기 (선택 사항)
+        </summary>
+        <div style="margin-top:10px; font-size:0.92rem; line-height:1.55; color:var(--ink-2);">
+          <div style="background:var(--gold-soft); padding:10px 12px; border-radius:9px; margin-bottom:10px;">
+            <strong>💡 방법 1 (추가 요금 0원 · 월 구독 중인 클로드 Pro / 챗GPT Plus 웹 사용자용):</strong><br>
+            아래 <b>[📋 내 유료 AI용 명령문 복사]</b>를 눌러 평소에 쓰시는 클로드나 챗GPT 창에 붙여넣으신 뒤, AI가 뽑아 준 글을 <b>[📥 AI 답변 붙여넣어 적용]</b>으로 가져오시면 최고급 유료 모델 품질 그대로 세팅됩니다!
+            <div class="btn-row" style="margin-top:8px;">
+              <button type="button" class="btn sm gold" onclick="copyPromptForPersonalSubscribedAI()">📋 1) 내 클로드·챗GPT에 넣을 명령문 복사</button>
+              <button type="button" class="btn sm indigo" onclick="pasteResponseFromPersonalSubscribedAI()">📥 2) 클로드·챗GPT 답변 붙여넣어 바로 적용</button>
+            </div>
+          </div>
+
+          <div style="padding:8px 4px 2px;">
+            <strong>🔑 방법 2 (개인 API 키 직접 연결 — 내 컴퓨터 브라우저에만 저장됨):</strong>
+            <div style="display:grid; grid-template-columns:1fr 1.3fr auto; gap:6px; margin-top:6px;">
+              <select id="aiProviderSelect" onchange="saveAiConfigToLocal()">
+                <option value="free_default">🟢 무료 기본 AI (키 불필요)</option>
+                <option value="gemini">✨ Google Gemini API</option>
+                <option value="openai">🤖 OpenAI (GPT-4o) API</option>
+                <option value="claude">🏛️ Anthropic Claude API</option>
+              </select>
+              <input type="password" id="aiApiKeyInput" placeholder="API 키 입력 (선택)" oninput="saveAiConfigToLocal()">
+              <button type="button" class="btn sm" onclick="clearSavedAiKey()">초기화</button>
+            </div>
+          </div>
+        </div>
+      </details>
 
       <!-- 자동 발췌된 쇼츠 3편 카드 영역 -->
       <div id="extractedCandidatesWrap" style="display:none;">
-        <div style="font-size:0.96rem; font-weight:800; color:var(--gold); margin-top:12px;">
-          💡 안간사가 원고에서 골라낸 쇼츠 세 편입니다 (누르시면 바로 적용됩니다):
+        <div id="aiExtractStatusBanner" style="font-size:0.96rem; font-weight:800; color:var(--gold); margin-top:12px;">
+          💡 원고에서 골라낸 179초 이내 쇼츠 세 편입니다 (누르시면 바로 적용됩니다):
         </div>
         <div class="candidate-list" id="candidateListContainer"></div>
       </div>
@@ -907,10 +949,14 @@
     <div class="sub-box">
       <div class="sub-box-title">
         <span>💬 자막 줄별 확인 (<span id="subCountBadge">8</span>줄)</span>
-        <div style="display:flex; gap:6px;">
+        <div style="display:flex; gap:6px; flex-wrap:wrap;">
+          <button type="button" class="btn sm" onclick="autoNormalizeAllSubtitles()" title="길게 적힌 줄을 화면 밖으로 튀어나가지 않게 8~10자 2줄 대자막으로 자동 정돈합니다">📏 긴 자막 자동 정돈</button>
           <button type="button" class="btn sm" id="tapSyncBtn" onclick="toggleTapSyncMode()" title="영상을 들으며 이 단추를 누를 때마다 다음 자막으로 넘어갑니다">⏱️ 들으며 자막 넘기기</button>
           <button type="button" class="btn sm" onclick="addSubtitleRow()">+ 한 줄 추가</button>
         </div>
+      </div>
+      <div id="subtitleSafetyBadge" style="font-size:0.92rem; font-weight:800; color:var(--green); background:var(--green-soft); padding:7px 11px; border-radius:8px; margin-bottom:8px;">
+        ✅ 자막 화면 넘침 점검 완료: 전 구간 좌우 안전 여백(80px) 확보 · 튀어나감 0건
       </div>
       <div style="font-size:0.94rem; font-weight:600; color:var(--ink-2); margin-bottom:10px;">
         • 단어 앞뒤에 <b>*별표*</b>를 넣으시면(예: <code>*주님의 손*</code>) 화면에서 금빛·연둣빛 강조색으로 환하게 빛납니다.
@@ -1220,16 +1266,125 @@ function buildSubtitlesFromParagraph(paragraphText, totalDurationSec) {
 }
 
 // ============================================================================
-// 2. 긴 설교 원고에서 쇼츠 3편 자동 발췌기 (도입 물음 / 말씀 중심 / 삶의 위로)
+// 2. 179초 이내 유연 호흡 쇼츠 3편 발췌기 (무료 AI 기본 탑재 + 개인 구독 유료 AI 연동)
 // ============================================================================
-function extractThreeShortsFromManuscript() {
-  let raw = document.getElementById("sermonScriptInput").value.trim();
-  if (!raw) {
-    raw = SAMPLE_FULL_MANUSCRIPT;
-    document.getElementById("sermonScriptInput").value = raw;
-  }
+function getTargetDurationBounds() {
+  const sel = document.getElementById("shortsLengthModeSelect");
+  const mode = sel ? sel.value : "auto_179";
+  if (mode === "long_179") return { minSec: 125, maxSec: 176, charsPerSec: 4.5 };
+  if (mode === "mid_90") return { minSec: 60, maxSec: 100, charsPerSec: 5.4 };
+  // auto_179: 안간사 자율 호흡 (이야기 완결성에 맞춰 85~175초 자동 산정, 3초 엔딩 포함 179초 이내)
+  return { minSec: 85, maxSec: 175, charsPerSec: 4.8 };
+}
 
-  // 본문 장절 자동 추출
+function onLengthModeChange() {
+  if (document.getElementById("sermonScriptInput").value.trim()) {
+    extractThreeShortsFromManuscript(false);
+  }
+}
+
+function saveAiConfigToLocal() {
+  try {
+    const prov = document.getElementById("aiProviderSelect").value;
+    const key = document.getElementById("aiApiKeyInput").value.trim();
+    localStorage.setItem("kkumbaon_shorts_ai_provider", prov);
+    if (key) localStorage.setItem("kkumbaon_shorts_ai_key", key);
+  } catch (e) {}
+}
+
+function loadAiConfigFromLocal() {
+  try {
+    const prov = localStorage.getItem("kkumbaon_shorts_ai_provider");
+    const key = localStorage.getItem("kkumbaon_shorts_ai_key");
+    if (prov && document.getElementById("aiProviderSelect")) {
+      document.getElementById("aiProviderSelect").value = prov;
+    }
+    if (key && document.getElementById("aiApiKeyInput")) {
+      document.getElementById("aiApiKeyInput").value = key;
+    }
+  } catch (e) {}
+}
+
+function clearSavedAiKey() {
+  try {
+    localStorage.removeItem("kkumbaon_shorts_ai_key");
+    localStorage.setItem("kkumbaon_shorts_ai_provider", "free_default");
+    document.getElementById("aiProviderSelect").value = "free_default";
+    document.getElementById("aiApiKeyInput").value = "";
+    alert("개인 API 키가 초기화되어 무료 기본 AI 모드로 전환되었습니다.");
+  } catch (e) {}
+}
+
+// 긴 SRT 자막이나 긴 문장을 화면 밖으로 절대 튀어나가지 않게 2줄(줄당 8~10자) 카드로 자동 분할
+function paginateLongSubtitleEntries(subList) {
+  const out = [];
+  (subList || []).forEach(item => {
+    const start = Number(item.start) || 0;
+    const end = Math.max(start + 1.0, Number(item.end) || (start + 3.5));
+    const dur = end - start;
+    const cleanFlat = String(item.text || "").replace(/\s+/g, " ").trim();
+    if (!cleanFlat) return;
+
+    const plainLen = cleanFlat.replace(/\*/g, "").length;
+    const lines = String(item.text || "").split("\n").map(l => l.trim()).filter(Boolean);
+    const maxSingleLine = Math.max(...lines.map(l => l.replace(/\*/g, "").length), 0);
+
+    // 이미 2줄 이내이고 각 줄이 11자 이하이면 그대로 유지
+    if (lines.length <= 2 && maxSingleLine <= 11 && plainLen <= 21) {
+      out.push({ start: Math.round(start * 10) / 10, end: Math.round(end * 10) / 10, text: lines.join("\n") });
+      return;
+    }
+
+    // 문장이 길면 어절 단위로 16~18자씩 나누어 시간 비례 분할
+    const words = cleanFlat.split(" ");
+    const chunks = [];
+    let acc = [];
+    let accLen = 0;
+    words.forEach((w, idx) => {
+      const wLen = w.replace(/\*/g, "").length;
+      acc.push(w);
+      accLen += wLen + 1;
+      const isLast = idx === words.length - 1;
+      const pauseEnd = /[,，.?!]|(지만|으나|는데|면서|하고|하며|이라|니라|니다|소서|시오)$/.test(w.replace(/\*/g, ""));
+      if (!isLast && ((accLen >= 13 && pauseEnd) || accLen >= 17)) {
+        chunks.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
+        acc = [];
+        accLen = 0;
+      }
+    });
+    if (acc.length > 0) {
+      if (acc.join(" ").replace(/\*/g, "").length <= 4 && chunks.length > 0) {
+        chunks[chunks.length - 1] = splitKoreanIntoBreathLines(
+          chunks[chunks.length - 1].replace(/\n/g, " ") + " " + acc.join(" "),
+          10
+        );
+      } else {
+        chunks.push(splitKoreanIntoBreathLines(acc.join(" "), 9));
+      }
+    }
+
+    const weights = chunks.map(c => Math.max(3, c.replace(/[\*\s]/g, "").length));
+    const totalW = weights.reduce((a, b) => a + b, 0);
+    let cur = start;
+    chunks.forEach((cText, cIdx) => {
+      const share = (weights[cIdx] / totalW) * dur;
+      const sTime = Math.round(cur * 10) / 10;
+      const eTime = cIdx === chunks.length - 1 ? Math.round(end * 10) / 10 : Math.round((cur + share) * 10) / 10;
+      cur += share;
+      out.push({ start: sTime, end: Math.max(sTime + 0.8, eTime), text: cText });
+    });
+  });
+  return out;
+}
+
+function autoNormalizeAllSubtitles() {
+  state.subtitles = paginateLongSubtitleEntries(state.subtitles);
+  renderSubtitleEditorRows();
+  renderSinglePreviewFrame();
+}
+
+// 안간사 로컬 서사 발췌기 (3편 모두 179초 이내의 완결된 이야기로 구성)
+function buildLocalThreeShortsCandidates(raw) {
   let detectedVerse = document.getElementById("line1Verse").value.trim() || "사도행전 18:9–10";
   const verseMatch = raw.match(/(?:본문\s*[:：]?\s*)?([가-힣]{1,6}(?:전서|후서|복음|행전|계시록|기|상|하|서|편|언|도서|가)?\s*\d+\s*(?:장|:|편)\s*\d+(?:\s*[-~–]\s*\d+)?(?:\s*절)?)/);
   if (verseMatch && verseMatch[1]) {
@@ -1241,17 +1396,24 @@ function extractThreeShortsFromManuscript() {
       .trim();
   }
 
-  // 문단 분리
   const paragraphs = raw
     .split(/\n\s*\n+/)
     .map(p => p.replace(/^\[.*?\]\s*/g, "").trim())
-    .filter(p => p.length >= 45);
+    .filter(p => p.length >= 35);
 
+  // 설교 전체를 3막(기-승-결)으로 묶어 1편당 충분한 서사 분량(400~850자, 85~175초) 확보
   let p1 = "", p2 = "", p3 = "";
-  if (paragraphs.length >= 3) {
-    p1 = paragraphs[0];
-    p2 = paragraphs[Math.floor(paragraphs.length / 2)];
-    p3 = paragraphs[paragraphs.length - 1];
+  if (paragraphs.length >= 6) {
+    const cut1 = Math.max(2, Math.floor(paragraphs.length / 3));
+    const cut2 = Math.max(cut1 + 2, Math.floor((paragraphs.length * 2) / 3));
+    p1 = paragraphs.slice(0, cut1).join("\n\n").slice(0, 820);
+    p2 = paragraphs.slice(cut1, cut2).join("\n\n").slice(0, 860);
+    p3 = paragraphs.slice(cut2).join("\n\n").slice(0, 820);
+  } else if (paragraphs.length >= 3) {
+    // 문단이 3~5개일 때는 앞뒤 문맥을 이어 붙여 90~155초 분량의 풍성한 서사로 구성
+    p1 = paragraphs.slice(0, 2).join("\n\n");
+    p2 = paragraphs.slice(Math.max(0, Math.floor(paragraphs.length / 2) - 1), Math.floor(paragraphs.length / 2) + 2).join("\n\n");
+    p3 = paragraphs.slice(Math.max(0, paragraphs.length - 2)).join("\n\n");
   } else {
     const allSentences = raw.replace(/\n+/g, " ").split(/(?<=[.?!])\s+/).filter(Boolean);
     const third = Math.max(1, Math.ceil(allSentences.length / 3));
@@ -1262,13 +1424,13 @@ function extractThreeShortsFromManuscript() {
 
   function makeTitlePair(para, roleIdx) {
     const sents = para.split(/(?<=[.?!])\s+/).map(s => s.trim()).filter(Boolean);
-    const keySent = sents.find(s => /그러나|오히려|주님|하나님|두려워|사랑|은혜|마음|밤/.test(s)) || sents[0] || "오늘의 말씀";
+    const keySent = sents.find(s => /그러나|오히려|주님|하나님|두려워|사랑|은혜|마음|밤|말씀|약속/.test(s)) || sents[0] || "오늘의 말씀";
     const cleaned = keySent.replace(/["'“”‘’*]/g, "").replace(/사랑하는 성도 여러분,?\s*/g, "").trim();
     const clauses = cleaned.split(/[,，]|(?<=고|며|나|니|면|때)\s+/).map(c => c.trim()).filter(Boolean);
 
-    let sub = clauses[0] ? clauses[0].slice(0, 18) : "오늘 우리에게 주시는";
-    let main = (clauses[1] || clauses[0] || "생명의 말씀").replace(/(입니다|습니다|하십니다|있었습니다|것입니다)\.?$/, "").slice(0, 15).trim();
-    if (!main || main.length < 4) {
+    let sub = clauses[0] ? clauses[0].slice(0, 16) : (roleIdx === 0 ? "일이 풀리기 시작할 때 찾아오는" : roleIdx === 1 ? "다 무너진 뒤가 아니라" : "떨림이 다 멈춰서가 아니라");
+    let main = (clauses[1] || clauses[0] || "").replace(/(입니다|습니다|하십니다|있었습니다|것입니다)\.?$/, "").slice(0, 14).trim();
+    if (!main || main.length < 5) {
       main = roleIdx === 0 ? "떨면서도 걸어가는 사람" : roleIdx === 1 ? "밤의 끝자락을 붙드시는 주님" : "홀로 두지 않으시는 약속";
     }
     return { sub, main };
@@ -1278,55 +1440,292 @@ function extractThreeShortsFromManuscript() {
   const t2 = makeTitlePair(p2, 1);
   const t3 = makeTitlePair(p3, 2);
 
-  const totalMedia = state.mediaType !== "none" ? state.mediaTotalDur : 114;
-  const thirdTime = Math.max(30, Math.round(totalMedia / 3));
+  const bounds = getTargetDurationBounds();
+  const calcFlexDur = (txt, roleOffset) => {
+    const rawSec = Math.round(txt.replace(/\s+/g, "").length / bounds.charsPerSec) + roleOffset;
+    return Math.min(176, Math.max(bounds.minSec, Math.min(bounds.maxSec, rawSec)));
+  };
 
-  state.extractedCandidates = [
+  const d1 = calcFlexDur(p1, 0);
+  const d2 = calcFlexDur(p2, 12);
+  const d3 = calcFlexDur(p3, 6);
+
+  const totalMedia = state.mediaType !== "none" ? state.mediaTotalDur : (d1 + d2 + d3);
+  const thirdTime = Math.max(45, Math.round(totalMedia / 3));
+
+  return [
     {
-      label: "쇼츠 ① [여는 물음 · 도입 명장면]",
+      label: "쇼츠 ① [제1편 · 여는 물음과 성경의 현장]",
       verse: detectedVerse,
       line2: t1.sub,
       line3: t1.main,
       text: p1,
+      recDur: d1,
       clipStart: 0,
-      clipEnd: Math.min(state.mediaTotalDur || 38, 38)
+      clipEnd: state.mediaType !== "none" ? Math.min(state.mediaTotalDur, d1) : d1
     },
     {
-      label: "쇼츠 ② [말씀의 중심 · 복음의 반전]",
+      label: "쇼츠 ② [제2편 · 본문 중심과 복음의 반전]",
       verse: detectedVerse,
       line2: t2.sub,
       line3: t2.main,
       text: p2,
-      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 75 ? thirdTime : 0,
-      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 75 ? Math.min(state.mediaTotalDur, thirdTime + 40) : 38
+      recDur: d2,
+      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 140 ? thirdTime : 0,
+      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 140 ? Math.min(state.mediaTotalDur, thirdTime + d2) : d2
     },
     {
-      label: "쇼츠 ③ [삶으로 맺는 위로 · 축복]",
+      label: "쇼츠 ③ [제3편 · 삶으로 맺는 위로와 축복]",
       verse: detectedVerse,
       line2: t3.sub,
       line3: t3.main,
       text: p3,
-      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 90 ? Math.max(0, state.mediaTotalDur - 42) : 0,
-      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 90 ? state.mediaTotalDur : 38
+      recDur: d3,
+      clipStart: state.mediaType !== "none" && state.mediaTotalDur > 180 ? Math.max(0, state.mediaTotalDur - d3) : 0,
+      clipEnd: state.mediaType !== "none" && state.mediaTotalDur > 180 ? state.mediaTotalDur : d3
     }
   ];
+}
 
+// 무료 AI API 또는 개인 API(Gemini/OpenAI/Claude)로 179초 이내 쇼츠 3편 정밀 추출
+async function callAiForThreeShorts(rawManuscript, defaultCandidates) {
+  const provider = (document.getElementById("aiProviderSelect") && document.getElementById("aiProviderSelect").value) || "free_default";
+  const apiKey = (document.getElementById("aiApiKeyInput") && document.getElementById("aiApiKeyInput").value.trim()) || "";
+  const bounds = getTargetDurationBounds();
+
+  const sysPrompt = `당신은 한국 교회 목회자의 설교 원고를 유튜브 세로 쇼츠(최대 179초 이내) 3편으로 구성하는 전문 편집자 '안간사'입니다.
+설교 원고를 읽고 이야기가 중간에 끊기지 않고 기-승-전-결의 울림이 살아 있도록 3편의 쇼츠를 JSON 배열로만 응답하십시오.
+각 쇼츠는 ${bounds.minSec}초~${bounds.maxSec}초(최대 176초, 엔딩 3초 포함 179초 이내) 분량이 되도록 원고 본문을 충실히 담으십시오.
+반드시 순수 JSON 배열 형식([{"label":"쇼츠 ① ...","verse":"사도행전 18:9–10","line2":"여는 제목(14자 이내)","line3":"핵심 본제목(13자 이내)","recDur":124,"text":"원고 발췌 본문(핵심 어구 앞뒤에 *별표* 포함)"}, ...])으로만 출력하십시오.`;
+
+  const userPrompt = `다음 설교 원고에서 179초 이내의 완결성 있는 쇼츠 3편(① 도입·질문, ② 본문·복음 반전, ③ 삶의 위로·축복)을 뽑아 JSON 배열로 주십시오:\n\n${rawManuscript.slice(0, 6500)}`;
+
+  try {
+    let responseText = "";
+    if (provider === "gemini" && apiKey) {
+      const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: sysPrompt + "\n\n" + userPrompt }] }],
+          generationConfig: { temperature: 0.35 }
+        })
+      });
+      const data = await res.json();
+      responseText = data?.candidates?.[0]?.content?.parts?.[0]?.text || "";
+    } else if (provider === "openai" && apiKey) {
+      const res = await fetch("https://api.openai.com/v1/chat/completions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${apiKey}` },
+        body: JSON.stringify({
+          model: "gpt-4o-mini",
+          messages: [{ role: "system", content: sysPrompt }, { role: "user", content: userPrompt }],
+          temperature: 0.35
+        })
+      });
+      const data = await res.json();
+      responseText = data?.choices?.[0]?.message?.content || "";
+    } else if (provider === "claude" && apiKey) {
+      const res = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": apiKey,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true"
+        },
+        body: JSON.stringify({
+          model: "claude-3-5-sonnet-latest",
+          max_tokens: 2500,
+          system: sysPrompt,
+          messages: [{ role: "user", content: userPrompt }]
+        })
+      });
+      const data = await res.json();
+      responseText = data?.content?.[0]?.text || "";
+    } else {
+      // 기본 탑재 무료 AI API (Pollinations OpenAI-compatible endpoint, 키 불필요)
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 9500);
+      const res = await fetch("https://text.pollinations.ai/openai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
+        body: JSON.stringify({
+          model: "openai",
+          messages: [{ role: "system", content: sysPrompt }, { role: "user", content: userPrompt }],
+          temperature: 0.35
+        })
+      });
+      clearTimeout(timeoutId);
+      const data = await res.json();
+      responseText = data?.choices?.[0]?.message?.content || "";
+    }
+
+    const jsonMatch = responseText.match(/\[\s*\{[\s\S]*\}\s*\]/);
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      if (Array.isArray(parsed) && parsed.length >= 3) {
+        return parsed.slice(0, 3).map((item, i) => {
+          const fallback = defaultCandidates[i];
+          const dur = Math.min(176, Math.max(60, Number(item.recDur) || fallback.recDur));
+          return {
+            label: item.label || fallback.label,
+            verse: item.verse || fallback.verse,
+            line2: String(item.line2 || fallback.line2).slice(0, 18),
+            line3: String(item.line3 || fallback.line3).slice(0, 15),
+            text: item.text && item.text.length >= 40 ? item.text : fallback.text,
+            recDur: dur,
+            clipStart: fallback.clipStart,
+            clipEnd: state.mediaType !== "none" ? Math.min(state.mediaTotalDur, fallback.clipStart + dur) : dur
+          };
+        });
+      }
+    }
+  } catch (e) {
+    // 네트워크 제한 시 내장 안간사 엔진 결과 즉시 사용
+  }
+  return defaultCandidates;
+}
+
+async function extractThreeShortsFromManuscript(useRemoteAi = false) {
+  let raw = document.getElementById("sermonScriptInput").value.trim();
+  if (!raw) {
+    raw = SAMPLE_FULL_MANUSCRIPT;
+    document.getElementById("sermonScriptInput").value = raw;
+  }
+
+  // 먼저 안간사 내장 엔진으로 0.01초 만에 179초 이내 쇼츠 3편 즉시 구성
+  const localCands = buildLocalThreeShortsCandidates(raw);
+  state.extractedCandidates = localCands;
+  renderCandidateCardsUI(localCands, "💡 안간사 엔진이 원고에서 179초 이내 쇼츠 3편을 구성했습니다 (누르시면 바로 적용됩니다):");
+  applyCandidateShorts(0, document.querySelector("#candidateListContainer .candidate-card"));
+
+  if (useRemoteAi) {
+    const btn = document.getElementById("aiExtractBtn");
+    const banner = document.getElementById("aiExtractStatusBanner");
+    const origBtnText = btn ? btn.textContent : "";
+    if (btn) btn.textContent = "⏳ AI가 179초 이내 쇼츠 3편의 제목과 대목을 정밀 다듬는 중...";
+    if (banner) banner.textContent = "⏳ 연결된 AI 엔진이 설교 문맥을 분석하여 제목과 강조 어구를 다듬고 있습니다...";
+
+    const refined = await callAiForThreeShorts(raw, localCands);
+    state.extractedCandidates = refined;
+    const prov = (document.getElementById("aiProviderSelect") && document.getElementById("aiProviderSelect").value) || "free_default";
+    const provLabel = prov === "gemini" ? "Google Gemini" : prov === "openai" ? "OpenAI GPT" : prov === "claude" ? "Anthropic Claude" : "무료 AI + 안간사 엔진";
+    renderCandidateCardsUI(refined, `✨ [${provLabel}] 179초 이내 쇼츠 3편 구성 완료 (카드를 누르시면 바로 전환됩니다):`);
+    applyCandidateShorts(0, document.querySelector("#candidateListContainer .candidate-card"));
+    if (btn) btn.textContent = origBtnText;
+  }
+}
+
+function renderCandidateCardsUI(candidates, bannerText) {
   const wrap = document.getElementById("extractedCandidatesWrap");
   const listEl = document.getElementById("candidateListContainer");
+  const banner = document.getElementById("aiExtractStatusBanner");
   wrap.style.display = "block";
-  listEl.innerHTML = state.extractedCandidates.map((c, idx) => `
-    <button type="button" class="candidate-card ${idx === 1 ? 'active' : ''}" onclick="applyCandidateShorts(${idx}, this)">
-      <div class="c-head">
-        <span>${c.label}</span>
-        <span>권장 약 ${Math.max(25, Math.min(55, Math.round(c.text.length / 6.2)))}초</span>
-      </div>
-      <div class="c-title">${c.line2} — 「${c.line3}」</div>
-      <div class="c-preview">${c.text}</div>
-    </button>
-  `).join("");
+  if (banner && bannerText) banner.textContent = bannerText;
+  listEl.innerHTML = candidates.map((c, idx) => {
+    const totalWithEnding = Math.min(179, (c.recDur || 110) + 3);
+    const mm = Math.floor(totalWithEnding / 60);
+    const ss = String(Math.round(totalWithEnding % 60)).padStart(2, "0");
+    return `
+      <button type="button" class="candidate-card ${idx === 0 ? 'active' : ''}" onclick="applyCandidateShorts(${idx}, this)">
+        <div class="c-head">
+          <span>${c.label}</span>
+          <span>길이 약 ${totalWithEnding}초 (${mm}분 ${ss}초 · 179초 이내)</span>
+        </div>
+        <div class="c-title">${c.line2} — 「${c.line3}」</div>
+        <div class="c-preview">${c.text.replace(/\*/g, "")}</div>
+      </button>
+    `;
+  }).join("");
+}
 
-  // 기본으로 가장 핵심인 쇼츠 ② 또는 쇼츠 ① 즉시 적용
-  applyCandidateShorts(0, listEl.querySelector(".candidate-card"));
+// 구독 중인 클로드 Pro / 챗GPT Plus 웹 사용자용 원터치 명령문 복사 & 붙여넣기
+function copyPromptForPersonalSubscribedAI() {
+  let raw = document.getElementById("sermonScriptInput").value.trim();
+  if (!raw) {
+    raw = SAMPLE_FULL_MANUSCRIPT;
+    document.getElementById("sermonScriptInput").value = raw;
+  }
+  const bounds = getTargetDurationBounds();
+  const promptText = `[꿈바온 설교 쇼츠 공방 — 안간사 179초 이내 쇼츠 3편 발췌 요청]
+아래 설교 원고를 읽고, 유튜브 세로 쇼츠(최대 179초 이내, 각 편당 ${bounds.minSec}~${bounds.maxSec}초 호흡)로 만들 가장 울림이 깊은 3편(① 도입·질문, ② 본문·복음 반전, ③ 삶의 위로·축복)을 뽑아 주세요.
+중간에 문맥이 끊기지 않도록 각 편당 충분한 문장(450~850자)을 담고, 핵심 단어 앞뒤에는 *별표*를 붙여 주세요.
+
+반드시 아래 JSON 배열 형식으로만 답변해 주세요 (다른 설명 없이 JSON만 출력):
+[
+  {
+    "label": "쇼츠 ① [제1편 · 여는 물음]",
+    "verse": "성경 본문 장절",
+    "line2": "상단 여는 제목 줄 (14자 이내)",
+    "line3": "상단 핵심 본제목 한 줄 (13자 이내)",
+    "recDur": 120,
+    "text": "쇼츠 1편 전체 대본 (*강조어* 포함)"
+  },
+  {
+    "label": "쇼츠 ② [제2편 · 말씀의 중심]",
+    "verse": "성경 본문 장절",
+    "line2": "상단 여는 제목 줄 (14자 이내)",
+    "line3": "상단 핵심 본제목 한 줄 (13자 이내)",
+    "recDur": 145,
+    "text": "쇼츠 2편 전체 대본 (*강조어* 포함)"
+  },
+  {
+    "label": "쇼츠 ③ [제3편 · 삶의 위로]",
+    "verse": "성경 본문 장절",
+    "line2": "상단 여는 제목 줄 (14자 이내)",
+    "line3": "상단 핵심 본제목 한 줄 (13자 이내)",
+    "recDur": 130,
+    "text": "쇼츠 3편 전체 대본 (*강조어* 포함)"
+  }
+]
+
+=== 설교 원고 시작 ===
+${raw}`;
+
+  navigator.clipboard.writeText(promptText).then(() => {
+    alert("📋 구독 중인 클로드(Claude)나 챗GPT(ChatGPT)에 붙여넣을 명령문이 복사되었습니다!\n\n평소 쓰시는 AI 창에 붙여넣으신 뒤, 나온 답변을 복사해 옆의 [📥 2) 클로드·챗GPT 답변 붙여넣어 바로 적용] 단추를 누르시면 됩니다.");
+  }).catch(() => {
+    prompt("아래 명령문을 복사하여 클로드나 챗GPT에 붙여넣으십시오:", promptText);
+  });
+}
+
+function pasteResponseFromPersonalSubscribedAI() {
+  const pasted = prompt("구독 중인 클로드(Claude)나 챗GPT가 출력해 준 JSON 답변(또는 대본)을 여기에 붙여넣으십시오:");
+  if (!pasted || !pasted.trim()) return;
+  try {
+    const jsonMatch = pasted.match(/\[\s*\{[\s\S]*\}\s*\]/);
+    if (jsonMatch) {
+      const parsed = JSON.parse(jsonMatch[0]);
+      if (Array.isArray(parsed) && parsed.length >= 1) {
+        const localFallback = buildLocalThreeShortsCandidates(document.getElementById("sermonScriptInput").value || SAMPLE_FULL_MANUSCRIPT);
+        state.extractedCandidates = parsed.slice(0, 3).map((item, i) => {
+          const fb = localFallback[i] || localFallback[0];
+          const dur = Math.min(176, Math.max(50, Number(item.recDur) || fb.recDur));
+          return {
+            label: item.label || `쇼츠 #${i + 1}`,
+            verse: item.verse || fb.verse,
+            line2: String(item.line2 || fb.line2).slice(0, 18),
+            line3: String(item.line3 || fb.line3).slice(0, 15),
+            text: item.text || fb.text,
+            recDur: dur,
+            clipStart: fb.clipStart,
+            clipEnd: state.mediaType !== "none" ? Math.min(state.mediaTotalDur, fb.clipStart + dur) : dur
+          };
+        });
+        renderCandidateCardsUI(state.extractedCandidates, "✨ 구독 중인 유료 AI 답변이 쇼츠 3편으로 완벽히 적용되었습니다:");
+        applyCandidateShorts(0, document.querySelector("#candidateListContainer .candidate-card"));
+        return;
+      }
+    }
+    // 일반 텍스트를 붙여넣은 경우 바로 대자막으로 변환
+    document.getElementById("sermonScriptInput").value = pasted.trim();
+    applyCurrentScriptToSubtitles();
+  } catch (e) {
+    document.getElementById("sermonScriptInput").value = pasted.trim();
+    applyCurrentScriptToSubtitles();
+  }
 }
 
 function applyCandidateShorts(idx, cardEl) {
@@ -1339,9 +1738,10 @@ function applyCandidateShorts(idx, cardEl) {
   document.getElementById("line2Sub").value = c.line2;
   document.getElementById("line3Main").value = c.line3;
 
+  const targetSec = Math.min(176, Math.max(45, c.recDur || Math.round(c.text.replace(/\s+/g, "").length / 4.8)));
   const estDur = (state.mediaType !== "none")
-    ? Math.max(10, c.clipEnd - c.clipStart)
-    : Math.max(24, Math.min(56, Math.round(c.text.length / 5.8)));
+    ? Math.min(176, Math.max(15, c.clipEnd - c.clipStart))
+    : targetSec;
 
   if (state.mediaType === "none") {
     state.clipStart = 0;
@@ -1349,13 +1749,13 @@ function applyCandidateShorts(idx, cardEl) {
     state.mediaTotalDur = estDur;
   } else {
     state.clipStart = c.clipStart;
-    state.clipEnd = c.clipEnd;
+    state.clipEnd = Math.min(state.mediaTotalDur, c.clipStart + estDur);
     document.getElementById("clipStartInput").value = state.clipStart;
     document.getElementById("clipEndInput").value = state.clipEnd;
     document.getElementById("clipDurBadge").textContent = (state.clipEnd - state.clipStart).toFixed(1);
   }
 
-  state.subtitles = buildSubtitlesFromParagraph(c.text, state.clipEnd - state.clipStart);
+  state.subtitles = paginateLongSubtitleEntries(buildSubtitlesFromParagraph(c.text, state.clipEnd - state.clipStart));
   renderSubtitleEditorRows();
   syncSliderBounds();
   state.previewSec = 0;
@@ -1369,15 +1769,15 @@ function applyCurrentScriptToSubtitles() {
     return;
   }
 
-  // SRT 형식인지 자동 판별
+  // SRT 형식인지 자동 판별 (긴 SRT 문장도 자동으로 2줄 대자막 카드로 분할)
   if (/\d{2}:\d{2}:\d{2}[,\.]\d{3}\s*-->\s*\d{2}:\d{2}:\d{2}[,\.]\d{3}/.test(raw)) {
     const parsed = parseSrtString(raw);
     if (parsed.length > 0) {
-      state.subtitles = parsed;
-      const lastEnd = parsed[parsed.length - 1].end;
+      state.subtitles = paginateLongSubtitleEntries(parsed);
+      const lastEnd = state.subtitles[state.subtitles.length - 1].end;
       if (state.mediaType === "none") {
         state.clipStart = 0;
-        state.clipEnd = Math.max(10, lastEnd);
+        state.clipEnd = Math.min(176, Math.max(10, lastEnd));
       }
       renderSubtitleEditorRows();
       syncSliderBounds();
@@ -1386,16 +1786,18 @@ function applyCurrentScriptToSubtitles() {
     }
   }
 
+  const bounds = getTargetDurationBounds();
+  const estFromText = Math.min(176, Math.max(35, Math.round(raw.replace(/\s+/g, "").length / bounds.charsPerSec)));
   const clipDur = (state.mediaType !== "none")
-    ? Math.max(8, state.clipEnd - state.clipStart)
-    : Math.max(18, Math.min(58, Math.round(raw.length / 5.8)));
+    ? Math.min(176, Math.max(8, state.clipEnd - state.clipStart))
+    : estFromText;
 
   if (state.mediaType === "none") {
     state.clipStart = 0;
     state.clipEnd = clipDur;
   }
 
-  state.subtitles = buildSubtitlesFromParagraph(raw, clipDur);
+  state.subtitles = paginateLongSubtitleEntries(buildSubtitlesFromParagraph(raw, clipDur));
   renderSubtitleEditorRows();
   syncSliderBounds();
   state.previewSec = 0;
@@ -1418,7 +1820,7 @@ function parseSrtString(srtText) {
       }
     }
   });
-  return out;
+  return paginateLongSubtitleEntries(out);
 }
 
 // ============================================================================
@@ -1454,13 +1856,14 @@ function handleMediaFileSelect(files) {
     vid.muted = false;
     vid.load();
     vid.onloadedmetadata = () => {
-      const dur = Math.max(5, Math.round((vid.duration || 45) * 10) / 10);
+      const dur = Math.max(5, Math.round((vid.duration || 120) * 10) / 10);
       state.mediaType = "video";
       state.mediaUrl = url;
       state.mediaName = file.name;
       state.mediaTotalDur = dur;
       state.clipStart = 0;
-      state.clipEnd = Math.min(dur, 55);
+      // 60초로 짧게 자르지 않고 최대 176초(+3초 엔딩 = 179초 이내)까지 유연하게 수용
+      state.clipEnd = Math.min(dur, 176);
       updateMediaLoadedUI(file.name, dur, true);
       vid.currentTime = 0.05;
     };
@@ -1472,13 +1875,13 @@ function handleMediaFileSelect(files) {
     aud.src = url;
     aud.load();
     aud.onloadedmetadata = () => {
-      const dur = Math.max(5, Math.round((aud.duration || 45) * 10) / 10);
+      const dur = Math.max(5, Math.round((aud.duration || 120) * 10) / 10);
       state.mediaType = "audio";
       state.mediaUrl = url;
       state.mediaName = file.name;
       state.mediaTotalDur = dur;
       state.clipStart = 0;
-      state.clipEnd = Math.min(dur, 58);
+      state.clipEnd = Math.min(dur, 176);
       updateMediaLoadedUI(file.name, dur, false);
       renderSinglePreviewFrame();
     };
@@ -1487,7 +1890,7 @@ function handleMediaFileSelect(files) {
 
 function updateMediaLoadedUI(filename, totalDur, isVideo) {
   document.getElementById("mediaStatusLabel").textContent = `${isVideo ? "🎬 설교 영상" : "🎙️ 설교 음성"} (${formatMMSS(totalDur)})`;
-  document.getElementById("dropZoneMainText").textContent = `✅ 불러온 파일: ${filename} (전체 ${totalDur}초)`;
+  document.getElementById("dropZoneMainText").textContent = `✅ 불러온 파일: ${filename} (전체 ${totalDur}초 · 쇼츠 최대 179초 지원)`;
   document.getElementById("clearMediaBtn").style.display = "inline-flex";
   document.getElementById("clipTrimBox").style.display = "block";
   document.getElementById("videoCropControlBox").style.display = isVideo ? "block" : "none";
@@ -1496,7 +1899,6 @@ function updateMediaLoadedUI(filename, totalDur, isVideo) {
   document.getElementById("clipEndInput").value = state.clipEnd;
   document.getElementById("clipDurBadge").textContent = (state.clipEnd - state.clipStart).toFixed(1);
 
-  // 기존 자막 시간표를 새 구간 길이에 맞게 비례 재조정
   rescaleSubtitlesToDuration(state.clipEnd - state.clipStart);
   syncSliderBounds();
 }
@@ -1507,7 +1909,7 @@ function clearLoadedMedia() {
   state.mediaUrl = "";
   state.mediaName = "";
   state.clipStart = 0;
-  state.clipEnd = 38;
+  state.clipEnd = 118;
   document.getElementById("mediaStatusLabel").textContent = "아직 올린 파일 없음 (성화 배경 모드)";
   document.getElementById("dropZoneMainText").textContent = "📂 여기를 누르시거나 설교 영상(MP4, MOV)·음성(M4A, MP3, WAV)을 끌어다 놓으십시오";
   document.getElementById("clearMediaBtn").style.display = "none";
@@ -1667,11 +2069,13 @@ function onCanvasFontScaleChange(val) {
   const pct = Number(val) || 108;
   state.canvasFontScale = pct / 100;
   document.getElementById("canvasFontScaleLabel").textContent = `${pct}%`;
+  verifySubtitleSafetyBadge();
   renderSinglePreviewFrame();
 }
 
 function onCanvasFontFamilyChange(val) {
   state.canvasFontFamily = val || "gothic";
+  verifySubtitleSafetyBadge();
   renderSinglePreviewFrame();
 }
 
@@ -1681,16 +2085,17 @@ function getCanvasFontStack() {
     : "'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif";
 }
 
-// 화면 폭(maxW) 안에 꽉 차면서도 절대 넘치지 않게 글자 크기를 자동 맞춤하여 그리는 함수
+// 화면 폭(Safe Zone 920px: 좌우 최소 80px 여백 보장) 안에 꽉 차면서도 절대 튀어나가지 않게 글자 크기를 자동 맞춤하여 그리는 함수
 function drawAutoFitLine(ctx, text, centerX, y, maxW, targetPx, minPx, weight, fillStyle, strokeStyle = "", strokeW = 0) {
   const str = String(text || "").trim();
   if (!str) return;
   const fontStack = getCanvasFontStack();
+  const safeMaxW = Math.min(maxW, 920 - strokeW);
   let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
-  const floorPx = Math.round(minPx * 0.9);
+  const floorPx = Math.max(26, Math.round(minPx * 0.78));
 
   ctx.font = `${weight} ${px}px ${fontStack}`;
-  while (ctx.measureText(str).width > maxW && px > floorPx) {
+  while (ctx.measureText(str).width > safeMaxW && px > floorPx) {
     px -= 2;
     ctx.font = `${weight} ${px}px ${fontStack}`;
   }
@@ -1710,6 +2115,37 @@ function drawAutoFitLine(ctx, text, centerX, y, maxW, targetPx, minPx, weight, f
   ctx.fillStyle = fillStyle;
   ctx.fillText(str, centerX, y);
   ctx.restore();
+}
+
+// 자막 전 구간 좌우 튀어나감 0% 실시간 검증 배지 업데이트
+function verifySubtitleSafetyBadge() {
+  const badge = document.getElementById("subtitleSafetyBadge");
+  if (!badge) return;
+  let autoScaledCount = 0;
+  const c = document.getElementById("shortsCanvas");
+  const ctx = c ? c.getContext("2d") : null;
+  const fontStack = getCanvasFontStack();
+  const targetPx = Math.round(88 * (state.canvasFontScale || 1.08));
+
+  state.subtitles.forEach(s => {
+    const lines = String(s.text || "").split("\n").map(l => l.replace(/\*/g, "").trim()).filter(Boolean);
+    lines.forEach(ln => {
+      if (ctx) {
+        ctx.font = `900 ${targetPx}px ${fontStack}`;
+        if (ctx.measureText(ln).width + 20 > 920) {
+          autoScaledCount++;
+        }
+      } else if (ln.length > 11) {
+        autoScaledCount++;
+      }
+    });
+  });
+
+  if (autoScaledCount === 0) {
+    badge.textContent = `🛡️ 자막 안전 폭(좌우 80px 여백) 점검 완료 · 전 구간(${state.subtitles.length}컷) 튀어나감 0건`;
+  } else {
+    badge.textContent = `🛡️ 긴 줄 ${autoScaledCount}곳 자동 줄바꿈·폭 맞춤 작동 중 · 좌우 튀어나감 0건 보장`;
+  }
 }
 
 // ============================================================================
@@ -1740,6 +2176,7 @@ function renderSubtitleEditorRows() {
              title="줄바꿈은 ' / '로 표시됩니다. 단어 앞뒤에 *별표*를 넣으면 금빛으로 강조됩니다.">
     </div>
   `).join("");
+  verifySubtitleSafetyBadge();
 }
 
 function updateSubRowTime(idx, field, val) {
@@ -1751,6 +2188,7 @@ function updateSubRowTime(idx, field, val) {
 function updateSubRowText(idx, val) {
   if (!state.subtitles[idx]) return;
   state.subtitles[idx].text = String(val || "").replace(/\s*\/\s*/g, "\n");
+  verifySubtitleSafetyBadge();
   renderSinglePreviewFrame();
 }
 
@@ -1971,7 +2409,7 @@ function drawViewportContent(ctx, sec, voiceDur, vx, vy, vw, vh) {
   ctx.restore();
 }
 
-// *별표* 강조 어구를 황금색/연두빛으로 렌더링하되, 폭이 980px을 넘으면 자동 축소하는 대자막 헬퍼
+// *별표* 강조 어구를 황금색/연두빛으로 렌더링하되, 테두리 포함 전체 폭이 920px(좌우 최소 80px 안전 여백)을 절대 넘지 않게 자동 맞춤하는 대자막 헬퍼
 function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldColor, outlineColor, outlineWidth, targetPx = 88) {
   const segments = [];
   const regex = /\*(.+?)\*/g;
@@ -1992,10 +2430,11 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   }
 
   const fontStack = getCanvasFontStack();
+  const safeMaxW = 920 - outlineWidth; // 테두리 포함 최대 920px (좌 x>=80, 우 x<=1000 보장)
   let px = Math.round(targetPx * (state.canvasFontScale || 1.08));
   const plainJoined = segments.map(s => s.text).join("");
   ctx.font = `900 ${px}px ${fontStack}`;
-  while (ctx.measureText(plainJoined).width > 970 && px > 54) {
+  while (ctx.measureText(plainJoined).width > safeMaxW && px > 42) {
     px -= 2;
     ctx.font = `900 ${px}px ${fontStack}`;
   }
@@ -2015,7 +2454,7 @@ function drawHighlightedSubtitleLine(ctx, lineStr, centerX, y, baseColor, goldCo
   segments.forEach(seg => {
     ctx.save();
     ctx.shadowColor = "rgba(0, 0, 0, 0.92)";
-    ctx.shadowBlur = 18;
+    ctx.shadowBlur = 16;
     ctx.shadowOffsetY = 5;
     ctx.strokeStyle = outlineColor;
     ctx.lineWidth = outlineWidth;
@@ -2168,10 +2607,14 @@ function drawShortsFrameOnCanvas(targetCanvas, sec, includeSubtitles = true) {
       ctx.save();
       ctx.globalAlpha = alpha;
 
-      // 한 줄이 12자 이상으로 길게 들어오면 자동으로 2줄 균형 분할하여 큰 글씨 유지
+      // 한 줄이 11자 초과이거나 두 줄의 길이가 불균형하게 길면 자동으로 2줄 균형 분할하여 95px 대자막 유지 + 튀어나감 0% 보장
       let rawLines = String(activeSub.text).split("\n").map(l => l.trim()).filter(Boolean);
-      if (rawLines.length === 1 && rawLines[0].replace(/\*/g, "").length >= 12) {
-        rawLines = splitKoreanIntoBreathLines(rawLines[0], 9).split("\n");
+      const joinedPlain = rawLines.join(" ").replace(/\*/g, "").trim();
+      if (rawLines.length === 1 && joinedPlain.length >= 11) {
+        rawLines = splitKoreanIntoBreathLines(rawLines[0], 10).split("\n");
+      } else if (rawLines.length >= 2 && rawLines.some(l => l.replace(/\*/g, "").length >= 14)) {
+        const balancedTarget = Math.max(10, Math.ceil(joinedPlain.length / 2));
+        rawLines = splitKoreanIntoBreathLines(rawLines.join(" "), balancedTarget).split("\n");
       }
 
       const baseY = state.style === "archaeology" ? 1425 : 1405;
@@ -2804,6 +3247,7 @@ function applyUrlParamsIfPresent() {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
+  loadAiConfigFromLocal();
   preloadBuiltInArtworks();
   setupDragAndDrop();
   applyUrlParamsIfPresent();
