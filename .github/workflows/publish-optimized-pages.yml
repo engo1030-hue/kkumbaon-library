@@ -1,0 +1,100 @@
+name: Publish optimized Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: optimized-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - name: Prepare published copy
+        run: |
+          python3 -m venv .publish-venv
+          .publish-venv/bin/pip install Pillow
+          mkdir -p _site
+          rsync -a --exclude=.git --exclude=.github --exclude=.publish-venv --exclude=_site --exclude=.DS_Store ./ _site/
+          .publish-venv/bin/python - <<'PY'
+          from pathlib import Path
+          from PIL import Image, ImageOps
+          import os
+
+          root = Path('_site/assets')
+          folders = ('figures', 'events', 'behinds', 'atrium', 'webp', 'bible_orig',
+                     'figures_tier1', 'cities', 'natural_history', 'church_support', 'lineage')
+          saved = 0
+          changed = 0
+          def optimize(maximum, quality):
+              global saved, changed
+              for folder in folders:
+                for path in (root / folder).rglob('*'):
+                  suffix = path.suffix.lower()
+                  if not path.is_file() or suffix not in ('.jpg', '.jpeg', '.webp'):
+                      continue
+                  original = Path('assets') / path.relative_to(root)
+                  if not original.is_file():
+                      continue
+                  original_size = path.stat().st_size
+                  if original_size < 100_000:
+                      continue
+                  temporary = path.with_name(path.name + '.optimized')
+                  try:
+                      with Image.open(original) as source:
+                          image = ImageOps.exif_transpose(source)
+                          image.thumbnail((maximum, maximum), Image.Resampling.LANCZOS)
+                          if suffix in ('.jpg', '.jpeg'):
+                              image = image.convert('RGB')
+                              image.save(temporary, format='JPEG', quality=quality, optimize=True, progressive=True)
+                          else:
+                              image.save(temporary, format='WEBP', quality=quality, method=4)
+                      optimized_size = temporary.stat().st_size
+                      if optimized_size < original_size:
+                          os.replace(temporary, path)
+                          saved += original_size - optimized_size
+                          changed += 1
+                      else:
+                          temporary.unlink()
+                  except Exception as exc:
+                      temporary.unlink(missing_ok=True)
+                      print(f'Kept original {path}: {exc}')
+          def site_size():
+              return sum(path.stat().st_size for path in Path('_site').rglob('*') if path.is_file())
+
+          optimize(1280, 65)
+          total = site_size()
+          if total > 980_000_000:
+              print(f'First pass: {total:,} bytes; reducing only the published copy once more')
+              optimize(1024, 55)
+              total = site_size()
+          print(f'Optimized {changed} images; saved {saved:,} bytes; publish files total {total:,} bytes')
+          if total > 980_000_000:
+              raise SystemExit('Published copy still exceeds 1 GB; keep the previous site live.')
+          PY
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
+        with:
+          timeout: 1800000
