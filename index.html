@@ -232,6 +232,25 @@
       overflow: hidden;
     }
 
+    .library-art-band {
+      min-height: clamp(130px, 16vw, 200px);
+      max-width: 1360px;
+      margin: 16px auto;
+      border-radius: 16px;
+      background: linear-gradient(90deg, rgba(20, 15, 11, .76), rgba(20, 15, 11, .08)),
+        url('assets/online_spaces_20261110/library_atrium_art.webp') center 54% / cover;
+      display: flex;
+      align-items: end;
+      padding: 22px 28px;
+      color: #fff8e9;
+      font: 700 clamp(18px, 2.2vw, 28px) / 1.4 Georgia, 'Noto Serif KR', serif;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, .8);
+      box-shadow: 0 8px 28px rgba(26, 18, 11, .16);
+    }
+    @media (max-width: 760px) {
+      .library-art-band { margin: 12px 14px; padding: 16px 18px; }
+    }
+
     .hero-inner {
       max-width: 1360px;
       margin: 0 auto;
@@ -3754,6 +3773,7 @@ body.dark-theme .knb-card-link {
       <button type="button" data-cat="feasts" onclick="navigateToHall('feasts')">성경 절기</button>
       <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">영상실</button>
       <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">웨슬리관</button>
+      <a href="kkumdion_bookshelf.html" style="text-decoration:none; display:inline-flex; align-items:center; background:linear-gradient(135deg,#3A2614,#24170B); color:#F7DDA0 !important; border:1px solid #C59B38; border-radius:7px; padding:4px 10px; font-weight:800; font-size:clamp(12px,0.82vw,13.5px);" title="꿈디온 서가 — 8,000자 심층 연구 총서 및 꿈디온 전용 북뷰어">📚 꿈디온 서가</a>
       <button type="button" class="nav-search-btn" onclick="openQuickSearchModal()" title="성경 인물·사건·지명·원어·문헌 통합 검색 (단축키: Cmd+K)">🔍 자료 검색</button>
       <a href="kkumdido_church_support_annex.html" class="nav-studio-trigger" style="text-decoration:none; display:inline-flex; align-items:center;" title="꿈디도 별관 — 모세의 지팡이 · 아론의 지팡이 · 다음세대 스튜디오 · 말씀 등불">🏛️ 별관으로 가기 ↗</a>
       <button type="button" class="nav-guide-btn" onclick="openBlueprintModal()">도서관 안내 ↗</button>
@@ -3775,6 +3795,7 @@ body.dark-theme .knb-card-link {
         <button type="button" data-cat="feasts" onclick="navigateToHall('feasts')">🕎 성경 절기</button>
         <button type="button" data-cat="cinema" onclick="navigateToHall('cinema')">🎬 영상실</button>
         <button type="button" data-cat="wesley" onclick="navigateToHall('wesley')">✝️ 웨슬리관</button>
+        <button type="button" onclick="window.location.href='kkumdion_bookshelf.html'">📚 꿈디온 서가</button>
       </div>
       <div class="kkumdido-12halls-grid">
         <a href="kkumdido_12archives_viewer.html?archive=1" class="col-first"><span class="h-no">1관</span>인물대백과</a>
@@ -3835,6 +3856,10 @@ body.dark-theme .knb-card-link {
         우리도 한 걸음씩 걸으며 빈 서고에 책을 꽂아 갑니다.”
       </div>
     </div>
+  </section>
+
+  <section class="library-art-band" aria-label="꿈디도 말씀의 서재 풍경">
+    <span>말씀의 서재에 오신 것을 환영합니다</span>
   </section>
 
 <main class="entrance-main">

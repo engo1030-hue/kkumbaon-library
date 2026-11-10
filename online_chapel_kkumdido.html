@@ -146,6 +146,11 @@
   .avatar-label.is-me {
     border-color: #f5d78e; color: #ffeaad;
   }
+  .avatar-portrait {
+    width: 25px; height: 25px; display: block; border-radius: 50%;
+    object-fit: cover; border: 1px solid rgba(245, 207, 118, 0.75);
+    background: #f5e7d2;
+  }
   .avatar-bubble {
     position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
     padding: 5px 12px; border-radius: 6px;
@@ -2029,6 +2034,22 @@ html, body {
     world.add(frameGroup);
   });
 
+  // 회랑 사이의 조용한 서재 풍경. 기존 성화 8점과 감상 동선은 유지한다.
+  const librarySceneFrame = new THREE.Group();
+  const librarySceneBack = new THREE.Mesh(new THREE.BoxGeometry(4.5, 2.65, 0.1), walnutMat);
+  const librarySceneRim = new THREE.Mesh(new THREE.BoxGeometry(4.3, 2.45, 0.13), goldMat);
+  const librarySceneTexture = kkTexLoader.load('assets/online_spaces_20261110/library_atrium_art.webp');
+  librarySceneTexture.colorSpace = THREE.SRGBColorSpace;
+  const librarySceneImage = new THREE.Mesh(
+    new THREE.PlaneGeometry(4.08, 2.23),
+    new THREE.MeshBasicMaterial({ map: librarySceneTexture, side: THREE.DoubleSide })
+  );
+  librarySceneImage.position.z = 0.09;
+  librarySceneFrame.add(librarySceneBack, librarySceneRim, librarySceneImage);
+  librarySceneFrame.position.set(-14.2, 2.75, 0);
+  librarySceneFrame.rotation.y = Math.PI / 2;
+  world.add(librarySceneFrame);
+
   // 우물을 둘러싼 8개의 유럽 다크 월넛 & 크림슨 벨벳 묵상 벤치 + 4개의 우물가 무릎기도 방석
   const benches = [];
   const cushionMat = new THREE.MeshStandardMaterial({
@@ -2216,6 +2237,16 @@ html, body {
     return g;
   }
 
+  const avatarLinenTexture = kkTexLoader.load('assets/online_spaces_20261110/avatar_linen_weave.webp');
+  avatarLinenTexture.wrapS = avatarLinenTexture.wrapT = THREE.RepeatWrapping;
+  avatarLinenTexture.colorSpace = THREE.SRGBColorSpace;
+
+  function avatarBadgeMarkup(gender, isMe) {
+    if (!isMe) return gender === 'F' ? '👩' : '👨';
+    const icon = gender === 'F' ? 'avatar_female_portrait.webp' : 'avatar_male_portrait.webp';
+    return `<img class="avatar-portrait" src="assets/online_spaces_20261110/${icon}" alt="">`;
+  }
+
   function buildHumanRig(custom, isMe = false) {
     const gender = custom.gender === 'F' ? 'F' : 'M';
     const hairStyle = Number(custom.hairStyle) || 0;
@@ -2231,7 +2262,7 @@ html, body {
 
     const skinMat = new THREE.MeshStandardMaterial({ color: 0xf6d8c0, roughness: 0.58 });
     const hairMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(hairColorHex), roughness: 0.72 });
-    const mainClothMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(outfitColorHex), roughness: 0.68 });
+    const mainClothMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(outfitColorHex), map: avatarLinenTexture, roughness: 0.82 });
     const pantsColor = gender === 'M'
       ? (outfitType === 'casual' ? 0x3b424c : 0x1e242d)
       : 0x2b2623;
@@ -2560,7 +2591,7 @@ html, body {
 
     const labelEl = document.createElement('div');
     labelEl.className = 'avatar-label' + (isMe ? ' is-me' : '');
-    const genderBadge = cfg.gender === 'F' ? '👩' : '👨';
+    const genderBadge = avatarBadgeMarkup(cfg.gender, isMe);
     labelEl.innerHTML = `<span class="gender-span">${genderBadge}</span><span class="name-span">${name}</span>`;
     labelsLayer.appendChild(labelEl);
 
@@ -2596,7 +2627,7 @@ html, body {
     av.rig = buildHumanRig(av.custom, av.isMe);
     av.group.add(av.rig.root);
     const gSpan = av.labelEl.querySelector('.gender-span');
-    if (gSpan) gSpan.textContent = av.custom.gender === 'F' ? '👩' : '👨';
+    if (gSpan) gSpan.innerHTML = avatarBadgeMarkup(av.custom.gender, av.isMe);
   }
 
   function showBubble(av, text, duration = 4000) {

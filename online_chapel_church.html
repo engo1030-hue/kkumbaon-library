@@ -154,6 +154,11 @@
   .avatar-label.is-me {
     border-color: rgba(245, 207, 118, 0.9); color: #ffeaad;
   }
+  .avatar-portrait {
+    width: 25px; height: 25px; display: block; border-radius: 50%;
+    object-fit: cover; border: 1px solid rgba(245, 207, 118, 0.75);
+    background: #f5e7d2;
+  }
   .avatar-bubble {
     position: absolute; bottom: calc(100% + 7px); left: 50%; transform: translateX(-50%);
     padding: 5px 12px; border-radius: 6px;
@@ -1689,7 +1694,7 @@ html, body {
 
   // 바깥 잔디 대정원 (180m x 180m 광활한 감람산·갈릴리 성전 정원)
   const gardenGeo = new THREE.PlaneGeometry(180, 180);
-  const gardenMat = new THREE.MeshStandardMaterial({ color: 0x1d291a, roughness: 0.95 });
+  const gardenMat = new THREE.MeshStandardMaterial({ color: 0x33462c, roughness: 0.95 });
   const gardenMesh = new THREE.Mesh(gardenGeo, gardenMat);
   gardenMesh.rotation.x = -Math.PI / 2;
   gardenMesh.position.set(0, -0.05, 14);
@@ -1753,6 +1758,15 @@ html, body {
   pondGroup.position.set(-15.5, 0, 29.0);
   worldGroup.add(pondGroup);
 
+  // 잔잔한 수면 고리: 분수 주변에 빛이 닿는 물결을 낮은 투명도로 표현한다.
+  const pondRippleMat = new THREE.MeshBasicMaterial({ color: 0xa7dce3, transparent: true, opacity: 0.26, side: THREE.DoubleSide, depthWrite: false });
+  [2.4, 4.1, 5.7].forEach(radius => {
+    const ripple = new THREE.Mesh(new THREE.RingGeometry(radius, radius + 0.035, 48), pondRippleMat);
+    ripple.rotation.x = -Math.PI / 2;
+    ripple.position.set(-15.5, 0.012, 29.0);
+    worldGroup.add(ripple);
+  });
+
   // 우측 감람산 야외 원목 정자(Pergola 쉼터, x=15.5, z=29.0)
   const pergolaGroup = new THREE.Group();
   const pergolaWoodMat = new THREE.MeshStandardMaterial({
@@ -1804,6 +1818,35 @@ html, body {
     tGroup.add(trunk, crown1);
     tGroup.position.set(tx, 0, tz);
     worldGroup.add(tGroup);
+  });
+
+  // 산책로 양옆의 작은 야생화 화단. 통행로와 벤치 동선은 비워 둔다.
+  const flowerStemMat = new THREE.MeshStandardMaterial({ color: 0x4c6a3d, roughness: 0.9 });
+  const flowerColors = [0xe4c889, 0xe8d9bd, 0xc7887d, 0xd2b6cb];
+  const flowerMats = flowerColors.map(color => new THREE.MeshStandardMaterial({ color, roughness: 0.8 }));
+  const flowerStemGeo = new THREE.CylinderGeometry(0.014, 0.018, 0.23, 5);
+  const flowerHeadGeo = new THREE.SphereGeometry(0.10, 7, 6);
+  [22.5, 26.3, 34.0, 38.0, 41.0].forEach((z, bedIndex) => {
+    [-5.0, 5.0].forEach((x, sideIndex) => {
+      const bed = new THREE.Mesh(
+        new THREE.CircleGeometry(0.78, 18),
+        new THREE.MeshStandardMaterial({ color: 0x455a36, roughness: 1 })
+      );
+      bed.rotation.x = -Math.PI / 2;
+      bed.position.set(x, -0.018, z);
+      worldGroup.add(bed);
+      for (let i = 0; i < 6; i++) {
+        const angle = i * Math.PI * 2 / 6 + bedIndex * 0.35;
+        const radius = i % 2 ? 0.45 : 0.29;
+        const fx = x + Math.cos(angle) * radius;
+        const fz = z + Math.sin(angle) * radius;
+        const stem = new THREE.Mesh(flowerStemGeo, flowerStemMat);
+        stem.position.set(fx, 0.105, fz);
+        const head = new THREE.Mesh(flowerHeadGeo, flowerMats[(i + bedIndex + sideIndex) % flowerMats.length]);
+        head.position.set(fx, 0.24, fz);
+        worldGroup.add(stem, head);
+      }
+    });
   });
 
   // 산책길 석등(가로등) 14개
@@ -2688,13 +2731,53 @@ html, body {
    *      위치: x = -29.5m ~ -16.5m, z = -14.0m ~ +17.5m
    * ============================================================== */
   const smallChapelGroup = new THREE.Group();
+  function addQuietWallArt(parent, imagePath, x, y, z, rotationY, width, height, frameColor = 0x8d6b39) {
+    const artGroup = new THREE.Group();
+    const frame = new THREE.Mesh(
+      new THREE.BoxGeometry(width + 0.20, height + 0.20, 0.08),
+      new THREE.MeshStandardMaterial({ color: frameColor, roughness: 0.48, metalness: 0.18 })
+    );
+    const texture = euroTexLoader.load(imagePath);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    const painting = new THREE.Mesh(
+      new THREE.PlaneGeometry(width, height),
+      new THREE.MeshBasicMaterial({ map: texture })
+    );
+    painting.position.z = 0.048;
+    artGroup.add(frame, painting);
+    artGroup.position.set(x, y, z);
+    artGroup.rotation.y = rotationY;
+    parent.add(artGroup);
+  }
   const scFloor = new THREE.Mesh(
     new THREE.PlaneGeometry(14.0, 31.0),
-    new THREE.MeshStandardMaterial({ color: 0xcab08a, roughness: 0.65 })
+    new THREE.MeshStandardMaterial({ color: 0x8f806e, roughness: 0.82 })
   );
   scFloor.rotation.x = -Math.PI / 2;
   scFloor.position.set(-23.0, 0.015, 1.5);
   smallChapelGroup.add(scFloor);
+  addQuietWallArt(smallChapelGroup, 'assets/online_spaces_20261110/chapel_prayer_garden.webp', -29.32, 3.05, -3.3, Math.PI / 2, 5.15, 2.9);
+
+  const prayerRunner = new THREE.Mesh(
+    new THREE.PlaneGeometry(1.9, 12.0),
+    new THREE.MeshStandardMaterial({ color: 0x704842, roughness: 0.94 })
+  );
+  prayerRunner.rotation.x = -Math.PI / 2;
+  prayerRunner.position.set(-23.0, 0.031, -3.0);
+  smallChapelGroup.add(prayerRunner);
+
+  // 새벽기도 채플의 조도는 낮게 유지하고, 십자가 양옆에 작은 등불만 둔다.
+  [-27.8, -18.2].forEach(x => {
+    const lamp = new THREE.Mesh(
+      new THREE.SphereGeometry(0.18, 12, 10),
+      new THREE.MeshBasicMaterial({ color: 0xffd99b })
+    );
+    lamp.position.set(x, 3.05, -14.35);
+    smallChapelGroup.add(lamp);
+    const glow = new THREE.PointLight(0xffc985, 0.42, 5.5);
+    glow.position.copy(lamp.position);
+    smallChapelGroup.add(glow);
+  });
 
   const scStage = new THREE.Mesh(new THREE.BoxGeometry(11.0, 0.36, 4.2), stageMapleMat);
   scStage.position.set(-23.0, 0.18, -11.5);
@@ -2798,11 +2881,46 @@ html, body {
 
   const ssFloor = new THREE.Mesh(
     new THREE.PlaneGeometry(14.0, 15.5),
-    new THREE.MeshStandardMaterial({ color: 0xdbe7f4, roughness: 0.55 })
+    new THREE.MeshStandardMaterial({ color: 0xa9b9b5, roughness: 0.82 })
   );
   ssFloor.rotation.x = -Math.PI / 2;
   ssFloor.position.set(23.0, 0.015, -6.5);
   eduAnnexGroup.add(ssFloor);
+  addQuietWallArt(eduAnnexGroup, 'assets/online_spaces_20261110/chapel_children_art.webp', 29.32, 3.10, -5.6, -Math.PI / 2, 4.65, 3.1);
+
+  // 자리에 앉는 동선을 해치지 않는 낮고 부드러운 색의 놀이·배움 러그.
+  const schoolRugBorder = new THREE.Mesh(
+    new THREE.PlaneGeometry(10.7, 10.7),
+    new THREE.MeshStandardMaterial({ color: 0xb97763, roughness: 0.95 })
+  );
+  schoolRugBorder.rotation.x = -Math.PI / 2;
+  schoolRugBorder.position.set(23.0, 0.031, -5.25);
+  const schoolRug = new THREE.Mesh(
+    new THREE.PlaneGeometry(10.15, 10.15),
+    new THREE.MeshStandardMaterial({ color: 0xe9d8b5, roughness: 0.96 })
+  );
+  schoolRug.rotation.x = -Math.PI / 2;
+  schoolRug.position.set(23.0, 0.035, -5.25);
+  eduAnnexGroup.add(schoolRugBorder, schoolRug);
+
+  function addLowBookshelf(parent, x, z, bookColors) {
+    const shelfWood = new THREE.MeshStandardMaterial({ color: 0x805d3e, roughness: 0.72 });
+    const shelf = new THREE.Mesh(new THREE.BoxGeometry(2.2, 0.8, 0.42), shelfWood);
+    shelf.position.set(x, 0.4, z);
+    parent.add(shelf);
+    const top = new THREE.Mesh(new THREE.BoxGeometry(2.28, 0.08, 0.5), stageMapleMat);
+    top.position.set(x, 0.84, z);
+    parent.add(top);
+    bookColors.forEach((color, i) => {
+      const book = new THREE.Mesh(
+        new THREE.BoxGeometry(0.17, 0.42 + (i % 3) * 0.07, 0.27),
+        new THREE.MeshStandardMaterial({ color, roughness: 0.85 })
+      );
+      book.position.set(x - 0.78 + i * 0.22, 1.08 + (i % 3) * 0.035, z);
+      parent.add(book);
+    });
+  }
+  addLowBookshelf(eduAnnexGroup, 17.7, -9.55, [0x8e4953, 0x4e7386, 0xc88e4f, 0x698464, 0x765f8e, 0xa95d4e, 0x3e6d82, 0xb47a42]);
 
   const ssStage = new THREE.Mesh(new THREE.BoxGeometry(11.0, 0.32, 3.6), stageMapleMat);
   ssStage.position.set(23.0, 0.16, -12.0);
@@ -2848,11 +2966,13 @@ html, body {
   // [남측] 장년부 세미나 · 속회/셀모임 라운지 (z = +2.5m ~ +18.0m)
   const adultFloor = new THREE.Mesh(
     new THREE.PlaneGeometry(14.0, 15.5),
-    new THREE.MeshStandardMaterial({ color: 0xd6c3a5, roughness: 0.55 })
+    new THREE.MeshStandardMaterial({ color: 0x9c866c, roughness: 0.82 })
   );
   adultFloor.rotation.x = -Math.PI / 2;
   adultFloor.position.set(23.0, 0.015, 10.2);
   eduAnnexGroup.add(adultFloor);
+
+  addLowBookshelf(eduAnnexGroup, 28.15, 16.4, [0x7f4d45, 0x596e62, 0x9a7745, 0x5c637e, 0x795b4d, 0x667453]);
 
   const adultBanner = new THREE.Mesh(
     new THREE.PlaneGeometry(9.4, 1.5),
@@ -2865,6 +2985,13 @@ html, body {
   eduAnnexGroup.add(adultBanner);
 
   [[20.2, 7.6], [25.8, 7.6], [23.0, 13.2]].forEach(([tx, tz], tIdx) => {
+    const conversationRug = new THREE.Mesh(
+      new THREE.CircleGeometry(2.28, 32),
+      new THREE.MeshStandardMaterial({ color: tIdx === 1 ? 0x6f8179 : 0x7e6c60, roughness: 0.96 })
+    );
+    conversationRug.rotation.x = -Math.PI / 2;
+    conversationRug.position.set(tx, 0.032, tz);
+    eduAnnexGroup.add(conversationRug);
     const tblTop = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, 0.08, 24), stageMapleMat);
     tblTop.position.set(tx, 0.74, tz);
     eduAnnexGroup.add(tblTop);
@@ -3520,6 +3647,16 @@ html, body {
     return pGroup;
   }
 
+  const avatarLinenTexture = euroTexLoader.load('assets/online_spaces_20261110/avatar_linen_weave.webp');
+  avatarLinenTexture.wrapS = avatarLinenTexture.wrapT = THREE.RepeatWrapping;
+  avatarLinenTexture.colorSpace = THREE.SRGBColorSpace;
+
+  function avatarBadgeMarkup(gender, isMe) {
+    if (!isMe) return gender === 'F' ? '👩' : '👨';
+    const icon = gender === 'F' ? 'avatar_female_portrait.webp' : 'avatar_male_portrait.webp';
+    return `<img class="avatar-portrait" src="assets/online_spaces_20261110/${icon}" alt="">`;
+  }
+
   // 사람다운 다관절 3D 캐릭터 메쉬 조립
   function buildHumanRig(cfg, isMe) {
     const gender = cfg.gender === 'F' ? 'F' : 'M';
@@ -3532,7 +3669,7 @@ html, body {
 
     const skinMat = new THREE.MeshStandardMaterial({ color: 0xf5d8be, roughness: 0.62 });
     const hairMat = new THREE.MeshStandardMaterial({ color: hairColor, roughness: 0.78 });
-    const mainClothMat = new THREE.MeshStandardMaterial({ color: outfitColor, roughness: 0.72 });
+    const mainClothMat = new THREE.MeshStandardMaterial({ color: outfitColor, map: avatarLinenTexture, roughness: 0.82 });
     const pantsMat = new THREE.MeshStandardMaterial({
       color: outfitType === 'suit' ? (gender === 'M' ? 0x23272e : outfitColor) : 0x32363d,
       roughness: 0.78
@@ -3927,7 +4064,7 @@ html, body {
     // HTML 이름표 생성
     const labelEl = document.createElement('div');
     labelEl.className = 'avatar-label' + (isMe ? ' is-me' : '');
-    const genderBadge = cfg.gender === 'F' ? '👩' : '👨';
+    const genderBadge = avatarBadgeMarkup(cfg.gender, isMe);
     labelEl.innerHTML = `<span class="gender-span">${genderBadge}</span><span class="name-span">${name}</span>`;
     labelsLayer.appendChild(labelEl);
 
@@ -3980,7 +4117,7 @@ html, body {
     av.rig = buildHumanRig(av.custom, av.isMe);
     av.group.add(av.rig.root);
     const gSpan = av.labelEl.querySelector('.gender-span');
-    if (gSpan) gSpan.textContent = av.custom.gender === 'F' ? '👩' : '👨';
+    if (gSpan) gSpan.innerHTML = avatarBadgeMarkup(av.custom.gender, av.isMe);
   }
 
   function showAvatarBubble(av, message, duration = 4200) {
@@ -6381,10 +6518,14 @@ html, body {
         av.group.position.z
       );
       headWorld.project(camera);
-      if (headWorld.z > 1) {
+      const labelDistance = camera.position.distanceTo(av.group.position);
+      const labelRange = window.innerWidth < 680 ? 10 : 18;
+      const hasMessage = !!av.labelEl.querySelector('.avatar-bubble');
+      if (headWorld.z > 1 || headWorld.z < -1 || (!av.isMe && !hasMessage && labelDistance > labelRange)) {
         av.labelEl.style.display = 'none';
       } else {
         av.labelEl.style.display = 'flex';
+        av.labelEl.style.opacity = av.isMe || labelDistance < 12 ? '1' : '0.78';
         const sx = (headWorld.x * 0.5 + 0.5) * window.innerWidth;
         const sy = (-headWorld.y * 0.5 + 0.5) * window.innerHeight;
         av.labelEl.style.left = `${sx}px`;
