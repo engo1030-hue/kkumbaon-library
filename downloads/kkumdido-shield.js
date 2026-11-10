@@ -1,8 +1,8 @@
 /*!
  * 🏛️ 꿈바온 디지털도서관 (꿈디도) 통합 보안·저작권 보호 및
  *    전 스튜디오(설교 프로그램 · 곳간 · 모세의 지팡이 · 교회학교 · 가정예배 · 주석 · 번역기)
- *    「도서관 이용증 (Google·카카오 간편 로그인)」 통합 관문(SSO), 인쇄 제어 &
- *    👑 목사님 전용 「가입자 명부 · 다녀간 방문자 · 스튜디오 사용기록 클라우드 관제 시스템」 v3.0
+ *    「도서관 이용증 (내 브라우저 단독 보관 · 무설치 즉시 발급)」 통합 관문, 인쇄 제어 &
+ *    👑 목사님 전용 「이용증 · 스튜디오 사용기록 로컬 관제 시스템」 v3.1 (외부 공개 브로커 전송 전면 중단)
  */
 (function () {
   'use strict';
@@ -13,12 +13,10 @@
   var VAULT_STORAGE_KEY = 'kkumdido_admin_vault_v2';
   var SESSION_VISIT_KEY = 'kkumdido_session_visited_pages_v2';
 
-  // 클라우드 동기화 채널 (HTTPS Event Stream + MQTT Retained Broker · 개인정보 마스킹 및 암호화 봉투 적용)
-  var NTFY_TOPIC = 'kkumdido_vault_v2_9c84a7e2b1';
-  var NTFY_URL = 'https://ntfy.sh/' + NTFY_TOPIC;
-  var MQTT_BROKER_URL = 'wss://broker.emqx.io:8084/mqtt';
-  var MQTT_PREFIX = 'kkumbaon/kkumdido/v2';
-  // 관리자 PIN 평문 저장 금지 (클간사 보안 점검 반영: 단방향 솔트 해시 검증만 수행)
+  // [보안·프라이버시 패치 2026.11.10] 외부 공개 중계기(MQTT broker.emqx.io 및 ntfy.sh) 전송 전면 중단!
+  // 모든 이용증 정보와 열람 기록은 외부로 전송되지 않고 사용자의 브라우저(localStorage)에만 안전하게 보관됩니다.
+  var CLOUD_TELEMETRY_ENABLED = false;
+  // 관리자 PIN 평문 저장 금지 (단방향 솔트 해시 검증만 수행)
   var ADMIN_PIN_HASH = 'KKD-PIN-0E32D8A9-92033640';
   var ANNEX_WELL_KEY = 'kkumdido_annex_well_v1';
 
@@ -209,7 +207,7 @@
     if (path.indexOf('kkumdido_12archives') !== -1 || path.indexOf('12대아카이브') !== -1) return '🏛️ 12대 아카이브 3,650모듈 서고';
     if (path.indexOf('kkumdido_gotgan') !== -1) return '🏺 내 설교 곳간 (개인 서재)';
     if (path.indexOf('kkumdido_gyojeok') !== -1 || path.indexOf('꿈바온_무료교적') !== -1) return '🐑 무료 교적 스튜디오 (양떼 수첩)';
-    if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🎨 전도지·절기 인쇄물 공방';
+    if (path.indexOf('kkumdido_jipangi') !== -1 || path.indexOf('kkumbaon-moses') !== -1) return '🎨 주보·전도지·기도문·미디어 공방';
     if (path.indexOf('kkumdido_sunday_school') !== -1) return '🌱 교회학교 교사 스튜디오';
     if (path.indexOf('kkumdido_13dept') !== -1 || path.indexOf('13대부서별_52주') !== -1) return '📋 13부서 52주 커리큘럼';
     if (path.indexOf('kkumdido_family_worship') !== -1) return '🕯️ 52주 가정예배 스튜디오';
@@ -377,7 +375,7 @@
       localStorage.setItem(MEMBER_LOG_KEY, JSON.stringify(reg.slice(-300)));
     } catch (e) {}
     syncAuthState();
-    recordTelemetryEvent('signup', '도서관 이용증 발급·로그인 (' + (card.provider || 'Google') + ')', card);
+    recordTelemetryEvent('signup', '도서관 이용증 발급 (' + (card.provider || '내 브라우저 보관') + ')', card);
   }
 
   function clearCard() {
@@ -1164,204 +1162,29 @@
     if (changed) saveLocalVault(vault);
   }
 
-  // 클라우드 전송 (1: ntfy.sh HTTPS 스트림, 2: MQTT Retained · 공개 브로커 개인정보 마스킹 보호 적용)
+  // [프라이버시 보호 패치 2026.11.10] 외부 공개 브로커(MQTT broker.emqx.io / ntfy.sh) 전송 전면 중단
   function pushEventToCloud(ev, vault) {
-    var safeEv = sanitizeForPublicCloud(ev);
-    // 1) ntfy.sh 전송 (CORS 허용 text/plain JSON)
-    try {
-      fetch(NTFY_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
-        body: JSON.stringify(safeEv)
-      }).catch(function () {});
-    } catch (e) {}
-
-    // 2) MQTT Retained 전송 (개별 회원 카드 + 방문자 + 마스터 볼트 · 개인정보 마스킹본)
-    ensureMqttClient(function (client) {
-      if (!client || !client.connected) return;
-      try {
-        client.publish(MQTT_PREFIX + '/events', JSON.stringify(safeEv), { qos: 0, retain: false });
-        if (ev.cardNo && vault.members[ev.cardNo]) {
-          client.publish(
-            MQTT_PREFIX + '/members/' + ev.cardNo,
-            JSON.stringify(sanitizeForPublicCloud(vault.members[ev.cardNo])),
-            { qos: 1, retain: true }
-          );
-        }
-        if (ev.visitorId && vault.visitors[ev.visitorId]) {
-          client.publish(
-            MQTT_PREFIX + '/visitors/' + ev.visitorId,
-            JSON.stringify(sanitizeForPublicCloud(vault.visitors[ev.visitorId])),
-            { qos: 1, retain: true }
-          );
-        }
-        publishMasterVaultSnapshot(client, vault);
-      } catch (e2) {}
-    });
+    // 외부 중계기 전송 중단: 모든 이용증 및 열람 기록은 현재 브라우저(localStorage)에만 보관합니다.
+    return;
   }
 
   function publishMasterVaultSnapshot(client, vault) {
-    if (!client || !client.connected || !vault) return;
-    try {
-      var snap = sanitizeForPublicCloud({
-        kind: 'vault_snapshot',
-        updatedAt: formatNowTs(),
-        members: vault.members || {},
-        visitors: vault.visitors || {},
-        logs: (vault.logs || []).slice(0, 180)
-      });
-      client.publish(MQTT_PREFIX + '/master_vault', JSON.stringify(snap), { qos: 1, retain: true });
-    } catch (e) {}
+    return;
   }
 
   function ensureMqttClient(callback) {
-    if (mqttClient && mqttClient.connected) {
-      if (callback) callback(mqttClient);
-      return;
-    }
-    if (typeof window.mqtt === 'undefined') {
-      if (!document.getElementById('kkd-mqtt-script')) {
-        var s = document.createElement('script');
-        s.id = 'kkd-mqtt-script';
-        s.src = 'https://unpkg.com/mqtt@5.3.4/dist/mqtt.min.js';
-        s.async = true;
-        s.onload = function () {
-          connectMqtt(callback);
-        };
-        document.head.appendChild(s);
-      } else {
-        setTimeout(function () {
-          if (typeof window.mqtt !== 'undefined') connectMqtt(callback);
-        }, 700);
-      }
-      return;
-    }
-    connectMqtt(callback);
+    return;
   }
 
   function connectMqtt(callback) {
-    if (mqttClient && mqttClient.connected) {
-      if (callback) callback(mqttClient);
-      return;
-    }
-    if (mqttConnecting) {
-      setTimeout(function () {
-        if (mqttClient && mqttClient.connected && callback) callback(mqttClient);
-      }, 900);
-      return;
-    }
-    if (typeof window.mqtt === 'undefined') return;
-    mqttConnecting = true;
-    try {
-      var cid = 'kkd_' + Math.random().toString(16).substring(2, 10);
-      mqttClient = window.mqtt.connect(MQTT_BROKER_URL, {
-        clientId: cid,
-        clean: true,
-        connectTimeout: 5000,
-        reconnectPeriod: 8000
-      });
-      mqttClient.on('connect', function () {
-        mqttConnecting = false;
-        try {
-          mqttClient.subscribe(MQTT_PREFIX + '/master_vault', { qos: 1 });
-          mqttClient.subscribe(MQTT_PREFIX + '/members/+', { qos: 1 });
-          mqttClient.subscribe(MQTT_PREFIX + '/visitors/+', { qos: 1 });
-          mqttClient.subscribe(MQTT_PREFIX + '/events', { qos: 0 });
-        } catch (e) {}
-        if (callback) callback(mqttClient);
-      });
-      mqttClient.on('message', function (topic, message) {
-        try {
-          var str = message.toString();
-          if (!str) return;
-          var data = JSON.parse(str);
-          var vault = getLocalVault();
-          var updated = false;
-          if (topic === MQTT_PREFIX + '/master_vault' || data.kind === 'vault_snapshot') {
-            updated = applyEventToVault(vault, data);
-          } else if (topic.indexOf(MQTT_PREFIX + '/members/') === 0) {
-            mergeMemberEntry(vault, data);
-            updated = true;
-          } else if (topic.indexOf(MQTT_PREFIX + '/visitors/') === 0) {
-            mergeVisitorEntry(vault, data);
-            updated = true;
-          } else if (topic === MQTT_PREFIX + '/events') {
-            updated = applyEventToVault(vault, data);
-          }
-          if (updated) {
-            saveLocalVault(vault);
-            if (adminModalOpen) renderAdminDashboard();
-            if (typeof window.__kkdOnVaultUpdate === 'function') {
-              window.__kkdOnVaultUpdate(vault);
-            }
-          }
-        } catch (e) {}
-      });
-      mqttClient.on('error', function () {
-        mqttConnecting = false;
-      });
-    } catch (e) {
-      mqttConnecting = false;
-    }
+    return;
   }
 
   function syncFromCloudAll(onComplete) {
     migrateLocalRegistryToVault();
-    var doneCount = 0;
-    var finish = function () {
-      doneCount++;
-      if (doneCount >= 2 && typeof onComplete === 'function') {
-        onComplete(getLocalVault());
-      }
-    };
-
-    // 1) ntfy.sh 폴링 동기화
-    try {
-      fetch(NTFY_URL + '/json?poll=1&since=all', { cache: 'no-store' })
-        .then(function (res) { return res.text(); })
-        .then(function (txt) {
-          var vault = getLocalVault();
-          var changed = false;
-          var lines = (txt || '').split('\n');
-          for (var i = 0; i < lines.length; i++) {
-            var line = lines[i].trim();
-            if (!line) continue;
-            try {
-              var outer = JSON.parse(line);
-              if (outer && outer.event === 'message' && outer.message) {
-                var inner = JSON.parse(outer.message);
-                if (applyEventToVault(vault, inner)) changed = true;
-              }
-            } catch (e2) {}
-          }
-          if (changed) {
-            saveLocalVault(vault);
-            if (adminModalOpen) renderAdminDashboard();
-            if (typeof window.__kkdOnVaultUpdate === 'function') {
-              window.__kkdOnVaultUpdate(vault);
-            }
-          }
-          finish();
-        })
-        .catch(function () { finish(); });
-    } catch (e) {
-      finish();
+    if (typeof onComplete === 'function') {
+      onComplete(getLocalVault());
     }
-
-    // 2) MQTT Retained 동기화 및 병합본 재발행
-    ensureMqttClient(function (client) {
-      setTimeout(function () {
-        var vault = getLocalVault();
-        publishMasterVaultSnapshot(client, vault);
-        finish();
-      }, 650);
-    });
-    setTimeout(function () {
-      if (doneCount < 2 && typeof onComplete === 'function') {
-        doneCount = 2;
-        onComplete(getLocalVault());
-      }
-    }, 2400);
   }
 
   function recordTelemetryEvent(eventType, detailText, explicitCard) {
@@ -1393,7 +1216,6 @@
       var vault = getLocalVault();
       applyEventToVault(vault, ev);
       saveLocalVault(vault);
-      pushEventToCloud(ev, vault);
       if (adminModalOpen) renderAdminDashboard();
       if (typeof window.__kkdOnVaultUpdate === 'function') {
         window.__kkdOnVaultUpdate(vault);
@@ -1405,7 +1227,6 @@
     try {
       if (shouldSkipSelfTelemetry(getCard())) {
         migrateLocalRegistryToVault();
-        ensureMqttClient();
         return;
       }
       var page = getCurrentPageLabel();
@@ -1417,9 +1238,7 @@
       } catch (e2) { visitedMap = {}; }
 
       if (visitedMap[sessionKey]) {
-        // 같은 세션 내 동일 페이지 재로드 시에는 로컬 볼트/MQTT 최신 시각만 조용히 갱신
         migrateLocalRegistryToVault();
-        ensureMqttClient();
         return;
       }
       visitedMap[sessionKey] = Date.now();
@@ -1822,7 +1641,7 @@
         e.stopPropagation();
         openCardModal(function () {
           executeAuthorizedPrint();
-        }, '🖨️ 자료 인쇄는 「꿈디도 도서관 이용증」 간편 로그인(구글·카카오) 후 이용하실 수 있습니다.');
+        }, '🖨️ 자료 인쇄는 「꿈디도 도서관 이용증」 발급(내 브라우저 로컬 등록) 후 이용하실 수 있습니다.');
         return false;
       }
       recordTelemetryEvent('print', getActivePrintTargetLabel(true));
@@ -1872,14 +1691,14 @@
     if (!isVerified()) {
       openCardModal(function () {
         executeAuthorizedPrint();
-      }, '🖨️ A4 유인물 인쇄 및 PDF 출력은 「도서관 이용증」 간편 로그인(구글·카카오) 후 가능합니다.');
+      }, '🖨️ A4 유인물 인쇄 및 PDF 출력은 「도서관 이용증」 발급(내 브라우저 로컬 등록) 후 가능합니다.');
       return;
     }
     executeAuthorizedPrint();
   };
 
   // ── 7. UI 요소 생성 ──
-  var selectedProvider = '';
+  var selectedProvider = '내 브라우저 로컬 이용증';
 
   function buildDOM() {
     if (document.getElementById('kkumdido-card-modal-bg')) return;
@@ -1890,7 +1709,7 @@
     lockSheet.innerHTML = [
       '<div style="font-size:38px; margin-bottom:12px;">🏛️</div>',
       '<h2 style="margin:0 0 10px; font-size:22px;">꿈바온 디지털도서관 (꿈디도)</h2>',
-      '<p style="margin:0 0 16px; font-size:15px; line-height:1.6;">이 문헌과 사역 스튜디오 자료를 인쇄하시려면<br>화면 우측 하단 <b>[🪪 도서관 이용증 발급]</b>에서 <b>구글(Google) 또는 카카오(Kakao) 계정</b>으로<br>간편 로그인(이용증 발급)을 먼저 완료해 주세요.</p>',
+      '<p style="margin:0 0 16px; font-size:15px; line-height:1.6;">이 문헌과 사역 스튜디오 자료를 인쇄하시려면<br>화면 우측 하단 <b>[🪪 도서관 이용증 발급]</b>에서 <b>열람자 성함·소속 교회</b>를 입력하여<br>내 브라우저 이용증 발급을 먼저 완료해 주세요. (외부 서버 전송 없음)</p>',
       '<div style="font-size:12.5px; color:#666;">© 꿈바온 디지털도서관 · 무단 복제 및 상업적 전재 금지</div>'
     ].join('');
     document.body.appendChild(lockSheet);
@@ -1924,46 +1743,39 @@
       '<div class="kkd-modal">',
       '  <button type="button" class="kkd-close" id="kkd-modal-close" aria-label="닫기">✕ 닫기</button>',
       '  <span class="kkd-eyebrow">이사야 55:1 — 목마른 자들아 물로 나아오라 돈 없는 자도 오라</span>',
-      '  <h3 id="kkd-modal-title">🏛️ 꿈디도 도서관 이용증 · 간편 회원가입 및 로그인</h3>',
-      '  <p class="kkd-sub" id="kkd-modal-desc">꿈디도는 값을 받지 않는 말씀 서재입니다. 구글(Google) 또는 카카오(Kakao) 계정으로 <b>도서관 이용증(회원가입·로그인)</b> 한 장만 받으시면 별관의 모든 방(<b>모세의 지팡이 · 설교 준비실 · 내 설교 곳간 · 양떼 수첩 · 청지기 장부 · 아론의 지팡이 · 교회학교 · 가정예배 · 번역실</b>)과 인쇄·내려받기 기능이 열리며, 앞으로도 값을 받지 않습니다.</p>',
+      '  <h3 id="kkd-modal-title">🏛️ 꿈디도 도서관 이용증 발급 (내 브라우저 보관)</h3>',
+      '  <p class="kkd-sub" id="kkd-modal-desc">꿈디도는 값을 받지 않는 말씀 서재입니다. 별도의 외부 계정 연동 없이 <b>성함·직분과 소속 교회</b>만 적으시면 현재 브라우저에 <b>도서관 이용증</b>이 즉시 발급되며, 별관의 모든 방(<b>주보·전도지 공방 · 설교 준비실 · 내 설교 곳간 · 양떼 수첩 · 청지기 장부 · 아론의 지팡이 · 교회학교 · 가정예배 · 번역실</b>)과 인쇄·내려받기 기능이 열립니다.</p>',
       '  <div class="kkd-vip-card" id="kkd-vip-card">',
       '    <div class="kkd-vip-top">',
       '      <strong>🏛️ 꿈바온 디지털도서관 & 스튜디오 이용증</strong>',
-      '      <span id="kkd-card-provider">미발급 (로그인 대기)</span>',
+      '      <span id="kkd-card-provider">미발급 (내 브라우저 등록 대기)</span>',
       '    </div>',
       '    <div class="kkd-vip-no" id="kkd-card-no">KKD-2026-••••</div>',
       '    <div class="kkd-vip-meta">',
-      '      <div><small>열람자 성함 / 직분</small><b id="kkd-card-name">로그인 후 표시됩니다</b></div>',
+      '      <div><small>열람자 성함 / 직분</small><b id="kkd-card-name">이용증 발급 후 표시됩니다</b></div>',
       '      <div><small>소속 교회 / 기관</small><b id="kkd-card-church">꿈바온 가족</b></div>',
       '      <div style="text-align:right;"><small>발급일</small><b id="kkd-card-date">-</b></div>',
       '    </div>',
       '  </div>',
       '  <div id="kkd-unverified-zone">',
-      '    <div class="kkd-oauth-btns">',
-      '      <button type="button" class="kkd-btn-google" id="kkd-start-google">',
-      '        <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>',
-      '        <span>Google 계정으로 간편 가입 · 로그인</span>',
-      '      </button>',
-      '      <button type="button" class="kkd-btn-kakao" id="kkd-start-kakao">',
-      '        <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#191600" d="M12 3C6.48 3 2 6.58 2 11c0 2.83 1.82 5.32 4.59 6.75-.2.74-.73 2.68-.84 3.1-.13.52.19.51.4.37.17-.11 2.69-1.82 3.77-2.56.67.1 1.36.15 2.08.15 5.52 0 10-3.58 10-8s-4.48-8-10-8z"/></svg>',
-      '        <span>카카오 계정으로 간편 가입 · 로그인</span>',
-      '      </button>',
+      '    <div style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.38); border-radius:10px; padding:10px 12px; margin-bottom:10px; font-size:12.5px; color:#d1fae5; line-height:1.55;">',
+      '      🔒 <b>개인정보 및 로컬 저장 안내:</b> 이 화면은 외부 OAuth(Google·카카오 등) 인증을 거치지 않으며, 입력하신 성함·교회·메모 정보는 <b>외부 서버나 중계기(MQTT 등)로 일절 전송되지 않고 오직 현재 사용 중인 브라우저(localStorage)에만 저장</b>됩니다. 공용 PC에서는 이용 후 [이용증 삭제 / 초기화]를 눌러 주세요.',
       '    </div>',
-      '    <form class="kkd-form-box" id="kkd-issue-form" autocomplete="on">',
-      '      <div style="font-size:13px; font-weight:800; color:#f3c969; margin-bottom:6px;" id="kkd-form-provider-label">Google 계정 연동 확인</div>',
-      '      <label for="kkd-in-email">연동할 계정 이메일 (또는 카톡 ID/연락처)</label>',
-      '      <input type="text" id="kkd-in-email" required placeholder="예: pastor@gmail.com">',
-      '      <label for="kkd-in-name">이용증 및 서재에 새길 성함·직분 (필수)</label>',
-      '      <input type="text" id="kkd-in-name" required placeholder="예: 홍길동 목사 / 김은혜 교사">',
-      '      <label for="kkd-in-church">소속 교회 또는 사역지 (선택)</label>',
-      '      <input type="text" id="kkd-in-church" placeholder="예: 새오름교회">',
+      '    <form class="kkd-form-box on" id="kkd-issue-form" autocomplete="on">',
+      '      <div style="font-size:13px; font-weight:800; color:#f3c969; margin-bottom:6px;" id="kkd-form-provider-label">🪪 내 브라우저 도서관 이용증 즉시 발급</div>',
+      '      <label for="kkd-in-name">이용증 및 유인물에 표기할 성함·직분 (필수)</label>',
+      '      <input type="text" id="kkd-in-name" required placeholder="예: 홍길동 목사 / 김은혜 전도사 / 이사랑 교사">',
+      '      <label for="kkd-in-church">소속 교회 또는 사역지 (선택 · 주보/공방 기본 교회명 연동)</label>',
+      '      <input type="text" id="kkd-in-church" placeholder="예: 꿈바온교회">',
+      '      <label for="kkd-in-email">개인 식별 메모 또는 이메일 (선택 · 내 브라우저에만 보관)</label>',
+      '      <input type="text" id="kkd-in-email" placeholder="선택 입력 (입력하지 않아도 발급됩니다)">',
       '      <button type="submit" class="kkd-submit">🪪 도서관 이용증 발급 및 스튜디오 입장</button>',
       '    </form>',
       '  </div>',
       '  <div id="kkd-verified-zone" style="display:none;">',
       '    <div class="kkd-member-actions">',
       '      <button type="button" class="kkd-action-btn pri" id="kkd-do-print-btn">🖨️ 현재 화면 유인물 인쇄</button>',
-      '      <button type="button" class="kkd-action-btn" id="kkd-logout-btn">계정 변경 / 로그아웃</button>',
+      '      <button type="button" class="kkd-action-btn" id="kkd-logout-btn">이용증 삭제 / 정보 변경</button>',
       '    </div>',
       '  </div>',
       '  <div class="kkd-studio-grid" aria-label="꿈디도 통합 스튜디오 바로가기">',
@@ -1973,17 +1785,17 @@
       '    <a href="' + pfx + 'kkumdido_sermon_studio.html" data-kkd-studio-link="1">👑 모세의 지팡이 · 66권 원어 설교준비실</a>',
       '    <a href="' + pfx + '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" data-kkd-studio-link="1">📖 66권 원어·풀어읽기 주석 서고</a>',
       '    <a href="' + pfx + 'kkumdido_gotgan_studio.html" data-kkd-studio-link="1">🏺 내 설교 곳간 (개인 웹서재)</a>',
-      '    <a href="' + pfx + 'kkumdido_pastoral_secretary_studio.html" data-kkd-studio-link="1">🌿 아론의 지팡이 (목양·심방·주보)</a>',
+      '    <a href="' + pfx + 'kkumdido_pastoral_secretary_studio.html?seat=jubo" data-kkd-studio-link="1">🌿 아론의 지팡이 (완성형 A4 주보·목양)</a>',
       '    <a href="' + pfx + 'kkumdido_gyojeok_studio.html" data-kkd-studio-link="1">🐑 무료 교적 (양떼 수첩·내PC보관)</a>',
       '    <a href="' + pfx + 'kkumdido_finance_studio.html" data-kkd-studio-link="1">💰 무료 헌금·재정 (청지기장부·내PC보관)</a>',
-      '    <a href="' + pfx + 'kkumdido_jipangi_studio.html" data-kkd-studio-link="1">🎨 전도지·절기 인쇄물 공방</a>',
+      '    <a href="' + pfx + 'kkumdido_jipangi_studio.html?kkd_tab=bulletin" data-kkd-studio-link="1">🎨 주보 요약·전도지·기도문·서식 공방</a>',
       '    <a href="' + pfx + 'kkumdido_sunday_school_studio.html" data-kkd-studio-link="1">🌱 교회학교 교사 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_13dept_52weeks_studio.html" data-kkd-studio-link="1">📋 13부서 52주 커리큘럼</a>',
       '    <a href="' + pfx + 'kkumdido_family_worship_studio.html" data-kkd-studio-link="1">🕯️ 52주 가정예배 스튜디오</a>',
       '    <a href="' + pfx + 'kkumdido_translation_studio.html" data-kkd-studio-link="1">🌐 8개국어 기독교 번역 스튜디오</a>',
       '  </div>',
-      '  <p class="kkd-foot-note">※ 값없이 받은 말씀을 값없이 나눕니다 (마태복음 10:8). 성도 명부(양떼 수첩)와 헌금·재정 장부(청지기 장부), 내 설교 곳간에 적으시는 기록은 이 서재 서버로 오지 않고 목사님 컴퓨터에만 남습니다.<br><span style="display:inline-block; margin-top:6px;"><a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener noreferrer" style="color:#f3c969; font-weight:800; text-decoration:underline; text-underline-offset:3px;">📺 꿈바온 유튜브 채널</a> · 매일말씀과 성경이야기도 유튜브 채널에서 나누고 있습니다.</span></p>',
-      '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 가입자 명부 · 방문자 · 스튜디오 사용기록 열람</button>',
+      '  <p class="kkd-foot-note">※ 값없이 받은 말씀을 값없이 나눕니다 (마태복음 10:8). 이용증 정보와 성도 명부(양떼 수첩), 헌금·재정 장부(청지기 장부), 내 설교 곳간에 적으시는 모든 기록은 외부 서버나 중계기로 전송되지 않고 오직 이 브라우저(내 컴퓨터)에만 남습니다.<br><span style="display:inline-block; margin-top:6px;"><a href="https://www.youtube.com/@dreaming_ondal" target="_blank" rel="noopener noreferrer" style="color:#f3c969; font-weight:800; text-decoration:underline; text-underline-offset:3px;">📺 꿈바온 유튜브 채널</a> · 매일말씀과 성경이야기도 유튜브 채널에서 나누고 있습니다.</span></p>',
+      '  <button type="button" class="kkd-admin-open-btn" id="kkd-open-admin-btn" style="display:none;">👑 목사님 전용: 내 브라우저 이용 기록 · 인증번호 도구 열람</button>',
       '</div>'
     ].join('\n');
     document.body.appendChild(modalBg);
@@ -2004,24 +1816,17 @@
       }
     });
 
-    document.getElementById('kkd-start-google').addEventListener('click', function () {
-      startProviderFlow('Google');
-    });
-    document.getElementById('kkd-start-kakao').addEventListener('click', function () {
-      startProviderFlow('카카오');
-    });
-
     document.getElementById('kkd-issue-form').addEventListener('submit', function (e) {
       e.preventDefault();
-      var email = (document.getElementById('kkd-in-email').value || '').trim();
+      var email = (document.getElementById('kkd-in-email').value || '').trim() || '로컬보관';
       var name = (document.getElementById('kkd-in-name').value || '').trim();
       var church = (document.getElementById('kkd-in-church').value || '').trim() || '꿈바온 가족';
-      if (!email || !name) return;
+      if (!name) return;
 
       var dateStr = formatDateDot();
       var card = {
-        cardNo: generateCardNo(selectedProvider + ':' + email + ':' + name),
-        provider: selectedProvider || 'Google',
+        cardNo: generateCardNo('LOCAL:' + church + ':' + name),
+        provider: '내 브라우저 보관',
         account: email,
         name: name,
         church: church,
@@ -2031,7 +1836,7 @@
       isMandatoryGate = false;
       document.body.classList.remove('kkumdido-studio-locked');
       unlockGotganIfPresent(card);
-      showToast('🎉 「꿈디도 도서관 이용증(' + card.cardNo + ')」 로그인이 완료되었습니다!');
+      showToast('🎉 「꿈디도 도서관 이용증(' + card.cardNo + ')」이 내 브라우저에 발급되었습니다!');
 
       if (typeof pendingAction === 'function') {
         var act = pendingAction;
@@ -2050,7 +1855,7 @@
 
     document.getElementById('kkd-logout-btn').addEventListener('click', function () {
       clearCard();
-      showToast('도서관 이용증 로그아웃이 완료되었습니다.');
+      showToast('내 브라우저에 저장된 도서관 이용증이 삭제되었습니다.');
     });
 
     document.getElementById('kkd-open-admin-btn').addEventListener('click', function () {
@@ -2060,7 +1865,6 @@
     patchPageButtons();
     syncAuthState();
     enforceStudioGateIfNeeded();
-    setTimeout(recordAutoPageVisit, 350);
   }
 
   // ── 7-2. 👑 목사님 전용 가입자·방문자·사용기록 관제 모달 생성 및 렌더링 ──
@@ -2074,9 +1878,9 @@
     admBg.innerHTML = [
       '<div class="kkd-admin-modal">',
       '  <button type="button" class="kkd-close" id="kkd-adm-close">✕ 닫기</button>',
-      '  <span class="kkd-eyebrow">👑 PASTOR HAN MASTER CONSOLE · 실시간 클라우드 연동</span>',
-      '  <h3 style="margin:0 0 6px; font-size:22px; color:#f4eee1;">🏛️ 꿈디도 도서관 가입자 명부 · 다녀간 방문자 · 스튜디오 사용기록 관제실</h3>',
-      '  <p style="margin:0; font-size:13.2px; color:#b8ab96; line-height:1.5;">목사님께서 매일 들어오지 않으셔도 클라우드(MQTT Retained & HTTPS Stream)에 기록이 자동 누적·보존됩니다. 가입하신 분의 <b>이메일·성함·소속교회·사용한 스튜디오·인쇄 기록</b>을 확인하시고, 우측 버튼으로 <b>[🔑 1:1 정식판 인증번호(KB)]</b>도 즉시 발급·복사하실 수 있습니다.</p>',
+      '  <span class="kkd-eyebrow">👑 PASTOR HAN MASTER CONSOLE · 내 브라우저 로컬 보관 모드</span>',
+      '  <h3 style="margin:0 0 6px; font-size:22px; color:#f4eee1;">🏛️ 꿈디도 도서관 이용증 · 스튜디오 로컬 사용기록 관리실</h3>',
+      '  <p style="margin:0; font-size:13.2px; color:#b8ab96; line-height:1.5;">개인정보 보호를 위해 외부 공개 중계기(MQTT 등) 전송은 전면 중단되었으며, 현재 브라우저(로컬)에 보관된 기록만 표시됩니다. 우측 버튼으로 <b>[🔑 1:1 정식판 인증번호(KB)]</b>도 즉시 발급·복사하실 수 있습니다.</p>',
       '  <div class="kkd-adm-stats">',
       '    <div class="kkd-adm-stat"><small>🪪 도서관 이용증 가입자</small><strong id="kkd-stat-members">0명</strong></div>',
       '    <div class="kkd-adm-stat"><small>👣 다녀간 고유 방문자 (비로그인 포함)</small><strong id="kkd-stat-visitors">0명</strong></div>',
@@ -2568,14 +2372,11 @@
   }
 
   function startProviderFlow(providerName) {
-    selectedProvider = providerName;
+    selectedProvider = providerName || '내 브라우저 보관';
     var form = document.getElementById('kkd-issue-form');
-    var label = document.getElementById('kkd-form-provider-label');
-    var emailInput = document.getElementById('kkd-in-email');
-    label.textContent = (providerName === 'Google' ? '🌐 Google 계정' : '💬 카카오 계정') + ' 간편 가입 · 이용증 발급';
-    emailInput.placeholder = providerName === 'Google' ? 'Google 이메일 주소 (예: pastor@gmail.com)' : '카카오계정 이메일 또는 전화번호';
-    form.classList.add('on');
-    setTimeout(function () { emailInput.focus(); }, 60);
+    var nameInput = document.getElementById('kkd-in-name');
+    if (form) form.classList.add('on');
+    if (nameInput) setTimeout(function () { nameInput.focus(); }, 60);
   }
 
   function openCardModal(afterAction, customMessage, mandatory) {
@@ -2588,15 +2389,15 @@
     }
     var descEl = document.getElementById('kkd-modal-desc');
     if (customMessage && !isVerified()) {
-      descEl.innerHTML = '<strong style="color:#f3c969;">' + customMessage + '</strong><br>Google 또는 카카오 계정으로 10초 만에 무료 도서관 이용증을 발급받으시면 모든 스튜디오와 인쇄 기능이 즉시 열립니다.';
+      descEl.innerHTML = '<strong style="color:#f3c969;">' + customMessage + '</strong><br>별도의 외부 계정 로그인 없이 성함·직분만 적으시면 현재 브라우저에 도서관 이용증이 즉시 발급되어 모든 스튜디오와 인쇄 기능이 열립니다.';
     } else if (!isVerified()) {
-      descEl.innerHTML = '구글(Google) 또는 카카오(Kakao) 계정으로 간편 로그인하시면 <b>도서관 이용증</b>이 즉시 발급되며, <b>설교 프로그램 · 설교 곳간 · 모세의 지팡이 · 아론의 지팡이 · 양떼 수첩 · 청지기 장부 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 다운로드 없이 웹에서 바로 쓰실 수 있습니다.';
+      descEl.innerHTML = '별도의 외부 계정 로그인 없이 성함·직분과 소속 교회만 적으시면 현재 브라우저에 <b>도서관 이용증</b>이 즉시 발급되며, <b>주보·전도지 공방 · 설교 프로그램 · 설교 곳간 · 모세의 지팡이 · 아론의 지팡이 · 양떼 수첩 · 청지기 장부 · 교회학교 · 가정예배 · 번역 스튜디오</b>와 자료 인쇄 기능을 웹에서 바로 쓰실 수 있습니다.';
     }
     syncAuthState();
     var modalBg = document.getElementById('kkumdido-card-modal-bg');
     if (modalBg) modalBg.classList.add('on');
     if (!isVerified()) {
-      startProviderFlow(selectedProvider || 'Google');
+      startProviderFlow('내 브라우저 보관');
     }
   }
 
@@ -2620,7 +2421,7 @@
           document.body.classList.remove('kkumdido-studio-locked');
           unlockGotganIfPresent(getCard());
         },
-        '🔐 이 사역 프로그램(스튜디오)은 「꿈디도 도서관 이용증」 로그인을 완료하신 분만 사용하실 수 있습니다.',
+        '🔐 이 사역 프로그램(스튜디오)은 「꿈디도 도서관 이용증」 발급(내 브라우저 로컬 등록) 후 사용하실 수 있습니다.',
         true
       );
     }
@@ -2636,7 +2437,7 @@
     }
     openCardModal(
       afterAction || null,
-      customMessage || '🔐 로그인(꿈디도 도서관 이용증 발급)을 완료하신 분만 이 사역 도구를 사용하실 수 있습니다.',
+      customMessage || '🔐 도서관 이용증 발급(내 브라우저 로컬 등록)을 완료하신 분만 이 사역 도구를 사용하실 수 있습니다.',
       isStudioPage()
     );
     return false;
@@ -2689,6 +2490,8 @@
       if (card.church && card.church !== '꿈바온 가족') {
         var bulCh = document.getElementById('bulChurchName');
         if (bulCh && (!bulCh.value || bulCh.value === '꿈바온교회')) bulCh.value = card.church;
+        var bulChIn = document.getElementById('bulChurchInput');
+        if (bulChIn && (!bulChIn.value || bulChIn.value === '꿈바온교회')) bulChIn.value = card.church;
         var jbCh = document.getElementById('jbChurchName');
         if (jbCh && (!jbCh.value || jbCh.value === '꿈바온교회')) jbCh.value = card.church;
       }
@@ -2724,7 +2527,7 @@
       document.body.classList.remove('kkumdido-member-verified');
       if (fab) {
         fab.classList.remove('verified');
-        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 도서관 이용증 로그인 · 🖨️ 인쇄</span>';
+        fab.innerHTML = '<span class="kkd-badge-dot"></span><span>🪪 도서관 이용증 발급 · 🖨️ 인쇄</span>';
       }
       if (certHeader) {
         certHeader.innerHTML = '';
@@ -2747,7 +2550,7 @@
     if (noEl) {
       if (card) {
         titleEl.textContent = '🏛️ 내 꿈디도 도서관 이용증 & 스튜디오 런처';
-        provEl.textContent = card.provider + ' 인증 회원 (' + (card.account || '') + ')';
+        provEl.textContent = '내 브라우저 보관 (' + (card.account || '로컬') + ')';
         noEl.textContent = card.cardNo;
         nameEl.textContent = card.name;
         churchEl.textContent = card.church;
@@ -2755,10 +2558,10 @@
         unvZone.style.display = 'none';
         verZone.style.display = 'block';
       } else {
-        titleEl.textContent = '🏛️ 꿈디도 도서관 이용증 · 간편 로그인';
-        provEl.textContent = '미발급 (로그인 대기)';
+        titleEl.textContent = '🏛️ 꿈디도 도서관 이용증 발급 (내 브라우저 보관)';
+        provEl.textContent = '미발급 (내 브라우저 등록 대기)';
         noEl.textContent = 'KKD-2026-••••';
-        nameEl.textContent = '로그인 후 표시됩니다';
+        nameEl.textContent = '이용증 발급 후 표시됩니다';
         churchEl.textContent = '꿈바온 가족';
         dateEl.textContent = '-';
         unvZone.style.display = 'block';
@@ -2958,7 +2761,7 @@
     installContentViewHooks();
     setTimeout(installContentViewHooks, 900);
 
-    // index.html 의 enterMosesSanctuary 도 간편 로그인 확인 후 로컬/웹 지팡이 스튜디오로 연결
+    // index.html 의 enterMosesSanctuary 도 이용증 발급 확인 후 로컬/웹 지팡이 스튜디오로 연결
     if (typeof window.enterMosesSanctuary === 'function' && !window.__kkdPatchedMoses) {
       window.__kkdPatchedMoses = true;
       window.enterMosesSanctuary = function () {
@@ -2967,7 +2770,7 @@
           window.location.href = getRootPrefix() + 'kkumdido_jipangi_studio.html';
         };
         if (!isVerified()) {
-          openCardModal(goMoses, '🪄 「모세의 지팡이 웹스튜디오」는 도서관 이용증 간편 로그인(구글·카카오) 후 바로 열립니다.');
+          openCardModal(goMoses, '🪄 「모세의 지팡이 웹스튜디오」는 도서관 이용증 발급(내 브라우저 로컬 등록) 후 바로 열립니다.');
           return;
         }
         goMoses();
@@ -2984,7 +2787,7 @@
           openCardModal(function () {
             recordTelemetryEvent('print', printLabel);
             origOpenPrintModal();
-          }, '🖨️ 강단 설교 노트 인쇄 및 PDF 저장은 「도서관 이용증」 간편 로그인 후 이용하실 수 있습니다.');
+          }, '🖨️ 강단 설교 노트 인쇄 및 PDF 저장은 「도서관 이용증」 발급(내 브라우저 로컬 등록) 후 이용하실 수 있습니다.');
           return;
         }
         recordTelemetryEvent('print', printLabel);
@@ -2992,7 +2795,7 @@
       };
     }
 
-    // 스튜디오 링크 및 PDF 직통 링크 클릭 시 간편 로그인 선행 체크 및 사용 기록 저장
+    // 스튜디오 링크 및 PDF 직통 링크 클릭 시 이용증 선행 체크 및 사용 기록 저장
     document.addEventListener('click', function (e) {
       var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
       if (!a) return;
@@ -3006,7 +2809,7 @@
           openCardModal(function () {
             recordTelemetryEvent('pdf', '전자책 PDF 열람 (' + pdfName + ')');
             window.open(pdfUrl, '_blank', 'noopener');
-          }, '📕 전자책(PDF) 원본 열람 및 인쇄는 「도서관 이용증」 간편 로그인(구글·카카오) 후 이용하실 수 있습니다.');
+          }, '📕 전자책(PDF) 원본 열람 및 인쇄는 「도서관 이용증」 발급(내 브라우저 로컬 등록) 후 이용하실 수 있습니다.');
         } else {
           recordTelemetryEvent('pdf', '전자책 PDF 열람 (' + pdfName + ')');
         }
@@ -3027,7 +2830,7 @@
             document.body.appendChild(tempA);
             tempA.click();
             setTimeout(function () { document.body.removeChild(tempA); }, 200);
-          }, '🔐 꿈디도 서재의 모든 프로그램과 내 컴퓨터 보관용 단일파일은 「도서관 이용증」 회원가입(로그인) 후 값없이 내려받으실 수 있습니다.');
+          }, '🔐 꿈디도 서재의 모든 프로그램과 내 컴퓨터 보관용 단일파일은 「도서관 이용증」 발급(내 브라우저 로컬 등록) 후 값없이 내려받으실 수 있습니다.');
         } else {
           recordTelemetryEvent('studio', '단일파일 내려받기 (' + dlLabel + ')');
         }
@@ -3042,7 +2845,7 @@
           openCardModal(function () {
             recordTelemetryEvent('studio', '스튜디오 이동 (' + studioLabel + ')');
             window.location.href = targetHref;
-          }, '🔐 꿈디도의 모든 방은 「도서관 이용증」 회원가입(로그인) 한 장이면 값없이 바로 열립니다.');
+          }, '🔐 꿈디도의 모든 방은 「도서관 이용증」 발급(내 브라우저 로컬 등록) 한 장이면 값없이 바로 열립니다.');
         }
       }
     }, true);
@@ -3117,7 +2920,8 @@
       'bulSermonPassage',     // kkumdido_pastoral_secretary_studio.html (주보 구버전)
       'jbSermonScripture',    // kkumdido_pastoral_secretary_studio.html (A4 주보)
       'editScriptureInput',   // kkumdido_gotgan_studio.html
-      'inputBibleVerse',      // kkumdido_jipangi_studio.html
+      'inputBibleVerse',      // kkumdido_jipangi_studio.html (설교 영상)
+      'bulSermonVerseInput',  // kkumdido_jipangi_studio.html (주보·전도지 공방)
       'pubRef'                // kkumdido_sunday_school_studio.html
     ];
     var gistIds = [
@@ -3127,7 +2931,8 @@
       'bulSermonTitle',       // kkumdido_pastoral_secretary_studio.html
       'jbSermonTitle',        // kkumdido_pastoral_secretary_studio.html (A4 주보)
       'editTitleInput',       // kkumdido_gotgan_studio.html
-      'step3TitleLine1Input', // kkumdido_jipangi_studio.html
+      'step3TitleLine1Input', // kkumdido_jipangi_studio.html (설교 영상)
+      'bulSermonTitleInput',  // kkumdido_jipangi_studio.html (주보·전도지 공방)
       'pubTitle'              // kkumdido_sunday_school_studio.html
     ];
     var dateIds = [

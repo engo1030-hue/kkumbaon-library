@@ -305,6 +305,41 @@
       color: #141C2E !important;
       box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
     }
+    .studio-tab-card:focus-visible,
+    .bul-sub-tab-btn:focus-visible {
+      outline: 3px solid #FDE047;
+      outline-offset: 2px;
+    }
+    .bul-sub-tab-btn {
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-size: 13.5px;
+      font-weight: 800;
+      border: 1.5px solid #CBD5E1;
+      background: #FFFFFF;
+      color: #1E293B;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+    .bul-sub-tab-btn:hover {
+      border-color: #1F7A4C;
+      background: #F2F9F5;
+    }
+    .bul-sub-tab-btn.active {
+      background: #1B4332;
+      border-color: #1B4332;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(27, 67, 50, 0.22);
+    }
+    @media (max-width: 900px) {
+      .bul-input-grid-4,
+      .bul-res-grid-2,
+      .bul-res-grid-3,
+      .ev-res-grid-3,
+      .workshop-grid-2 {
+        grid-template-columns: 1fr !important;
+      }
+    }
     .studio-tab-card .tab-badge {
       display: inline-block;
       font-size: 11px;
@@ -1847,11 +1882,6 @@
       flex-shrink: 0;
     }
 
-    .studio-tab-card:focus-visible { outline:3px solid #d4af37; outline-offset:3px; }
-    @media (max-width:680px) {
-      #studioPaneBulletin [style*="grid-template-columns"] { grid-template-columns:minmax(0,1fr)!important; }
-      #studioPaneBulletin .btn { max-width:100%; white-space:normal; }
-    }
   </style>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
 </head>
@@ -2041,13 +2071,13 @@
       <div class="studio-cat-wrap" id="studioCatWrap">
         <div class="studio-cat" id="studioCatPastoral">
           <div class="studio-cat-label">⛪ 목회 지원</div>
-          <div class="studio-tabs-grid" id="studioTabsGridPastoral" style="grid-template-columns:minmax(0, 1fr);">
-            <div class="studio-tab-card" id="tabCard_moses" onclick="switchStudioMode('moses')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('moses')}" style="border:1.5px solid rgba(212,175,55,0.5); background:rgba(212,175,55,0.08);">
+          <div class="studio-tabs-grid" id="studioTabsGridPastoral" role="tablist" aria-label="목회 지원 작업 탭" style="grid-template-columns:minmax(0, 1fr);">
+            <div class="studio-tab-card" id="tabCard_moses" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('moses')" onkeydown="handleStudioTabKey(event, 'moses')" style="border:1.5px solid rgba(212,175,55,0.5); background:rgba(212,175,55,0.08);">
               <span class="tab-badge" id="badgeTab_moses" style="background:#854D0E; border-color:#D4AF37; color:#FFFFFF;">목회 1</span>
               <div class="tab-title" style="color:#FDE68A; font-weight:900;">모세의 지팡이</div>
               <div class="tab-sub">목회 달력 · 새벽 말씀 · 웨슬리 표준설교</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_ai" onclick="switchStudioMode('ai')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('ai')}" style="border:1.5px solid #38BDF8; background:rgba(14,165,233,0.12);">
+            <div class="studio-tab-card" id="tabCard_ai" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('ai')" onkeydown="handleStudioTabKey(event, 'ai')" style="border:1.5px solid #38BDF8; background:rgba(14,165,233,0.12);">
               <span class="tab-badge" id="badgeTab_ai" style="background:#0284C7; border-color:#38BDF8; color:#FFFFFF;">목회 2</span>
               <div class="tab-title" style="color:#7DD3FC; font-weight:900;">목회 AI 서재</div>
               <div class="tab-sub">성경 본문 연구 · 설교 보조 대화</div>
@@ -2055,34 +2085,34 @@
           </div>
         </div>
         <div class="studio-cat" id="studioCatBroadcast">
-          <div class="studio-cat-label">🎬 미디어 제작</div>
-          <div class="studio-tabs-grid" id="studioTabsGrid" style="grid-template-columns:repeat(3, minmax(0, 1fr));">
-            <div class="studio-tab-card active" id="tabCard_sermon" onclick="switchStudioMode('sermon')" role="button" tabindex="0" aria-pressed="true" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('sermon')}">
+          <div class="studio-cat-label">🎬 미디어 제작 &amp; 주보·전도지 공방</div>
+          <div class="studio-tabs-grid" id="studioTabsGrid" role="tablist" aria-label="미디어 및 공방 작업 탭" style="grid-template-columns:repeat(3, minmax(0, 1fr));">
+            <div class="studio-tab-card active" id="tabCard_sermon" role="tab" tabindex="0" aria-selected="true" onclick="switchStudioMode('sermon')" onkeydown="handleStudioTabKey(event, 'sermon')">
               <span class="tab-badge">스튜디오 1</span>
               <div class="tab-title">주일설교 쇼츠</div>
               <div class="tab-sub">은혜 대목 2~6편 발췌 &amp; 쇼츠 영상</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_hymn" onclick="switchStudioMode('hymn')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('hymn')}">
+            <div class="studio-tab-card" id="tabCard_hymn" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('hymn')" onkeydown="handleStudioTabKey(event, 'hymn')">
               <span class="tab-badge">스튜디오 2</span>
               <div class="tab-title">찬양 가사 PPT</div>
               <div class="tab-sub">찬송가·복음성가 가사 16:9 예배 PPT</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_event" onclick="switchStudioMode('event')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('event')}">
+            <div class="studio-tab-card" id="tabCard_event" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('event')" onkeydown="handleStudioTabKey(event, 'event')">
               <span class="tab-badge">스튜디오 3</span>
-              <div class="tab-title">교회 행사·광고</div>
+              <div class="tab-title">교회 행사·포스터</div>
               <div class="tab-sub">행사 쇼츠 · 안내 포스터 · 본당 스크린</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_reading" onclick="switchStudioMode('reading')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('reading')}">
+            <div class="studio-tab-card" id="tabCard_reading" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('reading')" onkeydown="handleStudioTabKey(event, 'reading')">
               <span class="tab-badge">스튜디오 4</span>
               <div class="tab-title">말씀 낭독 영상</div>
               <div class="tab-sub">성화 모션 &amp; 성경 낭독 쇼츠 영상</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_bulletin" onclick="switchStudioMode('bulletin')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('bulletin')}">
-              <span class="tab-badge">스튜디오 5</span>
-              <div class="tab-title">주보 &amp; 가정예배</div>
-              <div class="tab-sub">주보 요약 · 구역공과 · 가정예배지</div>
+            <div class="studio-tab-card" id="tabCard_bulletin" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('bulletin')" onkeydown="handleStudioTabKey(event, 'bulletin')">
+              <span class="tab-badge">스튜디오 5 · 공방</span>
+              <div class="tab-title">주보·전도지 공방</div>
+              <div class="tab-sub">주보 요약·QT · 전도지 · 대표기도 · 서식</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_montage" onclick="switchStudioMode('montage')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('montage')}">
+            <div class="studio-tab-card" id="tabCard_montage" role="tab" tabindex="0" aria-selected="false" onclick="switchStudioMode('montage')" onkeydown="handleStudioTabKey(event, 'montage')">
               <span class="tab-badge">스튜디오 6</span>
               <div class="tab-title">사진·영상 편집</div>
               <div class="tab-sub">수련회·행사 사진 20장 영상 스케치</div>
@@ -3121,77 +3151,228 @@
         </section>
       </div>
 
-      <!-- ==================== [탭 4] 📰 설교문 ➔ 주보 요약 · 구역공과 · 가정예배지 · 6일 QT 자동 정리 스튜디오 ==================== -->
+      <!-- ==================== [탭 4] 📰 주보 · 전도지 · 대표기도문 · 행정 서식 통합 공방 ==================== -->
       <div id="studioPaneBulletin" style="display:none;">
         <section class="step-section" style="border-top:4px solid #1F7A4C;">
           <div class="step-header">
             <div class="step-title-wrap">
-              <span class="step-num">📰</span>
-              <h2 class="step-title">설교문 ➔ 주보 요약 · 구역공과(인도팁) · 가정예배지 · 6일 QT · 말씀카드</h2>
+              <span class="step-num">🌿</span>
+              <h2 class="step-title">주보 · 전도지 · 대표기도문 · 행정 서식 공방</h2>
             </div>
-            <span class="pill-orange">워드 호환(.doc) + 말씀카드(PNG) + 원클릭 복사</span>
+            <span class="pill-orange">통합 워드(.docx) + 말씀카드(PNG) + A4 인쇄 + 아론의 지팡이 연동</span>
           </div>
           <p class="step-desc">
-            설교 원고 파일을 올리시거나, 현재 불러온 설교 영상의 자막을 가져와서 ① 주보 요약문, ② 구역예배/속회 나눔지, ③ 온가족 가정예배 순서지, ④ 월~토 6일 QT, ⑤ 성도 단톡방 목회서신, ⑥ 말씀카드 이미지의 초안을 만듭니다. 인쇄·배포 전 본문과 교리를 확인해 주세요.
+            별관 <b>「주보·전도지 공방」</b>의 네 가지 사역 도구(<b>① 주보 요약·구역공과·가정예배지·6일 QT·말씀카드, ② 계절·절기 전도지 만들기, ③ 주일·절기 대표기도문 준비하기, ④ 교회 행정 서식 뽑기</b>)를 한 자리에서 만듭니다. 양면 인쇄용 <b>완성형 A4 주보</b>는 우측의 <b>[🌿 완성형 A4 주보 (아론의 지팡이)]</b>로 바로 연결됩니다.
           </p>
 
-          <!-- 원클릭 설교문 불러오기 툴바 -->
-          <div style="background:#F2F9F5; border:1.5px solid #B7E4C7; border-radius:14px; padding:14px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-            <div>
-              <div style="font-size:14px; font-weight:900; color:#1B4332;">💡 설교 원고를 가장 편한 방법으로 넣어주세요!</div>
-              <div style="font-size:12px; color:#2D6A4F; font-weight:600;">원고가 없으셔도 [현재 설교 영상 자막 가져오기]를 누르면 영상 속 설교 말씀 전체가 자동으로 들어옵니다.</div>
+          <!-- 공방 4대 세부 도구 선택 바 + 완성형 A4 주보 직통 배너 -->
+          <div id="bulWorkshopSubBar" role="tablist" aria-label="주보·전도지 공방 세부 작업 선택" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; background:#F8FAFC; border:1.5px solid #CBD5E1; border-radius:14px; padding:12px 14px; margin-bottom:18px;">
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <button type="button" class="bul-sub-tab-btn active" id="bulSubBtn_summary" role="tab" aria-selected="true" onclick="switchBulletinWorkshopSub('summary')">
+                📰 ① 주보 요약 · 6일 QT · 말씀카드
+              </button>
+              <button type="button" class="bul-sub-tab-btn" id="bulSubBtn_tract" role="tab" aria-selected="false" onclick="switchBulletinWorkshopSub('tract')">
+                🌱 ② 계절·절기 전도지 만들기
+              </button>
+              <button type="button" class="bul-sub-tab-btn" id="bulSubBtn_prayer" role="tab" aria-selected="false" onclick="switchBulletinWorkshopSub('prayer')">
+                🙏 ③ 대표기도문 준비하기
+              </button>
+              <button type="button" class="bul-sub-tab-btn" id="bulSubBtn_forms" role="tab" aria-selected="false" onclick="switchBulletinWorkshopSub('forms')">
+                📋 ④ 행정 서식 뽑기
+              </button>
             </div>
             <div style="display:flex; gap:8px; flex-wrap:wrap;">
-              <button class="btn btn-primary" style="background:#1B4332; border-color:#40916C;" onclick="importCurrentSermonSubtitlesToBulletin()">
-                📺 현재 불러온 설교 영상 자막 전체 가져오기
+              <button type="button" class="btn btn-outline" style="font-size:12.5px; padding:8px 12px;" onclick="switchStudioMode('event')">
+                🖼️ 행사 안내 포스터 만들기
               </button>
-              <label class="btn btn-outline" style="cursor:pointer; margin:0; background:#FFFFFF;">
-                📂 워드(.docx)·한글(.hwpx)·텍스트(.txt) 파일 올리기
-                <input type="file" accept=".docx,.hwpx,.txt,.srt" style="display:none;" onchange="onUploadSermonDocFile(this)" />
+              <a href="kkumdido_pastoral_secretary_studio.html?seat=jubo" class="btn btn-gold" style="font-size:12.5px; padding:8px 14px; text-decoration:none;">
+                🌿 완성형 A4 주보 (아론의 지팡이) ↗
+              </a>
+            </div>
+          </div>
+
+          <!-- [공방 1] 주보 요약 · 구역공과 · 가정예배지 · 6일 QT · 말씀카드 -->
+          <div id="bulSubPane_summary" style="display:block;">
+            <!-- 원클릭 설교문 불러오기 툴바 -->
+            <div style="background:#F2F9F5; border:1.5px solid #B7E4C7; border-radius:14px; padding:14px 16px; margin-bottom:16px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+              <div>
+                <div style="font-size:14px; font-weight:900; color:#1B4332;">💡 설교 원고(필수)를 가장 편한 방법으로 넣어주세요!</div>
+                <div style="font-size:12px; color:#2D6A4F; font-weight:600;">워드(.docx)·한글(.hwpx)·텍스트(.txt) 원고 파일을 올리거나 직접 붙여넣으실 수 있으며, 체험용 예시 원고도 불러올 수 있습니다.</div>
+              </div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-primary" style="background:#1B4332; border-color:#40916C;" onclick="importCurrentSermonSubtitlesToBulletin()">
+                  📺 현재 설교 영상 자막 가져오기
+                </button>
+                <button type="button" class="btn btn-outline" style="background:#FFFFFF;" onclick="fillSampleSermonForBulletin()">
+                  📝 예시 설교 원고 채우기
+                </button>
+                <label class="btn btn-outline" style="cursor:pointer; margin:0; background:#FFFFFF;">
+                  📂 워드(.docx)·한글(.hwpx)·텍스트(.txt) 파일 올리기
+                  <input type="file" accept=".docx,.hwpx,.txt,.srt" style="display:none;" onchange="onUploadSermonDocFile(this)" />
+                </label>
+              </div>
+            </div>
+
+            <div class="bul-input-grid-4" style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:12px; margin-bottom:12px;">
+              <div class="control-item">
+                <label for="bulTitleInput">설교 제목 (필수)</label>
+                <input type="text" id="bulTitleInput" value="[주일설교] 떨면서도 말하는 사람들" required />
+              </div>
+              <div class="control-item">
+                <label for="bulVerseInput">성경 본문 (필수)</label>
+                <input type="text" id="bulVerseInput" value="사도행전 18:1-11" required />
+              </div>
+              <div class="control-item">
+                <label for="bulChurchInput">교회 이름</label>
+                <input type="text" id="bulChurchInput" value="우리교회" />
+              </div>
+              <div class="control-item">
+                <label for="bulArtworkSelect">🖼️ 말씀카드 배경 성화</label>
+                <select id="bulArtworkSelect"></select>
+              </div>
+            </div>
+
+            <div class="control-item" style="margin-bottom:16px;">
+              <label for="bulSermonTextInput">설교 원고 또는 설교 자막 본문 (필수 · 비워 두면 생성되지 않습니다)</label>
+              <textarea id="bulSermonTextInput" rows="7" required placeholder="여기에 설교 원고를 직접 붙여넣으시거나, 상단의 [.docx/.hwpx/.txt 파일 올리기] 또는 [📝 예시 설교 원고 채우기] 버튼을 눌러주세요." style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #CED4DA; font-size:13.5px; line-height:1.65;"></textarea>
+            </div>
+
+            <div style="background:#FFFBEB; border:1.5px solid #F59E0B; border-radius:12px; padding:11px 14px; margin-bottom:14px;">
+              <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; font-size:13px; font-weight:800; color:#78350F; line-height:1.5;">
+                <input type="checkbox" id="bulPastorReviewChk" onchange="syncBulletinReviewCheckboxes(this.checked)" style="margin-top:3px; width:16px; height:16px;" />
+                <span>[목회자 감수 확인 — 결과물 열람 후 직접 체크] 먼저 아래 생성 버튼을 눌러 결과물(주보 요약·구역공과·가정예배지·6일 QT)을 확인하신 뒤, 성경 구절 오탈자나 교리적 왜곡이 없음을 직접 확인하고 체크해 주시면 다운로드·복사가 열립니다.</span>
               </label>
             </div>
-          </div>
 
-          <div style="display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:12px; margin-bottom:12px;">
-            <div class="control-item">
-              <label>설교 제목</label>
-              <input type="text" id="bulTitleInput" value="[주일설교] 떨면서도 말하는 사람들" />
+            <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+              <button type="button" class="btn btn-gold" id="btnGenBulletin" style="padding:14px 28px; font-size:16px;" onclick="startGenerateBulletinPack()">
+                ✨ 주보 요약 · 구역공과(인도팁) · 가정예배지 · 6일 QT · 말씀카드 한 방에 생성하기
+              </button>
+              <span id="bulStatusTxt" style="font-size:14px; font-weight:800; color:#1F7A4C;"></span>
             </div>
-            <div class="control-item">
-              <label>성경 본문</label>
-              <input type="text" id="bulVerseInput" value="사도행전 18:1-11" />
+
+            <!-- 생성 결과물 표시 영역 -->
+            <div id="bulResultBox" style="display:none; margin-top:20px;"></div>
+          </div>
+
+          <!-- [공방 2] 🌱 계절·절기 전도지 만들기 -->
+          <div id="bulSubPane_tract" style="display:none;">
+            <div style="background:#F2F9F5; border:1.5px solid #B7E4C7; border-radius:14px; padding:14px 16px; margin-bottom:14px;">
+              <div style="font-size:14.5px; font-weight:900; color:#1B4332; margin-bottom:8px;">🌱 계절·절기 전도지 &amp; 새가족 환영 전단지 만들기</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline" onclick="applyTractPreset('spring')">🌸 봄 · 새생명 이웃초청</button>
+                <button type="button" class="btn btn-outline" onclick="applyTractPreset('easter')">✝️ 부활절 생명 전도지</button>
+                <button type="button" class="btn btn-outline" onclick="applyTractPreset('autumn')">🌾 가을 · 추수감사 초청</button>
+                <button type="button" class="btn btn-outline" onclick="applyTractPreset('christmas')">🕯️ 성탄절 · 연말 위로 전도지</button>
+                <button type="button" class="btn btn-outline" onclick="applyTractPreset('welcome')">🤝 평상시 · 새가족 환영 안내지</button>
+              </div>
             </div>
-            <div class="control-item">
-              <label>교회 이름</label>
-              <input type="text" id="bulChurchInput" value="우리교회" />
+            <div class="workshop-grid-2" style="display:grid; grid-template-columns:1fr 1.15fr; gap:16px; align-items:start;">
+              <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div class="control-item">
+                  <label for="tractTitleIn">전도지 표지 제목</label>
+                  <input type="text" id="tractTitleIn" value="당신의 삶에 참된 쉼과 평안이 있기를 소망합니다" oninput="renderTractWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="tractVerseIn">핵심 성경 말씀</label>
+                  <input type="text" id="tractVerseIn" value="수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라 (마태복음 11:28)" oninput="renderTractWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="tractBodyIn">복음 초청 메시지 (자유 수정)</label>
+                  <textarea id="tractBodyIn" rows="6" oninput="renderTractWorkshopPreview()" style="width:100%; padding:10px; border-radius:10px; border:1.5px solid #CBD5E1; font-size:13px; line-height:1.6;"></textarea>
+                </div>
+                <div class="control-item">
+                  <label for="tractWorshipIn">예배 시간 및 오시는 길 안내</label>
+                  <textarea id="tractWorshipIn" rows="3" oninput="renderTractWorkshopPreview()" style="width:100%; padding:10px; border-radius:10px; border:1.5px solid #CBD5E1; font-size:13px; line-height:1.5;">• 주일 대예배: 오전 11:00 (본당)
+• 수요예배: 오후 7:30 / 새벽기도회: 오전 5:30
+• 문의 및 안내: 담임목사 및 안내위원</textarea>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+                  <button type="button" class="btn btn-gold" onclick="downloadWorkshopDocx('tract')">📄 전도지 워드(.docx) 다운로드</button>
+                  <button type="button" class="btn btn-primary" onclick="printWorkshopSheet('tractPreviewSheet')">🖨️ A4 전도지 바로 인쇄</button>
+                  <button type="button" class="btn btn-outline" onclick="copyWorkshopText('tract')">📋 전도지 문구 복사</button>
+                </div>
+              </div>
+              <div id="tractPreviewSheet" style="background:#FFFDF9; border:2px solid #C59B27; border-radius:16px; padding:26px; box-shadow:0 8px 24px rgba(15,23,42,0.08);"></div>
             </div>
-            <div class="control-item">
-              <label>🖼️ 말씀카드 배경 성화</label>
-              <select id="bulArtworkSelect"></select>
+          </div>
+
+          <!-- [공방 3] 🙏 대표기도문 준비하기 -->
+          <div id="bulSubPane_prayer" style="display:none;">
+            <div style="background:#EFF6FF; border:1.5px solid #BFDBFE; border-radius:14px; padding:14px 16px; margin-bottom:14px;">
+              <div style="font-size:14.5px; font-weight:900; color:#1E3A8A; margin-bottom:8px;">🙏 주일·절기·속회 대표기도문 준비하기 (경배·참회·간구·강단·공동체 5단 구성)</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline" onclick="applyPrayerPreset('sunday')">⛪ 주일 낮 대예배 대표기도</button>
+                <button type="button" class="btn btn-outline" onclick="applyPrayerPreset('lent_easter')">✝️ 사순절·고난주간·부활절</button>
+                <button type="button" class="btn btn-outline" onclick="applyPrayerPreset('thanksgiving')">🌾 맥추·추수감사주일</button>
+                <button type="button" class="btn btn-outline" onclick="applyPrayerPreset('advent_newyear')">🕯️ 성탄절·송구영신·신년</button>
+                <button type="button" class="btn btn-outline" onclick="applyPrayerPreset('cell_wed')">🌿 수요기도회·구역·속회</button>
+              </div>
+            </div>
+            <div class="workshop-grid-2" style="display:grid; grid-template-columns:1fr 1.15fr; gap:16px; align-items:start;">
+              <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div class="control-item">
+                  <label for="prayerOccasionIn">예배 구분 및 기도 제목</label>
+                  <input type="text" id="prayerOccasionIn" value="주일 낮 대예배 대표기도문" oninput="renderPrayerWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="prayerPersonIn">기도자 성함·직분 / 기도일</label>
+                  <input type="text" id="prayerPersonIn" value="김은혜 장로 (주일 대예배)" oninput="renderPrayerWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="prayerSpecialIn">이번 주 우리 교회 특별 기도제목 (추가 반영)</label>
+                  <input type="text" id="prayerSpecialIn" placeholder="예: 환우들의 치유와 다음세대 부흥을 위해" oninput="renderPrayerWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="prayerBodyIn">대표기도문 본문 (강단 낭독용 · 자유 다듬기)</label>
+                  <textarea id="prayerBodyIn" rows="9" oninput="renderPrayerWorkshopPreview()" style="width:100%; padding:10px; border-radius:10px; border:1.5px solid #CBD5E1; font-size:13.5px; line-height:1.7;"></textarea>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+                  <button type="button" class="btn btn-gold" onclick="downloadWorkshopDocx('prayer')">📄 대표기도문 워드(.docx) 다운로드</button>
+                  <button type="button" class="btn btn-primary" onclick="printWorkshopSheet('prayerPreviewSheet')">🖨️ 강단 큰글씨 인쇄</button>
+                  <button type="button" class="btn btn-outline" onclick="copyWorkshopText('prayer')">📋 대표기도문 복사</button>
+                </div>
+              </div>
+              <div id="prayerPreviewSheet" style="background:#FFFDF9; border:2px solid #1E3A8A; border-radius:16px; padding:26px; box-shadow:0 8px 24px rgba(15,23,42,0.08);"></div>
             </div>
           </div>
 
-          <div class="control-item" style="margin-bottom:16px;">
-            <label>설교 원고 또는 설교 자막 본문 (직접 붙여넣으셔도 됩니다)</label>
-            <textarea id="bulSermonTextInput" rows="7" placeholder="여기에 설교 원고를 붙여넣으시거나 위의 [현재 불러온 설교 영상 자막 전체 가져오기] 버튼을 눌러주세요." style="width:100%; padding:12px 14px; border-radius:12px; border:1.5px solid #CED4DA; font-size:13.5px; line-height:1.65;"></textarea>
+          <!-- [공방 4] 📋 교회 행정 서식 뽑기 -->
+          <div id="bulSubPane_forms" style="display:none;">
+            <div style="background:#FFFBEB; border:1.5px solid #FDE68A; border-radius:14px; padding:14px 16px; margin-bottom:14px;">
+              <div style="font-size:14.5px; font-weight:900; color:#78350F; margin-bottom:8px;">📋 교회 행정 표준 서식 6종 (결재란·직인란 포함 · 즉시 인쇄 및 워드 저장)</div>
+              <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('member_cert')">🪪 1. 교인 등록·출석 확인서</button>
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('baptism_cert')">🕊️ 2. 세례(침례)·입교 증명서</button>
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('expense_voucher')">💰 3. 3단 결재 지출결의서</button>
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('meeting_minutes')">📑 4. 당회·임원회·제직회 회의록</button>
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('cell_report')">🏡 5. 구역·속회 예배 보고서</button>
+                <button type="button" class="btn btn-outline" onclick="applyAdminFormPreset('official_letter')">✉️ 6. 교회 대외 공문서</button>
+              </div>
+            </div>
+            <div class="workshop-grid-2" style="display:grid; grid-template-columns:1fr 1.15fr; gap:16px; align-items:start;">
+              <div style="background:#FFFFFF; border:1.5px solid #E2E8F0; border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:10px;">
+                <div class="control-item">
+                  <label for="adminFormTitleIn">서식 문서 제목</label>
+                  <input type="text" id="adminFormTitleIn" value="교인 등록 및 출석 확인서" oninput="renderAdminFormWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="adminFormDocNoIn">문서 번호 / 발행일</label>
+                  <input type="text" id="adminFormDocNoIn" value="제 2026-01호" oninput="renderAdminFormWorkshopPreview()" />
+                </div>
+                <div class="control-item">
+                  <label for="adminFormBodyIn">서식 세부 항목 및 내용 (자유 수정)</label>
+                  <textarea id="adminFormBodyIn" rows="9" oninput="renderAdminFormWorkshopPreview()" style="width:100%; padding:10px; border-radius:10px; border:1.5px solid #CBD5E1; font-size:13px; line-height:1.65;"></textarea>
+                </div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:4px;">
+                  <button type="button" class="btn btn-gold" onclick="downloadWorkshopDocx('forms')">📄 행정 서식 워드(.docx) 다운로드</button>
+                  <button type="button" class="btn btn-primary" onclick="printWorkshopSheet('adminFormPreviewSheet')">🖨️ A4 결재 서식 인쇄</button>
+                  <button type="button" class="btn btn-outline" onclick="copyWorkshopText('forms')">📋 서식 텍스트 복사</button>
+                </div>
+              </div>
+              <div id="adminFormPreviewSheet" style="background:#FFFFFF; border:2px solid #334155; border-radius:16px; padding:26px; box-shadow:0 8px 24px rgba(15,23,42,0.08);"></div>
+            </div>
           </div>
-
-          <div style="background:#F2F9F5; border:1.5px solid #40916C; border-radius:12px; padding:11px 14px; margin-bottom:14px;">
-            <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; font-size:13px; font-weight:800; color:#1B4332; line-height:1.5;">
-              <input type="checkbox" id="bulPastorReviewChk" style="margin-top:3px; width:16px; height:16px;" />
-              <span>[배포 전 확인] 생성된 주보·구역공과·QT 초안의 성경 구절, 사실 관계와 교리를 교역자가 검토한 뒤 인쇄·배포합니다. 확인을 마친 후 표시해 주세요.</span>
-            </label>
-          </div>
-
-          <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
-            <button class="btn btn-gold" id="btnGenBulletin" style="padding:14px 28px; font-size:16px;" onclick="startGenerateBulletinPack()">
-              ✨ 주보 요약 · 구역공과(인도팁) · 가정예배지 · 6일 QT · 말씀카드 한 방에 생성하기
-            </button>
-            <span id="bulStatusTxt" style="font-size:14px; font-weight:800; color:#1F7A4C;"></span>
-          </div>
-
-          <!-- 생성 결과물 표시 영역 -->
-          <div id="bulResultBox" style="display:none; margin-top:20px;"></div>
         </section>
       </div>
 
@@ -6662,6 +6843,33 @@ ${st.error || "로그를 확인해 주세요."}`);
     // =========================================================================
     let currentStudioMode = "sermon";
 
+    function handleStudioTabKey(ev, mode) {
+      if (!ev) return;
+      const modes = ["sermon", "hymn", "event", "reading", "bulletin", "montage", "moses", "ai"];
+      if (ev.key === "Enter" || ev.key === " ") {
+        ev.preventDefault();
+        switchStudioMode(mode);
+      } else if (ev.key === "ArrowRight" || ev.key === "ArrowDown") {
+        ev.preventDefault();
+        const idx = modes.indexOf(mode);
+        const nextMode = modes[(idx + 1) % modes.length];
+        const nextEl = document.getElementById("tabCard_" + nextMode);
+        if (nextEl) {
+          nextEl.focus();
+          switchStudioMode(nextMode);
+        }
+      } else if (ev.key === "ArrowLeft" || ev.key === "ArrowUp") {
+        ev.preventDefault();
+        const idx = modes.indexOf(mode);
+        const prevMode = modes[(idx - 1 + modes.length) % modes.length];
+        const prevEl = document.getElementById("tabCard_" + prevMode);
+        if (prevEl) {
+          prevEl.focus();
+          switchStudioMode(prevMode);
+        }
+      }
+    }
+
     function switchStudioMode(mode) {
       // 만약 방송실용(TIER1)인데 모세의 지팡이(moses) 접근을 시도하면 차단
       if ((mode === "moses" || mode === "ai") && appData.license && appData.license.tier === "TIER1") {
@@ -6672,8 +6880,9 @@ ${st.error || "로그를 확인해 주세요."}`);
       modes.forEach(m => {
         const card = document.getElementById("tabCard_" + m);
         if (card) {
-          card.classList.toggle("active", m === mode);
-          card.setAttribute("aria-pressed", String(m === mode));
+          const isActive = (m === mode);
+          card.classList.toggle("active", isActive);
+          card.setAttribute("aria-selected", isActive ? "true" : "false");
         }
       });
 
@@ -6726,10 +6935,8 @@ ${st.error || "로그를 확인해 주세요."}`);
         applyDesignToPhone();  // 20차: 다른 스튜디오에서 돌아오면 설교 미리보기를 다시 그림
         restoreSermonSubBox();  // 21차: 부제 칸도 설교 자막으로(예전엔 행사·사진 캡션이 남았음)
       } else if (mode === "bulletin") {
-        const curTxt = document.getElementById("bulSermonTextInput").value.trim();
-        if (!curTxt && currentSermon && currentSermon.subtitles && currentSermon.subtitles.length > 0) {
-          importCurrentSermonSubtitlesToBulletin(true);
-        }
+        // 설교 원고가 비어 있을 때 자동으로 샘플 자막을 채우지 않고, 사용자가 직접 입력하거나 불러오기를 선택하도록 유지
+        initBulletinWorkshopSubTools();
       } else if (mode === "moses") {
         initPastorPlanner();
         loadDawnToday();
@@ -8405,7 +8612,7 @@ ${st.error || "로그를 확인해 주세요."}`);
         stTxt.textContent = `✅ 세로 쇼츠(MP4) + 단톡방 포스터(4:5 PNG) + 본당 스크린 배너(16:9 PNG) 3종 동시 완성!`;
         resBox.style.display = "block";
         resBox.innerHTML = `
-          <div style="display:grid; grid-template-columns:1fr 1fr 1.25fr; gap:16px; align-items:start;">
+          <div class="ev-res-grid-3" style="display:grid; grid-template-columns:1fr 1fr 1.25fr; gap:16px; align-items:start;">
             <div style="background:#FFFFFF; border:1px solid #E2E8F0; border-radius:14px; padding:14px; text-align:center;">
               <div style="font-size:13.5px; font-weight:900; color:#1E293B; margin-bottom:8px;">🎬 1. 행사 안내 쇼츠 (9:16 세로 MP4)</div>
               <video src="${r.video_url}?t=${ts}#t=0.15" poster="${posterThumb}" controls playsinline preload="auto" onloadeddata="if(this.currentTime===0)this.currentTime=0.15;" style="width:185px; aspect-ratio:9/16; object-fit:cover; border-radius:12px; background:#141C2E; box-shadow:0 6px 18px rgba(0,0,0,0.14); margin-bottom:10px;"></video>
@@ -8452,29 +8659,72 @@ ${st.error || "로그를 확인해 주세요."}`);
       }
     }
 
+    function fillSampleSermonForBulletin() {
+      document.getElementById("bulTitleInput").value = "두려워하지 말라, 내가 너와 함께 함이라";
+      document.getElementById("bulVerseInput").value = "사도행전 18:9-11";
+      if (!document.getElementById("bulChurchInput").value.trim()) {
+        document.getElementById("bulChurchInput").value = "꿈바온교회";
+      }
+      document.getElementById("bulSermonTextInput").value = [
+        "사랑하는 성도 여러분, 사도 바울이 고린도에 머물던 밤은 외롭고 두려운 밤이었습니다.",
+        "아덴에서의 사역 이후 지친 몸과 마음으로 고린도에 왔지만, 복음을 전할수록 반대는 거세졌고 앞길은 막막해 보였습니다.",
+        "바로 그 깊은 밤에 주님께서 환상 가운데 바울에게 찾아와 말씀하셨습니다. 두려워하지 말며 침묵하지 말고 말하라, 내가 너와 함께 있으매 아무 사람도 너를 대적하여 해롭게 할 자가 없을 것이니 이는 이 성중에 내 백성이 많음이라 하셨습니다.",
+        "첫째로, 주님은 우리의 두려움을 꾸짖지 않으시고 '내가 너와 함께 있다'는 임마누엘의 약속으로 먼저 안아 주십니다.",
+        "둘째로, 주님은 낙심하여 입을 닫고 싶은 순간에 다시 말씀과 기도의 입술을 열라고 권면하십니다.",
+        "셋째로, 우리가 홀로 버티는 것 같은 삶의 자리에도 하나님께서 예비하신 동역자와 영혼들이 있음을 기억해야 합니다.",
+        "이번 한 주간 삶의 자리에서 두려움 대신 주님의 동행을 신뢰하며, 가정과 일터에서 믿음과 소망의 말을 전하는 성도님들이 되시기를 축복합니다."
+      ].join("\n\n");
+      document.getElementById("bulStatusTxt").textContent = "✅ 예시 설교 원고(사도행전 18:9-11)를 입력란에 채웠습니다. 내용을 확인하신 뒤 생성 버튼을 눌러보세요.";
+    }
+
     function onUploadSermonDocFile(inputEl) {
       const f = inputEl.files && inputEl.files[0];
       if (!f) return;
       const reader = new FileReader();
       reader.onload = async (e) => {
-        try {
-          const res = await fetch("/api/extract-doc-text", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ filename: f.name, data_base64: e.target.result })
-          });
-          const data = await res.json();
-          if (!data.ok || !data.text) throw new Error(data.error || "문서에서 원고 본문을 찾지 못했습니다.");
-          document.getElementById("bulSermonTextInput").value = data.text;
-          document.getElementById("bulStatusTxt").textContent = `✅ 「${f.name}」 원고 본문을 불러왔습니다!`;
-        } catch (err) {
-          document.getElementById("bulStatusTxt").textContent = `❌ ${err.message || "원고 파일을 읽지 못했습니다."}`;
-        } finally {
-          inputEl.value = "";
+        const res = await fetch("/api/extract-doc-text", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            filename: f.name,
+            data_base64: e.target.result
+          })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          document.getElementById("bulSermonTextInput").value = data.text || "";
+          document.getElementById("bulStatusTxt").textContent = `✅ 「${f.name}」 원고 본문(${(data.text || "").length.toLocaleString()}자)을 불러왔습니다!`;
+        } else {
+          alert(data.error || "원고 파일을 읽지 못했습니다.");
         }
       };
-      reader.onerror = () => { document.getElementById("bulStatusTxt").textContent = "❌ 파일을 읽지 못했습니다."; inputEl.value = ""; };
       reader.readAsDataURL(f);
+    }
+
+    function syncBulletinPastorReviewCheckboxes(checked) {
+      const chk1 = document.getElementById("bulPastorReviewChk");
+      const chk2 = document.getElementById("bulPastorReviewInlineChk");
+      if (chk1) chk1.checked = !!checked;
+      if (chk2) chk2.checked = !!checked;
+    }
+
+    function requireBulletinReviewBeforeExport(ev) {
+      const chk1 = document.getElementById("bulPastorReviewChk");
+      const chk2 = document.getElementById("bulPastorReviewInlineChk");
+      const isReviewed = (chk1 && chk1.checked) || (chk2 && chk2.checked);
+      if (!isReviewed) {
+        if (ev && typeof ev.preventDefault === "function") ev.preventDefault();
+        alert("결과물을 먼저 살펴보신 뒤, '목회자 감수 확인(성경 구절·교리·문구 최종 확인)' 체크박스에 직접 체크하셔야 다운로드 및 복사가 가능합니다.");
+        if (chk2) chk2.focus();
+        else if (chk1) chk1.focus();
+        return false;
+      }
+      return true;
+    }
+
+    function copyBulletinAfterReview(encodedTxt, btnEl) {
+      if (!requireBulletinReviewBeforeExport()) return;
+      copyTitleAndTags(encodedTxt, btnEl);
     }
 
     async function startGenerateBulletinPack() {
@@ -8482,24 +8732,36 @@ ${st.error || "로그를 확인해 주세요."}`);
       const stTxt = document.getElementById("bulStatusTxt");
       const resBox = document.getElementById("bulResultBox");
 
-      let sermonTxt = document.getElementById("bulSermonTextInput").value.trim();
-      if (!sermonTxt && currentSermon && currentSermon.subtitles) {
-        sermonTxt = currentSermon.subtitles.map(s => s.text).join(" ");
-        document.getElementById("bulSermonTextInput").value = sermonTxt;
-      }
-      if (!document.getElementById("bulTitleInput").value.trim() || !document.getElementById("bulVerseInput").value.trim() || !sermonTxt) {
-        stTxt.textContent = "설교 제목·성경 본문·설교 원고를 모두 입력해 주세요.";
-        document.getElementById(!sermonTxt ? "bulSermonTextInput" : !document.getElementById("bulTitleInput").value.trim() ? "bulTitleInput" : "bulVerseInput").focus();
+      const titleTxt = document.getElementById("bulTitleInput").value.trim();
+      const verseTxt = document.getElementById("bulVerseInput").value.trim();
+      const sermonTxt = document.getElementById("bulSermonTextInput").value.trim();
+
+      if (!titleTxt) {
+        alert("설교 제목을 입력해 주세요.");
+        document.getElementById("bulTitleInput").focus();
         return;
       }
+      if (!verseTxt) {
+        alert("성경 본문 장·절을 입력해 주세요.");
+        document.getElementById("bulVerseInput").focus();
+        return;
+      }
+      if (!sermonTxt || sermonTxt.length < 20) {
+        alert("설교 원고가 비어 있거나 너무 짧습니다. 설교 원고를 입력하시거나 [📂 워드·한글·텍스트 파일 올리기], [📝 예시 설교 원고 채우기] 버튼을 눌러 원고를 먼저 준비해 주세요.");
+        document.getElementById("bulSermonTextInput").focus();
+        return;
+      }
+
+      // 새로 결과물을 생성할 때는 반드시 목회자 감수 체크를 해제하여, 생성된 결과물을 직접 확인한 뒤 체크하도록 강제
+      syncBulletinPastorReviewCheckboxes(false);
 
       btn.disabled = true;
       btn.textContent = "⏳ 주보 요약 · 구역공과 · 가정예배지 · 6일 QT · 말씀카드 생성 중 (최대 60초)...";
       let elapsedSec = 0;
-      stTxt.textContent = "⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.doc) 문서를 만들고 있습니다... (0초 경과 · 최대 60초 대기)";
+      stTxt.textContent = "⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.docx) 문서를 만들고 있습니다... (0초 경과 · 최대 60초 대기)";
       const bulTimer = setInterval(() => {
         elapsedSec += 1;
-        stTxt.textContent = `⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.doc) 문서를 만들고 있습니다... (${elapsedSec}초 경과 · 최대 60초 대기)`;
+        stTxt.textContent = `⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.docx) 문서를 만들고 있습니다... (${elapsedSec}초 경과 · 최대 60초 대기)`;
       }, 1000);
 
       try {
@@ -8507,8 +8769,8 @@ ${st.error || "로그를 확인해 주세요."}`);
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            title: document.getElementById("bulTitleInput").value.trim(),
-            bible_verse: document.getElementById("bulVerseInput").value.trim(),
+            title: titleTxt,
+            bible_verse: verseTxt,
             church_name: document.getElementById("bulChurchInput").value.trim(),
             artwork_id: document.getElementById("bulArtworkSelect").value,
             sermon_text: sermonTxt
@@ -8541,9 +8803,9 @@ ${st.error || "로그를 확인해 주세요."}`);
               ? "background:#FFFBEB; border:1.5px solid #F59E0B; color:#92400E;"
               : "background:#F1F5F9; border:1.5px solid #94A3B8; color:#334155;");
 
-        const bulletinCopyTxt = `[주보 설교 요약] ${document.getElementById("bulTitleInput").value} (${document.getElementById("bulVerseInput").value})\n▶ 핵심 명제: ${p.core_slogan}\n\n${p.bulletin_paragraph}\n\n` + (p.three_points || []).map(x => `• ${x}`).join("\n");
+        const bulletinCopyTxt = `[주보 설교 요약] ${titleTxt} (${verseTxt})\n▶ 핵심 명제: ${p.core_slogan}\n\n${p.bulletin_paragraph}\n\n` + (p.three_points || []).map(x => `• ${x}`).join("\n");
         const sg = p.small_group || {};
-        const sgCopyTxt = `[구역예배 · 소그룹 나눔지]\n■ 말씀: ${document.getElementById("bulTitleInput").value} (${document.getElementById("bulVerseInput").value})\n\n💡 [구역장 인도 팁] ${sg.leader_tip || ''}\n\n1. 마음 열기: ${sg.ice_break || ''}\n\n2. 말씀 나눔 질문:\n` + (sg.questions || []).map((q, i) => `  ${i+1}) ${q}`).join("\n") + `\n\n3. 이번 주 실천: ${sg.action_plan || ''}\n\n4. 합심 기도:\n${sg.prayer || ''}`;
+        const sgCopyTxt = `[구역예배 · 소그룹 나눔지]\n■ 말씀: ${titleTxt} (${verseTxt})\n\n💡 [구역장 인도 팁] ${sg.leader_tip || ''}\n\n1. 마음 열기: ${sg.ice_break || ''}\n\n2. 말씀 나눔 질문:\n` + (sg.questions || []).map((q, i) => `  ${i+1}) ${q}`).join("\n") + `\n\n3. 이번 주 실천: ${sg.action_plan || ''}\n\n4. 합심 기도:\n${sg.prayer || ''}`;
         const fw = p.family_worship || {};
         const fwHymn = fw.hymn || fw.opening || '찬송가 384장 (나의 갈 길 다가도록)';
         const fwChild = fw.child_summary || fw.word_read || '';
@@ -8558,22 +8820,29 @@ ${st.error || "로그를 확인해 주세요."}`);
           <div id="bulSummaryModeBadge" style="${badgeStyle} padding:12px 16px; border-radius:12px; font-size:14px; font-weight:900; margin-bottom:12px;">
             ${escapeHtml(statusLabel)}
           </div>
+          <div style="background:#FFFBEB; border:1.5px solid #F59E0B; border-radius:12px; padding:12px 16px; margin-bottom:12px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px;">
+            <label style="display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:900; color:#78350F; cursor:pointer;">
+              <input type="checkbox" id="bulPastorReviewInlineChk" onchange="syncBulletinPastorReviewCheckboxes(this.checked)" style="width:18px; height:18px; accent-color:#B45309;" />
+              ✅ [필수] 아래 생성된 주보 요약·구역공과·가정예배지·6일 QT·말씀카드의 성경 구절과 문구를 직접 확인(감수)했습니다.
+            </label>
+            <span style="font-size:12px; color:#92400E; font-weight:700;">※ 결과물 확인 후 체크하시면 워드(.docx)·말씀카드 다운로드 및 문구 복사가 활성화됩니다.</span>
+          </div>
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:#141C2E; color:#FAF7F0; padding:14px 18px; border-radius:14px; margin-bottom:16px;">
             <div style="font-size:15px; font-weight:900;">
-              📦 한 주간 목회 사역 자료 6종의 초안이 만들어졌습니다. 배포 전 성경 본문과 내용을 확인해 주세요.
+              📦 한 주간 목회 사역 자료 6종(구역장 인도팁 · 가정예배지 · 6일 QT 포함)이 모두 완성되었습니다!
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <a href="${escapeHtml(p.docx_url)}" download="${escapeHtml(p.docx_filename)}" class="btn btn-gold" style="text-decoration:none;">📄 주보·구역공과·가정예배·QT 통합 워드 호환(.doc) 다운로드</a>
-              <a href="${escapeHtml(p.word_card_url)}" download="${escapeHtml(p.word_card_filename)}" class="btn btn-outline" style="text-decoration:none; background:#FFFFFF;">🖼️ 주일 말씀카드 PNG 다운로드</a>
+              <a href="${escapeHtml(p.docx_url)}" download="${escapeHtml(p.docx_filename)}" onclick="return requireBulletinReviewBeforeExport(event)" class="btn btn-gold" style="text-decoration:none;">📄 주보·구역공과·가정예배·QT 통합 워드(.docx) 다운로드</a>
+              <a href="${escapeHtml(p.word_card_url)}" download="${escapeHtml(p.word_card_filename)}" onclick="return requireBulletinReviewBeforeExport(event)" class="btn btn-outline" style="text-decoration:none; background:#FFFFFF;">🖼️ 주일 말씀카드 PNG 다운로드</a>
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns:1.35fr 0.85fr; gap:16px; margin-bottom:16px;">
+          <div class="bul-res-grid-2" style="display:grid; grid-template-columns:1.35fr 0.85fr; gap:16px; margin-bottom:16px;">
             <!-- 1. 주보 게재용 설교 요약 -->
             <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:16px; padding:18px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <span style="font-size:15.5px; font-weight:900; color:#141C2E;">📰 1. 주보 게재용 설교 핵심 요약</span>
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyTitleAndTags('${encodeURIComponent(bulletinCopyTxt)}', this)">📋 주보 요약 복사</button>
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyBulletinAfterReview('${encodeURIComponent(bulletinCopyTxt)}', this)">📋 주보 요약 복사</button>
               </div>
               <div style="background:#FFFFFF; border:1px solid #EAE3D2; border-radius:10px; padding:12px; margin-bottom:10px; font-weight:800; color:#9C6B19; font-size:14px;">
                 ✦ 핵심 명제: "${escapeHtml(p.core_slogan)}"
@@ -8586,20 +8855,20 @@ ${st.error || "로그를 확인해 주세요."}`);
 
             <!-- 2. 고화질 주일 말씀카드 미리보기 -->
             <div style="background:#FAF8F3; border:1.5px solid #E5DEC9; border-radius:16px; padding:18px; text-align:center;">
-              <div style="font-size:15px; font-weight:900; color:#141C2E; margin-bottom:10px;">🖼️ 주일 말씀카드 (단톡방·인스타용)</div>
+              <div style="font-size:15px; font-weight:900; color:#141C2E; margin-bottom:10px;">🖼️ 주일 말씀카드 (선택 배경 성화 적용)</div>
               <img src="${escapeHtml(p.word_card_url)}" style="width:220px; border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.15); margin-bottom:10px;" />
               <div>
-                <a href="${escapeHtml(p.word_card_url)}" download="${escapeHtml(p.word_card_filename)}" class="btn btn-gold" style="text-decoration:none; width:100%;">⬇ 말씀카드 이미지 저장</a>
+                <a href="${escapeHtml(p.word_card_url)}" download="${escapeHtml(p.word_card_filename)}" onclick="return requireBulletinReviewBeforeExport(event)" class="btn btn-gold" style="text-decoration:none; width:100%;">⬇ 말씀카드 이미지 저장</a>
               </div>
             </div>
           </div>
 
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
+          <div class="bul-res-grid-2" style="display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px;">
             <!-- 3. 구역예배 / 소그룹 나눔지 + 구역장 인도 팁 -->
             <div style="background:#F8FAFC; border:1.5px solid #CBD5E1; border-radius:16px; padding:18px;">
               <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
                 <span style="font-size:15px; font-weight:900; color:#1E293B;">👥 2. 구역예배 · 속회 나눔지 (인도자 팁 포함)</span>
-                <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyTitleAndTags('${encodeURIComponent(sgCopyTxt)}', this)">📋 구역공과 복사</button>
+                <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyBulletinAfterReview('${encodeURIComponent(sgCopyTxt)}', this)">📋 구역공과 복사</button>
               </div>
               <div style="font-size:13px; color:#334155; line-height:1.65; display:flex; flex-direction:column; gap:8px;">
                 ${sg.leader_tip ? `<div style="background:#FFF9DB; border:1px solid #F59F00; padding:8px 10px; border-radius:8px; color:#70480F; font-weight:700;">💡 <b>[구역장·순장 인도 팁]</b> ${escapeHtml(sg.leader_tip)}</div>` : ''}
@@ -8615,7 +8884,7 @@ ${st.error || "로그를 확인해 주세요."}`);
               <div style="background:#F0F7FF; border:1.5px solid #B8D4F8; border-radius:16px; padding:15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <span style="font-size:14.5px; font-weight:900; color:#1E3A8A;">🏠 3. 온가족 가정예배 순서지 (부모 축복기도)</span>
-                  <button class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="copyTitleAndTags('${encodeURIComponent(fwCopyTxt)}', this)">📋 가정예배 복사</button>
+                  <button class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="copyBulletinAfterReview('${encodeURIComponent(fwCopyTxt)}', this)">📋 가정예배 복사</button>
                 </div>
                 <div style="font-size:12.5px; color:#1E293B; line-height:1.65; display:flex; flex-direction:column; gap:6px;">
                   <div><b>[1. 온가족 찬양]</b> ${escapeHtml(fwHymn)}</div>
@@ -8628,7 +8897,7 @@ ${st.error || "로그를 확인해 주세요."}`);
               <div style="background:#FFFDF7; border:1.5px solid #F3D999; border-radius:16px; padding:15px;">
                 <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
                   <span style="font-size:14.5px; font-weight:900; color:#78350F;">💬 4. 전교인 단톡방 발송용 목회 서신</span>
-                  <button class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="copyTitleAndTags('${encodeURIComponent(kakaoCopyTxt)}', this)">📋 카톡 문구 복사</button>
+                  <button class="btn btn-outline" style="padding:5px 10px; font-size:12px;" onclick="copyBulletinAfterReview('${encodeURIComponent(kakaoCopyTxt)}', this)">📋 카톡 문구 복사</button>
                 </div>
                 <pre style="white-space:pre-wrap; font-family:inherit; font-size:12.5px; color:#374151; line-height:1.6; background:#FFFFFF; padding:10px; border-radius:10px; border:1px solid #FDE68A; max-height:150px; overflow-y:auto;">${escapeHtml(kakaoCopyTxt)}</pre>
               </div>
@@ -8639,9 +8908,9 @@ ${st.error || "로그를 확인해 주세요."}`);
           <div style="background:#F2F9F5; border:1.5px solid #B7E4C7; border-radius:16px; padding:18px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
               <span style="font-size:15px; font-weight:900; color:#1B4332;">📖 5. 성도 주간 묵상 (월~토 6일 QT 가이드 — 주보 하단 게재용)</span>
-              <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyTitleAndTags('${encodeURIComponent(qtCopyTxt)}', this)">📋 6일 QT 전체 복사</button>
+              <button class="btn btn-outline" style="padding:6px 12px; font-size:12.5px;" onclick="copyBulletinAfterReview('${encodeURIComponent(qtCopyTxt)}', this)">📋 6일 QT 전체 복사</button>
             </div>
-            <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
+            <div class="bul-res-grid-3" style="display:grid; grid-template-columns:repeat(3, 1fr); gap:10px;">
               ${(p.weekly_qt || []).map(q => `
                 <div style="background:#FFFFFF; border:1px solid #D8F3DC; border-radius:10px; padding:10px 12px; font-size:12.5px;">
                   <div style="font-weight:900; color:#1B4332; margin-bottom:4px;">📅 ${escapeHtml(q.day)} · ${escapeHtml(q.focus)}</div>
@@ -8657,6 +8926,411 @@ ${st.error || "로그를 확인해 주세요."}`);
         btn.disabled = false;
         btn.textContent = "✨ 주보 요약 · 구역공과(인도팁) · 가정예배지 · 6일 QT · 말씀카드 한 방에 생성하기";
       }
+    }
+
+    // =========================================================================
+    // 🛠️ [주보·전도지 공방] 4대 사역 도구 (① 주보 요약 / ② 계절·절기 전도지 / ③ 대표기도문 / ④ 행정 서식)
+    // =========================================================================
+    let currentBulletinWorkshopSub = "summary";
+    let workshopInitialized = false;
+
+    function switchBulletinWorkshopSub(sub) {
+      const validSubs = ["summary", "tract", "prayer", "forms"];
+      if (!validSubs.includes(sub)) sub = "summary";
+      currentBulletinWorkshopSub = sub;
+      validSubs.forEach(k => {
+        const pane = document.getElementById("bulSubPane_" + k);
+        const btn = document.getElementById("bulSubTab_" + k);
+        const isActive = (k === sub);
+        if (pane) pane.style.display = isActive ? "block" : "none";
+        if (btn) {
+          btn.setAttribute("aria-selected", isActive ? "true" : "false");
+          if (isActive) {
+            btn.style.background = "#141C2E";
+            btn.style.color = "#F5E6C8";
+            btn.style.border = "1.5px solid #C59B27";
+          } else {
+            btn.style.background = "#FFFFFF";
+            btn.style.color = "#1E293B";
+            btn.style.border = "1.5px solid #CBD5E1";
+          }
+        }
+      });
+      initBulletinWorkshopSubTools();
+    }
+
+    function initBulletinWorkshopSubTools() {
+      if (!workshopInitialized) {
+        workshopInitialized = true;
+        applyTractPreset();
+        applyPrayerPreset();
+        applyAdminFormPreset();
+      } else {
+        renderTractWorkshopPreview();
+        renderPrayerWorkshopPreview();
+        renderAdminFormWorkshopPreview();
+      }
+    }
+
+    const TRACT_PRESETS = {
+      spring_newlife: {
+        title: "따뜻한 봄날, 당신의 마음에도 쉼과 평안이 찾아오기를 바랍니다",
+        verse: "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라 (마태복음 11:28)",
+        body: "겨우내 얼어붙었던 땅에서 새순이 돋아나듯, 지치고 분주했던 우리의 일상에도 따뜻한 위로가 필요합니다.\n\n혼자 감당하기 버거운 삶의 무게가 있다면, 있는 모습 그대로 우리를 안아주시는 하나님의 사랑 안에서 참된 쉼을 만나보세요.\n\n이번 주일, 따뜻한 차 한 잔과 평안한 말씀이 있는 자리로 귀한 이웃님을 정중히 초대합니다.",
+        info: "주일 오전 11시 본당 · 수요일 저녁 7시 30분 | 오시는 길: 교회 앞 주차장 완비 (누구든지 환영합니다)"
+      },
+      easter: {
+        title: "어둠을 이기신 부활의 기쁨과 새 생명의 소망에 초대합니다",
+        verse: "나는 부활이요 생명이니 나를 믿는 자는 죽어도 살겠고 (요한복음 11:25)",
+        body: "절망과 눈물이 끝이 아님을 보여주신 예수 그리스도의 부활 아침입니다.\n\n우리 삶의 막힌 담을 허무시고 다시 시작할 용기와 생명을 주시는 부활절 감사예배에 사랑하는 이웃님을 초대합니다.\n\n함께 모여 부활의 기쁨을 나누고 가정마다 하늘의 평강이 가득하기를 기도합니다.",
+        info: "부활주일 감사예배 오전 11시 | 부활절 달걀 나눔 및 새가족 환영 다과가 준비되어 있습니다"
+      },
+      thanksgiving: {
+        title: "한 해 동안 베풀어 주신 은혜를 기억하며 감사의 식탁에 초대합니다",
+        verse: "범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라 (데살로니가전서 5:18)",
+        body: "돌아보면 당연한 것 하나 없던 시간들 속에서 우리의 걸음을 지켜주신 은혜에 감사드립니다.\n\n결실의 계절 가을을 맞아, 이웃과 함께 따뜻한 말씀과 감사의 마음을 나누는 추수감사주일 예배를 드립니다.\n\n가정의 평안과 자녀들의 앞날을 축복하는 귀한 자리에 꼭 함께해 주세요.",
+        info: "추수감사주일 오전 11시 본당 | 예배 후 온 교우 및 이웃 사랑의 오찬 나눔"
+      },
+      christmas: {
+        title: "가장 낮은 곳으로 오신 예수님, 성탄의 따뜻한 빛에 초대합니다",
+        verse: "지극히 높은 곳에서는 하나님께 영광이요 땅에서는 기뻐하심을 입은 사람들 중에 평화로다 (누가복음 2:14)",
+        body: "차가운 겨울밤, 세상의 아픔을 싸매시려고 가장 낮은 구유에 찾아오신 예수님의 탄생을 축하합니다.\n\n우리의 삶과 가정에 하늘의 평화와 따뜻한 위로를 선물하시는 성탄절 감사예배에 소중한 당신을 초대합니다.",
+        info: "성탄 감사예배 12월 25일 오전 11시 | 성탄 칸타타 및 어린이 축복 순서 진행"
+      },
+      comfort_neighbor: {
+        title: "지친 하루 끝, 당신을 향한 따뜻한 위로의 말씀이 있습니다",
+        verse: "두려워하지 말라 내가 너와 함께 함이라 놀라지 말라 나는 네 하나님이 됨이라 (이사야 41:10)",
+        body: "누구에게도 쉽게 말하지 못한 마음의 짐과 염려로 긴 밤을 보내고 계시지는 않나요?\n\n하나님은 오늘도 당신의 작은 한숨 소리에 귀 기울이시며, 다시 일어설 힘과 평안을 주시기 원하십니다.\n\n편안한 마음으로 들러 위로의 말씀과 따뜻한 기도를 받아보시기를 소망합니다.",
+        info: "주일예배 오전 11시 · 새벽기도회 오전 5시 30분 | 언제든 기도 제목을 남겨주시면 함께 기도합니다"
+      }
+    };
+
+    function applyTractPreset() {
+      const sel = document.getElementById("tractSeasonSelect")?.value || "spring_newlife";
+      const p = TRACT_PRESETS[sel] || TRACT_PRESETS.spring_newlife;
+      if (document.getElementById("tractTitleInput")) document.getElementById("tractTitleInput").value = p.title;
+      if (document.getElementById("tractVerseInput")) document.getElementById("tractVerseInput").value = p.verse;
+      if (document.getElementById("tractBodyInput")) document.getElementById("tractBodyInput").value = p.body;
+      if (document.getElementById("tractChurchInfoInput")) document.getElementById("tractChurchInfoInput").value = p.info;
+      renderTractWorkshopPreview();
+    }
+
+    function renderTractWorkshopPreview() {
+      const box = document.getElementById("tractPreviewBox");
+      if (!box) return;
+      const church = document.getElementById("bulChurchInput")?.value.trim() || "우리교회";
+      const title = document.getElementById("tractTitleInput")?.value.trim() || "";
+      const verse = document.getElementById("tractVerseInput")?.value.trim() || "";
+      const body = document.getElementById("tractBodyInput")?.value.trim() || "";
+      const info = document.getElementById("tractChurchInfoInput")?.value.trim() || "";
+      box.innerHTML = `
+        <div style="border-bottom:2px solid #C59B27; padding-bottom:10px; margin-bottom:12px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:12px; font-weight:900; color:#8A6D3B; letter-spacing:1px;">INVITATION · 복음 전도지</span>
+          <span style="font-size:12.5px; font-weight:800; color:#141C2E;">${escapeHtml(church)}</span>
+        </div>
+        <h4 style="font-size:17px; font-weight:900; color:#141C2E; line-height:1.45; margin:0 0 12px; font-family:'Noto Serif KR',serif;">${escapeHtml(title)}</h4>
+        <div style="background:#FAF6EB; border-left:3.5px solid #C59B27; padding:10px 12px; border-radius:6px; font-size:12.5px; font-weight:700; color:#6B4E16; margin-bottom:14px; line-height:1.6;">
+          “${escapeHtml(verse)}”
+        </div>
+        <div style="font-size:13.5px; color:#2D3748; line-height:1.78; white-space:pre-line; margin-bottom:16px;">${escapeHtml(body)}</div>
+        <div style="background:#141C2E; color:#FAF7F0; border-radius:10px; padding:12px 14px; font-size:12px; line-height:1.6;">
+          <div style="font-weight:900; color:#E8C574; margin-bottom:4px;">⛪ ${escapeHtml(church)} 예배 및 오시는 길 안내</div>
+          <div>${escapeHtml(info)}</div>
+        </div>
+      `;
+    }
+
+    const PRAYER_PRESETS = {
+      sunday_worship: {
+        theme: "한 주간의 삶을 돌아보며 예배의 은혜와 성도 가정의 회복을 구하는 기도",
+        body: "거룩하시고 사랑이 풍성하신 하나님 아버지,\n지난 한 주간도 우리의 걸음을 눈동자처럼 지켜 주시고, 오늘 거룩한 주일 아침 주님의 전에 나와 예배하게 하시니 감사드립니다.\n\n세상 속에서 분주하게 살아가며 말씀보다 앞섰던 우리의 생각과 연약함을 주님 앞에 내려놓습니다. 십자가의 보혈로 우리의 마음을 정결하게 씻어 주시고, 오직 성령의 임재와 은혜로 채워 주옵소서.\n\n오늘 말씀을 전하시는 목사님께 성령의 갑절의 능력을 더하여 주셔서, 선포되는 말씀이 상한 심령을 치유하고 다시 일어설 새 힘을 주는 생명의 말씀이 되게 하옵소서.\n\n병상에서 아파하는 환우들과 삶의 무거운 짐을 지고 눈물 흘리는 가정들을 주님께서 친히 찾아가 위로해 주시고, 다음 세대 자녀들이 믿음 안에서 강건하게 자라나게 하옵소서.\n\n예배의 시종을 주님께 의탁하오며, 우리 구주 예수 그리스도의 이름으로 간절히 기도드립니다. 아멘."
+      },
+      wednesday_prayer: {
+        theme: "수요예배 · 성도들의 영적 재충전과 교회 사역·선교지를 위한 중보기도",
+        body: "우리의 피난처요 힘이 되시는 하나님 아버지,\n한 주간의 절반을 지나며 지친 몸과 마음을 이끌고 주님의 은혜의 보좌 앞으로 나아오게 하시니 감사드립니다.\n\n세상의 소리에 흔들리던 우리의 귀를 열어 주님의 세미한 음성을 듣게 하시고, 말씀과 기도로 영적 호흡을 회복하는 이 밤이 되게 하옵소서.\n\n우리 교회가 지역 사회에 그리스도의 따뜻한 빛과 소금의 사명을 감당하게 하시고, 국내외 선교 현장에서 수고하시는 선교사님들과 각 부서 봉사자들의 손길 위에 하늘의 평강과 새 힘을 더하여 주옵소서.\n\n우리를 구원하신 예수 그리스도의 이름으로 기도드립니다. 아멘."
+      },
+      cell_group: {
+        theme: "구역·속회 모임 시작과 성도 간의 따뜻한 교제·가정 축복을 위한 기도",
+        body: "사랑과 은혜의 주님,\n오늘 구역(속회) 식구들이 한자리에 모여 주님의 말씀을 나누고 서로의 삶을 축복하게 하시니 감사드립니다.\n\n이 시간 우리의 입술에 은혜의 말을 담아 주셔서 서로를 격려하고 세워 주는 따뜻한 믿음의 공동체가 되게 하시고, 나누는 기도 제목마다 하나님의 때에 가장 선한 길로 응답하여 주옵소서.\n\n모임을 위해 장소를 열고 섬긴 가정 위에 하늘의 신령한 복과 평안을 가득 채워 주시기를 간구하오며, 예수님의 이름으로 기도드립니다. 아멘."
+      },
+      seasonal_thanks: {
+        theme: "절기(부활·감사·성탄·신년)에 베푸신 구속의 은혜와 감사를 고백하는 기도",
+        body: "역사의 주관자가 되시는 전능하신 하나님 아버지,\n계절마다 때를 따라 도우시는 은혜를 베푸시고, 특별히 귀한 절기를 맞아 온 교우가 한마음으로 감사와 찬양을 올려 드리게 하시니 감사드립니다.\n\n지나온 모든 시간이 전적인 하나님의 은혜였음을 고백합니다. 우리의 삶과 가정, 일터 위에 주님의 통치와 평강이 임하게 하시고, 받은 은혜를 이웃과 나누며 살아가는 성숙한 믿음의 백성들이 되게 하옵소서.\n\n존귀하신 예수 그리스도의 이름으로 기도드립니다. 아멘."
+      },
+      pastoral_visit: {
+        theme: "새가족·환우·개업·가정 심방 시 위로와 평강을 구하는 축복 기도",
+        body: "언제나 우리와 함께하시는 임마누엘 하나님 아버지,\n오늘 사랑하는 성도님의 가정(일터·병상)을 찾아와 함께 예배하며 기도하게 하시니 감사드립니다.\n\n이곳에 주님의 따뜻한 시선과 평강이 머물게 하시고, 마음의 모든 염려와 두려움이 변하여 기도의 응답과 감사의 간증이 되게 하옵소서. 육신의 연약함은 강건함으로, 삶의 막힌 문은 형통함으로 열어 주실 줄 믿사오며 예수님의 이름으로 축복하며 기도드립니다. 아멘."
+      }
+    };
+
+    function applyPrayerPreset() {
+      const sel = document.getElementById("prayerOccasionSelect")?.value || "sunday_worship";
+      const p = PRAYER_PRESETS[sel] || PRAYER_PRESETS.sunday_worship;
+      if (document.getElementById("prayerThemeInput")) document.getElementById("prayerThemeInput").value = p.theme;
+      if (document.getElementById("prayerBodyInput")) document.getElementById("prayerBodyInput").value = p.body;
+      renderPrayerWorkshopPreview();
+    }
+
+    function renderPrayerWorkshopPreview() {
+      const box = document.getElementById("prayerPreviewBox");
+      if (!box) return;
+      const church = document.getElementById("bulChurchInput")?.value.trim() || "우리교회";
+      const theme = document.getElementById("prayerThemeInput")?.value.trim() || "";
+      const body = document.getElementById("prayerBodyInput")?.value.trim() || "";
+      box.innerHTML = `
+        <div style="text-align:center; border-bottom:1.5px solid #D8C7A0; padding-bottom:10px; margin-bottom:14px;">
+          <div style="font-size:11.5px; font-weight:800; color:#8A6D3B;">${escapeHtml(church)} · 강단 예배 기도문</div>
+          <h4 style="font-size:16.5px; font-weight:900; color:#141C2E; margin:4px 0 0; font-family:'Noto Serif KR',serif;">🙏 대표기도문</h4>
+          <div style="font-size:12px; color:#64748B; margin-top:4px;">${escapeHtml(theme)}</div>
+        </div>
+        <div style="font-size:14.5px; color:#1E293B; line-height:1.95; white-space:pre-line; font-family:'Noto Serif KR',serif;">${escapeHtml(body)}</div>
+      `;
+    }
+
+    const ADMIN_FORM_PRESETS = {
+      newcomer_card: {
+        title: "새가족 등록 및 환영 카드",
+        body: [
+          "1. 성명: ____________________   (성별: 남 / 여)   생년월일: ____년 __월 __일",
+          "2. 연락처(휴대폰): 010 - ______ - ______",
+          "3. 주소: ___________________________________________________________",
+          "4. 가족 사항: _______________________________________________________",
+          "5. 신앙 경력: [  ] 처음 교회 방문   [  ] 학습/세례(침례)   [  ] 타 교회 출석 경험",
+          "6. 인도자(소개하신 분): ____________________   (관계: ____________)",
+          "7. 교회에 바라는 점 및 기도 제목:",
+          "   _________________________________________________________________",
+          "   _________________________________________________________________",
+          "",
+          "※ 우리 교회에 오신 것을 진심으로 환영하며 축복합니다."
+        ].join("\n")
+      },
+      prayer_request: {
+        title: "주간 중보기도 및 심방 요청서",
+        body: [
+          "■ 신청 일자: 2026년 ___월 ___일     ■ 성명 / 직분: ________________ (          )",
+          "■ 소속 구역 / 부서: ________________ ■ 연락처: 010 - ______ - ______",
+          "",
+          "[구분]  [  ] 긴급 중보기도 요청   [  ] 가정·환우·개업 심방 요청   [  ] 목회 상담 요청",
+          "",
+          "■ 구체적인 기도 제목 및 요청 내용:",
+          "1) _________________________________________________________________",
+          "2) _________________________________________________________________",
+          "3) _________________________________________________________________",
+          "",
+          "■ 공개 범위: [  ] 교역자만 열람   [  ] 중보기도팀 함께 기도"
+        ].join("\n")
+      },
+      certificate_appoint: {
+        title: "임 명 장",
+        body: [
+          "성  명 : ____________________",
+          "직  분 : ____________________",
+          "부  서 : ____________________",
+          "",
+          "귀하를 2026년도 우리 교회 몸 된 공동체를 섬길 일꾼으로 임명합니다.",
+          "주님께서 맡겨주신 귀한 직분을 충성스럽게 감당하여 하나님께 영광을 돌리고 교회를 든든히 세워 나가시기를 축복합니다.",
+          "",
+          "“네가 죽도록 충성하라 그리하면 내가 생명의 관을 네게 주리라” (요한계시록 2:10)",
+          "",
+          "2026년 ___월 ___일",
+          "대한예수교장로회 · 기독교대한감리회  우 리 교 회  담임목사 (인)"
+        ].join("\n")
+      },
+      donation_confirm: {
+        title: "헌금(기부금) 납입 확인 신청서",
+        body: [
+          "1. 신청인 성명: ____________________   (생년월일 앞자리: ____________)",
+          "2. 현주소: _________________________________________________________",
+          "3. 연락처: 010 - ______ - ______      수령 방법: [  ] 인쇄본 수령  [  ] 이메일/팩스",
+          "4. 증명 기간: 20___년 1월 1일 ~ 20___년 12월 31일",
+          "5. 제출 용도: 연말정산 / 종합소득세 신고용",
+          "",
+          "위와 같이 기부금(헌금) 납입 증명서 발급을 신청합니다.",
+          "",
+          "2026년 ___월 ___일     신청인: ________________ (서명)"
+        ].join("\n")
+      },
+      vehicle_use: {
+        title: "교회 시설 · 차량 사용 신청서",
+        body: [
+          "1. 신청 부서 / 기관: ____________________   신청자(책임자): ________________",
+          "2. 사용 시설 / 차량: [  ] 본당/교육관 (호실:      )   [  ] 교회 승합차/버스",
+          "3. 사용 일시: 2026년 ___월 ___일 (___요일)  ___시 ___분 ~ ___시 ___분",
+          "4. 사용 목적(행사명): _______________________________________________",
+          "5. 참석 인원: 약 _____명     운전자 성명(차량 시): ________________",
+          "6. 사용 후 점검 사항: 냉난방·전등 소등, 정리정돈, 차량 주유 및 운행일지 기록 확인",
+          "",
+          "2026년 ___월 ___일     신청인: ________________ (서명)  /  사무실 확인: ________"
+        ].join("\n")
+      }
+    };
+
+    function applyAdminFormPreset() {
+      const sel = document.getElementById("adminFormTypeSelect")?.value || "newcomer_card";
+      const p = ADMIN_FORM_PRESETS[sel] || ADMIN_FORM_PRESETS.newcomer_card;
+      if (document.getElementById("adminFormTitleInput")) document.getElementById("adminFormTitleInput").value = p.title;
+      if (document.getElementById("adminFormBodyInput")) document.getElementById("adminFormBodyInput").value = p.body;
+      renderAdminFormWorkshopPreview();
+    }
+
+    function renderAdminFormWorkshopPreview() {
+      const box = document.getElementById("adminFormPreviewBox");
+      if (!box) return;
+      const church = document.getElementById("bulChurchInput")?.value.trim() || "우리교회";
+      const title = document.getElementById("adminFormTitleInput")?.value.trim() || "";
+      const body = document.getElementById("adminFormBodyInput")?.value.trim() || "";
+      box.innerHTML = `
+        <div style="text-align:center; border-bottom:2px solid #1E293B; padding-bottom:10px; margin-bottom:14px;">
+          <div style="font-size:11.5px; font-weight:800; color:#475569;">${escapeHtml(church)} 행정 서식</div>
+          <h4 style="font-size:18px; font-weight:900; color:#0F172A; margin:4px 0 0; letter-spacing:2px;">${escapeHtml(title)}</h4>
+        </div>
+        <div style="font-size:13px; color:#1E293B; line-height:1.95; white-space:pre-wrap; font-family:'Pretendard',sans-serif;">${escapeHtml(body)}</div>
+      `;
+    }
+
+    function getWorkshopDocumentData(kind) {
+      const church = document.getElementById("bulChurchInput")?.value.trim() || "우리교회";
+      if (kind === "tract") {
+        const title = document.getElementById("tractTitleInput")?.value.trim() || "복음 전도지";
+        const verse = document.getElementById("tractVerseInput")?.value.trim() || "";
+        const body = document.getElementById("tractBodyInput")?.value.trim() || "";
+        const info = document.getElementById("tractChurchInfoInput")?.value.trim() || "";
+        const fullText = `[${church} 복음 전도지]\n■ 제목: ${title}\n■ 말씀: ${verse}\n\n${body}\n\n■ 예배 및 안내: ${info}`;
+        return { church, title, subtitle: verse, body: `${body}\n\n[예배 및 오시는 길 안내]\n${info}`, fullText, filename: `${church}_전도지_${title.slice(0, 12)}.docx` };
+      }
+      if (kind === "prayer") {
+        const theme = document.getElementById("prayerThemeInput")?.value.trim() || "주일 낮예배 대표기도문";
+        const body = document.getElementById("prayerBodyInput")?.value.trim() || "";
+        const fullText = `[${church} 대표기도문]\n■ 주제: ${theme}\n\n${body}`;
+        return { church, title: "대표기도문", subtitle: theme, body, fullText, filename: `${church}_대표기도문.docx` };
+      }
+      const title = document.getElementById("adminFormTitleInput")?.value.trim() || "교회 행정 서식";
+      const body = document.getElementById("adminFormBodyInput")?.value.trim() || "";
+      const fullText = `[${church} 행정 서식 - ${title}]\n\n${body}`;
+      return { church, title, subtitle: `${church} 행정 서식`, body, fullText, filename: `${church}_${title.replace(/\s+/g, "_")}.docx` };
+    }
+
+    function copyWorkshopText(kind, btnEl) {
+      const d = getWorkshopDocumentData(kind);
+      copyTitleAndTags(encodeURIComponent(d.fullText), btnEl);
+    }
+
+    function printWorkshopSheet(kind) {
+      const d = getWorkshopDocumentData(kind);
+      const w = window.open("", "_blank", "width=820,height=960");
+      if (!w) {
+        alert("팝업 차단으로 인쇄 창을 열 수 없습니다. 브라우저 팝업 허용 후 다시 시도해 주세요.");
+        return;
+      }
+      w.document.write(`<!DOCTYPE html><html lang="ko"><head><meta charset="UTF-8"><title>${escapeHtml(d.title)}</title>
+        <style>
+          body { font-family: 'Noto Serif KR', 'Malgun Gothic', serif; padding: 36px 44px; color: #141C2E; line-height: 1.85; }
+          .head { border-bottom: 2px solid #141C2E; padding-bottom: 12px; margin-bottom: 20px; }
+          .sub { font-size: 13px; color: #555; font-weight: bold; }
+          h1 { font-size: 24px; margin: 6px 0; }
+          .body { white-space: pre-wrap; font-size: 15px; }
+          @media print { .no-print { display: none; } body { padding: 15mm; } }
+        </style></head><body>
+        <div class="no-print" style="margin-bottom:16px; text-align:right;">
+          <button onclick="window.print()" style="padding:8px 16px; font-weight:bold; cursor:pointer;">🖨️ 인쇄하기</button>
+        </div>
+        <div class="head">
+          <div class="sub">${escapeHtml(d.church)}</div>
+          <h1>${escapeHtml(d.title)}</h1>
+          <div class="sub">${escapeHtml(d.subtitle)}</div>
+        </div>
+        <div class="body">${escapeHtml(d.body)}</div>
+      </body></html>`);
+      w.document.close();
+    }
+
+    function downloadWorkshopDocx(kind) {
+      const d = getWorkshopDocumentData(kind);
+      // 표준 OpenXML(.docx) 단일 문서 생성
+      const xmlEsc = (s) => String(s || "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      const lines = [
+        { text: `${d.church} · ${d.title}`, bold: true, size: 32 },
+        { text: d.subtitle, bold: true, size: 22 },
+        { text: "", bold: false, size: 22 }
+      ];
+      String(d.body || "").split(/\r?\n/).forEach(l => lines.push({ text: l, bold: false, size: 22 }));
+      const pXml = lines.map(l => `<w:p><w:r><w:rPr>${l.bold ? "<w:b/>" : ""}<w:sz w:val="${l.size}"/></w:rPr><w:t xml:space="preserve">${xmlEsc(l.text)}</w:t></w:r></w:p>`).join("");
+      const docXml = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body>${pXml}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/></w:sectPr></w:body></w:document>`;
+      const contentTypes = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+      const rels = `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+      const enc = new TextEncoder();
+      const files = [
+        { name: "[Content_Types].xml", data: enc.encode(contentTypes) },
+        { name: "_rels/.rels", data: enc.encode(rels) },
+        { name: "word/document.xml", data: enc.encode(docXml) }
+      ];
+      const crcTable = (() => {
+        const t = new Uint32Array(256);
+        for (let n = 0; n < 256; n++) {
+          let c = n;
+          for (let k = 0; k < 8; k++) c = (c & 1) ? (0xEDB88320 ^ (c >>> 1)) : (c >>> 1);
+          t[n] = c >>> 0;
+        }
+        return t;
+      })();
+      const crc32 = (u8) => {
+        let c = 0xFFFFFFFF;
+        for (let i = 0; i < u8.length; i++) c = crcTable[(c ^ u8[i]) & 0xFF] ^ (c >>> 8);
+        return (c ^ 0xFFFFFFFF) >>> 0;
+      };
+      const localParts = [];
+      const centralParts = [];
+      let offset = 0;
+      for (const f of files) {
+        const nb = enc.encode(f.name);
+        const crc = crc32(f.data);
+        const lh = new Uint8Array(30 + nb.length);
+        const lv = new DataView(lh.buffer);
+        lv.setUint32(0, 0x04034b50, true);
+        lv.setUint16(4, 20, true);
+        lv.setUint16(6, 0x0800, true);
+        lv.setUint16(8, 0, true);
+        lv.setUint32(14, crc, true);
+        lv.setUint32(18, f.data.length, true);
+        lv.setUint32(22, f.data.length, true);
+        lv.setUint16(26, nb.length, true);
+        lh.set(nb, 30);
+        localParts.push(lh, f.data);
+
+        const ch = new Uint8Array(46 + nb.length);
+        const cv = new DataView(ch.buffer);
+        cv.setUint32(0, 0x02014b50, true);
+        cv.setUint16(4, 20, true);
+        cv.setUint16(6, 20, true);
+        cv.setUint16(8, 0x0800, true);
+        cv.setUint16(10, 0, true);
+        cv.setUint32(16, crc, true);
+        cv.setUint32(20, f.data.length, true);
+        cv.setUint32(24, f.data.length, true);
+        cv.setUint16(28, nb.length, true);
+        cv.setUint32(42, offset, true);
+        ch.set(nb, 46);
+        centralParts.push(ch);
+        offset += lh.length + f.data.length;
+      }
+      const cdSize = centralParts.reduce((a, b) => a + b.length, 0);
+      const eocd = new Uint8Array(22);
+      const ev = new DataView(eocd.buffer);
+      ev.setUint32(0, 0x06054b50, true);
+      ev.setUint16(8, files.length, true);
+      ev.setUint16(10, files.length, true);
+      ev.setUint32(12, cdSize, true);
+      ev.setUint32(16, offset, true);
+      const blob = new Blob([...localParts, ...centralParts, eocd], {
+        type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = d.filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
     }
 
     // =========================================================================
@@ -8878,6 +9552,18 @@ ${st.error || "로그를 확인해 주세요."}`);
       initApp().then(() => {
         populateExtraStudioSelects();
         renderDirectUploadList();
+        try {
+          const params = new URLSearchParams(window.location.search);
+          const reqTab = (params.get("kkd_tab") || params.get("tab") || "").trim();
+          const reqSub = (params.get("sub") || "").trim();
+          if (reqTab && ["sermon", "hymn", "event", "reading", "bulletin", "montage", "moses", "ai"].includes(reqTab)) {
+            switchStudioMode(reqTab);
+          }
+          if (reqSub && ["summary", "tract", "prayer", "forms"].includes(reqSub)) {
+            if (currentStudioMode !== "bulletin") switchStudioMode("bulletin");
+            switchBulletinWorkshopSub(reqSub);
+          }
+        } catch (e) {}
       });
     });
   
