@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>꿈바온 서가 · 꿈디도 깊은 서재 (Triple-AI Peer Review Scholium) — 꿈바온 디지털 도서관</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-library: #F5EFE4;
+      --bg-shelf-card: #FFFDF9;
+      --border-gold: #C8A96E;
+      --border-soft: #DFD3BE;
+      --ink-primary: #1F1812;
+      --ink-secondary: #5A4B3C;
+      --ink-muted: #84725E;
+      --gold-deep: #8E6516;
+      --gold-bright: #D4AF37;
+      --header-bg: #1B140E;
+    }
+
+    body.dark-library {
+      --bg-library: #0E0A07;
+      --bg-shelf-card: #1A130D;
+      --border-gold: #9A7635;
+      --border-soft: #33261A;
+      --ink-primary: #F4ECE0;
+      --ink-secondary: #CDBEA7;
+      --ink-muted: #9A8872;
+      background-color: #0E0A07;
+      background-image:
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.14) 0%, rgba(20, 14, 9, 0.85) 60%, #0E0A07 100%),
+        linear-gradient(180deg, rgba(14, 10, 7, 0.88) 0%, rgba(14, 10, 7, 0.95) 100%),
+        url('assets/euro/euro_walnut_wood.webp');
+      background-attachment: fixed;
+      background-size: cover;
+    }
+
+    body.dark-library .kkd-book-card {
+      background: linear-gradient(155deg, rgba(33, 24, 16, 0.96) 0%, rgba(21, 15, 10, 0.98) 100%);
+      border-color: #3E2E1E;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 230, 170, 0.06);
+    }
+    body.dark-library .kkd-book-card:hover {
+      border-color: #C8A24B;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.68), 0 0 22px rgba(212, 175, 55, 0.16);
+    }
+    body.dark-library .kkd-controls-bar {
+      background: linear-gradient(180deg, rgba(31, 22, 15, 0.96) 0%, rgba(22, 16, 11, 0.98) 100%);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.52);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-library);
+      color: var(--ink-primary);
+      font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+      min-height: 100vh;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
+
+    /* 상단 도서관 네비게이션 헤더 */
+    .kkd-top-header {
+      background: linear-gradient(180deg, #1E1610 0%, #140E0A 100%);
+      border-bottom: 2px solid #9E7A2F;
+      padding: 14px clamp(16px, 3vw, 42px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.32);
+    }
+    .kkd-top-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .kkd-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: #F8EFE0;
+    }
+    .kkd-brand-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #D4AF37, #8C6218);
+      color: #16100A;
+      font-weight: 900;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 3px 10px rgba(212, 175, 55, 0.35);
+    }
+    .kkd-brand-text strong {
+      display: block;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: #FCE9B5;
+    }
+    .kkd-brand-text small {
+      display: block;
+      font-size: 0.72rem;
+      color: #C7B28B;
+      letter-spacing: 0.08em;
+    }
+    .kkd-top-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .kkd-nav-link {
+      text-decoration: none;
+      color: #E5D7BE;
+      font-size: 0.86rem;
+      font-weight: 600;
+      padding: 7px 13px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.18s;
+      cursor: pointer;
+    }
+    .kkd-nav-link:hover {
+      background: rgba(212, 175, 55, 0.18);
+      color: #FFF6DC;
+      border-color: #D4AF37;
+    }
+
+    /* 히어로 배너 — 깊은 서재 (Deep Mahogany & Candlelit Study) */
+    .kkd-hero {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.22) 0%, rgba(28, 19, 12, 0.88) 58%, rgba(15, 10, 7, 0.97) 100%),
+        url('assets/euro/euro_library_bookshelves.webp') center/cover no-repeat;
+      color: #F7EFE2;
+      padding: 44px clamp(18px, 3vw, 42px) 36px;
+      border-bottom: 2px solid #6E5223;
+      box-shadow: inset 0 -24px 48px rgba(0, 0, 0, 0.55);
+      position: relative;
+    }
+    .kkd-triple-ai-showcase {
+      margin-top: 22px;
+      background: linear-gradient(145deg, rgba(24, 17, 11, 0.92) 0%, rgba(15, 10, 7, 0.96) 100%);
+      border: 1.5px solid rgba(212, 175, 55, 0.52);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: grid;
+      grid-template-columns: 1.25fr 1fr;
+      gap: 22px;
+      align-items: center;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 232, 175, 0.14);
+    }
+    @media (max-width: 980px) {
+      .kkd-triple-ai-showcase {
+        grid-template-columns: 1fr;
+      }
+    }
+    .kkd-slogan-quote {
+      border-left: 3.5px solid #D4AF37;
+      padding: 10px 16px;
+      background: rgba(212, 175, 55, 0.08);
+      border-radius: 0 10px 10px 0;
+      margin: 12px 0;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 0.98rem;
+      line-height: 1.68;
+      color: #FCECC2;
+    }
+    .kkd-humility-box {
+      font-size: 0.86rem;
+      color: #DFCDAE;
+      line-height: 1.62;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(212, 175, 55, 0.35);
+      padding: 11px 14px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .kkd-diagram-card {
+      background: #FAF5EA;
+      border: 2px solid #C59B38;
+      border-radius: 12px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+    .kkd-diagram-card img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: contain;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .kkd-diagram-card img:hover {
+      transform: scale(1.02);
+    }
+    .kkd-hero-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .kkd-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid rgba(212, 175, 55, 0.45);
+      color: #F3D37A;
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .kkd-hero h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.65rem, 2.6vw, 2.3rem);
+      font-weight: 900;
+      color: #FFF8E7;
+      line-height: 1.28;
+      margin-bottom: 8px;
+    }
+    .kkd-hero h1 span {
+      color: #ECC86A;
+    }
+    .kkd-hero p {
+      color: #D4C3A8;
+      font-size: 0.94rem;
+      line-height: 1.58;
+      max-width: 820px;
+    }
+    .kkd-hero-charter-bar {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .kkd-charter-chip {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      color: #EBD6A7;
+    }
+    .kkd-hero-stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .kkd-stat-box {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.32);
+      border-radius: 12px;
+      padding: 12px 16px;
+      min-width: 122px;
+      text-align: center;
+    }
+    .kkd-stat-box strong {
+      display: block;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.4rem;
+      color: #F3D175;
+    }
+    .kkd-stat-box span {
+      font-size: 0.74rem;
+      color: #C7B599;
+    }
+
+    /* 필터 & 검색 컨트롤 바 */
+    .kkd-controls-wrap {
+      max-width: 1560px;
+      margin: 22px auto 12px;
+      padding: 0 clamp(16px, 3vw, 42px);
+    }
+    .kkd-controls-bar {
+      background: var(--bg-shelf-card);
+      border: 1.5px solid var(--border-gold);
+      border-radius: 16px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+      box-shadow: 0 6px 20px rgba(31, 24, 18, 0.06);
+    }
+    .kkd-cat-tabs {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+    .kkd-cat-btn {
+      background: transparent;
+      border: 1px solid var(--border-soft);
+      color: var(--ink-secondary);
+      padding: 8px 13px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.16s;
+    }
+    .kkd-cat-btn:hover {
+      border-color: var(--border-gold);
+      color: var(--ink-primary);
+    }
+    .kkd-cat-btn.active {
+      background: linear-gradient(135deg, #2B1E12 0%, #46311D 100%);
+      color: #F7DDA0;
+      border-color: #C59B38;
+      box-shadow: 0 3px 10px rgba(43, 30, 18, 0.2);
+    }
+    .kkd-search-input-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg-library);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 10px;
+      padding: 7px 13px;
+      min-width: 260px;
+      flex: 1;
+      max-width: 370px;
+    }
+    .kkd-search-input-wrap input {
+      border: none;
+      outline: none;
+      background: transparent;
+      color: var(--ink-primary);
+      font-size: 0.9rem;
+      font-weight: 600;
+      width: 100%;
+    }
+
+    /* 서가 그리드: 제목 + 한두 줄 요약 + 검수등급/저자 배지 */
+    .kkd-shelf-container {
+      max-width: 1560px;
+      margin: 18px auto 64px;
+      padding: 0 clamp(16px, 3vw, 42px);
+    }
+    .kkd-shelf-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(440px, 1fr));
+      gap: 18px;
+    }
+    @media (max-width: 600px) {
+      .kkd-shelf-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .kkd-book-card {
+      background: var(--bg-shelf-card);
+      border: 1.5px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      align-items: stretch;
+      gap: 18px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .kkd-book-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--border-gold);
+      box-shadow: 0 14px 30px rgba(31, 24, 18, 0.12);
+    }
+
+    /* 3D 양장본 미니 북커버 */
+    .kkd-mini-cover {
+      width: 96px;
+      min-height: 142px;
+      flex-shrink: 0;
+      border-radius: 4px 10px 10px 4px;
+      position: relative;
+      padding: 12px 10px 10px 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #FDF6E2;
+      box-shadow:
+        -3px 0 0 rgba(255,255,255,0.12) inset,
+        6px 6px 16px rgba(0, 0, 0, 0.28);
+      border: 1px solid rgba(229, 193, 104, 0.45);
+    }
+    .kkd-mini-cover::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border-right: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 4px 0 0 4px;
+    }
+    .kkd-cover-vol {
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #E8C772;
+      border-bottom: 1px solid rgba(232, 199, 114, 0.35);
+      padding-bottom: 3px;
+    }
+    .kkd-cover-short-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      line-height: 1.32;
+      color: #FFFDF7;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      word-break: keep-all;
+    }
+    .kkd-cover-emblem {
+      font-size: 0.6rem;
+      color: #D4B978;
+      text-align: right;
+      letter-spacing: 0.05em;
+    }
+
+    /* 우측: 등급배지 + 제목 + 요약 한두 줄 + 열람 버튼 */
+    .kkd-book-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+    .kkd-book-meta-top {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+    .kkd-book-cat-pill {
+      font-size: 0.71rem;
+      font-weight: 800;
+      color: var(--gold-deep);
+      background: rgba(212, 175, 55, 0.14);
+      border: 1px solid rgba(200, 169, 110, 0.42);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    body.dark-library .kkd-book-cat-pill {
+      color: #EBC86E;
+    }
+
+    /* 클간사 3항 + 지간사 5항: 검수 전 초고(A등급) vs 교차 검증 완료(B등급) 눈에 띄는 배지 */
+    .kkd-grade-pill {
+      font-size: 0.71rem;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .kkd-grade-pill.grade-A {
+      background: #FFF3D1;
+      color: #9A4D00;
+      border: 1.5px solid #E69A28;
+    }
+    body.dark-library .kkd-grade-pill.grade-A {
+      background: rgba(230, 154, 40, 0.22);
+      color: #FFD07B;
+      border-color: #E69A28;
+    }
+    .kkd-grade-pill.grade-B {
+      background: #E6F4EA;
+      color: #135D31;
+      border: 1.5px solid #48A868;
+    }
+    body.dark-library .kkd-grade-pill.grade-B {
+      background: rgba(72, 168, 104, 0.2);
+      color: #8CE0A8;
+      border-color: #48A868;
+    }
+
+    .kkd-book-len-pill {
+      font-size: 0.71rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+    .kkd-book-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--ink-primary);
+      line-height: 1.38;
+      margin-bottom: 6px;
+      word-break: keep-all;
+    }
+    /* 목사님 지침: 간단한 요약 딱 한두 줄만 깔끔하게 노출 */
+    .kkd-book-summary-2lines {
+      font-size: 0.86rem;
+      color: var(--ink-secondary);
+      line-height: 1.5;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 10px;
+    }
+    .kkd-book-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding-top: 8px;
+      border-top: 1px dashed var(--border-soft);
+    }
+    .kkd-book-sub {
+      font-size: 0.74rem;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 65%;
+    }
+    .kkd-open-reader-btn {
+      background: linear-gradient(135deg, #2A1D12 0%, #45311E 100%);
+      color: #F7DFA0;
+      border: 1px solid #C59B38;
+      border-radius: 8px;
+      padding: 5px 12px;
+      font-size: 0.77rem;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .kkd-book-card:hover .kkd-open-reader-btn {
+      background: linear-gradient(135deg, #D4AF37 0%, #9E731E 100%);
+      color: #19120B;
+    }
+
+    /* =====================================================================
+       📖 우리만의 『꿈디온 전용 북뷰어 2.0 (열린 학당 에디션)』 모달
+       ===================================================================== */
+    .kkd-reader-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(12, 9, 6, 0.86);
+      backdrop-filter: blur(8px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+    }
+    .kkd-reader-overlay.open {
+      display: flex;
+    }
+
+    /* 북뷰어 상단 툴바 */
+    .kkd-reader-toolbar {
+      height: 58px;
+      background: #1A130D;
+      border-bottom: 1.5px solid #8A6928;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: #F4E9D5;
+      flex-shrink: 0;
+    }
+    .kkd-reader-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+    .kkd-reader-toc-toggle {
+      background: rgba(212, 175, 55, 0.14);
+      border: 1px solid #C59B38;
+      color: #F5D98B;
+      padding: 7px 13px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .kkd-reader-book-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #FCE9B8;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .kkd-reader-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .kkd-r-btn {
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(212, 175, 55, 0.35);
+      color: #EADBC2;
+      padding: 6px 11px;
+      border-radius: 7px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .kkd-r-btn:hover, .kkd-r-btn.active {
+      background: #D4AF37;
+      color: #17110A;
+      border-color: #D4AF37;
+    }
+    .kkd-r-close {
+      background: #6B2020;
+      border: 1px solid #C95B5B;
+      color: #FFEAEA;
+      padding: 6px 14px;
+      border-radius: 7px;
+      font-size: 0.82rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* 북뷰어 메인 스테이지 */
+    .kkd-reader-stage {
+      flex: 1;
+      display: flex;
+      position: relative;
+      overflow: hidden;
+      padding: 18px clamp(12px, 3vw, 44px);
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 좌측 슬라이드 목차(TOC) 드로어 */
+    .kkd-toc-drawer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 340px;
+      max-width: 85vw;
+      background: #1E160F;
+      border-right: 2px solid #9A752C;
+      color: #F3E8D3;
+      z-index: 30;
+      transform: translateX(-102%);
+      transition: transform 0.24s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 12px 0 32px rgba(0, 0, 0, 0.55);
+    }
+    .kkd-toc-drawer.open {
+      transform: translateX(0);
+    }
+    .kkd-toc-header {
+      padding: 16px 18px;
+      border-bottom: 1px solid #463523;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'Noto Serif KR', serif;
+      font-weight: 800;
+      color: #F4D37C;
+    }
+    .kkd-toc-list {
+      flex: 1;
+      overflow-y: auto;
+      padding: 12px;
+      list-style: none;
+    }
+    .kkd-toc-item {
+      padding: 11px 13px;
+      border-radius: 9px;
+      cursor: pointer;
+      font-size: 0.88rem;
+      color: #DFCBB0;
+      margin-bottom: 5px;
+      border: 1px solid transparent;
+      line-height: 1.4;
+    }
+    .kkd-toc-item:hover {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.35);
+    }
+    .kkd-toc-item.active {
+      background: linear-gradient(135deg, #3A2918, #281B0F);
+      border-color: #D4AF37;
+      color: #FFE49C;
+      font-weight: 800;
+    }
+
+    /* 실제 펼쳐진 책 프레임 */
+    .kkd-book-frame {
+      width: 100%;
+      max-width: 1380px;
+      height: 100%;
+      max-height: 830px;
+      border-radius: 14px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: background 0.2s, color 0.2s;
+      box-shadow:
+        0 24px 60px rgba(0, 0, 0, 0.65),
+        0 0 0 2px #7D5D23,
+        0 0 0 7px #2A1D12;
+    }
+
+    /* 종이 질감 테마 3종 */
+    .kkd-book-frame.paper-parchment {
+      background: linear-gradient(90deg, #F4EAD5 0%, #FAF3E3 48%, #DFD1B5 50%, #FAF3E3 52%, #F4EAD5 100%);
+      color: #211810;
+    }
+    .kkd-book-frame.paper-ivory {
+      background: linear-gradient(90deg, #FBFBF8 0%, #FFFFFF 48%, #E6E4DD 50%, #FFFFFF 52%, #FBFBF8 100%);
+      color: #181818;
+    }
+    .kkd-book-frame.paper-dark {
+      background: linear-gradient(90deg, #1B1713 0%, #221D18 48%, #110E0B 50%, #221D18 52%, #1B1713 100%);
+      color: #EAE0D2;
+    }
+    .kkd-book-frame.mode-scroll.paper-parchment { background: #F8F1E1; }
+    .kkd-book-frame.mode-scroll.paper-ivory { background: #FFFFFF; }
+    .kkd-book-frame.mode-scroll.paper-dark { background: #1E1914; }
+
+    /* 북뷰어 최상단 검수등급 및 작성 기록 메타 배너 (클간사 2·3항 + 지간사 4·5항) */
+    .kkd-meta-banner {
+      padding: 14px 18px;
+      border-radius: 10px;
+      margin-bottom: 18px;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+    .kkd-meta-banner.banner-grade-A {
+      background: rgba(235, 160, 35, 0.16);
+      border: 1.5px solid #D98A16;
+    }
+    .kkd-meta-banner.banner-grade-B {
+      background: rgba(56, 148, 90, 0.13);
+      border: 1.5px solid #3C9D60;
+    }
+    .kkd-meta-banner-title {
+      font-weight: 800;
+      font-size: 0.9rem;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .kkd-meta-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-size: 0.79rem;
+      opacity: 0.92;
+      margin-top: 6px;
+      padding-top: 6px;
+      border-top: 1px dashed rgba(140, 110, 60, 0.35);
+    }
+
+    /* 「💬 열린 서재: 검수자의 질문과 저자의 응답」 전용 박스 (클간사 7항) */
+    .kkd-open-dialogue-box {
+      margin-top: 26px;
+      padding: 20px 22px;
+      border-radius: 12px;
+      background: rgba(197, 155, 56, 0.12);
+      border: 2px solid #B88B28;
+      font-family: 'Pretendard', sans-serif;
+    }
+    .kkd-open-dialogue-header {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.08rem;
+      font-weight: 900;
+      color: #7A520B;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .kkd-book-frame.paper-dark .kkd-open-dialogue-header {
+      color: #F4D27A;
+    }
+    .kkd-dialogue-q {
+      background: rgba(255, 255, 255, 0.55);
+      padding: 13px 15px;
+      border-radius: 8px;
+      border-left: 4px solid #B88B28;
+      margin-bottom: 12px;
+      font-size: 0.9rem;
+      line-height: 1.62;
+    }
+    .kkd-book-frame.paper-dark .kkd-dialogue-q {
+      background: rgba(0, 0, 0, 0.28);
+    }
+    .kkd-dialogue-a {
+      background: rgba(56, 148, 90, 0.11);
+      padding: 13px 15px;
+      border-radius: 8px;
+      border-left: 4px solid #3C9D60;
+      font-size: 0.9rem;
+      line-height: 1.62;
+    }
+    .kkd-related-links {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(150, 120, 70, 0.4);
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-size: 0.82rem;
+    }
+    .kkd-rel-btn {
+      background: rgba(43, 30, 18, 0.88);
+      color: #F7DFA0;
+      border: 1px solid #C59B38;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .kkd-rel-btn:hover {
+      background: #D4AF37;
+      color: #18110A;
+    }
+
+    /* 양면 펼침(Spread) 컨테이너 */
+    .kkd-spread-body {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+    .kkd-book-frame.mode-scroll .kkd-spread-body {
+      display: block;
+      overflow-y: auto;
+      padding: 36px clamp(24px, 6vw, 110px);
+      max-width: 980px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .kkd-page-col {
+      padding: 30px clamp(22px, 3vw, 46px) 24px;
+      overflow-y: auto;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    .kkd-page-left {
+      border-right: 1px solid rgba(120, 95, 60, 0.25);
+    }
+    .kkd-page-header-running {
+      font-size: 0.74rem;
+      color: #8A7456;
+      border-bottom: 1px solid rgba(138, 116, 86, 0.28);
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      font-weight: 600;
+    }
+
+    /* 책 본문 타이포그래피 */
+    .kkd-book-content {
+      font-family: 'Noto Serif KR', serif;
+      line-height: 1.88;
+      letter-spacing: -0.01em;
+      word-break: keep-all;
+    }
+    .kkd-chapter-badge {
+      display: inline-block;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: #8C6218;
+      background: rgba(212, 175, 55, 0.16);
+      border: 1px solid rgba(197, 155, 56, 0.45);
+      padding: 3px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .kkd-book-frame.paper-dark .kkd-chapter-badge {
+      color: #F0CD74;
+    }
+    .kkd-chapter-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.36em;
+      font-weight: 900;
+      line-height: 1.35;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid rgba(180, 140, 60, 0.35);
+    }
+    .kkd-book-h3 {
+      font-size: 1.12em;
+      font-weight: 800;
+      margin: 22px 0 10px;
+      color: #6E4910;
+    }
+    .kkd-book-frame.paper-dark .kkd-book-h3 {
+      color: #E8C468;
+    }
+    .kkd-book-h4 {
+      font-size: 1.02em;
+      font-weight: 700;
+      margin: 16px 0 8px;
+    }
+    .kkd-book-p {
+      margin-bottom: 15px;
+      text-align: justify;
+    }
+    .kkd-book-quote {
+      margin: 16px 0;
+      padding: 14px 18px;
+      border-left: 4px solid #C59B38;
+      background: rgba(197, 155, 56, 0.1);
+      border-radius: 0 10px 10px 0;
+      font-weight: 600;
+    }
+    .kkd-book-list {
+      margin: 10px 0 16px 20px;
+    }
+    .kkd-book-list li {
+      margin-bottom: 7px;
+    }
+    .kkd-table-wrap {
+      overflow-x: auto;
+      margin: 16px 0;
+    }
+    .kkd-book-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Pretendard', sans-serif;
+      font-size: 0.85em;
+    }
+    .kkd-book-table th, .kkd-book-table td {
+      border: 1px solid rgba(150, 125, 85, 0.38);
+      padding: 9px 11px;
+      text-align: left;
+      vertical-align: top;
+    }
+    .kkd-book-table th {
+      background: rgba(197, 155, 56, 0.18);
+      font-weight: 800;
+    }
+    .kkd-inline-code {
+      font-family: 'Pretendard', monospace;
+      background: rgba(197, 155, 56, 0.16);
+      padding: 1px 6px;
+      border-radius: 4px;
+      font-size: 0.92em;
+    }
+
+    /* 북뷰어 하단 페이지 네비게이션 바 */
+    .kkd-reader-footer {
+      height: 54px;
+      background: rgba(26, 19, 13, 0.96);
+      border-top: 1px solid #7D5D23;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #E8D9BF;
+      flex-shrink: 0;
+    }
+    .kkd-page-nav-btn {
+      background: linear-gradient(135deg, #3A2918, #24180D);
+      border: 1px solid #C59B38;
+      color: #F7DDA0;
+      padding: 7px 16px;
+      border-radius: 8px;
+      font-size: 0.84rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .kkd-page-nav-btn:hover:not(:disabled) {
+      background: #D4AF37;
+      color: #161009;
+    }
+    .kkd-page-nav-btn:disabled {
+      opacity: 0.35;
+      cursor: default;
+    }
+    .kkd-page-indicator {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #F2D382;
+    }
+
+    @media (max-width: 900px) {
+      .kkd-spread-body {
+        grid-template-columns: 1fr !important;
+      }
+      .kkd-page-right {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="dark-library">
+
+  <!-- 상단 도서관 헤더 -->
+  <header class="kkd-top-header">
+    <div class="kkd-top-inner">
+      <a href="index.html" class="kkd-brand">
+        <div class="kkd-brand-badge">書</div>
+        <div class="kkd-brand-text">
+          <strong>꿈바온 서가 · 꿈디도 깊은 서재 (THE DEEP STUDY · KKUMDION 2.1)</strong>
+          <small>TRIPLE-AI PEER REVIEW SCHOLIUM · 최고 지능 3대 모델 상호 교차검수 · 열린 학당</small>
+        </div>
+      </a>
+      <div class="kkd-top-links">
+        <a href="index.html" class="kkd-nav-link">🏛️ 꿈디도 본관으로</a>
+        <a href="kkumdido_12archives_viewer.html" class="kkd-nav-link">📚 12대 아카이브 (3,650)</a>
+        <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="kkd-nav-link">📖 66권 원어 풀어읽기 주석</a>
+        <a href="kkumdido_church_support_annex.html" class="kkd-nav-link">🕊️ 꿈디도 별관</a>
+        <button type="button" class="kkd-nav-link" onclick="toggleLibraryDark()" style="border-color:#D4AF37; color:#FFE6A3;">🕯️ 서재 조명 전환 (깊은 서재 / 밝은 열람실)</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 서가 히어로 소개 영역 -->
+  <section class="kkd-hero">
+    <div class="kkd-hero-inner">
+      <div style="flex:1; min-width:320px;">
+        <div class="kkd-hero-eyebrow">🕯️ 세 종류의 AI 연구 조교(Claude · GPT · Gemini) 상호 교차검수 &amp; 원어·정본 데이터베이스 대조</div>
+        <h1>말씀과 지성의 깊은 사유 공간, <span>꿈바온 서가 · 꿈디도 깊은 서재</span></h1>
+        <p style="max-width:920px;">
+          한 연구자의 일방적인 주장이 아니라, 집필(Gemini)·사료 감수(GPT)·신학 감수(Claude)·원어 및 개역개정 정본 대조(안관장)로 오류를 찾아내는 장치를 겹겹이 두고,
+          검증을 마친 <strong>정식 공개 서가(B·C등급)</strong>와 검수 중인 <strong>비공개 초고 수장고(A등급)</strong>를 투명하게 구분하여 펴냅니다.
+        </p>
+
+        <div class="kkd-triple-ai-showcase">
+          <div>
+            <div style="font-size:0.8rem; font-weight:800; color:#F3D175; letter-spacing:0.06em; margin-bottom:6px;">
+              🏛️ 꿈디도 깊은 서재 공식 슬로건 &amp; 학문적 태도 헌장
+            </div>
+            <div class="kkd-slogan-quote">
+              “AI 한 명의 대답이 아니라, 세 지능의 연구와 반론을 통과한 지식.”<br/>
+              “독립 연구하고, 서로 반박하고, 원전으로 확인합니다.”<br/>
+              <strong>“꿈바온 디지털도서관 — Triple-AI Peer Review.”</strong>
+            </div>
+            <div class="kkd-humility-box">
+              <strong>🕯️ [깊은 서재 서문 — 결론이 아닌 사유의 여정으로의 초대]</strong><br/>
+              <span style="font-family:'Noto Serif KR',serif; font-size:0.93rem; color:#FFF3D1;">“이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.”</span><br/>
+              <span style="font-size:0.81rem; opacity:0.9; display:block; margin-top:4px;">우리는 인간 독자와 목회자의 사유를 대신하여 섣부른 최종 결론을 강요하지 않고, 가장 복음적이고 균형 잡힌 학문적 사료 수집의 과정과 글 말미의 <strong>「💬 열린 서재: 검수자의 질문과 저자의 응답」</strong>을 투명하게 공개합니다.</span>
+            </div>
+            <div class="kkd-hero-charter-bar">
+              <span class="kkd-charter-chip">👑 C등급: 정식 출판 마스터 (독자 공개)</span>
+              <span class="kkd-charter-chip">🛡️ B등급: 3대 모델 교차검증 완료 (독자 공개)</span>
+              <span class="kkd-charter-chip">🗄️ A등급: 연구 초고 수장고 (비공개 보존 · 사후 정밀검수 대기)</span>
+              <span class="kkd-charter-chip">💬 전 권 말미 「검수자의 반론 질문과 응답」 수록</span>
+            </div>
+          </div>
+          <div class="kkd-diagram-card">
+            <img src="assets/figures/00_꿈디도_Triple-AI_Peer_Review_시스템구조도.png" alt="꿈디도 Triple-AI Peer Review 시스템 구조도" onclick="window.open(this.src, '_blank')" title="클릭하여 원본 크기로 보기" />
+            <div style="font-size:0.74rem; color:#4A3723; font-weight:800; margin-top:6px;">
+              🔍 [Triple-AI Peer Review 아키텍처] 클릭 시 고해상도 구조도 확대 열람
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="kkd-hero-stats">
+        <div class="kkd-stat-box">
+          <strong id="statPublicBooks">102권</strong>
+          <span>정식 공개 서가 (B·C등급)</span>
+        </div>
+        <div class="kkd-stat-box">
+          <strong id="statVaultBooks">54권</strong>
+          <span>A등급 초고 수장고 (검수대기)</span>
+        </div>
+        <div class="kkd-stat-box">
+          <strong id="statTotalChars">227.6만 자</strong>
+          <span>누적 보존 연구 자산 (총 156권)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 카테고리 탭 & 검색창 -->
+  <section class="kkd-controls-wrap">
+    <div class="kkd-controls-bar">
+      <div class="kkd-cat-tabs" id="kkdCategoryTabs">
+        <button type="button" class="kkd-cat-btn active" data-cat="public_all" onclick="filterShelf('public_all')">🛡️ 정식 공개 서가 전체 (B·C등급 검증본)</button>
+        <button type="button" class="kkd-cat-btn" data-cat="grade_C" onclick="filterShelf('grade_C')">👑 C등급 (출판 마스터)</button>
+        <button type="button" class="kkd-cat-btn" data-cat="bible_overview" onclick="filterShelf('bible_overview')">📕 성경 66권 심층 개관</button>
+        <button type="button" class="kkd-cat-btn" data-cat="wesley_theology" onclick="filterShelf('wesley_theology')">🔥 웨슬리·복음주의 신학</button>
+        <button type="button" class="kkd-cat-btn" data-cat="original_lang" onclick="filterShelf('original_lang')">📖 성경 원어 신학</button>
+        <button type="button" class="kkd-cat-btn" data-cat="archaeology" onclick="filterShelf('archaeology')">🏛️ 성경 고고학·사본학</button>
+        <button type="button" class="kkd-cat-btn" data-cat="reformation" onclick="filterShelf('reformation')">📜 교부·종교개혁 원전</button>
+        <button type="button" class="kkd-cat-btn" data-cat="apologetics" onclick="filterShelf('apologetics')">🌐 학제 간 융합·자유 총서</button>
+        <button type="button" class="kkd-cat-btn" data-cat="vault_A" onclick="filterShelf('vault_A')" style="border-color:#D98A16; color:#FFD07B; background:rgba(235,160,35,0.16);">🗄️ [관장·간사 수장고] A등급 초고 &amp; 사후검수 대장</button>
+      </div>
+      <div class="kkd-search-input-wrap">
+        <span>🔍</span>
+        <input type="search" id="kkdShelfSearch" placeholder="도서 제목, 원어(헤세드·차다크·카파르), 사해사본, 저자 검색..." oninput="renderShelf()" autocomplete="off" />
+      </div>
+    </div>
+  </section>
+
+  <!-- 서가 그리드 (서가별 초대글 배너 + 수장고 탭 선택 시 상단에 사후검수 대장 표 자동 표시) -->
+  <main class="kkd-shelf-container">
+    <div id="kkdShelfInviteBanner" style="margin-bottom:20px; padding:14px 20px; border-radius:12px; background:linear-gradient(135deg, rgba(44,29,17,0.88), rgba(26,17,10,0.92)); border:1px solid rgba(212,175,55,0.42); border-left:4px solid #D4AF37; color:#F5E8C7; font-family:'Noto Serif KR',serif; font-size:0.95rem; line-height:1.7; box-shadow:0 8px 22px rgba(0,0,0,0.28);">
+      🕯️ <strong>서재 안내:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.
+    </div>
+    <div id="kkdVaultAuditBanner" style="display:none; margin-bottom:22px;"></div>
+    <div class="kkd-shelf-grid" id="kkdShelfGrid"></div>
+  </main>
+
+  <!-- =====================================================================
+       📖 꿈디온 전용 북뷰어 2.0 (Kkumdion Book Reader — Open Scholium)
+       ===================================================================== -->
+  <div class="kkd-reader-overlay" id="kkdReaderModal" role="dialog" aria-modal="true">
+    <div class="kkd-reader-toolbar">
+      <div class="kkd-reader-left">
+        <button type="button" class="kkd-reader-toc-toggle" onclick="toggleTocDrawer()">📑 목차 · 열린질문</button>
+        <div class="kkd-reader-book-title" id="readerBookTitle">꿈디온 북뷰어</div>
+      </div>
+      <div class="kkd-reader-controls">
+        <button type="button" class="kkd-r-btn active" id="btnModeSpread" onclick="setReaderMode('spread')">📖 양면 책장 모드</button>
+        <button type="button" class="kkd-r-btn" id="btnModeScroll" onclick="setReaderMode('scroll')">📜 연속 스크롤 모드</button>
+        <button type="button" class="kkd-r-btn active" id="btnPaperParchment" onclick="setReaderPaper('parchment')">양피지</button>
+        <button type="button" class="kkd-r-btn" id="btnPaperIvory" onclick="setReaderPaper('ivory')">미색종이</button>
+        <button type="button" class="kkd-r-btn" id="btnPaperDark" onclick="setReaderPaper('dark')">밤의서재</button>
+        <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(-1)">가-</button>
+        <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(1)">가+</button>
+        <button type="button" class="kkd-r-btn" onclick="window.print()">🖨️ 인쇄</button>
+        <button type="button" class="kkd-r-close" onclick="closeBookReader()">✕ 서가로 돌아가기</button>
+      </div>
+    </div>
+
+    <div class="kkd-reader-stage">
+      <!-- 슬라이드 목차(TOC) 드로어 -->
+      <aside class="kkd-toc-drawer" id="kkdTocDrawer">
+        <div class="kkd-toc-header">
+          <span>📑 도서 장별 목차 &amp; 열린 질문</span>
+          <button type="button" class="kkd-r-btn" onclick="toggleTocDrawer()">닫기</button>
+        </div>
+        <ul class="kkd-toc-list" id="kkdTocList"></ul>
+      </aside>
+
+      <!-- 펼쳐진 책 프레임 -->
+      <div class="kkd-book-frame paper-parchment" id="kkdBookFrame">
+        <div class="kkd-spread-body" id="kkdSpreadBody">
+          <div class="kkd-page-col kkd-page-left" id="kkdPageLeft"></div>
+          <div class="kkd-page-col kkd-page-right" id="kkdPageRight"></div>
+        </div>
+
+        <div class="kkd-reader-footer">
+          <button type="button" class="kkd-page-nav-btn" id="btnPrevSpread" onclick="turnSpread(-1)">◀ 이전 장 / 페이지</button>
+          <div class="kkd-page-indicator" id="kkdPageIndicator">1 / 5</div>
+          <button type="button" class="kkd-page-nav-btn" id="btnNextSpread" onclick="turnSpread(1)">다음 장 / 페이지 ▶</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="kkumdion_books_db.js"></script>
+  <script>
+    let currentCategory = 'public_all';
+    let activeBook = null;
+    let readerMode = 'spread';
+    let readerPaper = 'parchment';
+    let readerFontSize = 17.5;
+    let spreadPages = [];
+    let currentSpreadIndex = 0;
+
+    function initBookshelf() {
+      const db = window.KKUMDION_BOOKS_DB || { books: [], totalBooks: 0, totalChars: 0 };
+      const pubCnt = db.publicBooksCount !== undefined ? db.publicBooksCount : (db.books || []).filter(b => b.grade !== 'A').length;
+      const vaultCnt = db.vaultBooksCount !== undefined ? db.vaultBooksCount : (db.books || []).filter(b => b.grade === 'A').length;
+      document.getElementById('statPublicBooks').textContent = pubCnt + '권';
+      document.getElementById('statVaultBooks').textContent = vaultCnt + '권';
+      document.getElementById('statTotalChars').textContent = (db.totalChars / 10000).toFixed(1) + '만 자';
+      renderShelf();
+
+      const params = new URLSearchParams(window.location.search);
+      const bookId = params.get('book');
+      if (bookId) {
+        const found = (db.books || []).find(b => b.id === bookId);
+        if (found) openBookReader(found.id);
+      }
+    }
+
+    const SHELF_INVITE_TEXTS = {
+      public_all: '🕯️ <strong>서재 상단 서문:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
+      grade_C: '👑 <strong>출판 마스터 서가:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
+      bible_overview: '📕 <strong>성경 66권 심층 개관:</strong> 창세기에서 요한계시록까지, 한 권씩 본문 곁에 머물며 구속사의 줄기를 따라 읽는 서가다. 개관으로 길을 잡고 마지막 장의 물음에서 멈추어 생각해 보기를 권한다.',
+      wesley_theology: '🔥 <strong>웨슬리·복음주의 신학:</strong> 은혜로 시작하여 거룩함으로 이어지는 길을 웨슬리와 복음주의 전통의 글로 살피는 서가다. 칭의와 성화, 선행과 사랑의 자리를 원전에 비추어 차분히 짚어 본다.',
+      original_lang: '📖 <strong>성경 원어 신학:</strong> 히브리어와 헬라어 낱말이 본문 안에서 어떻게 쓰였는지 하나씩 따라가는 서가다. 번역으로는 지나치기 쉬운 결을 확인하며 말씀의 뜻에 한 걸음 더 가까이 다가선다.',
+      archaeology: '🏛️ <strong>성경 고고학·사본학:</strong> 돌과 토기와 두루마리가 성경의 시대를 어떻게 증언하는지 살피는 서가다. 발굴된 자료와 사본의 전승을 있는 그대로 놓고, 어디까지 말할 수 있는지도 함께 밝힌다.',
+      reformation: '📜 <strong>교부·종교개혁 원전:</strong> 교부들의 설교와 종교개혁자들의 글을 원전에 가깝게 읽는 서가다. 교회가 오래 붙들어 온 믿음의 뿌리를 원문과 역사적 맥락 속에서 한 줄기로 따라가 본다.',
+      apologetics: '🌐 <strong>학제 간 융합 총서:</strong> 역사와 법과 윤리와 문화를 성경과 나란히 놓고 읽는 서가다. 한 학문의 말이 닿지 않는 자리에서 다른 학문의 도움을 받되, 말씀의 권위는 흐리지 않는다.',
+      vault_A: '🗄️ <strong>A등급 연구 초고 수장고:</strong> 세 모델이 상호 반론과 원문 대조를 진행 중인 연구 초고 수장고다. 검증을 마친 원고부터 순차적으로 정식 공개 서가(B등급)로 등재된다.'
+    };
+
+    function filterShelf(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('#kkdCategoryTabs .kkd-cat-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-cat') === cat);
+      });
+      const invEl = document.getElementById('kkdShelfInviteBanner');
+      if (invEl && SHELF_INVITE_TEXTS[cat]) {
+        invEl.innerHTML = SHELF_INVITE_TEXTS[cat];
+      }
+      renderShelf();
+    }
+
+    function renderShelf() {
+      const db = window.KKUMDION_BOOKS_DB || { books: [] };
+      const q = (document.getElementById('kkdShelfSearch').value || '').trim().toLowerCase();
+      const grid = document.getElementById('kkdShelfGrid');
+      const vaultBanner = document.getElementById('kkdVaultAuditBanner');
+
+      if (currentCategory === 'vault_A') {
+        const drafts = (db.books || []).filter(b => b.grade === 'A');
+        const rowsHtml = drafts.map((b, i) => `
+          <tr style="border-bottom:1px solid rgba(150,120,70,0.22); cursor:pointer;" onclick="openBookReader('${b.id}')">
+            <td style="padding:8px 10px; font-weight:800;">${i + 1}</td>
+            <td style="padding:8px 10px;"><code style="background:rgba(212,175,55,0.2); padding:2px 6px; border-radius:4px; font-weight:800;">${b.id}</code></td>
+            <td style="padding:8px 10px; font-weight:700;">${b.title}</td>
+            <td style="padding:8px 10px;">${b.charCount.toLocaleString()}자</td>
+            <td style="padding:8px 10px;">${b.author}</td>
+            <td style="padding:8px 10px;">${b.reviewer}</td>
+            <td style="padding:8px 10px; color:#8C4A00; font-weight:600;">${b.auditChecklist || '원문·출처 실물 확인 대기'}</td>
+          </tr>
+        `).join('');
+
+        vaultBanner.style.display = 'block';
+        vaultBanner.innerHTML = `
+          <div style="background:var(--bg-shelf-card); border:2px solid #D98A16; border-radius:14px; padding:18px 22px; box-shadow:0 8px 24px rgba(0,0,0,0.08);">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:10px;">
+              <h3 style="font-family:'Noto Serif KR',serif; font-size:1.15rem; color:#8C4A00;">🗄️ [A등급 연구 초고 비공개 수장고] 사후 정밀검수 대상 통합 관리 대장 (총 ${drafts.length}권 보존 중)</h3>
+              <span style="font-size:0.8rem; font-weight:700; background:#FFF3D1; color:#9A4D00; padding:4px 10px; border-radius:6px; border:1px solid #E69A28;">🔒 일반 독자 서가에는 비공개 · 연구 자산 100% 보존</span>
+            </div>
+            <p style="font-size:0.86rem; color:var(--ink-secondary); margin-bottom:14px; line-height:1.55;">
+              목사님 확정 원칙에 따라, 초기 집중 축적기 동안 작성된 <strong>A등급 연구 초고</strong>는 당장 일반 독자 서가에 공개하지 않고 이곳 수장고 대장에 안전하게 보관합니다.
+              수백 편이 쌓여도 아래 대장을 통해 <strong>무엇을 다시 정밀 검수(출처 실물 확인·신학 울타리 점검)해야 하는지</strong> 한눈에 파악하며, 검수가 끝난 원고만 <strong>B등급(정식 공개)</strong>으로 승격합니다.
+            </p>
+            <div style="overflow-x:auto;">
+              <table style="width:100%; border-collapse:collapse; font-size:0.82rem; text-align:left;">
+                <thead>
+                  <tr style="background:rgba(212,175,55,0.18); border-bottom:2px solid #C59B38;">
+                    <th style="padding:9px 10px;">순번</th>
+                    <th style="padding:9px 10px;">고유번호</th>
+                    <th style="padding:9px 10px;">초고 제목 (클릭 시 초고 열람)</th>
+                    <th style="padding:9px 10px;">분량</th>
+                    <th style="padding:9px 10px;">집필 간사</th>
+                    <th style="padding:9px 10px;">배정 검수자</th>
+                    <th style="padding:9px 10px;">사후 정밀검수 핵심 체크포인트</th>
+                  </tr>
+                </thead>
+                <tbody>${rowsHtml}</tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      } else {
+        vaultBanner.style.display = 'none';
+      }
+
+      const filtered = db.books.filter(b => {
+        if (currentCategory === 'vault_A') {
+          if (b.grade !== 'A') return false;
+        } else {
+          // 정식 공개 서가 탭들에서는 미검증 A등급 초고를 노출하지 않음! (검색 시에만 필요 시 확인 가능하되 기본 탭에서는 철저히 분리)
+          if (b.grade === 'A') return false;
+          if (currentCategory === 'grade_C' && b.grade !== 'C') return false;
+          if (!['public_all', 'grade_C'].includes(currentCategory) && b.category !== currentCategory) return false;
+        }
+        if (q) {
+          const hay = (b.title + ' ' + b.summary + ' ' + b.subtitle + ' ' + b.id + ' ' + (b.author || '')).toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div style="grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--ink-muted); font-size:1.05rem;">찾으시는 조건의 도서가 없습니다. 다른 검색어나 탭을 선택해 보세요.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(b => {
+        const shortCoverTitle = b.title.replace(/^\[[^\]]+\]\s*/, '');
+        const gradeClass = b.grade === 'A' ? 'grade-A' : 'grade-B';
+        const gradeText = b.gradeLabel || (b.grade === 'A' ? '⚠️ 검수 전 초고 (A등급)' : '🛡️ 교차 검증 완료 (B등급)');
+        return `
+          <article class="kkd-book-card" onclick="openBookReader('${b.id}')" title="클릭하여 꿈디온 북뷰어로 열기">
+            <div class="kkd-mini-cover" style="background:${b.coverBg};">
+              <div class="kkd-cover-vol">${b.volNo} · ${b.id}</div>
+              <div class="kkd-cover-short-title">${shortCoverTitle}</div>
+              <div class="kkd-cover-emblem">${b.grade === 'A' ? 'DRAFT · A' : 'VERIFIED · B'}</div>
+            </div>
+            <div class="kkd-book-info">
+              <div>
+                <div class="kkd-book-meta-top">
+                  <span class="kkd-grade-pill ${gradeClass}">${gradeText}</span>
+                  <span class="kkd-book-cat-pill">${b.categoryLabel}</span>
+                  <span class="kkd-book-len-pill">📝 ${b.charCount.toLocaleString()}자</span>
+                </div>
+                <h2 class="kkd-book-title">${b.title}</h2>
+                <p class="kkd-book-summary-2lines">${b.summary}</p>
+              </div>
+              <div class="kkd-book-footer">
+                <span class="kkd-book-sub">✍️ ${b.author || '제간사'} · 📅 ${b.writtenAt || '2026-11-10'}</span>
+                <span class="kkd-open-reader-btn">📖 책 펼치기</span>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    function buildMetaBannerHtml(book) {
+      const isDraft = book.grade === 'A';
+      const bannerClass = isDraft ? 'banner-grade-A' : 'banner-grade-B';
+      const statusHeadline = isDraft
+        ? '⚠️ [검수 전 초고 · A등급 연구 초고] 독자 안내'
+        : '🛡️ [교차 검증 완료 · B등급 검증 연구] 품질 인증';
+      const statusDesc = isDraft
+        ? '이 글은 독립 연구자(AI 간사)가 작성한 1차 심층 연구 초고입니다. AI 초고에는 미확인 문헌이나 세부 쪽수 오기가 섞일 수 있어, 현재 나머지 세 간사가 실제 원문을 열어 대조하는 교차 검수를 진행하고 있습니다.'
+        : '이 글은 원문 사료 실물 확인, 사실(Fact)과 해석(Interpretation)의 구분, 그리고 <strong>감리교·웨슬리언 정통 복음주의 신학의 울타리</strong> 안에서 교차 검증을 완료한 자료입니다.';
+
+      const extraMetaHtml = (book.researchKeywords || book.factVsInterp) ? `
+          <div style="margin-top:8px; padding-top:8px; border-top:1px dashed rgba(140,110,60,0.35); font-size:0.78rem; line-height:1.5;">
+            ${book.researchKeywords ? `<div><strong>🏷️ 연구 분야·키워드:</strong> ${book.researchKeywords}</div>` : ''}
+            ${book.subtitle ? `<div><strong>📖 연계 본문·출처:</strong> ${book.subtitle}</div>` : ''}
+            ${book.factVsInterp ? `<div><strong>⚖️ 사실(Fact)과 해석(Interpretation) 구분:</strong> ${book.factVsInterp}</div>` : ''}
+          </div>
+      ` : '';
+
+      return `
+        <div class="kkd-meta-banner ${bannerClass}">
+          <div class="kkd-meta-banner-title">
+            <span>${statusHeadline}</span>
+            <span style="font-size:0.78rem; opacity:0.85;">판본: ${book.version || 'v1.0'}</span>
+          </div>
+          <div>${statusDesc}</div>
+          <div class="kkd-meta-grid">
+            <span><strong>✍️ 집필 간사:</strong> ${book.author || '제간사 (Gemini)'}</span>
+            <span><strong>🤖 사용 모델:</strong> ${book.model || 'Gemini 2.5 Pro'}</span>
+            <span><strong>📅 작성일:</strong> ${book.writtenAt || '2026-11-10'}</span>
+            <span><strong>🔍 교차 검수:</strong> ${book.reviewer || '클간사 · 지간사 순환 검수'}</span>
+          </div>
+          ${extraMetaHtml}
+        </div>
+      `;
+    }
+
+    function buildOpenDialogueHtml(book) {
+      const od = book.openDialogue || {};
+      const relIds = book.relatedIds || [];
+      const db = window.KKUMDION_BOOKS_DB || { books: [] };
+      const relButtons = relIds.map(rid => {
+        const target = (db.books || []).find(x => x.id === rid);
+        const label = target ? `${target.id}: ${target.title.replace(/^\[[^\]]+\]\s*/, '').slice(0, 22)}...` : rid;
+        return `<button type="button" class="kkd-rel-btn" onclick="openBookReader('${rid}')">🔗 ${label}</button>`;
+      }).join('');
+
+      const authorOpenQHtml = od.authorOpenQuestion
+        ? `<div class="kkd-dialogue-q" style="border-left-color:#8C6218; margin-bottom:12px;">
+             <strong>🌱 저자가 독자와 검수자에게 던지는 열린 질문 (${book.author || '집필 간사'}):</strong><br/>
+             ${od.authorOpenQuestion}
+           </div>`
+        : '';
+
+      const answerHtml = od.answer
+        ? `<div class="kkd-dialogue-a"><strong>✒️ 저자의 응답 (${book.author || '집필 간사'}):</strong><br/>${od.answer}</div>`
+        : `<div class="kkd-dialogue-a" style="opacity:0.85;"><strong>✒️ 저자의 응답 대기:</strong> 교차 검수자의 질문에 대한 저자의 반론·보완 응답이 이곳에 함께 실려 독자에게 공개됩니다.</div>`;
+
+      return `
+        <div class="kkd-open-dialogue-box" id="scroll-open-dialogue">
+          <div class="kkd-open-dialogue-header">
+            <span>💬 열린 서재: 검수자의 질문과 저자의 응답 (Open Scholarly Dialogue)</span>
+            <span style="font-size:0.76rem; font-family:'Pretendard',sans-serif; font-weight:700;">담당 검수: ${od.reviewer || book.reviewer || '교차 검수단'}</span>
+          </div>
+          <p style="font-size:0.82rem; margin-bottom:10px; opacity:0.88;">
+            꿈디도 깊은 서재는 글이 닫히지 않고 열려 있도록, 저자의 열린 질문과 검수자가 던진 다른 관점·반론 질문 및 저자의 답을 독자에게 그대로 공개합니다.
+          </p>
+          ${authorOpenQHtml}
+          <div class="kkd-dialogue-q">
+            <strong>🧐 검수자의 질문 및 사후 정밀검수 포인트 (${od.reviewer || '교차 검수자'}):</strong><br/>
+            ${od.question || '교차 검수 시 저자가 놓친 다른 관점이나 심화 반론 질문 1~2개가 이곳에 등재됩니다.'}
+          </div>
+          ${answerHtml}
+          <div class="kkd-related-links">
+            <strong>🌱 후속 연구 제안:</strong> <span>${book.nextTopic || '연계 심층 연구 확장 예정'}</span>
+          </div>
+          ${relButtons ? `<div class="kkd-related-links"><strong>📚 연결된 연구 도서 바로 열기:</strong> ${relButtons}</div>` : ''}
+        </div>
+      `;
+    }
+
+    function buildSpreadPages(book) {
+      const pages = [];
+      const metaBanner = buildMetaBannerHtml(book);
+
+      (book.chapters || []).forEach((ch, chIdx) => {
+        const temp = document.createElement('div');
+        temp.innerHTML = ch.html;
+        const blocks = Array.from(temp.children);
+
+        let curHtml = (chIdx === 0 ? metaBanner : '') +
+          `<div class="kkd-chapter-badge">CHAPTER ${chIdx + 1}</div><h2 class="kkd-chapter-title">${ch.title}</h2>`;
+        let curLen = ch.title.length + (chIdx === 0 ? 350 : 0);
+
+        blocks.forEach(node => {
+          const textLen = (node.textContent || '').length;
+          if (curLen > 1250 && (curLen + textLen) > 1650) {
+            pages.push({
+              chapterIdx: chIdx,
+              chapterTitle: ch.title,
+              html: curHtml
+            });
+            curHtml = node.outerHTML;
+            curLen = textLen;
+          } else {
+            curHtml += node.outerHTML;
+            curLen += textLen;
+          }
+        });
+
+        if (curHtml) {
+          pages.push({
+            chapterIdx: chIdx,
+            chapterTitle: ch.title,
+            html: curHtml
+          });
+        }
+      });
+
+      // 마지막 페이지로 「💬 열린 서재: 검수자의 질문과 저자의 응답」 전용 페이지 추가
+      pages.push({
+        chapterIdx: (book.chapters || []).length,
+        chapterTitle: "열린 서재 · 검수자의 질문과 저자의 응답",
+        html: buildOpenDialogueHtml(book)
+      });
+
+      return pages;
+    }
+
+    function openBookReader(bookId) {
+      const db = window.KKUMDION_BOOKS_DB || { books: [] };
+      const book = db.books.find(b => b.id === bookId);
+      if (!book) return;
+
+      activeBook = book;
+      spreadPages = buildSpreadPages(book);
+      currentSpreadIndex = 0;
+
+      document.getElementById('readerBookTitle').textContent = `[${book.grade}등급] ${book.title} (${book.charCount.toLocaleString()}자)`;
+      document.getElementById('kkdReaderModal').classList.add('open');
+      document.body.style.overflow = 'hidden';
+
+      if (window.innerWidth <= 900) {
+        setReaderMode('scroll');
+      } else {
+        renderReaderView();
+      }
+      renderToc();
+    }
+
+    function closeBookReader() {
+      document.getElementById('kkdReaderModal').classList.remove('open');
+      document.getElementById('kkdTocDrawer').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    function toggleTocDrawer() {
+      document.getElementById('kkdTocDrawer').classList.toggle('open');
+    }
+
+    function renderToc() {
+      if (!activeBook) return;
+      const list = document.getElementById('kkdTocList');
+      const activeChIdx = spreadPages[currentSpreadIndex] ? spreadPages[currentSpreadIndex].chapterIdx : 0;
+
+      const chItems = (activeBook.chapters || []).map((ch, idx) => `
+        <li class="kkd-toc-item ${idx === activeChIdx ? 'active' : ''}" onclick="jumpToChapter(${idx})">
+          <strong>제${idx + 1}장.</strong> ${ch.title}
+        </li>
+      `).join('');
+
+      const dialogueIdx = (activeBook.chapters || []).length;
+      const dialogueItem = `
+        <li class="kkd-toc-item ${activeChIdx === dialogueIdx ? 'active' : ''}" onclick="jumpToChapter(${dialogueIdx})" style="border-top:1px dashed #5A4426; margin-top:8px; padding-top:12px; color:#F5D782;">
+          <strong>💬 열린 서재.</strong> 검수자의 질문과 저자의 응답
+        </li>
+      `;
+
+      list.innerHTML = chItems + dialogueItem;
+    }
+
+    function jumpToChapter(chIdx) {
+      document.getElementById('kkdTocDrawer').classList.remove('open');
+      const dialogueIdx = (activeBook.chapters || []).length;
+      if (readerMode === 'scroll') {
+        const targetId = chIdx === dialogueIdx ? 'scroll-open-dialogue' : ('scroll-ch-' + chIdx);
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } else {
+        const pageIdx = spreadPages.findIndex(p => p.chapterIdx === chIdx);
+        if (pageIdx !== -1) {
+          currentSpreadIndex = pageIdx - (pageIdx % 2);
+          renderReaderView();
+          renderToc();
+        }
+      }
+    }
+
+    function setReaderMode(mode) {
+      readerMode = mode;
+      document.getElementById('btnModeSpread').classList.toggle('active', mode === 'spread');
+      document.getElementById('btnModeScroll').classList.toggle('active', mode === 'scroll');
+      const frame = document.getElementById('kkdBookFrame');
+      frame.classList.toggle('mode-scroll', mode === 'scroll');
+      renderReaderView();
+    }
+
+    function setReaderPaper(paper) {
+      readerPaper = paper;
+      const frame = document.getElementById('kkdBookFrame');
+      frame.classList.remove('paper-parchment', 'paper-ivory', 'paper-dark');
+      frame.classList.add('paper-' + paper);
+      document.getElementById('btnPaperParchment').classList.toggle('active', paper === 'parchment');
+      document.getElementById('btnPaperIvory').classList.toggle('active', paper === 'ivory');
+      document.getElementById('btnPaperDark').classList.toggle('active', paper === 'dark');
+    }
+
+    function adjustReaderFont(delta) {
+      readerFontSize = Math.min(24, Math.max(14, readerFontSize + delta));
+      renderReaderView();
+    }
+
+    function turnSpread(dir) {
+      if (readerMode === 'scroll') return;
+      const step = window.innerWidth <= 900 ? 1 : 2;
+      const next = currentSpreadIndex + dir * step;
+      if (next >= 0 && next < spreadPages.length) {
+        currentSpreadIndex = next;
+        renderReaderView();
+        renderToc();
+      }
+    }
+
+    function renderReaderView() {
+      if (!activeBook) return;
+      const body = document.getElementById('kkdSpreadBody');
+
+      if (readerMode === 'scroll') {
+        const metaBanner = buildMetaBannerHtml(activeBook);
+        const allHtml = metaBanner + (activeBook.chapters || []).map((ch, idx) => `
+          <section id="scroll-ch-${idx}" style="margin-bottom:42px;">
+            <div class="kkd-chapter-badge">CHAPTER ${idx + 1}</div>
+            <h2 class="kkd-chapter-title">${ch.title}</h2>
+            <div class="kkd-book-content" style="font-size:${readerFontSize}px;">${ch.html}</div>
+          </section>
+        `).join('<hr class="kkd-book-divider" style="margin:32px 0; border:none; border-top:1px solid rgba(150,120,70,0.3);"/>') +
+        buildOpenDialogueHtml(activeBook);
+
+        body.innerHTML = allHtml;
+        document.getElementById('kkdPageIndicator').textContent = `전체 연속 정독 모드 (총 ${activeBook.chapters.length}개 장 + 열린 서재 · ${activeBook.charCount.toLocaleString()}자)`;
+        document.getElementById('btnPrevSpread').disabled = true;
+        document.getElementById('btnNextSpread').disabled = true;
+        return;
+      }
+
+      const leftPage = spreadPages[currentSpreadIndex];
+      const rightPage = spreadPages[currentSpreadIndex + 1];
+
+      const leftHtml = leftPage ? `
+        <div class="kkd-page-header-running">
+          <span>${activeBook.series} · ${activeBook.id} (${activeBook.gradeLabel || ''})</span>
+          <span>p. ${currentSpreadIndex + 1}</span>
+        </div>
+        <div class="kkd-book-content" style="font-size:${readerFontSize}px;">${leftPage.html}</div>
+      ` : '';
+
+      const rightHtml = rightPage ? `
+        <div class="kkd-page-header-running">
+          <span>${rightPage.chapterTitle}</span>
+          <span>p. ${currentSpreadIndex + 2}</span>
+        </div>
+        <div class="kkd-book-content" style="font-size:${readerFontSize}px;">${rightPage.html}</div>
+      ` : `
+        <div style="margin:auto; text-align:center; color:#8A7456; padding:40px;">
+          <div style="font-size:2rem; margin-bottom:10px;">🏛️</div>
+          <div style="font-family:'Noto Serif KR',serif; font-weight:700;">이 책의 마지막 페이지입니다.</div>
+          <div style="font-size:0.84rem; margin-top:6px;">꿈바온 디지털 도서관 · 꿈디온 열린 학당 서가</div>
+        </div>
+      `;
+
+      body.innerHTML = `
+        <div class="kkd-page-col kkd-page-left">${leftHtml}</div>
+        <div class="kkd-page-col kkd-page-right">${rightHtml}</div>
+      `;
+
+      const totalP = spreadPages.length;
+      const pEnd = Math.min(totalP, currentSpreadIndex + 2);
+      document.getElementById('kkdPageIndicator').textContent = `${currentSpreadIndex + 1} ~ ${pEnd} 쪽 (전체 ${totalP}쪽 · 마지막 쪽 「검수자의 질문」 수록)`;
+      document.getElementById('btnPrevSpread').disabled = currentSpreadIndex <= 0;
+      document.getElementById('btnNextSpread').disabled = currentSpreadIndex + 2 >= totalP;
+    }
+
+    function toggleLibraryDark() {
+      document.body.classList.toggle('dark-library');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const modal = document.getElementById('kkdReaderModal');
+      if (!modal.classList.contains('open')) return;
+      if (e.key === 'Escape') closeBookReader();
+      if (e.key === 'ArrowLeft') turnSpread(-1);
+      if (e.key === 'ArrowRight') turnSpread(1);
+    });
+
+    window.addEventListener('DOMContentLoaded', initBookshelf);
+  </script>
+</body>
+</html>
