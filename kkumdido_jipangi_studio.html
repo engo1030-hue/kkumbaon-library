@@ -1847,6 +1847,11 @@
       flex-shrink: 0;
     }
 
+    .studio-tab-card:focus-visible { outline:3px solid #d4af37; outline-offset:3px; }
+    @media (max-width:680px) {
+      #studioPaneBulletin [style*="grid-template-columns"] { grid-template-columns:minmax(0,1fr)!important; }
+      #studioPaneBulletin .btn { max-width:100%; white-space:normal; }
+    }
   </style>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
 </head>
@@ -2037,12 +2042,12 @@
         <div class="studio-cat" id="studioCatPastoral">
           <div class="studio-cat-label">⛪ 목회 지원</div>
           <div class="studio-tabs-grid" id="studioTabsGridPastoral" style="grid-template-columns:minmax(0, 1fr);">
-            <div class="studio-tab-card" id="tabCard_moses" onclick="switchStudioMode('moses')" style="border:1.5px solid rgba(212,175,55,0.5); background:rgba(212,175,55,0.08);">
+            <div class="studio-tab-card" id="tabCard_moses" onclick="switchStudioMode('moses')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('moses')}" style="border:1.5px solid rgba(212,175,55,0.5); background:rgba(212,175,55,0.08);">
               <span class="tab-badge" id="badgeTab_moses" style="background:#854D0E; border-color:#D4AF37; color:#FFFFFF;">목회 1</span>
               <div class="tab-title" style="color:#FDE68A; font-weight:900;">모세의 지팡이</div>
               <div class="tab-sub">목회 달력 · 새벽 말씀 · 웨슬리 표준설교</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_ai" onclick="switchStudioMode('ai')" style="border:1.5px solid #38BDF8; background:rgba(14,165,233,0.12);">
+            <div class="studio-tab-card" id="tabCard_ai" onclick="switchStudioMode('ai')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('ai')}" style="border:1.5px solid #38BDF8; background:rgba(14,165,233,0.12);">
               <span class="tab-badge" id="badgeTab_ai" style="background:#0284C7; border-color:#38BDF8; color:#FFFFFF;">목회 2</span>
               <div class="tab-title" style="color:#7DD3FC; font-weight:900;">목회 AI 서재</div>
               <div class="tab-sub">성경 본문 연구 · 설교 보조 대화</div>
@@ -2052,32 +2057,32 @@
         <div class="studio-cat" id="studioCatBroadcast">
           <div class="studio-cat-label">🎬 미디어 제작</div>
           <div class="studio-tabs-grid" id="studioTabsGrid" style="grid-template-columns:repeat(3, minmax(0, 1fr));">
-            <div class="studio-tab-card active" id="tabCard_sermon" onclick="switchStudioMode('sermon')">
+            <div class="studio-tab-card active" id="tabCard_sermon" onclick="switchStudioMode('sermon')" role="button" tabindex="0" aria-pressed="true" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('sermon')}">
               <span class="tab-badge">스튜디오 1</span>
               <div class="tab-title">주일설교 쇼츠</div>
               <div class="tab-sub">은혜 대목 2~6편 발췌 &amp; 쇼츠 영상</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_hymn" onclick="switchStudioMode('hymn')">
+            <div class="studio-tab-card" id="tabCard_hymn" onclick="switchStudioMode('hymn')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('hymn')}">
               <span class="tab-badge">스튜디오 2</span>
               <div class="tab-title">찬양 가사 PPT</div>
               <div class="tab-sub">찬송가·복음성가 가사 16:9 예배 PPT</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_event" onclick="switchStudioMode('event')">
+            <div class="studio-tab-card" id="tabCard_event" onclick="switchStudioMode('event')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('event')}">
               <span class="tab-badge">스튜디오 3</span>
               <div class="tab-title">교회 행사·광고</div>
               <div class="tab-sub">행사 쇼츠 · 안내 포스터 · 본당 스크린</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_reading" onclick="switchStudioMode('reading')">
+            <div class="studio-tab-card" id="tabCard_reading" onclick="switchStudioMode('reading')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('reading')}">
               <span class="tab-badge">스튜디오 4</span>
               <div class="tab-title">말씀 낭독 영상</div>
               <div class="tab-sub">성화 모션 &amp; 성경 낭독 쇼츠 영상</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_bulletin" onclick="switchStudioMode('bulletin')">
+            <div class="studio-tab-card" id="tabCard_bulletin" onclick="switchStudioMode('bulletin')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('bulletin')}">
               <span class="tab-badge">스튜디오 5</span>
               <div class="tab-title">주보 &amp; 가정예배</div>
               <div class="tab-sub">주보 요약 · 구역공과 · 가정예배지</div>
             </div>
-            <div class="studio-tab-card" id="tabCard_montage" onclick="switchStudioMode('montage')">
+            <div class="studio-tab-card" id="tabCard_montage" onclick="switchStudioMode('montage')" role="button" tabindex="0" aria-pressed="false" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();switchStudioMode('montage')}">
               <span class="tab-badge">스튜디오 6</span>
               <div class="tab-title">사진·영상 편집</div>
               <div class="tab-sub">수련회·행사 사진 20장 영상 스케치</div>
@@ -3124,10 +3129,10 @@
               <span class="step-num">📰</span>
               <h2 class="step-title">설교문 ➔ 주보 요약 · 구역공과(인도팁) · 가정예배지 · 6일 QT · 말씀카드</h2>
             </div>
-            <span class="pill-orange">워드(.docx) + 말씀카드(PNG) + 원클릭 복사</span>
+            <span class="pill-orange">워드 호환(.doc) + 말씀카드(PNG) + 원클릭 복사</span>
           </div>
           <p class="step-desc">
-            설교 원고 파일을 올리시거나, 원고가 없어도 <b>현재 불러온 설교 영상의 자막을 그대로 가져와서</b> ① 주보 요약문, ② 구역예배/속회 나눔지(구역장 인도 팁 포함), ③ 온가족 가정예배 순서지, ④ 월~토 6일 QT, ⑤ 성도 단톡방 목회서신, ⑥ 고화질 말씀카드 이미지를 단 5초 만에 완성합니다.
+            설교 원고 파일을 올리시거나, 현재 불러온 설교 영상의 자막을 가져와서 ① 주보 요약문, ② 구역예배/속회 나눔지, ③ 온가족 가정예배 순서지, ④ 월~토 6일 QT, ⑤ 성도 단톡방 목회서신, ⑥ 말씀카드 이미지의 초안을 만듭니다. 인쇄·배포 전 본문과 교리를 확인해 주세요.
           </p>
 
           <!-- 원클릭 설교문 불러오기 툴바 -->
@@ -3173,8 +3178,8 @@
 
           <div style="background:#F2F9F5; border:1.5px solid #40916C; border-radius:12px; padding:11px 14px; margin-bottom:14px;">
             <label style="display:flex; align-items:flex-start; gap:8px; cursor:pointer; font-size:13px; font-weight:800; color:#1B4332; line-height:1.5;">
-              <input type="checkbox" id="bulPastorReviewChk" checked style="margin-top:3px; width:16px; height:16px;" />
-              <span>[목회자 감수 확인] AI가 요약·생성한 주보·구역공과·QT 초안은 목회 보조 자료이며, 인쇄 및 단톡방 배포 전 성경 구절 오탈자나 교리적 왜곡이 없는지 담임목사님(교역자)께서 최종 감수함을 확인합니다.</span>
+              <input type="checkbox" id="bulPastorReviewChk" style="margin-top:3px; width:16px; height:16px;" />
+              <span>[배포 전 확인] 생성된 주보·구역공과·QT 초안의 성경 구절, 사실 관계와 교리를 교역자가 검토한 뒤 인쇄·배포합니다. 확인을 마친 후 표시해 주세요.</span>
             </label>
           </div>
 
@@ -6666,7 +6671,10 @@ ${st.error || "로그를 확인해 주세요."}`);
       const modes = ["sermon", "hymn", "event", "reading", "bulletin", "montage", "moses", "ai"];
       modes.forEach(m => {
         const card = document.getElementById("tabCard_" + m);
-        if (card) card.classList.toggle("active", m === mode);
+        if (card) {
+          card.classList.toggle("active", m === mode);
+          card.setAttribute("aria-pressed", String(m === mode));
+        }
       });
 
       // 패널 표시 전환
@@ -8449,31 +8457,27 @@ ${st.error || "로그를 확인해 주세요."}`);
       if (!f) return;
       const reader = new FileReader();
       reader.onload = async (e) => {
-        const res = await fetch("/api/extract-doc-text", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            filename: f.name,
-            data_base64: e.target.result
-          })
-        });
-        const data = await res.json();
-        if (data.ok) {
-          document.getElementById("bulSermonTextInput").value = data.text || "";
+        try {
+          const res = await fetch("/api/extract-doc-text", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ filename: f.name, data_base64: e.target.result })
+          });
+          const data = await res.json();
+          if (!data.ok || !data.text) throw new Error(data.error || "문서에서 원고 본문을 찾지 못했습니다.");
+          document.getElementById("bulSermonTextInput").value = data.text;
           document.getElementById("bulStatusTxt").textContent = `✅ 「${f.name}」 원고 본문을 불러왔습니다!`;
-        } else {
-          alert(data.error || "원고 파일을 읽지 못했습니다.");
+        } catch (err) {
+          document.getElementById("bulStatusTxt").textContent = `❌ ${err.message || "원고 파일을 읽지 못했습니다."}`;
+        } finally {
+          inputEl.value = "";
         }
       };
+      reader.onerror = () => { document.getElementById("bulStatusTxt").textContent = "❌ 파일을 읽지 못했습니다."; inputEl.value = ""; };
       reader.readAsDataURL(f);
     }
 
     async function startGenerateBulletinPack() {
-      const revChk = document.getElementById("bulPastorReviewChk");
-      if (revChk && !revChk.checked) {
-        alert("인쇄 및 배포 전 담임목사님(교역자)의 성경 구절·교리 최종 감수 확인 체크박스에 체크해 주세요.");
-        return;
-      }
       const btn = document.getElementById("btnGenBulletin");
       const stTxt = document.getElementById("bulStatusTxt");
       const resBox = document.getElementById("bulResultBox");
@@ -8483,14 +8487,19 @@ ${st.error || "로그를 확인해 주세요."}`);
         sermonTxt = currentSermon.subtitles.map(s => s.text).join(" ");
         document.getElementById("bulSermonTextInput").value = sermonTxt;
       }
+      if (!document.getElementById("bulTitleInput").value.trim() || !document.getElementById("bulVerseInput").value.trim() || !sermonTxt) {
+        stTxt.textContent = "설교 제목·성경 본문·설교 원고를 모두 입력해 주세요.";
+        document.getElementById(!sermonTxt ? "bulSermonTextInput" : !document.getElementById("bulTitleInput").value.trim() ? "bulTitleInput" : "bulVerseInput").focus();
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = "⏳ 주보 요약 · 구역공과 · 가정예배지 · 6일 QT · 말씀카드 생성 중 (최대 60초)...";
       let elapsedSec = 0;
-      stTxt.textContent = "⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.docx) 문서를 만들고 있습니다... (0초 경과 · 최대 60초 대기)";
+      stTxt.textContent = "⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.doc) 문서를 만들고 있습니다... (0초 경과 · 최대 60초 대기)";
       const bulTimer = setInterval(() => {
         elapsedSec += 1;
-        stTxt.textContent = `⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.docx) 문서를 만들고 있습니다... (${elapsedSec}초 경과 · 최대 60초 대기)`;
+        stTxt.textContent = `⏳ 설교 본문을 분석하여 한 주간 사역 자료 6종과 워드(.doc) 문서를 만들고 있습니다... (${elapsedSec}초 경과 · 최대 60초 대기)`;
       }, 1000);
 
       try {
@@ -8551,10 +8560,10 @@ ${st.error || "로그를 확인해 주세요."}`);
           </div>
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; background:#141C2E; color:#FAF7F0; padding:14px 18px; border-radius:14px; margin-bottom:16px;">
             <div style="font-size:15px; font-weight:900;">
-              📦 한 주간 목회 사역 자료 6종(구역장 인도팁 · 가정예배지 포함)이 모두 완성되었습니다!
+              📦 한 주간 목회 사역 자료 6종의 초안이 만들어졌습니다. 배포 전 성경 본문과 내용을 확인해 주세요.
             </div>
             <div style="display:flex; gap:10px; flex-wrap:wrap;">
-              <a href="${escapeHtml(p.docx_url)}" download="${escapeHtml(p.docx_filename)}" class="btn btn-gold" style="text-decoration:none;">📄 주보·구역공과·가정예배·QT 통합 워드(.docx) 다운로드</a>
+              <a href="${escapeHtml(p.docx_url)}" download="${escapeHtml(p.docx_filename)}" class="btn btn-gold" style="text-decoration:none;">📄 주보·구역공과·가정예배·QT 통합 워드 호환(.doc) 다운로드</a>
               <a href="${escapeHtml(p.word_card_url)}" download="${escapeHtml(p.word_card_filename)}" class="btn btn-outline" style="text-decoration:none; background:#FFFFFF;">🖼️ 주일 말씀카드 PNG 다운로드</a>
             </div>
           </div>
