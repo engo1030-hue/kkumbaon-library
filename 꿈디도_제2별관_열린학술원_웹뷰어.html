@@ -1245,7 +1245,7 @@
     </div>
   </div>
 
-  <script src="kkumdion_books_db.js?v=20261111_a4v3"></script>
+  <script src="kkumdion_books_db.js?v=20261111_a4v4"></script>
   <script>
     let currentCategory = 'public_all';
     let activeBook = null;
@@ -1705,13 +1705,13 @@
         return [part1, part2];
       }
 
-      // 3. 표(TABLE / .kkd-table-wrap)
+      // 3. 표(TABLE / .kkd-table-wrap) — 행(TR) 단위 분할 + 긴 셀(TD) 내부 문장/줄바꿈 단위 정밀 분할
       const table = tag === 'TABLE' ? node : (node.classList.contains('kkd-table-wrap') ? node.querySelector('table') : null);
       if (table) {
         const thead = table.querySelector('thead');
         const tbody = table.querySelector('tbody') || table;
         const rows = Array.from(tbody.querySelectorAll(':scope > tr'));
-        if (rows.length <= 1) return null;
+        if (rows.length === 0) return null;
 
         const wrap1 = node === table ? table.cloneNode(false) : node.cloneNode(false);
         const t1 = node === table ? wrap1 : table.cloneNode(false);
@@ -1734,18 +1734,73 @@
         }
         measurer.removeChild(wrap1);
 
-        if (fitRows === 0) {
-          if (!isEmptyPage) return null;
+        // 다음 행(rows[fitRows])이 통째로 들어가지 않을 때, 해당 행의 마지막 셀(TD) 내부를 문장/줄바꿈 단위로 정밀 분할
+        let splitRowRemainder = null;
+        if (fitRows < rows.length) {
+          const targetRow = rows[fitRows];
+          const cells = Array.from(targetRow.children);
+          if (cells.length >= 2) {
+            const lastCell = cells[cells.length - 1];
+            const sentences = tokenizeHtmlIntoSentences(lastCell.innerHTML);
+            if (sentences.length > 1) {
+              const rPart1 = targetRow.cloneNode(false);
+              for (let c = 0; c < cells.length - 1; c++) {
+                rPart1.appendChild(cells[c].cloneNode(true));
+              }
+              const tdBody1 = lastCell.cloneNode(false);
+              rPart1.appendChild(tdBody1);
+              tb1.appendChild(rPart1);
+              measurer.appendChild(wrap1);
+
+              let fitSent = 0;
+              for (let s = 0; s < sentences.length; s++) {
+                tdBody1.innerHTML = sentences.slice(0, s + 1).join('');
+                if (measurer.offsetHeight <= availHeight) {
+                  fitSent = s + 1;
+                } else {
+                  break;
+                }
+              }
+              measurer.removeChild(wrap1);
+
+              if (fitSent > 0 && fitSent < sentences.length) {
+                tdBody1.innerHTML = sentences.slice(0, fitSent).join('').replace(/(?:<br\s*\/?>|\s|&nbsp;)+$/i, '');
+                const rPart2 = targetRow.cloneNode(false);
+                for (let c = 0; c < cells.length - 1; c++) {
+                  const cClone = cells[c].cloneNode(true);
+                  if (c === 0 && !cClone.innerHTML.includes('(계속)')) {
+                    cClone.innerHTML += '<br/><span style="font-size:0.78em; opacity:0.75; font-weight:600;">(계속)</span>';
+                  }
+                  rPart2.appendChild(cClone);
+                }
+                const tdBody2 = lastCell.cloneNode(false);
+                tdBody2.innerHTML = sentences.slice(fitSent).join('').replace(/^(?:<br\s*\/?>|\s|&nbsp;)+/i, '');
+                rPart2.appendChild(tdBody2);
+                splitRowRemainder = rPart2;
+              } else {
+                tb1.removeChild(rPart1);
+              }
+            }
+          }
+        }
+
+        if (fitRows === 0 && !splitRowRemainder) {
+          if (!isEmptyPage || rows.length <= 1) return null;
           fitRows = 1;
           tb1.appendChild(rows[0].cloneNode(true));
         }
-        if (fitRows >= rows.length) return null;
+        if (!splitRowRemainder && fitRows >= rows.length) return null;
 
         const wrap2 = node === table ? table.cloneNode(false) : node.cloneNode(false);
         const t2 = node === table ? wrap2 : table.cloneNode(false);
         if (thead) t2.appendChild(thead.cloneNode(true));
         const tb2 = document.createElement('tbody');
-        rows.slice(fitRows).forEach(r => tb2.appendChild(r.cloneNode(true)));
+        if (splitRowRemainder) {
+          tb2.appendChild(splitRowRemainder);
+          rows.slice(fitRows + 1).forEach(r => tb2.appendChild(r.cloneNode(true)));
+        } else {
+          rows.slice(fitRows).forEach(r => tb2.appendChild(r.cloneNode(true)));
+        }
         t2.appendChild(tb2);
         if (node !== table) wrap2.appendChild(t2);
         return [wrap1, wrap2];
