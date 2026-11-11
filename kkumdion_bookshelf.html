@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>꿈바온 서가 · 꿈디도 깊은 서재 (Triple-AI Peer Review Scholium) — 꿈바온 디지털 도서관</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>꿈바온 서가 · 꿈디도 깊은 서재 (열린 학술원 · Open Scholium) — 꿈바온 디지털 도서관</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -724,9 +727,9 @@
     /* 실제 펼쳐진 책 프레임 */
     .kkd-book-frame {
       width: 100%;
-      max-width: 1380px;
+      max-width: 1420px;
       height: 100%;
-      max-height: 830px;
+      max-height: min(880px, calc(100vh - 82px));
       border-radius: 14px;
       position: relative;
       display: flex;
@@ -863,17 +866,22 @@
       color: #18110A;
     }
 
-    /* 양면 펼침(Spread) 컨테이너 */
+    /* 양면 펼침(Spread) 컨테이너 — A4 PDF 2-Up 고정 양면 모드 */
     .kkd-spread-body {
       flex: 1;
+      height: 100%;
+      min-height: 0;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      overflow: hidden;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-rows: minmax(0, 1fr);
+      overflow: hidden !important;
+      overscroll-behavior: none;
       position: relative;
     }
     .kkd-book-frame.mode-scroll .kkd-spread-body {
       display: block;
-      overflow-y: auto;
+      overflow-y: auto !important;
+      overscroll-behavior: contain;
       padding: 36px clamp(24px, 6vw, 110px);
       max-width: 980px;
       margin: 0 auto;
@@ -881,9 +889,13 @@
     }
 
     .kkd-page-col {
-      padding: 30px clamp(22px, 3vw, 46px) 24px;
-      overflow-y: auto;
+      padding: 24px clamp(22px, 2.8vw, 44px) 18px;
+      overflow: hidden !important;
+      overflow-y: hidden !important;
+      overscroll-behavior: none;
       height: 100%;
+      min-height: 0;
+      max-height: 100%;
       display: flex;
       flex-direction: column;
     }
@@ -894,19 +906,55 @@
       font-size: 0.74rem;
       color: #8A7456;
       border-bottom: 1px solid rgba(138, 116, 86, 0.28);
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      padding-bottom: 7px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      gap: 10px;
       font-weight: 600;
+      flex-shrink: 0;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .kkd-page-header-running > span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+      min-width: 0;
+    }
+    .kkd-page-header-running > span:last-child {
+      flex-shrink: 0;
     }
 
     /* 책 본문 타이포그래피 */
     .kkd-book-content {
       font-family: 'Noto Serif KR', serif;
-      line-height: 1.88;
+      line-height: 1.84;
       letter-spacing: -0.01em;
       word-break: keep-all;
+    }
+    .kkd-page-col > .kkd-book-content {
+      flex: 1;
+      min-height: 0;
+      max-height: 100%;
+      overflow: hidden !important;
+      overflow-y: hidden !important;
+      overscroll-behavior: none;
+      display: flow-root;
+    }
+    .kkd-page-col > .kkd-book-content > *:first-child {
+      margin-top: 0 !important;
+    }
+    .kkd-page-col > .kkd-book-content > *:last-child {
+      margin-bottom: 0 !important;
+    }
+    .kkd-chapter-header-block {
+      margin-bottom: 14px;
+    }
+    .kkd-chapter-header-block .kkd-chapter-title {
+      margin-bottom: 0;
     }
     .kkd-chapter-badge {
       display: inline-block;
@@ -1048,7 +1096,7 @@
         <div class="kkd-brand-badge">書</div>
         <div class="kkd-brand-text">
           <strong>꿈바온 서가 · 꿈디도 깊은 서재 (THE DEEP STUDY · KKUMDION 2.1)</strong>
-          <small>TRIPLE-AI PEER REVIEW SCHOLIUM · 최고 지능 3대 모델 상호 교차검수 · 열린 학당</small>
+          <small>OPEN SCHOLIUM · 관장·간사단 상호 교차검수 · 원전 실물 대조 · 열린 학술원</small>
         </div>
       </a>
       <div class="kkd-top-links">
@@ -1065,10 +1113,10 @@
   <section class="kkd-hero">
     <div class="kkd-hero-inner">
       <div style="flex:1; min-width:320px;">
-        <div class="kkd-hero-eyebrow">🕯️ 세 종류의 AI 연구 조교(Claude · GPT · Gemini) 상호 교차검수 &amp; 원어·정본 데이터베이스 대조</div>
+        <div class="kkd-hero-eyebrow">🕯️ 꿈디도 관장·간사단(안관장 · 지간사 · 제간사 · 클간사) 상호 교차검수 &amp; 원어·정본 데이터베이스 대조</div>
         <h1>말씀과 지성의 깊은 사유 공간, <span>꿈바온 서가 · 꿈디도 깊은 서재</span></h1>
         <p style="max-width:920px;">
-          한 연구자의 일방적인 주장이 아니라, 집필(Gemini)·사료 감수(GPT)·신학 감수(Claude)·원어 및 개역개정 정본 대조(안관장)로 오류를 찾아내는 장치를 겹겹이 두고,
+          한 연구자의 일방적인 주장이 아니라, 심층 집필(제간사)·사료 감수(지간사)·신학 감수(클간사)·원어 및 개역개정 정본 대조(안관장)로 오류를 찾아내는 장치를 겹겹이 두고,
           검증을 마친 <strong>정식 공개 서가(B·C등급)</strong>와 검수 중인 <strong>비공개 초고 수장고(A등급)</strong>를 투명하게 구분하여 펴냅니다.
         </p>
 
@@ -1078,26 +1126,26 @@
               🏛️ 꿈디도 깊은 서재 공식 슬로건 &amp; 학문적 태도 헌장
             </div>
             <div class="kkd-slogan-quote">
-              “AI 한 명의 대답이 아니라, 세 지능의 연구와 반론을 통과한 지식.”<br/>
+              “한 사람의 단독 견해가 아니라, 관장·간사단의 독립 연구와 반론을 통과한 지식.”<br/>
               “독립 연구하고, 서로 반박하고, 원전으로 확인합니다.”<br/>
-              <strong>“꿈바온 디지털도서관 — Triple-AI Peer Review.”</strong>
+              <strong>“꿈바온 디지털도서관 — 관장·간사단 상호 교차검증 (Open Scholium).”</strong>
             </div>
             <div class="kkd-humility-box">
               <strong>🕯️ [깊은 서재 서문 — 결론이 아닌 사유의 여정으로의 초대]</strong><br/>
-              <span style="font-family:'Noto Serif KR',serif; font-size:0.93rem; color:#FFF3D1;">“이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.”</span><br/>
-              <span style="font-size:0.81rem; opacity:0.9; display:block; margin-top:4px;">우리는 인간 독자와 목회자의 사유를 대신하여 섣부른 최종 결론을 강요하지 않고, 가장 복음적이고 균형 잡힌 학문적 사료 수집의 과정과 글 말미의 <strong>「💬 열린 서재: 검수자의 질문과 저자의 응답」</strong>을 투명하게 공개합니다.</span>
+              <span style="font-family:'Noto Serif KR',serif; font-size:0.93rem; color:#FFF3D1;">“이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.”</span><br/>
+              <span style="font-size:0.81rem; opacity:0.9; display:block; margin-top:4px;">우리는 독자와 목회자의 사유를 대신하여 섣부른 최종 결론을 강요하지 않고, 가장 복음적이고 균형 잡힌 학문적 사료 수집의 과정과 글 말미의 <strong>「💬 열린 서재: 검수자의 질문과 저자의 응답」</strong>을 투명하게 공개합니다.</span>
             </div>
             <div class="kkd-hero-charter-bar">
               <span class="kkd-charter-chip">👑 C등급: 정식 출판 마스터 (독자 공개)</span>
-              <span class="kkd-charter-chip">🛡️ B등급: 3대 모델 교차검증 완료 (독자 공개)</span>
+              <span class="kkd-charter-chip">🛡️ B등급: 관장·간사단 교차검증 완료 (독자 공개)</span>
               <span class="kkd-charter-chip">🗄️ A등급: 연구 초고 수장고 (비공개 보존 · 사후 정밀검수 대기)</span>
               <span class="kkd-charter-chip">💬 전 권 말미 「검수자의 반론 질문과 응답」 수록</span>
             </div>
           </div>
           <div class="kkd-diagram-card">
-            <img src="assets/figures/00_꿈디도_Triple-AI_Peer_Review_시스템구조도.png" alt="꿈디도 Triple-AI Peer Review 시스템 구조도" onclick="window.open(this.src, '_blank')" title="클릭하여 원본 크기로 보기" />
+            <img src="assets/figures/00_꿈디도_관장간사_교차검증_시스템구조도.png" alt="꿈디도 관장·간사단 상호 교차검증 시스템 구조도" onclick="window.open(this.src, '_blank')" title="클릭하여 원본 크기로 보기" />
             <div style="font-size:0.74rem; color:#4A3723; font-weight:800; margin-top:6px;">
-              🔍 [Triple-AI Peer Review 아키텍처] 클릭 시 고해상도 구조도 확대 열람
+              🔍 [관장·간사단 상호 교차검증 아키텍처] 클릭 시 고해상도 구조도 확대 열람
             </div>
           </div>
         </div>
@@ -1143,7 +1191,7 @@
   <!-- 서가 그리드 (서가별 초대글 배너 + 수장고 탭 선택 시 상단에 사후검수 대장 표 자동 표시) -->
   <main class="kkd-shelf-container">
     <div id="kkdShelfInviteBanner" style="margin-bottom:20px; padding:14px 20px; border-radius:12px; background:linear-gradient(135deg, rgba(44,29,17,0.88), rgba(26,17,10,0.92)); border:1px solid rgba(212,175,55,0.42); border-left:4px solid #D4AF37; color:#F5E8C7; font-family:'Noto Serif KR',serif; font-size:0.95rem; line-height:1.7; box-shadow:0 8px 22px rgba(0,0,0,0.28);">
-      🕯️ <strong>서재 안내:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.
+      🕯️ <strong>서재 안내:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.
     </div>
     <div id="kkdVaultAuditBanner" style="display:none; margin-bottom:22px;"></div>
     <div class="kkd-shelf-grid" id="kkdShelfGrid"></div>
@@ -1197,7 +1245,7 @@
     </div>
   </div>
 
-  <script src="kkumdion_books_db.js"></script>
+  <script src="kkumdion_books_db.js?v=20261111_a4v3"></script>
   <script>
     let currentCategory = 'public_all';
     let activeBook = null;
@@ -1206,6 +1254,17 @@
     let readerFontSize = 17.5;
     let spreadPages = [];
     let currentSpreadIndex = 0;
+    let resizeRepaginateTimer = null;
+
+    function cleanGansaName(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/\s*\(\s*(?:Claude|Gemini|ChatGPT|GPT|Codex|Antigravity|클로드|클라우드|제미나이|제미니)[^)]*\)/gi, '')
+        .replace(/Triple-AI\s*Peer\s*Review/gi, '관장·간사단 상호 교차검수')
+        .replace(/Triple-AI/gi, '관장·간사단')
+        .replace(/3대\s*최상위\s*모델|3대\s*모델|세\s*모델/g, '관장·간사단')
+        .trim();
+    }
 
     function initBookshelf() {
       const db = window.KKUMDION_BOOKS_DB || { books: [], totalBooks: 0, totalChars: 0 };
@@ -1217,23 +1276,39 @@
       renderShelf();
 
       const params = new URLSearchParams(window.location.search);
-      const bookId = params.get('book');
+      const bookId = (params.get('book') || '').trim();
       if (bookId) {
-        const found = (db.books || []).find(b => b.id === bookId);
+        const upperId = bookId.toUpperCase();
+        const found = (db.books || []).find(b => b.id.toUpperCase() === upperId || b.id.toUpperCase() === upperId + '-II');
         if (found) openBookReader(found.id);
+      }
+
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          if (activeBook && readerMode === 'spread') {
+            spreadPages = buildSpreadPages(activeBook);
+            renderReaderView();
+          }
+        });
+        document.fonts.addEventListener('loadingdone', () => {
+          if (activeBook && readerMode === 'spread') {
+            spreadPages = buildSpreadPages(activeBook);
+            renderReaderView();
+          }
+        });
       }
     }
 
     const SHELF_INVITE_TEXTS = {
-      public_all: '🕯️ <strong>서재 상단 서문:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
-      grade_C: '👑 <strong>출판 마스터 서가:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 세 모델이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
+      public_all: '🕯️ <strong>서재 상단 서문:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
+      grade_C: '👑 <strong>출판 마스터 서가:</strong> 이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.',
       bible_overview: '📕 <strong>성경 66권 심층 개관:</strong> 창세기에서 요한계시록까지, 한 권씩 본문 곁에 머물며 구속사의 줄기를 따라 읽는 서가다. 개관으로 길을 잡고 마지막 장의 물음에서 멈추어 생각해 보기를 권한다.',
       wesley_theology: '🔥 <strong>웨슬리·복음주의 신학:</strong> 은혜로 시작하여 거룩함으로 이어지는 길을 웨슬리와 복음주의 전통의 글로 살피는 서가다. 칭의와 성화, 선행과 사랑의 자리를 원전에 비추어 차분히 짚어 본다.',
       original_lang: '📖 <strong>성경 원어 신학:</strong> 히브리어와 헬라어 낱말이 본문 안에서 어떻게 쓰였는지 하나씩 따라가는 서가다. 번역으로는 지나치기 쉬운 결을 확인하며 말씀의 뜻에 한 걸음 더 가까이 다가선다.',
       archaeology: '🏛️ <strong>성경 고고학·사본학:</strong> 돌과 토기와 두루마리가 성경의 시대를 어떻게 증언하는지 살피는 서가다. 발굴된 자료와 사본의 전승을 있는 그대로 놓고, 어디까지 말할 수 있는지도 함께 밝힌다.',
       reformation: '📜 <strong>교부·종교개혁 원전:</strong> 교부들의 설교와 종교개혁자들의 글을 원전에 가깝게 읽는 서가다. 교회가 오래 붙들어 온 믿음의 뿌리를 원문과 역사적 맥락 속에서 한 줄기로 따라가 본다.',
       apologetics: '🌐 <strong>학제 간 융합 총서:</strong> 역사와 법과 윤리와 문화를 성경과 나란히 놓고 읽는 서가다. 한 학문의 말이 닿지 않는 자리에서 다른 학문의 도움을 받되, 말씀의 권위는 흐리지 않는다.',
-      vault_A: '🗄️ <strong>A등급 연구 초고 수장고:</strong> 세 모델이 상호 반론과 원문 대조를 진행 중인 연구 초고 수장고다. 검증을 마친 원고부터 순차적으로 정식 공개 서가(B등급)로 등재된다.'
+      vault_A: '🗄️ <strong>A등급 연구 초고 수장고:</strong> 관장·간사단이 상호 반론과 원문 대조를 진행 중인 연구 초고 수장고다. 검증을 마친 원고부터 순차적으로 정식 공개 서가(B등급)로 등재된다.'
     };
 
     function filterShelf(cat) {
@@ -1262,9 +1337,9 @@
             <td style="padding:8px 10px;"><code style="background:rgba(212,175,55,0.2); padding:2px 6px; border-radius:4px; font-weight:800;">${b.id}</code></td>
             <td style="padding:8px 10px; font-weight:700;">${b.title}</td>
             <td style="padding:8px 10px;">${b.charCount.toLocaleString()}자</td>
-            <td style="padding:8px 10px;">${b.author}</td>
-            <td style="padding:8px 10px;">${b.reviewer}</td>
-            <td style="padding:8px 10px; color:#8C4A00; font-weight:600;">${b.auditChecklist || '원문·출처 실물 확인 대기'}</td>
+            <td style="padding:8px 10px;">${cleanGansaName(b.author)}</td>
+            <td style="padding:8px 10px;">${cleanGansaName(b.reviewer)}</td>
+            <td style="padding:8px 10px; color:#8C4A00; font-weight:600;">${cleanGansaName(b.auditChecklist || '원문·출처 실물 확인 대기')}</td>
           </tr>
         `).join('');
 
@@ -1305,7 +1380,6 @@
         if (currentCategory === 'vault_A') {
           if (b.grade !== 'A') return false;
         } else {
-          // 정식 공개 서가 탭들에서는 미검증 A등급 초고를 노출하지 않음! (검색 시에만 필요 시 확인 가능하되 기본 탭에서는 철저히 분리)
           if (b.grade === 'A') return false;
           if (currentCategory === 'grade_C' && b.grade !== 'C') return false;
           if (!['public_all', 'grade_C'].includes(currentCategory) && b.category !== currentCategory) return false;
@@ -1344,7 +1418,7 @@
                 <p class="kkd-book-summary-2lines">${b.summary}</p>
               </div>
               <div class="kkd-book-footer">
-                <span class="kkd-book-sub">✍️ ${b.author || '제간사'} · 📅 ${b.writtenAt || '2026-11-10'}</span>
+                <span class="kkd-book-sub">✍️ ${cleanGansaName(b.author || '제간사')} · 📅 ${b.writtenAt || '2026-11-10'}</span>
                 <span class="kkd-open-reader-btn">📖 책 펼치기</span>
               </div>
             </div>
@@ -1360,7 +1434,7 @@
         ? '⚠️ [검수 전 초고 · A등급 연구 초고] 독자 안내'
         : '🛡️ [교차 검증 완료 · B등급 검증 연구] 품질 인증';
       const statusDesc = isDraft
-        ? '이 글은 독립 연구자(AI 간사)가 작성한 1차 심층 연구 초고입니다. AI 초고에는 미확인 문헌이나 세부 쪽수 오기가 섞일 수 있어, 현재 나머지 세 간사가 실제 원문을 열어 대조하는 교차 검수를 진행하고 있습니다.'
+        ? '이 글은 담당 간사가 작성한 1차 심층 연구 초고입니다. 1차 초고에는 미확인 문헌이나 세부 쪽수 오기가 섞일 수 있어, 현재 관장과 동료 간사들이 실제 원문을 열어 대조하는 교차 검수를 진행하고 있습니다.'
         : '이 글은 원문 사료 실물 확인, 사실(Fact)과 해석(Interpretation)의 구분, 그리고 <strong>감리교·웨슬리언 정통 복음주의 신학의 울타리</strong> 안에서 교차 검증을 완료한 자료입니다.';
 
       const extraMetaHtml = (book.researchKeywords || book.factVsInterp) ? `
@@ -1379,10 +1453,9 @@
           </div>
           <div>${statusDesc}</div>
           <div class="kkd-meta-grid">
-            <span><strong>✍️ 집필 간사:</strong> ${book.author || '제간사 (Gemini)'}</span>
-            <span><strong>🤖 사용 모델:</strong> ${book.model || 'Gemini 2.5 Pro'}</span>
+            <span><strong>✍️ 집필 간사:</strong> ${cleanGansaName(book.author || '제간사')}</span>
             <span><strong>📅 작성일:</strong> ${book.writtenAt || '2026-11-10'}</span>
-            <span><strong>🔍 교차 검수:</strong> ${book.reviewer || '클간사 · 지간사 순환 검수'}</span>
+            <span><strong>🔍 교차 검수:</strong> ${cleanGansaName(book.reviewer || '안관장 · 클간사 · 지간사 순환 검수')}</span>
           </div>
           ${extraMetaHtml}
         </div>
@@ -1399,30 +1472,33 @@
         return `<button type="button" class="kkd-rel-btn" onclick="openBookReader('${rid}')">🔗 ${label}</button>`;
       }).join('');
 
+      const authorName = cleanGansaName(book.author || '집필 간사');
+      const reviewerName = cleanGansaName(od.reviewer || book.reviewer || '교차 검수단');
+
       const authorOpenQHtml = od.authorOpenQuestion
         ? `<div class="kkd-dialogue-q" style="border-left-color:#8C6218; margin-bottom:12px;">
-             <strong>🌱 저자가 독자와 검수자에게 던지는 열린 질문 (${book.author || '집필 간사'}):</strong><br/>
-             ${od.authorOpenQuestion}
+             <strong>🌱 저자가 독자와 검수자에게 던지는 열린 질문 (${authorName}):</strong><br/>
+             ${cleanGansaName(od.authorOpenQuestion)}
            </div>`
         : '';
 
       const answerHtml = od.answer
-        ? `<div class="kkd-dialogue-a"><strong>✒️ 저자의 응답 (${book.author || '집필 간사'}):</strong><br/>${od.answer}</div>`
+        ? `<div class="kkd-dialogue-a"><strong>✒️ 저자의 응답 (${authorName}):</strong><br/>${cleanGansaName(od.answer)}</div>`
         : `<div class="kkd-dialogue-a" style="opacity:0.85;"><strong>✒️ 저자의 응답 대기:</strong> 교차 검수자의 질문에 대한 저자의 반론·보완 응답이 이곳에 함께 실려 독자에게 공개됩니다.</div>`;
 
       return `
         <div class="kkd-open-dialogue-box" id="scroll-open-dialogue">
           <div class="kkd-open-dialogue-header">
             <span>💬 열린 서재: 검수자의 질문과 저자의 응답 (Open Scholarly Dialogue)</span>
-            <span style="font-size:0.76rem; font-family:'Pretendard',sans-serif; font-weight:700;">담당 검수: ${od.reviewer || book.reviewer || '교차 검수단'}</span>
+            <span style="font-size:0.76rem; font-family:'Pretendard',sans-serif; font-weight:700;">담당 검수: ${reviewerName}</span>
           </div>
           <p style="font-size:0.82rem; margin-bottom:10px; opacity:0.88;">
             꿈디도 깊은 서재는 글이 닫히지 않고 열려 있도록, 저자의 열린 질문과 검수자가 던진 다른 관점·반론 질문 및 저자의 답을 독자에게 그대로 공개합니다.
           </p>
           ${authorOpenQHtml}
           <div class="kkd-dialogue-q">
-            <strong>🧐 검수자의 질문 및 사후 정밀검수 포인트 (${od.reviewer || '교차 검수자'}):</strong><br/>
-            ${od.question || '교차 검수 시 저자가 놓친 다른 관점이나 심화 반론 질문 1~2개가 이곳에 등재됩니다.'}
+            <strong>🧐 검수자의 질문 및 사후 정밀검수 포인트 (${reviewerName}):</strong><br/>
+            ${cleanGansaName(od.question || '교차 검수 시 저자가 놓친 다른 관점이나 심화 반론 질문 1~2개가 이곳에 등재됩니다.')}
           </div>
           ${answerHtml}
           <div class="kkd-related-links">
@@ -1433,51 +1509,399 @@
       `;
     }
 
-    function buildSpreadPages(book) {
-      const pages = [];
-      const metaBanner = buildMetaBannerHtml(book);
+    function escapeTextHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
 
-      (book.chapters || []).forEach((ch, chIdx) => {
-        const temp = document.createElement('div');
-        temp.innerHTML = ch.html;
-        const blocks = Array.from(temp.children);
-
-        let curHtml = (chIdx === 0 ? metaBanner : '') +
-          `<div class="kkd-chapter-badge">CHAPTER ${chIdx + 1}</div><h2 class="kkd-chapter-title">${ch.title}</h2>`;
-        let curLen = ch.title.length + (chIdx === 0 ? 350 : 0);
-
-        blocks.forEach(node => {
-          const textLen = (node.textContent || '').length;
-          if (curLen > 1250 && (curLen + textLen) > 1650) {
-            pages.push({
-              chapterIdx: chIdx,
-              chapterTitle: ch.title,
-              html: curHtml
+    function tokenizeHtmlIntoSentences(htmlStr) {
+      const wrap = document.createElement('span');
+      wrap.innerHTML = htmlStr;
+      const flatTokens = [];
+      Array.from(wrap.childNodes).forEach(node => {
+        if (node.nodeType === 3) {
+          const text = node.nodeValue || '';
+          // 마침표·물음표·느낌표(닫는 따옴표/괄호 포함) 뒤 공백에서만 문장 분리하되, 바로 뒤에 출처 대괄호 [...]가 이어지면 분리하지 않음
+          const parts = text.split(/(?<=[.!?]['"”’)」』\])]*)\s+(?!\[)/);
+          parts.forEach((p, idx) => {
+            if (!p) return;
+            flatTokens.push({
+              html: escapeTextHtml(p) + (idx < parts.length - 1 ? ' ' : ''),
+              endsSentence: idx < parts.length - 1 || /[.!?]['"”’)」』\])]*\s*$/.test(p)
             });
-            curHtml = node.outerHTML;
-            curLen = textLen;
-          } else {
-            curHtml += node.outerHTML;
-            curLen += textLen;
-          }
-        });
-
-        if (curHtml) {
-          pages.push({
-            chapterIdx: chIdx,
-            chapterTitle: ch.title,
-            html: curHtml
           });
+        } else if (node.nodeType === 1) {
+          if (node.tagName === 'BR') {
+            flatTokens.push({ html: '<br/>', endsSentence: true });
+          } else {
+            const txt = (node.textContent || '').trim();
+            flatTokens.push({
+              html: node.outerHTML,
+              endsSentence: /[.!?]['"”’)」』\])]*$/.test(txt)
+            });
+          }
         }
       });
+      const sentences = [];
+      let cur = '';
+      flatTokens.forEach((tok, i) => {
+        cur += tok.html;
+        const nextTok = flatTokens[i + 1];
+        const nextStartsBracket = nextTok && /^\[/.test(nextTok.html.replace(/<[^>]+>/g, '').trim());
+        if (tok.endsSentence && !nextStartsBracket && cur.replace(/<[^>]+>/g, '').trim().length >= 18) {
+          sentences.push(cur.trim());
+          cur = '';
+        }
+      });
+      if (cur.trim()) {
+        if (sentences.length > 0 && cur.replace(/<[^>]+>/g, '').trim().length < 18) {
+          sentences[sentences.length - 1] += ' ' + cur.trim();
+        } else {
+          sentences.push(cur.trim());
+        }
+      }
+      return sentences.length ? sentences : [htmlStr];
+    }
 
-      // 마지막 페이지로 「💬 열린 서재: 검수자의 질문과 저자의 응답」 전용 페이지 추가
-      pages.push({
-        chapterIdx: (book.chapters || []).length,
-        chapterTitle: "열린 서재 · 검수자의 질문과 저자의 응답",
-        html: buildOpenDialogueHtml(book)
+    function isHeadingBlock(node) {
+      if (!node || node.nodeType !== 1) return false;
+      const tag = node.tagName;
+      return tag === 'H2' || tag === 'H3' || tag === 'H4' || node.classList.contains('kkd-chapter-header-block');
+    }
+
+    function createHeadingPreviewNode(nextNode) {
+      if (!nextNode || nextNode.nodeType !== 1) return null;
+      const tag = nextNode.tagName;
+      if (tag === 'P' || tag === 'BLOCKQUOTE' || nextNode.classList.contains('kkd-dialogue-q') || nextNode.classList.contains('kkd-dialogue-a')) {
+        const clone = nextNode.cloneNode(false);
+        const sents = tokenizeHtmlIntoSentences(nextNode.innerHTML);
+        clone.innerHTML = sents.slice(0, Math.min(2, sents.length)).join(' ');
+        return clone;
+      }
+      if (tag === 'UL' || tag === 'OL') {
+        const clone = nextNode.cloneNode(false);
+        const firstLi = nextNode.querySelector('li');
+        if (firstLi) clone.appendChild(firstLi.cloneNode(true));
+        return clone;
+      }
+      return nextNode.cloneNode(true);
+    }
+
+    function trySplitNodeToFit(node, measurer, availHeight, isEmptyPage) {
+      if (!node || node.nodeType !== 1) return null;
+      const usedH = measurer.offsetHeight;
+      const remainH = availHeight - usedH;
+      if (!isEmptyPage && remainH < 64) return null;
+
+      const tag = node.tagName;
+
+      // 1. 문단(P), 인용구(BLOCKQUOTE), 열린서재 질문/답변 박스
+      if (tag === 'P' || tag === 'BLOCKQUOTE' || node.classList.contains('kkd-dialogue-q') || node.classList.contains('kkd-dialogue-a')) {
+        let chunks = tokenizeHtmlIntoSentences(node.innerHTML);
+        if (chunks.length <= 1) {
+          if (!isEmptyPage) return null;
+          // 빈 페이지에서도 넘치는 초장문 단일 문장인 경우 어절 단위로 분할
+          chunks = node.innerHTML.split(/\s+/);
+          if (chunks.length <= 1) return null;
+        }
+
+        const part1 = node.cloneNode(false);
+        measurer.appendChild(part1);
+        let bestK = 0;
+        for (let k = 1; k < chunks.length; k++) {
+          part1.innerHTML = chunks.slice(0, k).join(' ');
+          if (measurer.offsetHeight <= availHeight) {
+            bestK = k;
+          } else {
+            break;
+          }
+        }
+        measurer.removeChild(part1);
+
+        if (bestK === 0) {
+          if (!isEmptyPage) return null;
+          bestK = 1;
+        }
+        const part1TextLen = chunks.slice(0, bestK).join(' ').replace(/<[^>]+>/g, '').trim().length;
+        if (!isEmptyPage && part1TextLen < 42) {
+          return null;
+        }
+
+        part1.innerHTML = chunks.slice(0, bestK).join(' ');
+        const part2 = node.cloneNode(false);
+        part2.innerHTML = chunks.slice(bestK).join(' ');
+        return [part1, part2];
+      }
+
+      // 2. 목록(UL / OL)
+      if (tag === 'UL' || tag === 'OL') {
+        const items = Array.from(node.children).filter(c => c.tagName === 'LI');
+        if (items.length <= 1) {
+          if (!isEmptyPage) return null;
+          if (items.length === 1) {
+            const subSplit = trySplitNodeToFit(
+              Object.assign(document.createElement('p'), { innerHTML: items[0].innerHTML, className: 'kkd-book-p' }),
+              measurer, availHeight, true
+            );
+            if (subSplit) {
+              const u1 = node.cloneNode(false);
+              const l1 = items[0].cloneNode(false); l1.innerHTML = subSplit[0].innerHTML; u1.appendChild(l1);
+              const u2 = node.cloneNode(false);
+              const l2 = items[0].cloneNode(false); l2.innerHTML = subSplit[1].innerHTML; u2.appendChild(l2);
+              return [u1, u2];
+            }
+          }
+          return null;
+        }
+
+        const part1 = node.cloneNode(false);
+        measurer.appendChild(part1);
+        let fitCount = 0;
+        for (let i = 0; i < items.length; i++) {
+          const liClone = items[i].cloneNode(true);
+          part1.appendChild(liClone);
+          if (measurer.offsetHeight <= availHeight) {
+            fitCount = i + 1;
+          } else {
+            part1.removeChild(liClone);
+            break;
+          }
+        }
+        measurer.removeChild(part1);
+
+        if (fitCount === 0) {
+          if (!isEmptyPage) return null;
+          // 첫 번째 LI 자체가 한 페이지보다 크면 첫 LI 내부를 문장 분할
+          const li0 = items[0];
+          const pTemp = document.createElement('p');
+          pTemp.innerHTML = li0.innerHTML;
+          const splitLi = trySplitNodeToFit(pTemp, measurer, availHeight, true);
+          if (splitLi) {
+            const u1 = node.cloneNode(false);
+            const liPart1 = li0.cloneNode(false);
+            liPart1.innerHTML = splitLi[0].innerHTML;
+            u1.appendChild(liPart1);
+
+            const u2 = node.cloneNode(false);
+            const liPart2 = li0.cloneNode(false);
+            liPart2.innerHTML = splitLi[1].innerHTML;
+            u2.appendChild(liPart2);
+            items.slice(1).forEach(rest => u2.appendChild(rest.cloneNode(true)));
+            return [u1, u2];
+          }
+          fitCount = 1;
+          part1.appendChild(items[0].cloneNode(true));
+        }
+
+        if (fitCount >= items.length) return null;
+        const part2 = node.cloneNode(false);
+        if (tag === 'OL') {
+          const startNum = parseInt(node.getAttribute('start') || '1', 10);
+          part2.setAttribute('start', String(startNum + fitCount));
+        }
+        items.slice(fitCount).forEach(li => part2.appendChild(li.cloneNode(true)));
+        return [part1, part2];
+      }
+
+      // 3. 표(TABLE / .kkd-table-wrap)
+      const table = tag === 'TABLE' ? node : (node.classList.contains('kkd-table-wrap') ? node.querySelector('table') : null);
+      if (table) {
+        const thead = table.querySelector('thead');
+        const tbody = table.querySelector('tbody') || table;
+        const rows = Array.from(tbody.querySelectorAll(':scope > tr'));
+        if (rows.length <= 1) return null;
+
+        const wrap1 = node === table ? table.cloneNode(false) : node.cloneNode(false);
+        const t1 = node === table ? wrap1 : table.cloneNode(false);
+        if (thead) t1.appendChild(thead.cloneNode(true));
+        const tb1 = document.createElement('tbody');
+        t1.appendChild(tb1);
+        if (node !== table) wrap1.appendChild(t1);
+
+        measurer.appendChild(wrap1);
+        let fitRows = 0;
+        for (let i = 0; i < rows.length; i++) {
+          const rClone = rows[i].cloneNode(true);
+          tb1.appendChild(rClone);
+          if (measurer.offsetHeight <= availHeight) {
+            fitRows = i + 1;
+          } else {
+            tb1.removeChild(rClone);
+            break;
+          }
+        }
+        measurer.removeChild(wrap1);
+
+        if (fitRows === 0) {
+          if (!isEmptyPage) return null;
+          fitRows = 1;
+          tb1.appendChild(rows[0].cloneNode(true));
+        }
+        if (fitRows >= rows.length) return null;
+
+        const wrap2 = node === table ? table.cloneNode(false) : node.cloneNode(false);
+        const t2 = node === table ? wrap2 : table.cloneNode(false);
+        if (thead) t2.appendChild(thead.cloneNode(true));
+        const tb2 = document.createElement('tbody');
+        rows.slice(fitRows).forEach(r => tb2.appendChild(r.cloneNode(true)));
+        t2.appendChild(tb2);
+        if (node !== table) wrap2.appendChild(t2);
+        return [wrap1, wrap2];
+      }
+
+      // 4. 메타 배너(.kkd-meta-banner)가 너무 길어 한 페이지를 넘길 경우 내부 블록 분할
+      if (node.classList.contains('kkd-meta-banner') && isEmptyPage) {
+        return null;
+      }
+
+      return null;
+    }
+
+    function buildOpenDialogueBlocks(book) {
+      const wrap = document.createElement('div');
+      wrap.innerHTML = buildOpenDialogueHtml(book);
+      const box = wrap.querySelector('.kkd-open-dialogue-box');
+      if (!box) return [];
+      // 열린 서재의 각 구성 요소(헤더+안내문, 저자 열린질문, 검수자 질문, 저자 응답, 연계 링크)를 개별 블록으로 분리하여 A4 페이지 높이에 맞춰 정밀 배치
+      const children = Array.from(box.children);
+      const blocks = [];
+      if (children.length >= 2) {
+        const headGroup = document.createElement('div');
+        headGroup.className = 'kkd-chapter-header-block';
+        headGroup.style.cssText = 'padding:14px 16px; border-radius:10px 10px 0 0; background:rgba(197,155,56,0.14); border:1.5px solid #B88B28; margin-bottom:12px;';
+        headGroup.appendChild(children[0].cloneNode(true));
+        headGroup.appendChild(children[1].cloneNode(true));
+        blocks.push(headGroup);
+        for (let i = 2; i < children.length; i++) {
+          blocks.push(children[i].cloneNode(true));
+        }
+      } else {
+        blocks.push(box);
+      }
+      return blocks;
+    }
+
+    function buildSpreadPages(book) {
+      const pages = [];
+      const body = document.getElementById('kkdSpreadBody');
+      if (!body) return pages;
+
+      // 실제 양면 모달 레이아웃 안에서 1쪽 칼럼의 가용 픽셀 너비·높이를 정밀 측정
+      const frame = document.getElementById('kkdBookFrame');
+      const wasScroll = frame && frame.classList.contains('mode-scroll');
+      if (wasScroll) frame.classList.remove('mode-scroll');
+
+      body.innerHTML = `
+        <div class="kkd-page-col kkd-page-left" id="kkdMeasureCol">
+          <div class="kkd-page-header-running"><span>MEASURE</span><span>p. 1</span></div>
+          <div class="kkd-book-content" id="kkdMeasurer" style="font-size:${readerFontSize}px; flex:none; overflow:visible; display:flow-root;"></div>
+        </div>
+        <div class="kkd-page-col kkd-page-right"></div>
+      `;
+
+      const measureCol = document.getElementById('kkdMeasureCol');
+      const measurer = document.getElementById('kkdMeasurer');
+      const headerEl = measureCol.querySelector('.kkd-page-header-running');
+      const colStyle = window.getComputedStyle(measureCol);
+      const headerStyle = window.getComputedStyle(headerEl);
+      const colInnerH = measureCol.clientHeight - parseFloat(colStyle.paddingTop) - parseFloat(colStyle.paddingBottom);
+      const headerTotalH = headerEl.offsetHeight + parseFloat(headerStyle.marginBottom);
+      // 하단 여유분 26px을 확보하여 어떤 브라우저(Safari·Chrome)에서도 글자가 잘리거나 스크롤이 생기지 않도록 고정
+      const availHeight = Math.max(220, Math.floor(colInnerH - headerTotalH - 26));
+
+      const sections = (book.chapters || []).map((ch, idx) => {
+        const temp = document.createElement('div');
+        temp.innerHTML = ch.html;
+        const queue = [];
+        if (idx === 0) {
+          const mbWrap = document.createElement('div');
+          mbWrap.innerHTML = buildMetaBannerHtml(book);
+          if (mbWrap.firstElementChild) queue.push(mbWrap.firstElementChild);
+        }
+        const chHead = document.createElement('div');
+        chHead.className = 'kkd-chapter-header-block';
+        chHead.innerHTML = `<div class="kkd-chapter-badge">CHAPTER ${idx + 1}</div><h2 class="kkd-chapter-title">${ch.title}</h2>`;
+        queue.push(chHead);
+        Array.from(temp.children).forEach(el => queue.push(el));
+        return {
+          chapterIdx: idx,
+          chapterTitle: ch.title,
+          queue
+        };
       });
 
+      sections.push({
+        chapterIdx: (book.chapters || []).length,
+        chapterTitle: '열린 서재 · 검수자의 질문과 저자의 응답',
+        queue: buildOpenDialogueBlocks(book)
+      });
+
+      sections.forEach(sec => {
+        measurer.innerHTML = '';
+        const queue = sec.queue.slice();
+
+        const flushPage = () => {
+          if (measurer.children.length > 0) {
+            pages.push({
+              chapterIdx: sec.chapterIdx,
+              chapterTitle: sec.chapterTitle,
+              html: measurer.innerHTML
+            });
+            measurer.innerHTML = '';
+          }
+        };
+
+        let guard = 0;
+        while (queue.length > 0 && guard < 2000) {
+          guard++;
+          const node = queue.shift();
+          if (!node) continue;
+          const isEmptyPage = measurer.children.length === 0;
+
+          // 소제목(H3, H4, 장 제목)이 페이지 맨 아래에 홀로 남는 현상(Orphan Heading) 원천 방지
+          if (!isEmptyPage && isHeadingBlock(node) && queue.length > 0) {
+            const previewNext = createHeadingPreviewNode(queue[0]);
+            measurer.appendChild(node);
+            if (previewNext) measurer.appendChild(previewNext);
+            const fitsWithPreview = measurer.offsetHeight <= availHeight;
+            if (previewNext) measurer.removeChild(previewNext);
+            measurer.removeChild(node);
+
+            if (!fitsWithPreview) {
+              flushPage();
+              queue.unshift(node);
+              continue;
+            }
+          }
+
+          measurer.appendChild(node);
+          if (measurer.offsetHeight <= availHeight) {
+            continue;
+          }
+
+          // 현재 페이지 높이를 초과한 경우: 먼저 제거 후 문장/항목 단위 정밀 분할 시도
+          measurer.removeChild(node);
+          const splitPair = trySplitNodeToFit(node, measurer, availHeight, isEmptyPage);
+          if (splitPair) {
+            measurer.appendChild(splitPair[0]);
+            flushPage();
+            queue.unshift(splitPair[1]);
+          } else if (!isEmptyPage) {
+            flushPage();
+            queue.unshift(node);
+          } else {
+            // 빈 페이지에서도 분할이 불가능한 단일 요소는 그대로 한 페이지에 배치
+            measurer.appendChild(node);
+            flushPage();
+          }
+        }
+
+        flushPage();
+      });
+
+      if (wasScroll && frame) frame.classList.add('mode-scroll');
       return pages;
     }
 
@@ -1487,9 +1911,6 @@
       if (!book) return;
 
       activeBook = book;
-      spreadPages = buildSpreadPages(book);
-      currentSpreadIndex = 0;
-
       document.getElementById('readerBookTitle').textContent = `[${book.grade}등급] ${book.title} (${book.charCount.toLocaleString()}자)`;
       document.getElementById('kkdReaderModal').classList.add('open');
       document.body.style.overflow = 'hidden';
@@ -1497,6 +1918,8 @@
       if (window.innerWidth <= 900) {
         setReaderMode('scroll');
       } else {
+        spreadPages = buildSpreadPages(book);
+        currentSpreadIndex = 0;
         renderReaderView();
       }
       renderToc();
@@ -1556,6 +1979,11 @@
       document.getElementById('btnModeScroll').classList.toggle('active', mode === 'scroll');
       const frame = document.getElementById('kkdBookFrame');
       frame.classList.toggle('mode-scroll', mode === 'scroll');
+      if (mode === 'spread' && activeBook) {
+        spreadPages = buildSpreadPages(activeBook);
+        currentSpreadIndex = Math.min(currentSpreadIndex, Math.max(0, spreadPages.length - 1));
+        currentSpreadIndex -= (currentSpreadIndex % 2);
+      }
       renderReaderView();
     }
 
@@ -1570,7 +1998,14 @@
     }
 
     function adjustReaderFont(delta) {
+      const prevRatio = spreadPages.length > 0 ? (currentSpreadIndex / spreadPages.length) : 0;
       readerFontSize = Math.min(24, Math.max(14, readerFontSize + delta));
+      if (readerMode === 'spread' && activeBook) {
+        spreadPages = buildSpreadPages(activeBook);
+        const rawIdx = Math.round(prevRatio * spreadPages.length);
+        currentSpreadIndex = Math.min(Math.max(0, rawIdx - (rawIdx % 2)), Math.max(0, spreadPages.length - 1));
+        currentSpreadIndex -= (currentSpreadIndex % 2);
+      }
       renderReaderView();
     }
 
@@ -1607,6 +2042,10 @@
         return;
       }
 
+      if (!spreadPages.length) {
+        spreadPages = buildSpreadPages(activeBook);
+      }
+
       const leftPage = spreadPages[currentSpreadIndex];
       const rightPage = spreadPages[currentSpreadIndex + 1];
 
@@ -1628,18 +2067,18 @@
         <div style="margin:auto; text-align:center; color:#8A7456; padding:40px;">
           <div style="font-size:2rem; margin-bottom:10px;">🏛️</div>
           <div style="font-family:'Noto Serif KR',serif; font-weight:700;">이 책의 마지막 페이지입니다.</div>
-          <div style="font-size:0.84rem; margin-top:6px;">꿈바온 디지털 도서관 · 꿈디온 열린 학당 서가</div>
+          <div style="font-size:0.84rem; margin-top:6px;">꿈바온 디지털 도서관 · 꿈디온 열린 학술원 서가</div>
         </div>
       `;
 
       body.innerHTML = `
-        <div class="kkd-page-col kkd-page-left">${leftHtml}</div>
-        <div class="kkd-page-col kkd-page-right">${rightHtml}</div>
+        <div class="kkd-page-col kkd-page-left" id="kkdPageLeft">${leftHtml}</div>
+        <div class="kkd-page-col kkd-page-right" id="kkdPageRight">${rightHtml}</div>
       `;
 
       const totalP = spreadPages.length;
       const pEnd = Math.min(totalP, currentSpreadIndex + 2);
-      document.getElementById('kkdPageIndicator').textContent = `${currentSpreadIndex + 1} ~ ${pEnd} 쪽 (전체 ${totalP}쪽 · 마지막 쪽 「검수자의 질문」 수록)`;
+      document.getElementById('kkdPageIndicator').textContent = `${currentSpreadIndex + 1} ~ ${pEnd} 쪽 (전체 ${totalP}쪽 · A4 고정 양면 책장)`;
       document.getElementById('btnPrevSpread').disabled = currentSpreadIndex <= 0;
       document.getElementById('btnNextSpread').disabled = currentSpreadIndex + 2 >= totalP;
     }
@@ -1647,6 +2086,20 @@
     function toggleLibraryDark() {
       document.body.classList.toggle('dark-library');
     }
+
+    window.addEventListener('resize', () => {
+      const modal = document.getElementById('kkdReaderModal');
+      if (!modal || !modal.classList.contains('open') || !activeBook || readerMode !== 'spread') return;
+      clearTimeout(resizeRepaginateTimer);
+      resizeRepaginateTimer = setTimeout(() => {
+        const prevRatio = spreadPages.length > 0 ? (currentSpreadIndex / spreadPages.length) : 0;
+        spreadPages = buildSpreadPages(activeBook);
+        const rawIdx = Math.round(prevRatio * spreadPages.length);
+        currentSpreadIndex = Math.min(Math.max(0, rawIdx - (rawIdx % 2)), Math.max(0, spreadPages.length - 1));
+        currentSpreadIndex -= (currentSpreadIndex % 2);
+        renderReaderView();
+      }, 150);
+    });
 
     window.addEventListener('keydown', (e) => {
       const modal = document.getElementById('kkdReaderModal');
@@ -1656,7 +2109,18 @@
       if (e.key === 'ArrowRight') turnSpread(1);
     });
 
-    window.addEventListener('DOMContentLoaded', initBookshelf);
+    window.addEventListener('DOMContentLoaded', () => {
+      initBookshelf();
+      const spreadBody = document.getElementById('kkdSpreadBody');
+      if (spreadBody) {
+        spreadBody.addEventListener('wheel', (e) => {
+          if (readerMode === 'spread') {
+            e.preventDefault();
+            spreadBody.scrollTop = 0;
+          }
+        }, { passive: false });
+      }
+    });
   </script>
 </body>
 </html>
