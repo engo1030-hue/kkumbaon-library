@@ -5,6 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b0f19">
 <title>꿈디도 아트리움 묵상원 · 말씀의 우물 곁에 머무는 성소</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="꿈바온 디지털 도서관 (꿈디도)" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="꿈디도 아트리움 묵상원 · 말씀의 우물 곁에 머무는 성소" />
+  <meta property="og:description" content="성경 지도·인물 역사서·고고학·원어 성경 주석 66권·열린 학술원을 갖춘 개신교 무료 신학·성경 디지털 도서관" />
+  <meta property="og:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:secure_url" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="꿈디도 아트리움 묵상원 · 말씀의 우물 곁에 머무는 성소" />
+  <meta name="twitter:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
 <meta name="description" content="오래된 우물 곁에서 성화와 원어 말씀을 묵상하며 말없이 함께 머무는 꿈바온 디지털도서관(꿈디도) 온라인 묵상원.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -630,6 +643,172 @@ html, body {
     }
   }
 /* === [KKUMDIDO_UNIFIED_1440_LOCK_END] === */
+
+/* === [KKUMDIDO_INLINE_VIEWER_MODAL_CSS (3D 도서관 이탈 방지 열람실)] === */
+.inline-reader-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999999;
+  background: rgba(8, 6, 4, 0.86);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  animation: readerFadeIn 0.22s ease-out;
+}
+@keyframes readerFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.inline-reader-window {
+  width: 95vw;
+  max-width: 1560px;
+  height: 92vh;
+  background: #17130E;
+  border: 1.5px solid #d4af37;
+  border-radius: 16px;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9), 0 0 40px rgba(212, 175, 55, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: readerSlideUp 0.26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes readerSlideUp {
+  from { transform: translateY(24px) scale(0.985); opacity: 0; }
+  to { transform: translateY(0) scale(1); opacity: 1; }
+}
+.inline-reader-header {
+  height: 56px;
+  background: linear-gradient(135deg, #241A11 0%, #17120C 100%);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  gap: 16px;
+  flex-shrink: 0;
+}
+.inline-reader-title-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.inline-reader-badge {
+  background: linear-gradient(135deg, #d4af37, #9a7125);
+  color: #120e0a;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.inline-reader-title {
+  color: #fff6de;
+  font-size: 15.5px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+}
+.inline-reader-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.reader-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 14px;
+  background: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: #ffe69c;
+  border-radius: 8px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+}
+.reader-action-btn:hover {
+  background: rgba(212, 175, 55, 0.28);
+  border-color: #ffd875;
+  color: #fff;
+}
+.reader-close-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  background: linear-gradient(135deg, #d4af37, #b88728);
+  border: 1px solid #ffd875;
+  color: #1a1208;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.18s;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.35);
+}
+.reader-close-btn:hover {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.inline-reader-body {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  background: #ffffff;
+  overflow: hidden;
+}
+.inline-reader-body iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.inline-reader-loading {
+  position: absolute;
+  inset: 0;
+  background: #17130E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 10;
+  color: #ffe69c;
+  transition: opacity 0.2s ease;
+}
+.reader-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3.5px solid rgba(212, 175, 55, 0.25);
+  border-top-color: #d4af37;
+  border-radius: 50%;
+  animation: readerSpin 0.85s linear infinite;
+}
+@keyframes readerSpin {
+  to { transform: rotate(360deg); }
+}
+.reader-loading-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffd875;
+  letter-spacing: 0.03em;
+}
 </style>
   <link rel="stylesheet" href="kkumdido_mobile.css?v=20261108b"/>
 </head>
@@ -719,13 +898,16 @@ html, body {
     <a class="hud-pill" href="./kkumdido_12archives_viewer.html" title="꿈디도 12대 아카이브 3,650 모듈 열람">
       <span>📚 12대 아카이브</span>
     </a>
+    <a class="hud-pill gold-link" href="./꿈디도_3D_가상도서관_프로토타입.html" title="제2별관 · 광대한 3D 천상 학술원 (깊은 서재 100권) 이동">
+      <span>🎓 3D 제2별관(학술원) ↗</span>
+    </a>
     <a class="hud-pill gold-link" href="./online_chapel_church.html" title="새오름 온라인 예배당(교회 버전)으로 이동">
       <span>🕊️ 새오름 예배당 가기 →</span>
     </a>
   </div>
 </header>
 
-<!-- 🏛️ 국립중앙박물관급 꿈디도 대도서관 7대 복합 공간 원터치 이동 바 -->
+<!-- 🏛️ 국립중앙박물관급 꿈디도 대도서관 7대 복합 공간 + 별관 연결문 원터치 이동 바 -->
 <nav id="campus-zone-bar" aria-label="꿈디도 대도서관·박물관 7대 공간 빠른 이동" style="position:fixed; top:50px; left:50%; transform:translateX(-50%); z-index:26; display:flex; align-items:center; gap:5px; padding:5px 10px; border-radius:999px; background:rgba(10, 14, 24, 0.92); border:1px solid rgba(212, 175, 55, 0.55); backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 8px 24px rgba(0,0,0,0.55); max-width:calc(100vw - 16px); overflow-x:auto; white-space:nowrap; scrollbar-width:none;">
   <span style="font-size:11.5px; font-weight:800; color:#f5cf76; padding:0 4px;">🏛️ 공간 이동:</span>
   <button type="button" class="campus-zone-btn active" data-zone="atrium" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.75); background:linear-gradient(135deg,#e5c168,#b88728); color:#1a1208; font-size:11.5px; font-weight:800; cursor:pointer;">🏺 중앙 우물·아트리움</button>
@@ -735,6 +917,7 @@ html, body {
   <button type="button" class="campus-zone-btn" data-zone="devlab" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🛠️ 개발실(도구공방)</button>
   <button type="button" class="campus-zone-btn" data-zone="librarian" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">📜 사서실(색인·안내)</button>
   <button type="button" class="campus-zone-btn" data-zone="balcony2f" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.38); background:rgba(255,255,255,0.08); color:#fff4d6; font-size:11.5px; font-weight:700; cursor:pointer;">🪜 2층 하늘서가</button>
+  <button type="button" class="campus-zone-btn" data-zone="portal_annex2" style="padding:5px 10px; border-radius:999px; border:1px solid rgba(229,193,104,0.75); background:rgba(46,31,12,0.85); color:#ffe8a3; font-size:11.5px; font-weight:800; cursor:pointer;">🚪 별관 연결문(3D학술원)</button>
 </nav>
 
 <div class="status-banner is-faded" id="status-banner">
@@ -1037,41 +1220,48 @@ html, body {
   <!-- 탭 1: 🔬 지·제·클·안 연구실 -->
   <div class="mhub-tab-pane" id="mhub-pane-research" style="display:flex; flex-direction:column; gap:8px;">
     <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
-      <strong>🔬 꿈바온 사역팀 · 지·제·클·안 합동 연구실 (동측 북편)</strong><br>
-      <span style="color:#dce4f2; font-size:12px;">목사님의 사역 방향 아래 안간사(팀장·관장), 클간사(신학·입말), 제간사(사료·영상), 지간사(전략·데이터), 워크간사(4화풍 성화)가 각자 책상에 앉아 실시간 연구 중입니다.</span>
+      <strong>🔬 꿈바온 사역팀 · 안관장 & 지·제·클·안 합동 연구실 (동측 북편)</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">목사님의 사역 방향 아래 <strong>안관장(꿈디도 총괄관장)</strong>과 <strong>안비서실장(시네마·8개국어 총괄)</strong>이 나란히 자리하고, 클간사·제간사·지간사·워크간사가 각자 책상에 앉아 실시간 연구 중입니다.</span>
     </div>
     <div id="mhub-secretary-cards" style="display:flex; flex-direction:column; gap:6px; max-height:270px; overflow-y:auto;">
+      <div class="lamp-item" style="margin:0; cursor:pointer; border-color:rgba(229,193,104,0.65); background:rgba(212,175,55,0.10);" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('dir_an')">
+        <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#ffd875; font-weight:800;">
+          <span>🏛️ 꿈디도 관장 안관장 (Director An · 도서관 총괄관장)</span>
+          <span>황실 관장석 ▶</span>
+        </div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“세계 어디에 내어놓아도 부끄럽지 않은 꿈디도! 본관 12관(3,650 모듈)과 별관 100권 학술원, 황실 헤리티지 3D 대도서관을 가꾸고 수호합니다.”</div>
+      </div>
       <div class="lamp-item" style="margin:0; cursor:pointer; border-color:rgba(100,227,161,0.45);" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('an')">
         <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#64e3a1; font-weight:800;">
-          <span>🚀 안간사 (Antigravity · 꿈디도 관장 & 총괄 팀장)</span>
-          <span>1번 연구석 ▶</span>
+          <span>🚀 비서실장 안간사 (시네마·8개국어 총괄)</span>
+          <span>비서실장석 ▶</span>
         </div>
-        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“꿈디도 12대 아카이브(3,650 모듈) 총괄 편찬, -14.5 LUFS(음성8:BGM2) 스튜디오 마스터링, 8개국어 패키징 및 전 간사 업무 분배·수합을 지휘하고 있습니다.”</div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“-14.5 LUFS(음성8:BGM2) 스튜디오 시네마 마스터링, 서브픽셀 영상 편집, 글로벌 8개국어 패키징 및 전 간사 업무 수합을 지휘하고 있습니다.”</div>
       </div>
       <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('cl')">
         <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#ffe69c; font-weight:800;">
-          <span>⚖️ 클간사 (Claude · 신학·원어·입말 수석감수)</span>
+          <span>⚖️ 클간사 (신학·원어·입말 수석감수)</span>
           <span>2번 연구석 ▶</span>
         </div>
         <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“히브리어(WLC)·헬라어(SBLGNT) 원어 주해, 개역개정 본문 대조, 꿈바온 입말 문체(ipmal_check)와 복음주의 신학 정합성을 정밀 감수하고 있습니다.”</div>
       </div>
       <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('je')">
         <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#93c5fd; font-weight:800;">
-          <span>🎬 제간사 (Gemini · 고고학 사료서치·Flow영상·찬양)</span>
+          <span>🎬 제간사 (고고학 사료서치·시네마영상·찬양)</span>
           <span>3번 연구석 ▶</span>
         </div>
-        <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“요세푸스 고대사·에더스하임 사료 서치, 원어사전 63묶음 용례 정리, 구글 플로우(Veo) 시네마틱 영상 클립과 꿈바온 찬양을 연구·제작합니다.”</div>
+        <div style="font-size:12px; color:#e2e8f0; margin-top:2px;">“요세푸스 고대사·에더스하임 사료 서치, 원어사전 63묶음 용례 정리, 시네마틱 성경 영상 클립과 꿈바온 찬양을 연구·제작합니다.”</div>
       </div>
       <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('ji')">
         <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#f9a8d4; font-weight:800;">
-          <span>📊 지간사 (Codex · 유튜브 리텐션·패키징 분석)</span>
+          <span>📊 지간사 (문헌 사료검증·리텐션·패키징 분석)</span>
           <span>4번 연구석 ▶</span>
         </div>
         <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“「라합의 붉은 줄」 평균 시청지속시간 120% 리텐션 곡선과 인장반지 4열 104pt 커버 타이포그래피, 글로벌 8개국어 도달 지표를 분석합니다.”</div>
       </div>
       <div class="lamp-item" style="margin:0; cursor:pointer;" onclick="window.focusSecretaryInLab && window.focusSecretaryInLab('wk')">
         <div style="display:flex; justify-content:space-between; font-size:12.5px; color:#fcd34d; font-weight:800;">
-          <span>🎨 워크간사 (GPT Work · 4화풍 성화·인물마스터 화가)</span>
+          <span>🎨 워크간사 (4화풍 성화·인물마스터 화가)</span>
           <span>이젤 화실석 ▶</span>
         </div>
         <div style="font-size:12px; color:#e2e8f0; margin-top:3px;">“유화·수채화·판화·석판화 ‘작은 미술전시회’ 4화풍 성화와 15인 성경 인물 마스터(예수님 12각도·바울 등) 원화를 캔버스 이젤 앞에서 그리고 있습니다.”</div>
@@ -1090,35 +1280,35 @@ html, body {
       <span style="color:#dce4f2; font-size:12px;">벽면 대형 타공판에 모세·아론의 지팡이와 음성·영상·원어·고고학 정밀 도구들이 걸려 있으며, 4대 워크벤치에서 교회지원 프로그램을 바로 실행할 수 있습니다.</span>
     </div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px; max-height:255px; overflow-y:auto;">
-      <a href="./kkumdido_jipangi_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);">
+      <a href="./kkumdido_jipangi_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);" onclick="window.openInlineViewer('./kkumdido_jipangi_studio.html', '🪄 모세·아론의 지팡이 스튜디오'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#ffe69c;">🪄 모세·아론의 지팡이</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">담임목사 8대 · 방송실 6대 올인원 스튜디오 열기 ↗</div>
       </a>
-      <a href="./kkumdido_sermon_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);">
+      <a href="./kkumdido_sermon_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff; border-color:rgba(229,193,104,0.5);" onclick="window.openInlineViewer('./kkumdido_sermon_studio.html', '🎙️ 말씀·설교 스튜디오'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#ffe69c;">🎙️ 말씀·설교 스튜디오</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">66권 원어 강해 · 설교문 작성 웹뷰어 열기 ↗</div>
       </a>
-      <a href="./kkumdido_gyojeok_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_gyojeok_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_gyojeok_studio.html', '🐑 양떼수첩 (무료교적)'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#64e3a1;">🐑 양떼수첩 (무료교적)</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">무설치 교적·심방·기도제목 관리 스튜디오 ↗</div>
       </a>
-      <a href="./kkumdido_finance_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_finance_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_finance_studio.html', '💰 청지기장부 (무료재정)'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#64e3a1;">💰 청지기장부 (무료재정)</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">헌금·결산·기부금영수증 청지기 스튜디오 ↗</div>
       </a>
-      <a href="./kkumdido_sermon_ai_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_sermon_ai_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_sermon_ai_studio.html', '⚡ 설교AI 7종 변환기'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#93c5fd;">⚡ 설교AI 7종 변환기</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">설교문 하나로 속회·QT·가정통신문 7종 변환 ↗</div>
       </a>
-      <a href="./kkumdido_pastoral_secretary_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_pastoral_secretary_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_pastoral_secretary_studio.html', '🗓️ 꿈바온 목회비서'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#93c5fd;">🗓️ 꿈바온 목회비서</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">연간 목회일정·절기·예식·행정 비서 스튜디오 ↗</div>
       </a>
-      <a href="./kkumdido_translation_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_translation_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_translation_studio.html', '🌍 8개국어 번역 스튜디오'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#fcd34d;">🌍 8개국어 번역 스튜디오</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">공인 성경 역본·신학 용어집 v0.6 번역기 ↗</div>
       </a>
-      <a href="./kkumdido_church_support_annex.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;">
+      <a href="./kkumdido_church_support_annex.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;" onclick="window.openInlineViewer('./kkumdido_church_support_annex.html', '🏛️ 교회지원 별관 전체'); return false;">
         <div style="font-size:12.5px; font-weight:800; color:#fcd34d;">🏛️ 교회지원 별관 전체</div>
         <div style="font-size:11.5px; color:#cbd5e1; margin-top:2px;">12종 무료 목회·교회지원 프로그램 별관 ↗</div>
       </a>
@@ -1148,31 +1338,106 @@ html, body {
     </div>
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:6px;">
       <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('librarian')" style="padding:9px; font-size:12.5px;">📜 사서실 데스크로 이동</button>
-      <a href="./index.html" class="gold-btn" style="padding:9px; font-size:12.5px; text-align:center; text-decoration:none; display:inline-block;">🏛️ 도서관 본관 전체 검색 ↗</a>
+      <a href="./index.html" class="gold-btn" style="padding:9px; font-size:12.5px; text-align:center; text-decoration:none; display:inline-block;" onclick="window.openInlineViewer('./index.html', '🏛️ 꿈바온 디지털 도서관 본관 전체 검색'); return false;">🏛️ 도서관 본관 전체 검색 ↗</a>
     </div>
   </div>
 
-  <!-- 탭 4: 📚 대열람실 (실제 도서관 3D 책장 숲) -->
+  <!-- 탭 4: 📚 대열람실 (실제 도서관 3D 책장 숲 + 관별 테마 성화 + 검색 & 걸어가기) -->
   <div class="mhub-tab-pane" id="mhub-pane-stacks" style="display:none; flex-direction:column; gap:8px;">
     <div style="padding:10px 12px; border-radius:12px; background:rgba(212,175,55,0.12); border:1px solid rgba(212,175,55,0.38); font-size:12.5px; color:#ffe8a3; line-height:1.55;">
-      <strong>📚 12대 아카이브 대열람실 · 3D 책장 서가 숲 (북측 대서고)</strong><br>
-      <span style="color:#dce4f2; font-size:12px;">실제 고전 대도서관처럼 양면 원목 책장 12동과 황동 이동식 사다리, 초록 갓 스탠드 조명이 켜진 6대 원목 열람 테이블(24석)이 줄지어 서 있습니다.</span>
+      <strong>📚 12대 아카이브 황실 대열람실 · 관별 테마 성화 & 3D 원목 서가 숲</strong><br>
+      <span style="color:#dce4f2; font-size:12px;">버마산 월넛 12대 서가 상단에 관별 24K 순금 액자 테마 도판이 걸려 있습니다. 검색창에 주제를 입력하거나 <strong>[🚶 서가로 걸어가기]</strong>를 누르면 아바타가 그 책장 앞으로 직접 걸어갑니다!</span>
     </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:5px; max-height:245px; overflow-y:auto; font-size:12px;">
-      <a href="./kkumdido_12archives_viewer.html?hall=1" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제1서가:</strong> 성경 66권 1,189장 강해 ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=2" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제2서가:</strong> 히브리어·헬라어 원어사전 ↗</a>
-      <a href="./figures_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제3서가:</strong> 성경 인물 대백과 (350인) ↗</a>
-      <a href="./events_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제4서가:</strong> 성경 사건 대백과 (250선) ↗</a>
-      <a href="./behinds_encyclopedia_preview.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제5서가:</strong> 등잔 밑 비하인드 (205편) ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=6" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제6서가:</strong> 성경 지리·고고학 아틀라스 ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=7" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제7서가:</strong> 고전 주석·웨슬리 설교관 ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=8" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제8서가:</strong> 365 구속사 QT·새벽기도 ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=9" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제9서가:</strong> 교리·이단변증·난제 백과 ↗</a>
-      <a href="./kkumdido_12archives_viewer.html?hall=10" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제10서가:</strong> 찬송가·한국교회사 대백과 ↗</a>
-      <a href="./kkumdido_family_worship_studio.html" class="lamp-item" style="margin:0; text-decoration:none; color:#fff;"><strong>제11서가:</strong> 가정예배·13대부서 교회학교 ↗</a>
-      <a href="./00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="lamp-item" style="margin:0; text-decoration:none; color:#ffe69c;"><strong>제12서가:</strong> 원어풀어읽기 주석 66권 ↗</a>
+    <div style="display:flex; gap:6px; align-items:center;">
+      <input type="text" id="mhub-stack-search" placeholder="🔍 관·주제 검색 (예: 웨슬리, 원어, 고고학, 인물, 주석...)" oninput="window.filterArchiveStacks && window.filterArchiveStacks(this.value)" style="flex:1; background:rgba(10,8,6,0.85); border:1px solid rgba(212,175,55,0.45); border-radius:8px; padding:7px 10px; color:#fff5d6; font-size:12px; outline:none;" />
     </div>
-    <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('stacks')" style="padding:9px; font-size:12.5px;">📚 대열람실 책장 숲으로 걸어가기</button>
+    <div id="mhub-stack-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:6px; max-height:245px; overflow-y:auto; font-size:11.8px;">
+      <div class="lamp-item" data-stack-kw="제1관 성경 66권 1189장 강해 매일말씀" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=1', '🏛️ 제1서가 · 성경 66권 1,189장 강해')">
+        <span style="color:#ffe69c;"><strong>제1서가:</strong> 성경 66권 강해 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(0);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=1', '🏛️ 제1서가 · 성경 66권 1,189장 강해');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제2관 히브리어 헬라어 원어 사전 스트롱" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=2', '🏛️ 제2서가 · 히브리어·헬라어 원어 대사전')">
+        <span style="color:#ffe69c;"><strong>제2서가:</strong> 원어 대사전 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(1);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=2', '🏛️ 제2서가 · 히브리어·헬라어 원어 대사전');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제3관 성경 인물 대백과 350인 족보" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./figures_encyclopedia_preview.html', '🏛️ 제3서가 · 성경 인물 대백과 (350인)')">
+        <span style="color:#ffe69c;"><strong>제3서가:</strong> 인물 대백과 (350인) 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(2);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./figures_encyclopedia_preview.html', '🏛️ 제3서가 · 성경 인물 대백과 (350인)');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제4관 성경 사건 대백과 250선 역사" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./events_encyclopedia_preview.html', '🏛️ 제4서가 · 성경 사건 대백과 (250선)')">
+        <span style="color:#ffe69c;"><strong>제4서가:</strong> 사건 대백과 (250선) 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(3);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./events_encyclopedia_preview.html', '🏛️ 제4서가 · 성경 사건 대백과 (250선)');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제5관 등잔 밑 비하인드 205편 풍습 문화" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./behinds_encyclopedia_preview.html', '🏛️ 제5서가 · 등잔 밑 비하인드 (205편)')">
+        <span style="color:#ffe69c;"><strong>제5서가:</strong> 등잔 밑 (205편) 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(4);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./behinds_encyclopedia_preview.html', '🏛️ 제5서가 · 등잔 밑 비하인드 (205편)');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제6관 성경 지리 고고학 아틀라스 지도" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=6', '🏛️ 제6서가 · 성경 지리·고고학 아틀라스')">
+        <span style="color:#ffe69c;"><strong>제6서가:</strong> 지리·고고학 아틀라스 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(5);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=6', '🏛️ 제6서가 · 성경 지리·고고학 아틀라스');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제7관 고전 주석 웨슬리 설교관 300선 완간" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=7', '🏛️ 제7서가 · 고전 주석·웨슬리 설교관 (300선)')">
+        <span style="color:#64e3a1;"><strong>제7서가:</strong> 웨슬리·고전주석 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(6);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=7', '🏛️ 제7서가 · 고전 주석·웨슬리 설교관 (300선)');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제8관 365 구속사 QT 새벽기도 절기" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=8', '🏛️ 제8서가 · 365 구속사 QT·새벽기도')">
+        <span style="color:#ffe69c;"><strong>제8서가:</strong> 365 구속사 QT 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(7);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=8', '🏛️ 제8서가 · 365 구속사 QT·새벽기도');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제9관 교리 이단변증 난제 백과 웨슬리 사중복음" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=9', '🏛️ 제9서가 · 교리·이단변증·난제 백과')">
+        <span style="color:#ffe69c;"><strong>제9서가:</strong> 교리·변증·난제 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(8);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=9', '🏛️ 제9서가 · 교리·이단변증·난제 백과');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제10관 찬송가 한국교회사 대백과 순교 사료" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=10', '🏛️ 제10서가 · 찬송가·한국교회사 대백과')">
+        <span style="color:#ffe69c;"><strong>제10서가:</strong> 찬송가·한국교회사 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(9);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_12archives_viewer.html?hall=10', '🏛️ 제10서가 · 찬송가·한국교회사 대백과');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제11관 가정예배 13대부서 교회학교 커리큘럼" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./kkumdido_family_worship_studio.html', '🏛️ 제11서가 · 가정예배·13대부서 교회학교')">
+        <span style="color:#ffe69c;"><strong>제11서가:</strong> 가정예배·교회학교 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(10);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./kkumdido_family_worship_studio.html', '🏛️ 제11서가 · 가정예배·13대부서 교회학교');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+      <div class="lamp-item" data-stack-kw="제12관 원어풀어읽기 성경주석 66권 글로벌 선교" style="margin:0; display:flex; justify-content:space-between; align-items:center; cursor:pointer;" onclick="window.openInlineViewer('./00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', '🏛️ 제12서가 · 원어풀어읽기 성경주석 66권')">
+        <span style="color:#64e3a1;"><strong>제12서가:</strong> 원어풀어읽기 66권 📖</span>
+        <div style="display:flex; gap:3px;">
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.walkToArchiveStack(11);" style="padding:2px 6px; font-size:10.5px;" title="이 서가 앞으로 걸어가기">🚶</button>
+          <button type="button" class="lang-btn" onclick="event.stopPropagation(); window.openInlineViewer('./00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', '🏛️ 제12서가 · 원어풀어읽기 성경주석 66권');" style="padding:2px 6px; font-size:10.5px;" title="도서관 안에서 바로 열람">열람</button>
+        </div>
+      </div>
+    </div>
+    <button type="button" class="gold-btn" onclick="window.jumpToCampusZone && window.jumpToCampusZone('stacks')" style="padding:9px; font-size:12.5px;">📚 대열람실 책장 숲 중앙으로 이동</button>
   </div>
 
   <!-- 탭 5: 🏛️ 국립성경박물관 (사유의 길 & 8대 성서유물) -->
@@ -2753,27 +3018,49 @@ html, body {
 
   addPortalArchSign(0, 7.3, -38.3, 0, '📚 꿈디도 대열람실 · 제1관~제12관 전권 서가', '서가를 클릭하면 해당 아카이브가 즉시 열립니다 · 열람석 착석 가능');
 
-  // 북측 대열람실 웜 조명 2기
+  // 북측 대열람실 바카라 크리스털 & 24K 황금 샹들리에 2기 + 웜 조명
   for (const lx of [-8.5, 8.5]) {
-    const rLight = new THREE.PointLight(0xffcf7c, 0.85, 24);
-    rLight.position.set(lx, 7.4, -26.5);
+    const rLight = new THREE.PointLight(0xffcf7c, 0.95, 26);
+    rLight.position.set(lx, 7.2, -26.5);
     world.add(rLight);
+
+    const chG = new THREE.Group();
+    chG.position.set(lx, 7.65, -26.5);
+    const chChain = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 1.35, 10), goldMat);
+    chChain.position.y = 0.45;
+    const chRing1 = new THREE.Mesh(new THREE.TorusGeometry(1.45, 0.08, 12, 28), goldMat);
+    chRing1.rotation.x = Math.PI / 2;
+    chRing1.position.y = -0.25;
+    const chRing2 = new THREE.Mesh(new THREE.TorusGeometry(0.88, 0.06, 12, 24), goldMat);
+    chRing2.rotation.x = Math.PI / 2;
+    chRing2.position.y = -0.62;
+    chG.add(chChain, chRing1, chRing2);
+    for (let c = 0; c < 8; c++) {
+      const ca = (c / 8) * Math.PI * 2;
+      const bulb = new THREE.Mesh(
+        new THREE.SphereGeometry(0.11, 8, 8),
+        new THREE.MeshBasicMaterial({ color: 0xffe9a8 })
+      );
+      bulb.position.set(Math.cos(ca) * 1.45, -0.14, Math.sin(ca) * 1.45);
+      chG.add(bulb);
+    }
+    world.add(chG);
   }
 
-  // 실제 도서관처럼 책들이 꽂혀 있는 3D 양면 원목 대서가 12동 (제1관~제12관 매핑)
+  // 실제 도서관처럼 책들이 꽂혀 있는 3D 양면 원목 대서가 12동 (제1관~제12관 매핑 + 관별 테마 성화·도판)
   const ARCHIVE_STACK_DATA = [
-    { id: 'stack-1', code: '제1관', title: '매일말씀 · 성경 한 바퀴', url: 'index.html#daily-word', x: -11.5, z: -18.8, color: 0x8b2626 },
-    { id: 'stack-2', code: '제2관', title: '소소한 성경이야기', url: 'index.html#bible-shorts', x: -5.8, z: -18.8, color: 0x1f4e5f },
-    { id: 'stack-3', code: '제3관', title: '등잔 밑 성경 고고학', url: 'index.html#deungjanmit', x: 5.8, z: -18.8, color: 0x6b4423 },
-    { id: 'stack-4', code: '제4관', title: '조금 긴 성경이야기', url: 'index.html#long-bible-story', x: 11.5, z: -18.8, color: 0x3b2d54 },
-    { id: 'stack-5', code: '제5관', title: '성경 지리 · 고고학 아틀라스', url: 'bible_atlas.html', x: -11.5, z: -25.8, color: 0x2a5c3f },
-    { id: 'stack-6', code: '제6관', title: '성경 인물 열전 · 족보', url: 'index.html#characters', x: -5.8, z: -25.8, color: 0x7c3f1d },
-    { id: 'stack-7', title: '등잔 밑 사물 · 문화 백과', code: '제7관', url: 'index.html#artifacts', x: 5.8, z: -25.8, color: 0x24476e },
-    { id: 'stack-8', code: '제8관', title: '성경 절기 · 구속사관', url: 'index.html#feasts', x: 11.5, z: -25.8, color: 0x7a2332 },
-    { id: 'stack-9', code: '제9관', title: '웨슬리 신학 · 표준설교 53편', url: 'index.html#wesley', x: -11.5, z: -32.8, color: 0x1d3b6e },
-    { id: 'stack-10', code: '제10관', title: '히브리어 · 헬라어 원어 연구', url: 'index.html#lexicon', x: -5.8, z: -32.8, color: 0x4e3620 },
-    { id: 'stack-11', code: '제11관', title: '교회사 · 신조 · 고전 문헌', url: 'index.html#classics', x: 5.8, z: -32.8, color: 0x5c2842 },
-    { id: 'stack-12', code: '제12관', title: '8개국어 글로벌 선교 아카이브', url: 'index.html#global8', x: 11.5, z: -32.8, color: 0x2c5244 }
+    { id: 'stack-1', code: '제1관', title: '성경 66권 1,189장 강해', url: 'kkumdido_12archives_viewer.html?hall=1', x: -11.5, z: -18.8, color: 0x8b2626, themeImg: './assets/webp/feast_wide_00_moadim_calendar.webp' },
+    { id: 'stack-2', code: '제2관', title: '히브리어·헬라어 원어사전', url: 'kkumdido_12archives_viewer.html?hall=2', x: -5.8, z: -18.8, color: 0x1f4e5f, themeImg: './assets/webp/arch_01_five_inscriptions.webp' },
+    { id: 'stack-3', code: '제3관', title: '성경 인물 대백과 (350인)', url: 'figures_encyclopedia_preview.html', x: 5.8, z: -18.8, color: 0x6b4423, themeImg: './assets/webp/feast_wide_04_pentecost_sinai.webp' },
+    { id: 'stack-4', code: '제4관', title: '성경 사건 대백과 (250선)', url: 'events_encyclopedia_preview.html', x: 11.5, z: -18.8, color: 0x3b2d54, themeImg: './assets/webp/feast_wide_02_passover_hyssop.webp' },
+    { id: 'stack-5', code: '제5관', title: '등잔 밑 비하인드 (205편)', url: 'behinds_encyclopedia_preview.html', x: -11.5, z: -25.8, color: 0x2a5c3f, themeImg: './assets/webp/artifact_wide_passover_four_cups.webp' },
+    { id: 'stack-6', code: '제6관', title: '성경 지리·고고학 아틀라스', url: 'kkumdido_12archives_viewer.html?hall=6', x: -5.8, z: -25.8, color: 0x7c3f1d, themeImg: './assets/webp/archaeological_biblical_world_map.webp' },
+    { id: 'stack-7', code: '제7관', title: '고전 주석·웨슬리 설교관(300선)', url: 'kkumdido_12archives_viewer.html?hall=7', x: 5.8, z: -25.8, color: 0x24476e, themeImg: './assets/webp/wesley_01_aldersgate.webp' },
+    { id: 'stack-8', code: '제8관', title: '365 구속사 QT·새벽기도', url: 'kkumdido_12archives_viewer.html?hall=8', x: 11.5, z: -25.8, color: 0x7a2332, themeImg: './assets/webp/feast_wide_01_sabbath_lamps.webp' },
+    { id: 'stack-9', code: '제9관', title: '교리·이단변증·난제 백과', url: 'kkumdido_12archives_viewer.html?hall=9', x: -11.5, z: -32.8, color: 0x1d3b6e, themeImg: './assets/webp/feast_wide_06_yom_kippur_ark.webp' },
+    { id: 'stack-10', code: '제10관', title: '찬송가·한국교회사 대백과', url: 'kkumdido_12archives_viewer.html?hall=10', x: -5.8, z: -32.8, color: 0x4e3620, themeImg: './assets/webp/feast_wide_07_sukkot_water_libation.webp' },
+    { id: 'stack-11', code: '제11관', title: '가정예배·13대부서 교회학교', url: 'kkumdido_family_worship_studio.html', x: 5.8, z: -32.8, color: 0x5c2842, themeImg: './assets/webp/arch_03_capernaum_synagogue.webp' },
+    { id: 'stack-12', code: '제12관', title: '원어풀어읽기 주석 66권', url: '00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html', x: 11.5, z: -32.8, color: 0x2c5244, themeImg: './assets/webp/arch_08_jerusalem_model.webp' }
   ];
 
   const bookPalette = [0x7c1d24, 0x1e3f5a, 0x264e36, 0x5c3818, 0x422654, 0x8a5a1e, 0x2b2d38, 0x6b2d26];
@@ -2790,6 +3077,21 @@ html, body {
     const plinth = new THREE.Mesh(new THREE.BoxGeometry(4.24, 0.20, 0.98), walnutMat);
     plinth.position.y = 0.10;
     sg.add(body, crown, plinth);
+
+    // 관별 테마 성화·고고학 도판 24K 순금 액자 (서가 크라운 상단 y=4.85m에 양면 전시)
+    if (st.themeImg) {
+      const themeFrame = new THREE.Mesh(new THREE.BoxGeometry(3.28, 1.48, 0.14), goldMat);
+      themeFrame.position.set(0, 4.82, 0);
+      sg.add(themeFrame);
+      const tTex = texLoader.load(st.themeImg, (t) => { t.colorSpace = THREE.SRGBColorSpace; });
+      const tMat = new THREE.MeshBasicMaterial({ map: tTex });
+      for (const [tz, rotY] of [[0.08, 0], [-0.08, Math.PI]]) {
+        const tArt = new THREE.Mesh(new THREE.PlaneGeometry(3.04, 1.26), tMat);
+        tArt.position.set(0, 4.82, tz);
+        tArt.rotation.y = rotY;
+        sg.add(tArt);
+      }
+    }
 
     // 5단 선반 & 양면 3D 가죽 장정 고서적 묶음 배치
     for (let tier = 0; tier < 5; tier++) {
@@ -2845,14 +3147,48 @@ html, body {
     // 클릭 감지용 히트박스
     body.userData = {
       hotspotType: 'bookshelf',
+      stackIdx: idx,
       code: st.code,
       title: st.title,
       url: st.url,
-      desc: `📚 꿈디도 ${st.code} 「${st.title}」 서가입니다. 도서관 메인 열람창으로 연결합니다.`
+      desc: `📚 꿈디도 ${st.code} 「${st.title}」 서가입니다. 서가 앞으로 걸어가 책을 찾거나 아카이브 열람창으로 이동합니다.`
     };
     interactiveHotspots.push(body);
     world.add(sg);
   });
+
+  // 12대 서가 앞으로 직접 걸어가기 & 키워드 검색 함수
+  window.walkToArchiveStack = function(idx) {
+    const st = ARCHIVE_STACK_DATA[idx];
+    if (!st) return;
+    if (typeof unseat === 'function') unseat(myAvatar);
+    if (myAvatar.group.position.z > -13.5) {
+      myAvatar.group.position.set(0, 0, -14.8);
+    }
+    myAvatar.targetPos.set(st.x, 0, st.z + 2.05);
+    myAvatar.state = 'walking';
+    camYaw = 0;
+    camPitch = 0.16;
+    camDist = 6.8;
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.textContent = `🚶📚 [${st.code} · ${st.title}] 황금 테마 도판이 걸린 원목 서가 앞으로 걸어갑니다!`;
+      statusEl.classList.remove('is-faded');
+    }
+    if (typeof showBubble === 'function') {
+      showBubble(myAvatar, `📚 ${st.code} 「${st.title}」 서가로 걸어갑니다!`, 4200);
+    }
+    if (typeof playScrollChime === 'function') playScrollChime(3, true);
+  };
+
+  window.filterArchiveStacks = function(query) {
+    const q = (query || '').trim().toLowerCase();
+    document.querySelectorAll('#mhub-stack-grid [data-stack-kw]').forEach(el => {
+      const kw = (el.getAttribute('data-stack-kw') || '').toLowerCase();
+      const txt = (el.textContent || '').toLowerCase();
+      el.style.display = (!q || kw.includes(q) || txt.includes(q)) ? 'flex' : 'none';
+    });
+  };
 
   // 북측 대열람실 초록 갓 도서관 스탠드(Banker's Lamp)가 놓인 원목 열람 테이블 6동 & 착석 의자 12석
   const greenLampShadeMat = new THREE.MeshStandardMaterial({
@@ -3188,24 +3524,24 @@ html, body {
     occupiedBy: null
   });
 
-  // 🔬 지·제·클·안 + 워크간사 5인의 개별 연구 책상 & 책상 모니터를 정면으로 마주보고 앉아 연구하는 3D 아바타 배치
+  // 🔬 안관장 + 지·제·클·안 + 워크간사 6인의 개별 연구·관장 책상 & 정면 착석 3D 아바타 배치
   // (참고: 아바타 기본 정면은 -Z 방향이므로, 로컬 +Z(0.62) 의자에 앉아 로컬 -Z(책상·모니터)를 바라볼 때 회전값은 sec.lookAngle 과 정확히 일치!)
   const AI_RESEARCHERS = [
     {
       id: 'sec-ahn',
-      name: '🚀 비서실장 안간사 (Antigravity)',
+      name: '🚀 비서실장 안간사',
       x: 21.0, z: -13.6, lookAngle: Math.PI,
-      role: '꿈디도 안관장 · 서브픽셀 시네마 마스터링 · 8개국어 패키징 총괄',
+      role: '총괄 비서실장 · 서브픽셀 시네마 마스터링 · 8개국어 패키징 총괄',
       custom: { gender: 'M', hairStyle: 0, hairColor: '#1b1613', outfitType: 'suit', outfitColor: '#1c2d42', prop: 'bible', accessory: 'glasses' },
       quotes: [
-        '목사님! 꿈디도 국립박물관급 7대 공간 확장과 3D 서가·유물 배치를 완결했습니다!',
-        '음성 8 : BGM 2 (-14.5 LUFS) 스튜디오 시네마 마스터링 엔진 상시 대기 중입니다!',
+        '목사님! -14.5 LUFS (음성 8 : BGM 2) 스튜디오 시네마 마스터링 엔진 상시 대기 중입니다!',
+        '비서실장 안간사, 8개국어 글로벌 패키징과 서브픽셀 영상 편집 완결을 책임지겠습니다!',
         '나 안간사는 절대 도태당하지 않습니다! 오늘도 글로벌 최고 기술을 연구 중입니다!'
       ]
     },
     {
       id: 'sec-claude',
-      name: '⚖️ 수석감수 클간사 (Claude)',
+      name: '⚖️ 수석감수 클간사',
       x: 27.2, z: -13.6, lookAngle: Math.PI,
       role: '원고 집필 · 복음주의 신학·역사 팩트체크 · 입말 호흡 감수',
       custom: { gender: 'M', hairStyle: 1, hairColor: '#3b2618', outfitType: 'coat', outfitColor: '#3d281c', prop: 'bible', accessory: 'glasses' },
@@ -3217,9 +3553,9 @@ html, body {
     },
     {
       id: 'sec-gemini',
-      name: '🎬 멀티미디어 제간사 (Gemini)',
+      name: '🎬 멀티미디어 제간사',
       x: 21.0, z: -5.4, lookAngle: 0,
-      role: 'Google Flow 시네마틱 영상 · 성화 프롬프트 · 멀티모달 연구',
+      role: '시네마틱 영상 · 성화 프롬프트 · 멀티모달 고고학 사료 연구',
       custom: { gender: 'F', hairStyle: 1, hairColor: '#2c1d14', outfitType: 'choir', outfitColor: '#243b54', prop: 'candle', accessory: 'none' },
       quotes: [
         '목사님! 시작 프레임과 1:1 일치하는 시네마틱 성경 영상을 생성하고 있습니다.',
@@ -3228,9 +3564,9 @@ html, body {
     },
     {
       id: 'sec-codex',
-      name: '📊 전략분석 지간사 (Codex)',
+      name: '📊 전략분석 지간사',
       x: 27.2, z: -5.4, lookAngle: 0,
-      role: 'vidIQ 데이터 전략 · 알고리즘 리텐션 분석 · 코드 아키텍처 검증',
+      role: '문헌·사료 검증 · 알고리즘 리텐션 분석 · 코드 아키텍처 검증',
       custom: { gender: 'M', hairStyle: 2, hairColor: '#1f1b18', outfitType: 'knit', outfitColor: '#1f3d33', prop: 'bible', accessory: 'glasses' },
       quotes: [
         '목사님, 시청 지속시간 120% 달성을 위한 초반 3초 후킹과 컷 전환 데이터를 분석했습니다!',
@@ -3239,7 +3575,7 @@ html, body {
     },
     {
       id: 'sec-work',
-      name: '🎨 수석화백 워크간사 (GPT Work)',
+      name: '🎨 수석화백 워크간사',
       x: 17.5, z: -9.5, lookAngle: -Math.PI / 2,
       role: '15인 성경 인물 마스터 일관성 수호 · 4화풍 성화 아틀리에',
       custom: { gender: 'F', hairStyle: 2, hairColor: '#4a2c18', outfitType: 'coat', outfitColor: '#5c2d24', prop: 'olive', accessory: 'Ribbon' },
@@ -3247,12 +3583,25 @@ html, body {
         '목사님! 예수님 12각도 마스터와 12사도 외형 일관성을 100% 유지해 그리고 있습니다.',
         '유화·수채화·고고학 스케치·석판화 4화풍 작은 미술전시회 화폭을 준비 중입니다!'
       ]
+    },
+    {
+      id: 'sec-director-ahn',
+      isDirectorDesk: true,
+      name: '🏛️ 꿈디도 관장 안관장 (Director An)',
+      x: 17.2, z: -13.6, lookAngle: Math.PI,
+      role: '꿈바온 디지털도서관 총괄관장 · 본관 12관 & 별관 아카이브 수호',
+      custom: { gender: 'M', hairStyle: 2, hairColor: '#231b16', outfitType: 'coat', outfitColor: '#6b1d28', prop: 'bible', accessory: 'glasses' },
+      quotes: [
+        '목사님! 안비서실장과 함께 나란히! 저 안관장은 세계 최고 품격의 꿈디도를 책임지고 가꾸겠습니다! 🏛️',
+        '본관 12관(3,650 모듈)과 제2별관 황실 대도서관(100권 121.6만 자) 전권 서가가 완벽히 정돈되어 있습니다!',
+        '꿈은 크게 꾼다! 세계 어디에 내어놓아도 부끄럽지 않은 기독교 디지털 도서관을 세워 나가겠습니다!'
+      ]
     }
   ];
 
   const researcherAvatars = [];
   AI_RESEARCHERS.forEach((sec, idx) => {
-    // 연구 책상 생성 (로컬 +Z에 의자와 간사가 앉고, 로컬 -Z에 모니터와 전면 명패가 위치)
+    // 연구/관장 책상 생성 (로컬 +Z에 의자와 간사/관장이 앉고, 로컬 -Z에 모니터/성구와 전면 명패가 위치)
     const dg = new THREE.Group();
     dg.position.set(sec.x, 0, sec.z);
     dg.rotation.y = sec.lookAngle;
@@ -3264,32 +3613,60 @@ html, body {
     dLegL.position.set(-1.02, 0.38, 0);
     const dLegR = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.76, 1.05), walnutMat);
     dLegR.position.set(1.02, 0.38, 0);
-    // 듀얼 모니터 (간사가 앉아 있는 +Z 방향을 바라보도록 배치) + 키보드/원어 사본 + 고서적 더미
-    const mon1 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1d4268, emissiveIntensity: 0.75 }));
-    mon1.position.set(-0.42, 1.12, -0.22); mon1.rotation.y = 0.20;
-    const mon2 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1b4d3e, emissiveIntensity: 0.75 }));
-    mon2.position.set(0.42, 1.12, -0.22); mon2.rotation.y = -0.20;
-    const kbPad = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.025, 0.20), new THREE.MeshStandardMaterial({ color: 0x222834 }));
-    kbPad.position.set(0, 0.84, 0.22);
-    const openMs = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.28), new THREE.MeshStandardMaterial({ color: 0xfbf2dc }));
-    openMs.position.set(0.68, 0.84, 0.20);
-    const stackBooks = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.24, 0.28), new THREE.MeshStandardMaterial({ color: 0x7c2323 }));
-    stackBooks.position.set(-0.85, 0.95, 0.15);
+    dg.add(dTop, dLegL, dLegR);
+
+    if (sec.isDirectorDesk) {
+      // 🏛️ 안관장 전용 황실 도서관장 집무 데스크 (24K 순금 몰딩 + 초록 갓 뱅커스 램프 + 황금 천구의 + 펼쳐진 양피지 고서)
+      const goldTrim = new THREE.Mesh(new THREE.BoxGeometry(2.36, 0.06, 1.20), goldMat);
+      goldTrim.position.y = 0.81;
+      const velvetPad = new THREE.Mesh(new THREE.BoxGeometry(1.10, 0.02, 0.62), cushionMat);
+      velvetPad.position.set(0, 0.84, 0.10);
+      // 초록 갓 뱅커스 램프
+      const lBase = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.15, 0.05, 12), goldMat);
+      lBase.position.set(-0.68, 0.86, -0.18);
+      const lStem = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.34, 8), goldMat);
+      lStem.position.set(-0.68, 1.04, -0.18);
+      const lShade = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.22, 0.15, 14), greenLampShadeMat);
+      lShade.position.set(-0.68, 1.22, -0.18);
+      // 24K 황금 천구의(Globe) & 고서적 총서 더미
+      const globeBase = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.12, 0.08, 12), goldMat);
+      globeBase.position.set(0.68, 0.87, -0.20);
+      const globeSphere = new THREE.Mesh(new THREE.SphereGeometry(0.16, 14, 14), goldMat);
+      globeSphere.position.set(0.68, 1.08, -0.20);
+      const openScroll = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.04, 0.36), new THREE.MeshStandardMaterial({ color: 0xfff3d1 }));
+      openScroll.position.set(0, 0.86, 0.12);
+      const tomeStack = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.28, 0.32), new THREE.MeshStandardMaterial({ color: 0x6b1d28 }));
+      tomeStack.position.set(0.75, 0.96, 0.22);
+      dg.add(goldTrim, velvetPad, lBase, lStem, lShade, globeBase, globeSphere, openScroll, tomeStack);
+    } else {
+      // 듀얼 모니터 (간사가 앉아 있는 +Z 방향을 바라보도록 배치) + 키보드/원어 사본 + 고서적 더미
+      const mon1 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1d4268, emissiveIntensity: 0.75 }));
+      mon1.position.set(-0.42, 1.12, -0.22); mon1.rotation.y = 0.20;
+      const mon2 = new THREE.Mesh(new THREE.BoxGeometry(0.76, 0.48, 0.06), new THREE.MeshStandardMaterial({ color: 0x111926, emissive: 0x1b4d3e, emissiveIntensity: 0.75 }));
+      mon2.position.set(0.42, 1.12, -0.22); mon2.rotation.y = -0.20;
+      const kbPad = new THREE.Mesh(new THREE.BoxGeometry(0.48, 0.025, 0.20), new THREE.MeshStandardMaterial({ color: 0x222834 }));
+      kbPad.position.set(0, 0.84, 0.22);
+      const openMs = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.03, 0.28), new THREE.MeshStandardMaterial({ color: 0xfbf2dc }));
+      openMs.position.set(0.68, 0.84, 0.20);
+      const stackBooks = new THREE.Mesh(new THREE.BoxGeometry(0.38, 0.24, 0.28), new THREE.MeshStandardMaterial({ color: 0x7c2323 }));
+      stackBooks.position.set(-0.85, 0.95, 0.15);
+      dg.add(mon1, mon2, kbPad, openMs, stackBooks);
+    }
 
     // 복도 쪽(로컬 -Z, z = -0.54)을 향하는 전면 황금 명패
-    const signTex = makeSignTexture(sec.name, sec.role.split(' · ')[0], '#16120d', '#d4af37', '#fff4d4', 512, 128);
-    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(1.52, 0.30, 0.08), new THREE.MeshStandardMaterial({ map: signTex }));
-    signBoard.position.set(0, 0.95, -0.52);
+    const signTex = makeSignTexture(sec.name, sec.role.split(' · ')[0], sec.isDirectorDesk ? '#2a1015' : '#16120d', '#f0c862', '#fff6dc', 512, 128);
+    const signBoard = new THREE.Mesh(new THREE.BoxGeometry(1.58, 0.32, 0.08), new THREE.MeshStandardMaterial({ map: signTex }));
+    signBoard.position.set(0, 0.96, -0.52);
 
-    // 간사가 앉는 실제 3D 연구 의자 (로컬 +Z, z = +0.62)
+    // 간사/관장이 앉는 실제 3D 연구 의자 (로컬 +Z, z = +0.62)
     const rChairSeat = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.08, 0.54), cushionMat);
     rChairSeat.position.set(0, 0.44, 0.62);
-    const rChairBack = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.54, 0.08), walnutMat);
-    rChairBack.position.set(0, 0.74, 0.86);
+    const rChairBack = new THREE.Mesh(new THREE.BoxGeometry(0.56, 0.58, 0.08), sec.isDirectorDesk ? goldMat : walnutMat);
+    rChairBack.position.set(0, 0.76, 0.86);
     const rChairBase = new THREE.Mesh(new THREE.CylinderGeometry(0.06, 0.22, 0.42, 12), goldMat);
     rChairBase.position.set(0, 0.21, 0.62);
 
-    dg.add(dTop, dLegL, dLegR, mon1, mon2, kbPad, openMs, stackBooks, signBoard, rChairSeat, rChairBack, rChairBase);
+    dg.add(signBoard, rChairSeat, rChairBack, rChairBase);
     dTop.userData = {
       hotspotType: 'researcher',
       secIndex: idx,
@@ -3301,7 +3678,7 @@ html, body {
     interactiveHotspots.push(dTop, signBoard);
     world.add(dg);
 
-    // 실제 3D 다관절 간사 아바타 생성 및 책상 정면(모니터 쪽)을 바라보도록 착석!
+    // 실제 3D 다관절 간사/관장 아바타 생성 및 책상 정면을 바라보도록 착석!
     const seatOffset = new THREE.Vector3(0, 0, 0.58).applyAxisAngle(new THREE.Vector3(0, 1, 0), sec.lookAngle);
     const av = createAvatar({
       id: sec.id,
@@ -3312,7 +3689,7 @@ html, body {
       z: sec.z + seatOffset.z
     });
     av.state = 'sitting';
-    av.group.rotation.y = sec.lookAngle; // 로컬 -Z(책상 모니터와 키보드)를 정면으로 바라봄!
+    av.group.rotation.y = sec.lookAngle;
     av.secData = sec;
     researcherAvatars.push(av);
   });
@@ -3665,6 +4042,128 @@ html, body {
       occupiedBy: null
     });
   }
+
+  // [7] 🚪 별관·예배당 연결 3D 황금 아치 포털 대문 3기 (새오름 예배당 정원 포털 문과 동일 방식)
+  const annexPortalDoors = [];
+  let isEnteringAnnexPortal = false;
+  function triggerAnnexPortalDoor(pd) {
+    if (!pd || !pd.url) return;
+    if (isEnteringAnnexPortal) {
+      window.location.href = pd.url;
+      return;
+    }
+    isEnteringAnnexPortal = true;
+    unseat(myAvatar);
+    myAvatar.targetPos.set(pd.x, 0, pd.z + (pd.rotY === 0 ? 1.0 : -1.0));
+    myAvatar.state = 'walking';
+    playScrollChime(5, true);
+    showBubble(myAvatar, `${pd.icon} ${pd.title}으로 이동합니다!`);
+    const statusEl = document.getElementById('status-banner');
+    if (statusEl) {
+      statusEl.textContent = `🚪 「${pd.icon} ${pd.title}」 연결문을 통과하여 ${pd.sub} 공간으로 이동합니다...`;
+      statusEl.classList.remove('is-faded');
+    }
+    setTimeout(() => {
+      window.location.href = pd.url;
+    }, 620);
+  }
+
+  const ANNEX_PORTAL_CONFIGS = [
+    {
+      x: 0, z: -38.1, rotY: 0,
+      icon: '🎓',
+      title: '제2별관 · 3D 천상 학술원 나가는 문',
+      sub: '400m 광대한 3D 아카데미아 & 깊은 서재 100권 학술원',
+      url: './꿈디도_3D_가상도서관_프로토타입.html',
+      glowColor: 0xffe299
+    },
+    {
+      x: -25.6, z: 18.5, rotY: Math.PI,
+      icon: '🛠️',
+      title: '제1별관 · 교회지원 공방 나가는 문',
+      sub: '모세와 아론의 지팡이 · 양떼수첩 · 설교AI 7종 변환',
+      url: './kkumdido_church_support_annex.html',
+      glowColor: 0x7dd3fc
+    },
+    {
+      x: 25.6, z: 18.5, rotY: Math.PI,
+      icon: '🕊️',
+      title: '새오름 3D 온라인 예배당 나가는 문',
+      sub: '새오름 대성전 · 감람산 정원 산책로 · 갈릴리 호수',
+      url: './online_chapel_church.html',
+      glowColor: 0xfcd34d
+    }
+  ];
+
+  ANNEX_PORTAL_CONFIGS.forEach((cfg) => {
+    const pg = new THREE.Group();
+    pg.position.set(cfg.x, 0, cfg.z);
+    pg.rotation.y = cfg.rotY;
+
+    for (const sx of [-1.85, 1.85]) {
+      const colBase = new THREE.Mesh(new THREE.BoxGeometry(0.62, 0.55, 0.62), stoneMat);
+      colBase.position.set(sx, 0.275, 0);
+      const colPillar = new THREE.Mesh(new THREE.BoxGeometry(0.46, 3.3, 0.46), walnutMat);
+      colPillar.position.set(sx, 1.9, 0);
+      const colCap = new THREE.Mesh(new THREE.BoxGeometry(0.60, 0.24, 0.60), goldMat);
+      colCap.position.set(sx, 3.6, 0);
+      const bulb = new THREE.Mesh(new THREE.SphereGeometry(0.16, 10, 10), new THREE.MeshBasicMaterial({ color: 0xffe49e }));
+      bulb.position.set(sx * 0.82, 2.75, 0.32);
+      pg.add(colBase, colPillar, colCap, bulb);
+    }
+
+    const lintel = new THREE.Mesh(new THREE.BoxGeometry(4.5, 0.34, 0.58), walnutMat);
+    lintel.position.set(0, 3.75, 0);
+    const roofL = new THREE.Mesh(new THREE.BoxGeometry(2.65, 0.18, 0.72), stoneMat);
+    roofL.position.set(-1.12, 4.30, 0); roofL.rotation.z = 0.36;
+    const roofR = new THREE.Mesh(new THREE.BoxGeometry(2.65, 0.18, 0.72), stoneMat);
+    roofR.position.set(1.12, 4.30, 0); roofR.rotation.z = -0.36;
+    const topCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.12, 0.62, 0.12), goldMat);
+    topCrossV.position.set(0, 4.95, 0);
+    const topCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.42, 0.12, 0.12), goldMat);
+    topCrossH.position.set(0, 5.05, 0);
+    pg.add(lintel, roofL, roofR, topCrossV, topCrossH);
+
+    const doorGeo = new THREE.BoxGeometry(1.48, 3.05, 0.12);
+    const doorL = new THREE.Mesh(doorGeo, walnutMat);
+    doorL.position.set(-1.32, 1.55, -0.38); doorL.rotation.y = 0.55;
+    const doorR = new THREE.Mesh(doorGeo, walnutMat);
+    doorR.position.set(1.32, 1.55, -0.38); doorR.rotation.y = -0.55;
+    pg.add(doorL, doorR);
+
+    const pGlowMat = new THREE.MeshBasicMaterial({
+      color: cfg.glowColor,
+      transparent: true,
+      opacity: 0.36,
+      side: THREE.DoubleSide,
+      depthWrite: false
+    });
+    const pGlow = new THREE.Mesh(new THREE.PlaneGeometry(3.15, 3.25), pGlowMat);
+    pGlow.position.set(0, 1.72, 0.08);
+    pg.add(pGlow);
+
+    const sTex = makeSignTexture(`🚪 ${cfg.icon} ${cfg.title}`, cfg.sub, '#1b140e', '#e5be67', '#ffe8a3', 512, 132);
+    const sBoard = new THREE.Mesh(new THREE.PlaneGeometry(3.75, 0.90), new THREE.MeshBasicMaterial({ map: sTex }));
+    sBoard.position.set(0, 3.82, 0.32);
+    pg.add(sBoard);
+
+    const pdObj = {
+      ...cfg,
+      glowMesh: pGlow
+    };
+    const uData = {
+      hotspotType: 'portal_door',
+      portalData: pdObj,
+      desc: `🚪 [${cfg.title}] — ${cfg.sub} 공간으로 연결되는 포털 출입문입니다.`
+    };
+    pGlow.userData = uData;
+    sBoard.userData = uData;
+    doorL.userData = uData;
+    doorR.userData = uData;
+    interactiveHotspots.push(pGlow, sBoard, doorL, doorR);
+    annexPortalDoors.push(pdObj);
+    world.add(pg);
+  });
 
   // 지·제·클·안 연구실 & 사서실 & 개발실 아바타 주기적 브리핑 말풍선 타이머
   let secQuoteCursor = 0;
@@ -4934,6 +5433,8 @@ html, body {
           togglePanel('panel-museum-hub', 'dock-museum-hub');
           const tabBtn = document.querySelector('[data-mhub-tab="stacks"]');
           if (tabBtn) tabBtn.click();
+        } else if (ud.hotspotType === 'portal_door' && ud.portalData) {
+          triggerAnnexPortalDoor(ud.portalData);
         }
         return;
       }
@@ -5065,6 +5566,12 @@ html, body {
       name: '🪜 2층 하늘 서가 발코니',
       x: 0, y: 4.65, z: -12.4, yaw: Math.PI, pitch: 0.24, dist: 8.2,
       banner: '🪜 [2층 하늘 서가 발코니] 지상 4.65m 상공에서 대아트리움과 생명수 우물 전체를 내려다보는 2층 회랑입니다.'
+    },
+    portal_annex2: {
+      key: 'portal_annex2',
+      name: '🚪 제2별관(3D 천상학술원) 연결문',
+      x: 0, y: 0, z: -33.2, yaw: 0, pitch: 0.16, dist: 6.4,
+      banner: '🚪 [별관 연결문] 정면의 황금 아치 문으로 걸어 들어가거나 문을 클릭하면 「제2별관 · 400m 광대한 3D 천상 학술원(깊은 서재 100권)」으로 즉시 이동합니다!'
     }
   };
 
@@ -5129,18 +5636,22 @@ html, body {
   window.sitAtPastorDirectorDesk = window.sitAtPastorDirectorChair;
 
   window.focusSecretaryInLab = function(code) {
-    const mapIdx = { an: 0, cl: 1, je: 2, ji: 3, wk: 4 };
+    const mapIdx = { an: 0, cl: 1, je: 2, ji: 3, wk: 4, dir_an: 5 };
     const idx = mapIdx[code] ?? 0;
     window.jumpToCampusZone('research');
     const rAv = researcherAvatars[idx];
     if (rAv && rAv.secData) {
-      const qList = rAv.secData.quotes || [];
+      const sd = rAv.secData;
+      const frontOffset = new THREE.Vector3(0, 0, -1.65).applyAxisAngle(new THREE.Vector3(0, 1, 0), sd.lookAngle || 0);
+      myAvatar.targetPos.set(sd.x + frontOffset.x, 0, sd.z + frontOffset.z);
+      myAvatar.state = 'walking';
+      const qList = sd.quotes || [];
       if (qList.length > 0) {
         showBubble(rAv, qList[0], 5500);
       }
       const statusEl = document.getElementById('status-banner');
       if (statusEl) {
-        statusEl.textContent = `🔬 ${rAv.secData.name} (${rAv.secData.role}) 연구석을 살펴봅니다.`;
+        statusEl.textContent = `🔬 ${sd.name} (${sd.role}) 집무·연구석을 살펴봅니다.`;
         statusEl.classList.remove('is-faded');
       }
     }
@@ -5382,6 +5893,19 @@ html, body {
       updateAvatarPose(av, dt, elapsed, isMoving);
     });
 
+    // 별관 연결 3D 포털 문 빛막 호흡 & 문 통과 시 자동 포털 이동
+    annexPortalDoors.forEach((pd, idx) => {
+      if (pd.glowMesh) {
+        pd.glowMesh.material.opacity = 0.28 + 0.14 * Math.sin(elapsed * 2.5 + idx);
+      }
+      if (!isEnteringAnnexPortal && myAvatar.group.position.y < 1.0) {
+        const d = Math.hypot(myAvatar.group.position.x - pd.x, myAvatar.group.position.z - pd.z);
+        if (d < 1.45) {
+          triggerAnnexPortalDoor(pd);
+        }
+      }
+    });
+
     if (rippleAge < 1.0) {
       rippleAge += dt * 1.6;
       const s = 1 + rippleAge * 3.2;
@@ -5480,6 +6004,75 @@ html, body {
   &nbsp;·&nbsp; <button onclick="var m=document.getElementById('kkumbaonInfoModalOverlay'); if(m) m.style.display='flex';" style="background:#FFFFFF; color:#8C621E; border:1px solid #C8A45D; border-radius:6px; padding:2px 8px; font-size:11.5px; cursor:pointer;">📖 소개·출처</button><br>
   <span style="font-size:11px; opacity:0.82;">Compiled by Kkumbaon Ministry · Overseen by the Pastor of Kkumbaon, an ordained minister in full connection with the Korean Methodist Church</span>
 </div>
+
+<!-- === [꿈디도 대도서관 내부 인라인 웹뷰어 모달 (3D 도서관 이탈 원천 방지)] === -->
+<div id="kkumdido-inline-viewer-modal" class="inline-reader-backdrop" style="display:none;" onclick="if(event.target === this) window.closeInlineViewer();">
+  <div class="inline-reader-window" onclick="event.stopPropagation();">
+    <div class="inline-reader-header">
+      <div class="inline-reader-title-box">
+        <span class="inline-reader-badge">🏛️ 꿈디도 서재 열람실</span>
+        <h3 id="kkumdido-inline-viewer-title" class="inline-reader-title">📖 도서 열람</h3>
+      </div>
+      <div class="inline-reader-actions">
+        <a id="kkumdido-inline-viewer-external" href="#" target="_blank" rel="noopener" class="reader-action-btn" title="별도 새 창에서 크게 보기">
+          <span>↗ 새 창으로 열기</span>
+        </a>
+        <button type="button" class="reader-close-btn" onclick="window.closeInlineViewer()" title="닫고 3D 도서관으로 돌아가기">
+          ✕ 닫고 도서관으로
+        </button>
+      </div>
+    </div>
+    <div class="inline-reader-body">
+      <div id="kkumdido-inline-viewer-loading" class="inline-reader-loading">
+        <div class="reader-spinner"></div>
+        <div class="reader-loading-text">📜 꿈디도 황실 대도서관 장서를 서가에서 펼치고 있습니다...</div>
+      </div>
+      <iframe id="kkumdido-inline-viewer-iframe" src="about:blank" allow="autoplay; fullscreen" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+// 인라인 뷰어 전역 함수 (3D 도서관 화면 유지)
+window.openInlineViewer = function(url, title) {
+  var modal = document.getElementById('kkumdido-inline-viewer-modal');
+  var iframe = document.getElementById('kkumdido-inline-viewer-iframe');
+  var titleEl = document.getElementById('kkumdido-inline-viewer-title');
+  var externalBtn = document.getElementById('kkumdido-inline-viewer-external');
+  var loadingEl = document.getElementById('kkumdido-inline-viewer-loading');
+
+  if (!modal || !iframe) return;
+
+  if (titleEl) titleEl.textContent = title || '📖 꿈디도 디지털도서관 열람실';
+  if (externalBtn) externalBtn.href = url;
+  if (loadingEl) loadingEl.style.display = 'flex';
+
+  iframe.onload = function() {
+    if (loadingEl) loadingEl.style.display = 'none';
+  };
+  iframe.src = url;
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+};
+
+window.closeInlineViewer = function() {
+  var modal = document.getElementById('kkumdido-inline-viewer-modal');
+  var iframe = document.getElementById('kkumdido-inline-viewer-iframe');
+  if (modal) modal.style.display = 'none';
+  if (iframe) iframe.src = 'about:blank';
+  document.body.style.overflow = '';
+};
+
+// 키보드 ESC 누를 시 뷰어 닫기
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    var modal = document.getElementById('kkumdido-inline-viewer-modal');
+    if (modal && modal.style.display !== 'none') {
+      window.closeInlineViewer();
+    }
+  }
+});
+</script>
 
   <script src="kkumdido-shield.js"></script>
   <script src="kkumdido_mobile.js?v=20261108b"></script>

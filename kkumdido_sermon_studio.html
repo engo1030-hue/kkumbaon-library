@@ -2171,7 +2171,7 @@ async function _ensureStudioArchiveDetail(archNo) {
   if (_LOADED_S_ARCH.has(no)) return;
   try {
     const pad = String(no).padStart(2, '0');
-    const dmap = await _fetchStudioChunk(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261106_fix`);
+    const dmap = await _fetchStudioChunk(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261111_full`);
     _PRIVATE_MODULES.forEach(m => {
       if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id];
     });
@@ -2181,7 +2181,7 @@ async function _ensureStudioArchiveDetail(archNo) {
 
 async function tryAutoFetchLocalJson(notify = false) {
   try {
-    const core = await _fetchStudioChunk('./assets/db_chunks/kkumdido_core_idx.dat?v=20261106_fix');
+    const core = await _fetchStudioChunk('./assets/db_chunks/kkumdido_core_idx.dat?v=20261111_full');
     if (Array.isArray(core) && core.length >= 3000) {
       mergeExternalJsonData(core, notify);
     }

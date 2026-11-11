@@ -1,0 +1,1721 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>꿈디도 제2별관 · 3D 로열 헤리티지 대도서관 (Royal Heritage Library & 100권 실물 서가 탐색)</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="꿈바온 디지털 도서관 (꿈디도)" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="꿈디도 제2별관 · 3D 로열 헤리티지 대도서관 (Royal Heritage Library & 100권 실물 서가 탐색)" />
+  <meta property="og:description" content="성경 지도·인물 역사서·고고학·원어 성경 주석 66권·열린 학술원을 갖춘 개신교 무료 신학·성경 디지털 도서관" />
+  <meta property="og:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:secure_url" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="꿈디도 제2별관 · 3D 로열 헤리티지 대도서관 (Royal Heritage Library & 100권 실물 서가 탐색)" />
+  <meta name="twitter:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Noto+Serif+KR:wght@400;600;700&family=Pretendard:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="./assets/three.min.js" onerror="this.onerror=null;this.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'"></script>
+<script src="./kkumdion_books_db.js" onerror="this.onerror=null;var s=document.createElement('script');s.src='../kkumdion_books_db.js';document.head.appendChild(s);"></script>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+body {
+  overflow: hidden;
+  background-color: #090604;
+  font-family: 'Pretendard', sans-serif;
+  color: #fff;
+}
+#canvas3d { width: 100vw; height: 100vh; display: block; }
+
+/* Top Navigation Bar — Royal Burmese Walnut & 24K Gold Leaf */
+header {
+  position: absolute; top: 0.85rem; left: 1.1rem; right: 1.1rem;
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 0.75rem; pointer-events: auto; z-index: 20; flex-wrap: wrap;
+}
+.brand-box {
+  background: linear-gradient(145deg, rgba(26, 16, 10, 0.94) 0%, rgba(14, 9, 5, 0.96) 100%);
+  border: 1.5px solid #d4af37;
+  padding: 0.55rem 1.2rem; border-radius: 10px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.75), inset 0 1px 0 rgba(255,232,163,0.3);
+}
+.brand-title {
+  font-family: 'Cinzel', 'Noto Serif KR', serif; font-size: 1.12rem; font-weight: 900;
+  color: #ffe28a; letter-spacing: 1.2px;
+}
+.brand-sub { font-size: 0.75rem; color: #d8c39e; letter-spacing: 0.3px; margin-top: 2px; }
+
+/* Royal Book Search & Shelf Finder Bar */
+.search-wrapper {
+  position: relative; flex: 1; min-width: 280px; max-width: 460px;
+}
+.search-box {
+  display: flex; align-items: center; gap: 8px;
+  background: linear-gradient(145deg, rgba(28, 18, 11, 0.95), rgba(16, 10, 6, 0.96));
+  border: 1.5px solid #e5be67; border-radius: 999px;
+  padding: 0.42rem 1.0rem;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.7), 0 0 14px rgba(212,175,55,0.22);
+}
+.search-box input {
+  flex: 1; background: transparent; border: none; outline: none;
+  color: #fff6dc; font-size: 0.84rem; font-weight: 600;
+  user-select: text;
+}
+.search-box input::placeholder { color: #b8a37e; }
+.search-clear-btn {
+  background: rgba(212,175,55,0.2); border: 1px solid rgba(212,175,55,0.5);
+  color: #ffe28a; border-radius: 999px; padding: 2px 8px; font-size: 0.72rem;
+  cursor: pointer; font-weight: 700;
+}
+.search-dropdown {
+  position: absolute; top: calc(100% + 6px); left: 0; right: 0;
+  max-height: 360px; overflow-y: auto;
+  background: rgba(18, 12, 8, 0.97);
+  border: 1.5px solid #d4af37; border-radius: 12px;
+  box-shadow: 0 18px 45px rgba(0,0,0,0.88);
+  display: none; padding: 0.5rem; z-index: 50;
+}
+.search-item {
+  padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(212,175,55,0.18);
+  display: flex; justify-content: space-between; align-items: center; gap: 0.6rem;
+  border-radius: 8px; transition: background 0.15s;
+}
+.search-item:hover { background: rgba(212,175,55,0.14); }
+.search-item-info { flex: 1; min-width: 0; }
+.search-item-title {
+  font-size: 0.84rem; font-weight: 700; color: #ffe8a3;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.search-item-sub {
+  font-size: 0.73rem; color: #c7b28c; margin-top: 2px;
+}
+.search-item-actions { display: flex; gap: 5px; flex-shrink: 0; }
+.s-btn {
+  padding: 4px 9px; border-radius: 6px; font-size: 0.72rem; font-weight: 800;
+  cursor: pointer; border: 1px solid #d4af37; transition: all 0.15s;
+}
+.s-btn.walk { background: linear-gradient(135deg, #e5be67, #b88728); color: #1a1005; }
+.s-btn.read { background: rgba(255,255,255,0.1); color: #ffe8a3; }
+.s-btn:hover { transform: scale(1.04); }
+
+/* Quick Teleport Nav to Great Districts & Portal Gates */
+.nav-cluster { display: flex; gap: 0.38rem; align-items: center; flex-wrap: wrap; justify-content: flex-end; max-width: 780px; }
+.btn-action {
+  background: linear-gradient(145deg, rgba(30, 19, 12, 0.92), rgba(16, 10, 6, 0.94));
+  border: 1px solid rgba(212, 175, 55, 0.48);
+  color: #f7ebd2; padding: 0.42rem 0.76rem;
+  border-radius: 7px; font-size: 0.76rem; font-weight: 700;
+  cursor: pointer; transition: all 0.2s; backdrop-filter: blur(8px);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 4px;
+}
+.btn-action:hover, .btn-action.active {
+  background: linear-gradient(135deg, #e5c168, #b88728); color: #160d04; border-color: #ffe8a3;
+  box-shadow: 0 0 18px rgba(212, 175, 55, 0.7);
+}
+.btn-drone { background: linear-gradient(135deg, #5c191e, #360c10); border-color: #e5be67; color: #ffe8a3; }
+.btn-portal {
+  background: linear-gradient(135deg, rgba(64, 42, 15, 0.95), rgba(36, 23, 8, 0.96));
+  border: 1px solid #f3d078; color: #ffe8a3;
+}
+
+/* Status Banner */
+#portal-banner {
+  position: absolute; top: 4.9rem; left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(22, 14, 8, 0.94), rgba(38, 24, 14, 0.95), rgba(22, 14, 8, 0.94));
+  border: 1px solid rgba(229, 190, 103, 0.75);
+  padding: 0.5rem 1.35rem; border-radius: 999px;
+  font-size: 0.82rem; font-weight: 600; color: #ffe9ad;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.75);
+  z-index: 12; pointer-events: none; white-space: nowrap;
+  max-width: 94vw; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* Speech / Interaction Prompt */
+#interact-prompt {
+  position: absolute; top: 62%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(135deg, rgba(28, 18, 10, 0.96), rgba(16, 10, 5, 0.98));
+  border: 2px solid #e5be67;
+  padding: 0.82rem 1.75rem; border-radius: 30px;
+  font-size: 0.98rem; font-weight: 700; color: #ffe699;
+  box-shadow: 0 0 32px rgba(212, 175, 55, 0.75);
+  display: none; pointer-events: auto; cursor: pointer;
+  animation: pulse 1.2s infinite; z-index: 20;
+}
+@keyframes pulse {
+  0% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.05); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Floating 3D Portal Badges Layer */
+#portal-labels-layer {
+  position: absolute; inset: 0; pointer-events: none; z-index: 9; overflow: hidden;
+}
+.portal-floating-badge {
+  position: absolute; transform: translate(-50%, -100%);
+  pointer-events: auto; cursor: pointer;
+  display: flex; align-items: center; gap: 6px;
+  padding: 6px 13px; border-radius: 999px;
+  background: linear-gradient(135deg, rgba(26, 17, 9, 0.94), rgba(48, 32, 16, 0.94));
+  border: 1.5px solid #e5be67; color: #ffe8a3;
+  font-size: 12px; font-weight: 800; white-space: nowrap;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.75), 0 0 14px rgba(229, 190, 103, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.portal-floating-badge:hover {
+  transform: translate(-50%, -105%) scale(1.05);
+  background: linear-gradient(135deg, #e5be67, #b88728);
+  color: #160f06;
+  box-shadow: 0 8px 25px rgba(229, 190, 103, 0.85);
+}
+
+/* Controls Guide (Bottom Left) */
+.controls-card {
+  position: absolute; bottom: 1.1rem; left: 1.1rem;
+  background: linear-gradient(145deg, rgba(24, 15, 9, 0.92), rgba(12, 8, 4, 0.94));
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  padding: 0.82rem 1.15rem; border-radius: 10px;
+  font-size: 0.78rem; color: #e2d5be; line-height: 1.58;
+  backdrop-filter: blur(10px); z-index: 10;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65);
+}
+.key {
+  display: inline-block; background: rgba(212, 175, 55, 0.22);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  padding: 0.1rem 0.42rem; border-radius: 4px; font-weight: 700;
+  font-size: 0.72rem; color: #ffe28a;
+}
+
+/* Minimap (Bottom Right) */
+#minimap {
+  position: absolute; bottom: 1.1rem; right: 1.1rem;
+  width: 176px; height: 176px;
+  background: rgba(18, 12, 7, 0.94);
+  border: 2px solid #d4af37;
+  border-radius: 50%; overflow: hidden;
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.85); z-index: 10;
+}
+#minimap-canvas { width: 100%; height: 100%; }
+
+/* Modal Reader & Bookshelf Drawer */
+#modal {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(8, 5, 3, 0.86); backdrop-filter: blur(14px);
+  display: none; justify-content: center; align-items: center;
+  z-index: 200; user-select: text;
+}
+.modal-box {
+  width: 92%; max-width: 960px; max-height: 88vh;
+  background: #fbf7ee; color: #1e1914;
+  border-radius: 14px; border: 2.5px solid #d4af37;
+  display: flex; flex-direction: column;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.92); overflow: hidden;
+}
+.modal-header {
+  background: linear-gradient(90deg, #1c110a 0%, #2e1c10 50%, #1c110a 100%);
+  color: #fff;
+  padding: 1.1rem 1.8rem; display: flex; justify-content: space-between; align-items: center;
+  border-bottom: 2px solid #d4af37;
+}
+.modal-title { font-family: 'Noto Serif KR', serif; font-size: 1.22rem; font-weight: 700; color: #ffe8a3; }
+.modal-close {
+  background: none; border: none; color: #f3d078; font-size: 1.6rem; cursor: pointer;
+}
+.modal-body {
+  padding: 2.0rem 2.4rem; overflow-y: auto; font-family: 'Noto Serif KR', serif; line-height: 1.92; font-size: 1.04rem;
+}
+.modal-badge {
+  display: inline-block; background: #2c1b0e; color: #ffe28a; border: 1px solid #d4af37;
+  padding: 0.22rem 0.68rem; border-radius: 6px; font-size: 0.76rem; font-weight: 700; margin-bottom: 0.9rem;
+}
+.shelf-book-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 0.85rem; margin-top: 1rem;
+}
+.shelf-book-card {
+  background: linear-gradient(145deg, #24160d, #160d07);
+  border: 1px solid #c9a24b; border-radius: 10px; padding: 0.9rem 1.0rem;
+  color: #f7ebd2; cursor: pointer; transition: transform 0.16s, box-shadow 0.16s;
+}
+.shelf-book-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.45), 0 0 14px rgba(212,175,55,0.4);
+  border-color: #ffe8a3;
+}
+</style>
+</head>
+<body>
+
+<canvas id="canvas3d"></canvas>
+<div id="portal-labels-layer"></div>
+
+<header>
+  <div class="brand-box">
+    <div class="brand-title">🏛️ DREAMDIDO ROYAL HERITAGE LIBRARY</div>
+    <div class="brand-sub">세계 최고가 버마산 월넛·이탈리아 대리석·24K 순금·바카라 샹들리에 &amp; 관별 테마 성화·100권 실물 서가</div>
+  </div>
+
+  <!-- 🔍 실시간 도서 검색 & 해당 3D 서가로 걸어가서 책 뽑기 -->
+  <div class="search-wrapper">
+    <div class="search-box">
+      <span>🔍</span>
+      <input type="text" id="book-search-input" placeholder="책 제목·주제·원어·저자 검색 (예: 웨슬리, 경제, 시편 88, 헤세드, 사해사본)..." autocomplete="off">
+      <button type="button" class="search-clear-btn" onclick="openFullCatalogModal()">📚 100권 전체목록</button>
+    </div>
+    <div class="search-dropdown" id="search-dropdown"></div>
+  </div>
+
+  <div class="nav-cluster">
+    <button id="droneBtn" class="btn-action btn-drone" onclick="toggleDroneView()">🦅 황실 돔 전체 조망</button>
+    <button class="btn-action" onclick="teleport(0, 16, '🏛️ 중앙 황실 로툰다 대광장 (24K 순금 오벨리스크 & 바카라 크리스탈 샹들리에)')">🏛️ 중앙 로툰다</button>
+    <button class="btn-action" onclick="teleport(62, 0, '📜 동측 제1관: 문명사·기록학·사본 고고학 서가 (지간사·제간사 실물 서가 1~3동)')">📜 제1관: 문명·사본관</button>
+    <button class="btn-action" onclick="teleport(-62, 0, '✝️ 서측 제2관: 웨슬리·성경원어 신학 서가 (클간사·웨슬리 실물 서가 4~6동)')">✝️ 제2관: 웨슬리·원어관</button>
+    <button class="btn-action" onclick="teleport(0, -68, '🏺 북측 제3관: 교부·종교개혁·청교도 고전 서가 (실물 서가 7~9동)')">🏺 제3관: 교부·개혁관</button>
+    <button class="btn-action" onclick="teleport(0, 62, '👑 남측 제4관: 성경 66권 구속사·강해 대서가 (실물 서가 10~12동)')">👑 제4관: 66권 구속사관</button>
+    <button class="btn-action btn-portal" onclick="teleport(-42, 42, '🚪 [남서 포털 대문] 꿈디도 3D 본관 아트리움(12대 아카이브) 연결문 앞입니다.')">🚪 3D 본관문</button>
+    <button class="btn-action btn-portal" onclick="teleport(-42, -42, '🚪 [북서 포털 대문] 꿈디도 제1별관(교회지원·목회공방) 연결문 앞입니다.')">🚪 제1별관문</button>
+    <button class="btn-action btn-portal" onclick="teleport(42, 42, '🚪 [남동 포털 대문] 제2별관 열린 학술원 2D 웹뷰어·100권 이북 서가 연결문 앞입니다.')">🚪 2D 서가문</button>
+    <button class="btn-action btn-portal" onclick="teleport(42, -42, '🚪 [북동 포털 대문] 새오름 3D 온라인 예배당·감람산 정원 연결문 앞입니다.')">🚪 예배당문</button>
+  </div>
+</header>
+
+<div id="portal-banner">
+  ✨ 세계 최고가 황실 대리석·월넛·24K 골드 인테리어와 관별 대형 테마 성화로 꾸며진 3D 대도서관입니다! 서가를 걸어 다니며 책을 뽑아 읽거나 상단 검색창으로 찾아보세요.
+</div>
+
+<div id="interact-prompt" onclick="triggerActiveTarget()">
+  ✨ [E 키 / 클릭] 서가 열기
+</div>
+
+<div class="controls-card">
+  <strong>🏛️ 황실 대도서관 산책 &amp; 실물 서가 도서 탐색:</strong><br>
+  • <strong>걸어서 책 찾기:</strong> <span class="key">바닥 클릭</span> 또는 <span class="key">WASD</span>로 12동 명품 원목 서가를 돌아다니며 <span class="key">서가 클릭</span> / <span class="key">E</span> 키로 책 뽑아 읽기<br>
+  • <strong>실시간 도서 검색:</strong> 상단 검색창에서 검색 후 <strong>[🚶 서가로 걸어가기]</strong>를 누르면 아바타가 그 책이 꽂힌 서가 앞으로 안내!<br>
+  • <strong>시선 회전 / 줌 / 질주:</strong> <span class="key">마우스 드래그</span> / <span class="key">휠 스크롤</span> / <span class="key">Shift</span> 질주 · <strong>🚪 4대 황금 아치문</strong> 통과 시 본관·별관·예배당 이동
+</div>
+
+<div id="minimap">
+  <canvas id="minimap-canvas" width="176" height="176"></canvas>
+</div>
+
+<!-- Modal Paper & Shelf Viewer -->
+<div id="modal">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-title" id="m-title">서가 도서 열람</div>
+      <button class="modal-close" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="m-body"></div>
+  </div>
+</div>
+
+<!-- Full Inline Iframe Viewer Modal (도서관 이탈 방지) -->
+<div id="iframe-modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(10,8,6,0.86); backdrop-filter:blur(12px); align-items:center; justify-content:center; padding:16px;" onclick="if(event.target === this) closeIframeModal();">
+  <div style="width:95vw; max-width:1560px; height:92vh; background:#1c130b; border:1.5px solid #d4af37; border-radius:14px; box-shadow:0 25px 80px rgba(0,0,0,0.9); display:flex; flex-direction:column; overflow:hidden;" onclick="event.stopPropagation();">
+    <div style="height:52px; background:linear-gradient(135deg, #24160d, #140d07); border-bottom:1px solid rgba(212,175,55,0.45); display:flex; align-items:center; justify-content:space-between; padding:0 20px; flex-shrink:0;">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span style="background:linear-gradient(135deg, #d4af37, #9a7125); color:#120e0a; font-size:11px; font-weight:800; padding:3px 9px; border-radius:999px;">🏛️ 서재 열람 모드</span>
+        <h3 id="iframe-modal-title" style="margin:0; font-size:15px; color:#ffe8a3;">📖 도서 열람</h3>
+      </div>
+      <div style="display:flex; gap:10px;">
+        <a id="iframe-modal-external" href="#" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; height:34px; padding:0 12px; background:rgba(212,175,55,0.15); border:1px solid rgba(212,175,55,0.4); color:#ffe69c; border-radius:6px; font-size:12px; text-decoration:none;">↗ 새 창으로 열기</a>
+        <button type="button" onclick="closeIframeModal()" style="display:inline-flex; align-items:center; height:34px; padding:0 14px; background:linear-gradient(135deg, #d4af37, #b88728); border:1px solid #ffd875; color:#1a1208; border-radius:6px; font-size:12.5px; font-weight:800; cursor:pointer;">✕ 닫고 도서관으로</button>
+      </div>
+    </div>
+    <div style="flex:1; width:100%; background:#fff; position:relative;">
+      <iframe id="iframe-modal-frame" src="about:blank" style="width:100%; height:100%; border:none; display:block;"></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+// 인라인 뷰어 전역 함수 (도서관 3D 화면 유지)
+window.openInlineViewerInPrototype = function(url, title) {
+  const m = document.getElementById('iframe-modal');
+  const f = document.getElementById('iframe-modal-frame');
+  const t = document.getElementById('iframe-modal-title');
+  const ext = document.getElementById('iframe-modal-external');
+  if (t) t.textContent = title || '📖 꿈디도 도서 열람실';
+  if (ext) ext.href = url;
+  if (f) f.src = url;
+  if (m) m.style.display = 'flex';
+};
+window.closeIframeModal = function() {
+  const m = document.getElementById('iframe-modal');
+  const f = document.getElementById('iframe-modal-frame');
+  if (m) m.style.display = 'none';
+  if (f) f.src = 'about:blank';
+};
+window.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    closeIframeModal();
+  }
+});
+
+// 경로 자동 보정 (루트 폴더와 02_꿈디도_제2별관_깊은서재_학술원 폴더 양쪽 모두 100% 호환)
+function resolveKkumdidoUrl(relFromRoot) {
+  const inSubdir = window.location.pathname.indexOf('02_') !== -1 || window.location.pathname.indexOf('%EC%A0%9C2%EB%B3%84%EA%B4%80') !== -1;
+  return inSubdir ? ('../' + relFromRoot) : ('./' + relFromRoot);
+}
+
+// --- Three.js Royal Heritage Luxury 3D Library Engine ---
+let scene, camera, renderer, groundMesh;
+let avatarGroup, avatarBody, avatarHead, leftLeg, rightLeg, leftArm, rightArm;
+let walkTime = 0;
+let isMoving = false, isRunning = false;
+let clickTargetPos = null;
+let pendingOpenShelfAfterWalk = null;
+let isTeleportingPortal = false;
+
+const keys = { w: false, a: false, s: false, d: false, shift: false };
+const avatarPos = new THREE.Vector3(0, 0, 18);
+let avatarHeading = 0;
+
+let camDistance = 12.0;
+let camHeight = 4.8;
+let camPitch = 0.24;
+let camYaw = 0;
+let isDroneView = false;
+let isDragging = false;
+let dragMoved = false;
+let prevMouse = { x: 0, y: 0 };
+
+const interactables = [];
+const portalGates = [];
+const clickableMeshes = [];
+const shelfObjectsById = {};
+let activeTarget = null;
+let allLibraryBooks = [];
+
+// 12동 실물 명품 원목 서가 정의 (4대 황실 홀 × 각 3동 대서가 = 총 12동에 100권 전수 배치!)
+const ROYAL_SHELF_DEFS = [
+  // 동측 제1관: 문명사·기록학·사본·성서고고학 (X: +55 ~ +88, Z: -18 ~ +18)
+  { id: 'shelf-1', hallNo: 1, hallName: '동측 제1관 · 문명사·기록학·사본 서가', title: '제1서가 · 기록문명사 & 사해사본·성서고고학 (JI001, DR001~DR005)', x: 66, z: -13, rotY: 0, filterFn: (b) => b.id === 'JI001' || /^DR00[1-5]$/.test(b.id) },
+  { id: 'shelf-2', hallNo: 1, hallName: '동측 제1관 · 문명사·기록학·사본 서가', title: '제2서가 · 구약 언약·성막·대속죄일 원어 연구 (DR006, DR010, DR021~DR025)', x: 66, z: 13, rotY: Math.PI, filterFn: (b) => ['DR006','DR010','DR021','DR022','DR023','DR024','DR025'].includes(b.id) },
+  { id: 'shelf-3', hallNo: 1, hallName: '동측 제1관 · 문명사·기록학·사본 서가', title: '제3서가 · 신약 복음서·바울신학·초대교회사 (DR007~DR009, DR026~DR030)', x: 82, z: 0, rotY: -Math.PI / 2, filterFn: (b) => ['DR007','DR008','DR009','DR026','DR027','DR028','DR029','DR030'].includes(b.id) },
+
+  // 서측 제2관: 웨슬리 신학·성경원어 주해관 (X: -55 ~ -88, Z: -18 ~ +18)
+  { id: 'shelf-4', hallNo: 2, hallName: '서측 제2관 · 웨슬리·성경원어 신학관', title: '제4서가 · 클간사 웨슬리 완전·경제윤리·숯불·시편88편 (CL001~CL008)', x: -66, z: -13, rotY: 0, filterFn: (b) => b.id.startsWith('CL') },
+  { id: 'shelf-5', hallNo: 2, hallName: '서측 제2관 · 웨슬리·성경원어 신학관', title: '제5서가 · 존 웨슬리 구원의 서정·회심·찬송·사회성결 (DR011~DR015)', x: -66, z: 13, rotY: Math.PI, filterFn: (b) => /^DR01[1-5]$/.test(b.id) },
+  { id: 'shelf-6', hallNo: 2, hallName: '서측 제2관 · 웨슬리·성경원어 신학관', title: '제6서가 · 자유주제 성경·신학·목회 심층연구 (DR-FREE-01~10)', x: -82, z: 0, rotY: Math.PI / 2, filterFn: (b) => b.id.startsWith('DR-FREE') },
+
+  // 북측 제3관: 교부·종교개혁·청교도 고전관 (X: -18 ~ +18, Z: -60 ~ -92)
+  { id: 'shelf-7', hallNo: 3, hallName: '북측 제3관 · 교부·종교개혁·청교도 고전관', title: '제7서가 · 니케아·칼케돈 교부 & 아우구스티누스·천로역정 (DR016~DR020)', x: -13, z: -74, rotY: Math.PI / 2, filterFn: (b) => /^DR01[6-9]|DR020$/.test(b.id) },
+  { id: 'shelf-8', hallNo: 3, hallName: '북측 제3관 · 교부·종교개혁·청교도 고전관', title: '제8서가 · 마르틴 루터 종교개혁 핵심 원전 강해 (LU001~LU291)', x: 13, z: -74, rotY: -Math.PI / 2, filterFn: (b) => b.id.startsWith('LU') },
+  { id: 'shelf-9', hallNo: 3, hallName: '북측 제3관 · 교부·종교개혁·청교도 고전관', title: '제9서가 · 장 칼빈 기독교강요·주석 & 개혁 신학 비교 (CA001~CA291)', x: 0, z: -88, rotY: 0, filterFn: (b) => b.id.startsWith('CA') },
+
+  // 남측 제4관: 성경 66권 구속사·강해 대서가 (X: -18 ~ +18, Z: +58 ~ +92)
+  { id: 'shelf-10', hallNo: 4, hallName: '남측 제4관 · 성경 66권 구속사 대서가', title: '제10서가 · 모세오경 & 구약 역사서 원어·구속사 강해 (B1-01~B1-16)', x: -13, z: 72, rotY: Math.PI / 2, filterFn: (b) => /^B1-(0[1-9]|1[0-6])$/.test(b.id) },
+  { id: 'shelf-11', hallNo: 4, hallName: '남측 제4관 · 성경 66권 구속사 대서가', title: '제11서가 · 구약 시가서·선지서 원어·메시아 예언 강해 (B1-17~B1-39)', x: 13, z: 72, rotY: -Math.PI / 2, filterFn: (b) => /^B1-(1[7-9]|2[0-9]|3[0-9])$/.test(b.id) },
+  { id: 'shelf-12', hallNo: 4, hallName: '남측 제4관 · 성경 66권 구속사 대서가', title: '제12서가 · 신약 4복음서·사도행전·바울서신·계시록 & 마스터 정본 (B1-40~B1-66, A6-MASTER)', x: 0, z: 86, rotY: Math.PI, filterFn: (b) => b.id === 'A6-MASTER' || /^B1-(4[0-9]|5[0-9]|6[0-9])$/.test(b.id) }
+];
+
+function setBannerText(msg) {
+  const el = document.getElementById('portal-banner');
+  if (el) el.textContent = msg;
+}
+
+function initBooksDatabase() {
+  if (window.KKUMDION_BOOKS_DB && Array.isArray(window.KKUMDION_BOOKS_DB.books)) {
+    allLibraryBooks = window.KKUMDION_BOOKS_DB.books;
+  } else {
+    allLibraryBooks = [];
+  }
+  // Assign each book to a shelf
+  ROYAL_SHELF_DEFS.forEach(sd => {
+    sd.books = allLibraryBooks.filter(sd.filterFn);
+    sd.books.forEach(b => { b._shelfId = sd.id; b._shelfTitle = sd.title; });
+  });
+  // Fallback for any unassigned books
+  allLibraryBooks.forEach(b => {
+    if (!b._shelfId && ROYAL_SHELF_DEFS.length > 0) {
+      ROYAL_SHELF_DEFS[0].books.push(b);
+      b._shelfId = ROYAL_SHELF_DEFS[0].id;
+      b._shelfTitle = ROYAL_SHELF_DEFS[0].title;
+    }
+  });
+  setupSearchBox();
+}
+
+function setupSearchBox() {
+  const input = document.getElementById('book-search-input');
+  const dropdown = document.getElementById('search-dropdown');
+  if (!input || !dropdown) return;
+
+  function renderResults(q) {
+    const kw = (q || '').trim().toLowerCase();
+    let list = allLibraryBooks;
+    if (kw) {
+      list = allLibraryBooks.filter(b =>
+        (b.id && b.id.toLowerCase().includes(kw)) ||
+        (b.title && b.title.toLowerCase().includes(kw)) ||
+        (b.subtitle && b.subtitle.toLowerCase().includes(kw)) ||
+        (b.scripture && b.scripture.toLowerCase().includes(kw)) ||
+        (b.author && b.author.toLowerCase().includes(kw)) ||
+        (b.category && b.category.toLowerCase().includes(kw))
+      );
+    } else {
+      list = allLibraryBooks.slice(0, 18);
+    }
+
+    if (list.length === 0) {
+      dropdown.innerHTML = `<div style="padding:0.9rem; color:#d8c39e; font-size:0.82rem; text-align:center;">검색 결과가 없습니다. 다른 키워드(예: 웨슬리, 시편, 헤세드, 사해사본, 루터)를 입력해 보세요.</div>`;
+    } else {
+      dropdown.innerHTML = list.slice(0, 25).map(b => `
+        <div class="search-item">
+          <div class="search-item-info">
+            <div class="search-item-title">[${b.id}] ${b.title}</div>
+            <div class="search-item-sub">📍 ${b._shelfTitle || '제1서가'} · ✍️ ${b.author || '꿈디도 연구원'} · ${(b.charCount || 9000).toLocaleString()}자</div>
+          </div>
+          <div class="search-item-actions">
+            <button type="button" class="s-btn walk" onclick="walkToBookShelf('${b.id}')">🚶 서가로 걸어가기</button>
+            <button type="button" class="s-btn read" onclick="openBookById('${b.id}')">📖 바로 읽기</button>
+          </div>
+        </div>
+      `).join('');
+    }
+    dropdown.style.display = 'block';
+  }
+
+  input.addEventListener('focus', () => renderResults(input.value));
+  input.addEventListener('input', () => renderResults(input.value));
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.search-wrapper')) {
+      dropdown.style.display = 'none';
+    }
+  });
+}
+
+window.walkToBookShelf = function(bookId) {
+  const dropdown = document.getElementById('search-dropdown');
+  if (dropdown) dropdown.style.display = 'none';
+  const book = allLibraryBooks.find(b => b.id === bookId);
+  if (!book) return;
+  const shelfObj = shelfObjectsById[book._shelfId];
+  if (!shelfObj) {
+    openBookById(bookId);
+    return;
+  }
+  // Teleport near the hall first if very far, then walk smoothly right up to the shelf!
+  const targetStand = shelfObj.frontPos.clone();
+  const dist = Math.hypot(avatarPos.x - targetStand.x, avatarPos.z - targetStand.z);
+  if (dist > 38) {
+    const dir = new THREE.Vector3().subVectors(avatarPos, targetStand).normalize();
+    avatarPos.set(targetStand.x + dir.x * 14, 0, targetStand.z + dir.z * 14);
+    avatarGroup.position.copy(avatarPos);
+  }
+  clickTargetPos = targetStand;
+  pendingOpenShelfAfterWalk = { shelfObj, highlightBookId: bookId };
+  setBannerText(`🚶‍♂️ 「[${book.id}] ${book.title}」 도서가 꽂혀 있는 【${shelfObj.name}】 앞으로 걸어갑니다...`);
+};
+
+window.openBookById = function(bookId) {
+  const dropdown = document.getElementById('search-dropdown');
+  if (dropdown) dropdown.style.display = 'none';
+  const b = allLibraryBooks.find(x => x.id === bookId);
+  if (!b) return;
+  const viewerUrl = resolveKkumdidoUrl('꿈디도_제2별관_열린학술원_웹뷰어.html');
+  const shelfUrl = resolveKkumdidoUrl('kkumdion_bookshelf.html');
+  document.getElementById('m-title').textContent = `📖 [${b.id}] ${b.title}`;
+  document.getElementById('m-body').innerHTML = `
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.8rem;">
+      <span class="modal-badge">${b.gradeLabel || b.grade || '학술 연구 총서'} · ${(b.charCount || 9000).toLocaleString()}자</span>
+      <button type="button" onclick="openShelfModal('${b._shelfId || 'shelf-1'}')" style="background:#24160d; color:#ffe28a; border:1px solid #d4af37; padding:5px 12px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.8rem;">
+        🔙 이 서가(${b._shelfTitle || '서가'})의 다른 책 보기
+      </button>
+    </div>
+    <p style="font-size:0.92rem; color:#4a3c2c;"><strong>저자:</strong> ${b.author || ''} &nbsp;|&nbsp; <strong>성경 본문:</strong> ${b.scripture || b.subtitle || ''}</p>
+    <p style="font-size:0.86rem; color:#6b5842; margin-top:4px;"><strong>검수 및 대조:</strong> ${b.auditChecklist || '원어·사료 DB 대조'}</p>
+    <hr style="border:0; height:1px; background:#dfd3be; margin:1.1rem 0;">
+    <div style="background:#fffdf9; padding:1.5rem 1.8rem; border-radius:10px; border:1px solid #e6dac6;">
+      ${b.htmlContent || `<p>${b.summary || ''}</p>`}
+    </div>
+    ${b.reviewerQuestion ? `
+      <div style="margin-top:1.4rem; padding:1.2rem 1.5rem; background:#f3ede0; border-left:4px solid #b88728; border-radius:8px;">
+        <div style="font-weight:800; color:#3d2712; margin-bottom:0.4rem;">💬 검수자의 학술·신학 질문 (${b.reviewer || '교차검수위원'})</div>
+        <p style="font-size:0.94rem; color:#2b2118;">${b.reviewerQuestion}</p>
+        ${b.authorAnswer ? `<div style="margin-top:0.8rem; padding-top:0.8rem; border-top:1px dashed #cbbba0;"><strong style="color:#1b4332;">✍️ 저자의 응답:</strong><p style="font-size:0.94rem; color:#2b2118; margin-top:4px;">${b.authorAnswer}</p></div>` : ''}
+      </div>
+    ` : ''}
+    <div style="margin-top:1.8rem; display:flex; gap:0.8rem; justify-content:flex-end; flex-wrap:wrap;">
+      <button type="button" onclick="openInlineViewerInPrototype('${viewerUrl}', '🎓 제2별관 열린 학술원 웹뷰어')" style="display:inline-block; background:#1c110a; color:#ffe28a; padding:0.65rem 1.25rem; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.88rem; border:1px solid #d4af37;">
+        🎓 제2별관 열린 학술원 웹뷰어 열기 ➔
+      </button>
+      <button type="button" onclick="openInlineViewerInPrototype('${shelfUrl}', '📚 꿈디온 깊은 서재 100권 전체 서가')" style="display:inline-block; background:#4a2c11; color:#fff; padding:0.65rem 1.25rem; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.88rem; border:1px solid #d4af37;">
+        📚 꿈디온 깊은 서재 100권 전체 서가 열기 ➔
+      </button>
+    </div>
+  `;
+  document.getElementById('modal').style.display = 'flex';
+};
+
+window.openShelfModal = function(shelfId, highlightBookId) {
+  const shelfObj = shelfObjectsById[shelfId];
+  if (!shelfObj) return;
+  const sd = shelfObj.shelfDef;
+  const books = sd.books || [];
+  document.getElementById('m-title').textContent = `📚 ${sd.title} (총 ${books.length}권 수록)`;
+  document.getElementById('m-body').innerHTML = `
+    <div class="modal-badge">🏛️ ${sd.hallName} · 최고급 버마산 월넛 & 24K 골드 리프 서가</div>
+    <p style="color:#4a3b2c; font-size:0.95rem;">사람이 실제 도서관 서가 앞에서 책을 고르듯, 아래 가죽 장정 도서 카드를 클릭하시면 해당 연구서 전문을 즉시 펼쳐 읽으실 수 있습니다.</p>
+    <div class="shelf-book-grid">
+      ${books.map(b => {
+        const isHi = (b.id === highlightBookId);
+        return `
+          <div class="shelf-book-card" onclick="openBookById('${b.id}')" style="${isHi ? 'border:2.5px solid #ffe8a3; box-shadow:0 0 22px rgba(255,232,163,0.75);' : ''}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:0.75rem; font-weight:800; color:#ffe28a; background:rgba(212,175,55,0.2); padding:2px 8px; border-radius:4px;">${b.id} · ${b.grade}등급</span>
+              <span style="font-size:0.74rem; color:#cbb793;">${(b.charCount || 9000).toLocaleString()}자</span>
+            </div>
+            <div style="font-size:0.98rem; font-weight:700; color:#fff8e6; line-height:1.45; margin-bottom:6px;">${b.title}</div>
+            <div style="font-size:0.78rem; color:#d4c09e; line-height:1.4;">✍️ ${b.author || '꿈디도 연구원'}</div>
+            <div style="font-size:0.75rem; color:#a89474; margin-top:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">📖 ${b.scripture || b.subtitle || ''}</div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+  document.getElementById('modal').style.display = 'flex';
+};
+
+window.openFullCatalogModal = function() {
+  document.getElementById('m-title').textContent = `🏛️ 꿈디도 로열 헤리티지 대도서관 · 12동 실물 서가 & 100권 전수 목록`;
+  document.getElementById('m-body').innerHTML = `
+    <p style="color:#4a3b2c; font-size:0.95rem; margin-bottom:1rem;">관별 서가를 선택하시거나 <strong>[🚶 이 서가로 걸어가기]</strong>를 누르시면 탐독자 아바타가 해당 서가 앞으로 직접 이동합니다.</p>
+    ${ROYAL_SHELF_DEFS.map(sd => `
+      <div style="margin-bottom:1.2rem; padding:1rem 1.2rem; background:#f4eee1; border:1px solid #d6c5a5; border-radius:10px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem;">
+          <strong style="font-size:1.02rem; color:#2b1a0c;">📚 ${sd.title} (${(sd.books || []).length}권)</strong>
+          <div style="display:flex; gap:6px;">
+            <button type="button" onclick="closeModal(); teleport(${sd.x}, ${sd.z > 0 ? sd.z - 5 : sd.z + 5}, '📚 【${sd.title}】 앞으로 이동했습니다.')" style="background:#b88728; color:#fff; border:none; padding:5px 11px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.78rem;">🚶 이 서가로 이동</button>
+            <button type="button" onclick="openShelfModal('${sd.id}')" style="background:#24160d; color:#ffe28a; border:1px solid #d4af37; padding:5px 11px; border-radius:6px; cursor:pointer; font-weight:700; font-size:0.78rem;">📖 서가 도서 펼치기</button>
+          </div>
+        </div>
+      </div>
+    `).join('')}
+  `;
+  document.getElementById('modal').style.display = 'flex';
+};
+
+function init() {
+  initBooksDatabase();
+
+  const canvas = document.getElementById('canvas3d');
+  renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.12;
+
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x110b07);
+  scene.fog = new THREE.FogExp2(0x110b07, 0.0028);
+
+  camera = new THREE.PerspectiveCamera(70, window.innerWidth / window.innerHeight, 0.5, 650);
+
+  // 황실 대성당 도서관의 따뜻하고 중후한 24K 골드 & 캔들라이트 조명
+  const ambient = new THREE.AmbientLight(0xffeacc, 0.92);
+  scene.add(ambient);
+
+  const sunLight = new THREE.DirectionalLight(0xfff1d0, 1.35);
+  sunLight.position.set(60, 125, 50);
+  sunLight.castShadow = true;
+  sunLight.shadow.mapSize.width = 2048;
+  sunLight.shadow.mapSize.height = 2048;
+  sunLight.shadow.camera.near = 10;
+  sunLight.shadow.camera.far = 420;
+  sunLight.shadow.camera.left = -165;
+  sunLight.shadow.camera.right = 165;
+  sunLight.shadow.camera.top = 165;
+  sunLight.shadow.camera.bottom = -165;
+  scene.add(sunLight);
+
+  buildRoyalHeritageWorld();
+  buildScholarAvatar();
+  setupInput();
+  animate();
+}
+
+function buildRoyalHeritageWorld() {
+  const texLoader = new THREE.TextureLoader();
+  function loadLuxuryTex(relPath, rx, ry) {
+    const t = texLoader.load(resolveKkumdidoUrl(relPath));
+    t.wrapS = THREE.RepeatWrapping;
+    t.wrapT = THREE.RepeatWrapping;
+    t.repeat.set(rx, ry);
+    return t;
+  }
+
+  // 최고가 인테리어 텍스처 로드 (이탈리아 황실 대리석, 버마산 월넛 원목, 로열 크림슨 벨벳, 고성당 석조, 가죽장정 고서적)
+  const marbleTex = loadLuxuryTex('assets/euro/euro_marble_floor.webp', 28, 28);
+  const walnutTex = loadLuxuryTex('assets/euro/euro_walnut_wood.webp', 4, 4);
+  const walnutBump = loadLuxuryTex('assets/euro/euro_walnut_bump.webp', 4, 4);
+  const velvetTex = loadLuxuryTex('assets/euro/euro_crimson_velvet.webp', 6, 24);
+  const stoneTex = loadLuxuryTex('assets/euro/euro_cathedral_vault_stone.webp', 4, 8);
+  const booksWallTex = loadLuxuryTex('assets/euro/euro_library_bookshelves.webp', 4, 2);
+
+  const royalWalnutMat = new THREE.MeshStandardMaterial({
+    map: walnutTex, bumpMap: walnutBump, bumpScale: 0.03,
+    color: 0x5a381e, roughness: 0.36, metalness: 0.15
+  });
+  const royalGoldMat = new THREE.MeshStandardMaterial({
+    color: 0xe5be67, metalness: 0.85, roughness: 0.18
+  });
+  const imperialStoneMat = new THREE.MeshStandardMaterial({
+    map: stoneTex, color: 0xdfd3be, roughness: 0.45, metalness: 0.1
+  });
+  const crimsonVelvetMat = new THREE.MeshStandardMaterial({
+    map: velvetTex, color: 0x7a161e, roughness: 0.65, metalness: 0.08
+  });
+  const booksWallMat = new THREE.MeshStandardMaterial({
+    map: booksWallTex, roughness: 0.48
+  });
+
+  // 1. 이탈리아 칼라카타 & 황실 천연 대리석 바닥 (400m x 400m)
+  const groundGeo = new THREE.PlaneGeometry(400, 400, 32, 32);
+  const groundMat = new THREE.MeshStandardMaterial({
+    map: marbleTex, color: 0xd8cbb8, roughness: 0.25, metalness: 0.22
+  });
+  groundMesh = new THREE.Mesh(groundGeo, groundMat);
+  groundMesh.rotation.x = -Math.PI / 2;
+  groundMesh.receiveShadow = true;
+  scene.add(groundMesh);
+
+  // 동·서·남·북 4대 홀 및 4대 포털 대문을 잇는 로열 크림슨 벨벳 카펫 런너 & 24K 순금 테두리
+  for (const angle of [0, Math.PI / 2, Math.PI / 4, -Math.PI / 4]) {
+    const len = (angle === 0 || angle === Math.PI / 2) ? 175 : 152;
+    const runnerGroup = new THREE.Group();
+    runnerGroup.rotation.y = angle;
+    const carpet = new THREE.Mesh(new THREE.BoxGeometry(6.8, 0.08, len), crimsonVelvetMat);
+    carpet.position.set(0, 0.04, 0);
+    carpet.receiveShadow = true;
+    const goldEdgeL = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.10, len), royalGoldMat);
+    goldEdgeL.position.set(-3.45, 0.05, 0);
+    const goldEdgeR = new THREE.Mesh(new THREE.BoxGeometry(0.26, 0.10, len), royalGoldMat);
+    goldEdgeR.position.set(3.45, 0.05, 0);
+    runnerGroup.add(carpet, goldEdgeL, goldEdgeR);
+    scene.add(runnerGroup);
+  }
+
+  // 2. 중앙 황실 로툰다 대광장 (Imperial Rotunda & 24K Gold Obelisk)
+  const plazaDais = new THREE.Mesh(
+    new THREE.CylinderGeometry(26, 28, 1.0, 64),
+    new THREE.MeshStandardMaterial({ map: walnutTex, color: 0x3b2313, metalness: 0.35, roughness: 0.3 })
+  );
+  plazaDais.position.set(0, 0.5, 0);
+  plazaDais.receiveShadow = true;
+  scene.add(plazaDais);
+
+  const plazaGoldRing = new THREE.Mesh(new THREE.TorusGeometry(26.2, 0.28, 16, 64), royalGoldMat);
+  plazaGoldRing.rotation.x = Math.PI / 2;
+  plazaGoldRing.position.y = 1.02;
+  scene.add(plazaGoldRing);
+
+  // 중앙 24K 순금·흑단 상감 오벨리스크 (높이 28m)
+  const obelisk = new THREE.Mesh(
+    new THREE.CylinderGeometry(1.5, 2.5, 28, 4),
+    royalGoldMat
+  );
+  obelisk.position.set(0, 14.5, 0);
+  obelisk.rotation.y = Math.PI / 4;
+  obelisk.castShadow = true;
+  scene.add(obelisk);
+
+  const diamond = new THREE.Mesh(
+    new THREE.OctahedronGeometry(2.8, 1),
+    new THREE.MeshStandardMaterial({ color: 0xfff8dc, emissive: 0xffb703, emissiveIntensity: 0.95 })
+  );
+  diamond.position.set(0, 30.5, 0);
+  scene.add(diamond);
+
+  const obeliskLight = new THREE.PointLight(0xffd670, 2.8, 130);
+  obeliskLight.position.set(0, 32, 0);
+  scene.add(obeliskLight);
+
+  // 중앙 황실 로툰다 코린트식 대리석·순금 열주랑 (반경 36m에 24기 + 상단 황실 아키트레이브 링)
+  for (let i = 0; i < 24; i++) {
+    const angle = (i / 24) * Math.PI * 2;
+    const px = Math.cos(angle) * 36;
+    const pz = Math.sin(angle) * 36;
+    createRoyalCorinthianPillar(px, pz, 18, imperialStoneMat, royalGoldMat, royalWalnutMat);
+  }
+  const rotundaCrown = new THREE.Mesh(new THREE.TorusGeometry(36.0, 0.85, 16, 64), royalGoldMat);
+  rotundaCrown.rotation.x = Math.PI / 2;
+  rotundaCrown.position.y = 18.2;
+  scene.add(rotundaCrown);
+
+  // 로툰다 상공 바카라 크리스탈 & 황동 대형 샹들리에 8기
+  for (let i = 0; i < 8; i++) {
+    const ang = (i / 8) * Math.PI * 2;
+    createBaccaratChandelier(Math.cos(ang) * 22, 16.5, Math.sin(ang) * 22, royalGoldMat);
+  }
+
+  // 2-B. 중앙 황실 로툰다 『🏛️ 꿈디도 관장 안관장』 & 『🚀 비서실장 안간사』 집무 데스크 나란히 배치!
+  [
+    {
+      x: -7.5, z: 5.5, rotY: 0.25,
+      isDirector: true,
+      name: '🏛️ 꿈디도 관장 안관장 (Director An)',
+      sub: '꿈바온 디지털도서관 총괄관장 · 황실 대도서관 & 100권 학술원 수호',
+      coatColor: 0x6b1d28
+    },
+    {
+      x: 7.5, z: 5.5, rotY: -0.25,
+      isDirector: false,
+      name: '🚀 비서실장 안간사 (Antigravity)',
+      sub: '총괄 비서실장 · 서브픽셀 시네마 마스터링 · 8개국어 패키징 총괄',
+      coatColor: 0x1c2d42
+    }
+  ].forEach((npc) => {
+    const dg = new THREE.Group();
+    dg.position.set(npc.x, 1.0, npc.z);
+    dg.rotation.y = npc.rotY;
+
+    // 최고급 월넛 & 24K 순금 몰딩 집무 데스크
+    const dTop = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.14, 1.45), royalWalnutMat);
+    dTop.position.y = 0.85;
+    dTop.castShadow = true; dTop.receiveShadow = true;
+    const dTrim = new THREE.Mesh(new THREE.BoxGeometry(3.32, 0.08, 1.54), royalGoldMat);
+    dTrim.position.y = 0.89;
+    const dFront = new THREE.Mesh(new THREE.BoxGeometry(3.0, 0.82, 1.25), royalWalnutMat);
+    dFront.position.y = 0.42;
+    dg.add(dTop, dTrim, dFront);
+
+    if (npc.isDirector) {
+      // 안관장 데스크: 초록 갓 에메랄드 뱅커스 램프 + 24K 순금 천구의 + 양피지 고서
+      const lampShade = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.16, 0.30, 0.20, 16),
+        new THREE.MeshStandardMaterial({ color: 0x127a48, emissive: 0x0b4f2e, emissiveIntensity: 0.85 })
+      );
+      lampShade.position.set(-0.95, 1.32, 0.2);
+      const lampStem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.05, 0.42, 10), royalGoldMat);
+      lampStem.position.set(-0.95, 1.08, 0.2);
+      const globe = new THREE.Mesh(new THREE.SphereGeometry(0.24, 16, 16), royalGoldMat);
+      globe.position.set(0.95, 1.22, 0.2);
+      const scroll = new THREE.Mesh(new THREE.BoxGeometry(0.75, 0.05, 0.48), new THREE.MeshStandardMaterial({ color: 0xfff3d1 }));
+      scroll.position.set(0, 0.94, 0.18);
+      dg.add(lampShade, lampStem, globe, scroll);
+    } else {
+      // 안비서실장 데스크: 듀얼 와이드 모니터 + 프로덕션 레드 박스
+      const monMat = new THREE.MeshStandardMaterial({ color: 0x101824, emissive: 0x1d4268, emissiveIntensity: 0.8 });
+      const monL = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.62, 0.08), monMat);
+      monL.position.set(-0.56, 1.26, 0.25); monL.rotation.y = -0.18;
+      const monR = new THREE.Mesh(new THREE.BoxGeometry(1.05, 0.62, 0.08), monMat);
+      monR.position.set(0.56, 1.26, 0.25); monR.rotation.y = 0.18;
+      const redBox = new THREE.Mesh(new THREE.BoxGeometry(0.46, 0.32, 0.36), new THREE.MeshStandardMaterial({ color: 0xb82828 }));
+      redBox.position.set(-1.18, 1.08, -0.15);
+      dg.add(monL, monR, redBox);
+    }
+
+    // 3D 인물 아바타 (데스크 뒤쪽 z = -0.65에 착석하여 정면 +Z 방문자를 맞이함)
+    const avG = new THREE.Group();
+    avG.position.set(0, 0, -0.65);
+    const torso = new THREE.Mesh(
+      new THREE.CylinderGeometry(0.28, 0.34, 0.82, 16),
+      new THREE.MeshStandardMaterial({ color: npc.coatColor, roughness: 0.45 })
+    );
+    torso.position.y = 0.95;
+    const collar = new THREE.Mesh(new THREE.TorusGeometry(0.24, 0.05, 10, 20), royalGoldMat);
+    collar.rotation.x = Math.PI / 2; collar.position.y = 1.32;
+    const head = new THREE.Mesh(
+      new THREE.SphereGeometry(0.24, 18, 18),
+      new THREE.MeshStandardMaterial({ color: 0xf6dcc7, roughness: 0.5 })
+    );
+    head.position.y = 1.60;
+    const hair = new THREE.Mesh(
+      new THREE.SphereGeometry(0.25, 18, 18, 0, Math.PI * 2, 0, Math.PI * 0.58),
+      new THREE.MeshStandardMaterial({ color: 0x1e1612, roughness: 0.7 })
+    );
+    hair.position.y = 1.63;
+    avG.add(torso, collar, head, hair);
+    dg.add(avG);
+
+    // 상단 황금 명패 보드
+    const nBoard = createTextBillboard(npc.name, npc.sub, 3.8, 0.86, npc.isDirector ? '#2a0f15' : '#101826');
+    nBoard.position.set(0, 2.55, 0);
+    dg.add(nBoard);
+
+    scene.add(dg);
+  });
+
+  // 3. 4대 황실 테마 전당 건축 (관별 최고급 원목·대리석 신전 + 관별 초대형 황금 액자 테마 성화 3점씩!)
+  // [제1관: 동측 문명사·기록학·사본·성서고고학 전당]
+  createLuxuryHallArchitecture({
+    x: 74, z: 0, rotY: -Math.PI / 2,
+    hallTitle: "🏛️ 제1관 · 문명사·기록학 & 사해사본·성서고고학 전당",
+    hallSub: "점토판에서 인공지능 도서관까지 · 쿰란 대이사야 두루마리 · 고대 근동 5대 비문",
+    walnutMat: royalWalnutMat, goldMat: royalGoldMat, stoneMat: imperialStoneMat, booksMat: booksWallMat,
+    themePaintings: [
+      { file: 'assets/webp/archaeological_biblical_world_map.webp', title: '성경 세계 고고학 문명권 대지도' },
+      { file: 'assets/webp/arch_01_five_inscriptions.webp', title: '고대 근동 5대 성서 고고학 비문 도판' },
+      { file: 'assets/webp/2026-11-01-책을-들고-나온-사람들-사도행전-191-20.webp', title: '두루마리 책을 들고 나온 사람들 (행 19장)' }
+    ]
+  });
+
+  // [제2관: 서측 웨슬리 신학·성경원어 주해 전당]
+  createLuxuryHallArchitecture({
+    x: -74, z: 0, rotY: Math.PI / 2,
+    hallTitle: "✝️ 제2관 · 존 웨슬리 신학 & 히브리어·헬라어 원어 전당",
+    hallSub: "올더스게이트 회심 · 그리스도인의 완전 · 경제윤리(돈의 사용) · 숯불의 회복 · 시편 88편",
+    walnutMat: royalWalnutMat, goldMat: royalGoldMat, stoneMat: imperialStoneMat, booksMat: booksWallMat,
+    themePaintings: [
+      { file: 'assets/webp/wesley_01_aldersgate.webp', title: '1738 올더스게이트 회심과 웨슬리 부흥' },
+      { file: 'assets/webp/feast_narrative_03_jesus_upper_room_cup.webp', title: '다락방 성만찬과 은혜의 수단' },
+      { file: 'assets/webp/feast_wide_01_sabbath_lamps.webp', title: '안식일 등불과 거룩한 성화의 삶' }
+    ]
+  });
+
+  // [제3관: 북측 교부·종교개혁·청교도 고전 전당]
+  createLuxuryHallArchitecture({
+    x: 0, z: -80, rotY: 0,
+    hallTitle: "🏺 제3관 · 초대 교부 · 종교개혁 · 청교도 고전 전당",
+    hallSub: "니케아·칼케돈 정통 기독론 · 아우구스티누스 · 마르틴 루터 · 장 칼빈 · 존 번연",
+    walnutMat: royalWalnutMat, goldMat: royalGoldMat, stoneMat: imperialStoneMat, booksMat: booksWallMat,
+    themePaintings: [
+      { file: 'assets/webp/artifact_wide_passover_four_cups.webp', title: '유월절 구속사 네 잔과 언약의 피' },
+      { file: 'assets/webp/feast_narrative_06_high_priest_azazel_scapegoat.webp', title: '대속죄일 속죄소(힐라스테리온)와 대속' },
+      { file: 'assets/webp/arch_plate_01.webp', title: '성경 사본과 정통 신앙고백의 전승' }
+    ]
+  });
+
+  // [제4관: 남측 성경 66권 1,189장 구속사·강해 전당]
+  createLuxuryHallArchitecture({
+    x: 0, z: 78, rotY: Math.PI,
+    hallTitle: "👑 제4관 · 성경 66권 1,189장 구속사·원어 강해 대성전",
+    hallSub: "창세기부터 요한계시록까지 · 오직 성경(Sola Scriptura) · 오직 그리스도(Solus Christus)",
+    walnutMat: royalWalnutMat, goldMat: royalGoldMat, stoneMat: imperialStoneMat, booksMat: booksWallMat,
+    themePaintings: [
+      { file: 'assets/webp/feast_wide_00_moadim_calendar.webp', title: '여호와의 절기(모아딤) 구속사 대파노라마' },
+      { file: 'assets/webp/feast_wide_02_passover_hyssop.webp', title: '유월절 문설주와 우슬초의 구속' },
+      { file: 'assets/webp/2026-10-14-보아스가-건네받은-신발-룻기-47-17.webp', title: '기업 무를 자(고엘) 보아스와 다윗의 계보' }
+    ]
+  });
+
+  // 4. 12동 실물 명품 원목 서가 + 에메랄드 뱅커스 램프 열람 데스크 배치 (사람이 실제로 걸어 다니며 책을 뽑는 서가!)
+  ROYAL_SHELF_DEFS.forEach((sd) => {
+    createWalkableLuxuryBookcase(sd, royalWalnutMat, royalGoldMat, booksWallMat);
+  });
+
+  // 5. 본관·별관·예배당을 잇는 4대 황금 아치 포털 대문!
+  createInterBuildingPortalGate({
+    x: -52, z: 52, rotY: Math.PI * 0.75,
+    code: 'MAIN_3D',
+    badgeIcon: '🏛️',
+    title: '꿈디도 3D 본관 아트리움 가는 문',
+    subtitle: '오래된 우물 · 12대 아카이브 서가숲 · 국립성경박물관 · AI 연구실',
+    targetUrl: resolveKkumdidoUrl('online_chapel_kkumdido.html'),
+    glowColor: 0xffd875
+  });
+
+  createInterBuildingPortalGate({
+    x: -52, z: -52, rotY: Math.PI * 0.25,
+    code: 'ANNEX_1',
+    badgeIcon: '🛠️',
+    title: '꿈디도 제1별관 (교회지원 공방) 가는 문',
+    subtitle: '모세와 아론의 지팡이 · 양떼수첩 · 청지기장부 · 설교AI 7종 변환',
+    targetUrl: resolveKkumdidoUrl('kkumdido_church_support_annex.html'),
+    glowColor: 0x60a5fa
+  });
+
+  createInterBuildingPortalGate({
+    x: 52, z: 52, rotY: -Math.PI * 0.75,
+    code: 'ANNEX_2_WEB',
+    badgeIcon: '📖',
+    title: '제2별관 열린 학술원 · 100권 서가 가는 문',
+    subtitle: '24편 학술 논문집 웹뷰어 & 꿈디온 100권 이북(e-Book) 정식 서가',
+    targetUrl: resolveKkumdidoUrl('꿈디도_제2별관_열린학술원_웹뷰어.html'),
+    glowColor: 0x4ade80
+  });
+
+  createInterBuildingPortalGate({
+    x: 52, z: -52, rotY: -Math.PI * 0.25,
+    code: 'CHAPEL_3D',
+    badgeIcon: '🕊️',
+    title: '새오름 3D 온라인 예배당 가는 문',
+    subtitle: '새오름 대성전 · 감람산 정원 산책로 · 갈릴리 분수 호수',
+    targetUrl: resolveKkumdidoUrl('online_chapel_church.html'),
+    glowColor: 0xfbbf24
+  });
+
+  // 외곽 황실 열주랑 (반경 142m에 36기)
+  for (let i = 0; i < 36; i++) {
+    const angle = (i / 36) * Math.PI * 2;
+    const px = Math.cos(angle) * 142;
+    const pz = Math.sin(angle) * 142;
+    createRoyalCorinthianPillar(px, pz, 24, imperialStoneMat, royalGoldMat, royalWalnutMat);
+  }
+}
+
+function createRoyalCorinthianPillar(x, z, h, stoneMat, goldMat, walnutMat) {
+  const g = new THREE.Group();
+  g.position.set(x, 0, z);
+  const plinth = new THREE.Mesh(new THREE.BoxGeometry(3.2, 0.9, 3.2), walnutMat);
+  plinth.position.y = 0.45;
+  const baseRing = new THREE.Mesh(new THREE.CylinderGeometry(1.45, 1.65, 0.55, 20), goldMat);
+  baseRing.position.y = 1.15;
+  const shaft = new THREE.Mesh(new THREE.CylinderGeometry(1.22, 1.42, h - 2.4, 20), stoneMat);
+  shaft.position.y = h / 2;
+  shaft.castShadow = true;
+  shaft.receiveShadow = true;
+  const capital = new THREE.Mesh(new THREE.CylinderGeometry(1.85, 1.25, 0.95, 20), goldMat);
+  capital.position.y = h - 0.7;
+  const abacus = new THREE.Mesh(new THREE.BoxGeometry(3.3, 0.45, 3.3), walnutMat);
+  abacus.position.y = h - 0.1;
+  g.add(plinth, baseRing, shaft, capital, abacus);
+  scene.add(g);
+}
+
+function createBaccaratChandelier(x, y, z, goldMat) {
+  const cg = new THREE.Group();
+  cg.position.set(x, y, z);
+  const chain = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 6.0, 8), goldMat);
+  chain.position.y = 3.0;
+  const tier1 = new THREE.Mesh(new THREE.TorusGeometry(2.6, 0.14, 12, 32), goldMat);
+  tier1.rotation.x = Math.PI / 2;
+  const tier2 = new THREE.Mesh(new THREE.TorusGeometry(1.6, 0.11, 12, 24), goldMat);
+  tier2.rotation.x = Math.PI / 2;
+  tier2.position.y = 1.1;
+  const crystalCore = new THREE.Mesh(
+    new THREE.OctahedronGeometry(0.85, 1),
+    new THREE.MeshStandardMaterial({ color: 0xfff8e7, emissive: 0xffcf70, emissiveIntensity: 0.9 })
+  );
+  crystalCore.position.y = 0.3;
+  cg.add(chain, tier1, tier2, crystalCore);
+
+  const flameMat = new THREE.MeshBasicMaterial({ color: 0xffe699 });
+  for (let i = 0; i < 12; i++) {
+    const a = (i / 12) * Math.PI * 2;
+    const cBulb = new THREE.Mesh(new THREE.SphereGeometry(0.16, 8, 8), flameMat);
+    cBulb.position.set(Math.cos(a) * 2.6, 0.28, Math.sin(a) * 2.6);
+    cg.add(cBulb);
+  }
+  const light = new THREE.PointLight(0xffcf75, 1.35, 42);
+  light.position.set(0, -0.5, 0);
+  cg.add(light);
+  scene.add(cg);
+}
+
+// ⭐️ 관별 최고가 인테리어 전당 + 초대형 황금 액자 테마 성화 3점 갤러리 생성기
+function createLuxuryHallArchitecture(cfg) {
+  const hg = new THREE.Group();
+  hg.position.set(cfg.x, 0, cfg.z);
+  hg.rotation.y = cfg.rotY;
+
+  const texLoader = new THREE.TextureLoader();
+
+  // 황실 마호가니·대리석 2단 기단 (폭 44m, 깊이 36m)
+  const platform = new THREE.Mesh(new THREE.BoxGeometry(44, 0.7, 36), cfg.walnutMat);
+  platform.position.set(0, 0.35, 0);
+  platform.receiveShadow = true;
+  const goldStepTrim = new THREE.Mesh(new THREE.BoxGeometry(44.4, 0.16, 36.4), cfg.goldMat);
+  goldStepTrim.position.set(0, 0.72, 0);
+  hg.add(platform, goldStepTrim);
+
+  // 배경 웅장한 2층 고서적 벽면 (폭 42m, 높이 19m) + 24K 골드 크라운 몰딩
+  const backBookWall = new THREE.Mesh(new THREE.BoxGeometry(42, 18.5, 2.2), cfg.booksMat);
+  backBookWall.position.set(0, 9.8, -15.5);
+  backBookWall.castShadow = true;
+  const topCrown = new THREE.Mesh(new THREE.BoxGeometry(43.2, 0.85, 2.8), cfg.goldMat);
+  topCrown.position.set(0, 19.2, -15.5);
+  const midBalcony = new THREE.Mesh(new THREE.BoxGeometry(42.8, 0.55, 3.2), cfg.walnutMat);
+  midBalcony.position.set(0, 9.2, -14.8);
+  const midGoldRail = new THREE.Mesh(new THREE.BoxGeometry(43.0, 0.18, 3.4), cfg.goldMat);
+  midGoldRail.position.set(0, 9.85, -14.8);
+  hg.add(backBookWall, topCrown, midBalcony, midGoldRail);
+
+  // 전당 전면 황실 현판 (CanvasTexture)
+  const sCan = document.createElement('canvas');
+  sCan.width = 1024; sCan.height = 192;
+  const ctx = sCan.getContext('2d');
+  ctx.fillStyle = '#180f08';
+  ctx.fillRect(0, 0, 1024, 192);
+  ctx.strokeStyle = '#e5be67';
+  ctx.lineWidth = 8;
+  ctx.strokeRect(8, 8, 1008, 176);
+  ctx.fillStyle = '#ffe8a3';
+  ctx.font = 'bold 42px Pretendard, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(cfg.hallTitle, 512, 82);
+  ctx.fillStyle = '#d8c39e';
+  ctx.font = 'bold 26px Pretendard, sans-serif';
+  ctx.fillText(cfg.hallSub, 512, 142);
+
+  const sTex = new THREE.CanvasTexture(sCan);
+  const sBoard = new THREE.Mesh(new THREE.PlaneGeometry(24, 4.5), new THREE.MeshBasicMaterial({ map: sTex }));
+  sBoard.position.set(0, 21.8, -14.2);
+  const sFrame = new THREE.Mesh(new THREE.BoxGeometry(24.6, 5.0, 0.4), cfg.goldMat);
+  sFrame.position.set(0, 21.8, -14.45);
+  hg.add(sFrame, sBoard);
+
+  // 🖼️ 관별 테마 대형 성화·고고학 도판 3점 (24K 순금 액자 + 미술관 핀 조명)
+  const positions = [-13.2, 0, 13.2];
+  (cfg.themePaintings || []).forEach((tp, idx) => {
+    const px = positions[idx] || 0;
+    const pTex = texLoader.load(resolveKkumdidoUrl(tp.file));
+    const frameMesh = new THREE.Mesh(new THREE.BoxGeometry(10.8, 6.6, 0.35), cfg.goldMat);
+    frameMesh.position.set(px, 13.8, -14.1);
+    const artMesh = new THREE.Mesh(
+      new THREE.PlaneGeometry(10.0, 5.8),
+      new THREE.MeshBasicMaterial({ map: pTex })
+    );
+    artMesh.position.set(px, 13.8, -13.9);
+    hg.add(frameMesh, artMesh);
+  });
+
+  // 전당 내부 바카라 크리스탈 샹들리에 2기
+  createBaccaratChandelier(cfg.x, 16.0, cfg.z, cfg.goldMat);
+
+  scene.add(hg);
+}
+
+// ⭐️ 사람이 직접 걸어 다니며 책을 뽑아 읽는 12동 실물 명품 원목 서가 & 에메랄드 열람석 생성기
+function createWalkableLuxuryBookcase(sd, walnutMat, goldMat, booksMat) {
+  const sg = new THREE.Group();
+  sg.position.set(sd.x, 0.7, sd.z);
+  sg.rotation.y = sd.rotY;
+
+  // 서가 본체 (폭 9.6m, 높이 6.8m, 깊이 1.6m — 최고급 버마산 월넛 & 24K 순금 몰딩)
+  const body = new THREE.Mesh(new THREE.BoxGeometry(9.6, 6.8, 1.5), walnutMat);
+  body.position.y = 3.4;
+  body.castShadow = true;
+  body.receiveShadow = true;
+
+  const frontBooks = new THREE.Mesh(new THREE.PlaneGeometry(9.0, 5.8), booksMat);
+  frontBooks.position.set(0, 3.4, 0.78);
+  const backBooks = new THREE.Mesh(new THREE.PlaneGeometry(9.0, 5.8), booksMat);
+  backBooks.position.set(0, 3.4, -0.78);
+  backBooks.rotation.y = Math.PI;
+
+  const crown = new THREE.Mesh(new THREE.BoxGeometry(10.2, 0.45, 1.9), goldMat);
+  crown.position.y = 6.95;
+  const plinth = new THREE.Mesh(new THREE.BoxGeometry(10.0, 0.38, 1.8), goldMat);
+  plinth.position.y = 0.19;
+  sg.add(body, frontBooks, backBooks, crown, plinth);
+
+  // 황동 사다리 (Brass Rolling Ladder)
+  const ladder = new THREE.Group();
+  for (const lx of [-0.35, 0.35]) {
+    const rail = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 6.2, 8), goldMat);
+    rail.position.set(lx, 3.1, 0);
+    ladder.add(rail);
+  }
+  for (let r = 0; r < 11; r++) {
+    const rung = new THREE.Mesh(new THREE.CylinderGeometry(0.025, 0.025, 0.7, 8), goldMat);
+    rung.rotation.z = Math.PI / 2;
+    rung.position.set(0, 0.5 + r * 0.52, 0);
+    ladder.add(rung);
+  }
+  ladder.position.set(3.2, 0, 1.05);
+  ladder.rotation.x = -0.12;
+  sg.add(ladder);
+
+  // 서가 상단 황금 명패 (수록 권수 및 서가 이름 표시)
+  const bookCount = (sd.books || []).length;
+  const sCan = document.createElement('canvas');
+  sCan.width = 768; sCan.height = 160;
+  const ctx = sCan.getContext('2d');
+  ctx.fillStyle = '#1b1109';
+  ctx.fillRect(0, 0, 768, 160);
+  ctx.strokeStyle = '#e5be67';
+  ctx.lineWidth = 6;
+  ctx.strokeRect(6, 6, 756, 148);
+  ctx.fillStyle = '#ffe8a3';
+  ctx.font = 'bold 30px Pretendard, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText(`📚 ${sd.title}`, 384, 66);
+  ctx.fillStyle = '#6ee7b7';
+  ctx.font = 'bold 23px Pretendard, sans-serif';
+  ctx.fillText(`수록 도서 ${bookCount}권 완비 · 클릭 또는 [E 키]로 서가에서 책 뽑아 읽기`, 384, 118);
+
+  const sTex = new THREE.CanvasTexture(sCan);
+  const sMat = new THREE.MeshBasicMaterial({ map: sTex });
+  const signF = new THREE.Mesh(new THREE.PlaneGeometry(7.8, 1.62), sMat);
+  signF.position.set(0, 7.95, 0.5);
+  const signB = new THREE.Mesh(new THREE.PlaneGeometry(7.8, 1.62), sMat);
+  signB.position.set(0, 7.95, -0.5);
+  signB.rotation.y = Math.PI;
+  sg.add(signF, signB);
+
+  // 서가 앞 에메랄드 뱅커스 램프 열람 테이블 (Emerald Banker's Lamp Desk)
+  const desk = new THREE.Mesh(new THREE.BoxGeometry(3.6, 0.9, 1.6), walnutMat);
+  desk.position.set(-1.5, 0.45, 2.8);
+  const lampBase = new THREE.Mesh(new THREE.CylinderGeometry(0.18, 0.24, 0.45, 12), goldMat);
+  lampBase.position.set(-1.5, 1.12, 2.8);
+  const lampShade = new THREE.Mesh(
+    new THREE.ConeGeometry(0.38, 0.28, 14),
+    new THREE.MeshStandardMaterial({ color: 0x10b981, emissive: 0x059669, emissiveIntensity: 0.85, roughness: 0.2 })
+  );
+  lampShade.position.set(-1.5, 1.42, 2.8);
+  sg.add(desk, lampBase, lampShade);
+
+  scene.add(sg);
+
+  // 서가 정면 서기 좌표 계산
+  const forwardOffset = new THREE.Vector3(0, 0, 5.2).applyAxisAngle(new THREE.Vector3(0, 1, 0), sd.rotY);
+  const frontPos = new THREE.Vector3(sd.x + forwardOffset.x, 0, sd.z + forwardOffset.z);
+
+  const itemObj = {
+    type: 'shelf',
+    shelfId: sd.id,
+    shelfDef: sd,
+    pos: new THREE.Vector3(sd.x, 2.0, sd.z),
+    frontPos,
+    name: sd.title
+  };
+
+  shelfObjectsById[sd.id] = itemObj;
+  body.userData = { interactItem: itemObj };
+  frontBooks.userData = { interactItem: itemObj };
+  backBooks.userData = { interactItem: itemObj };
+  signF.userData = { interactItem: itemObj };
+  signB.userData = { interactItem: itemObj };
+  desk.userData = { interactItem: itemObj };
+  clickableMeshes.push(body, frontBooks, backBooks, signF, signB, desk);
+  interactables.push(itemObj);
+}
+
+// ⭐️ 새오름 예배당 정원 포털 문과 동일한 품격의 3D 황금 아치 연결 대문 생성기
+function createInterBuildingPortalGate(cfg) {
+  const gateGroup = new THREE.Group();
+  gateGroup.position.set(cfg.x, 0, cfg.z);
+  gateGroup.rotation.y = cfg.rotY;
+
+  const stoneMat = new THREE.MeshStandardMaterial({ color: 0x6b5d4d, roughness: 0.65 });
+  const woodMat = new THREE.MeshStandardMaterial({ color: 0x4a2f1b, roughness: 0.45 });
+  const goldMat = new THREE.MeshStandardMaterial({ color: 0xe5be67, metalness: 0.78, roughness: 0.22 });
+
+  const dais = new THREE.Mesh(new THREE.BoxGeometry(10.5, 0.45, 5.2), stoneMat);
+  dais.position.set(0, 0.225, 0);
+  dais.receiveShadow = true;
+  gateGroup.add(dais);
+
+  for (const sx of [-3.4, 3.4]) {
+    const colBase = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.9, 1.2), stoneMat);
+    colBase.position.set(sx, 0.7, 0);
+    const colPillar = new THREE.Mesh(new THREE.BoxGeometry(0.88, 6.2, 0.88), woodMat);
+    colPillar.position.set(sx, 3.8, 0);
+    colPillar.castShadow = true;
+    const colCap = new THREE.Mesh(new THREE.BoxGeometry(1.15, 0.42, 1.15), goldMat);
+    colCap.position.set(sx, 7.0, 0);
+
+    const lanternBulb = new THREE.Mesh(
+      new THREE.SphereGeometry(0.32, 12, 12),
+      new THREE.MeshBasicMaterial({ color: 0xffe49e })
+    );
+    lanternBulb.position.set(sx * 0.82, 5.2, 0.65);
+    gateGroup.add(colBase, colPillar, colCap, lanternBulb);
+  }
+
+  const lintel = new THREE.Mesh(new THREE.BoxGeometry(8.6, 0.62, 1.1), woodMat);
+  lintel.position.set(0, 7.35, 0);
+  const roofL = new THREE.Mesh(new THREE.BoxGeometry(5.1, 0.34, 1.4), stoneMat);
+  roofL.position.set(-2.15, 8.45, 0);
+  roofL.rotation.z = 0.36;
+  const roofR = new THREE.Mesh(new THREE.BoxGeometry(5.1, 0.34, 1.4), stoneMat);
+  roofR.position.set(2.15, 8.45, 0);
+  roofR.rotation.z = -0.36;
+  const topCrossV = new THREE.Mesh(new THREE.BoxGeometry(0.22, 1.25, 0.22), goldMat);
+  topCrossV.position.set(0, 9.75, 0);
+  const topCrossH = new THREE.Mesh(new THREE.BoxGeometry(0.82, 0.22, 0.22), goldMat);
+  topCrossH.position.set(0, 9.95, 0);
+  gateGroup.add(lintel, roofL, roofR, topCrossV, topCrossH);
+
+  const doorGeo = new THREE.BoxGeometry(2.7, 5.8, 0.22);
+  const doorL = new THREE.Mesh(doorGeo, woodMat);
+  doorL.position.set(-2.45, 3.1, -0.75);
+  doorL.rotation.y = 0.58;
+  const doorR = new THREE.Mesh(doorGeo, woodMat);
+  doorR.position.set(2.45, 3.1, -0.75);
+  doorR.rotation.y = -0.58;
+  gateGroup.add(doorL, doorR);
+
+  const portalMat = new THREE.MeshBasicMaterial({
+    color: cfg.glowColor || 0xffe299,
+    transparent: true,
+    opacity: 0.38,
+    side: THREE.DoubleSide,
+    depthWrite: false
+  });
+  const portalGlow = new THREE.Mesh(new THREE.PlaneGeometry(5.8, 6.1), portalMat);
+  portalGlow.position.set(0, 3.4, 0.05);
+  gateGroup.add(portalGlow);
+
+  const signCanvas = document.createElement('canvas');
+  signCanvas.width = 768;
+  signCanvas.height = 180;
+  const gCtx = signCanvas.getContext('2d');
+  gCtx.fillStyle = '#14100b';
+  gCtx.fillRect(0, 0, 768, 180);
+  gCtx.strokeStyle = '#e5be67';
+  gCtx.lineWidth = 8;
+  gCtx.strokeRect(8, 8, 752, 164);
+  gCtx.fillStyle = '#ffe8a3';
+  gCtx.font = 'bold 38px Pretendard, sans-serif';
+  gCtx.textAlign = 'center';
+  gCtx.fillText(`${cfg.badgeIcon} ${cfg.title}`, 384, 76);
+  gCtx.fillStyle = '#d8c8b0';
+  gCtx.font = 'bold 24px Pretendard, sans-serif';
+  gCtx.fillText(cfg.subtitle, 384, 132);
+
+  const signTex = new THREE.CanvasTexture(signCanvas);
+  const signMat = new THREE.MeshBasicMaterial({ map: signTex });
+  const signBoardF = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 1.68), signMat);
+  signBoardF.position.set(0, 7.45, 0.58);
+  const signBoardB = new THREE.Mesh(new THREE.PlaneGeometry(7.2, 1.68), signMat);
+  signBoardB.position.set(0, 7.45, -0.58);
+  signBoardB.rotation.y = Math.PI;
+  gateGroup.add(signBoardF, signBoardB);
+
+  const gateLight = new THREE.PointLight(cfg.glowColor || 0xffd27d, 2.2, 32);
+  gateLight.position.set(0, 6.2, 2.5);
+  gateGroup.add(gateLight);
+
+  scene.add(gateGroup);
+
+  const labelsLayer = document.getElementById('portal-labels-layer');
+  const badgeEl = document.createElement('div');
+  badgeEl.className = 'portal-floating-badge';
+  badgeEl.innerHTML = `<span>🚪</span><span>${cfg.badgeIcon} ${cfg.title} ↗</span>`;
+  badgeEl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    enterPortalGate(gateObj);
+  });
+  labelsLayer.appendChild(badgeEl);
+
+  const gateObj = {
+    type: 'portal',
+    pos: new THREE.Vector3(cfg.x, 2.0, cfg.z),
+    name: `${cfg.badgeIcon} ${cfg.title}`,
+    subtitle: cfg.subtitle,
+    targetUrl: cfg.targetUrl,
+    glowMesh: portalGlow,
+    badgeEl
+  };
+
+  portalGlow.userData = { interactItem: gateObj };
+  signBoardF.userData = { interactItem: gateObj };
+  signBoardB.userData = { interactItem: gateObj };
+  clickableMeshes.push(portalGlow, signBoardF, signBoardB);
+
+  portalGates.push(gateObj);
+  interactables.push(gateObj);
+}
+
+function enterPortalGate(gateObj) {
+  if (!gateObj || !gateObj.targetUrl) return;
+  if (isTeleportingPortal) {
+    window.location.href = gateObj.targetUrl;
+    return;
+  }
+  isTeleportingPortal = true;
+  clickTargetPos = gateObj.pos.clone();
+  clickTargetPos.y = 0;
+  setBannerText(`🚪 「${gateObj.name}」을 통과하여 ${gateObj.subtitle} 공간으로 이동합니다...`);
+  setTimeout(() => {
+    window.location.href = gateObj.targetUrl;
+  }, 550);
+}
+
+function buildScholarAvatar() {
+  avatarGroup = new THREE.Group();
+  avatarGroup.position.copy(avatarPos);
+
+  const bodyGeo = new THREE.CylinderGeometry(0.45, 0.7, 1.4, 12);
+  const bodyMat = new THREE.MeshStandardMaterial({ color: 0x3b1d11, roughness: 0.45 });
+  avatarBody = new THREE.Mesh(bodyGeo, bodyMat);
+  avatarBody.position.y = 1.1;
+  avatarBody.castShadow = true;
+  avatarGroup.add(avatarBody);
+
+  const shawlGeo = new THREE.CylinderGeometry(0.55, 0.6, 0.4, 12);
+  const shawlMat = new THREE.MeshStandardMaterial({ color: 0xe5be67, roughness: 0.25, metalness: 0.6 });
+  const shawl = new THREE.Mesh(shawlGeo, shawlMat);
+  shawl.position.y = 1.6;
+  avatarGroup.add(shawl);
+
+  const headGeo = new THREE.SphereGeometry(0.35, 16, 16);
+  const headMat = new THREE.MeshStandardMaterial({ color: 0xffdfba, roughness: 0.5 });
+  avatarHead = new THREE.Mesh(headGeo, headMat);
+  avatarHead.position.y = 2.05;
+  avatarHead.castShadow = true;
+  avatarGroup.add(avatarHead);
+
+  const hoodGeo = new THREE.SphereGeometry(0.38, 16, 16, 0, Math.PI * 2, 0, Math.PI / 1.7);
+  const hoodMat = new THREE.MeshStandardMaterial({ color: 0x1b0f08 });
+  const hood = new THREE.Mesh(hoodGeo, hoodMat);
+  hood.position.y = 2.08;
+  avatarGroup.add(hood);
+
+  const legMat = new THREE.MeshStandardMaterial({ color: 0x140d08 });
+  leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.7, 8), legMat);
+  leftLeg.position.set(-0.24, 0.35, 0);
+  leftLeg.castShadow = true;
+  avatarGroup.add(leftLeg);
+
+  rightLeg = new THREE.Mesh(new THREE.CylinderGeometry(0.14, 0.14, 0.7, 8), legMat);
+  rightLeg.position.set(0.24, 0.35, 0);
+  rightLeg.castShadow = true;
+  avatarGroup.add(rightLeg);
+
+  const armMat = new THREE.MeshStandardMaterial({ color: 0x3b1d11 });
+  leftArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.7, 8), armMat);
+  leftArm.position.set(-0.65, 1.35, 0);
+  avatarGroup.add(leftArm);
+
+  rightArm = new THREE.Mesh(new THREE.CylinderGeometry(0.11, 0.11, 0.7, 8), armMat);
+  rightArm.position.set(0.65, 1.35, 0);
+  avatarGroup.add(rightArm);
+
+  const canvas = document.createElement('canvas');
+  canvas.width = 256; canvas.height = 64;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = 'rgba(24, 14, 8, 0.92)';
+  ctx.fillRect(10, 6, 236, 52);
+  ctx.strokeStyle = '#e5be67';
+  ctx.lineWidth = 3;
+  ctx.strokeRect(10, 6, 236, 52);
+  ctx.fillStyle = '#ffe8a3';
+  ctx.font = 'bold 25px Pretendard, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('🏛️ 꿈디도 탐독자', 128, 41);
+
+  const tex = new THREE.CanvasTexture(canvas);
+  const tagMat = new THREE.SpriteMaterial({ map: tex, depthTest: false });
+  const tag = new THREE.Sprite(tagMat);
+  tag.position.y = 2.75;
+  tag.scale.set(1.6, 0.4, 1);
+  avatarGroup.add(tag);
+
+  scene.add(avatarGroup);
+}
+
+const raycaster = new THREE.Raycaster();
+const mouseNDC = new THREE.Vector2();
+
+function setupInput() {
+  window.addEventListener('resize', onResize);
+
+  window.addEventListener('keydown', (e) => {
+    const activeTag = document.activeElement ? document.activeElement.tagName : '';
+    if (['INPUT', 'TEXTAREA'].includes(activeTag)) {
+      if (e.key === 'Escape') document.activeElement.blur();
+      return;
+    }
+    switch (e.code) {
+      case 'KeyW': case 'ArrowUp': keys.w = true; clickTargetPos = null; pendingOpenShelfAfterWalk = null; break;
+      case 'KeyS': case 'ArrowDown': keys.s = true; clickTargetPos = null; pendingOpenShelfAfterWalk = null; break;
+      case 'KeyA': case 'ArrowLeft': keys.a = true; clickTargetPos = null; pendingOpenShelfAfterWalk = null; break;
+      case 'KeyD': case 'ArrowRight': keys.d = true; clickTargetPos = null; pendingOpenShelfAfterWalk = null; break;
+      case 'ShiftLeft': case 'ShiftRight': keys.shift = true; break;
+      case 'KeyE': triggerActiveTarget(); break;
+      case 'Escape': closeModal(); break;
+    }
+  });
+
+  window.addEventListener('keyup', (e) => {
+    switch (e.code) {
+      case 'KeyW': case 'ArrowUp': keys.w = false; break;
+      case 'KeyS': case 'ArrowDown': keys.s = false; break;
+      case 'KeyA': case 'ArrowLeft': keys.a = false; break;
+      case 'KeyD': case 'ArrowRight': keys.d = false; break;
+      case 'ShiftLeft': case 'ShiftRight': keys.shift = false; break;
+    }
+  });
+
+  const canvas = document.getElementById('canvas3d');
+  canvas.addEventListener('pointerdown', (e) => {
+    isDragging = true;
+    dragMoved = false;
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+
+  window.addEventListener('pointermove', (e) => {
+    if (!isDragging) return;
+    const dx = e.clientX - prevMouse.x;
+    const dy = e.clientY - prevMouse.y;
+    if (Math.abs(dx) > 4 || Math.abs(dy) > 4) dragMoved = true;
+
+    camYaw -= dx * 0.005;
+    camPitch = Math.max(0.04, Math.min(1.25, camPitch + dy * 0.0035));
+
+    prevMouse = { x: e.clientX, y: e.clientY };
+  });
+
+  window.addEventListener('pointerup', (e) => {
+    if (!isDragging) return;
+    isDragging = false;
+    if (!dragMoved && e.target === canvas) {
+      mouseNDC.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouseNDC.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouseNDC, camera);
+
+      const hits = raycaster.intersectObjects(clickableMeshes);
+      if (hits.length > 0 && hits[0].object.userData && hits[0].object.userData.interactItem) {
+        const it = hits[0].object.userData.interactItem;
+        if (it.type === 'portal') {
+          enterPortalGate(it);
+        } else if (it.type === 'shelf') {
+          activeTarget = it;
+          openShelfModal(it.shelfId);
+        }
+        return;
+      }
+
+      if (groundMesh) {
+        const gHits = raycaster.intersectObject(groundMesh);
+        if (gHits.length > 0) {
+          const pt = gHits[0].point;
+          pendingOpenShelfAfterWalk = null;
+          clickTargetPos = new THREE.Vector3(
+            Math.max(-185, Math.min(185, pt.x)),
+            0,
+            Math.max(-185, Math.min(185, pt.z))
+          );
+        }
+      }
+    }
+  });
+
+  window.addEventListener('wheel', (e) => {
+    if (e.target.closest('#modal') || e.target.closest('.search-dropdown')) return;
+    camDistance = Math.max(4.5, Math.min(60.0, camDistance + e.deltaY * 0.03));
+  });
+}
+
+function onResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+}
+
+function toggleDroneView() {
+  isDroneView = !isDroneView;
+  const btn = document.getElementById('droneBtn');
+  if (isDroneView) {
+    btn.textContent = '🚶 3인칭 탐독자 모드';
+    btn.classList.add('active');
+    camDistance = 54.0;
+    camPitch = 1.15;
+  } else {
+    btn.textContent = '🦅 황실 돔 전체 조망';
+    btn.classList.remove('active');
+    camDistance = 12.0;
+    camPitch = 0.24;
+  }
+}
+
+function teleport(x, z, msg) {
+  clickTargetPos = null;
+  pendingOpenShelfAfterWalk = null;
+  avatarPos.set(x, 0, z);
+  avatarGroup.position.copy(avatarPos);
+  if (msg) setBannerText(msg);
+}
+
+function updateAvatar(delta, elapsed) {
+  let moveX = 0, moveZ = 0;
+  if (keys.w) moveZ -= 1;
+  if (keys.s) moveZ += 1;
+  if (keys.a) moveX -= 1;
+  if (keys.d) moveX += 1;
+
+  const keyMoving = (moveX !== 0 || moveZ !== 0);
+  isRunning = keys.shift;
+
+  if (keyMoving) {
+    const forward = new THREE.Vector3(0, 0, -1).applyAxisAngle(new THREE.Vector3(0, 1, 0), camYaw);
+    const right = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), camYaw);
+
+    const moveDir = new THREE.Vector3()
+      .addScaledVector(forward, -moveZ)
+      .addScaledVector(right, moveX)
+      .normalize();
+
+    const speed = isRunning ? 26.0 : 13.5;
+    avatarPos.addScaledVector(moveDir, speed * delta);
+    avatarHeading = Math.atan2(moveDir.x, moveDir.z);
+    isMoving = true;
+  } else if (clickTargetPos) {
+    const diff = new THREE.Vector3().subVectors(clickTargetPos, avatarPos);
+    diff.y = 0;
+    const dist = diff.length();
+    if (dist > 0.45) {
+      diff.normalize();
+      avatarPos.addScaledVector(diff, Math.min(dist, 18.0 * delta));
+      avatarHeading = Math.atan2(diff.x, diff.z);
+      isMoving = true;
+    } else {
+      clickTargetPos = null;
+      isMoving = false;
+      if (pendingOpenShelfAfterWalk) {
+        const { shelfObj, highlightBookId } = pendingOpenShelfAfterWalk;
+        pendingOpenShelfAfterWalk = null;
+        openShelfModal(shelfObj.shelfId, highlightBookId);
+      }
+    }
+  } else {
+    isMoving = false;
+  }
+
+  avatarPos.x = Math.max(-190, Math.min(190, avatarPos.x));
+  avatarPos.z = Math.max(-190, Math.min(190, avatarPos.z));
+  avatarGroup.rotation.y = avatarHeading;
+
+  if (isMoving) {
+    const freq = isRunning ? 18 : 11;
+    walkTime += delta * freq;
+    leftLeg.rotation.x = Math.sin(walkTime) * 0.7;
+    rightLeg.rotation.x = -Math.sin(walkTime) * 0.7;
+    leftArm.rotation.x = -Math.sin(walkTime) * 0.65;
+    rightArm.rotation.x = Math.sin(walkTime) * 0.65;
+    avatarBody.position.y = 1.1 + Math.abs(Math.sin(walkTime * 2)) * 0.08;
+  } else {
+    leftLeg.rotation.x = 0; rightLeg.rotation.x = 0;
+    leftArm.rotation.x = 0; rightArm.rotation.x = 0;
+    avatarBody.position.y = 1.1;
+  }
+
+  avatarGroup.position.copy(avatarPos);
+
+  portalGates.forEach((pg, idx) => {
+    if (pg.glowMesh) {
+      pg.glowMesh.material.opacity = 0.28 + 0.14 * Math.sin(elapsed * 2.4 + idx);
+    }
+    const flatDist = Math.hypot(avatarPos.x - pg.pos.x, avatarPos.z - pg.pos.z);
+    if (flatDist < 2.8 && !isTeleportingPortal) {
+      enterPortalGate(pg);
+    }
+  });
+}
+
+function updateCamera() {
+  const offsetX = Math.sin(camYaw) * Math.cos(camPitch) * camDistance;
+  const offsetZ = Math.cos(camYaw) * Math.cos(camPitch) * camDistance;
+  const offsetY = Math.sin(camPitch) * camDistance + (isDroneView ? 26 : camHeight);
+
+  const targetCamPos = new THREE.Vector3(
+    avatarPos.x + offsetX,
+    avatarPos.y + offsetY,
+    avatarPos.z + offsetZ
+  );
+
+  camera.position.lerp(targetCamPos, 0.14);
+  camera.lookAt(avatarPos.x, avatarPos.y + 1.8, avatarPos.z);
+
+  portalGates.forEach(pg => {
+    if (!pg.badgeEl) return;
+    const p = new THREE.Vector3(pg.pos.x, 9.6, pg.pos.z);
+    p.project(camera);
+    if (p.z > 1) {
+      pg.badgeEl.style.display = 'none';
+    } else {
+      pg.badgeEl.style.display = 'flex';
+      pg.badgeEl.style.left = `${(p.x * 0.5 + 0.5) * window.innerWidth}px`;
+      pg.badgeEl.style.top = `${(-p.y * 0.5 + 0.5) * window.innerHeight}px`;
+    }
+  });
+}
+
+function checkProximity() {
+  let nearest = null;
+  let minDist = 9.2;
+
+  for (let item of interactables) {
+    const d = Math.hypot(avatarPos.x - item.pos.x, avatarPos.z - item.pos.z);
+    if (d < minDist) {
+      minDist = d;
+      nearest = item;
+    }
+  }
+
+  const prompt = document.getElementById('interact-prompt');
+  if (nearest) {
+    activeTarget = nearest;
+    prompt.style.display = 'block';
+    if (nearest.type === 'portal') {
+      prompt.innerHTML = `🚪 [E 키 / 클릭] <strong>${nearest.name}</strong> 통과하여 이동하기 ↗`;
+    } else if (nearest.type === 'shelf') {
+      const cnt = (nearest.shelfDef && nearest.shelfDef.books) ? nearest.shelfDef.books.length : 0;
+      prompt.innerHTML = `📚 [E 키 / 클릭] <strong>${nearest.name}</strong> 도서 ${cnt}권 뽑아 읽기`;
+    }
+  } else {
+    activeTarget = null;
+    prompt.style.display = 'none';
+  }
+}
+
+function triggerActiveTarget() {
+  if (!activeTarget) return;
+  if (activeTarget.type === 'portal') {
+    enterPortalGate(activeTarget);
+  } else if (activeTarget.type === 'shelf') {
+    openShelfModal(activeTarget.shelfId);
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal').style.display = 'none';
+}
+
+function drawMinimap() {
+  const mCanvas = document.getElementById('minimap-canvas');
+  const ctx = mCanvas.getContext('2d');
+  ctx.clearRect(0, 0, 176, 176);
+
+  ctx.fillStyle = '#140c06';
+  ctx.beginPath(); ctx.arc(88, 88, 84, 0, Math.PI * 2); ctx.fill();
+  ctx.strokeStyle = '#d4af37'; ctx.lineWidth = 2.5; ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(212, 175, 55, 0.25)'; ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.moveTo(88, 6); ctx.lineTo(88, 170); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(6, 88); ctx.lineTo(170, 88); ctx.stroke();
+
+  interactables.forEach(item => {
+    const mx = 88 + (item.pos.x / 180) * 72;
+    const my = 88 + (item.pos.z / 180) * 72;
+    ctx.fillStyle = item.type === 'portal' ? '#4ade80' : '#f3d078';
+    ctx.beginPath(); ctx.arc(mx, my, item.type === 'portal' ? 5.2 : 4.2, 0, Math.PI * 2); ctx.fill();
+  });
+
+  const px = 88 + (avatarPos.x / 180) * 72;
+  const py = 88 + (avatarPos.z / 180) * 72;
+  ctx.fillStyle = '#38bdf8';
+  ctx.beginPath(); ctx.arc(px, py, 6, 0, Math.PI * 2); ctx.fill();
+
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(px, py);
+  ctx.lineTo(px + Math.sin(avatarHeading) * 14, py + Math.cos(avatarHeading) * 14);
+  ctx.stroke();
+}
+
+let lastTime = performance.now();
+function animate() {
+  requestAnimationFrame(animate);
+
+  const now = performance.now();
+  const delta = Math.min((now - lastTime) / 1000, 0.1);
+  const elapsed = now * 0.001;
+  lastTime = now;
+
+  updateAvatar(delta, elapsed);
+  updateCamera();
+  checkProximity();
+  drawMinimap();
+
+  renderer.render(scene, camera);
+}
+
+window.onload = init;
+</script>
+
+</body>
+</html>

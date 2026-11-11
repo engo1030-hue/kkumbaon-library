@@ -78,7 +78,7 @@
       background: rgba(15, 12, 9, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-gold);
-      padding: 12px 24px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -96,15 +96,24 @@
       letter-spacing: 0.06em;
     }
     .brand-title { font-size: 18px; font-weight: 700; color: var(--gold-bright); }
-    .top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .btn-top {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-height: 38px;
+      padding: 0 14px;
       background: rgba(200, 157, 70, 0.14);
       border: 1px solid var(--border-gold);
       color: var(--text-cream);
-      padding: 7px 14px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      box-sizing: border-box;
+      flex-shrink: 0;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
@@ -165,7 +174,13 @@
       border-radius: 12px;
       padding: 12px 18px;
       text-align: center;
-      min-width: 125px;
+      min-width: 135px;
+      height: 72px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
     }
     .stat-num {
       font-size: 22px;
@@ -188,14 +203,19 @@
       background: rgba(33, 27, 20, 0.85);
       border: 1px solid var(--border-gold);
       color: var(--text-warm);
-      padding: 11px 18px;
+      height: 44px;
+      min-height: 44px;
+      padding: 0 18px;
       border-radius: 12px;
       font-size: 13.8px;
       font-weight: 700;
       cursor: pointer;
-      display: flex;
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
+      white-space: nowrap;
+      box-sizing: border-box;
       transition: all 0.2s;
     }
     .axis-tab:hover { border-color: var(--gold-bright); color: #FFF; }
@@ -1224,7 +1244,8 @@ html, body, .top-bar {
             <button class="pill-btn" onclick="filterArtGallery('p1_30', this)">구속사 기둥 (30인)</button>
             <button class="pill-btn" onclick="filterArtGallery('p31_70', this)">남북 왕조 40왕 (40인)</button>
             <button class="pill-btn" onclick="filterArtGallery('p71_120', this)">선지자·포로귀환 (50인)</button>
-            <button class="pill-btn" id="btnArtNt" onclick="filterArtGallery('p121_125', this)">신약 제자·초대교회 (19인)</button>
+            <button class="pill-btn" id="btnArtNt" onclick="filterArtGallery('p121_125', this)">신약·바울 관계망 (80인)</button>
+            <button class="pill-btn" id="btnArtExt" onclick="filterArtGallery('p201_350', this)">구약·신약 확장 (150인)</button>
             <button class="pill-btn" id="btnArtTier1" onclick="filterArtGallery('tier1only', this)">성화 5종 완비 (87인)</button>
           </div>
         </div>
@@ -1549,12 +1570,14 @@ html, body, .top-bar {
         if (currentArtFilter === "p31_70") return f.num >= 31 && f.num <= 70;
         if (currentArtFilter === "p71_120") return f.num >= 71 && f.num <= 120;
         if (currentArtFilter === "p121_125") return f.num >= 121 && f.num <= 200;
+        if (currentArtFilter === "p201_350") return f.num >= 201 && f.num <= 350;
+        if (currentArtFilter === "p201_350") return f.num >= 201 && f.num <= 350;
         if (currentArtFilter === "tier1only") return !!f.hasTier1Images;
         return true;
       });
       pGrid.innerHTML = list.map(f => {
-        const bgImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : (f.masterImg || (f.scenes && f.scenes[0] ? f.scenes[0].img : ''));
-        const badgeTxt = f.hasTier1Images ? `성화 도판 5종 수록` : `초상·성화 2종 수록`;
+        const bgImg = (f.scenes && f.scenes.length > 1) ? f.scenes[1].img : (f.masterImg || (f.scenes && f.scenes[0] ? f.scenes[0].img : f.portrait));
+        const badgeTxt = f.hasTier1Images ? `성화 도판 5종 수록` : ((f.scenes && f.scenes.length > 0) ? `초상·성화 ${1 + f.scenes.length}종 수록` : `인물 초상화 수록`);
         return `
           <article class="p-card" onclick="openFigure('${f.id}')">
             <div class="p-card-thumb">
@@ -1957,8 +1980,8 @@ html, body, .top-bar {
 
       // 탭 2: 성화 도판 & 제작기록
       let platesHtml = "";
-      if (f.scenes && f.scenes.length > 0) {
-        const pkgLabel = f.hasTier1Images ? "성화 도판 패키지 (총 5종: 초상·마스터·장면 3컷)" : "성화 도판 패키지 (투명 초상 · 대표 성경 장면)";
+      if ((f.scenes && f.scenes.length > 0) || f.portrait) {
+        const pkgLabel = f.hasTier1Images ? "성화 도판 패키지 (총 5종: 초상·마스터·장면 3컷)" : ((f.scenes && f.scenes.length > 0) ? "성화 도판 패키지 (인물 초상 · 대표 성경 장면)" : "성화 도판 패키지 (인물 초상화 · 대표 장면 추가 제작 중)");
         platesHtml += `
           <h3 class="serif" style="color:var(--gold-bright);margin-bottom:12px;">${f.name} — ${pkgLabel}</h3>
           <div class="scene-gallery">

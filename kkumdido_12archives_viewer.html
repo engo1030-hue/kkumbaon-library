@@ -7,6 +7,19 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <title>꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 마스터 웹 뷰어</title>
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="꿈바온 디지털 도서관 (꿈디도)" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 마스터 웹 뷰어" />
+  <meta property="og:description" content="성경 지도·인물 역사서·고고학·원어 성경 주석 66권·열린 학술원을 갖춘 개신교 무료 신학·성경 디지털 도서관" />
+  <meta property="og:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:secure_url" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
+  <meta property="og:image:type" content="image/jpeg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="꿈바온 디지털 도서관 (꿈디도) — 12대 아카이브 · 3,650모듈 마스터 웹 뷰어" />
+  <meta name="twitter:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdido_main.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@500;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -656,7 +669,7 @@
   <div class="tabs-container" id="tabsContainer"></div>
 
   <div class="stats-bar">
-    <div id="resultCount">12대 아카이브 3,650 · 본문 완성 1,765 (순차 집필 중)</div>
+    <div id="resultCount">12대 아카이브 3,650 · 본문 완성 3,650건 (전관 완결)</div>
     <div>카드를 클릭하면 <strong>성화 도판 · 핵심 성구 · 요약 및 본문</strong>과 <strong>12각 입체 양방향 하이퍼링크</strong>가 열립니다.</div>
   </div>
 
@@ -725,8 +738,8 @@
           return resolve(window._KKUM_DB_B64[chunkName]);
         }
         const candidates = [
-          `./assets/db_chunks/${chunkName}.js?v=20261106_fix`,
-          `../assets/db_chunks/${chunkName}.js?v=20261106_fix`
+          `./assets/db_chunks/${chunkName}.js?v=20261111_full`,
+          `../assets/db_chunks/${chunkName}.js?v=20261111_full`
         ];
         let idx = 0;
         function tryNext() {
@@ -769,7 +782,7 @@
       if (_LOADED_V_ARCH.has(no)) return;
       try {
         const pad = String(no).padStart(2, '0');
-        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261106_fix`);
+        const dmap = await _fetchDecV(`./assets/db_chunks/kkumdido_detail_${pad}.dat?v=20261111_full`);
         DATA.forEach(m => { if (Number(m.archive_no) === no && dmap[m.id]) m.detail = dmap[m.id]; });
         _LOADED_V_ARCH.add(no);
       } catch (_) {}
@@ -1169,7 +1182,7 @@
 
     (async function() {
       try {
-        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261106_fix');
+        DATA = await _fetchDecV('./assets/db_chunks/kkumdido_core_idx.dat?v=20261111_full');
         DATA.forEach(item => {
           item.title = item.title.replace(/^\[[A-Z]\d{3}\]\s*/, '');
           DATA_MAP[item.id] = item;

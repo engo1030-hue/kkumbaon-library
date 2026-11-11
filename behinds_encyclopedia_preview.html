@@ -80,7 +80,7 @@
       background: rgba(15, 12, 9, 0.94);
       backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-gold);
-      padding: 12px 24px;
+      padding: 10px 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -98,15 +98,24 @@
       letter-spacing: 0.06em;
     }
     .brand-title { font-size: 18px; font-weight: 700; color: var(--gold-bright); }
-    .top-actions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .btn-top {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      height: 38px;
+      min-height: 38px;
+      padding: 0 14px;
       background: rgba(200, 157, 70, 0.14);
       border: 1px solid var(--border-gold);
       color: var(--text-cream);
-      padding: 7px 14px;
       border-radius: 8px;
       font-size: 13px;
       font-weight: 600;
+      line-height: 1;
+      white-space: nowrap;
+      box-sizing: border-box;
+      flex-shrink: 0;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.2s;
@@ -156,6 +165,13 @@
       padding: 10px 16px;
       border-radius: 12px;
       text-align: center;
+      min-width: 125px;
+      height: 68px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
     }
     .stat-val { font-size: 20px; font-weight: 800; color: #D3B4FF; }
     .stat-lbl { font-size: 11.5px; color: var(--text-dim); }
