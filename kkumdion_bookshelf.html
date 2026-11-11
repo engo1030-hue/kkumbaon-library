@@ -163,64 +163,183 @@
         radial-gradient(ellipse at 50% 0%, rgba(212, 175, 55, 0.22) 0%, rgba(28, 19, 12, 0.88) 58%, rgba(15, 10, 7, 0.97) 100%),
         url('assets/euro/euro_library_bookshelves.webp') center/cover no-repeat;
       color: #F7EFE2;
-      padding: 44px clamp(18px, 3vw, 42px) 36px;
+      padding: 38px clamp(18px, 3vw, 42px) 34px;
       border-bottom: 2px solid #6E5223;
       box-shadow: inset 0 -24px 48px rgba(0, 0, 0, 0.55);
       position: relative;
       word-break: keep-all;
     }
+    .kkd-hero-inner {
+      max-width: 1560px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .kkd-hero-top-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .kkd-hero-title-col {
+      flex: 1;
+      min-width: 320px;
+    }
+    .kkd-hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(212, 175, 55, 0.16);
+      border: 1px solid rgba(212, 175, 55, 0.48);
+      color: #F3D37A;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+    .kkd-hero h1 {
+      font-family: 'Noto Serif KR', serif;
+      font-size: clamp(1.6rem, 2.35vw, 2.2rem);
+      font-weight: 900;
+      color: #FFF8E7;
+      line-height: 1.28;
+      margin-bottom: 10px;
+      word-break: keep-all;
+    }
+    .kkd-hero h1 span {
+      color: #ECC86A;
+      white-space: nowrap;
+    }
+    .kkd-hero p {
+      color: #DECDB4;
+      font-size: 0.96rem;
+      line-height: 1.64;
+      max-width: 900px;
+    }
+    .kkd-hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(150px, 1fr));
+      gap: 12px;
+      align-self: flex-end;
+    }
+    .kkd-stat-box {
+      background: linear-gradient(145deg, rgba(28, 19, 12, 0.88) 0%, rgba(15, 10, 7, 0.95) 100%);
+      border: 1.5px solid rgba(212, 175, 55, 0.44);
+      border-radius: 14px;
+      padding: 14px 18px;
+      min-width: 148px;
+      text-align: center;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 232, 175, 0.12);
+    }
+    .kkd-stat-box strong {
+      display: block;
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.55rem;
+      font-weight: 900;
+      color: #F3D175;
+      margin-bottom: 3px;
+      white-space: nowrap;
+    }
+    .kkd-stat-box span {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: #D5C3A6;
+      white-space: nowrap;
+    }
     .kkd-triple-ai-showcase {
-      margin-top: 22px;
-      background: linear-gradient(145deg, rgba(24, 17, 11, 0.92) 0%, rgba(15, 10, 7, 0.96) 100%);
+      background: linear-gradient(145deg, rgba(24, 17, 11, 0.93) 0%, rgba(15, 10, 7, 0.97) 100%);
       border: 1.5px solid rgba(212, 175, 55, 0.52);
       border-radius: 16px;
       padding: 20px 24px;
       display: grid;
-      grid-template-columns: 1.45fr 0.85fr;
+      grid-template-columns: minmax(0, 1fr) 320px;
       gap: 22px;
-      align-items: center;
+      align-items: stretch;
       box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 232, 175, 0.14);
     }
-    @media (max-width: 980px) {
-      .kkd-triple-ai-showcase {
-        grid-template-columns: 1fr;
-      }
+    .kkd-showcase-main {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+    }
+    .kkd-showcase-boxes {
+      display: grid;
+      grid-template-columns: 1.04fr 1.16fr;
+      gap: 16px;
+      align-items: stretch;
     }
     .kkd-slogan-quote {
-      border-left: 3.5px solid #D4AF37;
-      padding: 10px 16px;
-      background: rgba(212, 175, 55, 0.08);
-      border-radius: 0 10px 10px 0;
-      margin: 12px 0;
+      border-left: 4px solid #D4AF37;
+      padding: 16px 18px;
+      background: rgba(212, 175, 55, 0.09);
+      border-radius: 0 12px 12px 0;
+      margin: 0;
       font-family: 'Noto Serif KR', serif;
-      font-size: 0.96rem;
-      line-height: 1.68;
+      font-size: 0.93rem;
+      line-height: 1.65;
       color: #FCECC2;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 6px;
       word-break: keep-all;
     }
     .kkd-humility-box {
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       color: #DFCDAE;
-      line-height: 1.62;
+      line-height: 1.65;
       background: rgba(255, 255, 255, 0.04);
-      border: 1px dashed rgba(212, 175, 55, 0.35);
-      padding: 11px 14px;
-      border-radius: 10px;
-      margin-top: 10px;
+      border: 1px dashed rgba(212, 175, 55, 0.38);
+      padding: 15px 18px;
+      border-radius: 12px;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       word-break: keep-all;
+    }
+    .kkd-hero-charter-bar {
+      margin-top: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .kkd-charter-chip {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 9px 10px;
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      color: #EFE0B9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      line-height: 1.3;
+      white-space: nowrap;
     }
     .kkd-diagram-card {
       background: #FAF5EA;
       border: 2px solid #C59B38;
       border-radius: 12px;
-      padding: 10px;
+      padding: 12px;
       text-align: center;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       word-break: keep-all;
     }
     .kkd-diagram-card img {
       width: 100%;
-      max-height: 250px;
+      max-height: 220px;
       object-fit: contain;
       border-radius: 8px;
       cursor: pointer;
@@ -229,84 +348,51 @@
     .kkd-diagram-card img:hover {
       transform: scale(1.02);
     }
-    .kkd-hero-inner {
-      max-width: 1560px;
-      margin: 0 auto;
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
+    @media (max-width: 1180px) {
+      .kkd-triple-ai-showcase {
+        grid-template-columns: 1fr;
+      }
+      .kkd-showcase-boxes {
+        grid-template-columns: 1fr;
+      }
+      .kkd-hero-charter-bar {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .kkd-charter-chip {
+        white-space: normal;
+      }
     }
-    .kkd-hero-eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1px solid rgba(212, 175, 55, 0.45);
-      color: #F3D37A;
-      font-size: 0.78rem;
-      font-weight: 700;
-      padding: 4px 12px;
-      border-radius: 999px;
-      margin-bottom: 12px;
-    }
-    .kkd-hero h1 {
-      font-family: 'Noto Serif KR', serif;
-      font-size: clamp(1.55rem, 2.3vw, 2.15rem);
-      font-weight: 900;
-      color: #FFF8E7;
-      line-height: 1.3;
-      margin-bottom: 8px;
-      word-break: keep-all;
-    }
-    .kkd-hero h1 span {
-      color: #ECC86A;
-      white-space: nowrap;
-    }
-    .kkd-hero p {
-      color: #D4C3A8;
-      font-size: 0.94rem;
-      line-height: 1.58;
-      max-width: 820px;
-    }
-    .kkd-hero-charter-bar {
-      margin-top: 12px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .kkd-charter-chip {
-      font-size: 0.75rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      color: #EBD6A7;
-    }
-    .kkd-hero-stats {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .kkd-stat-box {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(212, 175, 55, 0.32);
-      border-radius: 12px;
-      padding: 12px 16px;
-      min-width: 122px;
-      text-align: center;
-    }
-    .kkd-stat-box strong {
-      display: block;
-      font-family: 'Noto Serif KR', serif;
-      font-size: 1.4rem;
-      color: #F3D175;
-    }
-    .kkd-stat-box span {
-      font-size: 0.74rem;
-      color: #C7B599;
+    @media (max-width: 720px) {
+      .kkd-top-links {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 6px;
+      }
+      .kkd-nav-link {
+        justify-content: center;
+        padding: 8px 6px;
+        font-size: 0.78rem;
+      }
+      .kkd-hero-stats {
+        width: 100%;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .kkd-stat-box {
+        min-width: 0;
+        padding: 10px 6px;
+      }
+      .kkd-stat-box strong {
+        font-size: 1.12rem;
+      }
+      .kkd-stat-box span {
+        font-size: 0.68rem;
+        white-space: normal;
+      }
+      .kkd-hero-charter-bar {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* 필터 & 검색 컨트롤 바 */
@@ -1240,7 +1326,7 @@
       <a href="index.html" class="kkd-brand">
         <div class="kkd-brand-badge">書</div>
         <div class="kkd-brand-text">
-          <strong>꿈바온 서가 · 꿈디도 깊은 서재 <span style="font-size:0.82rem; font-weight:600; color:#D8B968; margin-left:4px;">Open Scholium</span></strong>
+          <strong>꿈바온 서가 · 꿈디도 깊은 서재 <span style="font-size:0.82rem; font-weight:600; color:#D8B968; margin-left:4px; white-space:nowrap;">Open Scholium</span></strong>
           <small>관장·간사단 상호 교차검수 · 히브리어·헬라어 원전 실물 대조 · 열린 학술원</small>
         </div>
       </a>
@@ -1258,56 +1344,60 @@
   <!-- 서가 히어로 소개 영역 -->
   <section class="kkd-hero">
     <div class="kkd-hero-inner">
-      <div style="flex:1; min-width:320px;">
-        <div class="kkd-hero-eyebrow">🕯️ 꿈디도 관장·간사단(안관장 · 지간사 · 제간사 · 클간사) 상호 교차검수 &amp; 원어·정본 데이터베이스 대조</div>
-        <h1>말씀과 지성의 깊은 사유 공간, <span>꿈바온 서가 · 꿈디도 깊은 서재</span></h1>
-        <p style="max-width:920px;">
-          한 연구자의 일방적인 주장이 아니라, 심층 집필(제간사)·사료 감수(지간사)·신학 감수(클간사)·원어 및 개역개정 정본 대조(안관장)로 오류를 찾아내는 장치를 겹겹이 두고,
-          검증을 마친 <strong>정식 공개 서가(B·C등급)</strong>와 검수 중인 <strong>비공개 초고 수장고(A등급)</strong>를 투명하게 구분하여 펴냅니다.
-        </p>
-
-        <div class="kkd-triple-ai-showcase">
-          <div>
-            <div style="font-size:0.8rem; font-weight:800; color:#F3D175; letter-spacing:0.06em; margin-bottom:6px;">
-              🏛️ 꿈디도 깊은 서재 공식 슬로건 &amp; 학문적 태도 헌장
-            </div>
-            <div class="kkd-slogan-quote">
-              “한 사람의 단독 견해가 아니라, 관장·간사단의 독립 연구와 반론을 통과한 지식.”<br/>
-              “독립 연구하고, 서로 반박하고, 원전으로 확인합니다.”<br/>
-              <strong>“꿈바온 디지털도서관 — 관장·간사단 상호 교차검증 (Open Scholium).”</strong>
-            </div>
-            <div class="kkd-humility-box">
-              <strong>🕯️ [깊은 서재 서문 — 결론이 아닌 사유의 여정으로의 초대]</strong><br/>
-              <span style="font-family:'Noto Serif KR',serif; font-size:0.93rem; color:#FFF3D1;">“이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.”</span><br/>
-              <span style="font-size:0.81rem; opacity:0.9; display:block; margin-top:4px;">우리는 독자와 목회자의 사유를 대신하여 섣부른 최종 결론을 강요하지 않고, 가장 복음적이고 균형 잡힌 학문적 사료 수집의 과정과 글 말미의 <strong>「💬 열린 서재: 검수자의 질문과 저자의 응답」</strong>을 투명하게 공개합니다.</span>
-            </div>
-            <div class="kkd-hero-charter-bar">
-              <span class="kkd-charter-chip">👑 C등급: 정식 출판 마스터 (독자 공개)</span>
-              <span class="kkd-charter-chip">🛡️ B등급: 관장·간사단 교차검증 완료 (독자 공개)</span>
-              <span class="kkd-charter-chip">🗄️ A등급: 연구 초고 수장고 (비공개 보존 · 사후 정밀검수 대기)</span>
-              <span class="kkd-charter-chip">💬 전 권 말미 「검수자의 반론 질문과 응답」 수록</span>
-            </div>
+      <div class="kkd-hero-top-row">
+        <div class="kkd-hero-title-col">
+          <div class="kkd-hero-eyebrow">🕯️ 꿈디도 관장·간사단(안관장 · 지간사 · 제간사 · 클간사) 상호 교차검수 &amp; 원어·정본 데이터베이스 대조</div>
+          <h1>말씀과 지성의 깊은 사유 공간, <span>꿈바온 서가 · 꿈디도 깊은 서재</span></h1>
+          <p>
+            한 연구자의 일방적인 주장이 아니라, 심층 집필(제간사)·사료 감수(지간사)·신학 감수(클간사)·원어 및 개역개정 정본 대조(안관장)로 오류를 찾아내는 장치를 겹겹이 두고,
+            검증을 마친 <strong>정식 공개 서가(B·C등급)</strong>와 검수 중인 <strong>비공개 초고 수장고(A등급)</strong>를 투명하게 구분하여 펴냅니다.
+          </p>
+        </div>
+        <div class="kkd-hero-stats">
+          <div class="kkd-stat-box">
+            <strong id="statPublicBooks">84권</strong>
+            <span>정식 공개 서가 (B·C등급)</span>
           </div>
-          <div class="kkd-diagram-card">
-            <img src="assets/figures/kkumdido_cross_review_system.png" alt="꿈디도 관장·간사단 상호 교차검증 시스템 구조도" onclick="window.open(this.src, '_blank')" title="클릭하여 원본 크기로 보기" />
-            <div style="font-size:0.74rem; color:#4A3723; font-weight:800; margin-top:6px;">
-              🔍 [관장·간사단 상호 교차검증 아키텍처] 클릭 시 고해상도 구조도 확대 열람
-            </div>
+          <div class="kkd-stat-box">
+            <strong id="statVaultBooks">75권</strong>
+            <span>A등급 초고 수장고 (검수대기)</span>
+          </div>
+          <div class="kkd-stat-box">
+            <strong id="statTotalChars">236.7만 자</strong>
+            <span id="statTotalBooksLabel">누적 보존 연구 자산 (총 159권)</span>
           </div>
         </div>
       </div>
-      <div class="kkd-hero-stats">
-        <div class="kkd-stat-box">
-          <strong id="statPublicBooks">102권</strong>
-          <span>정식 공개 서가 (B·C등급)</span>
+
+      <div class="kkd-triple-ai-showcase">
+        <div class="kkd-showcase-main">
+          <div style="font-size:0.86rem; font-weight:800; color:#F3D175; letter-spacing:0.05em;">
+            🏛️ 꿈디도 깊은 서재 공식 슬로건 &amp; 학문적 태도 헌장
+          </div>
+          <div class="kkd-showcase-boxes">
+            <div class="kkd-slogan-quote">
+              <div>“한 사람의 단독 견해가 아니라,<br/>관장·간사단의 독립 연구와 반론을 통과한 지식.”</div>
+              <div>“독립 연구하고, 서로 반박하고, 원전으로 확인합니다.”</div>
+              <div><strong>“꿈바온 디지털도서관<br/>— 관장·간사단 상호 교차검증 <span style="white-space:nowrap;">(Open Scholium).”</span></strong></div>
+            </div>
+            <div class="kkd-humility-box">
+              <div style="margin-bottom:4px;"><strong>🕯️ [깊은 서재 서문 — 결론이 아닌 사유의 여정으로의 초대]</strong></div>
+              <div style="font-family:'Noto Serif KR',serif; font-size:0.94rem; color:#FFF3D1;">“이 서재는 결론을 대신 내려 주지 않는다. 본문과 원전을 먼저 펴 놓고, 관장과 간사들이 서로 살핀 자취를 함께 남겼다. 천천히 읽고 스스로 확인하며 걸어가기를 청한다.”</div>
+              <div style="font-size:0.82rem; opacity:0.92; margin-top:6px;">우리는 독자와 목회자의 사유를 대신하여 섣부른 최종 결론을 강요하지 않고, 가장 복음적이고 균형 잡힌 학문적 사료 수집의 과정과 글 말미의 <strong>「💬 열린 서재: 검수자의 질문과 저자의 응답」</strong>을 투명하게 공개합니다.</div>
+            </div>
+          </div>
+          <div class="kkd-hero-charter-bar">
+            <span class="kkd-charter-chip">👑 C등급 · 정식 출판 마스터 (독자 공개)</span>
+            <span class="kkd-charter-chip">🛡️ B등급 · 관장·간사 교차검증 완료 (공개)</span>
+            <span class="kkd-charter-chip">🗄️ A등급 · 연구 초고 수장고 (검수 대기)</span>
+            <span class="kkd-charter-chip">💬 전 권 말미 「검수자 질문·응답」 수록</span>
+          </div>
         </div>
-        <div class="kkd-stat-box">
-          <strong id="statVaultBooks">54권</strong>
-          <span>A등급 초고 수장고 (검수대기)</span>
-        </div>
-        <div class="kkd-stat-box">
-          <strong id="statTotalChars">227.6만 자</strong>
-          <span>누적 보존 연구 자산 (총 156권)</span>
+        <div class="kkd-diagram-card">
+          <img src="assets/figures/kkumdido_cross_review_system.png" alt="꿈디도 관장·간사단 상호 교차검증 시스템 구조도" onclick="window.open(this.src, '_blank')" title="클릭하여 원본 크기로 보기" />
+          <div style="font-size:0.75rem; color:#4A3723; font-weight:800; margin-top:8px;">
+            🔍 [관장·간사단 상호 교차검증 아키텍처] 클릭 시 확대 열람
+          </div>
         </div>
       </div>
     </div>
@@ -1426,6 +1516,10 @@
       document.getElementById('statPublicBooks').textContent = pubCnt + '권';
       document.getElementById('statVaultBooks').textContent = vaultCnt + '권';
       document.getElementById('statTotalChars').textContent = (db.totalChars / 10000).toFixed(1) + '만 자';
+      const totalBooksLabel = document.getElementById('statTotalBooksLabel');
+      if (totalBooksLabel) {
+        totalBooksLabel.textContent = `누적 보존 연구 자산 (총 ${db.totalBooks || (pubCnt + vaultCnt)}권)`;
+      }
       renderShelf();
 
       const params = new URLSearchParams(window.location.search);
