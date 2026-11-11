@@ -14,8 +14,8 @@
   <meta property="og:title" content="꿈바온 서가 · 꿈디도 깊은 서재 (열린 학술원 · Open Scholium) — 꿈바온 디지털 도서관" />
   <meta property="og:description" content="다중 독립 연구·상호 교차검증과 히브리어·헬라어 원전 실물 대조를 거친 열린 학술원(Open Scholium) 신학 총서 서재" />
   <meta property="og:url" content="https://kkumbaon.com/kkumbaon-library/kkumdion_bookshelf.html" />
-  <meta property="og:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdion_bookshelf.jpg" />
-  <meta property="og:image:secure_url" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdion_bookshelf.jpg" />
+  <meta property="og:image" content="https://kkumbaon.com/og_kkumdion_bookshelf.jpg" />
+  <meta property="og:image:secure_url" content="https://kkumbaon.com/og_kkumdion_bookshelf.jpg" />
   <meta property="og:image:type" content="image/jpeg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -23,7 +23,7 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="꿈바온 서가 · 꿈디도 깊은 서재 (열린 학술원 · Open Scholium) — 꿈바온 디지털 도서관" />
   <meta name="twitter:description" content="다중 독립 연구·상호 교차검증과 히브리어·헬라어 원전 실물 대조를 거친 열린 학술원(Open Scholium) 신학 총서 서재" />
-  <meta name="twitter:image" content="https://kkumbaon.com/kkumbaon-library/assets/og/og_kkumdion_bookshelf.jpg" />
+  <meta name="twitter:image" content="https://kkumbaon.com/og_kkumdion_bookshelf.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -600,76 +600,204 @@
       display: flex;
     }
 
-    /* 북뷰어 상단 툴바 */
+    /* 북뷰어 상단 툴바 — 1줄 수평 캡슐 그룹 정렬 (잘림·줄바꿈 원천 방지) */
     .kkd-reader-toolbar {
-      height: 58px;
-      background: #1A130D;
+      min-height: 60px;
+      height: auto;
+      background: linear-gradient(180deg, #211810 0%, #16100B 100%);
       border-bottom: 1.5px solid #8A6928;
-      padding: 0 20px;
+      padding: 10px 22px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 16px;
       color: #F4E9D5;
       flex-shrink: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
     .kkd-reader-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      flex: 1 1 0%;
       min-width: 0;
+      overflow: hidden;
     }
     .kkd-reader-toc-toggle {
-      background: rgba(212, 175, 55, 0.14);
+      background: rgba(212, 175, 55, 0.15);
       border: 1px solid #C59B38;
       color: #F5D98B;
       padding: 7px 13px;
       border-radius: 8px;
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .kkd-reader-toc-toggle:hover {
+      background: rgba(212, 175, 55, 0.28);
+      color: #FFF6DC;
     }
     .kkd-reader-book-title {
       font-family: 'Noto Serif KR', serif;
-      font-size: 0.98rem;
+      font-size: 0.96rem;
       font-weight: 700;
       color: #FCE9B8;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      flex: 1 1 auto;
+      min-width: 0;
     }
     .kkd-reader-controls {
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
+      flex: 0 0 auto;
+      flex-wrap: nowrap;
+    }
+    .kkd-btn-group {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(0, 0, 0, 0.36);
+      border: 1px solid rgba(212, 175, 55, 0.34);
+      border-radius: 8px;
+      padding: 2px;
+      gap: 2px;
+      flex-shrink: 0;
     }
     .kkd-r-btn {
-      background: rgba(255, 255, 255, 0.07);
-      border: 1px solid rgba(212, 175, 55, 0.35);
+      background: transparent;
+      border: 1px solid transparent;
+      color: #DFCDAE;
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      line-height: 1.25;
+    }
+    .kkd-r-btn:hover {
+      color: #FFF5D6;
+      background: rgba(212, 175, 55, 0.14);
+    }
+    .kkd-r-btn.active {
+      background: linear-gradient(135deg, #DEC068 0%, #B88E28 100%);
+      color: #17110A;
+      font-weight: 800;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    }
+    .kkd-r-btn-solo {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.38);
       color: #EADBC2;
       padding: 6px 11px;
-      border-radius: 7px;
-      font-size: 0.8rem;
+      border-radius: 8px;
+      font-size: 0.79rem;
       font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .kkd-r-btn-solo:hover {
+      background: rgba(212, 175, 55, 0.22);
+      color: #FFF8E6;
+      border-color: #D4AF37;
+    }
+    .kkd-r-btn-share {
+      background: linear-gradient(135deg, rgba(212, 175, 55, 0.22) 0%, rgba(160, 120, 30, 0.28) 100%);
+      border: 1px solid #D4AF37;
+      color: #FFE8A3;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.79rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+      flex-shrink: 0;
+    }
+    .kkd-r-btn-share:hover {
+      background: #D4AF37;
+      color: #17110A;
+    }
+    .kkd-r-close {
+      background: linear-gradient(135deg, #7A2424 0%, #581818 100%);
+      border: 1px solid #CC6262;
+      color: #FFF0F0;
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+    .kkd-r-close:hover {
+      background: #962D2D;
+    }
+    .kkd-share-card-btn {
+      background: rgba(212, 175, 55, 0.12);
+      color: var(--gold-deep);
+      border: 1px solid rgba(197, 155, 56, 0.45);
+      border-radius: 8px;
+      padding: 5px 10px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      white-space: nowrap;
       cursor: pointer;
       transition: all 0.15s;
     }
-    .kkd-r-btn:hover, .kkd-r-btn.active {
-      background: #D4AF37;
-      color: #17110A;
-      border-color: #D4AF37;
+    body.dark-library .kkd-share-card-btn {
+      color: #F0D078;
     }
-    .kkd-r-close {
-      background: #6B2020;
-      border: 1px solid #C95B5B;
-      color: #FFEAEA;
-      padding: 6px 14px;
-      border-radius: 7px;
-      font-size: 0.82rem;
+    .kkd-share-card-btn:hover {
+      background: #D4AF37;
+      color: #18110A !important;
+    }
+    .kkd-toast {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: linear-gradient(135deg, #1E160E 0%, #2D2114 100%);
+      color: #FFF4D2;
+      border: 1.5px solid #D4AF37;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.88rem;
       font-weight: 800;
-      cursor: pointer;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.65);
+      z-index: 100000;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+    }
+    .kkd-toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+    @media (max-width: 1100px) {
+      .kkd-reader-toolbar {
+        flex-wrap: wrap;
+        padding: 8px 14px;
+        gap: 8px;
+      }
+      .kkd-reader-left {
+        flex: 1 1 100%;
+      }
+      .kkd-reader-controls {
+        flex: 1 1 100%;
+        justify-content: flex-end;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
     }
 
     /* 북뷰어 메인 스테이지 */
@@ -1112,16 +1240,17 @@
       <a href="index.html" class="kkd-brand">
         <div class="kkd-brand-badge">書</div>
         <div class="kkd-brand-text">
-          <strong>꿈바온 서가 · 꿈디도 깊은 서재 (THE DEEP STUDY · KKUMDION 2.1)</strong>
-          <small>OPEN SCHOLIUM · 관장·간사단 상호 교차검수 · 원전 실물 대조 · 열린 학술원</small>
+          <strong>꿈바온 서가 · 꿈디도 깊은 서재 <span style="font-size:0.82rem; font-weight:600; color:#D8B968; margin-left:4px;">Open Scholium</span></strong>
+          <small>관장·간사단 상호 교차검수 · 히브리어·헬라어 원전 실물 대조 · 열린 학술원</small>
         </div>
       </a>
       <div class="kkd-top-links">
-        <a href="index.html" class="kkd-nav-link">🏛️ 꿈디도 본관으로</a>
-        <a href="kkumdido_12archives_viewer.html" class="kkd-nav-link">📚 12대 아카이브 (3,650)</a>
-        <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="kkd-nav-link">📖 66권 원어 풀어읽기 주석</a>
+        <a href="index.html" class="kkd-nav-link">🏛️ 꿈디도 본관</a>
+        <a href="kkumdido_12archives_viewer.html" class="kkd-nav-link">📚 12대 아카이브</a>
+        <a href="00_꿈바온_원어풀어읽기_성경주석66권_통합웹뷰어.html" class="kkd-nav-link">📖 66권 원어 주석</a>
         <a href="kkumdido_church_support_annex.html" class="kkd-nav-link">🕊️ 꿈디도 별관</a>
-        <button type="button" class="kkd-nav-link" onclick="toggleLibraryDark()" style="border-color:#D4AF37; color:#FFE6A3;">🕯️ 서재 조명 전환 (깊은 서재 / 밝은 열람실)</button>
+        <button type="button" class="kkd-nav-link" onclick="copyShelfShareLink()" style="border-color:#D4AF37; color:#FFE8A3; background:rgba(212,175,55,0.16);" title="페이스북·카톡 미리보기용 서가 링크 복사">🔗 서가 링크복사</button>
+        <button type="button" class="kkd-nav-link" onclick="toggleLibraryDark()" style="border-color:rgba(212,175,55,0.45); color:#F3DEC0;">🕯️ 조명 전환</button>
       </div>
     </div>
   </header>
@@ -1224,15 +1353,22 @@
         <div class="kkd-reader-book-title" id="readerBookTitle">꿈디온 북뷰어</div>
       </div>
       <div class="kkd-reader-controls">
-        <button type="button" class="kkd-r-btn active" id="btnModeSpread" onclick="setReaderMode('spread')">📖 양면 책장 모드</button>
-        <button type="button" class="kkd-r-btn" id="btnModeScroll" onclick="setReaderMode('scroll')">📜 연속 스크롤 모드</button>
-        <button type="button" class="kkd-r-btn active" id="btnPaperParchment" onclick="setReaderPaper('parchment')">양피지</button>
-        <button type="button" class="kkd-r-btn" id="btnPaperIvory" onclick="setReaderPaper('ivory')">미색종이</button>
-        <button type="button" class="kkd-r-btn" id="btnPaperDark" onclick="setReaderPaper('dark')">밤의서재</button>
-        <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(-1)">가-</button>
-        <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(1)">가+</button>
-        <button type="button" class="kkd-r-btn" onclick="window.print()">🖨️ 인쇄</button>
-        <button type="button" class="kkd-r-close" onclick="closeBookReader()">✕ 서가로 돌아가기</button>
+        <div class="kkd-btn-group" title="열람 방식 전환">
+          <button type="button" class="kkd-r-btn active" id="btnModeSpread" onclick="setReaderMode('spread')">📖 양면 책장</button>
+          <button type="button" class="kkd-r-btn" id="btnModeScroll" onclick="setReaderMode('scroll')">📜 스크롤</button>
+        </div>
+        <div class="kkd-btn-group" title="종이 배경 전환">
+          <button type="button" class="kkd-r-btn active" id="btnPaperParchment" onclick="setReaderPaper('parchment')">양피지</button>
+          <button type="button" class="kkd-r-btn" id="btnPaperIvory" onclick="setReaderPaper('ivory')">미색</button>
+          <button type="button" class="kkd-r-btn" id="btnPaperDark" onclick="setReaderPaper('dark')">밤서재</button>
+        </div>
+        <div class="kkd-btn-group" title="본문 글자 크기 조절">
+          <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(-1)">가-</button>
+          <button type="button" class="kkd-r-btn" onclick="adjustReaderFont(1)">가+</button>
+        </div>
+        <button type="button" class="kkd-r-btn-share" onclick="copyCurrentBookShareLink()" title="페이스북·카톡 미리보기가 설정된 이 책의 전용 링크 복사">🔗 링크복사</button>
+        <button type="button" class="kkd-r-btn-solo" onclick="window.print()" title="현재 도서 인쇄 / PDF 저장">🖨️ 인쇄</button>
+        <button type="button" class="kkd-r-close" onclick="closeBookReader()">✕ 서가로</button>
       </div>
     </div>
 
@@ -1436,7 +1572,10 @@
               </div>
               <div class="kkd-book-footer">
                 <span class="kkd-book-sub">✍️ ${cleanGansaName(b.author || '제간사')} · 📅 ${b.writtenAt || '2026-11-10'}</span>
-                <span class="kkd-open-reader-btn">📖 책 펼치기</span>
+                <div style="display:flex; align-items:center; gap:6px;">
+                  <button type="button" class="kkd-share-card-btn" onclick="event.stopPropagation(); copyBookShareLinkById('${b.id}')" title="이 책의 공유 링크 복사 (미리보기 지원)">🔗 링크복사</button>
+                  <span class="kkd-open-reader-btn">📖 책 펼치기</span>
+                </div>
               </div>
             </div>
           </article>
@@ -2153,6 +2292,64 @@
       document.getElementById('kkdPageIndicator').textContent = `${currentSpreadIndex + 1} ~ ${pEnd} 쪽 (전체 ${totalP}쪽 · A4 고정 양면 책장)`;
       document.getElementById('btnPrevSpread').disabled = currentSpreadIndex <= 0;
       document.getElementById('btnNextSpread').disabled = currentSpreadIndex + 2 >= totalP;
+    }
+
+    let toastTimer = null;
+    function showShareToast(msg) {
+      let el = document.getElementById('kkdShareToast');
+      if (!el) {
+        el = document.createElement('div');
+        el.id = 'kkdShareToast';
+        el.className = 'kkd-toast';
+        document.body.appendChild(el);
+      }
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2800);
+    }
+
+    function copyTextToClipboard(text, successMsg) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          showShareToast(successMsg);
+        }).catch(() => fallbackCopy(text, successMsg));
+      } else {
+        fallbackCopy(text, successMsg);
+      }
+    }
+
+    function fallbackCopy(text, successMsg) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      document.body.removeChild(ta);
+      showShareToast(successMsg);
+    }
+
+    function copyShelfShareLink() {
+      const url = 'https://kkumbaon.com/bookshelf';
+      copyTextToClipboard(url, '✅ 꿈바온 서가 공유 링크가 복사되었습니다! (SNS 미리보기 자동 표시)');
+    }
+
+    function copyBookShareLinkById(bookId) {
+      const db = window.KKUMDION_BOOKS_DB || { books: [] };
+      const b = (db.books || []).find(x => x.id === bookId);
+      const url = `https://kkumbaon.com/books/${bookId}.html`;
+      const label = b ? b.title.replace(/^\[[^\]]+\]\s*/, '').slice(0, 24) : bookId;
+      copyTextToClipboard(url, `✅ [${label}] 전용 공유 링크가 복사되었습니다! (SNS 미리보기 지원)`);
+    }
+
+    function copyCurrentBookShareLink() {
+      if (!activeBook) {
+        copyShelfShareLink();
+        return;
+      }
+      copyBookShareLinkById(activeBook.id);
     }
 
     function toggleLibraryDark() {
