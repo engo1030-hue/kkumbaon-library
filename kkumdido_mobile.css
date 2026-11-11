@@ -172,33 +172,12 @@
     flex-shrink: 0 !important;
   }
 
-  html:not(.pc-override) .entrance-nav > a:not(.nav-studio-trigger),
   html:not(.pc-override) .entrance-nav > button:not(.nav-search-btn):not(.nav-studio-trigger),
   html:not(.pc-override) .entrance-nav .nav-guide-btn {
     display: none !important;
   }
 
-  html:not(.pc-override) .entrance-nav .nav-search-btn {
-    height: 30px !important;
-    width: 32px !important;
-    padding: 0 !important;
-    font-size: 0 !important;
-    border-radius: 6px !important;
-    background: rgba(251, 249, 243, 0.12) !important;
-    color: #F5DF98 !important;
-    border: 1px solid rgba(212, 175, 55, 0.45) !important;
-    margin-left: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    cursor: pointer !important;
-    flex-shrink: 0 !important;
-  }
-  html:not(.pc-override) .entrance-nav .nav-search-btn::before {
-    content: "🔍" !important;
-    font-size: 13.5px !important;
-  }
-
+  html:not(.pc-override) .entrance-nav .nav-bookshelf-btn,
   html:not(.pc-override) .entrance-nav .nav-studio-trigger {
     height: 30px !important;
     padding: 0 8px !important;
