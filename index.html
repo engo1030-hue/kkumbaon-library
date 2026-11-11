@@ -2013,7 +2013,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 15px;
+      font-size: 16.5px;
       font-weight: 700;
       color: var(--gold-light);
       letter-spacing: 0.03em;
@@ -2021,7 +2021,7 @@
 
     .kw-headline {
       font-family: "Noto Serif KR", serif;
-      font-size: clamp(16px, 1.4vw, 22px);
+      font-size: clamp(19px, 1.55vw, 23.5px);
       font-weight: 700;
       color: #FFFDF9;
       line-height: 1.38;
@@ -2035,10 +2035,10 @@
 
     .kw-quote {
       font-family: "Noto Serif KR", serif;
-      font-size: clamp(13px, 0.96vw, 14.5px);
+      font-size: clamp(14px, 1.05vw, 15.5px);
       line-height: 1.58;
       color: #EAE0CE;
-      padding: 7px 18px;
+      padding: 8px 20px;
       border-left: 3px solid var(--gold-primary);
       background: rgba(255, 255, 255, 0.04);
       border-radius: 0 8px 8px 0;
@@ -2258,7 +2258,7 @@
     .kkumdido-12halls-bar {
       background: #EFEAE0;
       border-bottom: 1px solid #D8CEBC;
-      padding: 11px clamp(16px, 2vw, 36px);
+      padding: 13px clamp(16px, 2vw, 36px);
       display: flex;
       align-items: center;
     }
@@ -2274,7 +2274,7 @@
     .kkumdido-12halls-left {
       display: grid;
       grid-template-columns: repeat(2, auto);
-      gap: 7px 9px;
+      gap: 8px 10px;
       flex-shrink: 0;
       padding-left: 20px;
       border-left: 1px solid #D2C7B2;
@@ -2283,18 +2283,18 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 800;
       color: #F5DF98;
       background: #241A10;
-      border: 1px solid #B89446;
-      padding: 6px 15px;
-      border-radius: 8px;
+      border: 1.5px solid #B89446;
+      padding: 7px 18px;
+      border-radius: 9px;
       text-decoration: none;
       letter-spacing: -0.25px;
       flex-shrink: 0;
       white-space: nowrap;
-      box-shadow: 0 2px 5px rgba(36, 26, 16, 0.10);
+      box-shadow: 0 2px 5px rgba(36, 26, 16, 0.12);
       transition: all 0.15s ease;
     }
     .kkumdido-12halls-badge:hover {
@@ -2306,17 +2306,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 800;
       color: #2E251D;
       background: #FAF6ED;
-      border: 1px solid #C8B696;
-      padding: 6px 14px;
-      border-radius: 8px;
+      border: 1.5px solid #C8B696;
+      padding: 7px 18px;
+      border-radius: 9px;
       text-decoration: none;
       letter-spacing: -0.3px;
       white-space: nowrap;
-      box-shadow: 0 1px 3px rgba(36, 26, 16, 0.04);
+      box-shadow: 0 1px 3px rgba(36, 26, 16, 0.05);
       transition: all 0.15s ease;
     }
     .kkumdido-12halls-genealogy span.h-no {
@@ -2336,8 +2336,8 @@
       flex: 1;
       display: grid;
       grid-template-columns: repeat(6, minmax(0, 1fr));
-      column-gap: 12px;
-      row-gap: 9px;
+      column-gap: 10px;
+      row-gap: 10px;
       align-items: center;
     }
     .kkumdido-12halls-grid a {
@@ -2346,10 +2346,10 @@
       align-items: center;
       text-decoration: none;
       color: #241A10;
-      font-size: 15px;
-      font-weight: 700;
+      font-size: 16.5px;
+      font-weight: 800;
       letter-spacing: -0.35px;
-      padding: 3px 6px 3px 16px;
+      padding: 4px 6px 4px 14px;
       border-radius: 6px;
       transition: color 0.15s ease, background 0.15s ease, transform 0.15s ease;
       white-space: nowrap;
@@ -3497,27 +3497,14 @@ body.dark-theme .knb-card-link {
     overflow: visible !important;
     flex-shrink: 0 !important;
   }
-  /* 모바일 헤더에서는 꿈바온 서가 + 공방으로 가기 버튼만 깔끔하게 표시 */
+  /* 모바일 헤더에서는 좌측 타이틀이 절대 잘리지 않도록 서가/공방 버튼은 바로 아래 전용 바로 내림 */
   .entrance-nav > button[data-cat],
+  .entrance-nav .nav-bookshelf-btn,
+  .entrance-nav .nav-studio-trigger,
   .entrance-nav .nav-guide-btn,
   .entrance-nav .nav-12arch-btn,
   .entrance-nav .nav-moses-btn {
     display: none !important;
-  }
-  .entrance-nav .nav-bookshelf-btn,
-  .entrance-nav .nav-studio-trigger {
-    height: 30px !important;
-    padding: 0 8px !important;
-    font-size: 11px !important;
-    font-weight: 800 !important;
-    border-radius: 6px !important;
-    background: linear-gradient(135deg, #382817 0%, #241A10 100%) !important;
-    color: #F5DF98 !important;
-    border: 1px solid #C8A45D !important;
-    white-space: nowrap !important;
-    flex-shrink: 0 !important;
-    display: inline-flex !important;
-    align-items: center !important;
   }
   .entrance-theme {
     height: 30px !important;
@@ -3538,26 +3525,26 @@ body.dark-theme .knb-card-link {
     font-size: 13.5px !important;
   }
 
-  /* 2. 상단 12관 아카이브 직행 바 (2열 50% 균등 배치, 글자 잘림 원천 차단) */
+  /* 2. 상단 12관 아카이브 직행 바 (2열 50% 균등 배치, 글자 잘림 원천 차단 & 가독성 상향) */
   .kkumdido-12halls-bar {
-    padding: 6px 8px !important;
+    padding: 8px 10px !important;
     background: #1C1713 !important;
     border-bottom: 1px solid rgba(197, 155, 56, 0.28) !important;
   }
   .kkumdido-12halls-inner {
     display: flex !important;
     flex-direction: column !important;
-    gap: 6px !important;
+    gap: 7px !important;
     width: 100% !important;
     box-sizing: border-box !important;
   }
   .kkumdido-12halls-left {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 5px !important;
+    gap: 6px !important;
     width: 100% !important;
     padding-left: 0 !important;
-    padding-top: 5px !important;
+    padding-top: 6px !important;
     border-left: none !important;
     border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
     box-sizing: border-box !important;
@@ -3566,11 +3553,12 @@ body.dark-theme .knb-card-link {
   .kkumdido-12halls-genealogy {
     width: 100% !important;
     min-width: 0 !important;
-    height: 32px !important;
-    min-height: 32px !important;
-    font-size: 11px !important;
-    padding: 4px 6px !important;
-    border-radius: 6px !important;
+    height: 36px !important;
+    min-height: 36px !important;
+    font-size: 13px !important;
+    font-weight: 800 !important;
+    padding: 4px 8px !important;
+    border-radius: 7px !important;
     box-sizing: border-box !important;
     white-space: nowrap !important;
     overflow: hidden !important;
@@ -3578,12 +3566,7 @@ body.dark-theme .knb-card-link {
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    gap: 2px !important;
-  }
-  .kkumdido-12halls-genealogy .h-no {
-    margin-right: 2px !important;
-    font-size: 9.5px !important;
-    padding: 1px 3px !important;
+    gap: 3px !important;
   }
   .kkumdido-mobile-shelves-strip {
     display: flex !important;
@@ -3591,19 +3574,19 @@ body.dark-theme .knb-card-link {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
-    gap: 5px !important;
+    gap: 6px !important;
     width: 100% !important;
-    padding-bottom: 4px !important;
+    padding-bottom: 5px !important;
     border-bottom: 1px solid rgba(212, 175, 55, 0.22) !important;
   }
   .kkumdido-mobile-shelves-strip::-webkit-scrollbar { display: none !important; }
   .kkumdido-mobile-shelves-strip button {
     flex: 0 0 auto !important;
-    font-size: 11.5px !important;
-    font-weight: 700 !important;
-    height: 29px !important;
-    min-height: 29px !important;
-    padding: 0 10px !important;
+    font-size: 12.8px !important;
+    font-weight: 800 !important;
+    height: 33px !important;
+    min-height: 33px !important;
+    padding: 0 12px !important;
     background: rgba(255, 255, 255, 0.08) !important;
     border: 1px solid rgba(212, 175, 55, 0.32) !important;
     border-radius: 999px !important;
@@ -3623,17 +3606,18 @@ body.dark-theme .knb-card-link {
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
     scrollbar-width: none !important;
-    gap: 4px !important;
+    gap: 5px !important;
     width: 100% !important;
     padding-bottom: 2px !important;
   }
   .kkumdido-12halls-grid::-webkit-scrollbar { display: none !important; }
   .kkumdido-12halls-grid a {
     flex: 0 0 auto !important;
-    font-size: 11px !important;
-    height: 28px !important;
-    min-height: 28px !important;
-    padding: 3px 8px !important;
+    font-size: 12.8px !important;
+    font-weight: 700 !important;
+    height: 32px !important;
+    min-height: 32px !important;
+    padding: 4px 10px !important;
     background: rgba(255, 255, 255, 0.06) !important;
     border: 1px solid rgba(212, 175, 55, 0.24) !important;
     border-radius: 999px !important;
@@ -3644,9 +3628,9 @@ body.dark-theme .knb-card-link {
     white-space: nowrap !important;
   }
 
-  /* 3. 웰컴 리본 바 (글자 잘림 0건, 슬림 1~2줄 정돈) */
+  /* 3. 웰컴 리본 바 (글자 잘림 0건, 슬림 1~2줄 정돈 & 모바일 가독성 강화) */
   .kkumbaon-welcome-bar {
-    padding: 8px 10px !important;
+    padding: 10px 12px !important;
     width: 100% !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
@@ -3656,26 +3640,26 @@ body.dark-theme .knb-card-link {
     max-width: 100% !important;
     flex-direction: column !important;
     align-items: flex-start !important;
-    gap: 3px !important;
+    gap: 4px !important;
   }
   .kw-left {
     width: 100% !important;
     display: flex !important;
     flex-direction: column !important;
-    gap: 3px !important;
+    gap: 4px !important;
   }
   .kw-eyebrow {
-    font-size: 10.5px !important;
+    font-size: 11.5px !important;
     white-space: normal !important;
     word-break: keep-all !important;
     line-height: 1.35 !important;
     color: #C59B38 !important;
   }
   .kw-headline {
-    font-size: 12px !important;
+    font-size: 14px !important;
     white-space: normal !important;
     word-break: keep-all !important;
-    line-height: 1.4 !important;
+    line-height: 1.45 !important;
     color: #1F1A15 !important;
   }
   body.dark-theme .kw-headline {
@@ -3802,10 +3786,10 @@ body.dark-theme .knb-card-link {
         <a href="kkumdido_12archives_viewer.html?archive=12" class="two-digit-col"><span class="h-no">12관</span>강해·예배문헌</a>
       </div>
       <div class="kkumdido-12halls-left">
-        <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">🏛️ 12대 아카이브 · 3,650 ↗</a>
-        <a href="figures_encyclopedia_preview.html" class="kkumdido-12halls-genealogy"><span class="h-no">가계도</span>인물가계도·족보</a>
-        <a href="online_chapel_kkumdido.html" class="kkumdido-12halls-genealogy" title="꿈디도 3D 아트리움 묵상원 · 성화 전시회 둘러보기"><span class="h-no">3D 전시</span>🏛️ 도서관 둘러보기</a>
-        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" title="우리 교회 3D 온라인 예배당 · 감람산 정원 둘러보기"><span class="h-no">3D 예배당</span>🕊️ 예배당 둘러보기</a>
+        <a href="kkumdido_12archives_viewer.html" class="kkumdido-12halls-badge">🏛️ 12대 아카이브 ↗</a>
+        <a href="figures_encyclopedia_preview.html" class="kkumdido-12halls-genealogy">인물가계도·족보</a>
+        <a href="online_chapel_kkumdido.html" class="kkumdido-12halls-genealogy" title="꿈디도 아트리움 묵상원 · 성화 전시회 둘러보기">🏛️ 도서관 둘러보기</a>
+        <a href="online_chapel_church.html" class="kkumdido-12halls-genealogy" title="우리 교회 온라인 예배당 · 감람산 정원 둘러보기">🕊️ 예배당 둘러보기</a>
       </div>
     </div>
   </nav>
@@ -3846,12 +3830,12 @@ body.dark-theme .knb-card-link {
         우리도 한 걸음씩 걸으며 빈 서고에 책을 꽂아 갑니다.”
       </div>
     </div>
-    <div style="max-width:1392px; margin:10px auto 0; padding:10px 16px; box-sizing:border-box; background:linear-gradient(90deg, rgba(26,18,11,0.95) 0%, rgba(44,30,18,0.95) 50%, rgba(26,18,11,0.95) 100%); border:1px solid rgba(212,175,55,0.48); border-radius:10px; display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;">
-      <div style="display:flex; align-items:center; gap:9px; flex-wrap:wrap; font-size:12.8px; color:#F5E8CE; word-break:keep-all;">
-        <span style="background:rgba(212,175,55,0.2); border:1px solid #D4AF37; color:#FFE39E; font-weight:800; padding:2px 9px; border-radius:999px; font-size:11.5px; white-space:nowrap;">📚 NEW · 꿈바온 서가 · 깊은 서재</span>
+    <div class="kkd-welcome-bookshelf-strip" style="max-width:1392px; margin:12px auto 0; padding:12px 18px; box-sizing:border-box; background:linear-gradient(90deg, rgba(26,18,11,0.95) 0%, rgba(44,30,18,0.95) 50%, rgba(26,18,11,0.95) 100%); border:1.5px solid rgba(212,175,55,0.52); border-radius:11px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap;">
+      <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; font-size:15px; color:#F5E8CE; word-break:keep-all;">
+        <span style="background:rgba(212,175,55,0.22); border:1px solid #D4AF37; color:#FFE39E; font-weight:800; padding:3px 11px; border-radius:999px; font-size:13.5px; white-space:nowrap;">📚 NEW · 꿈바온 서가 · 깊은 서재</span>
         <span><strong>“관장·간사단의 독립 연구와 반론을 통과한 지식.”</strong> — 관장·간사단 상호 교차검수 학술 총서 <strong>159권(235.2만 자 · 정식 공개 102권)</strong></span>
       </div>
-      <a href="kkumdion_bookshelf.html?v=20261111_a4v4" style="text-decoration:none; background:linear-gradient(135deg,#D4AF37,#9A6F1A); color:#171008; font-weight:900; font-size:12.5px; padding:6px 14px; border-radius:7px; white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,0.35);">📚 꿈바온 서가 입장하기 (양장본 북뷰어) ↗</a>
+      <a href="kkumdion_bookshelf.html?v=20261111_a4v4" style="text-decoration:none; background:linear-gradient(135deg,#D4AF37,#9A6F1A); color:#171008; font-weight:900; font-size:14.5px; padding:8px 18px; border-radius:8px; white-space:nowrap; box-shadow:0 3px 10px rgba(0,0,0,0.35);">📚 꿈바온 서가 입장하기 (양장본 북뷰어) ↗</a>
     </div>
   </section>
 
@@ -3870,7 +3854,7 @@ body.dark-theme .knb-card-link {
     </div>
     <div class="hall-stats" aria-label="도서관 소장 현황">
       <div title="성경 지도 실측 도시 49곳 + 제5관 성경 지리·고고학 아틀라스 300곳"><strong id="placeTotal">349</strong><span>탐험할 장소</span></div>
-      <div style="cursor:pointer;" onclick="window.location.href='kkumdido_12archives_viewer.html'" title="12대 아카이브 3,650모듈 전관 본문 완결 (제1관~제12관)"><strong style="color:#D4AF37;">3,650</strong><span>12대 아카이브 (본문 3,650 완결)</span></div>
+      <div style="cursor:pointer;" onclick="window.location.href='kkumdido_12archives_viewer.html'" title="12대 아카이브 3,650모듈 전관 본문 완결 (제1관~제12관)"><strong style="color:#D4AF37;">3,650</strong><span>12대 아카이브</span></div>
       <div style="cursor:pointer;" onclick="window.location.href='kkumdion_bookshelf.html?v=20261111_a4v4'" title="본관 전시 문헌 291편 + 꿈바온 서가(깊은 서재) 학술 총서 156권 (정식 공개 102권)"><strong id="statTotalDocs">447편</strong><span>성경 문헌·총서</span></div>
       <div title="본관 문헌 589점 + 제1관 인물 1,100점 + 제2관 사건 300점 + 제3관 비하인드 300점 + 제5관 지리고고학 110점"><strong id="statTotalImgs">2,399점</strong><span>성화와 도판</span></div>
       <div><strong id="statVisitorCount" title="꿈디도 누적 방문객 수">1,320+</strong><span>도서관 방문</span></div>
