@@ -1180,11 +1180,57 @@
     return;
   }
 
+  var liveGoatStats = { library: null, total: null, fetchedAt: '', ok: false };
+
+  function parseGoatCount(data) {
+    if (!data) return null;
+    var raw = data.count_unique !== undefined ? data.count_unique : data.count;
+    if (raw === undefined || raw === null) return null;
+    var n = parseInt(String(raw).replace(/,/g, ''), 10);
+    return isNaN(n) ? null : n;
+  }
+
+  function fetchGoatCounterLiveStats(onDone) {
+    if (typeof fetch !== 'function') {
+      if (typeof onDone === 'function') onDone(liveGoatStats);
+      return;
+    }
+    var pending = 2;
+    var anyOk = false;
+    function finishOne() {
+      pending--;
+      if (pending <= 0) {
+        liveGoatStats.ok = anyOk;
+        liveGoatStats.fetchedAt = formatNowTs();
+        if (typeof onDone === 'function') onDone(liveGoatStats);
+      }
+    }
+    fetch('https://kkumbaon.goatcounter.com/counter/%2Fkkumbaon-library%2F.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var n = parseGoatCount(d);
+        if (n !== null) { liveGoatStats.library = n; anyOk = true; }
+        finishOne();
+      })
+      .catch(function () { finishOne(); });
+
+    fetch('https://kkumbaon.goatcounter.com/counter/TOTAL.json')
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var n = parseGoatCount(d);
+        if (n !== null) { liveGoatStats.total = n; anyOk = true; }
+        finishOne();
+      })
+      .catch(function () { finishOne(); });
+  }
+
   function syncFromCloudAll(onComplete) {
     migrateLocalRegistryToVault();
-    if (typeof onComplete === 'function') {
-      onComplete(getLocalVault());
-    }
+    fetchGoatCounterLiveStats(function () {
+      if (typeof onComplete === 'function') {
+        onComplete(getLocalVault());
+      }
+    });
   }
 
   function recordTelemetryEvent(eventType, detailText, explicitCard) {
@@ -1883,7 +1929,7 @@
       '  <p style="margin:0; font-size:13.2px; color:#b8ab96; line-height:1.5;">개인정보 보호를 위해 외부 공개 중계기(MQTT 등) 전송은 전면 중단되었으며, 현재 브라우저(로컬)에 보관된 기록만 표시됩니다. 우측 버튼으로 <b>[🔑 1:1 정식판 인증번호(KB)]</b>도 즉시 발급·복사하실 수 있습니다.</p>',
       '  <div class="kkd-adm-stats">',
       '    <div class="kkd-adm-stat"><small>🪪 도서관 이용증 가입자</small><strong id="kkd-stat-members">0명</strong></div>',
-      '    <div class="kkd-adm-stat"><small>👣 다녀간 고유 방문자 (비로그인 포함)</small><strong id="kkd-stat-visitors">0명</strong></div>',
+      '    <div class="kkd-adm-stat"><small>👣 실시간 누적 방문자 (도서관 / 전체)</small><strong id="kkd-stat-visitors">0명</strong></div>',
       '    <div class="kkd-adm-stat"><small>🧰 스튜디오·예배당 누적 열람</small><strong id="kkd-stat-visits">0회</strong></div>',
       '    <div class="kkd-adm-stat"><small>🖨️ 유인물 인쇄 · PDF 열람</small><strong id="kkd-stat-prints">0회</strong></div>',
       '  </div>',
@@ -1896,13 +1942,14 @@
       '    </div>',
       '    <div class="kkd-adm-actions">',
       '      <input type="text" class="kkd-adm-search" id="kkd-adm-search" placeholder="🔍 성함, 이메일, 교회, 스튜디오 검색...">',
-      '      <button type="button" class="kkd-adm-btn" id="kkd-adm-sync-btn">🔄 지금 클라우드 동기화</button>',
+      '      <button type="button" class="kkd-adm-btn" id="kkd-adm-sync-btn">🔄 실시간 방문자 새로고침</button>',
+      '      <a class="kkd-adm-btn" id="kkd-adm-gc-btn" href="https://kkumbaon.goatcounter.com" target="_blank" rel="noopener noreferrer" style="text-decoration:none; border-color:rgba(243,201,105,0.55); color:#f3c969; display:inline-flex; align-items:center;">📊 일자별 방문자 그래프</a>',
       '      <button type="button" class="kkd-adm-btn" id="kkd-adm-csv-btn">📥 엑셀(CSV) 저장</button>',
       '    </div>',
       '  </div>',
       '  <div class="kkd-adm-table-wrap" id="kkd-adm-table-wrap"></div>',
       '  <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; font-size:12px; color:#9a8f7c;">',
-      '    <span id="kkd-adm-sync-status">🟢 클라우드 동기화 대기 중...</span>',
+      '    <span id="kkd-adm-sync-status">🔄 실시간 방문자 수 불러오는 중...</span>',
       '    <span>※ 성도·목회자의 개인 설교 원고 본문([내 설교 곳간])은 프라이버시 보호를 위해 수집하지 않으며, 가입 정보와 스튜디오 이용 내역만 기록됩니다.</span>',
       '  </div>',
       '</div>'
@@ -1936,11 +1983,11 @@
 
     document.getElementById('kkd-adm-sync-btn').addEventListener('click', function () {
       var st = document.getElementById('kkd-adm-sync-status');
-      if (st) st.textContent = '🔄 클라우드(MQTT + HTTPS)에서 최신 가입자·방문 기록을 불러오는 중입니다...';
+      if (st) st.textContent = '🔄 GoatCounter 실시간 방문자 수를 불러오는 중입니다...';
       syncFromCloudAll(function () {
         renderAdminDashboard();
-        if (st) st.textContent = '🟢 클라우드 최신 동기화 완료 (' + formatNowTs() + ')';
-        showToast('✅ 클라우드 가입자 명부 및 사용 기록 동기화가 완료되었습니다.');
+        if (st) st.textContent = buildLiveSyncStatusText();
+        showToast('✅ 실시간 방문자 수 새로고침이 완료되었습니다.');
       });
     });
 
@@ -1965,6 +2012,16 @@
     openAdminModal();
   }
 
+  function buildLiveSyncStatusText() {
+    var ts = formatNowTs();
+    if (liveGoatStats && liveGoatStats.ok) {
+      var libTxt = liveGoatStats.library !== null ? (liveGoatStats.library.toLocaleString() + '명') : '-';
+      var totTxt = liveGoatStats.total !== null ? (liveGoatStats.total.toLocaleString() + '명') : '-';
+      return '🟢 실시간 방문자 연동 완료 (' + ts + ' · 도서관 ' + libTxt + ' / 전체 ' + totTxt + ' · 하단 명단은 ~11/10 로컬 보관본)';
+    }
+    return '🟡 로컬 기록 표시 중 (' + ts + ' · 실시간 카운터 응답 대기)';
+  }
+
   function openAdminModal() {
     if (!isPastorAdmin()) return;
     try { localStorage.setItem('kkumdido_is_pastor_device', '1'); } catch (e0) {}
@@ -1976,10 +2033,10 @@
     saveLocalVault(vInit);
     renderAdminDashboard();
     var st = document.getElementById('kkd-adm-sync-status');
-    if (st) st.textContent = '🔄 클라우드에서 순수 외부 가입·방문 기록을 동기화하는 중...';
+    if (st) st.textContent = '🔄 GoatCounter 실시간 방문자 수를 불러오는 중입니다...';
     syncFromCloudAll(function () {
       renderAdminDashboard();
-      if (st) st.textContent = '🟢 클라우드 순수 방문자 동기화 완료 (' + formatNowTs() + ' · 관리자/테스트 봇 자동 제외됨)';
+      if (st) st.textContent = buildLiveSyncStatusText();
     });
   }
 
@@ -2020,8 +2077,19 @@
     var elV = document.getElementById('kkd-stat-visitors');
     var elS = document.getElementById('kkd-stat-visits');
     var elP = document.getElementById('kkd-stat-prints');
+    var localVisitorCnt = Math.max(visitorsArr.length, membersArr.length);
     if (elM) elM.textContent = membersArr.length + '명';
-    if (elV) elV.textContent = Math.max(visitorsArr.length, membersArr.length) + '명';
+    if (elV) {
+      if (liveGoatStats && liveGoatStats.ok && liveGoatStats.library !== null) {
+        var subParts = [];
+        if (liveGoatStats.total !== null) subParts.push('전체 ' + liveGoatStats.total.toLocaleString() + '명');
+        subParts.push('로컬(~11/10) ' + localVisitorCnt + '명');
+        elV.innerHTML = liveGoatStats.library.toLocaleString() + '명' +
+          '<span style="display:block;font-size:11.5px;font-weight:600;color:#b8ab96;margin-top:3px;">' + escapeHtml(subParts.join(' · ')) + '</span>';
+      } else {
+        elV.textContent = localVisitorCnt + '명';
+      }
+    }
     if (elS) elS.textContent = totalVisits + '회';
     if (elP) elP.textContent = totalPrints + '회';
 
