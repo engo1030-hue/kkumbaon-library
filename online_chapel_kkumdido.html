@@ -3083,7 +3083,7 @@ html, body {
       const themeFrame = new THREE.Mesh(new THREE.BoxGeometry(3.28, 1.48, 0.14), goldMat);
       themeFrame.position.set(0, 4.82, 0);
       sg.add(themeFrame);
-      const tTex = texLoader.load(st.themeImg, (t) => { t.colorSpace = THREE.SRGBColorSpace; });
+      const tTex = kkTexLoader.load(st.themeImg, (t) => { if (THREE.SRGBColorSpace) t.colorSpace = THREE.SRGBColorSpace; else if (THREE.sRGBEncoding) t.encoding = THREE.sRGBEncoding; });
       const tMat = new THREE.MeshBasicMaterial({ map: tTex });
       for (const [tz, rotY] of [[0.08, 0], [-0.08, Math.PI]]) {
         const tArt = new THREE.Mesh(new THREE.PlaneGeometry(3.04, 1.26), tMat);
