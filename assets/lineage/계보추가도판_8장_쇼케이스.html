@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>꿈디도 · 언약의 계보 신규 추가도판 8장 통합 쇼케이스</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-card: #1e293b;
+      --border-gold: #c89d46;
+      --gold-accent: #f59e0b;
+      --text-main: #f8fafc;
+      --text-sub: #94a3b8;
+      --gold-glow: rgba(245, 158, 11, 0.25);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+      padding: 40px 24px 80px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1400px; margin: 0 auto; }
+    header {
+      text-align: center;
+      margin-bottom: 48px;
+      border-bottom: 1px solid rgba(200, 157, 70, 0.3);
+      padding-bottom: 32px;
+    }
+    .badge {
+      display: inline-block;
+      border: 1px solid var(--border-gold);
+      background: rgba(200, 157, 70, 0.15);
+      color: var(--gold-accent);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      margin-bottom: 14px;
+    }
+    h1 {
+      font-size: 38px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #fff, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .desc { font-size: 16px; color: var(--text-sub); max-width: 800px; margin: 0 auto; }
+    
+    .section-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--gold-accent);
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(200, 157, 70, 0.25);
+    }
+    
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 28px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid rgba(200, 157, 70, 0.28);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold-accent);
+      box-shadow: 0 16px 36px var(--gold-glow);
+    }
+    .img-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 2 / 3;
+      background: #000;
+      overflow: hidden;
+      cursor: zoom-in;
+    }
+    .img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s ease;
+    }
+    .card:hover .img-wrap img {
+      transform: scale(1.03);
+    }
+    .card-body {
+      padding: 22px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+    .tag-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 6px;
+      background: rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.3);
+    }
+    .tag.blue {
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border-color: rgba(59, 130, 246, 0.3);
+    }
+    .card-title {
+      font-size: 21px;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .card-subtitle {
+      font-size: 13.5px;
+      color: var(--gold-accent);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .card-desc {
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.55;
+      flex: 1;
+    }
+    .meta-box {
+      margin-top: 14px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.6);
+      border-radius: 8px;
+      font-size: 12px;
+      color: #94a3b8;
+    }
+    
+    /* Lightbox Modal */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.92);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    #lightbox.active { display: flex; }
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 12px;
+      box-shadow: 0 0 50px rgba(0,0,0,0.8), 0 0 0 2px var(--border-gold);
+    }
+    #lightbox-caption {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid var(--border-gold);
+      padding: 10px 24px;
+      border-radius: 100px;
+      font-size: 15px;
+      color: #fff;
+      font-weight: 600;
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 24px;
+      right: 28px;
+      font-size: 32px;
+      color: #fff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      line-height: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">🏛️ 꿈디도 제1관 언약의 계보관 공식 검수본</div>
+      <h1>언약의 계보 신규 추가도판 8장 통합 쇼케이스</h1>
+      <p class="desc">아담부터 예수 그리스도에 이르는 구속사 대족보의 빈 틈새(gap)를 완벽히 채우는 개별 초상 4인과 세대 흐름 도판 4종(총 8장, 1024×1536 WebP/PNG) 전수 검수 완료 전시관입니다.</p>
+    </header>
+
+    <!-- SECTION 1: 개별 초상 4인 -->
+    <div class="section-title">PART 1. 언약의 핵심 선조 개별 초상화 (4인)</div>
+    <div class="grid">
+      <!-- 01 라멕 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('01_라멕_므두셀라의아들_초상.webp', '라멕 — 므두셀라의 아들, 노아의 아버지 (창세기 5:28-31)')">
+          <img src="01_라멕_므두셀라의아들_초상.webp" alt="라멕 초상" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">창 5:28~31</span>
+            <span class="tag blue">원역사 아담 9대손</span>
+          </div>
+          <div class="card-title">01. 라멕 (셋 계열)</div>
+          <div class="card-subtitle">므두셀라의 아들 · 노아의 아버지</div>
+          <div class="card-desc">
+            창세기 4장의 가인 계열 살인자 라멕과 엄격히 분리된 경건한 셋 계열의 라멕입니다. 저주받은 땅에서 수고하는 인류를 위로할 아들 노아를 바라보며, 가슴에 손을 얹고 지팡이를 짚은 온화하고 신실한 믿음의 표정을 고증했습니다.
+          </div>
+          <div class="meta-box">규격: 1024×1536 | 손가락 5개·복식 완전 일치</div>
+        </div>
+      </div>
+
+      <!-- 02 오벳 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('02_오벳_초상.webp', '오벳 — 보아스와 룻의 아들, 다윗의 조부 (룻기 4:17-22)')">
+          <img src="02_오벳_초상.webp" alt="오벳 초상" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">룻 4:17~22</span>
+            <span class="tag blue">사사~왕정 교량</span>
+          </div>
+          <div class="card-title">02. 오벳 (Obed)</div>
+          <div class="card-subtitle">보아스와 룻의 아들 · 이새의 아버지</div>
+          <div class="card-desc">
+            베들레헴 황금빛 보리밭과 감람나무 언덕을 배경으로 선 다윗의 친할아버지입니다. 이방 여인 룻과 경건한 보아스의 믿음을 이어받아 온유하고 단정한 품격을 갖추었으며, 다소곳이 모은 양손과 인디고 줄무늬 망토가 돋보입니다.
+          </div>
+          <div class="meta-box">규격: 1024×1536 | 베들레헴 풍경·단정한 양손</div>
+        </div>
+      </div>
+
+      <!-- 03 이새 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('03_이새_초상.webp', '이새 — 다윗의 아버지 (삼상 16장, 사 11:1)')">
+          <img src="03_이새_초상.webp" alt="이새 초상" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">사 11:1, 삼상 16장</span>
+            <span class="tag blue">다윗 왕조의 뿌리</span>
+          </div>
+          <div class="card-title">03. 이새 (Jesse)</div>
+          <div class="card-subtitle">오벳의 아들 · 다윗 왕의 아버지</div>
+          <div class="card-desc">
+            "이새의 줄기에서 한 싹이 나며"(사 11:1). 다윗의 아버지로서 베들레헴 돌집과 양 떼를 배경으로, 백발과 수염을 날리며 목자의 지팡이와 붉은 겉옷을 쥔 노장(老長)의 묵직한 영적 위엄과 깊은 지혜의 눈빛을 담았습니다.
+          </div>
+          <div class="meta-box">규격: 1024×1536 | 목자 지팡이·가죽 샌들·노장 위엄</div>
+        </div>
+      </div>
+
+      <!-- 04 스알디엘 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('04_스알디엘_초상.webp', '스알디엘 — 바벨론 포로기 다윗 왕가의 계승자 (마 1:12)')">
+          <img src="04_스알디엘_초상.webp" alt="스알디엘 초상" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">마 1:12, 대상 3:17</span>
+            <span class="tag blue">포로기 왕통 보존</span>
+          </div>
+          <div class="card-title">04. 스알디엘 (Shealtiel)</div>
+          <div class="card-subtitle">여고냐의 아들 · 스룹바벨의 아버지</div>
+          <div class="card-desc">
+            유브라데 강변과 바벨론 지구라트 성벽을 등지고 선 포로기 다윗 가문의 비운의 왕세자입니다. 망국의 한 속에서도 가슴의 겉옷깃을 움켜쥐고 시온(예루살렘)을 향한 깊은 묵상과 언약의 등불을 지켜낸 결연한 눈빛을 표현했습니다.
+          </div>
+          <div class="meta-box">규격: 1024×1536 | 유브라데 강변·바벨론 성채 고증</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: 묶음 세대 상징 도판 4종 -->
+    <div class="section-title">PART 2. 신학적 세대 흐름 상징 도판 (4종)</div>
+    <div class="grid">
+      <!-- 05 에노스~야렛 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('05_에노스_게난_마할랄렐_야렛_세대도판.webp', '에노스·게난·마할랄렐·야렛 — 4대 감람나무와 여명의 언약길 (창 5장)')">
+          <img src="05_에노스_게난_마할랄렐_야렛_세대도판.webp" alt="에노스 게난 마할랄렐 야렛 세대도판" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">창 5:6~20</span>
+            <span class="tag blue">원역사 4대 세대도판</span>
+          </div>
+          <div class="card-title">05. 에노스·게난·마할랄렐·야렛</div>
+          <div class="card-subtitle">창세기 5장 셋에서 에녹으로 이어지는 4대</div>
+          <div class="card-desc">
+            셋 이후 비로소 여호와의 이름을 부른 시대부터 에녹에 이르기까지 4세대를 뿌리가 서로 이어진 '4그루의 감람나무'로 형상화했습니다. 어린 묘목에서 고목에 이르는 성장의 여정과 아침 햇살이 비추는 순례자의 길이 언약의 영속성을 웅변합니다.
+          </div>
+          <div class="meta-box">상징: 4그루 감람나무 · 지하 뿌리 연결 · 순례자의 길</div>
+        </div>
+      </div>
+
+      <!-- 06 아르박삿~나홀 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('06_아르박삿_셀라_에벨_벨렉_르우_스룩_나홀_세대도판.webp', '아르박삿~나홀 — 메소포타미아 강변 7대 장막과 포도나무 (창 11장)')">
+          <img src="06_아르박삿_셀라_에벨_벨렉_르우_스룩_나홀_세대도판.webp" alt="아르박삿 셀라 에벨 벨렉 르우 스룩 나홀 세대도판" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">창 11:10~26</span>
+            <span class="tag blue">홍수 후 7대 세대도판</span>
+          </div>
+          <div class="card-title">06. 아르박삿~나홀 (7대)</div>
+          <div class="card-subtitle">셈에서 데라·아브라함으로 이어지는 7세대</div>
+          <div class="card-desc">
+            아르박삿·셀라·에벨·벨렉·르우·스룩·나홀로 이어지는 7세대를 메소포타미아 강변길을 따라 배치된 '정확히 7개의 거처와 장막', 그리고 우측 앞의 번성하는 포도나무 줄기로 묘사했습니다. 바벨탑 흩어짐 속에서도 보존된 언약의 여정을 보여줍니다.
+          </div>
+          <div class="meta-box">상징: 강변을 따라 배치된 7단계 거처 · 솟아난 포도나무</div>
+        </div>
+      </div>
+
+      <!-- 07 베레스~살몬 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('07_베레스_헤스론_람_아미나답_나손_살몬_세대도판.webp', '베레스~살몬 — 유다의 그루터기에서 가나안으로 (룻 4장, 마 1장)')">
+          <img src="07_베레스_헤스론_람_아미나답_나손_살몬_세대도판.webp" alt="베레스 헤스론 람 아미나답 나손 살몬 세대도판" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">룻 4:18~22, 마 1:3~5</span>
+            <span class="tag blue">애굽·광야 6대 세대도판</span>
+          </div>
+          <div class="card-title">07. 베레스~살몬 (6대)</div>
+          <div class="card-subtitle">유다에서 보아스로 이어지는 6세대 행진</div>
+          <div class="card-desc">
+            유다의 고목 그루터기에서 돋아난 새싹(베레스)이 메마른 골짜기와 시냇물을 따라 자라나, 가나안의 풍요로운 감람나무 숲(살몬)에 이르는 6단계 생명의 행진을 그렸습니다. 애굽 430년과 광야 40년을 관통하는 하나님의 보이지 않는 손길입니다.
+          </div>
+          <div class="meta-box">상징: 생명의 그루터기 · 계곡 시냇가 · 6단계 성장 묘목</div>
+        </div>
+      </div>
+
+      <!-- 08 아비훗~야곱 -->
+      <div class="card">
+        <div class="img-wrap" onclick="openZoom('08_아비훗_엘리아김_아소르_사독_아킴_엘리훗_엘르아살_맛단_야곱_세대도판.webp', '아비훗~야곱 — 신구약 중간기 400년의 등불과 9개 마을길 (마 1:13-16)')">
+          <img src="08_아비훗_엘리아김_아소르_사독_아킴_엘리훗_엘르아살_맛단_야곱_세대도판.webp" alt="아비훗 야곱 세대도판" loading="lazy" />
+        </div>
+        <div class="card-body">
+          <div class="tag-row">
+            <span class="tag">마태복음 1:13~16</span>
+            <span class="tag blue">신구약 중간기 9대 세대도판</span>
+          </div>
+          <div class="card-title">08. 아비훗~야곱 (9대)</div>
+          <div class="card-subtitle">스룹바벨에서 요셉·그리스도로 이어지는 9세대</div>
+          <div class="card-desc">
+            인물을 직접 그리지 않고, 400년 침묵기 속에서도 꺼지지 않고 타오르는 '돌 제단 위의 토기 등불'과 예루살렘을 향해 굽이치는 '9개 마을 언덕길'로 표현했습니다. 대제사장 사독이나 족장 야곱과의 동명이인 혼선을 원천 방어한 신학적 명작입니다.
+          </div>
+          <div class="meta-box">신학 특화: 인물 배제 · 꺼지지 않는 등불 · 9개 언덕 마을</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" onclick="closeZoom()">
+    <button id="lightbox-close">&times;</button>
+    <img id="lightbox-img" src="" alt="" />
+    <div id="lightbox-caption"></div>
+  </div>
+
+  <script>
+    function openZoom(src, caption) {
+      document.getElementById('lightbox-img').src = src;
+      document.getElementById('lightbox-caption').innerText = caption;
+      document.getElementById('lightbox').classList.add('active');
+    }
+    function closeZoom() {
+      document.getElementById('lightbox').classList.remove('active');
+    }
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') closeZoom();
+    });
+  </script>
+</body>
+</html>
